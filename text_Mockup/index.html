@@ -1,0 +1,1019 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memory Card — Living Design System & Interactive Mockup</title>
+  
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&family=Cinzel:wght@600;700;900&family=JetBrains+Mono:wght@400;600&display=swap" rel="stylesheet">
+  
+  <!-- Styles -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body class="theme-dark">
+
+  <!-- TOP APP HEADER -->
+  <header class="master-header">
+    <div class="header-left">
+      <div class="brand-badge">
+        <div class="brand-icon-slot" id="headerBrandLogoSlot"></div>
+        <span class="brand-title">MEMORY CARD</span>
+      </div>
+      <span class="version-tag">LIVING DESIGN LAB v1.0</span>
+    </div>
+
+    <!-- MODULE NAVIGATION TABS -->
+    <nav class="module-nav">
+      <button class="nav-btn active" data-tab="overview">
+        <span class="nav-icon">🧭</span> Overview
+      </button>
+      <button class="nav-btn" data-tab="tokens">
+        <span class="nav-icon">🎨</span> Design Tokens
+      </button>
+      <button class="nav-btn" data-tab="components">
+        <span class="nav-icon">🧱</span> Components
+      </button>
+      <button class="nav-btn" data-tab="physics">
+        <span class="nav-icon">🕹️</span> Gesture Sandbox
+      </button>
+      <button class="nav-btn" data-tab="screens">
+        <span class="nav-icon">📱</span> Mobile Screens
+      </button>
+      <button class="nav-btn" data-tab="exporter">
+        <span class="nav-icon">📋</span> Flutter Exporter
+      </button>
+    </nav>
+
+    <!-- HEADER CONTROLS -->
+    <div class="header-right">
+      <!-- Audio Toggle -->
+      <button class="icon-toggle-btn" id="audioToggle" title="Toggle Tactile Web Audio Synthesis">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+          <path d="M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          <path d="M19.07 4.93a10 10 0 0 1 0 14.14"></path>
+        </svg>
+        <span class="toggle-status on">FX ON</span>
+      </button>
+
+      <!-- Theme Switcher -->
+      <div class="theme-switcher">
+        <button class="theme-btn active" data-theme-val="dark" title="Dark Mode">🌙</button>
+        <button class="theme-btn" data-theme-val="light" title="Light Mode">☀️</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- TOAST NOTIFICATION CONTAINER -->
+  <div id="toastContainer" class="toast-container"></div>
+
+  <!-- MASTER CONTENT CONTAINER -->
+  <main class="master-content">
+
+    <!-- ========================================================================= -->
+    <!-- TAB 1: OVERVIEW & ARCHITECTURE DASHBOARD                                  -->
+    <!-- ========================================================================= -->
+    <section id="tab-overview" class="tab-pane active">
+      <div class="hero-banner">
+        <div class="hero-text">
+          <div class="hero-eyebrow">TACTILE • VISCERAL • CONSCIOUS</div>
+          <h1 class="hero-title">Memory Card Design & Physics Specification</h1>
+          <p class="hero-desc">
+            A unified design system and interactive gesture laboratory for the Flutter native mobile application.
+            Calibrated for 120 FPS gesture-to-photon latency, parametric Bézier folder mechanics, and dual-store adaptive memory queues.
+          </p>
+          <div class="hero-badges">
+            <span class="pill-badge accent-blue">Impeller 120 FPS Ready</span>
+            <span class="pill-badge accent-yellow">OKLCH Luminance Inversion</span>
+            <span class="pill-badge accent-coral">FSRS-5 On-Device Engine</span>
+            <span class="pill-badge">Haptic Synthesis (RES-45)</span>
+          </div>
+        </div>
+        <div class="hero-stats-card">
+          <div class="stat-row">
+            <span class="stat-label">Core MVP Features</span>
+            <span class="stat-val accent-blue">~118</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Gesture Frame Budget</span>
+            <span class="stat-val accent-yellow">8.33 ms (120 Hz)</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Custom Shaders / Paths</span>
+            <span class="stat-val accent-coral">6 GPU Pipelines</span>
+          </div>
+          <div class="stat-row">
+            <span class="stat-label">Primary UI Typography</span>
+            <span class="stat-val">Bernard MT Condensed</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- QUICK NAVIGATION CARDS -->
+      <div class="feature-grid">
+        <div class="overview-card" onclick="switchTab('tokens')">
+          <div class="card-icon">🎨</div>
+          <h3>Design Tokens & Themes</h3>
+          <p>Inspect HSL/OKLCH palettes, inverted Z-index color ramps, typography scales, and 6-tier material shaders.</p>
+          <span class="card-link">Explore Tokens →</span>
+        </div>
+
+        <div class="overview-card" onclick="switchTab('components')">
+          <div class="card-icon">🧱</div>
+          <h3>Living Component Showcase</h3>
+          <p>Parametric folder silhouettes, dynamic text head fitting, overlapping tabs, long-press pulse, and fear mode.</p>
+          <span class="card-link">View Components →</span>
+        </div>
+
+        <div class="overview-card" onclick="switchTab('physics')">
+          <div class="card-icon">🕹️</div>
+          <h3>Interactive Gesture Sandbox</h3>
+          <p>Live 3D card swipe simulation, 40%/60% threshold triggers, conscious folder fear wiggles, and card reveal modes.</p>
+          <span class="card-link">Launch Sandbox →</span>
+        </div>
+
+        <div class="overview-card" onclick="switchTab('screens')">
+          <div class="card-icon">📱</div>
+          <h3>Mobile Screen Walkthroughs</h3>
+          <p>Interactive 390×844 mobile frames of the 5 core screens: Drawer, Decks, Study Session, Shop, and Profile.</p>
+          <span class="card-link">Test Screens →</span>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 2: DESIGN TOKENS & THEME ENGINE                                       -->
+    <!-- ========================================================================= -->
+    <section id="tab-tokens" class="tab-pane">
+      <div class="section-header">
+        <h2>🎨 Design Tokens & Theme Engine</h2>
+        <p>Click any token swatch or code snippet to copy its Flutter Dart <code>Color(0xFF...)</code> or CSS value.</p>
+      </div>
+
+      <!-- PALETTES -->
+      <div class="token-group">
+        <h3 class="token-group-title">1. Master Canvas & Surface Tones</h3>
+        <div class="token-grid">
+          <div class="token-card" data-copy="const Color(0xFF121212)">
+            <div class="token-swatch" style="background: #121212;"></div>
+            <div class="token-info">
+              <span class="token-name">Canvas Dark</span>
+              <span class="token-code">#121212</span>
+              <span class="token-desc">Base background for dark theme</span>
+            </div>
+          </div>
+          <div class="token-card" data-copy="const Color(0xFFF8F9FA)">
+            <div class="token-swatch" style="background: #F8F9FA; border: 1px solid var(--border-subtle);"></div>
+            <div class="token-info">
+              <span class="token-name">Canvas Light</span>
+              <span class="token-code">#F8F9FA</span>
+              <span class="token-desc">Base background for light theme</span>
+            </div>
+          </div>
+          <div class="token-card" data-copy="const Color(0xFF1E1E1E)">
+            <div class="token-swatch" style="background: #1E1E1E;"></div>
+            <div class="token-info">
+              <span class="token-name">Surface Card Dark</span>
+              <span class="token-code">#1E1E1E</span>
+              <span class="token-desc">Top active card in study stack</span>
+            </div>
+          </div>
+          <div class="token-card" data-copy="const Color(0xFFFFFFFF)">
+            <div class="token-swatch" style="background: #FFFFFF; border: 1px solid var(--border-subtle);"></div>
+            <div class="token-info">
+              <span class="token-name">Surface Card Light</span>
+              <span class="token-code">#FFFFFF</span>
+              <span class="token-desc">Top active card in light theme</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- CYCLIC DECK ACCENTS -->
+      <div class="token-group">
+        <h3 class="token-group-title">2. Cyclic 3-Color Deck Tab Accents (Z₃ Permutation Group)</h3>
+        <div class="token-grid">
+          <div class="token-card" data-copy="const Color(0xFF5B9DFF)">
+            <div class="token-swatch" style="background: #5B9DFF;"></div>
+            <div class="token-info">
+              <span class="token-name">Deck Pill Blue (B)</span>
+              <span class="token-code">#5B9DFF</span>
+              <span class="token-desc">Primary deck accent & Move action</span>
+            </div>
+          </div>
+          <div class="token-card" data-copy="const Color(0xFFFFB85B)">
+            <div class="token-swatch" style="background: #FFB85B;"></div>
+            <div class="token-info">
+              <span class="token-name">Deck Pill Yellow (Y)</span>
+              <span class="token-code">#FFB85B</span>
+              <span class="token-desc">Warm accent & Archive action</span>
+            </div>
+          </div>
+          <div class="token-card" data-copy="const Color(0xFFE55B5B)">
+            <div class="token-swatch" style="background: #E55B5B;"></div>
+            <div class="token-info">
+              <span class="token-name">Deck Pill Coral (R)</span>
+              <span class="token-code">#E55B5B</span>
+              <span class="token-desc">Vibrant accent & Delete action</span>
+            </div>
+          </div>
+          <div class="token-card" data-copy="const Color(0xFF50C878)">
+            <div class="token-swatch" style="background: #50C878;"></div>
+            <div class="token-info">
+              <span class="token-name">Mastery Green</span>
+              <span class="token-code">#50C878</span>
+              <span class="token-desc">Right-swipe "Mastered" badge</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- INVERTED Z-INDEX LUMINANCE SCALES -->
+      <div class="token-group">
+        <h3 class="token-group-title">3. Inverted Z-Index Folder Luminance Scales (Folder 0 $\to$ Folder N)</h3>
+        <p class="token-subtext">Folder 0 sits physically deepest ($Z=0$), but is colored lightest. Bottom folder sits highest ($Z=N$), but is colored darkest.</p>
+        
+        <div class="folder-ramp-container">
+          <div class="folder-ramp-label">Dark Mode Luminance Inversion:</div>
+          <div class="folder-ramp-bar">
+            <div class="ramp-step" style="background: #FFFFFF; color: #121212;" data-copy="const Color(0xFFFFFFFF)">F0: #FFFFFF</div>
+            <div class="ramp-step" style="background: #D9D9D9; color: #121212;" data-copy="const Color(0xFFD9D9D9)">F1: #D9D9D9</div>
+            <div class="ramp-step" style="background: #A8A8A8; color: #121212;" data-copy="const Color(0xFFA8A8A8)">F2: #A8A8A8</div>
+            <div class="ramp-step" style="background: #787878; color: #FFFFFF;" data-copy="const Color(0xFF787878)">F3: #787878</div>
+            <div class="ramp-step" style="background: #484848; color: #FFFFFF;" data-copy="const Color(0xFF484848)">F4: #484848</div>
+            <div class="ramp-step" style="background: #252525; color: #FFFFFF;" data-copy="const Color(0xFF252525)">FN: #252525</div>
+          </div>
+        </div>
+
+        <div class="folder-ramp-container" style="margin-top: 1rem;">
+          <div class="folder-ramp-label">Light Mode Luminance Inversion:</div>
+          <div class="folder-ramp-bar">
+            <div class="ramp-step" style="background: #1E1E1E; color: #FFFFFF;" data-copy="const Color(0xFF1E1E1E)">F0: #1E1E1E</div>
+            <div class="ramp-step" style="background: #3A3A3A; color: #FFFFFF;" data-copy="const Color(0xFF3A3A3A)">F1: #3A3A3A</div>
+            <div class="ramp-step" style="background: #585858; color: #FFFFFF;" data-copy="const Color(0xFF585858)">F2: #585858</div>
+            <div class="ramp-step" style="background: #787878; color: #FFFFFF;" data-copy="const Color(0xFF787878)">F3: #787878</div>
+            <div class="ramp-step" style="background: #9A9A9A; color: #121212;" data-copy="const Color(0xFF9A9A9A)">F4: #9A9A9A</div>
+            <div class="ramp-step" style="background: #C4C4C4; color: #121212;" data-copy="const Color(0xFFC4C4C4)">FN: #C4C4C4</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 6-TIER MATERIAL PROFILE SHADERS -->
+      <div class="token-group">
+        <h3 class="token-group-title">4. 6-Tier Material Profile Shaders (FES-46 Composite Mastery Score)</h3>
+        <div class="token-grid tier-grid">
+          <div class="tier-card tier-bronze" data-copy="Tier 1: Bronze (CMS 0-999)">
+            <div class="tier-gem">🥉</div>
+            <div class="tier-name">Tier 1: Bronze</div>
+            <div class="tier-cms">CMS: 0 – 999</div>
+            <div class="tier-hex">#CD7F32</div>
+          </div>
+          <div class="tier-card tier-silver" data-copy="Tier 2: Silver (CMS 1,000-4,999)">
+            <div class="tier-gem">🥈</div>
+            <div class="tier-name">Tier 2: Silver</div>
+            <div class="tier-cms">CMS: 1,000 – 4,999</div>
+            <div class="tier-hex">#E0E0E0</div>
+          </div>
+          <div class="tier-card tier-gold" data-copy="Tier 3: Gold (CMS 5,000-14,999)">
+            <div class="tier-gem">🥇</div>
+            <div class="tier-name">Tier 3: Gold</div>
+            <div class="tier-cms">CMS: 5,000 – 14,999</div>
+            <div class="tier-hex">#FFD700</div>
+          </div>
+          <div class="tier-card tier-emerald" data-copy="Tier 4: Emerald (CMS 15,000-34,999)">
+            <div class="tier-gem">💎</div>
+            <div class="tier-name">Tier 4: Emerald</div>
+            <div class="tier-cms">CMS: 15,000 – 34,999</div>
+            <div class="tier-hex">#50C878</div>
+          </div>
+          <div class="tier-card tier-diamond" data-copy="Tier 5: Diamond (CMS 35,000-74,999)">
+            <div class="tier-gem">💠</div>
+            <div class="tier-name">Tier 5: Diamond</div>
+            <div class="tier-cms">CMS: 35,000 – 74,999</div>
+            <div class="tier-hex">#B9F2FF</div>
+          </div>
+          <div class="tier-card tier-obsidian" data-copy="Tier 6: Obsidian Black (CMS 75,000+)">
+            <div class="tier-gem">🌌</div>
+            <div class="tier-name">Tier 6: Obsidian Black</div>
+            <div class="tier-cms">CMS: 75,000+</div>
+            <div class="tier-hex">#1A1A1A (Holo Sheen)</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- TYPOGRAPHY SYSTEM -->
+      <div class="token-group">
+        <h3 class="token-group-title">5. Typography Scales & Pairings</h3>
+        <div class="typography-spec-card">
+          <div class="type-sample">
+            <span class="type-meta">Display / Title (Bernard MT Condensed Style):</span>
+            <div class="type-display">MEMORY CARD: DEUTSCH VERBEN</div>
+          </div>
+          <div class="type-sample">
+            <span class="type-meta">Heading 1 (Folder & Deck Titles):</span>
+            <div class="type-h1">Languages • Medical Anatomy • World History</div>
+          </div>
+          <div class="type-sample">
+            <span class="type-meta">Body / Card Term (Plus Jakarta Sans Geometric):</span>
+            <div class="type-body">Das Eichhörnchen — (noun, neuter) The squirrel eating nuts under the oak tree.</div>
+          </div>
+          <div class="type-sample">
+            <span class="type-meta">Monospace / Metadata (Hesitation & Spaced Stats):</span>
+            <div class="type-mono">FSRS-5 | S: 14.2d | D: 0.32 | Hs: 0.12 (Low Hesitation) | Retrievability: 89.4%</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 3: LIVING COMPONENT SHOWCASE                                          -->
+    <!-- ========================================================================= -->
+    <section id="tab-components" class="tab-pane">
+      <div class="section-header">
+        <h2>🧱 Living Component & State Showcase</h2>
+        <p>Preview the custom SVG icons, dynamic text-adaptive folder silhouettes, touch interactions, long-press pulsing, and fear mode.</p>
+      </div>
+
+      <!-- 20 CUSTOM ICONS MATRIX -->
+      <div class="token-group">
+        <h3 class="token-group-title">1. Complete 20 Custom SVG Glyphs (Inlined Direct Vectors)</h3>
+        <div class="icons-grid" id="iconsMatrix">
+          <!-- Inlined by JS with 100% vector fidelity -->
+        </div>
+      </div>
+
+      <!-- PARAMETRIC FOLDER SILHOUETTE VIEWER -->
+      <div class="token-group">
+        <div class="component-header-flex">
+          <div>
+            <h3 class="token-group-title">2. Parametric Bézier Folder Silhouette (Dynamic Head & Overlapping Pills)</h3>
+            <p class="token-subtext">
+              <strong>9-Folder Extended Stack:</strong> Deck pills only appear on the <strong>last 3 interacted folders</strong>. Interacting with a 4th folder triggers a smooth downward overshoot drop animation that completely tucks its pills into the pocket.
+            </p>
+          </div>
+          <div class="interaction-hints-badge">
+            <span>👆 Tap: Activate & Overshoot Reveal</span>
+            <span>•</span>
+            <span>⏱️ Hold: +3% Pulsing Drag</span>
+          </div>
+        </div>
+        
+        <!-- THE LIVING INTERACTIVE FOLDER STACK -->
+        <div class="folder-showcase-box">
+          <div class="folder-interactive-stack" id="interactiveFolderStack">
+            <!-- Dynamic folders rendered by JS with precise Bézier paths and touch physics -->
+          </div>
+
+          <!-- BOTTOM ACTION BAR: DELETE MODE & RESET -->
+          <div class="folder-stage-bottom-bar">
+            <div class="left-actions">
+              <button class="stage-btn delete-mode-btn" id="folderDeleteModeBtn" title="Toggle Delete Fear Mode">
+                <div class="stage-btn-icon-slot" id="deleteBtnIconSlot"></div>
+                <span id="deleteBtnLabel">Delete Mode</span>
+              </button>
+            </div>
+            <div class="right-actions">
+              <button class="stage-btn reset-folders-btn" id="folderResetBtn" title="Reset Folder Stack">
+                <span>↺ Reset Folders</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- SWIPE ACTION TILES & SQUASH OVERLAP -->
+      <div class="token-group">
+        <h3 class="token-group-title">3. Swipe Action Blocks (RES-02 & RES-03 Squash Mechanics)</h3>
+        
+        <!-- NEW: Deck List Visual (MOVED TO TOP) -->
+        <div class="component-header-flex" style="margin-top: 1.5rem; justify-content: space-between; align-items: center; width: 100%; max-width: 520px; margin-left: auto; margin-right: auto;">
+          <div>
+            <h4 style="font-family: var(--font-display); font-size: 1.15rem; margin: 0;">Deck List Multi-Step Tactile Gestures</h4>
+            <span style="font-size: 0.75rem; color: var(--text-secondary);">2-Option Stepped Detents • Inward Gravity • Edge Overflow</span>
+          </div>
+          <button class="stage-btn reset-folders-btn" id="btnResetDeckList" style="padding: 0.35rem 0.75rem; font-size: 0.75rem;">
+            <span>↺ Reset Decks</span>
+          </button>
+        </div>
+
+        <div class="stage-physics-status-bar" style="max-width: 520px; margin: 0.75rem auto 1rem auto; padding: 0.5rem 0.85rem; background: var(--bg-surface-2); border-radius: var(--radius-sm); border: 1px solid var(--border-subtle); display: flex; flex-direction: column; gap: 0.45rem;">
+          <div style="display: flex; justify-content: space-between; font-size: 0.72rem; font-family: var(--font-mono); color: var(--text-secondary);">
+            <span>Stage: <strong id="deckStepStageText" style="color: var(--text-primary);">Resting (0%)</strong></span>
+            <span>Displacement: <strong id="deckStepDispText" style="color: var(--pill-blue);">0 px</strong></span>
+            <span>Target: <strong id="deckStepTargetText" style="color: var(--text-primary);">None</strong></span>
+          </div>
+          <!-- VERTICAL SWIPE / SCROLL SLIDER (Access all 9 decks) -->
+          <div style="display: flex; align-items: center; gap: 0.75rem; font-size: 0.72rem; font-family: var(--font-mono); color: var(--text-secondary); border-top: 1px solid var(--border-subtle); padding-top: 0.4rem;">
+            <span>↕️ Swipe Down / Scroll (7 of 9 Decks):</span>
+            <input type="range" id="deckVerticalScrollSlider" min="0" max="100" value="0" style="flex: 1; accent-color: var(--pill-blue); cursor: pointer;" title="Slide to scroll through 9 decks">
+            <span id="deckScrollPosText" style="min-width: 32px; text-align: right; color: var(--pill-blue); font-weight: 700;">0%</span>
+          </div>
+        </div>
+
+        <!-- STAGE FRAME WITH VISIBLE LEFT AND RIGHT GUIDELINES & VERTICAL FADE MASKS -->
+        <div class="deck-stage-viewport" style="margin: 0 auto; max-width: 520px;">
+          <!-- Top and Bottom Fade Overlays -->
+          <div class="deck-viewport-fade deck-fade-top"></div>
+          <div class="deck-viewport-fade deck-fade-bottom"></div>
+
+          <!-- Left and Right Guide Lines -->
+          <div class="stage-guideline guide-left" title="Left Boundary Edge"></div>
+          <div class="stage-guideline guide-right" title="Right Boundary Edge"></div>
+
+          <div class="deck-list-container" id="deckListInteractiveContainer">
+            <!-- Rendered dynamically by JavaScript with stepped gesture physics and fan silhouettes -->
+          </div>
+        </div>
+
+        <!-- ACTION TILES (MOVED TO BOTTOM) -->
+        <h4 style="margin-top: 3.5rem; font-family: var(--font-display); font-size: 1.1rem; margin-bottom: 1rem;">Action Tiles Preview</h4>
+        <div class="action-tiles-grid">
+          <div class="action-tile-demo action-delete">
+            <div class="action-svg-slot" id="actionIconDelete"></div>
+            <div class="action-label">Delete Deck</div>
+            <span class="action-hint">Swipe Left > 35%</span>
+          </div>
+          <div class="action-tile-demo action-archive">
+            <div class="action-svg-slot" id="actionIconArchive"></div>
+            <div class="action-label">Archive Deck</div>
+            <span class="action-hint">Extended Swipe Left</span>
+          </div>
+          <div class="action-tile-demo action-move">
+            <div class="action-svg-slot" id="actionIconMove"></div>
+            <div class="action-label">Move to Folder</div>
+            <span class="action-hint">Swipe Right > 35%</span>
+          </div>
+          <div class="action-tile-demo action-done">
+            <div class="action-svg-slot" id="actionIconDone"></div>
+            <div class="action-label">Mastered (FSRS)</div>
+            <span class="action-hint">Card Swipe Right > 60%</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 4: INTERACTIVE PHYSICS & GESTURE SANDBOX                              -->
+    <!-- ========================================================================= -->
+    <section id="tab-physics" class="tab-pane">
+      <div class="section-header">
+        <h2>🕹️ Interactive Physics & Gesture Sandbox</h2>
+        <p>Test the 6-layer 3D swipe physics, threshold triggers, conscious folder tremors, and card flip modes live.</p>
+      </div>
+
+      <div class="sandbox-layout">
+        
+        <!-- LEFT: INTERACTIVE 6-LAYER 3D SWIPE STACK -->
+        <div class="sandbox-card-stage">
+          <div class="stage-header">
+            <span class="stage-title">6-LAYER 3D CARD STUDY STACK</span>
+            <div class="stage-mode-selector">
+              <label>Reveal Mode:</label>
+              <select id="cardRevealMode">
+                <option value="flip">Mode A: 3D Flip (180°)</option>
+                <option value="transform" selected>Mode B: Color Transform Reveal</option>
+                <option value="none">Mode C: No Flip (Front Only)</option>
+              </select>
+            </div>
+          </div>
+
+          <!-- THE 6-LAYER 3D CARD STACK CONTAINER -->
+          <div class="card-stack-viewport" id="cardStackViewport">
+            
+            <!-- LAYER 6 (Base) -->
+            <div class="stack-card layer-6" id="layer6"></div>
+            <!-- LAYER 5 -->
+            <div class="stack-card layer-5" id="layer5"></div>
+            <!-- LAYER 4 -->
+            <div class="stack-card layer-4" id="layer4"></div>
+            <!-- LAYER 3 -->
+            <div class="stack-card layer-3" id="layer3"></div>
+            <!-- LAYER 2 -->
+            <div class="stack-card layer-2" id="layer2">
+              <div class="card-inner-placeholder">
+                <div class="shimmer-line line-1"></div>
+                <div class="shimmer-line line-2"></div>
+              </div>
+            </div>
+
+            <!-- LAYER 1 (TOP ACTIVE INTERACTIVE CARD) -->
+            <div class="stack-card layer-1 interactive-card" id="topActiveCard">
+              
+              <!-- CARD FRONT FACE -->
+              <div class="card-face card-front">
+                <div class="card-top-meta">
+                  <span class="deck-tag">German Basics • Card <span id="cardCounter">1/45</span></span>
+                  <button class="reveal-btn-icon" id="manualRevealBtn" title="Reveal Answer (Mode B)">👁️ Reveal</button>
+                </div>
+                <div class="card-term" id="cardFrontText">Das Eichhörnchen</div>
+                <div class="card-meta-hint">[noun, neuter] • Tap card or button to reveal definition</div>
+                <div class="card-gesture-hint">
+                  <span>← Swipe Left (Review)</span>
+                  <span>Swipe Right (Mastered) →</span>
+                </div>
+              </div>
+
+              <!-- CARD BACK FACE (For 3D Flip Mode) -->
+              <div class="card-face card-back">
+                <div class="card-top-meta">
+                  <span class="deck-tag">German Basics • Definition</span>
+                  <span class="reveal-indicator">✓ Revealed</span>
+                </div>
+                <div class="card-definition" id="cardBackText">The Squirrel</div>
+                <div class="card-sentence">"Das Eichhörnchen springt von Baum zu Baum."</div>
+                <div class="card-mnemonic">💡 Mnemonic: Picture an <strong>oak horn</strong> worn by a squirrel.</div>
+              </div>
+
+              <!-- 40% INDICATOR BADGES -->
+              <div class="badge-indicator badge-left" id="badgeLeft">
+                <div class="badge-icon-slot" id="badgeBoxSlot"></div>
+                <div class="badge-text">Review Again<br><small>(+N Adaptive Step)</small></div>
+              </div>
+              <div class="badge-indicator badge-right" id="badgeRight">
+                <div class="badge-icon-slot" id="badgeDoneSlot"></div>
+                <div class="badge-text">Mastered<br><small>(FSRS Graduated)</small></div>
+              </div>
+
+            </div>
+          </div>
+
+          <!-- GESTURE TELEMETRY MONITOR -->
+          <div class="telemetry-bar">
+            <div class="telemetry-item">
+              <span class="tel-label">Displacement ΔX:</span>
+              <span class="tel-val" id="telDeltaX">0 px</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="tel-label">Scale Factor:</span>
+              <span class="tel-val" id="telScale">1.000</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="tel-label">Rotation Angle:</span>
+              <span class="tel-val" id="telRotation">0.0°</span>
+            </div>
+            <div class="telemetry-item">
+              <span class="tel-label">Commit Threshold:</span>
+              <span class="tel-val" id="telThreshold">0% (Sub-60%)</span>
+            </div>
+          </div>
+
+          <!-- MANUAL ACTION BUTTONS FOR TESTING -->
+          <div class="sandbox-buttons-row">
+            <button class="action-btn btn-left" id="btnSimulateLeft">
+              <span>← Swipe Left (Review)</span>
+            </button>
+            <button class="action-btn btn-flip" id="btnSimulateFlip">
+              <span>🔄 Flip / Reveal</span>
+            </button>
+            <button class="action-btn btn-right" id="btnSimulateRight">
+              <span>Swipe Right (Master) →</span>
+            </button>
+            <button class="action-btn btn-reset" id="btnResetStack">
+              <span>↺ Reset Stack</span>
+            </button>
+          </div>
+        </div>
+
+        <!-- RIGHT: CONSCIOUS FOLDER EMOTIONAL STATE CONTROLS -->
+        <div class="sandbox-controls-panel">
+          <h3 class="panel-title">🧠 Emotional "Conscious" States</h3>
+          
+          <div class="control-box">
+            <div class="control-box-header">
+              <span class="box-title">1. Delete Mode: "Fear of Deletion" (RES-07)</span>
+              <button class="pill-toggle-btn" id="toggleFearMode">Trigger Fear Mode 😱</button>
+            </div>
+            <p class="control-desc">
+              Folders tremble with a smooth, timid nervous frequency ($10\text{Hz}$) and recoil on selection.
+            </p>
+          </div>
+
+          <div class="control-box">
+            <div class="control-box-header">
+              <span class="box-title">2. Long-Press: "+8% Breathing Pulse"</span>
+            </div>
+            <p class="control-desc">
+              Long-press any folder card ($\ge 350\text{ms}$) to lift it into floating mode with a continuous $+8\%$ scale pulse until dropped.
+            </p>
+          </div>
+
+          <div class="control-box">
+            <div class="control-box-header">
+              <span class="box-title">3. Haptic Feedback Simulator (RES-45)</span>
+            </div>
+            <p class="control-desc">Simulate native iOS Taptic / Android Composition impulses in web:</p>
+            <div class="haptic-buttons-grid">
+              <button class="haptic-btn" onclick="triggerHapticSim('light')">Light Impact</button>
+              <button class="haptic-btn" onclick="triggerHapticSim('medium')">Medium Thud</button>
+              <button class="haptic-btn" onclick="triggerHapticSim('success')">Success Pop</button>
+              <button class="haptic-btn" onclick="triggerHapticSim('crescendo')">Wax Seal Stamp</button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 5: MOBILE SCREEN WALKTHROUGHS                                         -->
+    <!-- ========================================================================= -->
+    <section id="tab-screens" class="tab-pane">
+      <div class="section-header">
+        <h2>📱 Full Mobile Screen Walkthroughs (390×844)</h2>
+        <p>Interactive simulations of the 5 core mobile screens mapped from reference mockups.</p>
+      </div>
+
+      <!-- SCREEN SELECTOR BUTTONS -->
+      <div class="screen-selector-bar">
+        <button class="screen-tab-btn active" data-screen="screen-drawer">1. Conscious Side Drawer</button>
+        <button class="screen-tab-btn" data-screen="screen-decks">2. Decks List Page</button>
+        <button class="screen-tab-btn" data-screen="screen-study">3. 3D Study Session</button>
+        <button class="screen-tab-btn" data-screen="screen-shop">4. Pinterest Deck Shop</button>
+        <button class="screen-tab-btn" data-screen="screen-profile">5. Tactile Auth / Profile</button>
+      </div>
+
+      <!-- MOBILE DEVICE FRAME CONTAINER -->
+      <div class="device-showcase-container">
+        
+        <div class="iphone-frame">
+          <!-- TOP SPEAKER & NOTCH -->
+          <div class="iphone-notch">
+            <div class="iphone-camera"></div>
+          </div>
+          
+          <!-- STATUS BAR -->
+          <div class="device-status-bar">
+            <span class="status-time">9:41</span>
+            <div class="status-icons">
+              <span>📶</span>
+              <span>5G</span>
+              <span>🔋</span>
+            </div>
+          </div>
+
+          <!-- SCREEN 1: CONSCIOUS SIDE DRAWER -->
+          <div class="device-screen active" id="screen-drawer">
+            <div class="screen-top-bar">
+              <div class="drawer-header-title">
+                <div class="screen-header-icon-slot" id="drawerHeaderIconSlot"></div>
+                <span>FOLDERS & DECKS</span>
+              </div>
+              <button class="gear-btn" onclick="toast('Settings Menu Opened')">
+                <div class="screen-action-icon-slot" id="drawerSettingsSlot"></div>
+              </button>
+            </div>
+
+            <!-- FOLDER STACK IN DRAWER -->
+            <div class="drawer-folder-stack" id="mobileDrawerFolderStack">
+              <!-- Rendered with precise parametric silhouettes -->
+            </div>
+
+            <!-- BOTTOM FADE & CREATE BUTTON -->
+            <div class="drawer-bottom-zone">
+              <button class="create-folder-btn" onclick="toast('Opening New Folder Modal...')">
+                <div class="stage-btn-icon-slot" id="newFolderBtnIconSlot"></div>
+                <span>New Folder</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- SCREEN 2: DECKS LIST PAGE -->
+          <div class="device-screen" id="screen-decks">
+            <div class="screen-top-bar">
+              <button class="icon-nav-btn" onclick="switchMobileScreen('screen-drawer')">
+                <div class="screen-nav-icon-slot" id="deckNavMenuSlot"></div>
+              </button>
+              <span class="header-screen-title">Languages</span>
+              <button class="icon-nav-btn" onclick="toast('Overflow Menu')">
+                <div class="screen-nav-icon-slot" id="deckNavMoreSlot"></div>
+              </button>
+            </div>
+
+            <div class="decks-vertical-list">
+              
+              <!-- Deck Item 1 (Swipeable Demo) -->
+              <div class="deck-item-swipe-container" id="demoSwipeDeck">
+                <div class="deck-action-underlay-left">
+                  <div class="underlay-icon-slot" id="deckActionMoveSlot"></div>
+                  <span>Move</span>
+                </div>
+                <div class="deck-action-underlay-right">
+                  <div class="underlay-icon-slot" id="deckActionDeleteSlot"></div>
+                  <span>Delete</span>
+                </div>
+                <div class="deck-card-front" onclick="switchMobileScreen('screen-study')">
+                  <div class="deck-info">
+                    <h4>Spanish 101: Basics</h4>
+                    <p>45 Cards • 82% Retrievability</p>
+                  </div>
+                  <div class="deck-stack-icon">
+                    <span class="mini-stack-layer s-3"></span>
+                    <span class="mini-stack-layer s-2"></span>
+                    <span class="mini-stack-layer s-1"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Deck Item 2 -->
+              <div class="deck-item-swipe-container">
+                <div class="deck-card-front" onclick="switchMobileScreen('screen-study')">
+                  <div class="deck-info">
+                    <h4>French Irregular Verbs</h4>
+                    <p>60 Cards • Due Today: 12</p>
+                  </div>
+                  <div class="deck-stack-icon">
+                    <span class="mini-stack-layer s-3"></span>
+                    <span class="mini-stack-layer s-2"></span>
+                    <span class="mini-stack-layer s-1"></span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Deck Item 3 -->
+              <div class="deck-item-swipe-container">
+                <div class="deck-card-front" onclick="switchMobileScreen('screen-study')">
+                  <div class="deck-info">
+                    <h4>Arabic Root Letters</h4>
+                    <p>30 Cards • Mastered: 18</p>
+                  </div>
+                  <div class="deck-stack-icon">
+                    <span class="mini-stack-layer s-3"></span>
+                    <span class="mini-stack-layer s-2"></span>
+                    <span class="mini-stack-layer s-1"></span>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+            <!-- BOTTOM BAR -->
+            <div class="device-bottom-nav">
+              <button class="b-nav-item active">
+                <div class="bottom-nav-slot" id="bottomNavHomeSlot"></div>
+              </button>
+              <button class="b-nav-item create-fab" onclick="toast('Context-Aware: Create Deck')">⬡</button>
+              <button class="b-nav-item" onclick="switchMobileScreen('screen-shop')">
+                <div class="bottom-nav-slot" id="bottomNavShopSlot"></div>
+              </button>
+            </div>
+          </div>
+
+          <!-- SCREEN 3: STUDY SESSION -->
+          <div class="device-screen" id="screen-study">
+            <div class="screen-top-bar">
+              <button class="icon-nav-btn" onclick="switchMobileScreen('screen-decks')">✕</button>
+              <span class="header-screen-title">German Basics</span>
+              <span class="study-progress-pill">12 / 45</span>
+            </div>
+
+            <!-- MINI CARD STUDY VIEW -->
+            <div class="study-viewport">
+              <div class="study-card-mockup" onclick="toast('Tapped card: Color Transform Reveal')">
+                <div class="study-card-front">
+                  <span class="sc-tag">Noun • Neuter</span>
+                  <h3 class="sc-term">Das Eichhörnchen</h3>
+                  <p class="sc-hint">Tap to reveal answer</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="study-bottom-controls">
+              <div class="swipe-hint-pill">
+                <span>← Swipe Left (Review)</span>
+                <span>•</span>
+                <span>Swipe Right (Master) →</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- SCREEN 4: PINTEREST DECK SHOP -->
+          <div class="device-screen" id="screen-shop">
+            <div class="screen-top-bar">
+              <span class="header-screen-title">Deck Shop</span>
+              <button class="icon-nav-btn" onclick="toast('Tag Filters')">
+                <div class="screen-nav-icon-slot" id="shopFilterSlot"></div>
+              </button>
+            </div>
+
+            <div class="shop-search-bar">
+              <div class="search-input-wrapper">
+                <div class="search-bar-icon-slot" id="searchBarIconSlot"></div>
+                <input type="text" placeholder="Search 10,000+ curated decks..." readonly>
+              </div>
+            </div>
+
+            <!-- 6-ROW HORIZONTAL MASONRY TILES (Scrollable Demo) -->
+            <div class="shop-masonry-container">
+              <div class="shop-tile" onclick="openShopFAB(this, event)">
+                <div class="tile-tag">Language</div>
+                <h5>Medical Latin</h5>
+                <p>120 Cards • ★ 4.9</p>
+              </div>
+              <div class="shop-tile" onclick="openShopFAB(this, event)">
+                <div class="tile-tag">Coding</div>
+                <h5>Flutter Shaders</h5>
+                <p>40 Cards • ★ 5.0</p>
+              </div>
+              <div class="shop-tile" onclick="openShopFAB(this, event)">
+                <div class="tile-tag">Science</div>
+                <h5>Neuroscience 101</h5>
+                <p>85 Cards • ★ 4.8</p>
+              </div>
+              <div class="shop-tile" onclick="openShopFAB(this, event)">
+                <div class="tile-tag">Language</div>
+                <h5>Kanji N3</h5>
+                <p>200 Cards • ★ 4.9</p>
+              </div>
+            </div>
+
+            <!-- RADIAL FAB MENU POPUP (DEMO) -->
+            <div class="radial-fab-cluster" id="shopRadialFAB">
+              <button class="fab-item f-pin" onclick="toast('📌 Pinned to favorites!')">
+                <div class="fab-icon-slot" id="fabPinSlot"></div>
+              </button>
+              <button class="fab-item f-share" onclick="toast('✈️ Share link copied!')">
+                <div class="fab-icon-slot" id="fabShareSlot"></div>
+              </button>
+              <button class="fab-item f-search" onclick="toast('🔍 Finding similar decks...')">
+                <div class="fab-icon-slot" id="fabSearchSlot"></div>
+              </button>
+              <button class="fab-item f-save" onclick="toast('💾 Saved to Active Folder!')">
+                <div class="fab-icon-slot" id="fabSaveSlot"></div>
+              </button>
+            </div>
+
+            <!-- BOTTOM BAR -->
+            <div class="device-bottom-nav">
+              <button class="b-nav-item" onclick="switchMobileScreen('screen-decks')">
+                <div class="bottom-nav-slot" id="bottomNavHomeSlot"></div>
+              </button>
+              <button class="b-nav-item create-fab" onclick="toast('Create Deck')">⬡</button>
+              <button class="b-nav-item active">
+                <div class="bottom-nav-slot" id="bottomNavShopSlot"></div>
+              </button>
+            </div>
+          </div>
+
+          <!-- SCREEN 5: TACTILE AUTH & PROFILE -->
+          <div class="device-screen" id="screen-profile">
+            <div class="screen-top-bar">
+              <button class="icon-nav-btn" onclick="switchMobileScreen('screen-drawer')">←</button>
+              <span class="header-screen-title">Membership Card</span>
+              <button class="icon-nav-btn" onclick="toast('Settings')">
+                <div class="screen-nav-icon-slot" id="profileSettingsSlot"></div>
+              </button>
+            </div>
+
+            <div class="profile-viewport">
+              <!-- EMBOSSED MEMBERSHIP CARD -->
+              <div class="embossed-member-card tier-obsidian-preview" id="memberProfileCard">
+                <div class="em-top">
+                  <span class="em-chip">🎴 MEMORY PASS</span>
+                  <span class="em-tier-badge" id="memberTierBadge">OBSIDIAN BLACK</span>
+                </div>
+                <div class="em-number">8492 • 4910 • 3920 • 9481</div>
+                <div class="em-bottom">
+                  <div class="em-holder">
+                    <small>LEARNER NAME</small>
+                    <span>ALEXANDER MERCER</span>
+                  </div>
+                  <div class="em-stats">
+                    <small>MASTERY CMS</small>
+                    <span id="memberCmsVal">84,290 PTS</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- TIER SELECTOR DEMO -->
+              <div class="profile-tier-controls">
+                <label>Preview Profile Shader Tier:</label>
+                <div class="tier-select-row">
+                  <button class="ts-btn" onclick="updateProfileTier('bronze')">Bronze</button>
+                  <button class="ts-btn" onclick="updateProfileTier('silver')">Silver</button>
+                  <button class="ts-btn" onclick="updateProfileTier('gold')">Gold</button>
+                  <button class="ts-btn" onclick="updateProfileTier('emerald')">Emerald</button>
+                  <button class="ts-btn" onclick="updateProfileTier('diamond')">Diamond</button>
+                  <button class="ts-btn active" onclick="updateProfileTier('obsidian')">Obsidian</button>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- DEVICE HOME INDICATOR BAR -->
+          <div class="iphone-home-bar"></div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ========================================================================= -->
+    <!-- TAB 6: FLUTTER CODE EXPORTER                                              -->
+    <!-- ========================================================================= -->
+    <section id="tab-exporter" class="tab-pane">
+      <div class="section-header">
+        <h2>📋 1:1 Flutter Dart Code Exporter</h2>
+        <p>Direct copy-ready Dart source files matching this exact design system and mathematical engine.</p>
+      </div>
+
+      <div class="exporter-grid">
+        <div class="export-box">
+          <div class="export-header">
+            <span>AppColors.dart (Complete Token Palette)</span>
+            <button class="copy-code-btn" onclick="copySnippet('codeAppColors')">Copy Dart Code</button>
+          </div>
+          <pre><code id="codeAppColors">import 'package:flutter/material.dart';
+
+class AppColors {
+  // Master Canvas
+  static const Color canvasDark = Color(0xFF121212);
+  static const Color canvasLight = Color(0xFFF8F9FA);
+  static const Color surfaceDark = Color(0xFF1E1E1E);
+  static const Color surfaceLight = Color(0xFFFFFFFF);
+
+  // Cyclic Deck Tab Accents (Z3 Permutations)
+  static const Color pillBlue = Color(0xFF5B9DFF);
+  static const Color pillYellow = Color(0xFFFFB85B);
+  static const Color pillCoral = Color(0xFFE55B5B);
+  static const Color masteryGreen = Color(0xFF50C878);
+
+  // Inverted Folder Luminance Palette (Dark Theme)
+  static const List<Color> folderLuminanceDark = [
+    Color(0xFFFFFFFF), // F0: Deepest Z=0, Brightest
+    Color(0xFFD9D9D9), // F1
+    Color(0xFFA8A8A8), // F2
+    Color(0xFF787878), // F3
+    Color(0xFF484848), // F4
+    Color(0xFF252525), // FN: Highest Z=N, Darkest
+  ];
+
+  // 6-Tier Material Shader Colors
+  static const Color tierBronze = Color(0xFFCD7F32);
+  static const Color tierSilver = Color(0xFFE0E0E0);
+  static const Color tierGold = Color(0xFFFFD700);
+  static const Color tierEmerald = Color(0xFF50C878);
+  static const Color tierDiamond = Color(0xFFB9F2FF);
+  static const Color tierObsidian = Color(0xFF1A1A1A);
+}</code></pre>
+        </div>
+
+        <div class="export-box">
+          <div class="export-header">
+            <span>FolderSilhouettePath.dart (Parametric Bézier Math)</span>
+            <button class="copy-code-btn" onclick="copySnippet('codeFolderPath')">Copy Dart Code</button>
+          </div>
+          <pre><code id="codeFolderPath">import 'package:flutter/material.dart';
+
+Path buildFolderSilhouettePath({
+  required double width,
+  required double height,
+  required double tabWidth, // Dynamically computed from title TextPainter
+  double stepHeight = 30.0, // 8px taller head plateau above the pills resting at Y=8px
+  double stepSpan = 36.0,
+  double cornerRadius = 16.0,
+  double alpha = 0.45,
+}) {
+  final path = Path();
+  final r = Radius.circular(cornerRadius);
+
+  path.moveTo(cornerRadius, 0);
+  // 1. Top Title Plateau (Fits Text Width)
+  path.lineTo(tabWidth, 0);
+
+  // 2. Cubic S-Curve Transition Bridge (C1 Continuity)
+  path.cubicTo(
+    tabWidth + (alpha * stepSpan), 0,
+    tabWidth + ((1.0 - alpha) * stepSpan), stepHeight,
+    tabWidth + stepSpan, stepHeight,
+  );
+
+  // 3. Lower Shoulder Shelf (Deck Pills Mount Here)
+  path.lineTo(width - cornerRadius, stepHeight);
+  path.arcToPoint(Offset(width, stepHeight + cornerRadius), radius: r);
+
+  // 4. Right Edge & Bottom Corners
+  path.lineTo(width, height - cornerRadius);
+  path.arcToPoint(Offset(width - cornerRadius, height), radius: r);
+  path.lineTo(cornerRadius, height);
+  path.arcToPoint(Offset(0, height - cornerRadius), radius: r);
+
+  // 5. Left Edge & Top Left Corner
+  path.lineTo(0, cornerRadius);
+  path.arcToPoint(Offset(cornerRadius, 0), radius: r);
+
+  path.close();
+  return path;
+}</code></pre>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- JavaScript -->
+  <script src="app.js"></script>
+</body>
+</html>
