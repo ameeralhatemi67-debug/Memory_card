@@ -285,7 +285,7 @@ You can type your answers directly underneath each question in this file, or ans
 - [ ] **Option A (3 Main Tabs + "+N" Counter Pill)**: Render 3 colored tabs, plus a clean pill badge indicating additional decks.
 - [ ] **Option B (Compressed Mini-Fan)**: Stagger all deck tabs with tighter overlap spacing so up to 6–8 tabs can peek out without overflow.
 - [ ] **Option C (Expandable Accordion Sub-Drawer)**: Tapping a folder expands an accordion list showing all child decks directly inside the drawer.
-- **Your Answer / Notes**: Currently I don't have an idea on how to show that number of decks in this folder. so we would continue with the current design, and later see how we may in the future add a UI element that could help. update: we have maid [[RES-44_Flutter_Conscious_Folder_Drawer_Engine]]
+- **Your Answer / Notes**: Currently I don't have an idea on how to show that number of decks in this folder. so we would continue with the current design, and later see how we may in the future add a UI element that could help. update: we have maid [[projects/ideas/memory_card/docs/research/RES-44_Flutter_Conscious_Folder_Drawer_Engine]]
 
 ### Q3.2 | Should folders support nested sub-folders (Folder inside a Folder), or strictly 1 level of Folders containing Decks?
 - [x] **Option A (Strict 1-Level Hierarchy)**: Folders $\rightarrow$ Decks $\rightarrow$ Cards (Clean, zero clutter).

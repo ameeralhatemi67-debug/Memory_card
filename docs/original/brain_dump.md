@@ -429,7 +429,7 @@ Mapped directly from [[Ideas/Future/Memory Card/icons/|icons/]] directory:
 
 ## 🚀 7. Roadmap & Next Steps
 
-1. Conduct comprehensive technical and cognitive research $\rightarrow$ [[research.md|Research & Technical Feasibility Plan]].
-2. Explore gamification, AI generation, and UX expansions $\rightarrow$ [[brain_storming.md|Brainstorming & Feature Innovations]].
+1. Conduct comprehensive technical and cognitive research $\rightarrow$ [[research|Research & Technical Feasibility Plan]].
+2. Explore gamification, AI generation, and UX expansions $\rightarrow$ [[brain_storming|Brainstorming & Feature Innovations]].
 3. Finalize tech stack evaluation (Flutter vs React Native + Skia vs Web Canvas).
 4. Build interactive prototype for the 6-layer swipe state machine and conscious side drawer.

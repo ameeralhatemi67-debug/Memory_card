@@ -92,7 +92,7 @@ Every major milestone and phase must follow a strict Git boundary protocol:
 ---
 
 # ═══════════════════════════════════════════════════
-# 📦 VERSION 1.0 — Research, Foundations & Initial Prototype [COMPLETED]
+# VERSION 1.0 — Research, Foundations & Initial Prototype [COMPLETED]
 # ═══════════════════════════════════════════════════
 
 **Goal:** Establish the theoretical foundations, cognitive models, physics formulas, initial UI prototype, and conduct a candid architectural audit.
@@ -130,7 +130,7 @@ Every major milestone and phase must follow a strict Git boundary protocol:
 ---
 
 # ═══════════════════════════════════════════════════
-# 🚀 VERSION 2.0 — Design Finalization & Resizable Living Lab [ACTIVE]
+# VERSION 2.0 — Design Finalization & Resizable Living Lab [ACTIVE]
 # ═══════════════════════════════════════════════════
 
 **Goal:** Bridge all visual discrepancies identified in the audit, finalize the living design system to 100% reference fidelity, implement a real-time resizable phone viewport for adaptive layout testing, establish Git version control, and lock design tokens for production.
@@ -219,7 +219,7 @@ Every major milestone and phase must follow a strict Git boundary protocol:
 ---
 
 # ═══════════════════════════════════════════════════
-# 🔮 VERSION 3.0 — Advanced Sensory Laboratory [PLANNED]
+# VERSION 3.0 — Advanced Sensory Laboratory [PLANNED]
 # ═══════════════════════════════════════════════════
 
 **Goal:** Build and calibrate advanced sensory capabilities in isolation before integrating into the production application.
@@ -247,7 +247,7 @@ Every major milestone and phase must follow a strict Git boundary protocol:
 ---
 
 # ═══════════════════════════════════════════════════
-# 📱 VERSION 4.0 — Native Flutter Application Build [FUTURE]
+# VERSION 4.0 — Native Flutter Application Build [FUTURE]
 # ═══════════════════════════════════════════════════
 
 **Goal:** Build, test, and ship the high-performance native Flutter application on iOS and Android.

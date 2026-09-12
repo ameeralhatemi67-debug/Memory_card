@@ -574,7 +574,7 @@ The neuroscience, hardware landscape, and complete cross-platform architecture f
 
 ### 11.1 The Science of Sustainable Engagement
 
-> **Full Research Paper:** [[FES-46_Mobile_Gamification_Behavioral_Psychology_And_Sustainable_Retention_Architecture|FES-46 / RES-46: Mobile Gamification, Behavioral Psychology & Sustainable Habit Progression Systems]]
+> **Full Research Paper:** [[projects/ideas/memory_card/docs/research/FES-46_Mobile_Gamification_Behavioral_Psychology_And_Sustainable_Retention_Architecture|FES-46 / RES-46: Mobile Gamification, Behavioral Psychology & Sustainable Habit Progression Systems]]
 
 1. **The Fall of Naive PBL & Overjustification Effect**: Extrinsic reward hoarding (points, vanity badges, global leaderboards) crowds out intrinsic motivation (Deci & Ryan Self-Determination Theory). Gamification succeeds when built on **Competence, Autonomy, and Relatedness**, maintaining an 80/20 White-Hat to Black-Hat Octalysis ratio.
 
