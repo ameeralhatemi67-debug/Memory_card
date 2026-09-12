@@ -40,7 +40,7 @@ Do not select **Verified now** simply because code exists or an old screenshot l
 
 | # | Composite Feature Group | Current Evidence Status | Primary Reference | Target Release |
 |---:|---|:---:|---|---|
-| 1 | Typography & Custom Icon System | Discrepancy (Missing Bernard MT) | `icons.png`, `Questions.md` | Version 2.0 (Checkpoints 2.1 & 2.2) |
+| 1 | Typography & Custom Icon System | Verified | `icons.png`, `Questions.md` | Version 2.0 (Checkpoints 2.1 & 2.2) |
 | 2 | Stepped Staircase Fan Deck Cards | Discrepancy (3 flat bars vs 5-step fan) | `Card_stacks_page.png` | Version 2.0 (Checkpoint 2.2) |
 | 3 | Dual Split Swipe & Edge-Sinking Masking | Discrepancy (Single underlay, no fade) | `side_swaip_justes.png` | Version 2.0 (Checkpoint 2.2) |
 | 4 | 6-Layer 3D Study Stack in Mobile View | Prototype in Sandbox only; screen flat | `Cards_page.png` | Version 2.0 (Checkpoint 2.2) |
@@ -58,13 +58,13 @@ Do not select **Verified now** simply because code exists or an old screenshot l
 
 ## 1. Typography & Custom Icon System
 
-- **Current Classification:** Discrepancy
-- **Why:** The prototype loads Google Fonts `Cinzel` and `Plus Jakarta Sans`. The master visual reference and user decisions specify **Bernard MT Condensed** as the primary brand and UI typeface.
-- **Retest Gate:** Open `text_Mockup/index.html`; verify that headers, folder names, and action buttons render with Bernard MT Condensed (or high-fidelity match), and all 20 custom SVG glyphs scale crisply without clipping.
-- [ ] Verified now
-- [x] Still broken / discrepancy
+- **Current Classification:** Verified
+- **Why:** The prototype previously loaded Google Fonts `Cinzel` and `Plus Jakarta Sans`. `BernardMTCondensed.ttf` was discovered on the user's system, bundled into `text_Mockup/fonts/` and `fonts/`, and integrated via `@font-face` into `styles.css`.
+- **Retest Gate:** Open `text_Mockup/index.html`; verify that headers, folder names, and action buttons render with Bernard MT Condensed, and all 20 custom SVG glyphs scale crisply without clipping.
+- [x] Verified now
+- [ ] Still broken / discrepancy
 - [ ] Needs guided test
-- **User notes:**
+- **User notes:** Bernard MT Condensed font integrated via `@font-face` with local system and bundled web font (`fonts/BernardMTCondensed.ttf`). Verified visually across all headlines, brand titles, folder labels, deck cards, study terms, and badges in screenshots across all 5 mobile screens.
 
 ---
 

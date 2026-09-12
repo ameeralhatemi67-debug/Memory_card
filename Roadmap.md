@@ -140,26 +140,26 @@ Every major milestone and phase must follow a strict Git boundary protocol:
 **Outcome:** Establish clean Git version control, create the canonical feature checklist, and align all root documentation.
 
 #### Phase 2.1.1: Git Scaffolding & Initial Commit
-- [ ] **Task 2.1.1.1:** Initialize Git repository in the project root (`git init`).
-- [ ] **Task 2.1.1.2:** Author `.gitignore` excluding OS artifacts, caches, and temporary files.
-- [ ] **Task 2.1.1.3:** Create clean baseline Git commit preserving all imported Version 1.0 assets.
+- [x] **Task 2.1.1.1:** Initialize Git repository in the project root (`git init`).
+- [x] **Task 2.1.1.2:** Author `.gitignore` excluding OS artifacts, caches, and temporary files.
+- [x] **Task 2.1.1.3:** Create clean baseline Git commit preserving all imported Version 1.0 assets.
 
 #### Phase 2.1.2: Canonical Feature Checklist
-- [ ] **Task 2.1.2.1:** Create `feature_checklist.md` tracking all composite features across mockup, design system, and future app layers.
-- [ ] **Task 2.1.2.2:** Establish clear verification criteria and retest instructions for every visual component.
+- [x] **Task 2.1.2.1:** Create `feature_checklist.md` tracking all composite features across mockup, design system, and future app layers.
+- [x] **Task 2.1.2.2:** Establish clear verification criteria and retest instructions for every visual component.
 
 #### Phase 2.1.3: Documentation Alignment
-- [ ] **Task 2.1.3.1:** Author canonical `README.md` following project standards.
-- [ ] **Task 2.1.3.2:** Author canonical `Status.md` reflecting Version 2.0 active state.
-- [ ] **Task 2.1.3.3:** Author canonical `progress.md` capturing all Version 1.0 historical outcomes.
-- [ ] **Task 2.1.3.4:** Commit Checkpoint 2.1 completion to Git.
+- [x] **Task 2.1.3.1:** Author canonical `README.md` following project standards.
+- [x] **Task 2.1.3.2:** Author canonical `Status.md` reflecting Version 2.0 active state.
+- [x] **Task 2.1.3.3:** Author canonical `progress.md` capturing all Version 1.0 historical outcomes.
+- [x] **Task 2.1.3.4:** Commit Checkpoint 2.1 completion to Git.
 
 ### Checkpoint 2.2: Mockup Visual Discrepancy Remediation (Adding What Is Missing)
 
 **Outcome:** Elevate `text_Mockup` to 100% visual parity with the 8 reference mockups in `reference/`.
 
 #### Phase 2.2.1: Typography & Asset Calibration
-- [ ] **Task 2.2.1.1:** Integrate **Bernard MT Condensed** font (or high-fidelity local/web fallback matching the reference aesthetic) for all headlines, folder labels, and action badges.
+- [x] **Task 2.2.1.1:** Integrate **Bernard MT Condensed** font (or high-fidelity local/web fallback matching the reference aesthetic) for all headlines, folder labels, and action badges.
 - [ ] **Task 2.2.1.2:** Normalize and polish all 20 custom SVG icons in `text_Mockup/` with correct bounding boxes and stroke weights.
 
 #### Phase 2.2.2: Signature Decks List Polish (`Card_stacks_page.png` & `side_swaip_justes.png`)

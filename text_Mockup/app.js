@@ -1413,6 +1413,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initDeckSwipeGestures();
   initCardStackGesture();
   initMobileScreenWalkthrough();
+  renderMobileDrawerStack();
 
   document.querySelectorAll('[data-copy]').forEach(el => {
     el.addEventListener('click', () => {
@@ -1422,6 +1423,23 @@ document.addEventListener('DOMContentLoaded', () => {
       audio.playTick(1100);
     });
   });
+
+  // URL Hash Navigation Handler for direct screen inspection & automated testing
+  const handleHashChange = () => {
+    const rawHash = window.location.hash.replace('#', '');
+    if (!rawHash) return;
+    const cleanHash = rawHash.split('?')[0];
+    if (['overview', 'tokens', 'components', 'physics', 'screens', 'exporter'].includes(cleanHash)) {
+      switchTab(cleanHash);
+    } else if (cleanHash.startsWith('screen-')) {
+      switchTab('screens');
+      if (typeof switchMobileScreen === 'function') {
+        switchMobileScreen(cleanHash);
+      }
+    }
+  };
+  window.addEventListener('hashchange', handleHashChange);
+  handleHashChange();
 });
 
 

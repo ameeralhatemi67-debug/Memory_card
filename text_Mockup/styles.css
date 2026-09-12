@@ -3,11 +3,24 @@
    ========================================================================== */
 
 /* --------------------------------------------------------------------------
+   0. EMBEDDED FONTS
+   -------------------------------------------------------------------------- */
+@font-face {
+  font-family: 'Bernard MT Condensed';
+  src: local('Bernard MT Condensed'),
+       local('BernardMTCondensed'),
+       url('fonts/BernardMTCondensed.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* --------------------------------------------------------------------------
    1. CSS RESET & CUSTOM PROPERTIES (TOKENS)
    -------------------------------------------------------------------------- */
 :root {
   /* Master Fonts */
-  --font-display: 'Bernard MT Condensed', 'Cinzel', 'Impact', sans-serif;
+  --font-display: 'Bernard MT Condensed', 'Impact', 'Arial Narrow', sans-serif;
   --font-body: 'Plus Jakarta Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
@@ -1505,12 +1518,16 @@ body.theme-light .bottom-folder-gradient-overlay,
 }
 
 .badge-text {
-  font-size: 0.75rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
   font-weight: 700;
-  line-height: 1.2;
+  line-height: 1.15;
 }
 
 .badge-text small {
+  font-family: var(--font-body);
+  font-size: 0.7rem;
   font-weight: normal;
   opacity: 0.85;
 }
@@ -1811,6 +1828,53 @@ body.theme-light .bottom-folder-gradient-overlay,
   flex-grow: 1;
 }
 
+.drawer-folder-card {
+  position: relative;
+  background: var(--bg-surface-2);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 0.85rem 1rem;
+  margin-bottom: 0.65rem;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+.drawer-folder-card:hover {
+  transform: translateX(4px);
+  border-color: var(--border-active);
+}
+
+.drawer-folder-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.25rem;
+}
+
+.df-title {
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+}
+
+.df-tabs {
+  display: flex;
+  gap: 4px;
+}
+
+.df-tabs .mini-pill {
+  width: 14px;
+  height: 6px;
+  border-radius: var(--radius-pill);
+}
+
+.df-meta {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-secondary);
+}
+
 .drawer-bottom-zone {
   margin-top: 1rem;
 }
@@ -1822,12 +1886,20 @@ body.theme-light .bottom-folder-gradient-overlay,
   border: 1px dashed var(--border-active);
   color: var(--text-primary);
   border-radius: var(--radius-md);
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.03em;
   font-weight: 700;
   cursor: pointer;
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
+  transition: background-color 0.2s ease;
+}
+
+.create-folder-btn:hover {
+  background: var(--bg-surface-3);
 }
 
 /* Screen 2 Decks List */
@@ -1853,8 +1925,10 @@ body.theme-light .bottom-folder-gradient-overlay,
   align-items: center;
   gap: 0.35rem;
   padding: 0 1rem;
+  font-family: var(--font-display);
+  font-size: 1rem;
+  letter-spacing: 0.03em;
   font-weight: 700;
-  font-size: 0.8rem;
   color: #FFFFFF;
 }
 
@@ -1889,7 +1963,9 @@ body.theme-light .bottom-folder-gradient-overlay,
 }
 
 .deck-info h4 {
-  font-size: 0.95rem;
+  font-family: var(--font-display);
+  font-size: 1.25rem;
+  letter-spacing: 0.02em;
   margin-bottom: 0.15rem;
 }
 
@@ -1999,6 +2075,28 @@ body.theme-light .bottom-folder-gradient-overlay,
   cursor: pointer;
 }
 
+.sc-tag {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--pill-coral);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.sc-term {
+  font-family: var(--font-display);
+  font-size: 2.2rem;
+  letter-spacing: 0.02em;
+  color: var(--text-primary);
+  margin: 0.75rem 0 0.5rem;
+}
+
+.sc-hint {
+  font-family: var(--font-body);
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
 .study-progress-pill {
   font-family: var(--font-mono);
   font-size: 0.75rem;
@@ -2070,14 +2168,17 @@ body.theme-light .bottom-folder-gradient-overlay,
 }
 
 .tile-tag {
-  font-size: 0.65rem;
-  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-family: var(--font-display);
+  letter-spacing: 0.04em;
   color: var(--pill-blue);
   text-transform: uppercase;
 }
 
 .shop-tile h5 {
-  font-size: 0.95rem;
+  font-family: var(--font-display);
+  font-size: 1.15rem;
+  letter-spacing: 0.02em;
   margin: 0.25rem 0;
 }
 
@@ -2190,10 +2291,10 @@ body.theme-light .bottom-folder-gradient-overlay,
 }
 
 .em-number {
-  font-family: var(--font-mono);
-  font-size: 1.1rem;
-  letter-spacing: 0.15em;
-  opacity: 0.85;
+  font-family: var(--font-display);
+  font-size: 1.45rem;
+  letter-spacing: 0.12em;
+  opacity: 0.95;
 }
 
 .em-bottom {
@@ -2211,8 +2312,9 @@ body.theme-light .bottom-folder-gradient-overlay,
 
 .em-holder span,
 .em-stats span {
-  font-weight: 700;
-  font-size: 0.85rem;
+  font-family: var(--font-display);
+  font-size: 1.1rem;
+  letter-spacing: 0.02em;
 }
 
 .profile-tier-controls {

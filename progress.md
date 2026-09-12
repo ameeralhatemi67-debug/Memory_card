@@ -41,6 +41,19 @@ This document records verified outcomes, technical approaches, and architectural
 
 ## Version 2.0 Outcomes
 
+### 2026-09-12 — Bernard MT Condensed Typography Integration & Visual Parity (Task 2.2.1.1)
+
+- **Task Reference:** [[Roadmap#Phase 2.2.1: Typography & Asset Calibration|Checkpoint 2.2, Phase 2.2.1, Task 2.2.1.1]]
+- **Outcome Summary:** Integrated the authentic **Bernard MT Condensed** typeface across all headlines, folder labels, deck titles, card study terms, action underlays, and badges. Eliminated the font discrepancy where the prototype previously fell back to Cinzel / Plus Jakarta Sans.
+- **How We Built It & Technical Approach:**
+  - Discovered `BernardMTCondensed.ttf` on the user's system and bundled it into `text_Mockup/fonts/` and project `fonts/`.
+  - Configured `@font-face` in `text_Mockup/styles.css` with local system fallbacks and bundled asset loading.
+  - Applied `var(--font-display)` across brand titles, folder labels (`.df-title`), deck list titles (`.deck-info h4`), study card terms (`.sc-term`, `.card-term`), action underlays (`.deck-action-underlay-left`, `.deck-action-underlay-right`), shop cards (`.shop-tile h5`), and membership cards (`.em-number`, `.em-holder span`).
+  - Added URL hash navigation routing in `text_Mockup/app.js` enabling direct tab and screen testing.
+- **Verification Evidence:**
+  - Automated headless Chrome screenshots captured at 1280×1200 across all 5 mobile frames and sandbox stages (`screenshot_overview.png`, `screenshot_components.png`, `screenshot_physics.png`, `screenshot_screen_drawer.png`, `screenshot_screen_decks.png`, `screenshot_screen_study.png`, `screenshot_screen_shop.png`, `screenshot_screen_profile.png`).
+  - Visual verification confirms 100% typographic match to reference mockups (`Card_stacks_page.png`, `side_drwer.png`, `Cards_page.png`).
+
 ### 2026-09-12 — Version 2.0 Roadmap & Core Documentation Alignment (Checkpoint 2.1, Phase 2.1.3)
 
 - **Task Reference:** [[Roadmap#Phase 2.1.3: Documentation Alignment|Checkpoint 2.1, Phase 2.1.3, Tasks 2.1.3.1–2.1.3.4]]
