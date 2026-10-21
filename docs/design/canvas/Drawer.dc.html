@@ -51,13 +51,13 @@ a{color:inherit}a:hover{color:inherit}
         </svg>
         <div style="position: absolute; left: 0; top: 0; height: 48px; box-sizing: border-box; padding: 6px 0 0 26px; display: flex; align-items: center; z-index: 6; pointer-events: none; white-space: nowrap; width: {{f.tabW}}px; color: {{f.text}}; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 26px; line-height: 1;">{{f.name}}</div>
         <sc-if value="{{f.isOpen}}" hint-placeholder-val="{{false}}">
-          <a href="Main.dc.html" style="position: absolute; right: 16px; top: 45px; height: 20px; display: flex; align-items: center; gap: 4px; z-index: 6; pointer-events: auto; text-decoration: none; font-size: 14px; font-weight: 700; color: {{f.text}};">Open {{f.count}} <span aria-hidden="true">›</span></a>
+          <a href="Main.dc.html" style="position: absolute; right: 16px; top: 54px; height: 20px; display: flex; align-items: center; gap: 4px; z-index: 6; pointer-events: auto; text-decoration: none; font-size: 14px; font-weight: 700; color: {{f.text}};">Open {{f.count}} <span aria-hidden="true">›</span></a>
         </sc-if>
         <sc-if value="{{f.isPlain}}" hint-placeholder-val="{{true}}">
-          <span aria-hidden="true" style="position: absolute; right: 18px; top: 47px; z-index: 6; font-size: 13px; font-weight: 600; color: {{f.meta}};">{{f.count}}</span>
+          <span aria-hidden="true" style="position: absolute; right: 18px; top: 56px; z-index: 6; font-size: 13px; font-weight: 600; color: {{f.meta}};">{{f.count}}</span>
         </sc-if>
         <sc-if value="{{fear}}" hint-placeholder-val="{{false}}">
-          <span aria-hidden="true" style="position: absolute; right: 16px; top: 40px; width: 26px; height: 26px; border-radius: 13px; background: #FF8080; color: #333333; z-index: 6; display: flex; align-items: center; justify-content: center;"><svg width="11" height="11" viewBox="0 0 6.163 6.163" fill="currentColor"><g transform="translate(-2974.2755,-1343.3503)"><g transform="translate(-1343.0628,1236.6336)"><rect x="3131.604" y="-2981.288" width="2.068" height="7.857" ry="1.034" transform="rotate(45)"/><rect x="-2978.393" y="-3136.566" width="2.068" height="7.857" ry="1.034" transform="rotate(135)"/></g></g></svg></span>
+          <span aria-hidden="true" style="position: absolute; right: 16px; top: 49px; width: 26px; height: 26px; border-radius: 13px; background: #FF8080; color: #333333; z-index: 6; display: flex; align-items: center; justify-content: center;"><svg width="11" height="11" viewBox="0 0 6.163 6.163" fill="currentColor"><g transform="translate(-2974.2755,-1343.3503)"><g transform="translate(-1343.0628,1236.6336)"><rect x="3131.604" y="-2981.288" width="2.068" height="7.857" ry="1.034" transform="rotate(45)"/><rect x="-2978.393" y="-3136.566" width="2.068" height="7.857" ry="1.034" transform="rotate(135)"/></g></g></svg></span>
         </sc-if>
       </div>
     </sc-for>
