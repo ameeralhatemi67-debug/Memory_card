@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Folder drawer</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wdth,wght@62.5..100,700..900&amp;family=Barlow+Semi+Condensed:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: {{t.backdrop}}; color: {{t.ink}}; font-family: 'Barlow Semi Condensed', system-ui, sans-serif;">
+
+  <div aria-hidden="true" style="position: absolute; left: 22px; top: 20px; width: 28px; height: 36px; color: {{t.backdropInk}};"><svg width="100%" height="100%" viewBox="0 0 11.211 14.182" fill="currentColor"><g transform="translate(-3014.7719,-1275.9218)"><g transform="translate(-69.860379)"><rect x="3084.633" y="1275.922" width="6.926" height="11.206" ry="0.534" fill-opacity=".55"/><rect x="3312.468" y="433.451" width="6.926" height="11.206" ry="0.534" transform="rotate(15)" fill-opacity=".78"/><rect x="3314.619" y="-438.992" width="6.926" height="11.206" ry="0.534" transform="rotate(30)"/></g></g></svg></div>
+  <div aria-hidden="true" style="position: absolute; right: 22px; top: 26px; width: 8px; height: 26px; color: {{t.backdropInk}};"><svg width="100%" height="100%" viewBox="0 0 2.444 8.911" fill="currentColor"><g transform="translate(-2998.7693,-1277.1094)"><g transform="translate(-455.15531,250.69204)"><circle cx="3455.146" cy="1034.107" r="1.222"/><circle cx="3455.146" cy="1030.873" r="1.222"/><circle cx="3455.146" cy="1027.639" r="1.222"/></g></g></svg></div>
+  <sc-for list="{{ghostBars}}" as="g" hint-placeholder-count="7">
+    <div aria-hidden="true" style="position: absolute; left: 300px; width: 120px; height: 72px; border-radius: 10px; background: {{t.backdropBar}}; top: {{g.top}}px;"></div>
+  </sc-for>
+  <a href="Main.dc.html" aria-label="Close folders" style="position: absolute; left: 340px; top: 64px; right: 0; bottom: 0;"></a>
+
+  <nav aria-label="Folders" style="position: absolute; left: 0; top: 64px; width: 340px; bottom: 0; background: {{t.canvas}}; border-top-right-radius: 24px; overflow: hidden; box-shadow: 8px 0 24px rgba(0,0,0,0.18);">
+    <a href="Settings.dc.html" aria-label="Settings" style="position: absolute; right: 14px; top: 16px; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; color: {{t.ink}};">
+      <span style="display: block; width: 32px; height: 36px;"><svg width="100%" height="100%" viewBox="0 0 9.904 11.118" fill="currentColor" aria-hidden="true"><g transform="translate(-2996.8187,-1339.9974)"><path d="m 3001.771,1339.997 c -1.165,0 -0.965,1.558 -1.973,2.141 -1.009,0.582 -2.258,-0.37 -2.841,0.638 -0.582,1.009 0.867,1.615 0.867,2.779 0,1.165 -1.45,1.771 -0.867,2.779 0.582,1.009 1.832,0.056 2.841,0.638 1.009,0.582 0.809,2.141 1.973,2.141 1.165,0 0.965,-1.558 1.973,-2.141 1.009,-0.582 2.258,0.37 2.841,-0.638 0.582,-1.009 -0.867,-1.615 -0.867,-2.779 0,-1.165 1.45,-1.771 0.867,-2.779 -0.582,-1.009 -1.832,-0.056 -2.841,-0.638 -1.009,-0.582 -0.809,-2.141 -1.973,-2.141 z m 0,3.528 a 2.03,2.03 0 0 1 2.03,2.03 2.03,2.03 0 0 1 -2.03,2.03 2.03,2.03 0 0 1 -2.03,-2.03 2.03,2.03 0 0 1 2.03,-2.03 z"/></g></svg></span>
+    </a>
+
+    <sc-for list="{{folders}}" as="f" hint-placeholder-count="7">
+      <div style="position: absolute; left: 0; width: 340px; height: 360px; top: {{f.top}}px;">
+        <sc-for list="{{f.pills}}" as="p" hint-placeholder-count="3">
+          <span aria-hidden="true" style="position: absolute; top: 9px; height: 30px; width: 74px; border-radius: 8px; left: {{p.left}}px; background: {{p.bg}};"></span>
+        </sc-for>
+        <svg aria-hidden="true" width="340" height="360" viewBox="0 0 340 360" style="position: absolute; left: 0; top: 0;"><path d="{{f.path}}" fill="{{f.fill}}"/></svg>
+        <a href="Main.dc.html" aria-label="{{f.aria}}" style="position: absolute; left: 0; top: 0; height: 64px; display: flex; align-items: center; padding-left: 22px; text-decoration: none; color: {{f.text}}; width: {{f.tabW}}px; box-sizing: border-box; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 30px; line-height: 1; white-space: nowrap;">{{f.name}}</a>
+        <span aria-hidden="true" style="position: absolute; right: 18px; top: 46px; font-size: 13px; font-weight: 600; color: {{f.meta}};">{{f.count}}</span>
+      </div>
+    </sc-for>
+
+    <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 300px; background: linear-gradient(to bottom, {{t.canvasClear}}, {{t.canvas}} 72%); pointer-events: none;"></div>
+
+    <button aria-label="New folder" style="position: absolute; right: 22px; bottom: 26px; width: 76px; height: 60px; border: 0; padding: 0; background: transparent; color: {{t.ink}}; cursor: pointer;">
+      <svg width="76" height="56" viewBox="0 0 12.718 9.075" fill="currentColor" aria-hidden="true"><g transform="translate(-2995.1018,-1321.9776)"><path d="m 2996.095,1321.978 c -0.55,0 -0.993,0.443 -0.993,0.993 v 2.482 3.384 0.571 c 0,0.912 0.734,1.645 1.645,1.645 h 9.426 c 0.912,0 1.646,-0.734 1.646,-1.645 v -3.955 c 0,-0.912 -0.734,-1.645 -1.646,-1.645 h -2.085 c -0.494,0 -0.92,-0.662 -1.189,-1.055 -0.257,-0.376 -0.494,-0.775 -0.969,-0.775 z m 4.533,2.949 c 0.336,0 0.607,0.271 0.607,0.607 v 1.019 h 1.019 c 0.336,0 0.607,0.271 0.607,0.607 0,0.336 -0.271,0.607 -0.607,0.607 h -1.019 v 1.019 c 0,0.336 -0.271,0.607 -0.607,0.607 -0.336,0 -0.607,-0.271 -0.607,-0.607 v -1.019 h -1.02 c -0.336,0 -0.606,-0.271 -0.606,-0.607 0,-0.336 0.27,-0.607 0.606,-0.607 h 1.02 v -1.019 c 0,-0.336 0.271,-0.607 0.607,-0.607 z"/></g></svg>
+    </button>
+  </nav>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'>
+const THEMES = {
+  light: { canvas: '#F1F1F1', canvasClear: 'rgba(241,241,241,0)', ink: '#333333', backdrop: '#9D9D9D', backdropInk: '#5E5E5E', backdropBar: '#7E7E7E',
+           folderFrom: [51, 51, 51], folderTo: [122, 122, 122], folderText: '#F1F1F1', folderMeta: 'rgba(241,241,241,0.72)' },
+  dark:  { canvas: '#333333', canvasClear: 'rgba(51,51,51,0)', ink: '#F1F1F1', backdrop: '#4A4A4A', backdropInk: '#8A8A8A', backdropBar: '#5E5E5E',
+           folderFrom: [241, 241, 241], folderTo: [178, 178, 178], folderText: '#333333', folderMeta: 'rgba(51,51,51,0.72)' }
+};
+// Recent-deck spine tabs cycle through the 3 accents in Z3 order (RES-44).
+const TAB_ORDERS = [['#80AEFF', '#FFC680', '#D35F5F'], ['#FFC680', '#D35F5F', '#80AEFF'], ['#D35F5F', '#80AEFF', '#FFC680']];
+const FOLDERS = [
+  { name: 'Languages', decks: 7, tabs: 0 },
+  { name: 'German', decks: 4, tabs: 1 },
+  { name: 'Coding', decks: 3, tabs: -1 },
+  { name: 'Medicine', decks: 5, tabs: 2 },
+  { name: 'Exam Prep', decks: 2, tabs: -1 },
+  { name: 'Travel', decks: 3, tabs: -1 },
+  { name: 'Archive', decks: 6, tabs: -1 }
+];
+const STEP = 64;   // vertical offset between folders
+const TAB_H = 40;  // tab height above the shoulder
+const W = 340;
+
+function folderPath(tw) {
+  const r = 14, R = 26, s = 40, H = 360;
+  return 'M0 ' + r + ' Q0 0 ' + r + ' 0 L' + (tw - 10) + ' 0 C' + (tw + 6) + ' 0 ' + (tw + s - 22) + ' ' + TAB_H + ' ' + (tw + s) + ' ' + TAB_H +
+    ' L' + (W - R) + ' ' + TAB_H + ' Q' + W + ' ' + TAB_H + ' ' + W + ' ' + (TAB_H + R) + ' L' + W + ' ' + H + ' L0 ' + H + ' Z';
+}
+function mix(a, b, k) {
+  const c = a.map((v, i) => Math.round(v + (b[i] - v) * k));
+  return 'rgb(' + c.join(',') + ')';
+}
+class Component extends DCLogic {
+  renderVals() {
+    const t = (this.props.dark ?? false) ? THEMES.dark : THEMES.light;
+    const n = FOLDERS.length;
+    const folders = FOLDERS.map((f, i) => {
+      const tabW = Math.max(112, 34 + f.name.length * 13);
+      return {
+        name: f.name,
+        aria: 'Open ' + f.name + ', ' + f.decks + ' decks',
+        count: f.decks + ' decks',
+        top: 92 + i * STEP,
+        tabW,
+        path: folderPath(tabW),
+        fill: mix(t.folderFrom, t.folderTo, i / (n - 1)),
+        text: t.folderText,
+        meta: t.folderMeta,
+        pills: f.tabs < 0 ? [] : TAB_ORDERS[f.tabs].map((bg, k) => ({ bg, left: tabW + 4 + k * 32 }))
+      };
+    });
+    const ghostBars = [0, 1, 2, 3, 4, 5, 6].map((i) => ({ top: 88 + i * 84 }));
+    return { t, folders, ghostBars };
+  }
+}
+</script>
+</body>
+</html>

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Settings</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wdth,wght@62.5..100,700..900&amp;family=Barlow+Semi+Condensed:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 1120px; position: relative; overflow: hidden; background: {{t.canvas}}; color: {{t.ink}}; font-family: 'Barlow Semi Condensed', system-ui, sans-serif;">
+
+  <header style="height: 76px; box-sizing: border-box; padding: 18px 16px 0 10px; display: flex; align-items: center; gap: 6px;">
+    <a href="Profile.dc.html" aria-label="Back" style="display: flex; width: 44px; height: 44px; align-items: center; justify-content: center; color: {{t.ink}};">
+      <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18 9 12l6-6"/></svg>
+    </a>
+    <h1 style="margin: 0; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 34px; line-height: 1;">Settings</h1>
+  </header>
+
+  <div style="padding: 4px 20px 0; display: flex; flex-direction: column; gap: 18px;">
+
+    <section aria-label="Study">
+      <h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: {{t.muted}};">Study</h2>
+      <div style="border-radius: 16px; background: {{t.soft}}; padding: 14px; display: flex; flex-direction: column; gap: 14px;">
+        <div>
+          <div style="font-size: 16px; font-weight: 700;">Reveal the answer by</div>
+          <div role="radiogroup" aria-label="Reveal the answer by" style="margin-top: 8px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 12px; background: {{t.well}};">
+            <sc-for list="{{reveal}}" as="o" hint-placeholder-count="4">
+              <button role="radio" aria-checked="{{o.on}}" onClick="{{o.pick}}" style="height: 36px; border: 0; border-radius: 9px; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; background: {{o.bg}}; color: {{o.fg}};">{{o.name}}</button>
+            </sc-for>
+          </div>
+        </div>
+        <div>
+          <div style="font-size: 16px; font-weight: 700;">Pace</div>
+          <div role="radiogroup" aria-label="Pace" style="margin-top: 8px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 12px; background: {{t.well}};">
+            <sc-for list="{{pace}}" as="o" hint-placeholder-count="3">
+              <button role="radio" aria-checked="{{o.on}}" onClick="{{o.pick}}" style="height: 36px; border: 0; border-radius: 9px; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer; background: {{o.bg}}; color: {{o.fg}};">{{o.name}}</button>
+            </sc-for>
+          </div>
+          <div style="margin-top: 6px; font-size: 14px; font-weight: 500; color: {{t.muted}}; line-height: 1.35;">{{paceNote}}</div>
+        </div>
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div>
+            <div style="font-size: 16px; font-weight: 700;">Daily goal</div>
+            <div style="font-size: 14px; font-weight: 500; color: {{t.muted}};">Swipes before the celebration</div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 6px;">
+            <button onClick="{{goalDown}}" aria-label="Lower daily goal" style="width: 40px; height: 40px; border: 0; border-radius: 12px; background: {{t.well}}; color: {{t.ink}}; font-size: 22px; font-weight: 700; cursor: pointer;">−</button>
+            <span aria-live="polite" style="min-width: 40px; text-align: center; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 26px;">{{goal}}</span>
+            <button onClick="{{goalUp}}" aria-label="Raise daily goal" style="width: 40px; height: 40px; border: 0; border-radius: 12px; background: {{t.well}}; color: {{t.ink}}; font-size: 22px; font-weight: 700; cursor: pointer;">+</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Feel">
+      <h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: {{t.muted}};">Feel</h2>
+      <div style="border-radius: 16px; background: {{t.soft}}; padding: 4px 14px;">
+        <sc-for list="{{toggles}}" as="o" hint-placeholder-count="3">
+          <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 58px; border-bottom: {{o.border}};">
+            <div>
+              <div style="font-size: 16px; font-weight: 700;">{{o.name}}</div>
+              <div style="font-size: 14px; font-weight: 500; color: {{t.muted}};">{{o.note}}</div>
+            </div>
+            <button role="switch" aria-checked="{{o.on}}" aria-label="{{o.name}}" onClick="{{o.flip}}" style="position: relative; flex: none; width: 52px; height: 32px; border: 0; border-radius: 16px; cursor: pointer; background: {{o.bg}};">
+              <span style="position: absolute; top: 4px; width: 24px; height: 24px; border-radius: 12px; transition: left 160ms ease; background: {{o.knob}}; left: {{o.left}}px;"></span>
+            </button>
+          </div>
+        </sc-for>
+      </div>
+    </section>
+
+    <section aria-label="Appearance">
+      <h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: {{t.muted}};">Appearance</h2>
+      <div role="radiogroup" aria-label="Theme" style="display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 14px; background: {{t.soft}};">
+        <sc-for list="{{theme}}" as="o" hint-placeholder-count="3">
+          <button role="radio" aria-checked="{{o.on}}" onClick="{{o.pick}}" style="height: 40px; border: 0; border-radius: 10px; font-family: inherit; font-size: 15px; font-weight: 700; cursor: pointer; background: {{o.bg}}; color: {{o.fg}};">{{o.name}}</button>
+        </sc-for>
+      </div>
+    </section>
+
+    <section aria-label="Reminders">
+      <h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: {{t.muted}};">Reminders</h2>
+      <div style="border-radius: 16px; background: {{t.soft}}; padding: 14px;">
+        <div style="display: flex; align-items: center; justify-content: space-between;">
+          <div style="font-size: 16px; font-weight: 700;">Daily at</div>
+          <span style="height: 36px; padding: 0 14px; border-radius: 10px; background: {{t.well}}; display: inline-flex; align-items: center; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 22px;">19:00</span>
+        </div>
+        <div style="margin-top: 10px; border-radius: 12px; background: {{t.canvas}}; padding: 10px 12px; display: flex; gap: 10px; align-items: center;">
+          <span style="display: block; flex: none; width: 22px; height: 28px; color: {{t.ink}};"><svg width="100%" height="100%" viewBox="0 0 11.211 14.182" fill="currentColor" aria-hidden="true"><g transform="translate(-3014.7719,-1275.9218)"><g transform="translate(-69.860379)"><rect x="3084.633" y="1275.922" width="6.926" height="11.206" ry="0.534" fill-opacity=".55"/><rect x="3312.468" y="433.451" width="6.926" height="11.206" ry="0.534" transform="rotate(15)" fill-opacity=".78"/><rect x="3314.619" y="-438.992" width="6.926" height="11.206" ry="0.534" transform="rotate(30)"/></g></g></svg></span>
+          <span style="font-size: 15px; font-weight: 600; line-height: 1.3;">24 cards are slipping in German · A1. Two minutes saves them.</span>
+        </div>
+      </div>
+    </section>
+
+    <section aria-label="Your data">
+      <h2 style="margin: 0 0 8px; font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: {{t.muted}};">Your data</h2>
+      <div style="border-radius: 16px; background: {{t.soft}}; overflow: hidden;">
+        <a href="Editor.dc.html" style="display: flex; height: 52px; align-items: center; justify-content: space-between; padding: 0 14px; text-decoration: none; font-size: 16px; font-weight: 700; border-bottom: 1px solid {{t.line}};">Import cards from CSV <span aria-hidden="true">›</span></a>
+        <button style="display: flex; width: 100%; height: 52px; align-items: center; justify-content: space-between; padding: 0 14px; border: 0; border-bottom: 1px solid {{t.line}}; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer;">Export backup (.json) <span aria-hidden="true">›</span></button>
+        <button style="display: flex; width: 100%; height: 52px; align-items: center; justify-content: space-between; padding: 0 14px; border: 0; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer;">Restore a backup <span aria-hidden="true">›</span></button>
+      </div>
+      <div style="margin-top: 8px; font-size: 14px; font-weight: 500; color: {{t.muted}};">Everything lives on this phone. Back it up now and then.</div>
+    </section>
+
+    <div style="display: flex; justify-content: space-between; align-items: center; font-size: 14px; font-weight: 600; color: {{t.muted}};">
+      <button style="height: 44px; padding: 0; border: 0; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 16px; font-weight: 700; text-decoration: underline; cursor: pointer;">Send feedback</button>
+      <span>Memory Card 0.1.0</span>
+    </div>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":1120}}'>
+const THEMES = {
+  light: { canvas: '#F1F1F1', ink: '#333333', muted: '#666666', soft: '#E3E3E3', well: '#D6D6D6', line: '#D0D0D0', knobOff: '#FFFFFF', offBg: '#BDBDBD' },
+  dark:  { canvas: '#333333', ink: '#F1F1F1', muted: '#BDBDBD', soft: '#444444', well: '#555555', line: '#555555', knobOff: '#BDBDBD', offBg: '#666666' }
+};
+const PACE_NOTES = {
+  Relaxed: 'New cards join only while you remember about 80% — calm, steady sessions.',
+  Balanced: 'New cards join while you remember about 75%. The default.',
+  Intense: 'Every card is in the stack from day one. Covers most ground, fails more often.'
+};
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { reveal: 'Tap card', pace: 'Balanced', goal: 40, theme: 'System', sounds: true, haptics: true, reduced: false };
+  }
+  seg(names, key, t, onBg) {
+    return names.map((name) => {
+      const on = this.state[key] === name;
+      return { name, on, bg: on ? t.ink : 'transparent', fg: on ? t.canvas : t.ink, pick: () => this.setState({ [key]: name }) };
+    });
+  }
+  renderVals() {
+    const t = (this.props.dark ?? false) ? THEMES.dark : THEMES.light;
+    const rows = [
+      ['sounds', 'Sounds', 'Soft clicks and a finish fanfare'],
+      ['haptics', 'Haptics', 'A tick when a swipe locks in'],
+      ['reduced', 'Reduced motion', 'Slides and fades instead of tilts']
+    ];
+    const toggles = rows.map(([key, name, note], i) => {
+      const on = this.state[key];
+      return {
+        name, note, on,
+        border: i < rows.length - 1 ? '1px solid ' + t.line : '0',
+        bg: on ? t.ink : t.offBg, knob: on ? t.canvas : t.knobOff, left: on ? 24 : 4,
+        flip: () => this.setState({ [key]: !on })
+      };
+    });
+    return {
+      t, toggles,
+      reveal: this.seg(['Tap card', 'Tap icon', 'Flip', 'Front only'], 'reveal', t),
+      pace: this.seg(['Relaxed', 'Balanced', 'Intense'], 'pace', t),
+      paceNote: PACE_NOTES[this.state.pace],
+      theme: this.seg(['Light', 'Dark', 'System'], 'theme', t),
+      goal: this.state.goal,
+      goalDown: () => this.setState({ goal: Math.max(10, this.state.goal - 10) }),
+      goalUp: () => this.setState({ goal: Math.min(200, this.state.goal + 10) })
+    };
+  }
+}
+</script>
+</body>
+</html>

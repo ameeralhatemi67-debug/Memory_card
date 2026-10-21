@@ -1,0 +1,286 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Study</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wdth,wght@62.5..100,700..900&amp;family=Barlow+Semi+Condensed:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: {{t.canvas}}; color: {{t.ink}}; font-family: 'Barlow Semi Condensed', system-ui, sans-serif; user-select: none;">
+
+  <header style="position: absolute; top: 0; left: 0; right: 0; height: 68px; box-sizing: border-box; padding: 16px 16px 0 18px; display: flex; align-items: center; gap: 12px;">
+    <a href="Main.dc.html" aria-label="Back to decks" style="display: flex; width: 44px; height: 44px; align-items: center; justify-content: center; color: {{t.ink}};">
+      <span style="display: block; width: 28px; height: 36px;"><svg width="100%" height="100%" viewBox="0 0 11.211 14.182" fill="currentColor" aria-hidden="true"><g transform="translate(-3014.7719,-1275.9218)"><g transform="translate(-69.860379)"><rect x="3084.633" y="1275.922" width="6.926" height="11.206" ry="0.534" fill-opacity=".55"/><rect x="3312.468" y="433.451" width="6.926" height="11.206" ry="0.534" transform="rotate(15)" fill-opacity=".78"/><rect x="3314.619" y="-438.992" width="6.926" height="11.206" ry="0.534" transform="rotate(30)"/></g></g></svg></span>
+    </a>
+    <div style="flex: 1; min-width: 0;">
+      <div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 23px; line-height: 1;">German · A1 Everyday</div>
+      <div style="font-size: 13px; font-weight: 600; color: {{t.muted}}; margin-top: 3px;">Today {{done}} / {{goal}} · stack of {{stackSize}}</div>
+    </div>
+    <button aria-label="Menu" style="width: 44px; height: 44px; border: 0; padding: 0; background: transparent; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+      <span style="display: block; width: 8px; height: 26px;"><svg width="100%" height="100%" viewBox="0 0 2.444 8.911" fill="currentColor" aria-hidden="true"><g transform="translate(-2998.7693,-1277.1094)"><g transform="translate(-455.15531,250.69204)"><circle cx="3455.146" cy="1034.107" r="1.222"/><circle cx="3455.146" cy="1030.873" r="1.222"/><circle cx="3455.146" cy="1027.639" r="1.222"/></g></g></svg></span>
+    </button>
+  </header>
+  <div role="progressbar" aria-label="Daily goal" aria-valuemin="0" aria-valuemax="{{goal}}" aria-valuenow="{{done}}" style="position: absolute; top: 72px; left: 22px; right: 22px; height: 4px; border-radius: 2px; background: {{t.soft}}; overflow: hidden;">
+    <div style="height: 100%; width: {{progPct}}%; background: {{t.ink}}; transition: width 300ms ease;"></div>
+  </div>
+
+  <sc-for list="{{below}}" as="b" hint-placeholder-count="3">
+    <div style="position: absolute; left: 40px; width: 310px; height: 420px; border-radius: 18px; top: {{b.top}}px; background: {{b.bg}};"></div>
+  </sc-for>
+  <sc-for list="{{above}}" as="b" hint-placeholder-count="5">
+    <div style="position: absolute; left: 40px; width: 310px; height: 420px; border-radius: 18px; top: {{b.top}}px; background: {{b.bg}};"></div>
+  </sc-for>
+
+  <div aria-hidden="true" style="position: absolute; left: 40px; top: 150px; width: 310px; height: 420px; border-radius: 18px; background: {{t.ink}}; color: {{t.onInk}}; box-sizing: border-box; padding: 22px;">
+    <div style="opacity: {{nextOp}};">
+      <div style="font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: {{t.mutedOnInk}};">{{next.pos}}</div>
+      <div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 40px; line-height: 1.05; margin-top: 8px;">{{next.term}}</div>
+    </div>
+  </div>
+
+  <div onPointerDown="{{onDown}}" onPointerMove="{{onMove}}" onPointerUp="{{onUp}}" onPointerCancel="{{onUp}}" style="position: absolute; left: 40px; top: 150px; width: 310px; height: 420px; border-radius: 18px; background: {{t.ink}}; color: {{t.onInk}}; box-sizing: border-box; padding: 22px; display: flex; flex-direction: column; touch-action: none; cursor: grab; box-shadow: 0 10px 30px rgba(0,0,0,0.18); transform: {{cardTf}}; transition: {{cardTr}};">
+    <div style="font-size: 13px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: {{t.mutedOnInk}};">{{top.pos}}</div>
+    <div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 40px; line-height: 1.05; margin-top: 8px;">{{top.term}}</div>
+    <div style="font-size: 19px; font-weight: 500; line-height: 1.3; margin-top: 10px; color: {{t.mutedOnInk}};">{{top.example}}</div>
+    <div style="flex: 1;"></div>
+    <sc-if value="{{revealed}}" hint-placeholder-val="{{false}}">
+      <div aria-live="polite" style="height: 64px; border-radius: 12px; background: #FFC680; color: #333333; display: flex; align-items: center; justify-content: center; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 30px; transition: background 200ms;">{{top.answer}}</div>
+    </sc-if>
+    <sc-if value="{{hidden}}" hint-placeholder-val="{{true}}">
+      <button onClick="{{reveal}}" style="height: 64px; border: 0; border-radius: 12px; background: {{t.pill}}; color: #333333; font-family: inherit; font-size: 17px; font-weight: 600; cursor: pointer;">Tap to reveal</button>
+    </sc-if>
+    <button onClick="{{speak}}" aria-label="Play pronunciation" style="margin-top: 12px; height: 104px; border: 0; border-radius: 12px; background: #D35F5F; color: #F1F1F1; display: flex; align-items: center; justify-content: center; gap: 12px; cursor: pointer; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 28px;">
+      <svg width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z" fill="currentColor"/><path d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path d="M18 6.5a7.8 7.8 0 0 1 0 11"/></svg>
+      <span>{{speakLabel}}</span>
+    </button>
+  </div>
+
+  <button onClick="{{again}}" aria-label="Didn't remember — bring it back soon" style="position: absolute; left: 0; top: 590px; width: 90px; height: 124px; border: 0; padding: 0; background: transparent; cursor: pointer; transform: {{earL}}; transform-origin: 0 50%; transition: transform 160ms ease;">
+    <span style="position: absolute; left: -64px; top: 6px; width: 96px; height: 96px; border-radius: 18px; background: {{t.earBack}}; transform: rotate(45deg);"></span>
+    <span style="position: absolute; left: -58px; top: 14px; width: 96px; height: 96px; border-radius: 18px; background: {{t.ink}}; transform: rotate(45deg);"></span>
+    <span style="position: absolute; left: 12px; top: 46px; width: 32px; height: 32px; color: {{t.onInk}};"><svg width="100%" height="100%" viewBox="0 0 10.26 10.395" fill="currentColor" aria-hidden="true"><g transform="translate(-3016.4154,-1338.5752)"><path d="m 3018.609,1338.575 c -0.257,0 -0.504,0.177 -0.606,0.314 -0.102,0.136 -0.14,0.233 -0.171,0.281 l -1.143,1.783 a 0.478,0.478 0 0 0 -0.01,0.01 c -0.011,0.017 -0.013,0.037 -0.022,0.055 0,0 -0,0.01 0,0.01 -0.151,0.243 -0.242,0.534 -0.242,0.843 v 5.503 c 0,0.876 0.72,1.596 1.596,1.596 h 7.069 c 0.876,0 1.596,-0.72 1.596,-1.596 v -5.503 c 0,-0.238 -0.109,-0.439 -0.203,-0.643 v -0.01 a 0.478,0.478 0 0 0 -0.074,-0.256 l -1.131,-1.782 c -0.031,-0.049 -0.07,-0.147 -0.172,-0.284 -0.102,-0.137 -0.349,-0.313 -0.606,-0.313 z m 5.768,0.956 c 0.02,0.037 0.035,0.065 0.09,0.152 l 1.055,1.665 v -0.133 a 0.478,0.478 0 0 0 0.033,0.165 h -8.004 l 1.086,-1.692 c 0.056,-0.087 0.07,-0.116 0.09,-0.154 z m -6.999,2.805 h 8.347 v 5.026 c 0,0.363 -0.277,0.639 -0.64,0.639 h -7.068 c -0.363,0 -0.639,-0.276 -0.639,-0.639 z m 4.176,0.977 a 0.478,0.478 0 0 0 -0.478,0.478 v 1.606 l -0.506,-0.506 a 0.478,0.478 0 0 0 -0.676,0 0.478,0.478 0 0 0 0,0.676 l 1.323,1.323 a 0.478,0.478 0 0 0 0.013,0.01 0.478,0.478 0 0 0 0.075,0.057 0.478,0.478 0 0 0 0.018,0.012 0.478,0.478 0 0 0 0.098,0.04 0.478,0.478 0 0 0 0.014,0.01 0.478,0.478 0 0 0 0.12,0.017 0.478,0.478 0 0 0 0.352,-0.154 l 1.307,-1.306 a 0.478,0.478 0 0 0 0,-0.676 0.478,0.478 0 0 0 -0.676,0 l -0.506,0.506 v -1.606 a 0.478,0.478 0 0 0 -0.478,-0.478 z"/></g></svg></span>
+  </button>
+  <button onClick="{{gotIt}}" aria-label="Remembered — show it later" style="position: absolute; right: 0; top: 590px; width: 90px; height: 124px; border: 0; padding: 0; background: transparent; cursor: pointer; transform: {{earR}}; transform-origin: 100% 50%; transition: transform 160ms ease;">
+    <span style="position: absolute; left: 58px; top: 6px; width: 96px; height: 96px; border-radius: 18px; background: {{t.earBack}}; transform: rotate(45deg);"></span>
+    <span style="position: absolute; left: 52px; top: 14px; width: 96px; height: 96px; border-radius: 18px; background: {{t.ink}}; transform: rotate(45deg);"></span>
+    <span style="position: absolute; left: 46px; top: 46px; width: 32px; height: 32px; color: {{t.onInk}};"><svg width="100%" height="100%" viewBox="0 0 10.6 10.604" fill="currentColor" aria-hidden="true"><g transform="translate(-2994.9515,-1300.9293)"><path d="m 3000.15,1300.93 c -1.461,0.029 -2.885,0.661 -3.89,1.812 -1.533,1.753 -1.74,4.309 -0.512,6.287 1.229,1.978 3.61,2.924 5.861,2.328 2.251,-0.596 3.853,-2.597 3.941,-4.924 a 0.59,0.59 0 0 0 -0.566,-0.613 0.59,0.59 0 0 0 -0.611,0.568 c -0.069,1.814 -1.31,3.364 -3.064,3.828 -1.754,0.465 -3.601,-0.269 -4.558,-1.811 -0.958,-1.542 -0.796,-3.52 0.398,-4.887 1.194,-1.367 3.135,-1.792 4.791,-1.049 a 0.59,0.59 0 0 0 0.779,-0.297 0.59,0.59 0 0 0 -0.297,-0.779 c -0.531,-0.238 -1.087,-0.385 -1.644,-0.44 -0.209,-0.021 -0.419,-0.028 -0.627,-0.024 z m 4.571,1.611 a 0.632,0.632 0 0 0 -0.348,0.177 l -4.076,4.076 -1.521,-1.521 a 0.632,0.632 0 0 0 -0.894,0 0.632,0.632 0 0 0 0,0.895 l 1.969,1.969 a 0.633,0.633 0 0 0 0.895,0 l 4.523,-4.524 a 0.632,0.632 0 0 0 0,-0.894 0.632,0.632 0 0 0 -0.546,-0.177 z"/></g></svg></span>
+  </button>
+
+  <sc-if value="{{hasNote}}" hint-placeholder-val="{{false}}">
+    <div aria-live="polite" style="position: absolute; left: 50%; top: 640px; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; height: 40px; padding: 0 6px 0 16px; border-radius: 20px; background: {{t.soft}}; color: {{t.ink}}; font-size: 15px; font-weight: 600; white-space: nowrap;">
+      <span>{{note.text}}</span>
+      <sc-if value="{{note.undo}}" hint-placeholder-val="{{true}}">
+        <button onClick="{{undo}}" style="display: flex; align-items: center; gap: 4px; height: 30px; padding: 0 12px; border: 0; border-radius: 15px; background: {{t.ink}}; color: {{t.canvas}}; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer;">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 14 4 9l5-5"/><path d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>
+          Undo
+        </button>
+      </sc-if>
+      <sc-if value="{{note.plain}}" hint-placeholder-val="{{false}}"><span style="width: 10px;"></span></sc-if>
+    </div>
+  </sc-if>
+
+  <nav aria-label="Main" style="position: absolute; left: 0; right: 0; bottom: 0; height: 112px; display: flex; align-items: center; justify-content: space-around; padding: 0 22px 10px; box-sizing: border-box;">
+    <a href="Main.dc.html" aria-label="Home" style="display: flex; width: 56px; height: 56px; align-items: center; justify-content: center; color: {{t.ink}};">
+      <span style="display: block; width: 44px; height: 44px;"><svg width="100%" height="100%" viewBox="0 0 11.321 11.322" fill="currentColor" aria-hidden="true"><g transform="translate(-3015.3506,-1319.8992)"><g transform="matrix(0.73369523,0,0,0.73369523,2071.0345,1201.7805)"><path d="m 1294.783,160.991 c -0.349,0 -0.699,0.134 -0.966,0.402 l -4.247,4.247 c -0.026,0.02 -0.051,0.042 -0.074,0.066 l -2.181,2.181 c -0.329,0.329 -0.329,0.858 0,1.187 0.329,0.329 0.858,0.329 1.187,0 l 0.076,-0.076 0,-0 2.104,-2.104 3.135,-3.135 c 0.535,-0.535 1.397,-0.535 1.933,-0 l 3.135,3.135 1.951,1.951 0.229,0.229 c 0.329,0.329 0.858,0.329 1.187,0 0.329,-0.329 0.329,-0.858 -0,-1.187 l -2.181,-2.181 c -0.024,-0.024 -0.05,-0.046 -0.076,-0.066 l -4.246,-4.246 c -0.268,-0.268 -0.617,-0.402 -0.966,-0.402 z"/><path d="m 1294.784,164.627 c -0.349,0 -0.699,0.134 -0.966,0.402 l -5.431,5.432 -0.021,0.021 c -0.148,0.153 -0.24,0.361 -0.24,0.591 h 0.001 v 2.893 1.182 c 0,0.707 0.569,1.276 1.276,1.276 h 1.182 2.262 v -3.618 c 0,-0.178 0.143,-0.321 0.321,-0.321 h 3.224 c 0.178,0 0.321,0.143 0.321,0.321 v 3.618 h 2.272 1.18 c 0.707,0 1.276,-0.569 1.276,-1.276 v -1.181 -2.894 h -0.001 c 0,-0.233 -0.093,-0.443 -0.244,-0.597 l -0.01,-0.01 -5.436,-5.436 c -0.268,-0.268 -0.617,-0.402 -0.966,-0.402 z"/></g></g></svg></span>
+    </a>
+    <a href="Editor.dc.html" aria-label="Create a card" style="display: flex; position: relative; width: 84px; height: 84px; align-items: center; justify-content: center; color: {{t.canvas}};">
+      <span style="position: absolute; left: 13px; top: 13px; width: 58px; height: 58px; border-radius: 15px; background: {{t.ink}}; transform: rotate(45deg);"></span>
+      <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true" style="position: relative;"><path d="M12 4.5v15M4.5 12h15"/></svg>
+    </a>
+    <a href="Shop.dc.html" aria-label="Shop" style="display: flex; width: 56px; height: 56px; align-items: center; justify-content: center; color: {{t.ink}};">
+      <span style="display: block; width: 48px; height: 42px;"><svg width="100%" height="100%" viewBox="0 0 11.322 9.794" fill="currentColor" aria-hidden="true"><g transform="translate(-3035.2904,-1321.978)"><g transform="matrix(0.52297311,0,0,0.52297311,2612.2188,1252.0369)"><path d="m 812.241,133.738 c -0.992,0 -1.791,0.799 -1.791,1.791 -0.034,0.069 -1.488,2.963 -1.475,4.327 -0.005,1.418 0.607,2.381 1.475,2.877 1.3,0.742 3.178,0.437 4.436,-0.963 1.573,1.755 3.209,1.752 4.907,-0.011 1.524,1.701 3.173,1.704 4.946,0.011 1.023,1.257 3.009,1.581 4.389,0.824 0.866,-0.475 1.494,-1.374 1.494,-2.738 0,-1.193 -1.448,-4.229 -1.494,-4.327 0,-0.086 -0.009,-0.203 -0.021,-0.286 -0.123,-0.871 -0.864,-1.504 -1.769,-1.504 z"/><path d="m 819.793,143.182 c -1.698,1.763 -3.333,1.766 -4.907,0.011 -1.255,1.396 -3.127,1.703 -4.427,0.967 v 6.513 c 0,0.992 0.799,1.79 1.791,1.79 h 4.831 v -5.076 c 0,-0.25 0.201,-0.451 0.451,-0.451 h 4.522 c 0.25,0 0.451,0.201 0.451,0.451 v 5.076 h 4.843 c 0.992,0 1.791,-0.798 1.791,-1.79 v -6.663 c -0.003,0.002 -0.006,0.004 -0.01,0.006 -1.38,0.757 -3.366,0.434 -4.389,-0.824 -1.773,1.693 -3.422,1.689 -4.946,-0.011 z"/></g></g></svg></span>
+    </a>
+  </nav>
+
+  <sc-if value="{{showGoal}}" hint-placeholder-val="{{false}}">
+    <div role="dialog" aria-modal="true" aria-label="Daily goal reached" style="position: absolute; inset: 0; background: rgba(20,20,20,0.6); display: flex; align-items: center; justify-content: center;">
+      <div style="width: 318px; box-sizing: border-box; padding: 28px 24px 22px; border-radius: 22px; background: {{t.canvas}}; color: {{t.ink}}; display: flex; flex-direction: column; align-items: center; text-align: center;">
+        <svg width="96" height="96" viewBox="-50 -50 100 100" aria-hidden="true"><path d="{{seal}}" fill="#D35F5F"/><circle r="31" fill="none" stroke="#F1F1F1" stroke-opacity="0.55" stroke-width="2"/><path d="M-14 1 -4 11 15-10" fill="none" stroke="#F1F1F1" stroke-width="6" stroke-linecap="round" stroke-linejoin="round"/></svg>
+        <div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 34px; line-height: 1.05; margin-top: 14px;">Today's goal — done</div>
+        <div style="font-size: 16px; font-weight: 500; color: {{t.muted}}; margin-top: 8px; line-height: 1.35;">{{goal}} cards reviewed · streak 8 days. The stack keeps going if you do.</div>
+        <button onClick="{{keepGoing}}" style="margin-top: 20px; width: 100%; height: 52px; border: 0; border-radius: 14px; background: {{t.ink}}; color: {{t.canvas}}; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 24px; cursor: pointer;">Keep going</button>
+        <a href="Goal.dc.html" style="margin-top: 10px; display: flex; width: 100%; height: 48px; align-items: center; justify-content: center; border-radius: 14px; font-size: 16px; font-weight: 600; text-decoration: none; color: {{t.ink}}; background: {{t.soft}};">See today's summary</a>
+      </div>
+    </div>
+  </sc-if>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"goal":{"editor":"int","default":12,"min":3,"max":60},"$preview":{"width":390,"height":844}}'>
+const THEMES = {
+  light: { canvas: '#F1F1F1', ink: '#333333', onInk: '#F1F1F1', muted: '#666666', mutedOnInk: '#BDBDBD', soft: '#E3E3E3', pill: '#E3E3E3', earBack: '#A8A8A8',
+           above: ['#C4C4C4', '#CFCFCF', '#D9D9D9', '#E2E2E2', '#E9E9E9'], below: ['#4B4B4B', '#5C5C5C', '#6E6E6E'] },
+  dark:  { canvas: '#333333', ink: '#F1F1F1', onInk: '#333333', muted: '#BDBDBD', mutedOnInk: '#666666', soft: '#444444', pill: '#D6D6D6', earBack: '#8A8A8A',
+           above: ['#666666', '#5A5A5A', '#4E4E4E', '#444444', '#3B3B3B'], below: ['#D4D4D4', '#BFBFBF', '#AAAAAA'] }
+};
+const CARDS = [
+  { term: 'das Eichhörnchen', pos: 'noun · neuter', example: 'Das Eichhörnchen versteckt Nüsse im Garten.', answer: 'the squirrel' },
+  { term: 'die Brücke', pos: 'noun · feminine', example: 'Wir gehen über die alte Brücke.', answer: 'the bridge' },
+  { term: 'der Schmetterling', pos: 'noun · masculine', example: 'Ein Schmetterling sitzt auf der Blume.', answer: 'the butterfly' },
+  { term: 'die Zeitung', pos: 'noun · feminine', example: 'Mein Opa liest jeden Morgen die Zeitung.', answer: 'the newspaper' },
+  { term: 'das Frühstück', pos: 'noun · neuter', example: 'Das Frühstück ist um acht Uhr fertig.', answer: 'breakfast' },
+  { term: 'der Regenschirm', pos: 'noun · masculine', example: 'Vergiss deinen Regenschirm nicht!', answer: 'the umbrella' },
+  { term: 'die Gurke', pos: 'noun · feminine', example: 'Die Gurke ist frisch und grün.', answer: 'the cucumber' },
+  { term: 'das Gewitter', pos: 'noun · neuter', example: 'Heute Abend kommt ein Gewitter.', answer: 'the thunderstorm' },
+  { term: 'der Bahnhof', pos: 'noun · masculine', example: 'Der Bahnhof ist nicht weit von hier.', answer: 'the train station' },
+  { term: 'die Kartoffel', pos: 'noun · feminine', example: 'Wir essen Kartoffeln mit Quark.', answer: 'the potato' },
+  { term: 'das Fahrrad', pos: 'noun · neuter', example: 'Ich fahre mit dem Fahrrad zur Arbeit.', answer: 'the bicycle' },
+  { term: 'der Schlüssel', pos: 'noun · masculine', example: 'Wo ist mein Schlüssel?', answer: 'the key' },
+  { term: 'die Wolke', pos: 'noun · feminine', example: 'Am Himmel ist keine Wolke.', answer: 'the cloud' },
+  { term: 'das Geschenk', pos: 'noun · neuter', example: 'Das Geschenk ist für dich.', answer: 'the gift' }
+];
+const CARD_W = 310;
+const REINSERT = 8;      // RES-47 §5.1: failed cards return 8–20 cards later, never closer than 5
+
+function sealPath() {
+  let d = '';
+  for (let i = 0; i < 48; i++) {
+    const a = (i / 48) * Math.PI * 2;
+    const r = i % 2 === 0 ? 46 : 41;
+    d += (i === 0 ? 'M' : 'L') + (Math.cos(a) * r).toFixed(2) + ' ' + (Math.sin(a) * r).toFixed(2);
+  }
+  return d + 'Z';
+}
+const SEAL = sealPath();
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { stack: CARDS.map((c, i) => i), revealed: false, dx: 0, anim: false, busy: false, done: 0, hist: [], note: null, showGoal: false, goalSeen: false, speaking: false };
+    this.sx = 0;
+    this.dragging = false;
+    this.moved = false;
+  }
+
+  handleDown(e) {
+    if (this.state.busy) return;
+    if (e.target && e.target.closest && e.target.closest('button')) return;
+    this.sx = e.clientX;
+    this.dragging = true;
+    this.moved = false;
+    this.el = e.currentTarget;
+    this.setState({ anim: false });
+  }
+
+  handleMove(e) {
+    if (!this.dragging) return;
+    const dx = e.clientX - this.sx;
+    if (!this.moved && Math.abs(dx) > 6) {
+      this.moved = true;
+      try { this.el.setPointerCapture(e.pointerId); } catch (err) {}
+    }
+    if (this.moved) this.setState({ dx });
+  }
+
+  handleUp() {
+    if (!this.dragging) return;
+    this.dragging = false;
+    const dx = this.state.dx;
+    if (!this.moved) {
+      if (!this.state.revealed) this.setState({ revealed: true, note: null });
+      return;
+    }
+    if (Math.abs(dx) >= 0.6 * CARD_W) this.commit(dx > 0);
+    else this.setState({ dx: 0, anim: true });
+  }
+
+  commit(ok) {
+    if (this.state.busy) return;
+    if (!this.state.revealed) {
+      this.setState({ dx: 0, anim: true, note: { text: 'Check the answer first — tap the card', undo: false, plain: true } });
+      return;
+    }
+    this.setState({ busy: true, anim: true, dx: ok ? 640 : -640 });
+    setTimeout(() => this.apply(ok), 230);
+  }
+
+  apply(ok) {
+    const s = this.state;
+    const top = s.stack[0];
+    const rest = s.stack.slice(1);
+    let text;
+    if (ok) {
+      rest.push(top);
+      text = 'Remembered · back of the stack';
+    } else {
+      const n = Math.min(rest.length, REINSERT);
+      rest.splice(n, 0, top);
+      text = 'Coming back in ' + n + ' cards';
+    }
+    const goal = this.props.goal ?? 12;
+    const done = s.done + 1;
+    const reached = done === goal && !s.goalSeen;
+    this.setState({
+      stack: rest, revealed: false, dx: 0, anim: false, busy: false, done,
+      hist: s.hist.concat([{ stack: s.stack, done: s.done }]).slice(-30),
+      note: { text, undo: true, plain: false },
+      showGoal: reached, goalSeen: s.goalSeen || reached
+    });
+  }
+
+  undo() {
+    const h = this.state.hist;
+    if (!h.length) return;
+    const last = h[h.length - 1];
+    this.setState({ stack: last.stack, done: last.done, hist: h.slice(0, -1), revealed: true, dx: 0, anim: false, note: { text: 'Undone — grade it again', undo: false, plain: true } });
+  }
+
+  renderVals() {
+    const t = (this.props.dark ?? false) ? THEMES.dark : THEMES.light;
+    const goal = this.props.goal ?? 12;
+    const s = this.state;
+    const dx = s.dx;
+    const p = Math.min(1, Math.abs(dx) / CARD_W);
+    const rot = Math.max(-28, Math.min(28, dx * 0.09));
+    const dy = Math.min(140, dx * dx * 0.0005);
+    const sc = 1 - 0.14 * p;
+    const armedL = dx <= -0.4 * CARD_W;
+    const armedR = dx >= 0.4 * CARD_W;
+    const note = s.note || { text: '', undo: false, plain: false };
+    return {
+      t, goal,
+      done: s.done,
+      stackSize: s.stack.length,
+      progPct: Math.min(100, Math.round((s.done / goal) * 100)),
+      top: CARDS[s.stack[0]],
+      next: CARDS[s.stack[1]],
+      nextOp: p.toFixed(2),
+      revealed: s.revealed,
+      hidden: !s.revealed,
+      cardTf: 'translate(' + dx.toFixed(1) + 'px, ' + dy.toFixed(1) + 'px) rotate(' + rot.toFixed(2) + 'deg) scale(' + sc.toFixed(3) + ')',
+      cardTr: s.anim ? 'transform 240ms cubic-bezier(.2,.8,.2,1)' : 'none',
+      earL: armedL ? 'translateX(14px) scale(1.1)' : 'none',
+      earR: armedR ? 'translateX(-14px) scale(1.1)' : 'none',
+      above: [5, 4, 3, 2, 1].map((k) => ({ top: 150 - 13 * k, bg: t.above[k - 1] })),
+      below: [3, 2, 1].map((k) => ({ top: 150 + 12 * k, bg: t.below[k - 1] })),
+      hasNote: !!s.note,
+      note,
+      showGoal: s.showGoal,
+      seal: SEAL,
+      speakLabel: s.speaking ? 'Playing…' : 'Hear it',
+      onDown: (e) => this.handleDown(e),
+      onMove: (e) => this.handleMove(e),
+      onUp: (e) => this.handleUp(e),
+      reveal: () => this.setState({ revealed: true, note: null }),
+      again: () => this.commit(false),
+      gotIt: () => this.commit(true),
+      undo: () => this.undo(),
+      keepGoing: () => this.setState({ showGoal: false }),
+      speak: (e) => {
+        if (e && e.stopPropagation) e.stopPropagation();
+        this.setState({ speaking: true });
+        setTimeout(() => this.setState({ speaking: false }), 900);
+      }
+    };
+  }
+}
+</script>
+</body>
+</html>

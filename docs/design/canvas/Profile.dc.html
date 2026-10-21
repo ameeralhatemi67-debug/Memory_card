@@ -1,0 +1,133 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Profile</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wdth,wght@62.5..100,700..900&amp;family=Barlow+Semi+Condensed:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 1120px; position: relative; overflow: hidden; background: {{t.canvas}}; color: {{t.ink}}; font-family: 'Barlow Semi Condensed', system-ui, sans-serif; transition: background 250ms ease, color 250ms ease;">
+
+  <svg aria-hidden="true" width="390" height="340" viewBox="0 0 390 340" style="position: absolute; left: 0; top: 0;"><path d="M128 40 L352 266 Q380 294 420 294" fill="none" stroke="{{t.sash}}" stroke-width="17" stroke-linecap="round" stroke-linejoin="round"/></svg>
+
+  <header style="position: relative; height: 76px; box-sizing: border-box; padding: 18px 16px 0 18px; display: flex; align-items: center; justify-content: space-between;">
+    <a href="Main.dc.html" aria-label="Back to decks" style="display: flex; width: 44px; height: 44px; align-items: center; justify-content: center; color: {{t.ink}};">
+      <span style="display: block; width: 28px; height: 36px;"><svg width="100%" height="100%" viewBox="0 0 11.211 14.182" fill="currentColor" aria-hidden="true"><g transform="translate(-3014.7719,-1275.9218)"><g transform="translate(-69.860379)"><rect x="3084.633" y="1275.922" width="6.926" height="11.206" ry="0.534" fill-opacity=".55"/><rect x="3312.468" y="433.451" width="6.926" height="11.206" ry="0.534" transform="rotate(15)" fill-opacity=".78"/><rect x="3314.619" y="-438.992" width="6.926" height="11.206" ry="0.534" transform="rotate(30)"/></g></g></svg></span>
+    </a>
+    <button onClick="{{toggleTheme}}" aria-label="{{themeLabel}}" style="width: 48px; height: 48px; border: 0; padding: 0; background: transparent; color: {{t.ink}}; display: flex; align-items: center; justify-content: center; cursor: pointer;">
+      <span style="display: block; width: 38px; height: 38px;"><svg width="100%" height="100%" viewBox="0 0 11.748 11.747" fill="currentColor" aria-hidden="true"><g transform="translate(-3035.2857,-1277.1944)"><g transform="matrix(0.56607437,0,0,0.56607437,-819.51472,2136.9158)"><circle cx="6820.145" cy="-1508.367" r="6.35"/><rect x="6818.657" y="-1518.743" width="2.853" height="3.044" ry="1.052"/><rect x="6818.657" y="-1501.034" width="2.853" height="3.044" ry="1.052"/><rect x="5150.755" y="-4726.702" width="2.853" height="3.044" ry="1.052" transform="rotate(30)"/><rect x="5150.755" y="-4708.993" width="2.853" height="3.044" ry="1.052" transform="rotate(30)"/><rect x="2102.331" y="-6670.925" width="2.853" height="3.044" ry="1.052" transform="rotate(60)"/><rect x="2102.331" y="-6653.216" width="2.853" height="3.044" ry="1.052" transform="rotate(60)"/><rect x="-1509.793" y="-6830.459" width="2.853" height="3.044" ry="1.052" transform="rotate(90)"/><rect x="-1509.793" y="-6812.751" width="2.853" height="3.044" ry="1.052" transform="rotate(90)"/><rect x="-4717.752" y="-5162.558" width="2.853" height="3.044" ry="1.052" transform="rotate(120)"/><rect x="-4717.752" y="-5144.85" width="2.853" height="3.044" ry="1.052" transform="rotate(120)"/><rect x="-6661.975" y="-2114.134" width="2.853" height="3.044" ry="1.052" transform="rotate(150)"/><rect x="-6661.975" y="-2096.425" width="2.853" height="3.044" ry="1.052" transform="rotate(150)"/></g></g></svg></span>
+    </button>
+  </header>
+
+  <section aria-label="Membership card" style="position: absolute; left: 14px; right: 14px; top: 340px; height: 244px; border-radius: 18px; background: {{t.ink}}; color: {{t.onInk}}; box-sizing: border-box; padding: 20px 22px; box-shadow: 0 16px 36px rgba(0,0,0,0.22);">
+    <div style="display: flex; justify-content: space-between; align-items: flex-start;">
+      <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 13px; background: {{t.tierBg}}; color: #333333; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;">Bronze tier</span>
+      <span style="display: block; width: 34px; height: 44px; color: {{t.onInk}};"><svg width="100%" height="100%" viewBox="0 0 11.211 14.182" fill="currentColor" aria-hidden="true"><g transform="translate(-3014.7719,-1275.9218)"><g transform="translate(-69.860379)"><rect x="3084.633" y="1275.922" width="6.926" height="11.206" ry="0.534" fill-opacity=".55"/><rect x="3312.468" y="433.451" width="6.926" height="11.206" ry="0.534" transform="rotate(15)" fill-opacity=".78"/><rect x="3314.619" y="-438.992" width="6.926" height="11.206" ry="0.534" transform="rotate(30)"/></g></g></svg></span>
+    </div>
+    <div style="position: absolute; left: 22px; right: 22px; bottom: 18px;">
+      <div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 36px; line-height: 1;">Guest Learner</div>
+      <div style="margin-top: 10px; display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 6px;">
+        <sc-for list="{{digits}}" as="d" hint-placeholder-count="4">
+          <div>
+            <div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 32px; line-height: 1; letter-spacing: 1px; color: {{t.digits}};">{{d.value}}</div>
+            <div style="margin-top: 3px; font-size: 11px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: {{t.mutedOnInk}};">{{d.label}}</div>
+          </div>
+        </sc-for>
+      </div>
+    </div>
+  </section>
+
+  <p style="position: absolute; left: 0; right: 0; top: 598px; margin: 0; text-align: center; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 17px; color: {{t.muted}};">Back up your progress? <a href="Settings.dc.html" style="color: {{t.ink}};">Sign in</a></p>
+
+  <div style="position: absolute; left: 0; right: 0; top: 640px; display: flex; justify-content: center; gap: 30px;">
+    <button aria-label="Sign in with Google" style="position: relative; width: 84px; height: 84px; border: 0; padding: 0; background: transparent; cursor: pointer;">
+      <svg width="84" height="84" viewBox="-40 -40 80 80" aria-hidden="true" style="position: absolute; inset: 0;"><path d="{{shapes.scallop}}" fill="{{t.badge}}"/></svg>
+      <span style="position: absolute; left: 24px; top: 24px; width: 36px; height: 36px;"><svg width="100%" height="100%" viewBox="0 0 13.258 13.529" aria-hidden="true"><g transform="translate(-3012.921,-1299.2855)"><g transform="matrix(0.05181444,0,0,0.05181444,3012.9209,1299.2854)"><path d="m 255.878,133.451 c 0,-10.734 -0.871,-18.567 -2.756,-26.69 H 130.55 v 48.448 h 71.947 c -1.45,12.04 -9.283,30.172 -26.69,42.356 l -0.244,1.622 38.755,30.023 2.685,0.268 c 24.659,-22.774 38.875,-56.282 38.875,-96.027" fill="#4285f4"/><path d="m 130.55,261.1 c 35.248,0 64.839,-11.605 86.453,-31.622 l -41.196,-31.913 c -11.024,7.688 -25.82,13.055 -45.257,13.055 -34.523,0 -63.824,-22.773 -74.269,-54.25 l -1.531,0.13 -40.298,31.187 -0.527,1.465 C 35.393,231.798 79.49,261.1 130.55,261.1" fill="#34a853"/><path d="m 56.281,156.37 c -2.756,-8.123 -4.351,-16.827 -4.351,-25.82 0,-8.994 1.595,-17.697 4.206,-25.82 L 56.063,103 15.26,71.312 13.925,71.947 C 5.077,89.644 0,109.517 0,130.55 c 0,21.033 5.077,40.905 13.925,58.602 L 56.281,156.37" fill="#fbbc05"/><path d="m 130.55,50.479 c 24.514,0 41.05,10.589 50.479,19.438 L 217.873,33.943 C 195.245,12.91 165.798,0 130.55,0 79.49,0 35.393,29.301 13.925,71.947 L 56.136,104.73 C 66.726,73.253 96.027,50.479 130.55,50.479" fill="#eb4335"/></g></g></svg></span>
+    </button>
+    <button aria-label="Create a Memory Card account" style="position: relative; width: 84px; height: 84px; border: 0; padding: 0; background: transparent; cursor: pointer;">
+      <svg width="84" height="84" viewBox="-40 -40 80 80" aria-hidden="true" style="position: absolute; inset: 0;"><path d="{{shapes.burst}}" fill="{{t.badge}}"/></svg>
+      <span style="position: absolute; left: 27px; top: 22px; width: 30px; height: 40px; color: {{t.badgeInk}};"><svg width="100%" height="100%" viewBox="0 0 11.211 14.182" fill="currentColor" aria-hidden="true"><g transform="translate(-3014.7719,-1275.9218)"><g transform="translate(-69.860379)"><rect x="3084.633" y="1275.922" width="6.926" height="11.206" ry="0.534" fill-opacity=".55"/><rect x="3312.468" y="433.451" width="6.926" height="11.206" ry="0.534" transform="rotate(15)" fill-opacity=".78"/><rect x="3314.619" y="-438.992" width="6.926" height="11.206" ry="0.534" transform="rotate(30)"/></g></g></svg></span>
+    </button>
+    <button aria-label="Sign in with Apple" style="position: relative; width: 84px; height: 84px; border: 0; padding: 0; background: transparent; cursor: pointer;">
+      <svg width="84" height="84" viewBox="-40 -40 80 80" aria-hidden="true" style="position: absolute; inset: 0;"><path d="{{shapes.squircle}}" fill="{{t.badge}}"/></svg>
+      <span style="position: absolute; left: 26px; top: 22px; width: 32px; height: 39px; color: {{t.badgeInk}};"><svg width="100%" height="100%" viewBox="0 0 11.044 13.564" fill="currentColor" aria-hidden="true"><g transform="translate(-3034.5918,-1297.8149)"><path d="m 3045.282,1302.439 c -0.079,0.061 -1.468,0.844 -1.468,2.584 0,2.013 1.767,2.725 1.82,2.743 -0.01,0.043 -0.281,0.975 -0.932,1.925 -0.581,0.836 -1.187,1.67 -2.109,1.67 -0.922,0 -1.16,-0.536 -2.225,-0.536 -1.038,0 -1.407,0.553 -2.251,0.553 -0.844,0 -1.433,-0.773 -2.109,-1.723 -0.784,-1.115 -1.417,-2.847 -1.417,-4.492 0,-2.637 1.715,-4.036 3.402,-4.036 0.897,0 1.644,0.589 2.207,0.589 0.536,0 1.371,-0.624 2.392,-0.624 0.387,0 1.776,0.035 2.69,1.346 z m -3.174,-2.462 c 0.422,-0.501 0.72,-1.195 0.72,-1.89 0,-0.096 -0.01,-0.194 -0.025,-0.273 -0.686,0.026 -1.503,0.457 -1.996,1.028 -0.387,0.44 -0.748,1.134 -0.748,1.838 0,0.106 0.017,0.212 0.025,0.246 0.044,0.01 0.114,0.018 0.184,0.018 0.616,0 1.391,-0.412 1.838,-0.967 z"/></g></svg></span>
+    </button>
+  </div>
+  <p style="position: absolute; left: 30px; right: 30px; top: 736px; margin: 0; text-align: center; font-size: 14px; font-weight: 500; color: {{t.muted}};">Optional. Everything works offline without an account.</p>
+
+  <section aria-label="Activity" style="position: absolute; left: 20px; right: 20px; top: 786px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+      <h2 style="margin: 0; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 28px;">Last 5 weeks</h2>
+      <span style="font-size: 14px; font-weight: 600; color: {{t.muted}};">8-day streak · 2 shields</span>
+    </div>
+    <div role="img" aria-label="Study activity heatmap, most days studied" style="margin-top: 12px; display: grid; grid-template-columns: repeat(7, minmax(0, 1fr)); gap: 6px;">
+      <sc-for list="{{heat}}" as="h" hint-placeholder-count="35">
+        <span style="display: block; height: 30px; border-radius: 6px; background: {{h.bg}};"></span>
+      </sc-for>
+    </div>
+    <div style="margin-top: 14px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;">
+      <div style="border-radius: 14px; background: {{t.soft}}; padding: 12px;"><div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 30px; line-height: 1;">142</div><div style="font-size: 13px; font-weight: 600; color: {{t.muted}}; margin-top: 4px;">cards mastered</div></div>
+      <div style="border-radius: 14px; background: {{t.soft}}; padding: 12px;"><div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 30px; line-height: 1;">86%</div><div style="font-size: 13px; font-weight: 600; color: {{t.muted}}; margin-top: 4px;">memory health</div></div>
+      <div style="border-radius: 14px; background: {{t.soft}}; padding: 12px;"><div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 30px; line-height: 1;">74%</div><div style="font-size: 13px; font-weight: 600; color: {{t.muted}}; margin-top: 4px;">felt success</div></div>
+    </div>
+    <a href="Settings.dc.html" style="margin-top: 14px; display: flex; height: 54px; align-items: center; justify-content: space-between; padding: 0 16px; border-radius: 14px; background: {{t.soft}}; color: {{t.ink}}; text-decoration: none; font-size: 17px; font-weight: 700;">Settings <span aria-hidden="true">›</span></a>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":1120}}'>
+const THEMES = {
+  light: { canvas: '#F1F1F1', ink: '#333333', onInk: '#F1F1F1', muted: '#666666', mutedOnInk: '#BDBDBD', soft: '#E3E3E3', sash: '#AEAEAE', digits: '#9A9A9A',
+           badge: '#333333', badgeInk: '#F1F1F1', tierBg: '#D9A273', heat: ['#E0E0E0', '#C4C4C4', '#9D9D9D', '#6B6B6B', '#333333'] },
+  dark:  { canvas: '#333333', ink: '#F1F1F1', onInk: '#333333', muted: '#BDBDBD', mutedOnInk: '#666666', soft: '#444444', sash: '#9A9A9A', digits: '#8A8A8A',
+           badge: '#F1F1F1', badgeInk: '#333333', tierBg: '#D9A273', heat: ['#444444', '#5E5E5E', '#858585', '#BDBDBD', '#F1F1F1'] }
+};
+function polar(fn, n) {
+  let d = '';
+  for (let i = 0; i <= n; i++) {
+    const a = (i / n) * Math.PI * 2;
+    const r = fn(a);
+    d += (i === 0 ? 'M' : 'L') + (Math.cos(a) * r).toFixed(2) + ' ' + (Math.sin(a) * r).toFixed(2);
+  }
+  return d + 'Z';
+}
+const SHAPES = {
+  scallop: polar((a) => 34 + 3.4 * Math.cos(9 * a), 108),
+  burst: polar((a) => 32 + 6 * Math.cos(12 * a), 144),
+  squircle: polar((a) => 34 * Math.pow(Math.pow(Math.abs(Math.cos(a)), 4) + Math.pow(Math.abs(Math.sin(a)), 4), -0.25) + 2.4 * Math.sin(4 * a + 0.8), 108)
+};
+// 35 days, oldest first; 0 = no study … 4 = big day. The last 8 days form the current streak.
+const HEAT = [2,0,1,3,2,0,0, 1,2,2,0,3,1,0, 2,3,0,1,2,4,0, 0,1,2,3,2,1,3, 2,4,2,3,1,2,3];
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { dark: null };
+  }
+  renderVals() {
+    const dark = this.state.dark === null ? (this.props.dark ?? false) : this.state.dark;
+    const t = dark ? THEMES.dark : THEMES.light;
+    return {
+      t,
+      shapes: SHAPES,
+      toggleTheme: () => this.setState({ dark: !dark }),
+      themeLabel: dark ? 'Switch to light mode' : 'Switch to dark mode',
+      digits: [
+        { value: '0142', label: 'mastered' },
+        { value: '0008', label: 'streak' },
+        { value: '0086', label: 'health %' },
+        { value: '2026', label: 'since' }
+      ],
+      heat: HEAT.map((v) => ({ bg: t.heat[v] }))
+    };
+  }
+}
+</script>
+</body>
+</html>

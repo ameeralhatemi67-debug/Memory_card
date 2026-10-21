@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Daily goal reached</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wdth,wght@62.5..100,700..900&amp;family=Barlow+Semi+Condensed:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: {{t.canvas}}; color: {{t.ink}}; font-family: 'Barlow Semi Condensed', system-ui, sans-serif;">
+
+  <header style="height: 76px; box-sizing: border-box; padding: 18px 16px 0 18px; display: flex; align-items: center; gap: 12px;">
+    <a href="Main.dc.html" aria-label="Back to decks" style="display: flex; width: 44px; height: 44px; align-items: center; justify-content: center; color: {{t.ink}};">
+      <span style="display: block; width: 28px; height: 36px;"><svg width="100%" height="100%" viewBox="0 0 11.211 14.182" fill="currentColor" aria-hidden="true"><g transform="translate(-3014.7719,-1275.9218)"><g transform="translate(-69.860379)"><rect x="3084.633" y="1275.922" width="6.926" height="11.206" ry="0.534" fill-opacity=".55"/><rect x="3312.468" y="433.451" width="6.926" height="11.206" ry="0.534" transform="rotate(15)" fill-opacity=".78"/><rect x="3314.619" y="-438.992" width="6.926" height="11.206" ry="0.534" transform="rotate(30)"/></g></g></svg></span>
+    </a>
+    <div style="flex: 1; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 24px;">Today</div>
+  </header>
+
+  <section style="display: flex; flex-direction: column; align-items: center; padding: 8px 24px 0;">
+    <div style="position: relative; width: 168px; height: 168px;">
+      <svg width="168" height="168" viewBox="-50 -50 100 100" aria-hidden="true">
+        <path d="{{seal}}" fill="#D35F5F"/>
+        <circle r="33" fill="none" stroke="#F1F1F1" stroke-opacity="0.5" stroke-width="1.6"/>
+        <circle r="28" fill="none" stroke="#F1F1F1" stroke-opacity="0.35" stroke-width="1"/>
+      </svg>
+      <div style="position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #F1F1F1; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 30px; letter-spacing: 1px; transform: rotate(-12deg);">DONE</div>
+    </div>
+    <h1 style="margin: 14px 0 0; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 42px; line-height: 1; text-align: center;">Goal reached</h1>
+    <p style="margin: 8px 0 0; font-size: 17px; font-weight: 500; color: {{t.muted}}; text-align: center;">German · A1 Everyday · 9 min</p>
+  </section>
+
+  <section aria-label="Session stats" style="margin: 24px 20px 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;">
+    <div style="border-radius: 14px; background: {{t.soft}}; padding: 14px 12px;">
+      <div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 36px; line-height: 1;">40</div>
+      <div style="font-size: 14px; font-weight: 600; color: {{t.muted}}; margin-top: 4px;">reviewed</div>
+    </div>
+    <div style="border-radius: 14px; background: {{t.soft}}; padding: 14px 12px;">
+      <div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 36px; line-height: 1;">34</div>
+      <div style="font-size: 14px; font-weight: 600; color: {{t.muted}}; margin-top: 4px;">remembered</div>
+    </div>
+    <div style="border-radius: 14px; background: {{t.soft}}; padding: 14px 12px;">
+      <div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 36px; line-height: 1;">6</div>
+      <div style="font-size: 14px; font-weight: 600; color: {{t.muted}}; margin-top: 4px;">relearned</div>
+    </div>
+  </section>
+
+  <section aria-label="Streak" style="margin: 12px 20px 0; border-radius: 14px; background: {{t.ink}}; color: {{t.onInk}}; padding: 14px 16px; display: flex; align-items: center; gap: 12px;">
+    <svg width="26" height="30" viewBox="0 0 24 24" fill="#D35F5F" aria-hidden="true"><path d="M12 2c1.2 4 6 6.2 6 11.5A6 6 0 0 1 6 13.5c0-2.6 1.2-4.3 2.6-5.6.3 1.9 1.4 3 2.6 3.3C11 8.6 10.6 5.4 12 2z"/></svg>
+    <div style="flex: 1;">
+      <div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 26px; line-height: 1;">8-day streak</div>
+      <div style="font-size: 14px; font-weight: 500; color: {{t.mutedOnInk}}; margin-top: 3px;">2 grace shields left this month</div>
+    </div>
+    <div style="display: flex; gap: 4px;" aria-hidden="true">
+      <svg width="22" height="26" viewBox="0 0 24 28"><path d="M12 1 22 5v8c0 6.5-4.3 11.3-10 14C6.3 24.3 2 19.5 2 13V5z" fill="#80AEFF"/></svg>
+      <svg width="22" height="26" viewBox="0 0 24 28"><path d="M12 1 22 5v8c0 6.5-4.3 11.3-10 14C6.3 24.3 2 19.5 2 13V5z" fill="#80AEFF"/></svg>
+    </div>
+  </section>
+
+  <section aria-label="Memory health" style="margin: 12px 20px 0; border-radius: 14px; background: {{t.soft}}; padding: 14px 16px;">
+    <div style="display: flex; justify-content: space-between; align-items: baseline;">
+      <div style="font-size: 16px; font-weight: 700;">Memory health</div>
+      <div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 26px;">86%</div>
+    </div>
+    <div style="margin-top: 8px; height: 8px; border-radius: 4px; background: {{t.track}}; overflow: hidden;"><div style="width: 86%; height: 100%; background: {{t.ink}};"></div></div>
+    <div style="margin-top: 8px; font-size: 14px; font-weight: 500; color: {{t.muted}};">Predicted recall right now. 18 cards start slipping tomorrow.</div>
+  </section>
+
+  <div style="position: absolute; left: 20px; right: 20px; bottom: 28px; display: flex; flex-direction: column; gap: 10px;">
+    <a href="Study.dc.html" style="display: flex; height: 56px; align-items: center; justify-content: center; border-radius: 16px; background: {{t.ink}}; color: {{t.canvas}}; text-decoration: none; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 26px;">Keep going</a>
+    <a href="Main.dc.html" style="display: flex; height: 50px; align-items: center; justify-content: center; border-radius: 16px; background: {{t.soft}}; color: {{t.ink}}; text-decoration: none; font-size: 17px; font-weight: 600;">Back to decks</a>
+  </div>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'>
+const THEMES = {
+  light: { canvas: '#F1F1F1', ink: '#333333', onInk: '#F1F1F1', muted: '#666666', mutedOnInk: '#BDBDBD', soft: '#E3E3E3', track: '#CFCFCF' },
+  dark:  { canvas: '#333333', ink: '#F1F1F1', onInk: '#333333', muted: '#BDBDBD', mutedOnInk: '#666666', soft: '#444444', track: '#5A5A5A' }
+};
+function sealPath() {
+  let d = '';
+  for (let i = 0; i < 48; i++) {
+    const a = (i / 48) * Math.PI * 2;
+    const r = i % 2 === 0 ? 46 : 41;
+    d += (i === 0 ? 'M' : 'L') + (Math.cos(a) * r).toFixed(2) + ' ' + (Math.sin(a) * r).toFixed(2);
+  }
+  return d + 'Z';
+}
+const SEAL = sealPath();
+class Component extends DCLogic {
+  renderVals() {
+    const t = (this.props.dark ?? false) ? THEMES.dark : THEMES.light;
+    return { t, seal: SEAL };
+  }
+}
+</script>
+</body>
+</html>

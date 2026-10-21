@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Create card</title>
+<script src="./support.js"></script>
+</head>
+<body>
+<x-dc>
+<helmet>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Serif+Display:wdth,wght@62.5..100,700..900&amp;family=Barlow+Semi+Condensed:wght@400;500;600;700&amp;display=swap">
+<style>
+body{margin:0}
+a{color:inherit}a:hover{color:inherit}
+</style>
+</helmet>
+<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: {{t.canvas}}; color: {{t.ink}}; font-family: 'Barlow Semi Condensed', system-ui, sans-serif;">
+
+  <sc-for list="{{ghost}}" as="g" hint-placeholder-count="5">
+    <div aria-hidden="true" style="position: absolute; left: 20px; right: 20px; height: 72px; border-radius: 10px; background: {{t.ink}}; top: {{g.top}}px;"></div>
+  </sc-for>
+  <a href="Main.dc.html" aria-label="Close" style="position: absolute; inset: 0; background: rgba(20,20,20,0.55);"></a>
+
+  <section role="dialog" aria-label="Create" style="position: absolute; left: 0; right: 0; top: 96px; bottom: 0; background: {{t.canvas}}; border-radius: 26px 26px 0 0; box-sizing: border-box; padding: 10px 20px 24px; display: flex; flex-direction: column; gap: 12px;">
+    <div aria-hidden="true" style="align-self: center; width: 44px; height: 5px; border-radius: 3px; background: {{t.line}};"></div>
+
+    <div role="tablist" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 4px; padding: 4px; border-radius: 14px; background: {{t.soft}};">
+      <button role="tab" aria-selected="{{isCard}}" onClick="{{toCard}}" style="height: 40px; border: 0; border-radius: 10px; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer; background: {{tabCardBg}}; color: {{tabCardFg}};">Card</button>
+      <button role="tab" aria-selected="{{isImport}}" onClick="{{toImport}}" style="height: 40px; border: 0; border-radius: 10px; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer; background: {{tabImpBg}}; color: {{tabImpFg}};">Import CSV</button>
+    </div>
+
+    <sc-if value="{{isCard}}" hint-placeholder-val="{{true}}">
+      <div style="display: flex; flex-direction: column; gap: 12px; flex: 1;">
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px;">
+          <h1 style="margin: 0; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 32px; line-height: 1;">New card</h1>
+          <button style="height: 34px; padding: 0 12px; border: 0; border-radius: 17px; background: {{t.soft}}; color: {{t.ink}}; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer; white-space: nowrap;">German · A1 ▾</button>
+        </div>
+        <label style="display: flex; flex-direction: column; gap: 5px; font-size: 14px; font-weight: 700; color: {{t.muted}};">Front
+          <input value="der Apfel" style="height: 52px; box-sizing: border-box; padding: 0 14px; border: 2px solid {{t.line}}; border-radius: 12px; background: {{t.field}}; color: {{t.ink}}; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 24px;">
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 5px; font-size: 14px; font-weight: 700; color: {{t.muted}};">Back
+          <input value="the apple" style="height: 52px; box-sizing: border-box; padding: 0 14px; border: 2px solid {{t.line}}; border-radius: 12px; background: {{t.field}}; color: {{t.ink}}; font-family: inherit; font-size: 19px; font-weight: 600;">
+        </label>
+        <label style="display: flex; flex-direction: column; gap: 5px; font-size: 14px; font-weight: 700; color: {{t.muted}};">Example or hint (optional)
+          <textarea rows="2" style="box-sizing: border-box; padding: 10px 14px; border: 2px solid {{t.line}}; border-radius: 12px; background: {{t.field}}; color: {{t.ink}}; font-family: inherit; font-size: 17px; font-weight: 500; resize: none;">Ich esse jeden Tag einen Apfel.</textarea>
+        </label>
+        <button style="height: 64px; border: 2px dashed {{t.dash}}; border-radius: 12px; background: transparent; color: {{t.muted}}; font-family: inherit; font-size: 16px; font-weight: 700; display: flex; align-items: center; justify-content: center; gap: 8px; cursor: pointer;">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>
+          Add image
+        </button>
+        <div style="display: flex; align-items: center; justify-content: space-between; gap: 12px; padding: 4px 2px;">
+          <div>
+            <div style="font-size: 16px; font-weight: 700;">Also study back → front</div>
+            <div style="font-size: 14px; font-weight: 500; color: {{t.muted}};">Creates a reverse card, kept apart in the stack</div>
+          </div>
+          <button role="switch" aria-checked="{{reverse}}" aria-label="Also study back to front" onClick="{{toggleReverse}}" style="position: relative; flex: none; width: 52px; height: 32px; border: 0; border-radius: 16px; background: {{switchBg}}; cursor: pointer;">
+            <span style="position: absolute; top: 4px; width: 24px; height: 24px; border-radius: 12px; background: {{switchKnob}}; left: {{switchLeft}}px; transition: left 160ms ease;"></span>
+          </button>
+        </div>
+        <div style="flex: 1;"></div>
+        <div style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px;">
+          <a href="Main.dc.html" style="display: flex; height: 54px; align-items: center; justify-content: center; border-radius: 16px; background: {{t.soft}}; color: {{t.ink}}; text-decoration: none; font-size: 17px; font-weight: 700;">Done</a>
+          <button onClick="{{saveNext}}" style="height: 54px; border: 0; border-radius: 16px; background: {{t.ink}}; color: {{t.canvas}}; cursor: pointer; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 23px;">{{saveLabel}}</button>
+        </div>
+      </div>
+    </sc-if>
+
+    <sc-if value="{{isImport}}" hint-placeholder-val="{{false}}">
+      <div style="display: flex; flex-direction: column; gap: 12px; flex: 1; min-height: 0;">
+        <h1 style="margin: 0; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 32px; line-height: 1;">Import cards</h1>
+        <p style="margin: 0; font-size: 15px; font-weight: 500; color: {{t.muted}}; line-height: 1.35;">Paste one card per line: front, then back, separated by a tab, comma or semicolon.</p>
+        <label style="display: flex; flex-direction: column; gap: 5px; font-size: 14px; font-weight: 700; color: {{t.muted}};">Paste here
+          <textarea rows="5" value="{{csv}}" onChange="{{onCsv}}" style="box-sizing: border-box; padding: 10px 14px; border: 2px solid {{t.line}}; border-radius: 12px; background: {{t.field}}; color: {{t.ink}}; font-family: ui-monospace, Consolas, monospace; font-size: 15px; line-height: 1.4; resize: none;"></textarea>
+        </label>
+        <div style="display: flex; gap: 8px; flex-wrap: wrap;">
+          <span style="height: 30px; padding: 0 12px; border-radius: 15px; background: {{t.soft}}; display: inline-flex; align-items: center; font-size: 14px; font-weight: 700;">{{sepLabel}}</span>
+          <span style="height: 30px; padding: 0 12px; border-radius: 15px; background: {{t.soft}}; display: inline-flex; align-items: center; font-size: 14px; font-weight: 700;">{{countLabel}}</span>
+          <sc-if value="{{hasSkipped}}" hint-placeholder-val="{{false}}">
+            <span style="height: 30px; padding: 0 12px; border-radius: 15px; background: #FFC680; color: #333333; display: inline-flex; align-items: center; font-size: 14px; font-weight: 700;">{{skippedLabel}}</span>
+          </sc-if>
+        </div>
+        <div role="table" aria-label="Preview" style="border-radius: 12px; overflow: hidden; border: 2px solid {{t.line}};">
+          <div role="row" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); background: {{t.soft}}; font-size: 13px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase; color: {{t.muted}};">
+            <span role="columnheader" style="padding: 8px 12px;">Front</span><span role="columnheader" style="padding: 8px 12px;">Back</span>
+          </div>
+          <sc-for list="{{preview}}" as="r" hint-placeholder-count="3">
+            <div role="row" style="display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); border-top: 1px solid {{t.line}}; font-size: 16px; font-weight: 600;">
+              <span role="cell" style="padding: 8px 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{r.front}}</span><span role="cell" style="padding: 8px 12px; overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{r.back}}</span>
+            </div>
+          </sc-for>
+        </div>
+        <div style="flex: 1;"></div>
+        <button style="height: 48px; border: 2px solid {{t.line}}; border-radius: 16px; background: transparent; color: {{t.ink}}; font-family: inherit; font-size: 16px; font-weight: 700; cursor: pointer;">Choose a .csv or .txt file…</button>
+        <a href="Main.dc.html" style="display: flex; height: 56px; align-items: center; justify-content: center; border-radius: 16px; background: {{t.ink}}; color: {{t.canvas}}; text-decoration: none; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 24px;">{{importLabel}}</a>
+      </div>
+    </sc-if>
+  </section>
+</div>
+</x-dc>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"startOnImport":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'>
+const THEMES = {
+  light: { canvas: '#F1F1F1', ink: '#333333', muted: '#666666', soft: '#E3E3E3', line: '#D2D2D2', field: '#FFFFFF', dash: '#9D9D9D', knobOff: '#FFFFFF' },
+  dark:  { canvas: '#333333', ink: '#F1F1F1', muted: '#BDBDBD', soft: '#444444', line: '#555555', field: '#2B2B2B', dash: '#777777', knobOff: '#BDBDBD' }
+};
+const SAMPLE = 'der Apfel; the apple\ndie Birne; the pear\ndie Milch; the milk\ndas Brot; the bread\ndie Butter; the butter';
+
+function detectSep(text) {
+  const lines = text.split('\n').filter((l) => l.trim());
+  const cands = [['\t', 'Tab'], [';', 'Semicolon'], [',', 'Comma']];
+  for (const [ch, name] of cands) {
+    if (lines.length && lines.filter((l) => l.includes(ch)).length >= Math.ceil(lines.length / 2)) return [ch, name];
+  }
+  return [null, 'No separator found'];
+}
+
+class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = { mode: null, reverse: true, saved: 0, csv: SAMPLE };
+  }
+  renderVals() {
+    const t = (this.props.dark ?? false) ? THEMES.dark : THEMES.light;
+    const mode = this.state.mode || ((this.props.startOnImport ?? false) ? 'import' : 'card');
+    const isCard = mode === 'card';
+    const [sep, sepName] = detectSep(this.state.csv);
+    const lines = this.state.csv.split('\n').filter((l) => l.trim());
+    const rows = [];
+    let skipped = 0;
+    for (const l of lines) {
+      const i = sep ? l.indexOf(sep) : -1;
+      const front = i >= 0 ? l.slice(0, i).trim() : '';
+      const back = i >= 0 ? l.slice(i + 1).trim() : '';
+      if (front && back) rows.push({ front, back }); else skipped++;
+    }
+    return {
+      t,
+      ghost: [0, 1, 2, 3, 4, 5, 6, 7].map((i) => ({ top: 88 + i * 84 })),
+      isCard, isImport: !isCard,
+      tabCardBg: isCard ? t.ink : 'transparent', tabCardFg: isCard ? t.canvas : t.ink,
+      tabImpBg: isCard ? 'transparent' : t.ink, tabImpFg: isCard ? t.ink : t.canvas,
+      toCard: () => this.setState({ mode: 'card' }),
+      toImport: () => this.setState({ mode: 'import' }),
+      reverse: this.state.reverse,
+      switchBg: this.state.reverse ? t.ink : t.line,
+      switchKnob: this.state.reverse ? t.canvas : t.knobOff,
+      switchLeft: this.state.reverse ? 24 : 4,
+      toggleReverse: () => this.setState({ reverse: !this.state.reverse }),
+      saveLabel: this.state.saved ? 'Saved ' + this.state.saved + ' · next' : 'Save & next',
+      saveNext: () => this.setState({ saved: this.state.saved + 1 }),
+      csv: this.state.csv,
+      onCsv: (e) => this.setState({ csv: e.target.value }),
+      sepLabel: 'Separator: ' + sepName,
+      countLabel: rows.length + (rows.length === 1 ? ' card' : ' cards'),
+      hasSkipped: skipped > 0,
+      skippedLabel: skipped + ' line' + (skipped === 1 ? '' : 's') + ' skipped',
+      preview: rows.slice(0, 3),
+      importLabel: 'Import ' + rows.length + ' cards'
+    };
+  }
+}
+</script>
+</body>
+</html>
