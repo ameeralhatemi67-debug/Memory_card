@@ -25,6 +25,7 @@ a{color:inherit}a:hover{color:inherit}
 
   <section style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 34px 28px 0;">
     <svg width="210" height="180" viewBox="0 0 210 180" role="img" aria-label="A brain with question marks" style="filter: {{t.art}};">
+      <g transform="{{brainTf}}">
       <g fill="{{t.ink}}">
         <circle cx="62" cy="96" r="38"/>
         <circle cx="96" cy="72" r="42"/>
@@ -41,7 +42,10 @@ a{color:inherit}a:hover{color:inherit}
         <path d="M120 128c12 8 26 4 30-8"/>
         <path d="M60 130c8-8 20-6 24 4"/>
       </g>
-      <text x="152" y="34" font-family="'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif" font-size="34" font-weight="800" fill="#D35F5F" transform="rotate(12 160 30)">???</text>
+      </g>
+      <text x="0" y="0" text-anchor="middle" font-family="'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif" font-size="24" font-weight="800" fill="#D35F5F" transform="{{q0}}" opacity="{{qo0}}">?</text>
+      <text x="0" y="0" text-anchor="middle" font-family="'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif" font-size="30" font-weight="800" fill="#D35F5F" transform="{{q1}}" opacity="{{qo1}}">?</text>
+      <text x="0" y="0" text-anchor="middle" font-family="'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif" font-size="38" font-weight="800" fill="#D35F5F" transform="{{q2}}" opacity="{{qo2}}">?</text>
     </svg>
     <h1 style="margin: 18px 0 0; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 46px; line-height: 1;">Empty mind</h1>
     <p style="margin: 10px 0 0; font-size: 18px; font-weight: 500; color: {{t.muted}}; line-height: 1.35;">Nothing to remember in this folder yet.</p>
@@ -82,16 +86,42 @@ const THEMES = {
   dark:  { canvas: '#333333', ink: '#F1F1F1', muted: '#BDBDBD', soft: '#444444',
            e1: '0 1px 2px rgba(0,0,0,0.45), 0 5px 12px rgba(0,0,0,0.4)', e2: '0 2px 6px rgba(0,0,0,0.5), 0 12px 28px rgba(0,0,0,0.55)', art: 'drop-shadow(0 10px 18px rgba(0,0,0,0.6))' }
 };
+// The "???" are thought bubbles: they rise and grow toward the top-right, and a wave runs through
+// them in turn (hop, tilt, brighten) while the brain breathes underneath. Driven by a JS clock.
+const MARKS = [{ x: 150, y: 54, tilt: 8 }, { x: 170, y: 38, tilt: 12 }, { x: 192, y: 22, tilt: 16 }];
 class Component extends DCLogic {
+  componentDidMount() {
+    const tick = () => {
+      this.now = performance.now();
+      this.forceUpdate();
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  }
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf);
+  }
   renderVals() {
     const dark = this.props.dark ?? false;
     const t = dark ? THEMES.dark : THEMES.light;
+    const now = this.now || 0;
+    const marks = {};
+    MARKS.forEach((m, i) => {
+      const wave = Math.max(0, Math.sin((now / 1800) * Math.PI * 2 - i * 0.9));   // 0..1 pulse, one mark after another
+      const hop = -7 * wave;
+      const rot = m.tilt + 10 * Math.sin((now / 1800) * Math.PI * 2 - i * 0.9);
+      const s = 1 + 0.18 * wave;
+      marks['q' + i] = 'translate(' + m.x + ' ' + (m.y + hop).toFixed(2) + ') rotate(' + rot.toFixed(2) + ') scale(' + s.toFixed(3) + ')';
+      marks['qo' + i] = (0.55 + 0.45 * wave).toFixed(3);
+    });
+    const breathe = 1 + 0.018 * Math.sin((now / 3200) * Math.PI * 2);
+    const brainTf = 'translate(105 100) scale(' + breathe.toFixed(4) + ') translate(-105 -100)';
     const starters = [
       { mono: 'De', name: 'German · A1 Basics', bg: '#80AEFF', fg: '#333333' },
       { mono: 'Py', name: 'Python · Syntax', bg: '#FFC680', fg: '#333333' },
       { mono: 'Es', name: 'Spanish · Basics', bg: dark ? '#F1F1F1' : '#333333', fg: dark ? '#333333' : '#F1F1F1' }
     ];
-    return { t, starters };
+    return Object.assign({ t, starters, brainTf }, marks);
   }
 }
 </script>
