@@ -121,6 +121,7 @@ const STEP_1 = 65;
 const STEP_2 = 125;
 const SPAN_2 = STEP_2 - STEP_1;
 const GAP = 10;
+const MARGIN = 20;   // the deck bar's side margin; action tiles sit flush to the screen edge, so the bar travels e - (MARGIN - GAP)
 
 // Four-phase "inward gravity": resists leaving rest, slides freely, then is pulled into each detent.
 function gravity(raw) {
@@ -273,7 +274,7 @@ class Component extends DCLogic {
         pinned: d.pinned,
         aria: d.name + ', ' + d.cards + ' cards. Swipe left to delete or archive, right to move or pin',
         meta: d.cards + ' cards · ' + (d.due ? d.due + ' slipping' : 'all fresh'),
-        tx: dir === 0 ? 0 : (dir * (e + GAP)).toFixed(1),
+        tx: dir === 0 ? 0 : (dir * Math.max(0, e + GAP - MARGIN)).toFixed(1),
         layerR: dir < 0 ? e.toFixed(1) : 0,
         w1R: dir < 0 ? e.toFixed(1) : 0,
         w2R: dir < 0 ? second.toFixed(1) : 0,
