@@ -24,9 +24,9 @@ a{color:inherit}a:hover{color:inherit}
   </header>
 
   <section style="display: flex; flex-direction: column; align-items: center; padding: 8px 24px 0;">
-    <div style="position: relative; width: 168px; height: 168px;">
+    <div style="position: relative; width: 168px; height: 168px; transform: {{sealTf}}; opacity: {{sealOp}};">
       <svg width="168" height="168" viewBox="-50 -50 100 100" aria-hidden="true" style="filter: {{t.seal}};">
-        <path d="{{seal}}" fill="#D35F5F"/>
+        <path d="{{seal}}" fill="#D35F5F" transform="rotate({{spin}})"/>
         <circle r="33" fill="none" stroke="#F1F1F1" stroke-opacity="0.5" stroke-width="1.6"/>
         <circle r="28" fill="none" stroke="#F1F1F1" stroke-opacity="0.35" stroke-width="1"/>
       </svg>
@@ -95,10 +95,47 @@ function sealPath() {
   return d + 'Z';
 }
 const SEAL = sealPath();
+// Stamp entrance: [time 0..1, scale, rotation°, opacity] over 700ms — drops in big and tilted, overshoots small, settles.
+const STAMP = { ms: 700, rows: [[0, 1.5, -22, 0], [0.45, 0.92, -2, 1], [0.7, 1.04, 1, 1], [1, 1, 0, 1]] };
+function sample(anim, elapsed) {
+  const rows = anim.rows;
+  const u = elapsed / anim.ms;
+  if (u <= 0) return rows[0].slice(1);
+  if (u >= 1) return rows[rows.length - 1].slice(1);
+  let i = 1;
+  while (rows[i][0] < u) i++;
+  const a = rows[i - 1], b = rows[i];
+  let k = (u - a[0]) / (b[0] - a[0]);
+  k = k * k * (3 - 2 * k);
+  return a.slice(1).map((v, j) => v + (b[j + 1] - v) * k);
+}
 class Component extends DCLogic {
+  componentDidMount() {
+    this.t0 = performance.now();
+    const tick = () => {
+      this.now = performance.now();
+      this.forceUpdate();
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
+  }
+  componentWillUnmount() {
+    cancelAnimationFrame(this.raf);
+  }
   renderVals() {
     const t = (this.props.dark ?? false) ? THEMES.dark : THEMES.light;
-    return { t, seal: SEAL };
+    const since = this.t0 ? (this.now || this.t0) - this.t0 : 0;
+    let [s, rot, op] = sample(STAMP, since);
+    // idle: ±2px float (3.6s), ±2.5° sway (5.2s), ±1% breathing — small enough to stay calm
+    const y = 2 * Math.sin((since / 3600) * Math.PI * 2);
+    rot += 2.5 * Math.sin((since / 5200) * Math.PI * 2);
+    s *= 1 + 0.01 * Math.sin((since / 3600) * Math.PI * 2 + 1);
+    return {
+      t, seal: SEAL,
+      sealTf: 'translateY(' + y.toFixed(2) + 'px) rotate(' + rot.toFixed(2) + 'deg) scale(' + s.toFixed(4) + ')',
+      sealOp: op.toFixed(3),
+      spin: ((since / 30000) * 360 % 360).toFixed(2)   // the scalloped rim turns once every 30s
+    };
   }
 }
 </script>
