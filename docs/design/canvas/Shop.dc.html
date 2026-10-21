@@ -12,8 +12,6 @@
 <style>
 body{margin:0}
 a{color:inherit}a:hover{color:inherit}
-@keyframes mcBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-4px)}}
-@keyframes mcPop{from{transform:scale(0.4);opacity:0}to{transform:scale(1);opacity:1}}
 </style>
 </helmet>
 <div data-shop-root="1" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: {{t.canvas}}; color: {{t.ink}}; font-family: 'Barlow Semi Condensed', system-ui, sans-serif;">
@@ -121,8 +119,8 @@ a{color:inherit}a:hover{color:inherit}
         <span style="display: block; margin-top: 2px; font-size: 13px; font-weight: 600; color: #555555;">{{hold.meta}}</span>
       </div>
       <sc-for list="{{badges}}" as="b" hint-placeholder-count="4">
-        <button onClick="{{b.act}}" aria-label="{{b.label}}" style="position: absolute; width: 76px; height: 98px; border: 0; padding: 0; background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; left: {{b.x}}px; top: {{b.y}}px; animation: mcPop 220ms cubic-bezier(.2,1.4,.4,1) both; animation-delay: {{b.delay}}ms;">
-          <span style="position: relative; display: block; width: 72px; height: 72px; animation: mcBob 2.6s ease-in-out infinite; animation-delay: {{b.bob}}ms;">
+        <button onClick="{{b.act}}" aria-label="{{b.label}}" style="position: absolute; width: 76px; height: 98px; border: 0; padding: 0; background: transparent; cursor: pointer; display: flex; flex-direction: column; align-items: center; gap: 4px; left: {{b.x}}px; top: {{b.y}}px; transform: translateY({{b.dy}}px) scale({{b.s}}); opacity: {{b.op}};">
+          <span style="position: relative; display: block; width: 72px; height: 72px;">
             <svg width="72" height="72" viewBox="-40 -40 80 80" aria-hidden="true" style="position: absolute; inset: 0; transform: rotate({{b.tilt}}deg);"><path d="{{b.path}}" fill="#F1F1F1" stroke="#F1F1F1" stroke-width="3" stroke-linejoin="round"/></svg>
             <span style="position: absolute; left: 22px; top: 22px; width: 28px; height: 28px; color: #333333;">
               <sc-if value="{{b.isShare}}" hint-placeholder-val="{{false}}"><svg width="100%" height="100%" viewBox="0 0 9.339 9.34" fill="currentColor" aria-hidden="true"><g transform="translate(-3017.3021,-1359.9964)"><path d="m 3026.205,1360.431 c -1.053,-1.053 -3.191,0.091 -4.629,0.477 -1.438,0.385 -3.862,0.463 -4.247,1.901 -0.327,1.219 2.494,2.964 3.013,2.445 l 2.237,-2.028 c 0.302,-0.274 0.713,-0.329 0.938,-0.105 0.217,0.217 0.17,0.635 -0.105,0.938 l -2.028,2.237 c -0.577,0.577 1.226,3.34 2.445,3.013 1.438,-0.385 1.516,-2.809 1.901,-4.247 0.386,-1.438 1.53,-3.576 0.477,-4.629 z"/></g></svg></sc-if>
@@ -217,11 +215,23 @@ class Component extends DCLogic {
     this.start = null;
   }
   componentDidMount() {
-    if (this.props.demoHold) this.setState({ hold: Object.assign({}, DEMO_HOLD) });
+    if (this.props.demoHold) this.openHold(Object.assign({}, DEMO_HOLD));
   }
   componentWillUnmount() {
     clearTimeout(this.timer);
     clearTimeout(this.toastTimer);
+    cancelAnimationFrame(this.raf);
+  }
+  // Quick actions pop in and bob on a JS clock (no CSS keyframes), so the motion runs on any canvas.
+  openHold(hold) {
+    this.holdT = performance.now();
+    cancelAnimationFrame(this.raf);
+    const tick = () => {
+      this.now = performance.now();
+      this.forceUpdate();
+      if (this.state.hold) this.raf = requestAnimationFrame(tick);
+    };
+    this.setState({ hold }, () => { this.raf = requestAnimationFrame(tick); });
   }
   pressStart(e, index) {
     clearTimeout(this.timer);
@@ -235,7 +245,7 @@ class Component extends DCLogic {
       const rr = root.getBoundingClientRect();
       const k = rr.width / 390 || 1;
       this.held = true;
-      this.setState({ hold: { index, x: (r.left - rr.left) / k, y: (r.top - rr.top) / k, w: r.width / k, h: r.height / k } });
+      this.openHold({ index, x: (r.left - rr.left) / k, y: (r.top - rr.top) / k, w: r.width / k, h: r.height / k });
     }, 430);
   }
   showToast(text) {
@@ -266,11 +276,18 @@ class Component extends DCLogic {
     const h = this.state.hold;
     const hold = h ? Object.assign(card(DECKS[h.index], h.index), { x: Math.round(h.x), y: Math.round(h.y), w: Math.round(h.w), h: Math.round(h.h), aria: 'Quick actions for ' + DECKS[h.index].name }) : null;
     const spots = h ? badgeSpots(h) : [];
-    const badges = ACTIONS.map((a, i) => Object.assign({ isShare: false, isPin: false, isSearch: false, isSave: false }, a, {
-      path: SHAPES[a.shape], x: spots[i] ? spots[i].x : 0, y: spots[i] ? spots[i].y : 0,
-      delay: i * 45, bob: i * 330,
-      act: () => this.showToast(a.toast)
-    }));
+    const since = (this.now || performance.now()) - (this.holdT || 0);
+    const badges = ACTIONS.map((a, i) => {
+      // pop: 0.4 → 1.08 → 1 over 240ms (staggered 45ms), then a gentle 2.6s bob of up to 4px
+      const u = Math.max(0, Math.min(1, (since - i * 45) / 240));
+      const s = u < 0.7 ? 0.4 + (1.08 - 0.4) * (u / 0.7) : 1.08 - 0.08 * ((u - 0.7) / 0.3);
+      const dy = -2 * (1 - Math.cos((since / 2600) * Math.PI * 2 + i * 0.8));
+      return Object.assign({ isShare: false, isPin: false, isSearch: false, isSave: false }, a, {
+        path: SHAPES[a.shape], x: spots[i] ? spots[i].x : 0, y: spots[i] ? spots[i].y : 0,
+        s: s.toFixed(3), op: Math.min(1, u * 2).toFixed(3), dy: dy.toFixed(2),
+        act: () => this.showToast(a.toast)
+      });
+    });
     return {
       t, cats, sections,
       showHero: this.state.cat === 'all' && !q,

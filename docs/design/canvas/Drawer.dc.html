@@ -12,23 +12,6 @@
 <style>
 body{margin:0}
 a{color:inherit}a:hover{color:inherit}
-@keyframes mcPillUpA{0%{transform:translateY(90px);opacity:0}60%{transform:translateY(-10px);opacity:1}85%{transform:translateY(2px);opacity:1}100%{transform:translateY(0);opacity:1}}
-@keyframes mcPillUpB{0%{transform:translateY(90px);opacity:0}60%{transform:translateY(-10px);opacity:1}85%{transform:translateY(2px);opacity:1}100%{transform:translateY(0);opacity:1}}
-@keyframes mcPillDown{0%{transform:translateY(0);opacity:1}30%{transform:translateY(-4px);opacity:1}70%{transform:translateY(65px);opacity:.7}100%{transform:translateY(110px);opacity:0}}
-@keyframes mcPillJumpA{0%{transform:translateY(0)}40%{transform:translateY(-12px)}75%{transform:translateY(-2px)}100%{transform:translateY(0)}}
-@keyframes mcPillJumpB{0%{transform:translateY(0)}40%{transform:translateY(-12px)}75%{transform:translateY(-2px)}100%{transform:translateY(0)}}
-@keyframes mcFloat{0%{transform:scale(1) translateY(-6px)}100%{transform:scale(1.03) translateY(-9px)}}
-@keyframes mcFear{0%{transform:translate(-2px,1px) rotate(-2deg)}50%{transform:translate(2px,-1px) rotate(2deg)}100%{transform:translate(-1.5px,.5px) rotate(-3.5deg)}}
-@keyframes mcRecoil{0%{transform:scale(1);opacity:1}35%{transform:scale(1.1) translate(-6px,-4px);opacity:.9}100%{transform:scale(.4) translateY(60px);opacity:0}}
-@keyframes mcExciteA{0%,100%{transform:translateY(0)}30%{transform:translateY(-7px) scale(1.01)}60%{transform:translateY(2px)}}
-@keyframes mcExciteB{0%,100%{transform:translateY(0)}30%{transform:translateY(-7px) scale(1.01)}60%{transform:translateY(2px)}}
-@keyframes mcFolderIn{0%{transform:translateX(-112%) rotate(-5deg);opacity:0}60%{transform:translateX(4%) rotate(1deg);opacity:1}82%{transform:translateX(-1%) rotate(-.3deg)}100%{transform:translateX(0) rotate(0)}}
-@keyframes mcPillBob{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
-@keyframes mcBounceA{0%{transform:translateY(0)}35%{transform:translateY(-9px) scale(1.012)}70%{transform:translateY(2px) scale(.996)}100%{transform:translateY(0)}}
-@keyframes mcBounceB{0%{transform:translateY(0)}35%{transform:translateY(-9px) scale(1.012)}70%{transform:translateY(2px) scale(.996)}100%{transform:translateY(0)}}
-.mc-pill{transition:transform .18s ease}
-.mc-pill:hover{transform:translateY(-10px)!important}
-.mc-folder:active{transform:scale(.985)}
 </style>
 </helmet>
 <div data-drawer-root="1" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: {{t.backdrop}}; color: {{t.ink}}; font-family: 'Barlow Semi Condensed', system-ui, sans-serif; user-select: none;">
@@ -46,10 +29,10 @@ a{color:inherit}a:hover{color:inherit}
     </a>
 
     <sc-for list="{{folders}}" as="f" hint-placeholder-count="8">
-      <div class="mc-folder" onPointerDown="{{f.down}}" onClick="{{f.click}}" onContextMenu="{{noMenu}}" style="position: absolute; left: 0; width: 340px; height: 175px; pointer-events: none; transform-origin: 50% 30%; touch-action: pan-y; top: {{f.top}}px; z-index: {{f.z}}; filter: {{f.shadow}}; animation: {{f.anim}};">
+      <div onPointerDown="{{f.down}}" onClick="{{f.click}}" onContextMenu="{{noMenu}}" style="position: absolute; left: 0; width: 340px; height: 175px; pointer-events: none; transform-origin: 50% 30%; touch-action: pan-y; top: {{f.top}}px; z-index: {{f.z}}; filter: {{f.shadow}}; transform: {{f.tf}}; opacity: {{f.op}};">
         <sc-if value="{{f.showPills}}" hint-placeholder-val="{{false}}">
           <sc-for list="{{f.pills}}" as="p" hint-placeholder-count="3">
-            <a href="Study.dc.html" class="mc-pill" aria-label="{{p.aria}}" style="position: absolute; top: 15px; width: 65px; height: 55px; border-radius: 8px 8px 0 0; pointer-events: auto; left: {{p.left}}px; z-index: {{p.z}}; background: {{p.bg}}; animation: {{p.anim}};"></a>
+            <a href="Study.dc.html" aria-label="{{p.aria}}" onPointerEnter="{{p.enter}}" onPointerLeave="{{p.leave}}" style="position: absolute; top: 15px; width: 65px; height: 55px; border-radius: 8px 8px 0 0; pointer-events: auto; left: {{p.left}}px; z-index: {{p.z}}; background: {{p.bg}}; transform: translateY({{p.y}}px); opacity: {{p.op}};"></a>
           </sc-for>
         </sc-if>
         <svg aria-hidden="true" width="340" height="175" viewBox="0 0 340 175" style="position: absolute; left: 0; top: 0; z-index: 5; pointer-events: none;">
@@ -134,31 +117,62 @@ function shade(i, dark) {
   return { c1: gray(start), c2: gray(end), text, meta: text === '#FFFFFF' ? 'rgba(255,255,255,0.72)' : 'rgba(30,30,30,0.72)' };
 }
 
+// ---- Motion: the text_Mockup keyframes, replayed by a JS clock so they run on any canvas ----
+// Each row: [time 0..1, value, value, ...]; segments are eased with smoothstep.
+const PILL_UP   = { ms: 450, rows: [[0, 90, 0], [0.6, -10, 1], [0.85, 2, 1], [1, 0, 1]] };          // pill-upward-reveal
+const PILL_DOWN = { ms: 450, rows: [[0, 0, 1], [0.3, -4, 1], [0.7, 65, 0.7], [1, 110, 0]] };       // pill-downward-hide
+const PILL_JUMP = { ms: 400, rows: [[0, 0, 1], [0.4, -12, 1], [0.75, -2, 1], [1, 0, 1]] };          // pill-vertical-extend
+const FOLDER_IN = { ms: 600, rows: [[0, -381, -5, 0], [0.6, 14, 1, 1], [0.82, -3, -0.3, 1], [1, 0, 0, 1]] };   // x, rot, opacity
+const BOUNCE    = { ms: 450, rows: [[0, 0, 1], [0.35, -9, 1.012], [0.7, 2, 0.996], [1, 0, 1]] };    // y, scale
+const EXCITE    = { ms: 600, rows: [[0, 0, 1], [0.3, -7, 1.01], [0.6, 2, 1], [1, 0, 1]] };
+const RECOIL    = { ms: 400, rows: [[0, 0, 0, 1, 1], [0.35, -6, -4, 1.1, 0.9], [1, 0, 60, 0.4, 0]] };    // x, y, scale, opacity
+
+function sample(anim, elapsed) {
+  const rows = anim.rows;
+  const u = elapsed / anim.ms;
+  if (u <= 0) return rows[0].slice(1);
+  if (u >= 1) return rows[rows.length - 1].slice(1);
+  let i = 1;
+  while (rows[i][0] < u) i++;
+  const a = rows[i - 1], b = rows[i];
+  let k = (u - a[0]) / (b[0] - a[0]);
+  k = k * k * (3 - 2 * k);
+  return a.slice(1).map((v, j) => v + (b[j + 1] - v) * k);
+}
+
 class Component extends DCLogic {
   constructor(props) {
     super(props);
     this.state = {
       folders: START.map((f) => Object.assign({}, f)),
       recent: ['f0', 'f1', 'f2'],
-      pill: { enter: null, exit: null, jump: null, n: 0 },
-      floating: null, fear: false, deleting: null, excite: 0, exciting: false, toast: null, lastDeleted: null,
-      intro: true, bounce: null
+      exit: null,
+      floating: null, fear: false, deleting: null, toast: null, lastDeleted: null, hoverPill: null
     };
     this.ptr = null;
     this.timer = null;
     this.suppress = false;
+    this.pressed = null;
+    this.pillAnim = {};     // folderId -> { anim, t }
+    this.folderAnim = {};   // folderId -> { anim, t }
+    this.exciteT = -1e9;
+    this.t0 = 0;
+    this.now = 0;
   }
   componentDidMount() {
-    // The drawer opens with a cascade: folders slide in one after another, then their deck pills pop up.
-    this.introTimer = setTimeout(() => this.setState({ intro: false }), 1500);
+    this.t0 = performance.now();
+    const tick = () => {
+      this.now = performance.now();
+      this.forceUpdate();
+      this.raf = requestAnimationFrame(tick);
+    };
+    this.raf = requestAnimationFrame(tick);
   }
   componentWillUnmount() {
-    clearTimeout(this.introTimer);
-    clearTimeout(this.settleTimer);
+    cancelAnimationFrame(this.raf);
     clearTimeout(this.timer);
     clearTimeout(this.exitTimer);
     clearTimeout(this.toastTimer);
-    clearTimeout(this.exciteTimer);
   }
 
   showToast(text, undo) {
@@ -170,24 +184,27 @@ class Component extends DCLogic {
   // Only the last 3 touched folders show their deck pills; the 4th one bumped out drops them into its pocket.
   select(id) {
     const s = this.state;
-    const bounce = { id, n: s.pill.n + 1 };
+    const now = performance.now();
+    this.folderAnim[id] = { anim: BOUNCE, t: now };
     if (s.recent[0] === id) {
-      this.setState({ pill: { enter: null, exit: null, jump: id, n: s.pill.n + 1 }, bounce, intro: false });
-    } else {
-      const next = [id].concat(s.recent.filter((x) => x !== id));
-      const dropped = next.length > 3 ? next.pop() : null;
-      this.setState({ recent: next, pill: { enter: id, exit: dropped, jump: null, n: s.pill.n + 1 }, bounce, intro: false });
-      clearTimeout(this.exitTimer);
-      this.exitTimer = setTimeout(() => this.setState({ pill: Object.assign({}, this.state.pill, { exit: null }) }), 560);
+      this.pillAnim[id] = { anim: PILL_JUMP, t: now };
+      this.forceUpdate();
+      return;
     }
-    clearTimeout(this.settleTimer);   // back to the idle peek once the pop has played
-    this.settleTimer = setTimeout(() => this.setState({ bounce: null, pill: Object.assign({}, this.state.pill, { enter: null, jump: null }) }), 700);
+    const next = [id].concat(s.recent.filter((x) => x !== id));
+    const dropped = next.length > 3 ? next.pop() : null;
+    this.pillAnim[id] = { anim: PILL_UP, t: now };
+    if (dropped) this.pillAnim[dropped] = { anim: PILL_DOWN, t: now };
+    this.setState({ recent: next, exit: dropped });
+    clearTimeout(this.exitTimer);
+    this.exitTimer = setTimeout(() => this.setState({ exit: null }), 620);
   }
 
   down(e, id) {
     if (this.state.deleting) return;
     clearTimeout(this.timer);
     const el = e.currentTarget;
+    this.pressed = id;
     this.ptr = { id, y0: e.clientY, el, pid: e.pointerId };
     if (this.state.fear) return;
     this.timer = setTimeout(() => {           // hold 350ms → float with a 3% breathing pulse, drag to reorder
@@ -200,7 +217,7 @@ class Component extends DCLogic {
     const p = this.ptr;
     if (!p) return;
     if (!this.state.floating) {
-      if (Math.abs(e.clientY - p.y0) > 8) clearTimeout(this.timer);
+      if (Math.abs(e.clientY - p.y0) > 8) { clearTimeout(this.timer); this.pressed = null; }
       return;
     }
     const root = p.el.closest('[data-drawer-root]');
@@ -221,6 +238,7 @@ class Component extends DCLogic {
   up() {
     clearTimeout(this.timer);
     this.ptr = null;
+    this.pressed = null;
     if (this.state.floating) {
       this.suppress = true;
       this.setState({ floating: null });
@@ -234,6 +252,7 @@ class Component extends DCLogic {
     if (s.fear) {
       const index = s.folders.findIndex((f) => f.id === id);
       const folder = s.folders[index];
+      this.folderAnim[id] = { anim: RECOIL, t: performance.now() };
       this.setState({ deleting: id });
       setTimeout(() => {
         this.setState({
@@ -243,36 +262,77 @@ class Component extends DCLogic {
           lastDeleted: { folder, index }
         });
         this.showToast('Deleted ' + folder.name, true);
-      }, 400);
+      }, 420);
       return;
     }
     this.select(id);
+  }
+
+  folderMotion(f, i, now) {
+    const s = this.state;
+    let x = 0, y = 0, rot = 0, sc = 1, op = 1;
+    const fa = this.folderAnim[f.id];
+    const sinceOpen = now - this.t0;
+    if (s.deleting === f.id && fa && fa.anim === RECOIL) {
+      [x, y, sc, op] = sample(RECOIL, now - fa.t);
+    } else if (s.floating === f.id) {                        // breathing +3% pulse, 1.7s cycle
+      const w = (1 - Math.cos((now / 1700) * Math.PI * 2)) / 2;
+      sc = 1 + 0.03 * w;
+      y = -6 - 3 * w;
+    } else if (s.fear) {                                     // 6Hz-ish nervous shiver, ±2–3.5°
+      const ph = (now / 350) * Math.PI + i * 0.9;
+      x = 2 * Math.sin(ph);
+      y = Math.sin(ph * 1.3 + 1);
+      rot = 2.6 * Math.sin(ph + 0.4) - 0.6;
+    } else if (now - this.exciteT < EXCITE.ms + i * 35) {
+      [y, sc] = sample(EXCITE, now - this.exciteT - i * 35);
+    } else if (fa && fa.anim === BOUNCE && now - fa.t < BOUNCE.ms) {
+      [y, sc] = sample(BOUNCE, now - fa.t);
+    } else if (sinceOpen < FOLDER_IN.ms + i * 55) {
+      [x, rot, op] = sample(FOLDER_IN, sinceOpen - i * 55);
+    }
+    if (this.pressed === f.id && !s.floating && !s.fear) sc *= 0.985;
+    return {
+      tf: 'translate(' + x.toFixed(1) + 'px, ' + y.toFixed(1) + 'px) rotate(' + rot.toFixed(2) + 'deg) scale(' + sc.toFixed(4) + ')',
+      op: op.toFixed(3)
+    };
+  }
+
+  pillMotion(f, i, k, now) {
+    const s = this.state;
+    const pa = this.pillAnim[f.id];
+    const sinceOpen = now - this.t0;
+    let y = 0, op = 1;
+    if (pa && now - pa.t < pa.anim.ms + 120) {
+      [y, op] = sample(pa.anim, now - pa.t - k * 40);
+    } else if (sinceOpen < 360 + i * 55 + k * 45 + PILL_UP.ms) {   // pop out of the pocket after the folder lands
+      [y, op] = sample(PILL_UP, sinceOpen - (360 + i * 55 + k * 45));
+    } else if (!s.fear && !s.floating) {                          // idle peek: 0 → −5px → 0 every 2.8s
+      y = -2.5 * (1 - Math.cos((now / 2800) * Math.PI * 2 + i * 0.95 + k * 0.6));
+    }
+    if (s.hoverPill === f.id + ':' + k) y -= 10;
+    return { y: y.toFixed(1), op: op.toFixed(3) };
   }
 
   renderVals() {
     const dark = this.props.dark ?? false;
     const t = dark ? THEMES.dark : THEMES.light;
     const s = this.state;
+    const now = this.now || performance.now();
     const n = s.folders.length;
-    const par = s.pill.n % 2 ? 'A' : 'B';
     const folders = s.folders.map((f, i) => {
       const tw = tabWidth(f.name);
       const sh = shade(i, dark);
-      let anim = 'none';
-      if (s.deleting === f.id) anim = 'mcRecoil .4s cubic-bezier(.6,-.28,.735,.045) forwards';
-      else if (s.floating === f.id) anim = 'mcFloat .85s ease-in-out infinite alternate';
-      else if (s.fear) anim = 'mcFear .35s ease-in-out ' + (i * 45) + 'ms infinite alternate';
-      else if (s.exciting) anim = 'mcExcite' + (s.excite % 2 ? 'A' : 'B') + ' .6s ease ' + (i * 35) + 'ms both';
-      else if (s.bounce && s.bounce.id === f.id) anim = 'mcBounce' + (s.bounce.n % 2 ? 'A' : 'B') + ' .45s cubic-bezier(.3,1.5,.5,1)';
-      else if (s.intro) anim = 'mcFolderIn .6s cubic-bezier(.2,1.25,.4,1) ' + (i * 55) + 'ms both';
+      const m = this.folderMotion(f, i, now);
       const pills = f.tabs.map((bg, k) => {
-        let pa = 'none';
-        if (s.pill.enter === f.id) pa = 'mcPillUp' + par + ' .45s cubic-bezier(.175,.885,.32,1.275) ' + (k * 40) + 'ms both';
-        else if (s.pill.exit === f.id) pa = 'mcPillDown .45s cubic-bezier(.55,.055,.675,.19) ' + (k * 40) + 'ms forwards';
-        else if (s.pill.jump === f.id) pa = 'mcPillJump' + par + ' .4s cubic-bezier(.175,.885,.32,1.275) ' + (k * 40) + 'ms';
-        else if (s.intro) pa = 'mcPillUpA .5s cubic-bezier(.175,.885,.32,1.275) ' + (i * 55 + 360 + k * 45) + 'ms both';
-        else if (!s.fear && !s.floating) pa = 'mcPillBob 2.8s ease-in-out ' + -(i * 430 + k * 270) + 'ms infinite';   // idle peek
-        return { bg, left: tw + SPAN - 16 + k * 53, z: k + 1, anim, aria: 'Study recent deck ' + (k + 1) + ' in ' + f.name };
+        const pm = this.pillMotion(f, i, k, now);
+        const key = f.id + ':' + k;
+        return {
+          bg, left: tw + SPAN - 16 + k * 53, z: k + 1, y: pm.y, op: pm.op,
+          aria: 'Study recent deck ' + (k + 1) + ' in ' + f.name,
+          enter: () => this.setState({ hoverPill: key }),
+          leave: () => this.setState({ hoverPill: null })
+        };
       });
       return {
         name: f.name,
@@ -280,12 +340,13 @@ class Component extends DCLogic {
         top: TOP + i * STEP,
         z: s.floating === f.id ? 100 : i + 1,
         shadow: s.floating === f.id ? 'drop-shadow(0 22px 34px rgba(0,0,0,0.5))' : 'drop-shadow(0 6px 12px rgba(0,0,0,' + t.shadow + '))',
-        anim,
+        tf: m.tf,
+        op: m.op,
         tabW: tw,
         path: silhouette(tw),
         gid: 'fg' + (dark ? 'd' : 'l') + f.id,
         c1: sh.c1, c2: sh.c2, text: sh.text, meta: sh.meta,
-        showPills: s.recent.includes(f.id) || s.pill.exit === f.id,
+        showPills: s.recent.includes(f.id) || s.exit === f.id,
         pills,
         isOpen: !s.fear && s.recent[0] === f.id,
         isPlain: !s.fear && s.recent[0] !== f.id,
@@ -309,9 +370,8 @@ class Component extends DCLogic {
       newFolder: () => {
         const id = 'n' + Date.now();
         const folders = [{ id, name: 'New folder', decks: 0, tabs: Z3[s.folders.length % 3] }].concat(s.folders);
-        this.setState({ folders, fear: false, exciting: true, excite: s.excite + 1 });
-        clearTimeout(this.exciteTimer);
-        this.exciteTimer = setTimeout(() => this.setState({ exciting: false }), 900);
+        this.exciteT = performance.now();
+        this.setState({ folders, fear: false });
         this.showToast('Folder created — rename it');
       },
       hasToast: !!s.toast,
