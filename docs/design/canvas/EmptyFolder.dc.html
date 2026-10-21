@@ -24,7 +24,7 @@ a{color:inherit}a:hover{color:inherit}
   </header>
 
   <section style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 34px 28px 0;">
-    <svg width="210" height="180" viewBox="0 0 210 180" role="img" aria-label="A brain with question marks">
+    <svg width="210" height="180" viewBox="0 0 210 180" role="img" aria-label="A brain with question marks" style="filter: {{t.art}};">
       <g fill="{{t.ink}}">
         <circle cx="62" cy="96" r="38"/>
         <circle cx="96" cy="72" r="42"/>
@@ -45,15 +45,15 @@ a{color:inherit}a:hover{color:inherit}
     </svg>
     <h1 style="margin: 18px 0 0; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 46px; line-height: 1;">Empty mind</h1>
     <p style="margin: 10px 0 0; font-size: 18px; font-weight: 500; color: {{t.muted}}; line-height: 1.35;">Nothing to remember in this folder yet.</p>
-    <a href="Shop.dc.html" style="margin-top: 22px; display: flex; width: 100%; height: 56px; align-items: center; justify-content: center; border-radius: 16px; background: {{t.ink}}; color: {{t.canvas}}; text-decoration: none; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 24px;">Look for something to remember</a>
-    <a href="Editor.dc.html" style="margin-top: 10px; display: flex; width: 100%; height: 50px; align-items: center; justify-content: center; border-radius: 16px; background: {{t.soft}}; color: {{t.ink}}; text-decoration: none; font-size: 17px; font-weight: 600;">Create a deck</a>
+    <a href="Shop.dc.html" style="margin-top: 22px; display: flex; width: 100%; height: 56px; align-items: center; justify-content: center; border-radius: 16px; background: {{t.ink}}; color: {{t.canvas}}; text-decoration: none; box-shadow: {{t.e2}}; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 24px;">Look for something to remember</a>
+    <a href="Editor.dc.html" style="margin-top: 10px; display: flex; width: 100%; height: 50px; align-items: center; justify-content: center; border-radius: 16px; background: {{t.soft}}; color: {{t.ink}}; text-decoration: none; font-size: 17px; font-weight: 600; box-shadow: {{t.e1}};">Create a deck</a>
   </section>
 
   <section aria-label="Start here" style="position: absolute; left: 0; right: 0; bottom: 124px; padding: 0 20px;">
     <div style="font-size: 14px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase; color: {{t.muted}};">Start here</div>
     <div style="margin-top: 10px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;">
       <sc-for list="{{starters}}" as="s" hint-placeholder-count="3">
-        <a href="Preview.dc.html" style="display: flex; flex-direction: column; justify-content: space-between; height: 112px; box-sizing: border-box; padding: 12px; border-radius: 40px 40px 14px 14px; background: {{s.bg}}; color: {{s.fg}}; text-decoration: none;">
+        <a href="Preview.dc.html" style="display: flex; flex-direction: column; justify-content: space-between; height: 112px; box-sizing: border-box; padding: 12px; border-radius: 40px 40px 14px 14px; background: {{s.bg}}; color: {{s.fg}}; text-decoration: none; box-shadow: {{t.e1}};">
           <span style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 30px; line-height: 1; text-align: center; padding-top: 6px;">{{s.mono}}</span>
           <span style="font-size: 13px; font-weight: 700; line-height: 1.15;">{{s.name}}</span>
         </a>
@@ -66,7 +66,7 @@ a{color:inherit}a:hover{color:inherit}
       <span style="display: block; width: 44px; height: 44px;"><svg width="100%" height="100%" viewBox="0 0 11.321 11.322" fill="currentColor" aria-hidden="true"><g transform="translate(-3015.3506,-1319.8992)"><g transform="matrix(0.73369523,0,0,0.73369523,2071.0345,1201.7805)"><path d="m 1294.783,160.991 c -0.349,0 -0.699,0.134 -0.966,0.402 l -4.247,4.247 c -0.026,0.02 -0.051,0.042 -0.074,0.066 l -2.181,2.181 c -0.329,0.329 -0.329,0.858 0,1.187 0.329,0.329 0.858,0.329 1.187,0 l 0.076,-0.076 0,-0 2.104,-2.104 3.135,-3.135 c 0.535,-0.535 1.397,-0.535 1.933,-0 l 3.135,3.135 1.951,1.951 0.229,0.229 c 0.329,0.329 0.858,0.329 1.187,0 0.329,-0.329 0.329,-0.858 -0,-1.187 l -2.181,-2.181 c -0.024,-0.024 -0.05,-0.046 -0.076,-0.066 l -4.246,-4.246 c -0.268,-0.268 -0.617,-0.402 -0.966,-0.402 z"/><path d="m 1294.784,164.627 c -0.349,0 -0.699,0.134 -0.966,0.402 l -5.431,5.432 -0.021,0.021 c -0.148,0.153 -0.24,0.361 -0.24,0.591 h 0.001 v 2.893 1.182 c 0,0.707 0.569,1.276 1.276,1.276 h 1.182 2.262 v -3.618 c 0,-0.178 0.143,-0.321 0.321,-0.321 h 3.224 c 0.178,0 0.321,0.143 0.321,0.321 v 3.618 h 2.272 1.18 c 0.707,0 1.276,-0.569 1.276,-1.276 v -1.181 -2.894 h -0.001 c 0,-0.233 -0.093,-0.443 -0.244,-0.597 l -0.01,-0.01 -5.436,-5.436 c -0.268,-0.268 -0.617,-0.402 -0.966,-0.402 z"/></g></g></svg></span>
     </a>
     <a href="Editor.dc.html" aria-label="Create a deck" style="display: flex; position: relative; width: 84px; height: 84px; align-items: center; justify-content: center; color: {{t.canvas}};">
-      <span style="position: absolute; left: 13px; top: 13px; width: 58px; height: 58px; border-radius: 15px; background: {{t.ink}}; transform: rotate(45deg);"></span>
+      <span style="position: absolute; left: 13px; top: 13px; width: 58px; height: 58px; border-radius: 15px; background: {{t.ink}}; transform: rotate(45deg); box-shadow: {{t.e2}};"></span>
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true" style="position: relative;"><path d="M12 4.5v15M4.5 12h15"/></svg>
     </a>
     <a href="Shop.dc.html" aria-label="Shop" style="display: flex; width: 56px; height: 56px; align-items: center; justify-content: center; color: {{t.ink}};">
@@ -77,8 +77,10 @@ a{color:inherit}a:hover{color:inherit}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'>
 const THEMES = {
-  light: { canvas: '#F1F1F1', ink: '#333333', muted: '#666666', soft: '#E3E3E3' },
-  dark:  { canvas: '#333333', ink: '#F1F1F1', muted: '#BDBDBD', soft: '#444444' }
+  light: { canvas: '#F1F1F1', ink: '#333333', muted: '#666666', soft: '#E3E3E3',
+           e1: '0 1px 2px rgba(0,0,0,0.12), 0 5px 12px rgba(0,0,0,0.12)', e2: '0 2px 4px rgba(0,0,0,0.12), 0 10px 24px rgba(0,0,0,0.2)', art: 'drop-shadow(0 10px 16px rgba(0,0,0,0.22))' },
+  dark:  { canvas: '#333333', ink: '#F1F1F1', muted: '#BDBDBD', soft: '#444444',
+           e1: '0 1px 2px rgba(0,0,0,0.45), 0 5px 12px rgba(0,0,0,0.4)', e2: '0 2px 6px rgba(0,0,0,0.5), 0 12px 28px rgba(0,0,0,0.55)', art: 'drop-shadow(0 10px 18px rgba(0,0,0,0.6))' }
 };
 class Component extends DCLogic {
   renderVals() {

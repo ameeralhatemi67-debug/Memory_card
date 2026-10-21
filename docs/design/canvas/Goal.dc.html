@@ -25,7 +25,7 @@ a{color:inherit}a:hover{color:inherit}
 
   <section style="display: flex; flex-direction: column; align-items: center; padding: 8px 24px 0;">
     <div style="position: relative; width: 168px; height: 168px;">
-      <svg width="168" height="168" viewBox="-50 -50 100 100" aria-hidden="true">
+      <svg width="168" height="168" viewBox="-50 -50 100 100" aria-hidden="true" style="filter: {{t.seal}};">
         <path d="{{seal}}" fill="#D35F5F"/>
         <circle r="33" fill="none" stroke="#F1F1F1" stroke-opacity="0.5" stroke-width="1.6"/>
         <circle r="28" fill="none" stroke="#F1F1F1" stroke-opacity="0.35" stroke-width="1"/>
@@ -37,21 +37,21 @@ a{color:inherit}a:hover{color:inherit}
   </section>
 
   <section aria-label="Session stats" style="margin: 24px 20px 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;">
-    <div style="border-radius: 14px; background: {{t.soft}}; padding: 14px 12px;">
+    <div style="border-radius: 14px; background: {{t.soft}}; padding: 14px 12px; box-shadow: {{t.e1}};">
       <div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 36px; line-height: 1;">40</div>
       <div style="font-size: 14px; font-weight: 600; color: {{t.muted}}; margin-top: 4px;">reviewed</div>
     </div>
-    <div style="border-radius: 14px; background: {{t.soft}}; padding: 14px 12px;">
+    <div style="border-radius: 14px; background: {{t.soft}}; padding: 14px 12px; box-shadow: {{t.e1}};">
       <div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 36px; line-height: 1;">34</div>
       <div style="font-size: 14px; font-weight: 600; color: {{t.muted}}; margin-top: 4px;">remembered</div>
     </div>
-    <div style="border-radius: 14px; background: {{t.soft}}; padding: 14px 12px;">
+    <div style="border-radius: 14px; background: {{t.soft}}; padding: 14px 12px; box-shadow: {{t.e1}};">
       <div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 36px; line-height: 1;">6</div>
       <div style="font-size: 14px; font-weight: 600; color: {{t.muted}}; margin-top: 4px;">relearned</div>
     </div>
   </section>
 
-  <section aria-label="Streak" style="margin: 12px 20px 0; border-radius: 14px; background: {{t.ink}}; color: {{t.onInk}}; padding: 14px 16px; display: flex; align-items: center; gap: 12px;">
+  <section aria-label="Streak" style="margin: 12px 20px 0; border-radius: 14px; background: {{t.ink}}; color: {{t.onInk}}; padding: 14px 16px; display: flex; align-items: center; gap: 12px; box-shadow: {{t.e2}};">
     <svg width="26" height="30" viewBox="0 0 24 24" fill="#D35F5F" aria-hidden="true"><path d="M12 2c1.2 4 6 6.2 6 11.5A6 6 0 0 1 6 13.5c0-2.6 1.2-4.3 2.6-5.6.3 1.9 1.4 3 2.6 3.3C11 8.6 10.6 5.4 12 2z"/></svg>
     <div style="flex: 1;">
       <div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 26px; line-height: 1;">8-day streak</div>
@@ -63,7 +63,7 @@ a{color:inherit}a:hover{color:inherit}
     </div>
   </section>
 
-  <section aria-label="Memory health" style="margin: 12px 20px 0; border-radius: 14px; background: {{t.soft}}; padding: 14px 16px;">
+  <section aria-label="Memory health" style="margin: 12px 20px 0; border-radius: 14px; background: {{t.soft}}; padding: 14px 16px; box-shadow: {{t.e1}};">
     <div style="display: flex; justify-content: space-between; align-items: baseline;">
       <div style="font-size: 16px; font-weight: 700;">Memory health</div>
       <div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 26px;">86%</div>
@@ -73,15 +73,17 @@ a{color:inherit}a:hover{color:inherit}
   </section>
 
   <div style="position: absolute; left: 20px; right: 20px; bottom: 28px; display: flex; flex-direction: column; gap: 10px;">
-    <a href="Study.dc.html" style="display: flex; height: 56px; align-items: center; justify-content: center; border-radius: 16px; background: {{t.ink}}; color: {{t.canvas}}; text-decoration: none; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 26px;">Keep going</a>
-    <a href="Main.dc.html" style="display: flex; height: 50px; align-items: center; justify-content: center; border-radius: 16px; background: {{t.soft}}; color: {{t.ink}}; text-decoration: none; font-size: 17px; font-weight: 600;">Back to decks</a>
+    <a href="Study.dc.html" style="display: flex; height: 56px; align-items: center; justify-content: center; border-radius: 16px; background: {{t.ink}}; color: {{t.canvas}}; text-decoration: none; box-shadow: {{t.e2}}; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 26px;">Keep going</a>
+    <a href="Main.dc.html" style="display: flex; height: 50px; align-items: center; justify-content: center; border-radius: 16px; background: {{t.soft}}; color: {{t.ink}}; text-decoration: none; font-size: 17px; font-weight: 600; box-shadow: {{t.e1}};">Back to decks</a>
   </div>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'>
 const THEMES = {
-  light: { canvas: '#F1F1F1', ink: '#333333', onInk: '#F1F1F1', muted: '#666666', mutedOnInk: '#BDBDBD', soft: '#E3E3E3', track: '#CFCFCF' },
-  dark:  { canvas: '#333333', ink: '#F1F1F1', onInk: '#333333', muted: '#BDBDBD', mutedOnInk: '#666666', soft: '#444444', track: '#5A5A5A' }
+  light: { canvas: '#F1F1F1', ink: '#333333', onInk: '#F1F1F1', muted: '#666666', mutedOnInk: '#BDBDBD', soft: '#E3E3E3', track: '#CFCFCF',
+           e1: '0 1px 2px rgba(0,0,0,0.12), 0 5px 12px rgba(0,0,0,0.12)', e2: '0 2px 4px rgba(0,0,0,0.12), 0 10px 24px rgba(0,0,0,0.2)', seal: 'drop-shadow(0 8px 14px rgba(0,0,0,0.28))' },
+  dark:  { canvas: '#333333', ink: '#F1F1F1', onInk: '#333333', muted: '#BDBDBD', mutedOnInk: '#666666', soft: '#444444', track: '#5A5A5A',
+           e1: '0 1px 2px rgba(0,0,0,0.45), 0 5px 12px rgba(0,0,0,0.4)', e2: '0 2px 6px rgba(0,0,0,0.5), 0 12px 28px rgba(0,0,0,0.55)', seal: 'drop-shadow(0 8px 16px rgba(0,0,0,0.6))' }
 };
 function sealPath() {
   let d = '';

@@ -27,7 +27,7 @@ a{color:inherit}a:hover{color:inherit}
     </button>
   </header>
 
-  <section aria-label="Membership card" style="position: absolute; left: 14px; right: 14px; top: 340px; height: 244px; border-radius: 18px; background: {{t.ink}}; color: {{t.onInk}}; box-sizing: border-box; padding: 20px 22px; box-shadow: 0 16px 36px rgba(0,0,0,0.22);">
+  <section aria-label="Membership card" style="position: absolute; left: 14px; right: 14px; top: 340px; height: 244px; border-radius: 18px; background: {{t.ink}}; color: {{t.onInk}}; box-sizing: border-box; padding: 20px 22px; box-shadow: {{t.card}};">
     <div style="display: flex; justify-content: space-between; align-items: flex-start;">
       <span style="display: inline-flex; align-items: center; gap: 6px; height: 26px; padding: 0 10px; border-radius: 13px; background: {{t.tierBg}}; color: #333333; font-size: 12px; font-weight: 700; letter-spacing: 1.2px; text-transform: uppercase;">Bronze tier</span>
       <span style="display: block; width: 34px; height: 44px; color: {{t.onInk}};"><svg width="100%" height="100%" viewBox="0 0 11.211 14.182" fill="currentColor" aria-hidden="true"><g transform="translate(-3014.7719,-1275.9218)"><g transform="translate(-69.860379)"><rect x="3084.633" y="1275.922" width="6.926" height="11.206" ry="0.534" fill-opacity=".55"/><rect x="3312.468" y="433.451" width="6.926" height="11.206" ry="0.534" transform="rotate(15)" fill-opacity=".78"/><rect x="3314.619" y="-438.992" width="6.926" height="11.206" ry="0.534" transform="rotate(30)"/></g></g></svg></span>
@@ -49,15 +49,15 @@ a{color:inherit}a:hover{color:inherit}
 
   <div style="position: absolute; left: 0; right: 0; top: 640px; display: flex; justify-content: center; gap: 30px;">
     <button aria-label="Sign in with Google" style="position: relative; width: 84px; height: 84px; border: 0; padding: 0; background: transparent; cursor: pointer;">
-      <svg width="84" height="84" viewBox="-40 -40 80 80" aria-hidden="true" style="position: absolute; inset: 0;"><path d="{{shapes.scallop}}" fill="{{t.badge}}"/></svg>
+      <svg width="84" height="84" viewBox="-40 -40 80 80" aria-hidden="true" style="position: absolute; inset: 0; filter: {{t.badgeShadow}};"><path d="{{shapes.scallop}}" fill="{{t.badge}}"/></svg>
       <span style="position: absolute; left: 24px; top: 24px; width: 36px; height: 36px;"><svg width="100%" height="100%" viewBox="0 0 13.258 13.529" aria-hidden="true"><g transform="translate(-3012.921,-1299.2855)"><g transform="matrix(0.05181444,0,0,0.05181444,3012.9209,1299.2854)"><path d="m 255.878,133.451 c 0,-10.734 -0.871,-18.567 -2.756,-26.69 H 130.55 v 48.448 h 71.947 c -1.45,12.04 -9.283,30.172 -26.69,42.356 l -0.244,1.622 38.755,30.023 2.685,0.268 c 24.659,-22.774 38.875,-56.282 38.875,-96.027" fill="#4285f4"/><path d="m 130.55,261.1 c 35.248,0 64.839,-11.605 86.453,-31.622 l -41.196,-31.913 c -11.024,7.688 -25.82,13.055 -45.257,13.055 -34.523,0 -63.824,-22.773 -74.269,-54.25 l -1.531,0.13 -40.298,31.187 -0.527,1.465 C 35.393,231.798 79.49,261.1 130.55,261.1" fill="#34a853"/><path d="m 56.281,156.37 c -2.756,-8.123 -4.351,-16.827 -4.351,-25.82 0,-8.994 1.595,-17.697 4.206,-25.82 L 56.063,103 15.26,71.312 13.925,71.947 C 5.077,89.644 0,109.517 0,130.55 c 0,21.033 5.077,40.905 13.925,58.602 L 56.281,156.37" fill="#fbbc05"/><path d="m 130.55,50.479 c 24.514,0 41.05,10.589 50.479,19.438 L 217.873,33.943 C 195.245,12.91 165.798,0 130.55,0 79.49,0 35.393,29.301 13.925,71.947 L 56.136,104.73 C 66.726,73.253 96.027,50.479 130.55,50.479" fill="#eb4335"/></g></g></svg></span>
     </button>
     <button aria-label="Create a Memory Card account" style="position: relative; width: 84px; height: 84px; border: 0; padding: 0; background: transparent; cursor: pointer;">
-      <svg width="84" height="84" viewBox="-40 -40 80 80" aria-hidden="true" style="position: absolute; inset: 0;"><path d="{{shapes.burst}}" fill="{{t.badge}}"/></svg>
+      <svg width="84" height="84" viewBox="-40 -40 80 80" aria-hidden="true" style="position: absolute; inset: 0; filter: {{t.badgeShadow}};"><path d="{{shapes.burst}}" fill="{{t.badge}}"/></svg>
       <span style="position: absolute; left: 27px; top: 22px; width: 30px; height: 40px; color: {{t.badgeInk}};"><svg width="100%" height="100%" viewBox="0 0 11.211 14.182" fill="currentColor" aria-hidden="true"><g transform="translate(-3014.7719,-1275.9218)"><g transform="translate(-69.860379)"><rect x="3084.633" y="1275.922" width="6.926" height="11.206" ry="0.534" fill-opacity=".55"/><rect x="3312.468" y="433.451" width="6.926" height="11.206" ry="0.534" transform="rotate(15)" fill-opacity=".78"/><rect x="3314.619" y="-438.992" width="6.926" height="11.206" ry="0.534" transform="rotate(30)"/></g></g></svg></span>
     </button>
     <button aria-label="Sign in with Apple" style="position: relative; width: 84px; height: 84px; border: 0; padding: 0; background: transparent; cursor: pointer;">
-      <svg width="84" height="84" viewBox="-40 -40 80 80" aria-hidden="true" style="position: absolute; inset: 0;"><path d="{{shapes.squircle}}" fill="{{t.badge}}"/></svg>
+      <svg width="84" height="84" viewBox="-40 -40 80 80" aria-hidden="true" style="position: absolute; inset: 0; filter: {{t.badgeShadow}};"><path d="{{shapes.squircle}}" fill="{{t.badge}}"/></svg>
       <span style="position: absolute; left: 26px; top: 22px; width: 32px; height: 39px; color: {{t.badgeInk}};"><svg width="100%" height="100%" viewBox="0 0 11.044 13.564" fill="currentColor" aria-hidden="true"><g transform="translate(-3034.5918,-1297.8149)"><path d="m 3045.282,1302.439 c -0.079,0.061 -1.468,0.844 -1.468,2.584 0,2.013 1.767,2.725 1.82,2.743 -0.01,0.043 -0.281,0.975 -0.932,1.925 -0.581,0.836 -1.187,1.67 -2.109,1.67 -0.922,0 -1.16,-0.536 -2.225,-0.536 -1.038,0 -1.407,0.553 -2.251,0.553 -0.844,0 -1.433,-0.773 -2.109,-1.723 -0.784,-1.115 -1.417,-2.847 -1.417,-4.492 0,-2.637 1.715,-4.036 3.402,-4.036 0.897,0 1.644,0.589 2.207,0.589 0.536,0 1.371,-0.624 2.392,-0.624 0.387,0 1.776,0.035 2.69,1.346 z m -3.174,-2.462 c 0.422,-0.501 0.72,-1.195 0.72,-1.89 0,-0.096 -0.01,-0.194 -0.025,-0.273 -0.686,0.026 -1.503,0.457 -1.996,1.028 -0.387,0.44 -0.748,1.134 -0.748,1.838 0,0.106 0.017,0.212 0.025,0.246 0.044,0.01 0.114,0.018 0.184,0.018 0.616,0 1.391,-0.412 1.838,-0.967 z"/></g></svg></span>
     </button>
   </div>
@@ -74,20 +74,22 @@ a{color:inherit}a:hover{color:inherit}
       </sc-for>
     </div>
     <div style="margin-top: 14px; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px;">
-      <div style="border-radius: 14px; background: {{t.soft}}; padding: 12px;"><div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 30px; line-height: 1;">142</div><div style="font-size: 13px; font-weight: 600; color: {{t.muted}}; margin-top: 4px;">cards mastered</div></div>
-      <div style="border-radius: 14px; background: {{t.soft}}; padding: 12px;"><div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 30px; line-height: 1;">86%</div><div style="font-size: 13px; font-weight: 600; color: {{t.muted}}; margin-top: 4px;">memory health</div></div>
-      <div style="border-radius: 14px; background: {{t.soft}}; padding: 12px;"><div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 30px; line-height: 1;">74%</div><div style="font-size: 13px; font-weight: 600; color: {{t.muted}}; margin-top: 4px;">felt success</div></div>
+      <div style="border-radius: 14px; background: {{t.soft}}; padding: 12px; box-shadow: {{t.e1}};"><div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 30px; line-height: 1;">142</div><div style="font-size: 13px; font-weight: 600; color: {{t.muted}}; margin-top: 4px;">cards mastered</div></div>
+      <div style="border-radius: 14px; background: {{t.soft}}; padding: 12px; box-shadow: {{t.e1}};"><div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 30px; line-height: 1;">86%</div><div style="font-size: 13px; font-weight: 600; color: {{t.muted}}; margin-top: 4px;">memory health</div></div>
+      <div style="border-radius: 14px; background: {{t.soft}}; padding: 12px; box-shadow: {{t.e1}};"><div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 30px; line-height: 1;">74%</div><div style="font-size: 13px; font-weight: 600; color: {{t.muted}}; margin-top: 4px;">felt success</div></div>
     </div>
-    <a href="Settings.dc.html" style="margin-top: 14px; display: flex; height: 54px; align-items: center; justify-content: space-between; padding: 0 16px; border-radius: 14px; background: {{t.soft}}; color: {{t.ink}}; text-decoration: none; font-size: 17px; font-weight: 700;">Settings <span aria-hidden="true">›</span></a>
+    <a href="Settings.dc.html" style="margin-top: 14px; display: flex; height: 54px; align-items: center; justify-content: space-between; padding: 0 16px; border-radius: 14px; background: {{t.soft}}; color: {{t.ink}}; text-decoration: none; font-size: 17px; font-weight: 700; box-shadow: {{t.e1}};">Settings <span aria-hidden="true">›</span></a>
   </section>
 </div>
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":1120}}'>
 const THEMES = {
   light: { canvas: '#F1F1F1', ink: '#333333', onInk: '#F1F1F1', muted: '#666666', mutedOnInk: '#BDBDBD', soft: '#E3E3E3', sash: '#AEAEAE', digits: '#9A9A9A',
-           badge: '#333333', badgeInk: '#F1F1F1', tierBg: '#D9A273', heat: ['#E0E0E0', '#C4C4C4', '#9D9D9D', '#6B6B6B', '#333333'] },
+           badge: '#333333', badgeInk: '#F1F1F1', tierBg: '#D9A273',
+           e1: '0 1px 2px rgba(0,0,0,0.12), 0 5px 12px rgba(0,0,0,0.12)', card: '0 16px 36px rgba(0,0,0,0.24)', badgeShadow: 'drop-shadow(0 6px 10px rgba(0,0,0,0.25))', heat: ['#E0E0E0', '#C4C4C4', '#9D9D9D', '#6B6B6B', '#333333'] },
   dark:  { canvas: '#333333', ink: '#F1F1F1', onInk: '#333333', muted: '#BDBDBD', mutedOnInk: '#666666', soft: '#444444', sash: '#9A9A9A', digits: '#8A8A8A',
-           badge: '#F1F1F1', badgeInk: '#333333', tierBg: '#D9A273', heat: ['#444444', '#5E5E5E', '#858585', '#BDBDBD', '#F1F1F1'] }
+           badge: '#F1F1F1', badgeInk: '#333333', tierBg: '#D9A273',
+           e1: '0 1px 2px rgba(0,0,0,0.45), 0 5px 12px rgba(0,0,0,0.4)', card: '0 18px 40px rgba(0,0,0,0.6)', badgeShadow: 'drop-shadow(0 6px 12px rgba(0,0,0,0.6))', heat: ['#444444', '#5E5E5E', '#858585', '#BDBDBD', '#F1F1F1'] }
 };
 function polar(fn, n) {
   let d = '';

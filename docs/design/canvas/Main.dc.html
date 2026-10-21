@@ -21,7 +21,7 @@ a{color:inherit}a:hover{color:inherit}
       <span style="display: block; width: 28px; height: 36px;"><svg width="100%" height="100%" viewBox="0 0 11.211 14.182" fill="currentColor" aria-hidden="true"><g transform="translate(-3014.7719,-1275.9218)"><g transform="translate(-69.860379)"><rect x="3084.633" y="1275.922" width="6.926" height="11.206" ry="0.534" fill-opacity=".55"/><rect x="3312.468" y="433.451" width="6.926" height="11.206" ry="0.534" transform="rotate(15)" fill-opacity=".78"/><rect x="3314.619" y="-438.992" width="6.926" height="11.206" ry="0.534" transform="rotate(30)"/></g></g></svg></span>
     </a>
     <div style="flex: 1; min-width: 0; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 24px; line-height: 1; white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">Languages</div>
-    <div aria-label="Streak 7 days, 61 cards slipping" style="display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 16px; background: {{t.soft}}; font-size: 15px; font-weight: 600;">
+    <div aria-label="Streak 7 days, 61 cards slipping" style="display: flex; align-items: center; gap: 6px; height: 32px; padding: 0 12px; border-radius: 16px; background: {{t.soft}}; font-size: 15px; font-weight: 600; box-shadow: {{t.e1}};">
       <svg width="14" height="16" viewBox="0 0 24 24" fill="#D35F5F" aria-hidden="true"><path d="M12 2c1.2 4 6 6.2 6 11.5A6 6 0 0 1 6 13.5c0-2.6 1.2-4.3 2.6-5.6.3 1.9 1.4 3 2.6 3.3C11 8.6 10.6 5.4 12 2z"/></svg>
       <span>7</span>
       <span style="color: {{t.muted}};">· 61 due</span>
@@ -33,7 +33,7 @@ a{color:inherit}a:hover{color:inherit}
 
   <main style="position: absolute; top: 88px; left: 0; right: 0;">
     <sc-for list="{{rows}}" as="r" hint-placeholder-count="7">
-      <div style="position: relative; overflow: hidden; height: {{r.h}}px; margin-bottom: {{r.mb}}px; opacity: {{r.op}}; transform: {{r.wrapTf}}; transition: height 300ms ease, margin 300ms ease, opacity 300ms ease, transform 350ms ease;">
+      <div style="position: relative; overflow: {{r.ov}}; height: {{r.h}}px; margin-bottom: {{r.mb}}px; opacity: {{r.op}}; transform: {{r.wrapTf}}; transition: height 300ms ease, margin 300ms ease, opacity 300ms ease, transform 350ms ease;">
 
         <div style="position: absolute; top: 0; bottom: 0; right: 0; overflow: hidden; width: {{r.layerR}}px; transition: {{r.tr}};">
           <button onClick="{{r.del}}" aria-label="Delete deck" style="position: absolute; top: 0; bottom: 0; right: 0; height: 72px; border: 0; padding: 0; border-radius: 16px 0 0 16px; background: #FF8080; color: #333333; display: flex; align-items: center; justify-content: flex-start; overflow: hidden; cursor: pointer; z-index: 1; width: {{r.w1R}}px; transition: {{r.tr}};">
@@ -53,7 +53,7 @@ a{color:inherit}a:hover{color:inherit}
           </button>
         </div>
 
-        <a href="Study.dc.html" aria-label="{{r.aria}}" onPointerDown="{{r.down}}" onPointerMove="{{onMove}}" onPointerUp="{{onUp}}" onPointerCancel="{{onUp}}" onClick="{{r.click}}" style="position: absolute; top: 0; left: 20px; width: 350px; height: 72px; border-radius: 10px; background: {{t.ink}}; color: {{t.onInk}}; overflow: hidden; text-decoration: none; touch-action: pan-y; z-index: 3; transform: translateX({{r.tx}}px); transition: {{r.tr}};">
+        <a href="Study.dc.html" aria-label="{{r.aria}}" onPointerDown="{{r.down}}" onPointerMove="{{onMove}}" onPointerUp="{{onUp}}" onPointerCancel="{{onUp}}" onClick="{{r.click}}" style="position: absolute; top: 0; left: 20px; width: 350px; height: 72px; border-radius: 10px; background: {{t.ink}}; color: {{t.onInk}}; overflow: hidden; text-decoration: none; touch-action: pan-y; z-index: 3; box-shadow: {{t.e1}}; transform: translateX({{r.tx}}px); transition: {{r.tr}};">
           <div style="position: absolute; left: 16px; top: 11px; right: 112px; display: flex; align-items: center; gap: 6px; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 23px; line-height: 1.05; white-space: nowrap; overflow: hidden;">
             <sc-if value="{{r.pinned}}" hint-placeholder-val="{{false}}"><svg width="15" height="15" viewBox="0 0 9.339 9.339" fill="#8BD3A0" aria-hidden="true" style="flex: none;"><g transform="translate(-3035.5152,-1358.9588)"><g transform="translate(-624.73788,839.34861)"><path d="m 3666.454,519.825 c -0.287,-0.287 -0.748,-0.287 -1.035,0 l -0.678,0.678 c -0.285,0.285 -0.286,0.742 -0.01,1.029 l -1.124,1.124 c 0,0.004 -0.01,0.007 -0.011,0.011 -1.051,-0.395 -2.27,-0.195 -3.152,0.596 -0.074,0.118 -0.06,0.274 0.043,0.376 l 2.282,2.282 -2.41,2.41 c -0.142,0.142 -0.142,0.37 0,0.512 0.142,0.142 0.37,0.142 0.511,0 l 2.41,-2.41 2.282,2.282 c 0.102,0.103 0.258,0.116 0.376,0.043 0.791,-0.882 0.991,-2.101 0.596,-3.152 0,-0.004 0.01,-0.007 0.011,-0.011 l 1.124,-1.124 c 0.287,0.281 0.744,0.279 1.029,-0.006 l 0.678,-0.678 c 0.287,-0.287 0.287,-0.748 0,-1.035 z"/></g></g></svg></sc-if>
             <span style="overflow: hidden; text-overflow: ellipsis;">{{r.name}}</span>
@@ -73,7 +73,7 @@ a{color:inherit}a:hover{color:inherit}
   <div style="position: absolute; left: 0; right: 0; bottom: 112px; height: 210px; background: linear-gradient(to bottom, {{t.canvasClear}}, {{t.canvas}} 92%); pointer-events: none;"></div>
 
   <sc-if value="{{hasToast}}" hint-placeholder-val="{{false}}">
-    <div role="status" style="position: absolute; left: 50%; bottom: 124px; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 6px 0 16px; border-radius: 19px; background: {{t.ink}}; color: {{t.canvas}}; font-size: 15px; font-weight: 700; white-space: nowrap; z-index: 20;">
+    <div role="status" style="position: absolute; left: 50%; bottom: 124px; transform: translateX(-50%); display: flex; align-items: center; gap: 8px; height: 38px; padding: 0 6px 0 16px; border-radius: 19px; background: {{t.ink}}; color: {{t.canvas}}; font-size: 15px; font-weight: 700; white-space: nowrap; z-index: 20; box-shadow: {{t.e2}};">
       <span>{{toast.text}}</span>
       <sc-if value="{{toast.undo}}" hint-placeholder-val="{{false}}">
         <button onClick="{{undo}}" style="height: 28px; padding: 0 12px; border: 0; border-radius: 14px; background: {{t.canvas}}; color: {{t.ink}}; font-family: inherit; font-size: 14px; font-weight: 700; cursor: pointer;">Undo</button>
@@ -87,7 +87,7 @@ a{color:inherit}a:hover{color:inherit}
       <span style="display: block; width: 44px; height: 44px;"><svg width="100%" height="100%" viewBox="0 0 11.321 11.322" fill="currentColor" aria-hidden="true"><g transform="translate(-3015.3506,-1319.8992)"><g transform="matrix(0.73369523,0,0,0.73369523,2071.0345,1201.7805)"><path d="m 1294.783,160.991 c -0.349,0 -0.699,0.134 -0.966,0.402 l -4.247,4.247 c -0.026,0.02 -0.051,0.042 -0.074,0.066 l -2.181,2.181 c -0.329,0.329 -0.329,0.858 0,1.187 0.329,0.329 0.858,0.329 1.187,0 l 0.076,-0.076 0,-0 2.104,-2.104 3.135,-3.135 c 0.535,-0.535 1.397,-0.535 1.933,-0 l 3.135,3.135 1.951,1.951 0.229,0.229 c 0.329,0.329 0.858,0.329 1.187,0 0.329,-0.329 0.329,-0.858 -0,-1.187 l -2.181,-2.181 c -0.024,-0.024 -0.05,-0.046 -0.076,-0.066 l -4.246,-4.246 c -0.268,-0.268 -0.617,-0.402 -0.966,-0.402 z"/><path d="m 1294.784,164.627 c -0.349,0 -0.699,0.134 -0.966,0.402 l -5.431,5.432 -0.021,0.021 c -0.148,0.153 -0.24,0.361 -0.24,0.591 h 0.001 v 2.893 1.182 c 0,0.707 0.569,1.276 1.276,1.276 h 1.182 2.262 v -3.618 c 0,-0.178 0.143,-0.321 0.321,-0.321 h 3.224 c 0.178,0 0.321,0.143 0.321,0.321 v 3.618 h 2.272 1.18 c 0.707,0 1.276,-0.569 1.276,-1.276 v -1.181 -2.894 h -0.001 c 0,-0.233 -0.093,-0.443 -0.244,-0.597 l -0.01,-0.01 -5.436,-5.436 c -0.268,-0.268 -0.617,-0.402 -0.966,-0.402 z"/></g></g></svg></span>
     </a>
     <a href="Editor.dc.html" aria-label="Create a card" style="display: flex; position: relative; width: 84px; height: 84px; align-items: center; justify-content: center; color: {{t.canvas}};">
-      <span style="position: absolute; left: 13px; top: 13px; width: 58px; height: 58px; border-radius: 15px; background: {{t.ink}}; transform: rotate(45deg);"></span>
+      <span style="position: absolute; left: 13px; top: 13px; width: 58px; height: 58px; border-radius: 15px; background: {{t.ink}}; transform: rotate(45deg); box-shadow: {{t.e2}};"></span>
       <svg width="30" height="30" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3.2" stroke-linecap="round" aria-hidden="true" style="position: relative;"><path d="M12 4.5v15M4.5 12h15"/></svg>
     </a>
     <a href="Shop.dc.html" aria-label="Shop" style="display: flex; width: 56px; height: 56px; align-items: center; justify-content: center; color: {{t.ink}};">
@@ -96,13 +96,17 @@ a{color:inherit}a:hover{color:inherit}
   </nav>
 </div>
 </x-dc>
-<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'>
+<script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"demoStates":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'>
 const THEMES = {
   light: { canvas: '#F1F1F1', canvasClear: 'rgba(241,241,241,0)', ink: '#333333', onInk: '#F1F1F1', muted: '#666666', mutedOnInk: '#BDBDBD', soft: '#E3E3E3',
-           fanOn: ['#8F8F8F', '#A8A8A8', '#C2C2C2', '#DADADA', '#F1F1F1'], fanOff: '#454545' },
+           fanOn: ['#8F8F8F', '#A8A8A8', '#C2C2C2', '#DADADA', '#F1F1F1'], fanOff: '#454545',
+           e1: '0 1px 2px rgba(0,0,0,0.12), 0 5px 12px rgba(0,0,0,0.12)', e2: '0 2px 4px rgba(0,0,0,0.12), 0 10px 24px rgba(0,0,0,0.2)' },
   dark:  { canvas: '#333333', canvasClear: 'rgba(51,51,51,0)', ink: '#F1F1F1', onInk: '#333333', muted: '#BDBDBD', mutedOnInk: '#666666', soft: '#424242',
-           fanOn: ['#A3A3A3', '#888888', '#6E6E6E', '#525252', '#333333'], fanOff: '#DADADA' }
+           fanOn: ['#A3A3A3', '#888888', '#6E6E6E', '#525252', '#333333'], fanOff: '#DADADA',
+           e1: '0 1px 2px rgba(0,0,0,0.45), 0 5px 12px rgba(0,0,0,0.4)', e2: '0 2px 6px rgba(0,0,0,0.5), 0 12px 28px rgba(0,0,0,0.55)' }
 };
+// "Deck swipe actions" artboard: decks held open at each detent of text_Mockup §3.
+const DEMO_OPEN = { d3: -65, d4: -125, d5: 65, d6: 125 };
 const START_DECKS = [
   { id: 'd1', name: 'Spanish · Basics', cards: 45, due: 12, mastered: 3, pinned: false },
   { id: 'd2', name: 'Spanish · Verbs', cards: 60, due: 18, mastered: 2, pinned: false },
@@ -187,8 +191,9 @@ class Component extends DCLogic {
     let base = 0;
     if (s.anim && s.anim.id === id) base = s.anim.dir * s.anim.val;
     else if (s.open && s.open.id === id) base = s.open.d;
+    else if (this.props.demoStates && !s.touched && DEMO_OPEN[id]) base = DEMO_OPEN[id];
     this.ptr = { id, sx: e.clientX - base, sy: e.clientY, base, moved: false, el: e.currentTarget, pid: e.pointerId };
-    const patch = { anim: null };
+    const patch = { anim: null, touched: true };          // the demo states release once you touch a deck
     if (s.open && s.open.id !== id) patch.open = null;   // only one deck open at a time
     if (s.anim && s.anim.id !== id) patch.anim = null;
     this.setState(patch);
@@ -214,10 +219,9 @@ class Component extends DCLogic {
     this.ptr = null;
     if (!p) return;
     if (!p.moved) {
-      const s = this.state;
-      if (s.open && s.open.id === p.id) {             // tap on an open deck closes it
+      if (p.base !== 0) {                              // tap on an open deck closes it
         this.justDragged = true;
-        this.animateTo(p.id, Math.sign(s.open.d), Math.abs(s.open.d), 0, false);
+        this.animateTo(p.id, Math.sign(p.base), Math.abs(p.base), 0, false);
       }
       return;
     }
@@ -256,6 +260,7 @@ class Component extends DCLogic {
       if (s.drag && s.drag.id === d.id) { e = gravity(s.drag.raw); dir = s.drag.dir; live = true; }
       else if (s.anim && s.anim.id === d.id) { e = s.anim.val; dir = s.anim.dir; live = true; }
       else if (s.open && s.open.id === d.id) { e = Math.abs(s.open.d); dir = Math.sign(s.open.d); }
+      else if (this.props.demoStates && DEMO_OPEN[d.id] && !s.touched) { e = Math.abs(DEMO_OPEN[d.id]); dir = Math.sign(DEMO_OPEN[d.id]); }
       if (e < 0.5) { e = 0; dir = 0; }
       const excess = Math.max(0, e - STEP_2);
       const second = e <= STEP_1 ? 0 : Math.min(65, e - STEP_1) + excess * 0.45;
@@ -280,6 +285,7 @@ class Component extends DCLogic {
         sinkROp: dir > 0 ? sinkOp : 0,
         sinkLBg: 'linear-gradient(to left, ' + t.canvasClear + ' 0%, ' + t.canvas + ' ' + stop + '%)',
         sinkRBg: 'linear-gradient(to right, ' + t.canvasClear + ' 0%, ' + t.canvas + ' ' + stop + '%)',
+        ov: rm ? 'hidden' : 'visible',
         h: rm === 'delete' ? 0 : 72,
         mb: rm === 'delete' ? 0 : 12,
         op: rm ? 0 : 1,
