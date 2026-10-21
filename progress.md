@@ -7,7 +7,7 @@ tags:
   - document/progress
   - knowledge/dated
 created: 2026-08-13
-updated: 2026-09-12
+updated: 2026-10-21
 status: active
 aliases:
   - Memory Card Progress
@@ -22,7 +22,7 @@ related:
 
 # Memory Card Progress Log
 
-**Last updated:** 2026-09-12
+**Last updated:** 2026-10-21
 
 **Current release line:** Version 2.0 (Design Finalization & Resizable Living Lab)
 
@@ -40,6 +40,16 @@ This document records verified outcomes, technical approaches, and architectural
 ---
 
 ## Version 2.0 Outcomes
+
+### 2026-10-21 — Playable prototype v0.1 (all design screens connected)
+
+- **Outcome Summary:** A playable web prototype built from the 16 design-canvas artboards, connected into one app with shared, persistent state, published as a private artifact (https://claude.ai/artifact/VL2PecyNZFkcxaCgsHTZki), source in `prototype/`. Its purpose is to collect detailed notes before the Flutter build.
+- **How We Built It & Technical Approach:**
+  - Preact + htm modules (no build step); the canvas tokens became CSS variables with an inverse-ink `.dark` theme; gesture code (stepped deck swipes, study stack, drawer motion, shop long-press) ported from the `.dc.html` artboards.
+  - `prototype/engine.js` implements RES-47 §5: endless stack with failed-card re-insertion at round(8 + 12 x success rate) in [8, 20], pacing reservoir (Relaxed / Balanced / Intense), shadow FSRS-6 (default parameters) for health, fans, slipping counts and warm-up, 04:00 day boundary, daily goal and grace-shield streaks, and an exportable review log.
+  - Real starter content (about 450 cards across 22 library decks and a 12-deck shop), card authoring with images and reverse cards, CSV import, JSON backup export/restore.
+  - A Lab panel for in-page notes (claude.ai comments), an engine X-ray of the live stack, and a clock that can be moved forward to see slipping, warm-up and shields.
+- **Verification Evidence:** Exercised in a local browser at 1400 x 900 and 375 x 812, light and dark: study (reveal, swipe, keyboard, undo, re-insert distance), deck swipe detents, drawer select/open, card save, shop long-press save-to-folder, profile flip, settings, empty folder, goal celebration, +3-day clock jump (shields used, streak reset). No console errors.
 
 ### 2026-10-21 — Audit v2 & Repetition Engine Research (RES-47)
 

@@ -1,6 +1,7 @@
 # Memory Card — Design Canvas
 
 Live, interactive design: https://claude.ai/artifact/2zRQWJ3mF2x1hezhZL9A3u (private to the owner).
+Playable prototype built from it: https://claude.ai/artifact/VL2PecyNZFkcxaCgsHTZki, source in [`prototype/`](../../prototype/README.md).
 
 `canvas/` holds the source of every artboard (`*.dc.html`) and the canvas index (`canvas.json`).
 They are the reference the Flutter build is checked against.
