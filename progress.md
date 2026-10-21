@@ -41,6 +41,12 @@ This document records verified outcomes, technical approaches, and architectural
 
 ## Version 2.0 Outcomes
 
+### 2026-10-21 — Audit v2 & Repetition Engine Research (RES-47)
+
+- **Outcome Summary:** Second audit ([[audit_v2_2026-10-21]]) and a comparative study of every repetition approach in the repo against external evidence and a simulation. Decisions taken with the user: build a full interactive design artifact next, then the Flutter app; MVP includes deck/card creation + CSV import; Bernard MT stays for local dev only.
+- **Key findings:** RES-12 FSRS-5 formulas contain errors (use the `fsrs` Dart package, FSRS-6, instead). RES-43's 2–5 card ring buffer performed worst in simulation. The original endless stack (Q2.2) performed best or tied at equal study time in 5 of 6 runs and becomes the core of the engine ("Endless Stack + Shadow FSRS", RES-47 §5).
+- **Verification Evidence:** `tools/srs_sim/simulate.py` (ACT-R learner, Pavlik & Anderson 2005), with results in `tools/srs_sim/results_h0.025.md` and `results_h0.1.md`. The commercial font file is no longer tracked in git; it remains in earlier history.
+
 ### 2026-09-12 — Bernard MT Condensed Typography Integration & Visual Parity (Task 2.2.1.1)
 
 - **Task Reference:** [[Roadmap#Phase 2.2.1: Typography & Asset Calibration|Checkpoint 2.2, Phase 2.2.1, Task 2.2.1.1]]

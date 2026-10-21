@@ -20,3 +20,9 @@ scratch/
 build/
 .flutter-plugins
 .flutter-plugins-dependencies
+
+# Tooling
+.serena/
+
+# Commercial font (Monotype) — local dev only, never redistribute (see docs/Audit/audit_v2_2026-10-21.md F3)
+BernardMTCondensed.ttf
