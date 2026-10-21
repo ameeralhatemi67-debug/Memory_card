@@ -24,7 +24,7 @@ a{color:inherit}a:hover{color:inherit}
   </header>
 
   <section style="display: flex; flex-direction: column; align-items: center; text-align: center; padding: 34px 28px 0;">
-    <svg width="240" height="190" viewBox="0 0 240 190" role="img" aria-label="A brain with question marks floating above it" style="filter: {{t.art}};">
+    <svg width="240" height="190" viewBox="0 0 240 190" role="img" aria-label="A brain with question marks floating above it" style="filter: {{t.art}}; overflow: visible;">
       <g transform="{{brainTf}}">
       <g transform="translate(-8 18)">
         <path d="M136 116 C138 134 141 148 147 160 C150 165 158 165 160 160 C155 148 153 134 155 118 Z" fill="{{t.ink2}}"/>
@@ -94,7 +94,7 @@ const THEMES = {
 };
 // The "???" are thought bubbles: they rise and grow toward the top-right, and a wave runs through
 // them in turn (hop, tilt, brighten) while the brain breathes underneath. Driven by a JS clock.
-const MARKS = [{ x: 194, y: 70, tilt: 8 }, { x: 211, y: 51, tilt: 12 }, { x: 227, y: 36, tilt: 16 }];
+const MARKS = [{ x: 192, y: 76, tilt: 8 }, { x: 207, y: 58, tilt: 12 }, { x: 222, y: 42, tilt: 16 }];
 class Component extends DCLogic {
   componentDidMount() {
     const tick = () => {
@@ -113,12 +113,12 @@ class Component extends DCLogic {
     const now = this.now || 0;
     const marks = {};
     MARKS.forEach((m, i) => {
-      const wave = Math.max(0, Math.sin((now / 1800) * Math.PI * 2 - i * 0.9));   // 0..1 pulse, one mark after another
-      const hop = -7 * wave;
-      const rot = m.tilt + 10 * Math.sin((now / 1800) * Math.PI * 2 - i * 0.9);
-      const s = 1 + 0.18 * wave;
-      marks['q' + i] = 'translate(' + m.x + ' ' + (m.y + hop).toFixed(2) + ') rotate(' + rot.toFixed(2) + ') scale(' + s.toFixed(3) + ')';
-      marks['qo' + i] = (0.55 + 0.45 * wave).toFixed(3);
+      // gentle float on a small loop: up → right → down → left, 3px radius, 4s per loop, each mark a little out of phase
+      const a = (now / 4000) * Math.PI * 2 + i * 0.8;
+      const dx = 3 * Math.sin(a);
+      const dy = -3 * Math.cos(a);
+      marks['q' + i] = 'translate(' + (m.x + dx).toFixed(2) + ' ' + (m.y + dy).toFixed(2) + ') rotate(' + m.tilt + ')';
+      marks['qo' + i] = 1;
     });
     const breathe = 1 + 0.018 * Math.sin((now / 3200) * Math.PI * 2);
     const brainTf = 'translate(100 100) scale(' + breathe.toFixed(4) + ') translate(-100 -100)';
