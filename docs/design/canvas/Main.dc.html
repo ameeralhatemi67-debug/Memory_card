@@ -53,7 +53,7 @@ a{color:inherit}a:hover{color:inherit}
           </button>
         </div>
 
-        <a href="Study.dc.html" aria-label="{{r.aria}}" onPointerDown="{{r.down}}" onPointerMove="{{onMove}}" onPointerUp="{{onUp}}" onPointerCancel="{{onUp}}" onClick="{{r.click}}" style="position: absolute; top: 0; left: 20px; width: 350px; height: 72px; border-radius: 10px; background: {{t.ink}}; color: {{t.onInk}}; overflow: hidden; text-decoration: none; touch-action: pan-y; z-index: 3; box-shadow: {{t.e1}}; transform: translateX({{r.tx}}px); transition: {{r.tr}};">
+        <a href="Study.dc.html" draggable="false" aria-label="{{r.aria}}" onDragStart="{{noDrag}}" onPointerDown="{{r.down}}" onPointerMove="{{onMove}}" onPointerUp="{{onUp}}" onPointerCancel="{{onUp}}" onClick="{{r.click}}" style="position: absolute; top: 0; left: 20px; width: 350px; height: 72px; border-radius: 10px; background: {{t.ink}}; color: {{t.onInk}}; overflow: hidden; text-decoration: none; touch-action: pan-y; -webkit-user-drag: none; cursor: grab; z-index: 3; box-shadow: {{t.e1}}; transform: translateX({{r.tx}}px); transition: {{r.tr}};">
           <div style="position: absolute; left: 16px; top: 11px; right: 112px; display: flex; align-items: center; gap: 6px; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 23px; line-height: 1.05; white-space: nowrap; overflow: hidden;">
             <sc-if value="{{r.pinned}}" hint-placeholder-val="{{false}}"><svg width="15" height="15" viewBox="0 0 9.339 9.339" fill="#8BD3A0" aria-hidden="true" style="flex: none;"><g transform="translate(-3035.5152,-1358.9588)"><g transform="translate(-624.73788,839.34861)"><path d="m 3666.454,519.825 c -0.287,-0.287 -0.748,-0.287 -1.035,0 l -0.678,0.678 c -0.285,0.285 -0.286,0.742 -0.01,1.029 l -1.124,1.124 c 0,0.004 -0.01,0.007 -0.011,0.011 -1.051,-0.395 -2.27,-0.195 -3.152,0.596 -0.074,0.118 -0.06,0.274 0.043,0.376 l 2.282,2.282 -2.41,2.41 c -0.142,0.142 -0.142,0.37 0,0.512 0.142,0.142 0.37,0.142 0.511,0 l 2.41,-2.41 2.282,2.282 c 0.102,0.103 0.258,0.116 0.376,0.043 0.791,-0.882 0.991,-2.101 0.596,-3.152 0,-0.004 0.01,-0.007 0.011,-0.011 l 1.124,-1.124 c 0.287,0.281 0.744,0.279 1.029,-0.006 l 0.678,-0.678 c 0.287,-0.287 0.287,-0.748 0,-1.035 z"/></g></g></svg></sc-if>
             <span style="overflow: hidden; text-overflow: ellipsis;">{{r.name}}</span>
@@ -315,6 +315,7 @@ class Component extends DCLogic {
     const toast = s.toast || { text: '', undo: false, plain: true };
     return {
       t, rows,
+      noDrag: (ev) => ev.preventDefault(),   // stop the browser's native "drag this link" from hijacking the swipe
       onMove: (ev) => this.move(ev),
       onUp: () => this.up(),
       hasToast: !!s.toast,
