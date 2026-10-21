@@ -9,18 +9,18 @@
     "Study.dc.html": {"x": 470, "y": 0, "w": 390, "h": 844, "title": "Study stack", "radius": 32, "is_interactive": true},
     "Goal.dc.html": {"x": 940, "y": 0, "w": 390, "h": 844, "title": "Daily goal reached", "radius": 32, "is_interactive": true},
     "Drawer.dc.html": {"x": 0, "y": 1224, "w": 390, "h": 844, "title": "Folder drawer", "radius": 32, "is_interactive": true},
-    "DeckActions.dc.html": {"x": 470, "y": 1224, "w": 390, "h": 844, "title": "Deck swipe actions", "radius": 32},
+    "DeckActions.dc.html": {"x": 470, "y": 1224, "w": 390, "h": 844, "title": "Deck swipe actions", "radius": 32, "is_interactive": true},
     "EmptyFolder.dc.html": {"x": 940, "y": 1224, "w": 390, "h": 844, "title": "Empty folder", "radius": 32, "is_interactive": true},
     "Editor.dc.html": {"x": 0, "y": 2448, "w": 390, "h": 844, "title": "Create card / Import CSV", "radius": 32, "is_interactive": true},
     "Shop.dc.html": {"x": 470, "y": 2448, "w": 390, "h": 844, "title": "Shop", "radius": 32, "is_interactive": true},
-    "ShopHold.dc.html": {"x": 940, "y": 2448, "w": 390, "h": 844, "title": "Shop — long press", "radius": 32},
+    "ShopHold.dc.html": {"x": 940, "y": 2448, "w": 390, "h": 844, "title": "Shop — long press", "radius": 32, "is_interactive": true},
     "Preview.dc.html": {"x": 1410, "y": 2448, "w": 390, "h": 844, "title": "Deck preview", "radius": 32, "is_interactive": true},
-    "Profile.dc.html": {"x": 0, "y": 3672, "w": 390, "h": 1120, "title": "Profile & membership card", "radius": 32, "is_interactive": true},
+    "Profile.dc.html": {"x": 0, "y": 3672, "w": 390, "h": 844, "title": "Profile & membership card", "radius": 32, "is_interactive": true},
     "Settings.dc.html": {"x": 470, "y": 3672, "w": 390, "h": 1120, "title": "Settings", "radius": 32, "is_interactive": true},
     "DarkMain.dc.html": {"x": 0, "y": 5172, "w": 390, "h": 844, "title": "Decks — dark", "radius": 32, "is_interactive": true},
     "DarkStudy.dc.html": {"x": 470, "y": 5172, "w": 390, "h": 844, "title": "Study — dark", "radius": 32, "is_interactive": true},
     "DarkDrawer.dc.html": {"x": 940, "y": 5172, "w": 390, "h": 844, "title": "Drawer — dark", "radius": 32, "is_interactive": true},
-    "DarkProfile.dc.html": {"x": 1410, "y": 5172, "w": 390, "h": 1120, "title": "Profile — dark", "radius": 32, "is_interactive": true}
+    "DarkProfile.dc.html": {"x": 1410, "y": 5172, "w": 390, "h": 844, "title": "Profile — dark", "radius": 32, "is_interactive": true}
   },
   "order": [
     "Main.dc.html", "Study.dc.html", "Goal.dc.html",
