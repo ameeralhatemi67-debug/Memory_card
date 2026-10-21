@@ -43,10 +43,10 @@ body{margin:0}
         </button>
       </sc-if>
       <div style="position: absolute; top: 0; height: 72px; width: 350px; border-radius: 10px; background: {{t.ink}}; color: {{t.onInk}}; overflow: hidden; left: {{r.left}}px; -webkit-mask-image: {{r.mask}}; mask-image: {{r.mask}};">
-        <div style="position: absolute; left: 16px; top: 9px; right: 120px; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 29px; line-height: 1.05; white-space: nowrap;">{{r.name}}</div>
+        <div style="position: absolute; left: 16px; top: 9px; right: 120px; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 23px; line-height: 1.05; white-space: nowrap;">{{r.name}}</div>
         <div style="position: absolute; left: 16px; bottom: 9px; font-size: 13px; font-weight: 500; color: {{t.mutedOnInk}};">{{r.meta}}</div>
         <sc-for list="{{r.fan}}" as="c" hint-placeholder-count="5">
-          <span style="position: absolute; width: 62px; height: 86px; border-radius: 8px; transform-origin: 100% 100%; box-shadow: -2px 0 5px rgba(0,0,0,0.22); {{c.style}}"></span>
+          <span style="position: absolute; width: 54px; height: 80px; border-radius: 7px; transform-origin: 100% 100%; box-shadow: -2px 0 4px rgba(0,0,0,0.2); {{c.style}}"></span>
         </sc-for>
       </div>
     </div>
@@ -98,7 +98,7 @@ class Component extends DCLogic {
         hasArchive: d.swipe === -2,
         hasMove: d.swipe > 0,
         fan: [0, 1, 2, 3, 4].map((k) => ({
-          style: 'right: ' + (4 + (4 - k) * 21) + 'px; bottom: ' + (-44 + k * 9) + 'px; transform: rotate(' + (-16 + k * 3) + 'deg); background: ' + (k < d.mastered ? t.fanOn[k] : t.fanOff) + ';'
+          style: 'right: ' + (-10 + (4 - k) * 15) + 'px; bottom: ' + (-40 + k * 8) + 'px; transform: rotate(' + (-16 + k * 3) + 'deg); background: ' + (k < d.mastered ? t.fanOn[k] : t.fanOff) + ';'
         }))
       };
     });

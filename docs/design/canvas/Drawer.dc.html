@@ -12,9 +12,19 @@
 <style>
 body{margin:0}
 a{color:inherit}a:hover{color:inherit}
+@keyframes mcPillUpA{0%{transform:translateY(90px);opacity:0}60%{transform:translateY(-10px);opacity:1}85%{transform:translateY(2px);opacity:1}100%{transform:translateY(0);opacity:1}}
+@keyframes mcPillUpB{0%{transform:translateY(90px);opacity:0}60%{transform:translateY(-10px);opacity:1}85%{transform:translateY(2px);opacity:1}100%{transform:translateY(0);opacity:1}}
+@keyframes mcPillDown{0%{transform:translateY(0);opacity:1}30%{transform:translateY(-4px);opacity:1}70%{transform:translateY(65px);opacity:.7}100%{transform:translateY(110px);opacity:0}}
+@keyframes mcPillJumpA{0%{transform:translateY(0)}40%{transform:translateY(-12px)}75%{transform:translateY(-2px)}100%{transform:translateY(0)}}
+@keyframes mcPillJumpB{0%{transform:translateY(0)}40%{transform:translateY(-12px)}75%{transform:translateY(-2px)}100%{transform:translateY(0)}}
+@keyframes mcFloat{0%{transform:scale(1) translateY(-6px)}100%{transform:scale(1.03) translateY(-9px)}}
+@keyframes mcFear{0%{transform:translate(-2px,1px) rotate(-2deg)}50%{transform:translate(2px,-1px) rotate(2deg)}100%{transform:translate(-1.5px,.5px) rotate(-3.5deg)}}
+@keyframes mcRecoil{0%{transform:scale(1);opacity:1}35%{transform:scale(1.1) translate(-6px,-4px);opacity:.9}100%{transform:scale(.4) translateY(60px);opacity:0}}
+@keyframes mcExciteA{0%,100%{transform:translateY(0)}30%{transform:translateY(-7px) scale(1.01)}60%{transform:translateY(2px)}}
+@keyframes mcExciteB{0%,100%{transform:translateY(0)}30%{transform:translateY(-7px) scale(1.01)}60%{transform:translateY(2px)}}
 </style>
 </helmet>
-<div style="width: 390px; height: 844px; position: relative; overflow: hidden; background: {{t.backdrop}}; color: {{t.ink}}; font-family: 'Barlow Semi Condensed', system-ui, sans-serif;">
+<div data-drawer-root="1" style="width: 390px; height: 844px; position: relative; overflow: hidden; background: {{t.backdrop}}; color: {{t.ink}}; font-family: 'Barlow Semi Condensed', system-ui, sans-serif; user-select: none;">
 
   <div aria-hidden="true" style="position: absolute; left: 22px; top: 20px; width: 28px; height: 36px; color: {{t.backdropInk}};"><svg width="100%" height="100%" viewBox="0 0 11.211 14.182" fill="currentColor"><g transform="translate(-3014.7719,-1275.9218)"><g transform="translate(-69.860379)"><rect x="3084.633" y="1275.922" width="6.926" height="11.206" ry="0.534" fill-opacity=".55"/><rect x="3312.468" y="433.451" width="6.926" height="11.206" ry="0.534" transform="rotate(15)" fill-opacity=".78"/><rect x="3314.619" y="-438.992" width="6.926" height="11.206" ry="0.534" transform="rotate(30)"/></g></g></svg></div>
   <div aria-hidden="true" style="position: absolute; right: 22px; top: 26px; width: 8px; height: 26px; color: {{t.backdropInk}};"><svg width="100%" height="100%" viewBox="0 0 2.444 8.911" fill="currentColor"><g transform="translate(-2998.7693,-1277.1094)"><g transform="translate(-455.15531,250.69204)"><circle cx="3455.146" cy="1034.107" r="1.222"/><circle cx="3455.146" cy="1030.873" r="1.222"/><circle cx="3455.146" cy="1027.639" r="1.222"/></g></g></svg></div>
@@ -23,25 +33,59 @@ a{color:inherit}a:hover{color:inherit}
   </sc-for>
   <a href="Main.dc.html" aria-label="Close folders" style="position: absolute; left: 340px; top: 64px; right: 0; bottom: 0;"></a>
 
-  <nav aria-label="Folders" style="position: absolute; left: 0; top: 64px; width: 340px; bottom: 0; background: {{t.canvas}}; border-top-right-radius: 24px; overflow: hidden; box-shadow: 8px 0 24px rgba(0,0,0,0.18);">
+  <nav aria-label="Folders" onPointerMove="{{onMove}}" onPointerUp="{{onUp}}" onPointerCancel="{{onUp}}" onPointerLeave="{{onUp}}" style="position: absolute; left: 0; top: 64px; width: 340px; bottom: 0; background: {{t.canvas}}; border-top-right-radius: 24px; overflow: hidden; box-shadow: 8px 0 24px rgba(0,0,0,0.18);">
     <a href="Settings.dc.html" aria-label="Settings" style="position: absolute; right: 14px; top: 16px; width: 48px; height: 48px; display: flex; align-items: center; justify-content: center; color: {{t.ink}};">
-      <span style="display: block; width: 32px; height: 36px;"><svg width="100%" height="100%" viewBox="0 0 9.904 11.118" fill="currentColor" aria-hidden="true"><g transform="translate(-2996.8187,-1339.9974)"><path d="m 3001.771,1339.997 c -1.165,0 -0.965,1.558 -1.973,2.141 -1.009,0.582 -2.258,-0.37 -2.841,0.638 -0.582,1.009 0.867,1.615 0.867,2.779 0,1.165 -1.45,1.771 -0.867,2.779 0.582,1.009 1.832,0.056 2.841,0.638 1.009,0.582 0.809,2.141 1.973,2.141 1.165,0 0.965,-1.558 1.973,-2.141 1.009,-0.582 2.258,0.37 2.841,-0.638 0.582,-1.009 -0.867,-1.615 -0.867,-2.779 0,-1.165 1.45,-1.771 0.867,-2.779 -0.582,-1.009 -1.832,-0.056 -2.841,-0.638 -1.009,-0.582 -0.809,-2.141 -1.973,-2.141 z m 0,3.528 a 2.03,2.03 0 0 1 2.03,2.03 2.03,2.03 0 0 1 -2.03,2.03 2.03,2.03 0 0 1 -2.03,-2.03 2.03,2.03 0 0 1 2.03,-2.03 z"/></g></svg></span>
+      <span style="display: block; width: 30px; height: 34px;"><svg width="100%" height="100%" viewBox="0 0 9.904 11.118" fill="currentColor" aria-hidden="true"><g transform="translate(-2996.8187,-1339.9974)"><path d="m 3001.771,1339.997 c -1.165,0 -0.965,1.558 -1.973,2.141 -1.009,0.582 -2.258,-0.37 -2.841,0.638 -0.582,1.009 0.867,1.615 0.867,2.779 0,1.165 -1.45,1.771 -0.867,2.779 0.582,1.009 1.832,0.056 2.841,0.638 1.009,0.582 0.809,2.141 1.973,2.141 1.165,0 0.965,-1.558 1.973,-2.141 1.009,-0.582 2.258,0.37 2.841,-0.638 0.582,-1.009 -0.867,-1.615 -0.867,-2.779 0,-1.165 1.45,-1.771 0.867,-2.779 -0.582,-1.009 -1.832,-0.056 -2.841,-0.638 -1.009,-0.582 -0.809,-2.141 -1.973,-2.141 z m 0,3.528 a 2.03,2.03 0 0 1 2.03,2.03 2.03,2.03 0 0 1 -2.03,2.03 2.03,2.03 0 0 1 -2.03,-2.03 2.03,2.03 0 0 1 2.03,-2.03 z"/></g></svg></span>
     </a>
 
-    <sc-for list="{{folders}}" as="f" hint-placeholder-count="7">
-      <div style="position: absolute; left: 0; width: 340px; height: 360px; top: {{f.top}}px;">
-        <sc-for list="{{f.pills}}" as="p" hint-placeholder-count="3">
-          <span aria-hidden="true" style="position: absolute; top: 9px; height: 30px; width: 74px; border-radius: 8px; left: {{p.left}}px; background: {{p.bg}};"></span>
-        </sc-for>
-        <svg aria-hidden="true" width="340" height="360" viewBox="0 0 340 360" style="position: absolute; left: 0; top: 0;"><path d="{{f.path}}" fill="{{f.fill}}"/></svg>
-        <a href="Main.dc.html" aria-label="{{f.aria}}" style="position: absolute; left: 0; top: 0; height: 64px; display: flex; align-items: center; padding-left: 22px; text-decoration: none; color: {{f.text}}; width: {{f.tabW}}px; box-sizing: border-box; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 30px; line-height: 1; white-space: nowrap;">{{f.name}}</a>
-        <span aria-hidden="true" style="position: absolute; right: 18px; top: 46px; font-size: 13px; font-weight: 600; color: {{f.meta}};">{{f.count}}</span>
+    <sc-for list="{{folders}}" as="f" hint-placeholder-count="8">
+      <div onPointerDown="{{f.down}}" onClick="{{f.click}}" onContextMenu="{{noMenu}}" style="position: absolute; left: 0; width: 340px; height: 175px; pointer-events: none; transform-origin: 50% 30%; touch-action: pan-y; top: {{f.top}}px; z-index: {{f.z}}; filter: {{f.shadow}}; animation: {{f.anim}};">
+        <sc-if value="{{f.showPills}}" hint-placeholder-val="{{false}}">
+          <sc-for list="{{f.pills}}" as="p" hint-placeholder-count="3">
+            <a href="Study.dc.html" aria-label="{{p.aria}}" style="position: absolute; top: 15px; width: 65px; height: 55px; border-radius: 8px 8px 0 0; pointer-events: auto; left: {{p.left}}px; z-index: {{p.z}}; background: {{p.bg}}; animation: {{p.anim}};"></a>
+          </sc-for>
+        </sc-if>
+        <svg aria-hidden="true" width="340" height="175" viewBox="0 0 340 175" style="position: absolute; left: 0; top: 0; z-index: 5; pointer-events: none;">
+          <defs><linearGradient id="{{f.gid}}" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="{{f.c1}}"/><stop offset="1" stop-color="{{f.c2}}"/></linearGradient></defs>
+          <path d="{{f.path}}" fill="url(#{{f.gid}})" style="pointer-events: auto; cursor: pointer;"/>
+        </svg>
+        <div style="position: absolute; left: 0; top: 0; height: 48px; box-sizing: border-box; padding: 6px 0 0 26px; display: flex; align-items: center; z-index: 6; pointer-events: none; white-space: nowrap; width: {{f.tabW}}px; color: {{f.text}}; font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 26px; line-height: 1;">{{f.name}}</div>
+        <sc-if value="{{f.isOpen}}" hint-placeholder-val="{{false}}">
+          <a href="Main.dc.html" style="position: absolute; right: 16px; top: 45px; height: 20px; display: flex; align-items: center; gap: 4px; z-index: 6; pointer-events: auto; text-decoration: none; font-size: 14px; font-weight: 700; color: {{f.text}};">Open {{f.count}} <span aria-hidden="true">›</span></a>
+        </sc-if>
+        <sc-if value="{{f.isPlain}}" hint-placeholder-val="{{true}}">
+          <span aria-hidden="true" style="position: absolute; right: 18px; top: 47px; z-index: 6; font-size: 13px; font-weight: 600; color: {{f.meta}};">{{f.count}}</span>
+        </sc-if>
+        <sc-if value="{{fear}}" hint-placeholder-val="{{false}}">
+          <span aria-hidden="true" style="position: absolute; right: 16px; top: 40px; width: 26px; height: 26px; border-radius: 13px; background: #FF8080; color: #333333; z-index: 6; display: flex; align-items: center; justify-content: center;"><svg width="11" height="11" viewBox="0 0 6.163 6.163" fill="currentColor"><g transform="translate(-2974.2755,-1343.3503)"><g transform="translate(-1343.0628,1236.6336)"><rect x="3131.604" y="-2981.288" width="2.068" height="7.857" ry="1.034" transform="rotate(45)"/><rect x="-2978.393" y="-3136.566" width="2.068" height="7.857" ry="1.034" transform="rotate(135)"/></g></g></svg></span>
+        </sc-if>
       </div>
     </sc-for>
 
-    <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 300px; background: linear-gradient(to bottom, {{t.canvasClear}}, {{t.canvas}} 72%); pointer-events: none;"></div>
+    <sc-if value="{{empty}}" hint-placeholder-val="{{false}}">
+      <div style="position: absolute; left: 24px; right: 24px; top: 160px; text-align: center;">
+        <div style="font-family: 'Bernard MT Condensed', 'Noto Serif Display', Georgia, serif; font-stretch: 62.5%; font-weight: 800; font-synthesis: none; font-size: 40px;">Empty mind</div>
+        <div style="margin-top: 8px; font-size: 16px; font-weight: 500; color: {{t.muted}};">Make a folder to start.</div>
+      </div>
+    </sc-if>
 
-    <button aria-label="New folder" style="position: absolute; right: 22px; bottom: 26px; width: 76px; height: 60px; border: 0; padding: 0; background: transparent; color: {{t.ink}}; cursor: pointer;">
+    <div aria-hidden="true" style="position: absolute; left: 0; right: 0; bottom: 0; height: 270px; z-index: 60; background: linear-gradient(to bottom, {{t.canvasClear}}, {{t.canvas}} 70%); pointer-events: none;"></div>
+
+    <sc-if value="{{hasToast}}" hint-placeholder-val="{{false}}">
+      <div role="status" style="position: absolute; left: 50%; bottom: 96px; transform: translateX(-50%); z-index: 80; display: flex; align-items: center; gap: 8px; height: 36px; padding: 0 6px 0 14px; border-radius: 18px; background: {{t.ink}}; color: {{t.canvas}}; font-size: 14px; font-weight: 700; white-space: nowrap;">
+        <span>{{toast.text}}</span>
+        <sc-if value="{{toast.undo}}" hint-placeholder-val="{{false}}">
+          <button onClick="{{undo}}" style="height: 26px; padding: 0 10px; border: 0; border-radius: 13px; background: {{t.canvas}}; color: {{t.ink}}; font-family: inherit; font-size: 13px; font-weight: 700; cursor: pointer;">Undo</button>
+        </sc-if>
+        <sc-if value="{{toast.plain}}" hint-placeholder-val="{{true}}"><span style="width: 8px;"></span></sc-if>
+      </div>
+    </sc-if>
+
+    <button onClick="{{toggleFear}}" aria-pressed="{{fear}}" style="position: absolute; left: 20px; bottom: 32px; z-index: 70; height: 44px; padding: 0 16px; border: 0; border-radius: 22px; display: flex; align-items: center; gap: 8px; cursor: pointer; font-family: inherit; font-size: 15px; font-weight: 700; background: {{fearBg}}; color: {{fearFg}};">
+      <svg width="13" height="13" viewBox="0 0 6.163 6.163" fill="currentColor" aria-hidden="true"><g transform="translate(-2974.2755,-1343.3503)"><g transform="translate(-1343.0628,1236.6336)"><rect x="3131.604" y="-2981.288" width="2.068" height="7.857" ry="1.034" transform="rotate(45)"/><rect x="-2978.393" y="-3136.566" width="2.068" height="7.857" ry="1.034" transform="rotate(135)"/></g></g></svg>
+      {{fearLabel}}
+    </button>
+    <button onClick="{{newFolder}}" aria-label="New folder" style="position: absolute; right: 22px; bottom: 26px; z-index: 70; width: 76px; height: 60px; border: 0; padding: 0; background: transparent; color: {{t.ink}}; cursor: pointer;">
       <svg width="76" height="56" viewBox="0 0 12.718 9.075" fill="currentColor" aria-hidden="true"><g transform="translate(-2995.1018,-1321.9776)"><path d="m 2996.095,1321.978 c -0.55,0 -0.993,0.443 -0.993,0.993 v 2.482 3.384 0.571 c 0,0.912 0.734,1.645 1.645,1.645 h 9.426 c 0.912,0 1.646,-0.734 1.646,-1.645 v -3.955 c 0,-0.912 -0.734,-1.645 -1.646,-1.645 h -2.085 c -0.494,0 -0.92,-0.662 -1.189,-1.055 -0.257,-0.376 -0.494,-0.775 -0.969,-0.775 z m 4.533,2.949 c 0.336,0 0.607,0.271 0.607,0.607 v 1.019 h 1.019 c 0.336,0 0.607,0.271 0.607,0.607 0,0.336 -0.271,0.607 -0.607,0.607 h -1.019 v 1.019 c 0,0.336 -0.271,0.607 -0.607,0.607 -0.336,0 -0.607,-0.271 -0.607,-0.607 v -1.019 h -1.02 c -0.336,0 -0.606,-0.271 -0.606,-0.607 0,-0.336 0.27,-0.607 0.606,-0.607 h 1.02 v -1.019 c 0,-0.336 0.271,-0.607 0.607,-0.607 z"/></g></svg>
     </button>
   </nav>
@@ -49,56 +93,216 @@ a{color:inherit}a:hover{color:inherit}
 </x-dc>
 <script type="text/x-dc" data-dc-script data-props='{"dark":{"editor":"boolean","default":false},"$preview":{"width":390,"height":844}}'>
 const THEMES = {
-  light: { canvas: '#F1F1F1', canvasClear: 'rgba(241,241,241,0)', ink: '#333333', backdrop: '#9D9D9D', backdropInk: '#5E5E5E', backdropBar: '#7E7E7E',
-           folderFrom: [51, 51, 51], folderTo: [122, 122, 122], folderText: '#F1F1F1', folderMeta: 'rgba(241,241,241,0.72)' },
-  dark:  { canvas: '#333333', canvasClear: 'rgba(51,51,51,0)', ink: '#F1F1F1', backdrop: '#4A4A4A', backdropInk: '#8A8A8A', backdropBar: '#5E5E5E',
-           folderFrom: [241, 241, 241], folderTo: [178, 178, 178], folderText: '#333333', folderMeta: 'rgba(51,51,51,0.72)' }
+  light: { canvas: '#F1F1F1', canvasClear: 'rgba(241,241,241,0)', ink: '#333333', muted: '#666666', soft: '#E3E3E3', backdrop: '#9D9D9D', backdropInk: '#5E5E5E', backdropBar: '#7E7E7E', shadow: 0.32 },
+  dark:  { canvas: '#333333', canvasClear: 'rgba(51,51,51,0)', ink: '#F1F1F1', muted: '#BDBDBD', soft: '#444444', backdrop: '#4A4A4A', backdropInk: '#8A8A8A', backdropBar: '#5E5E5E', shadow: 0.5 }
 };
-// Recent-deck spine tabs cycle through the 3 accents in Z3 order (RES-44).
-const TAB_ORDERS = [['#80AEFF', '#FFC680', '#D35F5F'], ['#FFC680', '#D35F5F', '#80AEFF'], ['#D35F5F', '#80AEFF', '#FFC680']];
-const FOLDERS = [
-  { name: 'Languages', decks: 7, tabs: 0 },
-  { name: 'German', decks: 4, tabs: 1 },
-  { name: 'Coding', decks: 3, tabs: -1 },
-  { name: 'Medicine', decks: 5, tabs: 2 },
-  { name: 'Exam Prep', decks: 2, tabs: -1 },
-  { name: 'Travel', decks: 3, tabs: -1 },
-  { name: 'Archive', decks: 6, tabs: -1 }
-];
-const STEP = 64;   // vertical offset between folders
-const TAB_H = 40;  // tab height above the shoulder
-const W = 340;
+const BLUE = '#80AEFF', PEACH = '#FFC680', RED = '#D35F5F';
+const Z3 = [[BLUE, PEACH, RED], [PEACH, RED, BLUE], [RED, BLUE, PEACH]];
+const START = [
+  ['f0', 'Languages', 7], ['f1', 'German', 4], ['f2', 'Coding', 3], ['f3', 'Medicine', 5],
+  ['f4', 'Exam Prep', 2], ['f5', 'Travel', 3], ['f6', 'History', 4], ['f7', 'Archive', 6]
+].map(([id, name, decks], i) => ({ id, name, decks, tabs: Z3[i % 3] }));
 
-function folderPath(tw) {
-  const r = 14, R = 26, s = 40, H = 360;
-  return 'M0 ' + r + ' Q0 0 ' + r + ' 0 L' + (tw - 10) + ' 0 C' + (tw + 6) + ' 0 ' + (tw + s - 22) + ' ' + TAB_H + ' ' + (tw + s) + ' ' + TAB_H +
-    ' L' + (W - R) + ' ' + TAB_H + ' Q' + W + ' ' + TAB_H + ' ' + W + ' ' + (TAB_H + R) + ' L' + W + ' ' + H + ' L0 ' + H + ' Z';
+// text_Mockup §2 — parametric Bézier silhouette: tab head 45px tall, shoulder S-curve (alpha 0.45), r = 28.
+const W = 340, H = 175, STEP = 65, HEAD = 45, SPAN = 36, R = 28, ALPHA = 0.45, TOP = 84;
+function tabWidth(name) {
+  return Math.min(230, Math.max(92, name.length * 11.5 + 44));
 }
-function mix(a, b, k) {
-  const c = a.map((v, i) => Math.round(v + (b[i] - v) * k));
-  return 'rgb(' + c.join(',') + ')';
+function silhouette(tw) {
+  const p1 = tw + ALPHA * SPAN, p2 = tw + (1 - ALPHA) * SPAN, p3 = tw + SPAN;
+  return 'M' + R + ' 0 L' + tw + ' 0 C' + p1 + ' 0 ' + p2 + ' ' + HEAD + ' ' + p3 + ' ' + HEAD +
+    ' L' + (W - R) + ' ' + HEAD + ' A' + R + ' ' + R + ' 0 0 1 ' + W + ' ' + (HEAD + R) +
+    ' L' + W + ' ' + (H - R) + ' A' + R + ' ' + R + ' 0 0 1 ' + (W - R) + ' ' + H +
+    ' L' + R + ' ' + H + ' A' + R + ' ' + R + ' 0 0 1 0 ' + (H - R) + ' L0 ' + R + ' A' + R + ' ' + R + ' 0 0 1 ' + R + ' 0 Z';
 }
+function gray(l) {
+  const v = Math.round(Math.max(0, Math.min(100, l)) * 2.55).toString(16).padStart(2, '0');
+  return '#' + v + v + v;
+}
+// Inverted luminance: light mode climbs 5% lighter per folder, dark mode 5% darker; each folder darkens 5% toward its base.
+function shade(i, dark) {
+  const start = dark ? Math.max(10, 95 - i * 5) : Math.min(90, 20 + i * 5);
+  const end = dark ? Math.max(5, start - 5) : Math.max(10, start - 5);
+  const text = dark ? (start >= 65 ? '#1E1E1E' : '#FFFFFF') : (start < 45 ? '#FFFFFF' : '#1E1E1E');
+  return { c1: gray(start), c2: gray(end), text, meta: text === '#FFFFFF' ? 'rgba(255,255,255,0.72)' : 'rgba(30,30,30,0.72)' };
+}
+
 class Component extends DCLogic {
+  constructor(props) {
+    super(props);
+    this.state = {
+      folders: START.map((f) => Object.assign({}, f)),
+      recent: ['f0', 'f1', 'f2'],
+      pill: { enter: null, exit: null, jump: null, n: 0 },
+      floating: null, fear: false, deleting: null, excite: 0, exciting: false, toast: null, lastDeleted: null
+    };
+    this.ptr = null;
+    this.timer = null;
+    this.suppress = false;
+  }
+  componentWillUnmount() {
+    clearTimeout(this.timer);
+    clearTimeout(this.exitTimer);
+    clearTimeout(this.toastTimer);
+    clearTimeout(this.exciteTimer);
+  }
+
+  showToast(text, undo) {
+    clearTimeout(this.toastTimer);
+    this.setState({ toast: { text, undo: !!undo, plain: !undo } });
+    this.toastTimer = setTimeout(() => this.setState({ toast: null }), undo ? 3200 : 1800);
+  }
+
+  // Only the last 3 touched folders show their deck pills; the 4th one bumped out drops them into its pocket.
+  select(id) {
+    const s = this.state;
+    if (s.recent[0] === id) {
+      this.setState({ pill: { enter: null, exit: null, jump: id, n: s.pill.n + 1 } });
+      return;
+    }
+    const next = [id].concat(s.recent.filter((x) => x !== id));
+    const dropped = next.length > 3 ? next.pop() : null;
+    this.setState({ recent: next, pill: { enter: id, exit: dropped, jump: null, n: s.pill.n + 1 } });
+    clearTimeout(this.exitTimer);
+    this.exitTimer = setTimeout(() => this.setState({ pill: Object.assign({}, this.state.pill, { exit: null }) }), 560);
+  }
+
+  down(e, id) {
+    if (this.state.deleting) return;
+    clearTimeout(this.timer);
+    const el = e.currentTarget;
+    this.ptr = { id, y0: e.clientY, el, pid: e.pointerId };
+    if (this.state.fear) return;
+    this.timer = setTimeout(() => {           // hold 350ms → float with a 3% breathing pulse, drag to reorder
+      try { el.setPointerCapture(this.ptr.pid); } catch (err) {}
+      this.setState({ floating: id });
+    }, 350);
+  }
+
+  move(e) {
+    const p = this.ptr;
+    if (!p) return;
+    if (!this.state.floating) {
+      if (Math.abs(e.clientY - p.y0) > 8) clearTimeout(this.timer);
+      return;
+    }
+    const root = p.el.closest('[data-drawer-root]');
+    if (!root) return;
+    const rr = root.getBoundingClientRect();
+    const k = rr.width / 390 || 1;
+    const y = (e.clientY - rr.top) / k - 64 - TOP;
+    const list = this.state.folders.slice();
+    const from = list.findIndex((f) => f.id === this.state.floating);
+    const to = Math.max(0, Math.min(list.length - 1, Math.floor((y + 20) / STEP)));
+    if (from >= 0 && to !== from) {
+      const item = list.splice(from, 1)[0];
+      list.splice(to, 0, item);
+      this.setState({ folders: list });
+    }
+  }
+
+  up() {
+    clearTimeout(this.timer);
+    this.ptr = null;
+    if (this.state.floating) {
+      this.suppress = true;
+      this.setState({ floating: null });
+      this.showToast('New order saved');
+    }
+  }
+
+  click(id) {
+    if (this.suppress) { this.suppress = false; return; }
+    const s = this.state;
+    if (s.fear) {
+      const index = s.folders.findIndex((f) => f.id === id);
+      const folder = s.folders[index];
+      this.setState({ deleting: id });
+      setTimeout(() => {
+        this.setState({
+          folders: this.state.folders.filter((f) => f.id !== id),
+          recent: this.state.recent.filter((x) => x !== id),
+          deleting: null,
+          lastDeleted: { folder, index }
+        });
+        this.showToast('Deleted ' + folder.name, true);
+      }, 400);
+      return;
+    }
+    this.select(id);
+  }
+
   renderVals() {
-    const t = (this.props.dark ?? false) ? THEMES.dark : THEMES.light;
-    const n = FOLDERS.length;
-    const folders = FOLDERS.map((f, i) => {
-      const tabW = Math.max(112, 34 + f.name.length * 13);
+    const dark = this.props.dark ?? false;
+    const t = dark ? THEMES.dark : THEMES.light;
+    const s = this.state;
+    const n = s.folders.length;
+    const par = s.pill.n % 2 ? 'A' : 'B';
+    const folders = s.folders.map((f, i) => {
+      const tw = tabWidth(f.name);
+      const sh = shade(i, dark);
+      let anim = 'none';
+      if (s.deleting === f.id) anim = 'mcRecoil .4s cubic-bezier(.6,-.28,.735,.045) forwards';
+      else if (s.floating === f.id) anim = 'mcFloat .85s ease-in-out infinite alternate';
+      else if (s.fear) anim = 'mcFear .35s ease-in-out ' + (i * 45) + 'ms infinite alternate';
+      else if (s.exciting) anim = 'mcExcite' + (s.excite % 2 ? 'A' : 'B') + ' .6s ease ' + (i * 35) + 'ms both';
+      const pills = f.tabs.map((bg, k) => {
+        let pa = 'none';
+        if (s.pill.enter === f.id) pa = 'mcPillUp' + par + ' .45s cubic-bezier(.175,.885,.32,1.275) ' + (k * 40) + 'ms both';
+        else if (s.pill.exit === f.id) pa = 'mcPillDown .45s cubic-bezier(.55,.055,.675,.19) ' + (k * 40) + 'ms forwards';
+        else if (s.pill.jump === f.id) pa = 'mcPillJump' + par + ' .4s cubic-bezier(.175,.885,.32,1.275) ' + (k * 40) + 'ms';
+        return { bg, left: tw + SPAN - 16 + k * 53, z: k + 1, anim, aria: 'Study recent deck ' + (k + 1) + ' in ' + f.name };
+      });
       return {
         name: f.name,
-        aria: 'Open ' + f.name + ', ' + f.decks + ' decks',
-        count: f.decks + ' decks',
-        top: 92 + i * STEP,
-        tabW,
-        path: folderPath(tabW),
-        fill: mix(t.folderFrom, t.folderTo, i / (n - 1)),
-        text: t.folderText,
-        meta: t.folderMeta,
-        pills: f.tabs < 0 ? [] : TAB_ORDERS[f.tabs].map((bg, k) => ({ bg, left: tabW + 4 + k * 32 }))
+        count: f.decks + (f.decks === 1 ? ' deck' : ' decks'),
+        top: TOP + i * STEP,
+        z: s.floating === f.id ? 100 : i + 1,
+        shadow: s.floating === f.id ? 'drop-shadow(0 22px 34px rgba(0,0,0,0.5))' : 'drop-shadow(0 6px 12px rgba(0,0,0,' + t.shadow + '))',
+        anim,
+        tabW: tw,
+        path: silhouette(tw),
+        gid: 'fg' + (dark ? 'd' : 'l') + f.id,
+        c1: sh.c1, c2: sh.c2, text: sh.text, meta: sh.meta,
+        showPills: s.recent.includes(f.id) || s.pill.exit === f.id,
+        pills,
+        isOpen: !s.fear && s.recent[0] === f.id,
+        isPlain: !s.fear && s.recent[0] !== f.id,
+        down: (e) => this.down(e, f.id),
+        click: () => this.click(f.id)
       };
     });
-    const ghostBars = [0, 1, 2, 3, 4, 5, 6].map((i) => ({ top: 88 + i * 84 }));
-    return { t, folders, ghostBars };
+    const toast = s.toast || { text: '', undo: false, plain: true };
+    return {
+      t, folders,
+      empty: n === 0,
+      fear: s.fear,
+      fearLabel: s.fear ? 'Done' : 'Delete',
+      fearBg: s.fear ? '#FF8080' : t.soft,
+      fearFg: s.fear ? '#333333' : t.ink,
+      ghostBars: [0, 1, 2, 3, 4, 5, 6].map((i) => ({ top: 88 + i * 84 })),
+      onMove: (e) => this.move(e),
+      onUp: () => this.up(),
+      noMenu: (e) => e.preventDefault(),
+      toggleFear: () => this.setState({ fear: !s.fear }),
+      newFolder: () => {
+        const id = 'n' + Date.now();
+        const folders = [{ id, name: 'New folder', decks: 0, tabs: Z3[s.folders.length % 3] }].concat(s.folders);
+        this.setState({ folders, fear: false, exciting: true, excite: s.excite + 1 });
+        clearTimeout(this.exciteTimer);
+        this.exciteTimer = setTimeout(() => this.setState({ exciting: false }), 900);
+        this.showToast('Folder created — rename it');
+      },
+      hasToast: !!s.toast,
+      toast,
+      undo: () => {
+        const ld = s.lastDeleted;
+        if (!ld) return;
+        const folders = s.folders.slice();
+        folders.splice(Math.min(ld.index, folders.length), 0, ld.folder);
+        this.setState({ folders, lastDeleted: null, toast: null });
+      }
+    };
   }
 }
 </script>
