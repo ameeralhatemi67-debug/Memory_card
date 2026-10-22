@@ -435,14 +435,13 @@ class _SealsRow extends StatelessWidget {
           if (earned.isEmpty)
             WaxSeal(size: 34, color: mc.line)
           else
-            SizedBox(
-              width: 34.0 + (math.min(earned.length, 5) - 1) * 18,
-              height: 34,
-              child: Stack(children: [
-                for (var i = 0; i < math.min(earned.length, 5); i++)
-                  Positioned(left: i * 18.0, child: SealBadge(def: earned[earned.length - 1 - i], size: 34)),
-              ]),
-            ),
+            // The latest few, side by side so every mark stays readable.
+            Row(mainAxisSize: MainAxisSize.min, children: [
+              for (var i = 0; i < math.min(earned.length, 4); i++) ...[
+                if (i > 0) const SizedBox(width: 4),
+                SealBadge(def: earned[earned.length - 1 - i], size: 32),
+              ],
+            ]),
           const SizedBox(width: 12),
           Expanded(
             child: Text(

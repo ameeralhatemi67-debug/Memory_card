@@ -5,6 +5,8 @@ import 'package:flutter/material.dart';
 
 import '../../data/models.dart';
 import '../../engine/study_engine.dart';
+import '../../data/store_scope.dart';
+import '../../ui/coach.dart';
 import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
@@ -107,7 +109,13 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
   }
 
   Future<void> _playDemo() async {
+    final store = context.storeRead;
     await Future.delayed(const Duration(milliseconds: 1100));
+    // One lesson at a time: a first-visit coach mark on this screen goes first.
+    for (var i = 0; i < 30 && mounted; i++) {
+      if (CoachTarget.active.value == null && store.coachSeen('drawer')) break;
+      await Future.delayed(const Duration(milliseconds: 400));
+    }
     if (!mounted || _dragging) return;
     _dir = -1;
     _animateTo(_step1, overshoot: true);

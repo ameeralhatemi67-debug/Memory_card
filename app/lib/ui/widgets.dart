@@ -7,6 +7,31 @@ import 'theme.dart';
 
 /// Anything pressable: shrinks to 97 % under the finger and springs back (Emil's rule: the interface
 /// must feel like it heard you).
+/// A canvas-coloured fade under buttons pinned to the bottom of a scrolling screen, so the rows
+/// scrolling beneath them don't show through the gaps.
+class BottomFade extends StatelessWidget {
+  const BottomFade({super.key, required this.height});
+  final double height;
+
+  @override
+  Widget build(BuildContext context) {
+    final c = Mc.of(context).canvas;
+    return IgnorePointer(
+      child: Container(
+        height: height,
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topCenter,
+            end: Alignment.bottomCenter,
+            colors: [c.withValues(alpha: 0), c.withValues(alpha: 0.94), c],
+            stops: const [0, 0.5, 1],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
 class Pressable extends StatefulWidget {
   const Pressable({
     super.key,
@@ -479,7 +504,7 @@ class FieldLabel extends StatelessWidget {
           Row(
             children: [
               Expanded(child: Text(text, style: T.t(14, w: FontWeight.w700, color: Mc.of(context).muted))),
-              if (trailing != null) trailing!,
+              ?trailing,
             ],
           ),
           const SizedBox(height: 5),

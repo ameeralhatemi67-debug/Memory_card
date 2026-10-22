@@ -72,7 +72,13 @@ class _StampedSealState extends State<StampedSeal> {
                       ? null
                       : Transform.rotate(
                           angle: -12 * math.pi / 180,
-                          child: Text(widget.label, style: T.d(widget.size * 0.18, color: Mc.paper, spacing: 1)),
+                          child: SizedBox(
+                            width: widget.size * 0.58,
+                            child: FittedBox(
+                              fit: BoxFit.scaleDown,
+                              child: Text(widget.label, maxLines: 1, style: T.d(widget.size * 0.18, color: Mc.paper, spacing: 1)),
+                            ),
+                          ),
                         ),
                 ),
               ),

@@ -7,16 +7,28 @@ import '../data/store_scope.dart';
 import 'widgets.dart';
 import 'theme.dart';
 
-/// First-visit coach marks: a soft peach ring breathes around the control and a small note explains it.
-/// One at a time, each shown once, dismissed by a tap anywhere.
+/// First-visit coach marks: the screen dims except for a spotlight on the control, a soft peach ring
+/// breathes around it and a small note points at it. One at a time, each shown once, dismissed by a
+/// tap anywhere (a tap on the control itself also goes through to it).
 class CoachTarget extends StatefulWidget {
-  const CoachTarget({super.key, required this.id, required this.text, required this.child, this.below = true, this.delayMs = 1400});
+  const CoachTarget({
+    super.key,
+    required this.id,
+    required this.text,
+    required this.child,
+    this.below = true,
+    this.delayMs = 1400,
+    this.spotlight = true,
+  });
 
   final String id;
   final String text;
   final Widget child;
   final bool below;
   final int delayMs;
+
+  /// Dim the rest of the screen. Off for hints over something you are about to use (the study card).
+  final bool spotlight;
 
   /// The coach mark currently on screen.
   static final active = ValueNotifier<String?>(null);
@@ -25,16 +37,22 @@ class CoachTarget extends StatefulWidget {
   State<CoachTarget> createState() => _CoachTargetState();
 }
 
-class _CoachTargetState extends State<CoachTarget> with SingleTickerProviderStateMixin {
+class _CoachTargetState extends State<CoachTarget> with TickerProviderStateMixin {
   final _key = GlobalKey();
   OverlayEntry? _entry;
   Timer? _timer;
   late final AnimationController _pulse;
+  late final AnimationController _fade;
 
   @override
   void initState() {
     super.initState();
     _pulse = AnimationController(vsync: this, duration: const Duration(milliseconds: 1600));
+    _fade = AnimationController(
+      vsync: this,
+      duration: const Duration(milliseconds: 220),
+      reverseDuration: const Duration(milliseconds: 150),
+    );
     CoachTarget.active.addListener(_maybeShow);
     _timer = Timer(Duration(milliseconds: widget.delayMs), _maybeShow);
   }
@@ -44,23 +62,43 @@ class _CoachTargetState extends State<CoachTarget> with SingleTickerProviderStat
     if (_timer?.isActive ?? false) return;
     final store = context.storeRead;
     if (store.coachSeen(widget.id) || CoachTarget.active.value != null) return;
+    // Only on a free screen (no sheet, dialog or pushed page on top) with the control fully in view;
+    // otherwise look again shortly.
     final route = ModalRoute.of(context);
-    if (route != null && !route.isCurrent) return;
+    final covered = (route != null && !route.isCurrent) || Navigator.of(context, rootNavigator: true).canPop();
+    final box = _key.currentContext?.findRenderObject() as RenderBox?;
+    final screen = MediaQuery.sizeOf(context);
+    final inView =
+        box != null &&
+        box.hasSize &&
+        (Offset.zero & screen).deflate(8).contains(box.localToGlobal(Offset.zero)) &&
+        (Offset.zero & screen).deflate(8).contains(box.localToGlobal(box.size.bottomRight(Offset.zero)));
+    if (covered || !inView) {
+      _timer = Timer(const Duration(milliseconds: 1500), _maybeShow);
+      return;
+    }
     CoachTarget.active.value = widget.id;
     _pulse.repeat();
     _entry = OverlayEntry(builder: _bubble);
     Overlay.of(context, rootOverlay: true).insert(_entry!);
+    _fade.forward(from: 0);
     setState(() {});
   }
 
+  bool _leaving = false;
+
   void _dismiss() {
-    if (_entry == null) return;
+    if (_entry == null || _leaving) return;
+    _leaving = true;
     context.storeRead.markCoach(widget.id);
-    _entry?.remove();
-    _entry = null;
-    _pulse.stop();
-    if (CoachTarget.active.value == widget.id) CoachTarget.active.value = null;
-    if (mounted) setState(() {});
+    _fade.reverse().whenComplete(() {
+      _entry?.remove();
+      _entry = null;
+      _leaving = false;
+      _pulse.stop();
+      if (CoachTarget.active.value == widget.id) CoachTarget.active.value = null;
+      if (mounted) setState(() {});
+    });
   }
 
   @override
@@ -73,6 +111,7 @@ class _CoachTargetState extends State<CoachTarget> with SingleTickerProviderStat
       scheduleMicrotask(() => CoachTarget.active.value = null);
     }
     _pulse.dispose();
+    _fade.dispose();
     super.dispose();
   }
 
@@ -84,38 +123,84 @@ class _CoachTargetState extends State<CoachTarget> with SingleTickerProviderStat
     final size = box.size;
     final screen = MediaQuery.of(context).size;
     final center = pos + size.center(Offset.zero);
-    const bubbleW = 220.0;
+    const bubbleW = 224.0, caret = 7.0;
     final left = (center.dx - bubbleW / 2).clamp(12.0, screen.width - bubbleW - 12);
-    final top = widget.below ? pos.dy + size.height + 12 : null;
-    final bottom = widget.below ? null : screen.height - pos.dy + 12;
-    return Positioned.fill(
-      child: Listener(
-        behavior: HitTestBehavior.translucent,
-        onPointerDown: (_) => _dismiss(),
+    final top = widget.below ? pos.dy + size.height + 14 + caret : null;
+    final bottom = widget.below ? null : screen.height - pos.dy + 14 + caret;
+    final hole = Rect.fromCenter(center: center, width: size.width + 18, height: size.height + 18);
+    final bubble = Container(
+      padding: const EdgeInsets.fromLTRB(14, 10, 14, 11),
+      decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(14), boxShadow: mc.e3),
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            widget.text,
+            style: T.t(15, w: FontWeight.w700, color: mc.canvas, height: 1.25),
+          ),
+          const SizedBox(height: 3),
+          Text(
+            'Tap anywhere',
+            style: T.t(12, w: FontWeight.w600, color: mc.mutedOnInk),
+          ),
+        ],
+      ),
+    );
+    // The caret sits on the bubble's edge, under the control's centre.
+    final caretX = (center.dx - left).clamp(18.0, bubbleW - 18.0);
+    return FadeTransition(
+      opacity: CurvedAnimation(parent: _fade, curve: Curves.easeOut),
+      child: Material(
+        type: MaterialType.transparency,
         child: Stack(
           children: [
+            // Outside the spotlight a tap only dismisses; inside it also reaches the control.
+            Positioned.fill(
+              child: Listener(
+                onPointerDown: (_) => _dismiss(),
+                child: CustomPaint(
+                  painter: _Spotlight(
+                    hole: hole,
+                    color: widget.spotlight
+                        ? Colors.black.withValues(alpha: mc.dark ? 0.55 : 0.32)
+                        : const Color(0x00000000),
+                    absorb: widget.spotlight,
+                  ),
+                ),
+              ),
+            ),
+            Positioned.fromRect(
+              rect: hole,
+              child: Listener(behavior: HitTestBehavior.translucent, onPointerDown: (_) => _dismiss()),
+            ),
             Positioned(
               left: left,
               top: top,
               bottom: bottom,
               width: bubbleW,
-              child: Cascade(
-                index: 0,
-                offset: widget.below ? -8 : 8,
-                child: Material(
-                  type: MaterialType.transparency,
-                  child: Container(
-                    padding: const EdgeInsets.fromLTRB(14, 10, 14, 11),
-                    decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(14), boxShadow: mc.e2),
-                    child: Column(
-                      mainAxisSize: MainAxisSize.min,
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Text(widget.text, style: T.t(15, w: FontWeight.w700, color: mc.canvas, height: 1.25)),
-                        const SizedBox(height: 3),
-                        Text('Tap anywhere', style: T.t(12, w: FontWeight.w600, color: mc.mutedOnInk)),
-                      ],
-                    ),
+              child: IgnorePointer(
+                child: Cascade(
+                  index: 0,
+                  offset: widget.below ? -8 : 8,
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    children: [
+                      bubble,
+                      Positioned(
+                        left: caretX - caret,
+                        top: widget.below ? -caret + 1 : null,
+                        bottom: widget.below ? null : -caret + 1,
+                        child: Transform.rotate(
+                          angle: math.pi / 4,
+                          child: Container(
+                            width: caret * 2,
+                            height: caret * 2,
+                            decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(2)),
+                          ),
+                        ),
+                      ),
+                    ],
                   ),
                 ),
               ),
@@ -150,6 +235,33 @@ class _CoachTargetState extends State<CoachTarget> with SingleTickerProviderStat
       ],
     );
   }
+}
+
+/// The dimmed screen with a rounded hole around the control. Hit-testable only outside the hole (and
+/// only when it is a real spotlight), so a tap on the control still reaches it.
+class _Spotlight extends CustomPainter {
+  _Spotlight({required this.hole, required this.color, required this.absorb});
+  final Rect hole;
+  final Color color;
+  final bool absorb;
+
+  RRect get _r => RRect.fromRectAndRadius(hole, Radius.circular(math.min(hole.width, hole.height) / 2));
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    if (color.a == 0) return;
+    final path = Path()
+      ..fillType = PathFillType.evenOdd
+      ..addRect(Offset.zero & size)
+      ..addRRect(_r);
+    canvas.drawPath(path, Paint()..color = color);
+  }
+
+  @override
+  bool? hitTest(Offset position) => absorb && !_r.contains(position);
+
+  @override
+  bool shouldRepaint(_Spotlight old) => old.hole != hole || old.color != color || old.absorb != absorb;
 }
 
 class _Ring extends CustomPainter {

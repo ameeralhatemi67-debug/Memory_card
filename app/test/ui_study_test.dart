@@ -4,15 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:memory_card/app.dart';
 import 'package:memory_card/data/store.dart';
-import 'package:memory_card/features/browse/card_detail.dart';
-import 'package:memory_card/features/browse/deck_browser.dart';
-import 'package:memory_card/features/help/help_screen.dart';
-import 'package:memory_card/features/lab/memory_lab.dart';
-import 'package:memory_card/features/profile/profile_screen.dart';
-import 'package:memory_card/features/search/search_screen.dart';
-import 'package:memory_card/features/settings/settings_screen.dart';
-import 'package:memory_card/features/shell/shell.dart';
-import 'package:memory_card/features/today/today_screen.dart';
 import 'package:memory_card/ui/overlays.dart';
 import 'package:memory_card/ui/theme.dart';
 

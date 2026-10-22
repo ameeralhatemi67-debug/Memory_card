@@ -433,7 +433,7 @@ class _EditorSheetState extends State<EditorSheet> {
                   maxLines: 1, overflow: TextOverflow.ellipsis, style: T.t(14, w: FontWeight.w700, color: mc.ink)),
             ),
             const SizedBox(width: 4),
-            Text('▾', style: T.t(13, w: FontWeight.w700, color: mc.ink)),
+            Transform.rotate(angle: math.pi / 2, child: McIcon(McIcons.chevron, size: const Size(13, 13), color: mc.ink)),
           ]),
         ),
       );
@@ -542,7 +542,7 @@ class _EditorSheetState extends State<EditorSheet> {
           Row(children: [
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text('Also study back → front', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
+                Text('Also study it in reverse', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
                 Text('Creates a reverse card, kept apart in the stack', style: T.t(14, w: FontWeight.w500, color: mc.muted)),
               ]),
             ),
@@ -620,7 +620,7 @@ class _EditorSheetState extends State<EditorSheet> {
         const SizedBox(height: 12),
         Row(children: [
           Expanded(
-            child: Text('Also study back → front', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
+            child: Text('Also study it in reverse', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
           ),
           McSwitch(value: _reverse, onChanged: (v) => setState(() => _reverse = v), label: 'Also study back to front'),
         ]),

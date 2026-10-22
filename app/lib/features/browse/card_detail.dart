@@ -45,6 +45,11 @@ class CardDetail extends StatelessWidget {
       return d > 0 ? 'in $d days' : '${-d} days ago';
     }
 
+    String until(int ms) {
+      final d = dayNumber(ms) - dayNumber(now);
+      return d <= 0 ? 'until later today' : (d == 1 ? 'until tomorrow' : 'for $d more days');
+    }
+
     return Scaffold(
       backgroundColor: mc.canvas,
       body: Column(children: [
@@ -115,7 +120,7 @@ class CardDetail extends StatelessWidget {
                             ? ''
                             : slip <= now
                                 ? 'Slipping since ${when(slip)}: it comes up soon.'
-                                : 'Stays above 90 % until ${when(slip)}.',
+                                : 'Stays above 90 % ${until(slip)}.',
                     style: T.t(16, w: FontWeight.w700, color: mc.ink),
                   ),
                   const SizedBox(height: 4),
@@ -231,7 +236,7 @@ class _CurvePainter extends CustomPainter {
     final w = size.width - left, h = size.height - bottom;
     double x(double days) => left + days / span * w;
     double y(double r) => (1 - (r - 0.5) / 0.5).clamp(0.0, 1.0) * h;
-    final label = TextStyle(fontSize: 10, color: mc.muted, fontWeight: FontWeight.w600);
+    final label = T.t(10.5, w: FontWeight.w600, color: mc.muted);
 
     void text(String t, Offset at) {
       final tp = TextPainter(text: TextSpan(text: t, style: label), textDirection: TextDirection.ltr)..layout();

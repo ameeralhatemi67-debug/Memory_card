@@ -94,7 +94,7 @@ class WaxSeal extends StatelessWidget {
         alignment: Alignment.center,
         children: [
           CustomPaint(size: Size.square(size), painter: _SealPainter(color, spin, check)),
-          if (child != null) child!,
+          ?child,
         ],
       ),
     );

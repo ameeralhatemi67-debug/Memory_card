@@ -709,6 +709,7 @@ class AppStore extends ChangeNotifier {
     _db.saveDeck(d);
     _saveMeta();
     _db.addLog(out.log).then((k) => snapshot?.logKey = k).catchError((Object _) => 0);
+    _logCache?.add(out.log);
     _changed();
     return out;
   }
@@ -728,6 +729,7 @@ class AppStore extends ChangeNotifier {
     _saveMeta();
     final key = s.logKey;
     if (key != null) _db.deleteLog(key);
+    _logCache = null;
     _changed();
   }
 
@@ -842,7 +844,13 @@ class AppStore extends ChangeNotifier {
     _changed();
   }
 
-  Future<List<ReviewLog>> logs({int? since}) => _db.readLogs(since: since);
+  /// Every review, oldest first. Read from disk once, then kept in memory and appended to.
+  Future<List<ReviewLog>> logs({int? since}) async {
+    final all = _logCache ??= await _db.readLogs();
+    return since == null ? all : all.where((l) => l.ts >= since).toList();
+  }
+
+  List<ReviewLog>? _logCache;
   int get logCount => _db.logCount;
 
   // ---------------------------------------------------------------- backup
@@ -902,12 +910,14 @@ class AppStore extends ChangeNotifier {
     await _db.saveAll(data);
     final logs = ((j['logs'] as List?) ?? const []).map((e) => ReviewLog.fromJson(e as Map)).toList();
     await _db.replaceLogs(logs);
+    _logCache = null;
     _changed();
   }
 
   /// Erases everything on this phone and starts over (onboarding again).
   Future<void> eraseAll() async {
     await _db.wipe();
+    _logCache = null;
     data.folders.clear();
     data.decks.clear();
     data.cards.clear();

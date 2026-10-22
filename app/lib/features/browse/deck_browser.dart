@@ -147,11 +147,14 @@ class _DeckBrowserState extends State<DeckBrowser> {
         Expanded(
           child: cards.isEmpty
               ? Center(child: Text('No cards here', style: T.t(17, w: FontWeight.w600, color: mc.muted)))
-              : ListView.builder(
-                  padding: EdgeInsets.fromLTRB(20, 4, 20, 110 + mq.padding.bottom),
-                  itemCount: cards.length,
-                  itemBuilder: (context, i) => _CardRow(card: cards[i], recall: store.engine.recall(cards[i], now)),
-                ),
+              : Stack(children: [
+                  ListView.builder(
+                    padding: EdgeInsets.fromLTRB(20, 4, 20, 110 + mq.padding.bottom),
+                    itemCount: cards.length,
+                    itemBuilder: (context, i) => _CardRow(card: cards[i], recall: store.engine.recall(cards[i], now)),
+                  ),
+                  Positioned(left: 0, right: 0, bottom: 0, child: BottomFade(height: 96 + mq.padding.bottom)),
+                ]),
         ),
       ]),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
@@ -259,7 +262,7 @@ class _CardRow extends StatelessWidget {
                     width: 52,
                     child: Stack(children: [
                       Positioned.fill(child: ColoredBox(color: mc.line)),
-                      FractionallySizedBox(widthFactor: r ?? 0.0, child: ColoredBox(color: color)),
+                      FractionallySizedBox(widthFactor: r ?? 0.0, heightFactor: 1, child: ColoredBox(color: color)),
                     ]),
                   ),
                 ),

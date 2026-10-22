@@ -184,7 +184,9 @@ class _MemoryLabState extends State<MemoryLab> {
                       const SizedBox(height: 3),
                       Text(
                         eng.weights == null
-                            ? 'Train FSRS-6 on your own history ($scorable of ${FsrsOptimizer.minReviews} reviews a day apart so far).'
+                            ? (scorable >= FsrsOptimizer.minReviews
+                                ? 'Train FSRS-6 on your own history: $scorable reviews a day apart are ready.'
+                                : 'Train FSRS-6 on your own history ($scorable of ${FsrsOptimizer.minReviews} reviews a day apart so far).')
                             : 'Trained on ${eng.trainedOn} reviews, ${dayKey(dayNumber(eng.trainedAt))}. Prediction error '
                                 '${eng.lossBefore != null && eng.lossAfter != null && eng.lossBefore! > 0 ? '${((eng.lossBefore! - eng.lossAfter!) / eng.lossBefore! * 100).round()}% lower' : 'updated'}.',
                         style: T.t(14, w: FontWeight.w500, color: mc.muted, height: 1.35),
@@ -349,7 +351,7 @@ class _GradeMix extends StatelessWidget {
         borderRadius: BorderRadius.circular(5),
         child: SizedBox(
           height: 12,
-          child: Row(children: [
+          child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             for (final (n, c, _) in parts)
               if (n > 0) Expanded(flex: (n * 1000 ~/ total).clamp(1, 1000), child: ColoredBox(color: c)),
             if (total == 1 && grades.every((g) => g == 0)) Expanded(child: ColoredBox(color: mc.line)),
@@ -400,11 +402,11 @@ class _CalPainter extends CustomPainter {
       final r = 4.0 + math.min(10.0, math.sqrt(b.n.toDouble()));
       canvas.drawCircle(c, r, Paint()..color = mc.ink);
     }
-    final tp = TextPainter(
-      text: TextSpan(text: 'predicted →   ↑ remembered', style: TextStyle(fontSize: 10, color: mc.muted, fontWeight: FontWeight.w600)),
-      textDirection: TextDirection.ltr,
-    )..layout();
-    tp.paint(canvas, const Offset(2, 2));
+    final style = T.t(10.5, w: FontWeight.w600, color: mc.muted);
+    final up = TextPainter(text: TextSpan(text: 'remembered', style: style), textDirection: TextDirection.ltr)..layout();
+    up.paint(canvas, const Offset(2, 2));
+    final across = TextPainter(text: TextSpan(text: 'predicted', style: style), textDirection: TextDirection.ltr)..layout();
+    across.paint(canvas, Offset(size.width - across.width - 2, size.height - across.height - 2));
   }
 
   @override
@@ -421,36 +423,63 @@ class _YearHeat extends StatelessWidget {
     final today = store.today.day;
     final start = today - 52 * 7 - (weekdayOf(today) - 1);
     final hist = store.data.profile.history;
-    return LayoutBuilder(builder: (context, box) {
-      final cell = math.max(4.0, (box.maxWidth - 52 * 2) / 53);
-      return SizedBox(
-        height: 7 * (cell + 2),
+    // A year is 53 columns; on a phone that only fits with readable cells as a strip you can scroll
+    // back through. It opens on the latest weeks.
+    const cell = 11.0, gap = 3.0, monthRow = 18.0;
+    const months = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'];
+    int monthOf(int day) => DateTime.fromMillisecondsSinceEpoch(day * msPerDay, isUtc: true).month;
+    final shades = [
+      mc.line,
+      mc.dark ? const Color(0xFF8A8A8A) : const Color(0xFFBDBDBD),
+      mc.dark ? const Color(0xFFBDBDBD) : const Color(0xFF8A8A8A),
+      mc.dark ? const Color(0xFFDADADA) : const Color(0xFF5E5E5E),
+      mc.ink,
+    ];
+    return SizedBox(
+      height: monthRow + 7 * (cell + gap),
+      child: SingleChildScrollView(
+        scrollDirection: Axis.horizontal,
+        reverse: true,
         child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
           for (var w = 0; w < 53; w++)
             Padding(
-              padding: const EdgeInsets.only(right: 2),
-              child: Column(children: [
+              padding: const EdgeInsets.only(right: gap),
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                SizedBox(
+                  height: monthRow,
+                  width: cell,
+                  child: w == 0 || monthOf(start + w * 7) != monthOf(start + (w - 1) * 7)
+                      ? OverflowBox(
+                          alignment: Alignment.topLeft,
+                          maxWidth: 40,
+                          child: Text(months[monthOf(start + w * 7) - 1], style: T.t(11, w: FontWeight.w600, color: mc.muted)),
+                        )
+                      : null,
+                ),
                 for (var d = 0; d < 7; d++)
                   () {
                     final day = start + w * 7 + d;
-                    if (day > today) return SizedBox(width: cell, height: cell + 2);
+                    if (day > today) return const SizedBox(width: cell, height: cell + gap);
                     final n = hist[day]?.swipes ?? 0;
                     final lvl = n == 0 ? 0 : n < 10 ? 1 : n < 25 ? 2 : n < 45 ? 3 : 4;
                     return Container(
                       width: cell,
                       height: cell,
-                      margin: const EdgeInsets.only(bottom: 2),
+                      margin: const EdgeInsets.only(bottom: gap),
                       decoration: BoxDecoration(
-                        color: lvl == 0 ? mc.line : [mc.line, mc.dark ? const Color(0xFF8A8A8A) : const Color(0xFFBDBDBD), mc.dark ? const Color(0xFFBDBDBD) : const Color(0xFF8A8A8A), mc.dark ? const Color(0xFFDADADA) : const Color(0xFF5E5E5E), mc.ink][lvl],
-                        borderRadius: BorderRadius.circular(2),
+                        color: shades[lvl],
+                        borderRadius: BorderRadius.circular(2.5),
+                        border: day == today ? Border.all(color: Mc.red, width: 1.5) : null,
                       ),
                     );
                   }(),
               ]),
             ),
+          // Room for the last month's name.
+          const SizedBox(width: 16),
         ]),
-      );
-    });
+      ),
+    );
   }
 }
 

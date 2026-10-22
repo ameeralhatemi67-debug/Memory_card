@@ -109,6 +109,40 @@ class Catalog {
 
   int get cardCount => decks.fold(0, (a, d) => a + d.cards.length);
 
+  /// Hand-picked starting points, best first. The shop's "Featured" order and the onboarding picker
+  /// show these before the rest of a category.
+  static const featuredIds = [
+    'es-basics', 'fr-essentials', 'de-a1-basics', 'it-basics', 'ja-hiragana', 'pt-everyday', 'zh-pinyin', //
+    'ar-alphabet', 'en-idioms', 'ru-cyrillic', 'de-a1-everyday', 'ja-survival',
+    'python-syntax', 'git-commands', 'js-essentials', 'sql-queries', 'linux-shell', 'regex-patterns', 'big-o-operations',
+    'anatomy-bones', 'cranial-nerves', 'med-prefixes', 'medical-abbreviations', 'pharm-basics', 'vitamin-deficiencies',
+    'periodic-table', 'solar-system', 'organelles', 'si-units-constants', 'functional-groups',
+    'world-capitals', 'history-dates', 'us-states', 'greek-gods', 'latin-phrases', 'paintings', 'philosophy', 'fallacies',
+  ];
+
+  /// [list] with the featured decks first, in [featuredIds] order; the others keep their order.
+  List<CatalogDeck> featuredFirst(Iterable<CatalogDeck> list) {
+    int rank(CatalogDeck d) {
+      final i = featuredIds.indexOf(d.id);
+      return i < 0 ? featuredIds.length : i;
+    }
+
+    final indexed = list.indexed.toList()
+      ..sort((a, b) {
+        final r = rank(a.$2).compareTo(rank(b.$2));
+        return r != 0 ? r : a.$1.compareTo(b.$1);
+      });
+    return [for (final (_, d) in indexed) d];
+  }
+
+  /// The shop's deck of the day: walks the featured decks you don't have yet, one step per day.
+  CatalogDeck? deckOfTheDay(int day, bool Function(String id) owned) {
+    final pool = featuredFirst(decks.where((d) => !owned(d.id)));
+    if (pool.isEmpty) return null;
+    final featured = pool.where((d) => featuredIds.contains(d.id)).length;
+    return pool[day % (featured > 0 ? featured : pool.length)];
+  }
+
   /// Decks that share the category, closest in size first (the shop's "Similar" action).
   List<CatalogDeck> similarTo(CatalogDeck deck) {
     final same = decks.where((d) => d.id != deck.id && d.category == deck.category).toList()

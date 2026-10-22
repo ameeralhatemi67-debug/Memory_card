@@ -7,11 +7,14 @@ import '../../ui/theme.dart';
 /// A deck drawn as a small physical card stack: two fanned cards behind a dark front card with the
 /// monogram, and the category's coloured tab (canvas Shop.dc.html).
 class StackArt extends StatelessWidget {
-  const StackArt({super.key, required this.mono, required this.tab, this.held = false, this.scale = 1});
+  const StackArt({super.key, required this.mono, required this.tab, this.held = false, this.inverse = false, this.scale = 1});
 
   final String mono;
   final Color tab;
   final bool held;
+
+  /// Drawn on an ink surface (a selected tile): the front card turns canvas-coloured.
+  final bool inverse;
   final double scale;
 
   @override
@@ -19,8 +22,8 @@ class StackArt extends StatelessWidget {
     final mc = Mc.of(context);
     final back2 = held ? const Color(0xFF9D9D9D) : mc.back2;
     final back1 = held ? const Color(0xFF747474) : mc.back1;
-    final front = held ? Mc.graphite : mc.ink;
-    final onFront = held ? Mc.paper : mc.onInk;
+    final front = held ? Mc.graphite : (inverse ? mc.canvas : mc.ink);
+    final onFront = held ? Mc.paper : (inverse ? mc.ink : mc.onInk);
     return SizedBox(
       width: 150 * scale,
       height: 120 * scale,

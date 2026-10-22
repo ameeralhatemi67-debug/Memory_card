@@ -253,8 +253,9 @@ class _StudyScreenState extends State<StudyScreen>
       _revealed = true;
       if (_note?.text.startsWith('Tap') ?? false) _note = null;
     });
-    if (_mode == RevealMode.flip && !_typing)
+    if (_mode == RevealMode.flip && !_typing) {
       _flip.animateTo(1, curve: McCurves.springy);
+    }
   }
 
   void _submitTyped() {
@@ -424,10 +425,11 @@ class _StudyScreenState extends State<StudyScreen>
       duration: Duration(milliseconds: reduced ? 150 : 230),
     );
     c.addListener(() {
-      if (mounted)
+      if (mounted) {
         setState(
           () => _dx = from + (to - from) * McCurves.paper.transform(c.value),
         );
+      }
     });
     await c.forward();
     c.dispose();
@@ -507,14 +509,16 @@ class _StudyScreenState extends State<StudyScreen>
   _Note _noteFor(SwipeOutcome out) {
     final a = out.assessment;
     final smart = store.settings.smartGrading && store.settings.showGrade;
-    if (out.leechNow)
+    if (out.leechNow) {
       return _Note(
         'This card keeps slipping',
         rewriteCardId: out.cardId,
         ms: 7000,
       );
-    if (out.pausedNew)
+    }
+    if (out.pausedNew) {
       return _Note('Tough patch · new cards paused', undo: true, ms: 4200);
+    }
     final where = out.toEnd
         ? 'to the back'
         : 'back in ${out.reinsertAt} ${out.reinsertAt == 1 ? 'card' : 'cards'}';
@@ -742,8 +746,9 @@ class _StudyScreenState extends State<StudyScreen>
 
   KeyEventResult _onKey(FocusNode node, KeyEvent e) {
     if (e is! KeyDownEvent) return KeyEventResult.ignored;
-    if (FocusManager.instance.primaryFocus?.context?.widget is EditableText)
+    if (FocusManager.instance.primaryFocus?.context?.widget is EditableText) {
       return KeyEventResult.ignored;
+    }
     final k = e.logicalKey;
     if (k == LogicalKeyboardKey.arrowRight) {
       _commit(true, viaButton: true);
@@ -956,8 +961,9 @@ class _StudyScreenState extends State<StudyScreen>
                     onPanUpdate: _onPanUpdate,
                     onPanEnd: _onPanEnd,
                     onTap: () {
-                      if (_mode == RevealMode.tap || _mode == RevealMode.flip)
+                      if (_mode == RevealMode.tap || _mode == RevealMode.flip) {
                         _reveal();
+                      }
                     },
                     child: Transform(
                       alignment: Alignment.center,
@@ -1107,6 +1113,7 @@ class _StudyScreenState extends State<StudyScreen>
                     child: Center(
                       child: CoachTarget(
                         id: 'study-swipe',
+                        spotlight: false,
                         text: _revealed
                             ? 'Swipe right if you knew it, left if not'
                             : 'Try to remember, then tap the card',
@@ -1352,6 +1359,7 @@ class _GoalBar extends StatelessWidget {
               curve: Curves.easeOut,
               builder: (context, v, _) => FractionallySizedBox(
                 widthFactor: v,
+                heightFactor: 1,
                 child: ColoredBox(color: mc.ink),
               ),
             ),

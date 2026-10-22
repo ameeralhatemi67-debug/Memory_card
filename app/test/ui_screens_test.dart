@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:memory_card/app.dart';
 import 'package:memory_card/data/store.dart';
+import 'package:memory_card/engine/days.dart';
 import 'package:memory_card/features/browse/card_detail.dart';
 import 'package:memory_card/features/browse/deck_browser.dart';
 import 'package:memory_card/features/help/help_screen.dart';
@@ -61,6 +62,15 @@ void main() {
 
       expect(find.text('Spanish · Basics'), findsWidgets);
 
+      // The first-visit coach mark: shown once, a tap outside the spotlight only dismisses it.
+      await settle(tester, 600);
+      expect(find.text('Your folders live here'), findsOneWidget);
+      await tester.tapAt(const Offset(200, 600));
+      await settle(tester, 400);
+      expect(find.text('Your folders live here'), findsNothing);
+      expect(store.coachSeen('drawer'), isTrue);
+      store.markCoach('shop-hold');
+
       // Drawer.
       Shell.current!.openDrawer();
       await settle(tester, 1200);
@@ -74,12 +84,15 @@ void main() {
       Shell.current!.openShop();
       await settle(tester, 1200);
       expect(find.text('Shop'), findsOneWidget);
+      // With decks in the library, the hero is the deck of the day.
+      final hero = store.catalog.deckOfTheDay(dayNumber(store.data.now()), store.data.shopAdded.containsKey)!;
+      expect(find.text('DECK OF THE DAY'), findsOneWidget);
       await tester.tap(find.text('Preview').first);
       await settle(tester, 1200);
       expect(find.textContaining('cards to'), findsWidgets);
       await tester.tap(find.textContaining('cards to').last);
       await settle(tester, 1200);
-      expect(store.data.shopAdded.containsKey('de-a1-basics'), isTrue);
+      expect(store.data.shopAdded.containsKey(hero.id), isTrue);
 
       // Full screens.
       final nav = Navigator.of(

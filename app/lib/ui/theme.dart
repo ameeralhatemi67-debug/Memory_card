@@ -217,7 +217,9 @@ class Mc extends ThemeExtension<Mc> {
     );
     return base.copyWith(
       extensions: [mc],
-      textTheme: (T.googleFonts ? GoogleFonts.barlowSemiCondensedTextTheme(base.textTheme) : base.textTheme)
+      textTheme: (T.googleFonts
+              ? GoogleFonts.barlowSemiCondensedTextTheme(base.textTheme)
+              : base.textTheme.apply(fontFamily: T.testFamily))
           .apply(bodyColor: mc.ink, displayColor: mc.ink),
     );
   }
@@ -232,8 +234,22 @@ class T {
   /// Off in widget tests (no network there); the app always uses Google Fonts.
   static bool googleFonts = true;
 
+  /// Widget tests only: font families to use while [googleFonts] is off (null = the test font).
+  static String? testFamily;
+  static String? testMono;
+
+  /// Bernard has no middle dot (every deck name has one: "Spanish · Basics"), no euro sign and no
+  /// non-Latin letters; those come from Barlow instead of whatever the phone falls back to.
+  static List<String>? get _displayFallback {
+    if (!googleFonts) return testFamily == null ? null : [testFamily!];
+    return _barlowFallback ??= [GoogleFonts.barlowSemiCondensed(fontWeight: FontWeight.w700).fontFamily!];
+  }
+
+  static List<String>? _barlowFallback;
+
   static TextStyle d(double size, {Color? color, double height = 1.0, double spacing = 0}) => TextStyle(
         fontFamily: displayFamily,
+        fontFamilyFallback: _displayFallback,
         fontSize: size,
         height: height,
         color: color,
@@ -244,7 +260,7 @@ class T {
 
   static TextStyle t(double size, {FontWeight w = FontWeight.w500, Color? color, double? height, double? spacing}) =>
       !googleFonts
-          ? TextStyle(fontSize: size, fontWeight: w, color: color, height: height, letterSpacing: spacing)
+          ? TextStyle(fontFamily: testFamily, fontSize: size, fontWeight: w, color: color, height: height, letterSpacing: spacing)
           : GoogleFonts.barlowSemiCondensed(
         fontSize: size,
         fontWeight: w,
@@ -259,7 +275,7 @@ class T {
 
   static TextStyle mono(double size, {Color? color, double height = 1.15, FontWeight w = FontWeight.w600}) =>
       !googleFonts
-          ? TextStyle(fontSize: size, color: color, height: height, fontWeight: w, fontFamily: 'monospace')
+          ? TextStyle(fontSize: size, color: color, height: height, fontWeight: w, fontFamily: testMono ?? 'monospace')
           : GoogleFonts.jetBrainsMono(fontSize: size, color: color, height: height, fontWeight: w);
 
   /// Fonts that must be ready before the first frame (no visible swap on launch).

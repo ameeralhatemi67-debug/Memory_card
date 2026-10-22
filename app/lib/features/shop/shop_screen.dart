@@ -6,6 +6,7 @@ import 'package:share_plus/share_plus.dart';
 import '../../data/catalog.dart';
 import '../../data/store.dart';
 import '../../data/store_scope.dart';
+import '../../engine/days.dart';
 import '../../ui/coach.dart';
 import '../../ui/fx.dart';
 import '../../ui/icons.dart';
@@ -71,7 +72,7 @@ class _ShopScreenState extends State<ShopScreen> {
       case _Sort.size:
         decks.sort((a, b) => b.cards.length.compareTo(a.cards.length));
       case _Sort.featured:
-        break;
+        if (_similarTo == null) decks = store.catalog.featuredFirst(decks);
     }
     return decks;
   }
@@ -86,7 +87,11 @@ class _ShopScreenState extends State<ShopScreen> {
     final decks = _filter(store);
     final q = _query.text.trim();
     final showHero = _cat == 'all' && q.isEmpty && _similarTo == null;
-    final featured = store.catalog.byId('de-a1-basics') ?? (store.catalog.decks.isEmpty ? null : store.catalog.decks.first);
+    // A new library starts at the canvas's German A1; after that, a different featured deck each day.
+    final fresh = store.data.shopAdded.isEmpty;
+    final featured = fresh
+        ? store.catalog.byId('de-a1-basics')
+        : store.catalog.deckOfTheDay(dayNumber(store.data.now()), store.data.shopAdded.containsKey);
     final pins = store.catalog.decks.where((d) => store.data.shopPins.contains(d.id)).toList();
     final cols = mq.size.width >= 600 ? 3 : 2;
 
@@ -112,7 +117,7 @@ class _ShopScreenState extends State<ShopScreen> {
               padding: EdgeInsets.fromLTRB(18, 6, 18, navH + 120),
               physics: const BouncingScrollPhysics(),
               children: [
-                if (showHero && featured != null) _Hero(deck: featured),
+                if (showHero && featured != null) _Hero(deck: featured, label: fresh ? 'START HERE' : 'DECK OF THE DAY'),
                 if (_similarTo != null)
                   Padding(
                     padding: const EdgeInsets.only(top: 4),
@@ -319,7 +324,10 @@ class _ShopScreenState extends State<ShopScreen> {
       barrierLabel: 'Close quick actions',
       transitionDuration: const Duration(milliseconds: 200),
       reverseTransitionDuration: const Duration(milliseconds: 160),
-      pageBuilder: (ctx, a, b) => _HoldMenu(deck: deck, rect: rect, pinned: store.data.shopPins.contains(deck.id)),
+      pageBuilder: (ctx, a, b) => Material(
+        type: MaterialType.transparency,
+        child: _HoldMenu(deck: deck, rect: rect, pinned: store.data.shopPins.contains(deck.id)),
+      ),
       transitionsBuilder: (ctx, a, b, child) => FadeTransition(opacity: a, child: child),
     ));
     if (!context.mounted || action == null) return;
@@ -414,8 +422,9 @@ class _Search extends StatelessWidget {
 }
 
 class _Hero extends StatelessWidget {
-  const _Hero({required this.deck});
+  const _Hero({required this.deck, required this.label});
   final CatalogDeck deck;
+  final String label;
 
   @override
   Widget build(BuildContext context) {
@@ -432,7 +441,7 @@ class _Hero extends StatelessWidget {
             top: 18,
             width: 180,
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text('START HERE', style: T.caps(12, color: mc.mutedOnInk, spacing: 1.4)),
+              Text(label, style: T.caps(12, color: mc.mutedOnInk, spacing: 1.4)),
               const SizedBox(height: 6),
               Text(deck.name, maxLines: 2, overflow: TextOverflow.ellipsis, style: T.d(24, color: mc.onInk)),
               const SizedBox(height: 4),
@@ -553,8 +562,8 @@ class _HoldMenu extends StatelessWidget {
           for (var i = 0; i < actions.length; i++)
             Builder(builder: (context) {
               final r = angles[i] * math.pi / 180;
-              final x = (cx + math.cos(r) * rx - 38).clamp(6.0, size.width - 82);
-              final y = (cy + math.sin(r) * ry - 36).clamp(80.0, size.height - 112 - 98);
+              final x = (cx + math.cos(r) * rx - 42).clamp(6.0, size.width - 90);
+              final y = (cy + math.sin(r) * ry - 36).clamp(80.0, size.height - 112 - 106);
               final u = ((ms - i * 45) / 240).clamp(0.0, 1.0);
               final s = u < 0.7 ? 0.4 + (1.08 - 0.4) * (u / 0.7) : 1.08 - 0.08 * ((u - 0.7) / 0.3);
               final dy = -2 * (1 - math.cos(ms / 2600 * math.pi * 2 + i * 0.8));
@@ -573,8 +582,8 @@ class _HoldMenu extends StatelessWidget {
                         haptic: true,
                         onTap: () => Navigator.pop(context, id),
                         child: SizedBox(
-                          width: 76,
-                          height: 98,
+                          width: 84,
+                          height: 106,
                           child: Column(children: [
                             SizedBox(
                               width: 72,
@@ -588,7 +597,12 @@ class _HoldMenu extends StatelessWidget {
                               ]),
                             ),
                             const SizedBox(height: 4),
-                            Text(label, style: T.t(14, w: FontWeight.w700, color: Mc.paper)),
+                            // A dark pill keeps the label readable over the light, held tile.
+                            Container(
+                              padding: const EdgeInsets.fromLTRB(8, 2, 8, 3),
+                              decoration: BoxDecoration(color: const Color(0x8C000000), borderRadius: BorderRadius.circular(10)),
+                              child: Text(label, style: T.t(14, w: FontWeight.w700, color: Mc.paper)),
+                            ),
                           ]),
                         ),
                       ),

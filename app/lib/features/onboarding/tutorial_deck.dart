@@ -1,7 +1,7 @@
 import '../../data/store.dart';
 
-/// "Start here · How it works": a short real deck that teaches the app while you use it.
-const tutorialDeckName = 'Start here · How it works';
+/// "How it works", in the "Start here" folder: a short real deck that teaches the app while you use it.
+const tutorialDeckName = 'How it works';
 
 const tutorialCards = <CardDraft>[
   CardDraft(

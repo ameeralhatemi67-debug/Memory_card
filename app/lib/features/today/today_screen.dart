@@ -54,7 +54,8 @@ class TodayScreen extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: ListView(
+          child: Stack(children: [
+          ListView(
             padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
             children: [
               Center(
@@ -120,6 +121,8 @@ class TodayScreen extends StatelessWidget {
               ],
             ],
           ),
+          const Positioned(left: 0, right: 0, bottom: 0, child: BottomFade(height: 28)),
+          ]),
         ),
         Padding(
           padding: EdgeInsets.fromLTRB(20, 4, 20, 20 + mq.padding.bottom),
@@ -204,7 +207,7 @@ class _GradeBar extends StatelessWidget {
           borderRadius: BorderRadius.circular(5),
           child: SizedBox(
             height: 10,
-            child: Row(children: [
+            child: Row(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
               for (final (n, c, _) in parts)
                 if (n > 0) Expanded(flex: (n * 1000 ~/ total).clamp(1, 1000), child: ColoredBox(color: c)),
             ]),
@@ -252,7 +255,7 @@ class _Health extends StatelessWidget {
               height: 8,
               child: Stack(children: [
                 Positioned.fill(child: ColoredBox(color: mc.track)),
-                FractionallySizedBox(widthFactor: (v / 100).clamp(0.0, 1.0), child: ColoredBox(color: mc.ink)),
+                FractionallySizedBox(widthFactor: (v / 100).clamp(0.0, 1.0), heightFactor: 1, child: ColoredBox(color: mc.ink)),
               ]),
             ),
           ),

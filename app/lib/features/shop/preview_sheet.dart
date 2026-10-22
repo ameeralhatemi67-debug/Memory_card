@@ -195,8 +195,10 @@ class _PreviewSheetState extends State<PreviewSheet> with SingleTickerProviderSt
                   Row(children: [
                     McIcon(McIcons.lightbulb, size: const Size(16, 16), color: mc.muted),
                     const SizedBox(width: 6),
-                    Text('${deck.cards.where((c) => c.hook.isNotEmpty).length} cards come with a memory hook',
-                        style: T.t(14, w: FontWeight.w600, color: mc.muted)),
+                    Expanded(
+                      child: Text('${deck.cards.where((c) => c.hook.isNotEmpty).length} cards come with a memory hook',
+                          style: T.t(14, w: FontWeight.w600, color: mc.muted)),
+                    ),
                   ]),
                 ],
                 const SizedBox(height: 16),
@@ -230,8 +232,8 @@ class _PreviewSheetState extends State<PreviewSheet> with SingleTickerProviderSt
                     Row(children: [
                       Expanded(
                         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                          Text('Also study back → front', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
-                          Text('Doubles the deck with reverse cards', style: T.t(14, w: FontWeight.w500, color: mc.muted)),
+                          Text('Also study it in reverse', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
+                          Text('Adds a back-to-front card for each one', style: T.t(14, w: FontWeight.w500, color: mc.muted)),
                         ]),
                       ),
                       McSwitch(value: _reverse, onChanged: (v) => setState(() => _reverse = v)),

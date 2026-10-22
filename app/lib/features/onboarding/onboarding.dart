@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 
 import '../../data/catalog.dart';
 import '../../data/models.dart';
+import '../../data/store.dart';
 import '../../data/store_scope.dart';
 import '../../services/reminders.dart';
 import '../../ui/fx.dart';
@@ -43,6 +44,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
   // Setup choices.
   final Set<String> _cats = {'lang'};
   final Set<String> _decks = {};
+  final Set<String> _openCats = {};
   int _goal = 20;
   Pace _pace = Pace.balanced;
   bool _remind = false;
@@ -84,9 +86,10 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
   // ---------------------------------------------------------------- the swipe cards
 
   /// Which way the card on this step must go (null = either / button only).
-  bool? get _wants => switch (_step) { 2 => false, _ => true };
+  bool? get _wants => _reinserting ? true : switch (_step) { 2 => false, _ => true };
 
-  bool get _needsReveal => _step == 1 || _step == 2;
+  /// Steps 1 and 2 are real recall cards: think, tap to check, then swipe.
+  bool get _needsReveal => !_reinserting && (_step == 1 || _step == 2);
 
   void _onStart(DragStartDetails d) {
     if (_flying) return;
@@ -131,7 +134,12 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
     if (want != null && want != right) {
       _back();
       Fx.i.warn();
-      setState(() => _hint = want ? 'This time you knew it: swipe right.' : "This time you didn't: swipe left.");
+      final recall = !_reinserting && (_step == 1 || _step == 2);
+      setState(() => _hint = !recall
+          ? 'Swipe right to go on.'
+          : want
+              ? 'This time you knew it: swipe right.'
+              : "This time you didn't: swipe left.");
       return;
     }
     _flying = true;
@@ -148,15 +156,18 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
     await c.forward();
     c.dispose();
     if (!mounted) return;
-    if (_step == 2) {
+    if (_step == 2 && !_reinserting) {
+      // The missed card is not gone: the next card shows where it went.
       setState(() {
         _reinserting = true;
         _dx = 0;
+        _flying = false;
+        _revealed = false;
+        _hint = null;
       });
-      await Future.delayed(const Duration(milliseconds: 2300));
-      if (!mounted) return;
-      setState(() => _reinserting = false);
+      return;
     }
+    _reinserting = false;
     _next();
   }
 
@@ -251,7 +262,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
                       tween: Tween(end: (_step + 1) / _total),
                       duration: const Duration(milliseconds: 380),
                       curve: McCurves.out,
-                      builder: (context, v, _) => FractionallySizedBox(widthFactor: v, child: ColoredBox(color: mc.ink)),
+                      builder: (context, v, _) => FractionallySizedBox(widthFactor: v, heightFactor: 1, child: ColoredBox(color: mc.ink)),
                     ),
                   ]),
                 ),
@@ -288,9 +299,16 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
     final mq = MediaQuery.of(context);
     return LayoutBuilder(builder: (context, box) {
       final w = box.maxWidth, h = box.maxHeight;
-      final cardW = math.min(276.0, w * 0.72);
-      final cardH = math.min(cardW * 384 / 276, h * 0.5);
-      final cardTop = mq.padding.top + math.max(96.0, (h - cardH) * 0.36);
+      // Top to bottom: the progress row, the instruction, the stack (four layers peek above the card,
+      // three below), the ears, and the nudge button. Spare height goes around the stack, and the
+      // instruction stays just above it.
+      const instrH = 48.0;
+      final minCardTop = mq.padding.top + 58 + instrH + 14 + 17 * 4;
+      final bottomRoom = mq.padding.bottom + 26 + 44 + 18;
+      final cardW = math.min(276.0, w - 72);
+      final cardH = math.max(240.0, math.min(cardW * 384 / 276, h - minCardTop - 17 * 3 - bottomRoom - 24));
+      final cardTop = minCardTop + math.max(0.0, h - minCardTop - cardH - 17 * 3 - bottomRoom) * 0.4;
+      final instrTop = cardTop - 17 * 4 - 14 - instrH;
       final cardLeft = (w - cardW) / 2;
       final dx = _dx;
       final p = math.min(1.0, dx.abs() / cardW);
@@ -312,7 +330,9 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
           switch (_step) {
             0 => 'Swipe the card right to begin',
             1 => _revealed ? 'Knew it? Swipe right.' : 'Think of the answer, then tap the card.',
-            2 => _reinserting ? '' : (_revealed ? "Didn't know it? Swipe left. That's normal for a new card." : 'Try this one. Then tap to check.'),
+            2 => _reinserting
+                ? 'Swipe right to continue'
+                : (_revealed ? "Didn't know it? Swipe left. That's normal for a new card." : 'Try this one. Then tap to check.'),
             3 => 'Swipe right to continue',
             _ => 'Swipe right when you are ready',
           };
@@ -337,8 +357,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
           height: cardH,
           child: DecoratedBox(decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(18))),
         ),
-        if (!_reinserting)
-          Positioned(
+        Positioned(
             left: cardLeft,
             top: cardTop,
             width: cardW,
@@ -361,22 +380,26 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
                 ),
               ),
             ),
-          )
-        else
-          Positioned(left: 16, right: 16, top: cardTop + cardH * 0.3, child: const _Reinsertion()),
+          ),
         Positioned(left: 0, top: earsTop, child: Ear(right: false, amount: inL, committed: dx < -0.6 * cardW, dragging: _dragging, onTap: () => _commit(false))),
         Positioned(right: 0, top: earsTop, child: Ear(right: true, amount: inR, committed: dx > 0.6 * cardW, dragging: _dragging, onTap: () => _commit(true))),
         Positioned(
           left: 28,
           right: 28,
-          top: cardTop - 74 - 17 * 4,
-          child: AnimatedSwitcher(
-            duration: const Duration(milliseconds: 220),
-            child: Text(
-              instruction,
-              key: ValueKey(instruction),
-              textAlign: TextAlign.center,
-              style: T.t(17, w: FontWeight.w700, color: _hint != null ? Mc.red : mc.ink, height: 1.3),
+          top: instrTop,
+          height: instrH,
+          child: Align(
+            alignment: Alignment.bottomCenter,
+            child: AnimatedSwitcher(
+              duration: const Duration(milliseconds: 220),
+              child: Text(
+                instruction,
+                key: ValueKey(instruction),
+                textAlign: TextAlign.center,
+                maxLines: 2,
+                overflow: TextOverflow.ellipsis,
+                style: T.t(17, w: FontWeight.w700, color: _hint != null ? Mc.red : mc.ink, height: 1.3),
+              ),
             ),
           ),
         ),
@@ -385,7 +408,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
           right: 0,
           bottom: mq.padding.bottom + 26,
           child: Center(
-            child: _step == 0 || _step >= 3
+            child: _step == 0 || _step >= 3 || _reinserting
                 ? _NudgeArrow(onTap: () => _commit(true))
                 : const SizedBox(height: 40),
           ),
@@ -396,6 +419,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
 
   Widget _cardContent(BuildContext context, double cardH) {
     final mc = Mc.of(context);
+    if (_reinserting) return const _Reinsertion();
     Widget answer(String a) => AnimatedSwitcher(
           duration: const Duration(milliseconds: 240),
           child: _revealed
@@ -416,7 +440,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
         );
     switch (_step) {
       case 0:
-        return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        return _CardBody([
           Text('WELCOME', style: T.caps(12, color: mc.mutedOnInk)),
           const Spacer(),
           Center(child: McIcon(McIcons.logo, size: const Size(62, 80), color: mc.onInk)),
@@ -428,7 +452,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
           const Spacer(),
         ]);
       case 1:
-        return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        return _CardBody([
           Text('CAPITAL CITY', style: T.caps(12, color: mc.mutedOnInk)),
           const SizedBox(height: 6),
           Text('The capital of Australia?', style: T.d(32, color: mc.onInk, height: 1.05)),
@@ -438,7 +462,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
           answer('Canberra'),
         ]);
       case 2:
-        return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        return _CardBody([
           Row(children: [
             Expanded(child: Text('NOUN · MASCULINE', style: T.caps(12, color: mc.mutedOnInk))),
             Container(
@@ -455,10 +479,10 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
           answer('the butterfly'),
         ]);
       case 3:
-        return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        return _CardBody([
           Text('HOW IT WORKS', style: T.caps(12, color: mc.mutedOnInk)),
           const SizedBox(height: 6),
-          Text('We read how you answer', style: T.d(30, color: mc.onInk, height: 1.05)),
+          Text('We read how\nyou answer', style: T.d(30, color: mc.onInk, height: 1.05)),
           const SizedBox(height: 14),
           _GradeRow(color: Mc.green, title: 'Quick and sure', note: 'Easy · back much later', fill: 0.92),
           _GradeRow(color: mc.onInk, title: 'Steady', note: 'Good · to the back', fill: 0.6),
@@ -468,7 +492,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
               style: T.t(14, w: FontWeight.w600, color: mc.mutedOnInk, height: 1.3)),
         ]);
       default:
-        return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        return _CardBody([
           Text('YOUR MEMORY, MEASURED', style: T.caps(12, color: mc.mutedOnInk)),
           const SizedBox(height: 6),
           Text('Cards come back just in time', style: T.d(30, color: mc.onInk, height: 1.05)),
@@ -483,6 +507,69 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
   }
 
   // ---------------------------------------------------------------- setup
+
+  /// The folders [_finish] will create, each with its decks, in the order the drawer will show them.
+  List<(String, List<String>)> _plannedFolders(AppStore store) {
+    final out = <String, List<String>>{};
+    if (_tutorial) out['Start here'] = [tutorialDeckName];
+    for (final id in _decks) {
+      final cd = store.catalog.byId(id);
+      if (cd != null) (out[cd.folder] ??= []).add(cd.name);
+    }
+    return [for (final e in out.entries) (e.key, e.value)];
+  }
+
+  /// One topic in the deck picker: its featured decks (two rows), and "All n" for the rest.
+  List<Widget> _topicPicks(BuildContext context, CatalogCategory c, int cols) {
+    final mc = Mc.of(context);
+    final catalog = context.storeRead.catalog;
+    final all = catalog.featuredFirst(catalog.decks.where((d) => d.category == c.id));
+    final open = _openCats.contains(c.id);
+    final shown = open ? all : all.take(cols * 2).toList();
+    return [
+      Padding(
+        padding: const EdgeInsets.only(top: 20, bottom: 10),
+        child: Row(children: [
+          Container(width: 10, height: 10, decoration: BoxDecoration(color: Color(c.color), shape: BoxShape.circle)),
+          const SizedBox(width: 8),
+          Expanded(child: Text(c.name, style: T.d(22, color: mc.ink))),
+          if (all.length > cols * 2)
+            Pressable(
+              onTap: () => setState(() => open ? _openCats.remove(c.id) : _openCats.add(c.id)),
+              child: Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 4, vertical: 6),
+                child: Text(open ? 'Fewer' : 'All ${all.length}', style: T.t(15, w: FontWeight.w700, color: mc.muted)),
+              ),
+            ),
+        ]),
+      ),
+      AnimatedSize(
+        duration: const Duration(milliseconds: 280),
+        curve: McCurves.out,
+        alignment: Alignment.topCenter,
+        child: GridView.count(
+          crossAxisCount: cols,
+          shrinkWrap: true,
+          padding: EdgeInsets.zero,
+          physics: const NeverScrollableScrollPhysics(),
+          mainAxisSpacing: 10,
+          crossAxisSpacing: 10,
+          childAspectRatio: 0.72,
+          children: [
+            for (final d in shown)
+              _PickTile(
+                deck: d,
+                on: _decks.contains(d.id),
+                onTap: () {
+                  Fx.i.tap();
+                  setState(() => _decks.contains(d.id) ? _decks.remove(d.id) : _decks.add(d.id));
+                },
+              ),
+          ],
+        ),
+      ),
+    ];
+  }
 
   Widget _setupStage(BuildContext context) {
     final mc = Mc.of(context);
@@ -512,11 +599,8 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
 
     switch (_step) {
       case 5:
-        final picks = <CatalogDeck>[
-          for (final c in CatalogCategory.all)
-            if (_cats.contains(c.id)) ...store.catalog.decks.where((d) => d.category == c.id).take(8),
-        ];
         final cards = _decks.fold<int>(0, (a, id) => a + (store.catalog.byId(id)?.cards.length ?? 0));
+        final cols = MediaQuery.of(context).size.width > 600 ? 4 : 3;
         return page(
           title: 'What do you want to remember?',
           sub: 'Pick a few decks to start. There are ${store.catalog.decks.length} in the shop, and you can write your own.',
@@ -527,26 +611,21 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
                     height: 36,
                     dot: Color(c.color),
                     selected: _cats.contains(c.id),
-                    onTap: () => setState(() => _cats.contains(c.id) ? _cats.remove(c.id) : _cats.add(c.id))),
+                    onTap: () => setState(() {
+                          // Hiding a topic also drops its decks, so nothing stays chosen out of sight.
+                          if (_cats.remove(c.id)) {
+                            _decks.removeWhere((id) => store.catalog.byId(id)?.category == c.id);
+                          } else {
+                            _cats.add(c.id);
+                          }
+                        })),
             ]),
-            const SizedBox(height: 18),
-            if (picks.isEmpty)
-              Text('Choose a topic above.', style: T.t(16, w: FontWeight.w600, color: mc.muted))
-            else
-              GridView.count(
-                crossAxisCount: MediaQuery.of(context).size.width > 600 ? 4 : 3,
-                shrinkWrap: true,
-                physics: const NeverScrollableScrollPhysics(),
-                mainAxisSpacing: 10,
-                crossAxisSpacing: 10,
-                childAspectRatio: 0.72,
-                children: [
-                  for (final d in picks) _PickTile(deck: d, on: _decks.contains(d.id), onTap: () {
-                    Fx.i.tap();
-                    setState(() => _decks.contains(d.id) ? _decks.remove(d.id) : _decks.add(d.id));
-                  }),
-                ],
-              ),
+            if (_cats.isEmpty) ...[
+              const SizedBox(height: 18),
+              Text('Choose a topic above.', style: T.t(16, w: FontWeight.w600, color: mc.muted)),
+            ],
+            for (final c in CatalogCategory.all)
+              if (_cats.contains(c.id)) ..._topicPicks(context, c, cols),
             const SizedBox(height: 16),
             Row(children: [
               Expanded(
@@ -564,7 +643,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
           ),
         );
       case 6:
-        const options = [(10, 'Light'), (20, 'Steady'), (40, 'Serious'), (80, 'Intense')];
+        const options = [(10, 'Light'), (20, 'Steady'), (40, 'Serious'), (80, 'Marathon')];
         return page(
           title: 'A small daily goal',
           sub: 'Reach it and the day counts toward your streak. The stack keeps going if you want more.',
@@ -704,12 +783,53 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
               child: Text('Goal $_goal a day · ${_pace.name} pace${_remind ? ' · reminder at ${(_remindAt ~/ 60).toString().padLeft(2, '0')}:${(_remindAt % 60).toString().padLeft(2, '0')}' : ''}',
                   textAlign: TextAlign.center, style: T.t(15, w: FontWeight.w600, color: mc.muted)),
             ),
+            const SizedBox(height: 22),
+            // Where everything will be: one row per folder, as the drawer will show it.
+            for (final (folder, decks) in _plannedFolders(store))
+              Container(
+                margin: const EdgeInsets.only(bottom: 8),
+                padding: const EdgeInsets.fromLTRB(14, 10, 14, 11),
+                decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(14), boxShadow: mc.e1),
+                child: Row(children: [
+                  McIcon(McIcons.folder, size: const Size(22, 16), color: mc.ink),
+                  const SizedBox(width: 12),
+                  Expanded(
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                      Text(folder, style: T.d(19, color: mc.ink)),
+                      Text(decks.join(', '), maxLines: 2, overflow: TextOverflow.ellipsis, style: T.t(13.5, w: FontWeight.w600, color: mc.muted, height: 1.25)),
+                    ]),
+                  ),
+                ]),
+              ),
           ],
           action: InkButton(n == 0 ? 'Open my library' : 'Start my first stack', size: 26, onTap: () => _finish(study: n > 0)),
           secondary: n == 0 ? null : SoftButton('Look around first', onTap: () => _finish(study: false)),
         );
     }
   }
+}
+
+/// A tour card's content: fills the card (so a [Spacer] pushes the rest to the bottom) and, when the
+/// text needs more room than the card has (small phone, large text setting), scales down to fit
+/// instead of overflowing.
+class _CardBody extends StatelessWidget {
+  const _CardBody(this.children);
+  final List<Widget> children;
+
+  @override
+  Widget build(BuildContext context) => LayoutBuilder(
+        builder: (context, c) => FittedBox(
+          fit: BoxFit.scaleDown,
+          alignment: Alignment.topCenter,
+          child: SizedBox(
+            width: c.maxWidth,
+            child: ConstrainedBox(
+              constraints: BoxConstraints(minHeight: c.maxHeight),
+              child: IntrinsicHeight(child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: children)),
+            ),
+          ),
+        ),
+      );
 }
 
 class _NudgeArrow extends StatelessWidget {
@@ -754,10 +874,13 @@ class _GradeRow extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.only(bottom: 12),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-        Row(children: [
-          Expanded(child: Text(title, style: T.t(16, w: FontWeight.w700, color: mc.onInk))),
-          Text(note, style: T.t(13, w: FontWeight.w600, color: mc.mutedOnInk)),
-        ]),
+        SizedBox(
+          width: double.infinity,
+          child: Wrap(alignment: WrapAlignment.spaceBetween, crossAxisAlignment: WrapCrossAlignment.end, spacing: 10, children: [
+            Text(title, style: T.t(16, w: FontWeight.w700, color: mc.onInk)),
+            Text(note, style: T.t(13, w: FontWeight.w600, color: mc.mutedOnInk)),
+          ]),
+        ),
         const SizedBox(height: 6),
         ClipRRect(
           borderRadius: BorderRadius.circular(3),
@@ -769,7 +892,7 @@ class _GradeRow extends StatelessWidget {
                 tween: Tween(begin: 0, end: fill),
                 duration: const Duration(milliseconds: 900),
                 curve: McCurves.out,
-                builder: (context, v, _) => FractionallySizedBox(widthFactor: v, child: ColoredBox(color: color)),
+                builder: (context, v, _) => FractionallySizedBox(widthFactor: v, heightFactor: 1, child: ColoredBox(color: color)),
               ),
             ]),
           ),
@@ -790,6 +913,8 @@ class _FanDemo extends StatelessWidget {
       final t = ((ms % 6000) / 4200).clamp(0.0, 1.0);
       final steps = (t * 5.2).floor().clamp(0, 5);
       final health = (40 + 52 * easeOutCubic(t)).round();
+      // The bar is drawn in the other theme's colours (it sits on an ink card), so is its fan.
+      final fan = mc.dark ? Mc.light : Mc.darkTheme;
       return Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Container(
           height: 72,
@@ -808,14 +933,22 @@ class _FanDemo extends StatelessWidget {
                     width: 54,
                     height: 80,
                     decoration: BoxDecoration(
-                      color: i < steps ? Mc.light.fanOn[i] : Mc.light.fanOff,
+                      color: i < steps ? fan.fanOn[i] : fan.fanOff,
                       borderRadius: BorderRadius.circular(7),
                     ),
                   ),
                 ),
               ),
             Positioned(left: 14, top: 10, child: Text('Spanish · Basics', style: T.d(21, color: mc.ink))),
-            Positioned(left: 14, bottom: 10, child: Text('$health% health · ${5 - steps} slipping', style: T.t(13, w: FontWeight.w600, color: mc.muted))),
+            Positioned(
+              left: 14,
+              bottom: 9,
+              child: Row(crossAxisAlignment: CrossAxisAlignment.baseline, textBaseline: TextBaseline.alphabetic, children: [
+                Text('$health%', style: T.d(21, color: mc.ink)),
+                const SizedBox(width: 5),
+                Text('health', style: T.t(13, w: FontWeight.w600, color: mc.muted)),
+              ]),
+            ),
           ]),
         ),
       ]);
@@ -823,7 +956,8 @@ class _FanDemo extends StatelessWidget {
   }
 }
 
-/// The re-insertion diagram: a missed card slides 8 cards back into the stack.
+/// The lesson after the first left swipe, drawn on the next card: the missed card arcs eight places
+/// back into the stack while the cards it passes shuffle forward.
 class _Reinsertion extends StatefulWidget {
   const _Reinsertion();
 
@@ -832,7 +966,21 @@ class _Reinsertion extends StatefulWidget {
 }
 
 class _ReinsertionState extends State<_Reinsertion> with SingleTickerProviderStateMixin {
-  late final AnimationController _c = AnimationController(vsync: this, duration: const Duration(milliseconds: 1500))..forward();
+  late final AnimationController _c = AnimationController(vsync: this, duration: const Duration(milliseconds: 2100));
+
+  bool _started = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_started) return;
+    _started = true;
+    if (MotionPrefs.reducedOf(context)) {
+      _c.value = 1;
+    } else {
+      _c.forward();
+    }
+  }
 
   @override
   void dispose() {
@@ -843,49 +991,91 @@ class _ReinsertionState extends State<_Reinsertion> with SingleTickerProviderSta
   @override
   Widget build(BuildContext context) {
     final mc = Mc.of(context);
-    return AnimatedBuilder(
-      animation: _c,
-      builder: (context, _) {
-        final t = McCurves.inOut.transform(_c.value);
-        return Column(children: [
-          SizedBox(
-            height: 70,
-            child: LayoutBuilder(builder: (context, box) {
-              const n = 12;
-              final gap = box.maxWidth / n;
-              return Stack(children: [
-                for (var i = 0; i < n; i++)
-                  Positioned(
-                    left: i * gap + (i >= 8 ? gap * 0.5 * t : 0) - (i < 8 ? gap * 0.5 * t : 0) + gap * 0.5 * t,
-                    top: 18,
-                    child: Container(
-                      width: gap * 0.7,
-                      height: 44,
-                      decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(6), border: Border.all(color: mc.line)),
-                    ),
-                  ),
-                Positioned(
-                  left: (8 * gap) * t,
-                  top: 18 - 18 * math.sin(t * math.pi),
-                  child: Container(
-                    width: gap * 0.7,
-                    height: 44,
-                    decoration: BoxDecoration(color: Mc.red, borderRadius: BorderRadius.circular(6), boxShadow: mc.e2),
-                  ),
-                ),
-              ]);
-            }),
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0, end: 1),
+      duration: const Duration(milliseconds: 320),
+      curve: McCurves.out,
+      builder: (context, v, child) => Opacity(opacity: v, child: Transform.translate(offset: Offset(0, 10 * (1 - v)), child: child)),
+      child: _CardBody([
+        Text('WHERE DID IT GO?', style: T.caps(12, color: mc.mutedOnInk)),
+        const SizedBox(height: 6),
+        Text('It comes back\nin 8 cards', style: T.d(30, color: mc.onInk, height: 1.05)),
+        const SizedBox(height: 18),
+        SizedBox(
+          height: 84,
+          child: GestureDetector(
+            onTap: () => _c.forward(from: 0),
+            child: AnimatedBuilder(animation: _c, builder: (context, _) => CustomPaint(painter: _ReinsertPainter(_c.value, mc))),
           ),
-          const SizedBox(height: 14),
-          Opacity(
-            opacity: t,
-            child: Text('Back in 8 cards: far enough that the next try is a real recall.',
-                textAlign: TextAlign.center, style: T.t(17, w: FontWeight.w700, color: mc.ink, height: 1.3)),
-          ),
-        ]);
-      },
+        ),
+        const Spacer(),
+        Text('Far enough that the next try is a real recall, close enough that it is still fresh. '
+            'Miss it again and it comes back sooner.',
+            style: T.t(14.5, w: FontWeight.w600, color: mc.mutedOnInk, height: 1.35)),
+      ]),
     );
   }
+}
+
+class _ReinsertPainter extends CustomPainter {
+  _ReinsertPainter(this.v, this.mc);
+
+  /// Animation progress 0..1 (a short rest, the flight, then a rest).
+  final double v;
+  final Mc mc;
+
+  static const slots = 10;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final t = McCurves.inOut.transform(((v - 0.12) / 0.7).clamp(0.0, 1.0));
+    final gap = size.width / slots;
+    final w = gap * 0.74, h = 42.0;
+    final y0 = size.height - h - 6;
+    RRect card(double x, double y) => RRect.fromRectAndRadius(Rect.fromLTWH(x + (gap - w) / 2, y, w, h), const Radius.circular(6));
+
+    final fill = Paint()..color = mc.onInk.withValues(alpha: 0.16);
+    final edge = Paint()
+      ..style = PaintingStyle.stroke
+      ..strokeWidth = 1
+      ..color = mc.onInk.withValues(alpha: 0.28);
+    // The cards it passes step forward one place as it flies over them.
+    for (var j = 1; j < slots; j++) {
+      final local = j <= 8 ? easeOutCubic((t * 8 - (j - 1)).clamp(0.0, 1.0)) : 0.0;
+      final r = card((j - local) * gap, y0 + 3 * math.sin(math.pi * local));
+      canvas.drawRRect(r, fill);
+      canvas.drawRRect(r, edge);
+    }
+    // Slot marker under where it lands.
+    final mark = Paint()..color = Mc.red.withValues(alpha: 0.25 + 0.75 * t);
+    canvas.drawRRect(
+      RRect.fromRectAndRadius(Rect.fromLTWH(8 * gap + (gap - w) / 2, size.height - 3, w, 3), const Radius.circular(1.5)),
+      mark,
+    );
+    // The missed card.
+    final x = 8 * gap * t;
+    final y = y0 - 34 * math.sin(math.pi * t);
+    canvas.save();
+    final c = Offset(x + gap / 2, y + h / 2);
+    canvas.translate(c.dx, c.dy);
+    canvas.rotate(-0.22 * math.sin(math.pi * t));
+    canvas.translate(-c.dx, -c.dy);
+    final r = card(x, y);
+    canvas.drawRRect(r.shift(const Offset(0, 3)), Paint()..color = Colors.black.withValues(alpha: 0.18));
+    canvas.drawRRect(r, Paint()..color = Mc.red);
+    final passed = (t * 8).floor();
+    if (passed > 0) {
+      final tp = TextPainter(
+        text: TextSpan(text: '$passed', style: T.mono(12, color: Mc.paper, w: FontWeight.w700)),
+        textDirection: TextDirection.ltr,
+      )..layout();
+      tp.paint(canvas, r.center - Offset(tp.width / 2, tp.height / 2));
+    }
+    canvas.restore();
+  }
+
+  @override
+  bool shouldRepaint(_ReinsertPainter old) => old.v != v || old.mc != mc;
 }
 
 class _PickTile extends StatelessWidget {
@@ -911,7 +1101,7 @@ class _PickTile extends StatelessWidget {
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Expanded(
             child: Stack(children: [
-              Center(child: StackArt(mono: deck.mono, tab: Color(CatalogCategory.of(deck.category).color), scale: 0.6)),
+              Center(child: StackArt(mono: deck.mono, tab: Color(CatalogCategory.of(deck.category).color), inverse: on, scale: 0.6)),
               if (on)
                 Positioned(
                   right: 0,
@@ -968,7 +1158,7 @@ class _MemberPreview extends StatelessWidget {
             alignment: Alignment.centerLeft,
             child: AnimatedSwitcher(
               duration: const Duration(milliseconds: 160),
-              child: Text(name, key: ValueKey(name), style: T.d(34, color: mc.onInk)),
+              child: Text(name, key: ValueKey(name == 'Guest Learner'), style: T.d(34, color: mc.onInk)),
             ),
           ),
           const SizedBox(height: 8),
