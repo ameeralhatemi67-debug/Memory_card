@@ -20,10 +20,20 @@ const stampKeys = Keyframes(700, [
 ]);
 
 class StampedSeal extends StatefulWidget {
-  const StampedSeal({super.key, required this.size, this.label = 'DONE', this.color = Mc.red, this.delayMs = 0, this.check = false, this.onLand});
+  const StampedSeal({
+    super.key,
+    required this.size,
+    this.label = 'DONE',
+    this.color = Mc.red,
+    this.labelColor = Mc.paper,
+    this.delayMs = 0,
+    this.check = false,
+    this.onLand,
+  });
   final double size;
   final String label;
   final Color color;
+  final Color labelColor;
   final int delayMs;
   final bool check;
   final VoidCallback? onLand;
@@ -76,7 +86,7 @@ class _StampedSealState extends State<StampedSeal> {
                             width: widget.size * 0.58,
                             child: FittedBox(
                               fit: BoxFit.scaleDown,
-                              child: Text(widget.label, maxLines: 1, style: T.d(widget.size * 0.18, color: Mc.paper, spacing: 1)),
+                              child: Text(widget.label, maxLines: 1, style: T.d(widget.size * 0.18, color: widget.labelColor, spacing: 1)),
                             ),
                           ),
                         ),
@@ -183,6 +193,46 @@ Future<String?> showGoalDialog(BuildContext context, {required int done, require
             ),
           ]),
           if (milestone) const Positioned.fill(child: Confetti()),
+        ],
+      );
+    },
+  );
+}
+
+/// The first time every card of a deck stands above 90 % recall: a green MASTERED seal is stamped.
+Future<void> showMasteredDialog(BuildContext context, {required String deckName, required int cards}) {
+  Fx.i.fanfare();
+  return showMcDialog<void>(
+    context,
+    builder: (ctx) {
+      final mc = Mc.of(ctx);
+      return Stack(
+        clipBehavior: Clip.none,
+        children: [
+          DialogCard(children: [
+            Center(
+              child: StampedSeal(
+                size: 132,
+                label: 'MASTERED',
+                color: Mc.green,
+                labelColor: Mc.graphite,
+                delayMs: 160,
+                onLand: () => Fx.i.seal(),
+              ),
+            ),
+            const SizedBox(height: 12),
+            Text(deckName, textAlign: TextAlign.center, style: T.d(32, color: mc.ink, height: 1.05)),
+            const SizedBox(height: 8),
+            Text(
+              'All $cards cards are above 90 % recall. They will keep coming back, less and less often: '
+              'that is how a deck stays mastered.',
+              textAlign: TextAlign.center,
+              style: T.t(16, color: mc.muted, height: 1.35),
+            ),
+            const SizedBox(height: 20),
+            InkButton('Keep going', height: 52, onTap: () => Navigator.pop(ctx)),
+          ]),
+          const Positioned.fill(child: Confetti()),
         ],
       );
     },

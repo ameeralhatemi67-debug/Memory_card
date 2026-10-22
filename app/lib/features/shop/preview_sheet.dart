@@ -13,6 +13,7 @@ import '../../ui/overlays.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../shell/shell.dart';
+import 'shop_tile.dart';
 
 /// Deck preview (canvas Preview.dc.html): flip through sample cards, pick a folder, add the deck.
 Future<void> showPreview(BuildContext context, String catalogId, {String? folderId}) {
@@ -200,6 +201,44 @@ class _PreviewSheetState extends State<PreviewSheet> with SingleTickerProviderSt
                           style: T.t(14, w: FontWeight.w600, color: mc.muted)),
                     ),
                   ]),
+                ],
+                if (store.catalog.similarTo(deck).isNotEmpty) ...[
+                  const SizedBox(height: 18),
+                  const SectionLabel('Similar decks'),
+                  const SizedBox(height: 8),
+                  SizedBox(
+                    height: 118,
+                    child: ListView(
+                      scrollDirection: Axis.horizontal,
+                      children: [
+                        for (final other in store.catalog.similarTo(deck).take(8))
+                          Padding(
+                            padding: const EdgeInsets.only(right: 10),
+                            child: Pressable(
+                              label: 'Preview ${other.name}',
+                              onTap: () {
+                                // Swap this sheet for the other deck's.
+                                final nav = Navigator.of(context);
+                                final ctx = widget.shell?.context;
+                                nav.pop();
+                                if (ctx != null && ctx.mounted) showPreview(ctx, other.id, folderId: widget.folderId);
+                              },
+                              child: SizedBox(
+                                width: 96,
+                                child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                                  StackArt(mono: other.mono, tab: Color(CatalogCategory.of(other.category).color), scale: 0.6),
+                                  const SizedBox(height: 4),
+                                  Text(other.name,
+                                      maxLines: 2,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: T.t(13, w: FontWeight.w700, color: mc.ink, height: 1.15)),
+                                ]),
+                              ),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
                 ],
                 const SizedBox(height: 16),
                 if (added)

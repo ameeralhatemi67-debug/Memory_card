@@ -184,6 +184,11 @@ void main() {
     await shot(tester, '18-goal-dialog');
     Navigator.of(tester.element(find.byType(Shell)), rootNavigator: true).pop();
     await settle(tester);
+    showMasteredDialog(tester.element(find.byType(Shell)), deckName: 'Spanish · Basics', cards: 24);
+    await settle(tester, 2400);
+    await shot(tester, '18b-mastered-dialog');
+    Navigator.of(tester.element(find.byType(Shell)), rootNavigator: true).pop();
+    await settle(tester);
     Shell.current!.goHome();
     await settle(tester, 1200);
 

@@ -52,6 +52,7 @@ class Deck {
     this.pace,
     this.typing = false,
     this.reviews = 0,
+    this.masteredAt,
   })  : cardIds = cardIds ?? <String>[],
         stack = stack ?? <String>[],
         reservoir = reservoir ?? <String>[];
@@ -95,6 +96,9 @@ class Deck {
   bool typing;
   int reviews;
 
+  /// When every card first stood above 90 % recall (the "mastered" seal), once per deck.
+  int? masteredAt;
+
   String get monogram => mono.isNotEmpty ? mono : _monoFrom(name);
 
   static String _monoFrom(String name) {
@@ -125,6 +129,7 @@ class Deck {
         'pace': pace,
         'typing': typing,
         'reviews': reviews,
+        if (masteredAt != null) 'mastered': masteredAt,
       };
 
   factory Deck.fromJson(Map j) => Deck(
@@ -148,6 +153,7 @@ class Deck {
         pace: j['pace'] as String?,
         typing: _b(j['typing']),
         reviews: _i(j['reviews']),
+        masteredAt: (j['mastered'] as num?)?.toInt(),
       );
 }
 

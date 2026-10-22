@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:convert';
+import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
@@ -393,6 +394,7 @@ class AppStore extends ChangeNotifier {
     _db.saveCards(cards);
     d.ema = 0.75;
     d.lastStudied = 0;
+    d.masteredAt = null;
     _db.saveDeck(d);
     _changed();
   }
@@ -855,6 +857,19 @@ class AppStore extends ChangeNotifier {
 
   // ---------------------------------------------------------------- backup
 
+  /// On a phone, card images are files: a backup carries them inline so they survive a move to a new phone.
+  static Map<String, Object?> _embedImage(Map<String, Object?> j) {
+    final src = j['img'];
+    if (kIsWeb || src is! String || src.startsWith('data:') || src.startsWith('http')) return j;
+    try {
+      final f = File(src);
+      if (!f.existsSync()) return j;
+      return {...j, 'img': 'data:image/jpeg;base64,${base64Encode(f.readAsBytesSync())}'};
+    } catch (_) {
+      return j;
+    }
+  }
+
   Future<String> exportBackup() async {
     final logs = await _db.readLogs();
     final payload = {
@@ -863,7 +878,7 @@ class AppStore extends ChangeNotifier {
       'exported': DateTime.now().toUtc().toIso8601String(),
       'folders': data.folders.map((f) => f.toJson()).toList(),
       'decks': data.decks.values.map((d) => d.toJson()).toList(),
-      'cards': data.cards.values.map((c) => c.toJson()).toList(),
+      'cards': [for (final c in data.cards.values) _embedImage(c.toJson())],
       'settings': data.settings.toJson(),
       'profile': data.profile.toJson(),
       'today': data.today?.toJson(),

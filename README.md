@@ -28,6 +28,9 @@ related:
 
 **Memory Card** is a mobile-first spaced-repetition memory application designed for iOS and Android. Built on the conviction that memorization shouldn't feel like a grueling chore, it wraps the scientifically proven **FSRS-5** cognitive scheduling engine in an intoxicating, tactile UI with micro-animated "conscious" states, physical spatial layering, and visceral audio-haptic feedback.
 
+> [!success] 2026-10-22 — The app is built
+> **Memory Card v1.0** (Flutter) lives in `app/`: every designed screen, the repetition engine ([[RES-48_Engine_v2]]), onboarding, 56 decks. Local-only, Android APK; see `app/README.md` to install or build it. The rest of this hub describes the design programme that led here.
+
 > [!warning] Current Product State
 > **Version 1.0 (Deep Research & Initial Prototype)** is complete, producing 46 research papers and an initial web lab (`text_Mockup/`).  
 > We are currently in **Version 2.0 (Design Finalization & Resizable Living Lab)**, systematically closing visual discrepancies identified in [[idea_Audit|the architectural audit]], implementing a live resizable phone testing canvas, establishing Git version boundaries, and locking design tokens.  

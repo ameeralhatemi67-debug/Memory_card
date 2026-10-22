@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="ic_launcher_background">#333333</color>
+    <!-- The app's canvas, so the window behind Flutter matches the first frame. -->
+    <color name="canvas">#F1F1F1</color>
+</resources>

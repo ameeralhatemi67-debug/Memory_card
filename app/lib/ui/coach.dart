@@ -155,25 +155,28 @@ class _CoachTargetState extends State<CoachTarget> with TickerProviderStateMixin
         type: MaterialType.transparency,
         child: Stack(
           children: [
-            // Outside the spotlight a tap only dismisses; inside it also reaches the control.
-            Positioned.fill(
-              child: Listener(
-                onPointerDown: (_) => _dismiss(),
-                child: CustomPaint(
-                  painter: _Spotlight(
-                    hole: hole,
-                    color: widget.spotlight
-                        ? Colors.black.withValues(alpha: mc.dark ? 0.55 : 0.32)
-                        : const Color(0x00000000),
-                    absorb: widget.spotlight,
+            if (widget.spotlight) ...[
+              // Outside the spotlight a tap only dismisses; inside it also reaches the control.
+              Positioned.fill(
+                child: Listener(
+                  onPointerDown: (_) => _dismiss(),
+                  child: CustomPaint(
+                    painter: _Spotlight(
+                      hole: hole,
+                      color: Colors.black.withValues(alpha: mc.dark ? 0.55 : 0.32),
+                    ),
                   ),
                 ),
               ),
-            ),
-            Positioned.fromRect(
-              rect: hole,
-              child: Listener(behavior: HitTestBehavior.translucent, onPointerDown: (_) => _dismiss()),
-            ),
+              Positioned.fromRect(
+                rect: hole,
+                child: Listener(behavior: HitTestBehavior.translucent, onPointerDown: (_) => _dismiss()),
+              ),
+            ] else
+              // A plain hint: any touch dismisses it and still does what it was meant to.
+              Positioned.fill(
+                child: Listener(behavior: HitTestBehavior.translucent, onPointerDown: (_) => _dismiss()),
+              ),
             Positioned(
               left: left,
               top: top,
@@ -187,19 +190,20 @@ class _CoachTargetState extends State<CoachTarget> with TickerProviderStateMixin
                     clipBehavior: Clip.none,
                     children: [
                       bubble,
-                      Positioned(
-                        left: caretX - caret,
-                        top: widget.below ? -caret + 1 : null,
-                        bottom: widget.below ? null : -caret + 1,
-                        child: Transform.rotate(
-                          angle: math.pi / 4,
-                          child: Container(
-                            width: caret * 2,
-                            height: caret * 2,
-                            decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(2)),
+                      if (widget.spotlight)
+                        Positioned(
+                          left: caretX - caret,
+                          top: widget.below ? -caret + 1 : null,
+                          bottom: widget.below ? null : -caret + 1,
+                          child: Transform.rotate(
+                            angle: math.pi / 4,
+                            child: Container(
+                              width: caret * 2,
+                              height: caret * 2,
+                              decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(2)),
+                            ),
                           ),
                         ),
-                      ),
                     ],
                   ),
                 ),
@@ -219,7 +223,7 @@ class _CoachTargetState extends State<CoachTarget> with TickerProviderStateMixin
       clipBehavior: Clip.none,
       alignment: Alignment.center,
       children: [
-        if (showing)
+        if (showing && widget.spotlight)
           Positioned.fill(
             child: IgnorePointer(
               child: AnimatedBuilder(
@@ -237,19 +241,17 @@ class _CoachTargetState extends State<CoachTarget> with TickerProviderStateMixin
   }
 }
 
-/// The dimmed screen with a rounded hole around the control. Hit-testable only outside the hole (and
-/// only when it is a real spotlight), so a tap on the control still reaches it.
+/// The dimmed screen with a rounded hole around the control. Hit-testable only outside the hole, so a
+/// tap on the control still reaches it.
 class _Spotlight extends CustomPainter {
-  _Spotlight({required this.hole, required this.color, required this.absorb});
+  _Spotlight({required this.hole, required this.color});
   final Rect hole;
   final Color color;
-  final bool absorb;
 
   RRect get _r => RRect.fromRectAndRadius(hole, Radius.circular(math.min(hole.width, hole.height) / 2));
 
   @override
   void paint(Canvas canvas, Size size) {
-    if (color.a == 0) return;
     final path = Path()
       ..fillType = PathFillType.evenOdd
       ..addRect(Offset.zero & size)
@@ -258,10 +260,10 @@ class _Spotlight extends CustomPainter {
   }
 
   @override
-  bool? hitTest(Offset position) => absorb && !_r.contains(position);
+  bool? hitTest(Offset position) => !_r.contains(position);
 
   @override
-  bool shouldRepaint(_Spotlight old) => old.hole != hole || old.color != color || old.absorb != absorb;
+  bool shouldRepaint(_Spotlight old) => old.hole != hole || old.color != color;
 }
 
 class _Ring extends CustomPainter {

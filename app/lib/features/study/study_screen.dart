@@ -486,6 +486,7 @@ class _StudyScreenState extends State<StudyScreen>
     final note = _noteFor(out);
     _showNote(note);
 
+    final mastered = out.deckMastered ? store.data.decks[deckId] : null;
     if (out.goalNow && !_goalOpen) {
       _goalOpen = true;
       Future.delayed(const Duration(milliseconds: 180), () async {
@@ -497,12 +498,20 @@ class _StudyScreenState extends State<StudyScreen>
           seals: out.seals,
         );
         _goalOpen = false;
+        if (!mounted) return;
+        // Both on one swipe: the deck's seal comes right after the day's.
+        if (mastered != null) await showMasteredDialog(context, deckName: mastered.name, cards: mastered.cardIds.length);
         if (r == 'summary' && mounted) {
           Navigator.of(context, rootNavigator: true).push(TodayScreen.route());
         }
       });
-    } else if (out.seals.isNotEmpty) {
-      announceSeals(context, out.seals);
+    } else {
+      if (out.seals.isNotEmpty) announceSeals(context, out.seals);
+      if (mastered != null) {
+        Future.delayed(const Duration(milliseconds: 180), () {
+          if (mounted) showMasteredDialog(context, deckName: mastered.name, cards: mastered.cardIds.length);
+        });
+      }
     }
   }
 

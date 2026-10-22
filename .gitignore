@@ -26,3 +26,7 @@ build/
 
 # Commercial font (Monotype) — local dev only, never redistribute (see docs/Audit/audit_v2_2026-10-21.md F3)
 BernardMTCondensed.ttf
+
+# Built app packages (see app/README.md)
+release/
+*.apk

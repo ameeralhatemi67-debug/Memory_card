@@ -412,6 +412,29 @@ void main() {
       expect(d.stack.first, 'c0');
     });
 
+    test('a deck is mastered once, when its last weak card becomes strong', () {
+      final data = world(cards: 5);
+      final e = StudyEngine(data);
+      final d = data.decks['d1']!;
+      for (var i = 1; i < 5; i++) {
+        data.cards['c$i']!
+          ..s = 30
+          ..d = 4
+          ..last = _noon - msPerDay;
+      }
+      // c0 is new: a miss keeps the deck below mastery.
+      final miss = e.swipe(d, 'c0', recalled: false, signals: normal(), now: _noon);
+      expect(miss.deckMastered, isFalse);
+      data.cards['c0']!
+        ..s = 30
+        ..last = _noon;
+      final hit = e.swipe(d, 'c1', recalled: true, signals: normal(), now: _noon + 60000);
+      expect(hit.deckMastered, isTrue);
+      expect(d.masteredAt, _noon + 60000);
+      final again = e.swipe(d, 'c2', recalled: true, signals: normal(), now: _noon + 120000);
+      expect(again.deckMastered, isFalse);
+    });
+
     test('a review log entry carries the signals and FSRS before/after', () {
       final data = world();
       final e = StudyEngine(data);

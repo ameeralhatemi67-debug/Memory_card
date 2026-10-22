@@ -63,9 +63,14 @@ void main() {
     expect(store.data.decks.length, greaterThanOrEqualTo(3));
     expect(find.text('Tap to reveal'), findsOneWidget);
 
+    // The first-card hint is up; touching the card both reveals it and dismisses the hint.
+    expect(find.text('Try to remember, then tap the card'), findsOneWidget);
+
     // Reveal, then swipe right.
     await tester.tap(find.text('Tap to reveal'));
     await settle(tester, 400);
+    expect(find.textContaining('Try to remember'), findsNothing);
+    expect(find.textContaining('Swipe right if you knew it'), findsNothing);
     final card = find.textContaining('Which way do you swipe').first;
     await tester.drag(card, const Offset(260, 0));
     await settle(tester, 700);

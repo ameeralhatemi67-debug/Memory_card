@@ -40,6 +40,7 @@ class SwipeOutcome {
     required this.seals,
     required this.log,
     required this.recallBefore,
+    this.deckMastered = false,
   });
 
   final String cardId;
@@ -55,6 +56,9 @@ class SwipeOutcome {
   final List<String> seals;
   final ReviewLog log;
   final double? recallBefore;
+
+  /// This swipe made every card of the deck strong for the first time.
+  final bool deckMastered;
 
   bool get toEnd => reinsertAt >= restLength;
   int get grade => assessment.grade;
@@ -466,6 +470,16 @@ class StudyEngine {
 
     final seals = Seals.check(data, this, now, goalNow: goalNow, comeback: comeback);
 
+    // A deck is mastered the first time every card stands above 90 % recall (all five fan steps).
+    var deckMastered = false;
+    if (ok && d.masteredAt == null && d.cardIds.length >= 5) {
+      final st = deckStats(d, now);
+      if (st.total >= 5 && st.steps == 5) {
+        d.masteredAt = now;
+        deckMastered = true;
+      }
+    }
+
     final log = ReviewLog(
       ts: now,
       cardId: cardId,
@@ -496,6 +510,7 @@ class StudyEngine {
       seals: seals,
       log: log,
       recallBefore: rBefore,
+      deckMastered: deckMastered,
     );
   }
 }

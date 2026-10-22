@@ -7,7 +7,7 @@ tags:
   - document/status
   - status/in-progress
 created: 2026-09-12
-updated: 2026-09-12
+updated: 2026-10-22
 status: active
 current_version: "2.0"
 current_checkpoint: "2.1"
@@ -23,11 +23,14 @@ related:
 
 # Memory Card Current Status
 
-**Last Updated:** 2026-09-12
+**Last Updated:** 2026-10-22
 
 **Current Version:** Version 2.0 (Design Finalization & Resizable Living Lab)
 
 **Current Checkpoint:** Checkpoint 2.1 (Repository Baseline & Feature Checklist)
+
+> [!success] 2026-10-22 — the Flutter app exists
+> The native app planned for Version 4.0 was pulled forward at the owner's request and is built: `app/` (Flutter 3.41), every screen of the design canvas, the RES-47/RES-48 engine, onboarding, 56 decks / 1,355 cards, local storage only, Android release APK. See `app/README.md` and [[progress|Progress]]. Not published anywhere; no backend.
 
 **System Status:** Active Design Lab — Version 1.0 (Research, Master Specs, and Initial Prototype) complete; entering Version 2.0 Checkpoint 2.1 (Git Ingestion, Canonical Checklist & Documentation Baseline) transitioning into Checkpoint 2.2 (Visual Reference Parity) and Checkpoint 2.3 (Interactive Resizable Phone View).
 
@@ -59,7 +62,9 @@ This file reports the present operational state only. Planned work belongs in [[
 | **Living Mockup Prototype** | Operational; needs refinement | `text_Mockup/` runs zero-latency in any browser with interactive 3D swipe sandbox, but exhibits visual deviations from `reference/*.png` (stepped fans, font, edge buttons). |
 | **Interactive Resizable Viewport** | Planned (V2 Checkpoint 2.3) | Static 390×844 iPhone frame to be upgraded with a draggable bottom-right corner controller and live aspect ratio HUD. |
 | **Git Version Control** | Initializing | Scaffolding Git repository and clean `.gitignore` to enable phase-by-phase commit checkpoints. |
-| **Native Flutter Codebase** | Scheduled (Version 4.0) | Zero production code written yet; deferred intentionally until design freeze and token validation are completed in Version 2.0. |
+| **Native Flutter Codebase** | Built (v1.0, local-only) | `app/`: all designed screens, onboarding tour, engine, catalog, backup/restore, reminders, TTS. 6 test files pass; every screen reviewed as rendered PNGs (light/dark). Android release APK builds. |
+| **Repetition Engine** | Implemented | MCRE v2 ([[RES-48_Engine_v2]]): endless stack, shadow FSRS-6 verified against the reference package, grading from speed/hesitation/confidence, self-tuning thresholds, personal calibration, on-device training. |
+| **iOS build** | Blocked (needs a Mac) | Same code; an iOS build requires Xcode on macOS. |
 
 ---
 

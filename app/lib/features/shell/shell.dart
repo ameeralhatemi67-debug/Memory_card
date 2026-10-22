@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import '../../data/store_scope.dart';
 import '../../ui/fx.dart';
@@ -156,7 +157,14 @@ class ShellState extends State<Shell> {
       onPopInvokedWithResult: (didPop, _) async {
         if (didPop) return;
         final exit = await _onBack();
-        if (exit && context.mounted) Navigator.of(context).maybePop();
+        if (!exit || !context.mounted) return;
+        // At the decks root, back leaves the app, as on any Android home screen.
+        final root = Navigator.of(context);
+        if (root.canPop()) {
+          root.pop();
+        } else {
+          SystemNavigator.pop();
+        }
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,

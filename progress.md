@@ -7,7 +7,7 @@ tags:
   - document/progress
   - knowledge/dated
 created: 2026-08-13
-updated: 2026-10-21
+updated: 2026-10-22
 status: active
 aliases:
   - Memory Card Progress
@@ -22,7 +22,7 @@ related:
 
 # Memory Card Progress Log
 
-**Last updated:** 2026-10-21
+**Last updated:** 2026-10-22
 
 **Current release line:** Version 2.0 (Design Finalization & Resizable Living Lab)
 
@@ -38,6 +38,20 @@ related:
 This document records verified outcomes, technical approaches, and architectural decisions. It is not a second roadmap. Future tasks and their sequencing belong only in [[Roadmap|Roadmap]]; present conditions belong in [[Status|Status]].
 
 ---
+
+## Flutter App Outcomes (pulled forward from Version 4.0)
+
+### 2026-10-22 — Memory Card v1.0: the Flutter app, local-only, Android APK
+
+- **Outcome Summary:** The full app, built from the design artifact "Memory Card — App Design" at the owner's request ("a fully working version I can start using on my phone, no publication or backend yet"). Source in `app/`, guide in `app/README.md`, engine in [[RES-48_Engine_v2]].
+- **How We Built It & Technical Approach:**
+  - Flutter 3.41 / Dart 3.11; Hive local storage; one `AppStore` (`ChangeNotifier`) as the single source of truth; design tokens from the canvas (inverse-ink light/dark), Bernard MT Condensed for display (local only) and Barlow Semi Condensed / JetBrains Mono from Google Fonts, cached after first launch.
+  - Engine (MCRE v2): endless stack with 8–20 re-insertion, pacing with a flow guard, warm-up, leeches, resting mastered cards; shadow FSRS-6 equal to the reference `fsrs` package to 1e-9; grades read from think time against a personal robust baseline, drag reversals, commit-line crossings, opposite excursion, release speed and answer-checking time, with an interruption filter; self-tuning Easy/Hard thresholds; per-user calibration multiplier; on-device FSRS training after 150 long-gap reviews.
+  - Screens: decks with two-detent swipe actions and progress fans, study stack with swinging ears, grade chip with undo and regrade, folder drawer, Daily mix, shop with long-press quick actions and preview, editor with images, reverse cards and CSV import, Today, profile with the flippable membership card and seals, settings, deck browser, card detail with the forgetting curve, search, Memory Lab, help.
+  - Onboarding: a tour you swipe through (recall a card, miss one and see where it goes), topic and deck picker, goal and pace, reminder, your card, then a tutorial deck that teaches the app by using it; spotlight coach marks.
+  - Content: 28 original decks plus 28 decks written by Claude Haiku and reviewed (56 decks, 1,355 cards).
+  - Extras beyond the canvas: typing mode, text-to-speech, daily reminder whose text names the slipping deck, 20 wax-seal achievements, a MASTERED seal when a whole deck is strong (feature list 14.2), grace shields, comeback seal, deck of the day, similar decks in the preview (10.7), a quick light/dark toggle (2.2), top and bottom list fades (4.2), JSON backup with images, review-log CSV export, a hidden Lab with time travel.
+- **Verification Evidence:** `test/` (FSRS reference match, 20 engine tests, model-fitting tests, the swipe tour, onboarding → study → undo, every screen); `test_gallery/` renders every screen to PNG with real fonts after two simulated weeks (light and dark) and was reviewed screen by screen, which found and fixed invisible progress bars, overflows, a missing glyph in Bernard, unreadable overlays and a coach mark that could appear over sheets; `flutter build apk --release` succeeds, and the release APK was installed on an Android emulator (Pixel 5 image) and driven with real touch input: the swipe tour, the refusal hint, the missed-card lesson, the deck picker, the notification permission prompt, the first stack, the first-swipe seal.
 
 ## Version 2.0 Outcomes
 
