@@ -1,0 +1,98 @@
+{
+  "id": "cpp-pointers",
+  "name": "C++ · Pointers",
+  "mono": "C++",
+  "category": "code",
+  "level": "core",
+  "lang": null,
+  "kind": "code",
+  "folder": "Coding",
+  "description": "Addresses, references and smart pointers, one idea per card.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "int* p = &x;",
+      "back": "p holds the address of x",
+      "label": "c++",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "*p",
+      "back": "dereference: the value p points to",
+      "label": "c++",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "&x",
+      "back": "the address of x",
+      "label": "c++",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "nullptr",
+      "back": "a pointer that points to nothing",
+      "label": "c++",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "p->field",
+      "back": "a member reached through a pointer",
+      "label": "c++",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "new int(5)",
+      "back": "allocate an int on the heap",
+      "label": "c++",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "delete p;",
+      "back": "free memory allocated with new",
+      "label": "c++",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "int& r = x;",
+      "back": "r is a reference (alias) to x",
+      "label": "c++",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "std::unique_ptr<T>",
+      "back": "sole owner; frees memory automatically",
+      "label": "c++",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "std::shared_ptr<T>",
+      "back": "shared ownership, reference-counted",
+      "label": "c++",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "const int* p",
+      "back": "pointer to a constant int",
+      "label": "c++",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "int* const p",
+      "back": "constant pointer to an int",
+      "label": "c++",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

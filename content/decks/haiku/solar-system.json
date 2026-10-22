@@ -1,0 +1,32 @@
+{
+  "id": "solar-system",
+  "name": "Astronomy · Solar system",
+  "mono": "Sy",
+  "category": "science",
+  "level": "basics",
+  "lang": null,
+  "kind": "text",
+  "folder": "Science",
+  "description": "Match each key fact to the right planet, dwarf planet, region or star, so you can recall the basics of the solar system.",
+  "cards": [
+    { "front": "Closest planet to the Sun", "back": "Mercury", "label": "planet", "example": "", "hook": "Closest to the Sun, but not the hottest" },
+    { "front": "Largest planet", "back": "Jupiter", "label": "planet", "example": "", "hook": "" },
+    { "front": "Red planet", "back": "Mars", "label": "planet", "example": "", "hook": "Its red colour comes from iron oxide dust" },
+    { "front": "Planet famous for its rings", "back": "Saturn", "label": "planet", "example": "", "hook": "" },
+    { "front": "Hottest planet", "back": "Venus", "label": "planet", "example": "", "hook": "Thick CO2 atmosphere traps heat (runaway greenhouse)" },
+    { "front": "Planet tilted on its side", "back": "Uranus", "label": "planet", "example": "", "hook": "Axis tilted about 98 degrees" },
+    { "front": "Farthest planet from the Sun", "back": "Neptune", "label": "planet", "example": "", "hook": "" },
+    { "front": "Gas giants", "back": "Jupiter and Saturn", "label": "planet", "example": "", "hook": "" },
+    { "front": "Ice giants", "back": "Uranus and Neptune", "label": "planet", "example": "", "hook": "" },
+    { "front": "Great Red Spot is on which planet", "back": "Jupiter", "label": "planet", "example": "", "hook": "The storm is wider than Earth" },
+    { "front": "Dwarf planet in the asteroid belt", "back": "Ceres", "label": "dwarf planet", "example": "", "hook": "" },
+    { "front": "Former ninth planet, now a dwarf planet", "back": "Pluto", "label": "dwarf planet", "example": "", "hook": "Reclassified as a dwarf planet in 2006" },
+    { "front": "Icy belt beyond Neptune", "back": "Kuiper belt", "label": "region", "example": "", "hook": "" },
+    { "front": "Region between Mars and Jupiter", "back": "Asteroid belt", "label": "region", "example": "", "hook": "" },
+    { "front": "Number of planets (IAU definition)", "back": "eight", "label": "count", "example": "", "hook": "" },
+    { "front": "One astronomical unit (AU)", "back": "average Earth-Sun distance, about 150 million km", "label": "distance", "example": "", "hook": "" },
+    { "front": "Most abundant element in the Sun", "back": "hydrogen", "label": "star", "example": "", "hook": "" },
+    { "front": "How the Sun produces energy", "back": "nuclear fusion of hydrogen into helium", "label": "star", "example": "", "hook": "" },
+    { "front": "Type of star the Sun is", "back": "G-type main-sequence star", "label": "star", "example": "", "hook": "Also called a yellow dwarf" }
+  ]
+}

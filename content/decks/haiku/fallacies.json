@@ -1,0 +1,31 @@
+{
+  "id": "fallacies",
+  "name": "Logic · Fallacies",
+  "mono": "Lo",
+  "category": "knowledge",
+  "level": "core",
+  "lang": null,
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Spot common reasoning errors by name, from straw men and slippery slopes to ad hominem attacks and red herrings.",
+  "cards": [
+    { "front": "Attacking the person instead of their argument", "back": "Ad hominem", "label": "fallacy", "example": "", "hook": "Latin for 'to the person'" },
+    { "front": "Misrepresenting an opponent's view to defeat it", "back": "Straw man", "label": "fallacy", "example": "", "hook": "Like fighting a flimsy dummy instead of the real opponent" },
+    { "front": "Presenting only two options when more exist", "back": "False dilemma (false dichotomy)", "label": "fallacy", "example": "", "hook": "" },
+    { "front": "Assuming that because B followed A, A caused B", "back": "Post hoc ergo propter hoc", "label": "fallacy", "example": "", "hook": "Latin for 'after this, therefore because of this'" },
+    { "front": "Believing something is true because many people believe it", "back": "Bandwagon (appeal to popularity)", "label": "fallacy", "example": "", "hook": "" },
+    { "front": "Drawing a broad conclusion from too few examples", "back": "Hasty generalization", "label": "fallacy", "example": "", "hook": "" },
+    { "front": "Claiming one small step will inevitably lead to disaster", "back": "Slippery slope", "label": "fallacy", "example": "", "hook": "" },
+    { "front": "Using the conclusion itself as one of the premises", "back": "Circular reasoning (begging the question)", "label": "fallacy", "example": "", "hook": "" },
+    { "front": "Changing the subject to an irrelevant distraction", "back": "Red herring", "label": "fallacy", "example": "", "hook": "" },
+    { "front": "Claiming something is false because nobody has proven it", "back": "Appeal to ignorance", "label": "fallacy", "example": "", "hook": "" },
+    { "front": "Redefining a group to exclude every counterexample", "back": "No true Scotsman", "label": "fallacy", "example": "", "hook": "" },
+    { "front": "Using a word with two meanings as if it had one", "back": "Equivocation", "label": "fallacy", "example": "", "hook": "Like 'bank' meaning a riverside and a place for money" },
+    { "front": "Replying to criticism with 'you do it too'", "back": "Tu quoque (you too)", "label": "fallacy", "example": "", "hook": "" },
+    { "front": "Assuming something natural must be good or safe", "back": "Appeal to nature", "label": "fallacy", "example": "", "hook": "" },
+    { "front": "Asking a question that assumes an unproven answer", "back": "Loaded question", "label": "fallacy", "example": "", "hook": "" },
+    { "front": "Changing the criteria after the goal has been met", "back": "Moving the goalposts", "label": "fallacy", "example": "", "hook": "" },
+    { "front": "Judging an idea by where or who it came from", "back": "Genetic fallacy", "label": "fallacy", "example": "", "hook": "" },
+    { "front": "Accepting a claim only because an authority said it", "back": "Appeal to authority", "label": "fallacy", "example": "", "hook": "" }
+  ]
+}

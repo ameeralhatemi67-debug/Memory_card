@@ -1,0 +1,98 @@
+{
+  "id": "pharm-basics",
+  "name": "Pharmacology · Basics",
+  "mono": "Rx",
+  "category": "med",
+  "level": "classes",
+  "lang": null,
+  "kind": "text",
+  "folder": "Medicine",
+  "description": "Recognise a drug class from its name ending, with one example each.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "-pril",
+      "back": "ACE inhibitor: lowers blood pressure (lisinopril)",
+      "label": "drug class",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "-olol",
+      "back": "beta blocker: slows the heart (metoprolol)",
+      "label": "drug class",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "-statin",
+      "back": "lowers cholesterol (atorvastatin)",
+      "label": "drug class",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "-prazole",
+      "back": "proton pump inhibitor: less stomach acid (omeprazole)",
+      "label": "drug class",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "NSAIDs",
+      "back": "pain and inflammation (ibuprofen)",
+      "label": "drug class",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "SSRIs",
+      "back": "depression and anxiety (sertraline)",
+      "label": "drug class",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "-azepam",
+      "back": "benzodiazepine: anxiety, sedation (diazepam)",
+      "label": "drug class",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "loop diuretics",
+      "back": "remove fluid (furosemide)",
+      "label": "drug class",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "anticoagulants",
+      "back": "prevent clots (warfarin)",
+      "label": "drug class",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "-cillin",
+      "back": "penicillin antibiotic (amoxicillin)",
+      "label": "drug class",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "opioids",
+      "back": "strong pain relief (morphine)",
+      "label": "drug class",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "antihistamines",
+      "back": "allergy relief (cetirizine)",
+      "label": "drug class",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

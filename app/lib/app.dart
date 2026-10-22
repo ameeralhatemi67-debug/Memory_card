@@ -1,0 +1,122 @@
+import 'dart:async';
+
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
+
+import 'data/store.dart';
+import 'data/store_scope.dart';
+import 'features/onboarding/onboarding.dart';
+import 'features/shell/shell.dart';
+import 'services/reminders.dart';
+import 'ui/motion.dart';
+import 'ui/theme.dart';
+
+class MemoryCardApp extends StatefulWidget {
+  const MemoryCardApp({super.key, required this.store});
+  final AppStore store;
+
+  @override
+  State<MemoryCardApp> createState() => _MemoryCardAppState();
+}
+
+class _MemoryCardAppState extends State<MemoryCardApp> with WidgetsBindingObserver {
+  static final _light = Mc.theme(Mc.light);
+  static final _dark = Mc.theme(Mc.darkTheme);
+
+  Timer? _dayTimer;
+  late String _theme = widget.store.settings.theme;
+  late bool _reduced = widget.store.settings.reducedMotion;
+  late bool _onboarded = widget.store.data.onboarded;
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
+    widget.store.addListener(_onStore);
+    _dayTimer = Timer.periodic(const Duration(seconds: 30), (_) => widget.store.tickDay());
+  }
+
+  /// Only theme, motion and onboarding changes rebuild the app root; everything else rebuilds locally.
+  void _onStore() {
+    final s = widget.store.settings;
+    if (s.theme != _theme || s.reducedMotion != _reduced || widget.store.data.onboarded != _onboarded) {
+      setState(() {
+        _theme = s.theme;
+        _reduced = s.reducedMotion;
+        _onboarded = widget.store.data.onboarded;
+      });
+    }
+  }
+
+  @override
+  void dispose() {
+    WidgetsBinding.instance.removeObserver(this);
+    widget.store.removeListener(_onStore);
+    _dayTimer?.cancel();
+    super.dispose();
+  }
+
+  @override
+  void didChangeAppLifecycleState(AppLifecycleState state) {
+    if (state == AppLifecycleState.paused || state == AppLifecycleState.inactive) {
+      widget.store.flush();
+      Reminders.i.reschedule(widget.store);
+    } else if (state == AppLifecycleState.resumed) {
+      widget.store.tickDay();
+    }
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final mode = switch (_theme) { 'light' => ThemeMode.light, 'dark' => ThemeMode.dark, _ => ThemeMode.system };
+    return StoreScope(
+      store: widget.store,
+      child: MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: 'Memory Card',
+        theme: _light,
+        darkTheme: _dark,
+        themeMode: mode,
+        themeAnimationDuration: const Duration(milliseconds: 350),
+        themeAnimationCurve: McCurves.paper,
+        builder: (context, child) {
+          final mq = MediaQuery.of(context);
+          final reduced = _reduced || mq.disableAnimations;
+          final dark = Theme.of(context).brightness == Brightness.dark;
+          return AnnotatedRegion<SystemUiOverlayStyle>(
+            value: (dark ? SystemUiOverlayStyle.light : SystemUiOverlayStyle.dark).copyWith(
+              statusBarColor: Colors.transparent,
+              systemNavigationBarColor: Colors.transparent,
+              systemNavigationBarContrastEnforced: false,
+            ),
+            child: MotionPrefs(
+              reduced: reduced,
+              // Text grows with the OS setting, within what the card layouts can hold.
+              child: MediaQuery(
+                data: mq.copyWith(textScaler: mq.textScaler.clamp(minScaleFactor: 0.85, maxScaleFactor: 1.3)),
+                child: child!,
+              ),
+            ),
+          );
+        },
+        home: RootGate(onboarded: _onboarded),
+      ),
+    );
+  }
+}
+
+/// First launch → onboarding. Afterwards → the app.
+class RootGate extends StatelessWidget {
+  const RootGate({super.key, required this.onboarded});
+  final bool onboarded;
+
+  @override
+  Widget build(BuildContext context) {
+    return AnimatedSwitcher(
+      duration: const Duration(milliseconds: 600),
+      switchInCurve: McCurves.out,
+      transitionBuilder: (child, anim) => FadeTransition(opacity: anim, child: child),
+      child: onboarded ? const Shell(key: ValueKey('shell')) : const Onboarding(key: ValueKey('onboarding')),
+    );
+  }
+}

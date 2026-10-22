@@ -1,0 +1,223 @@
+{
+  "id": "cooking-techniques",
+  "name": "Cooking · Techniques",
+  "mono": "Ck",
+  "category": "knowledge",
+  "level": "basics",
+  "lang": null,
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Name and describe the core cooking techniques, from knife cuts and dry heat to sauces, dough and resting meat, in plain terms.",
+  "cards": [
+    {
+      "front": "Mise en place",
+      "back": "everything measured and prepped before cooking",
+      "label": "kitchen",
+      "example": "",
+      "hook": "French for everything in its place"
+    },
+    {
+      "front": "Sear",
+      "back": "brown food hard over high heat",
+      "label": "heat",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Sauté",
+      "back": "cook quickly in a little fat, tossing often",
+      "label": "heat",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Braise",
+      "back": "brown, then simmer covered in a little liquid",
+      "label": "heat",
+      "example": "",
+      "hook": "browning first builds flavor, then slow moist cooking"
+    },
+    {
+      "front": "Poach",
+      "back": "cook gently in liquid just below a simmer",
+      "label": "liquid",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Blanch",
+      "back": "brief boil, then ice bath to stop cooking",
+      "label": "liquid",
+      "example": "",
+      "hook": "the ice bath keeps vegetables bright green"
+    },
+    {
+      "front": "Deglaze",
+      "back": "add liquid to a hot pan to lift browned bits",
+      "label": "sauce",
+      "example": "",
+      "hook": "those browned bits are called fond"
+    },
+    {
+      "front": "Julienne",
+      "back": "cut into thin matchsticks",
+      "label": "knife skills",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Brunoise",
+      "back": "very fine dice, about 3 mm cubes",
+      "label": "knife skills",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Chiffonade",
+      "back": "herbs or leaves rolled and cut into ribbons",
+      "label": "knife skills",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Roux",
+      "back": "equal parts fat and flour, cooked together",
+      "label": "sauce",
+      "example": "",
+      "hook": "cook it longer for a darker, nuttier roux"
+    },
+    {
+      "front": "Emulsify",
+      "back": "combine fat and water into a stable mixture",
+      "label": "sauce",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Fold",
+      "back": "gently combine, cutting down and under",
+      "label": "baking",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Cream",
+      "back": "beat butter and sugar until light and fluffy",
+      "label": "baking",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Proof",
+      "back": "let yeast dough rise before baking",
+      "label": "baking",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Knead",
+      "back": "work dough to develop gluten",
+      "label": "baking",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Score",
+      "back": "shallow cuts on dough before baking",
+      "label": "baking",
+      "example": "",
+      "hook": "scoring lets the loaf expand in a controlled way"
+    },
+    {
+      "front": "Rest",
+      "back": "let meat sit so juices redistribute",
+      "label": "meat",
+      "example": "",
+      "hook": "cutting too early lets the juices run out"
+    },
+    {
+      "front": "Baste",
+      "back": "spoon melted fat or juices over food",
+      "label": "meat",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Confit",
+      "back": "slow-cook in its own fat",
+      "label": "meat",
+      "example": "",
+      "hook": "duck confit is the classic example"
+    },
+    {
+      "front": "Render",
+      "back": "melt fat out of meat slowly",
+      "label": "meat",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Sweat",
+      "back": "cook gently in fat until soft, without browning",
+      "label": "vegetables",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Reduce",
+      "back": "simmer to concentrate flavor by evaporation",
+      "label": "sauce",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Temper",
+      "back": "slowly add hot liquid to beaten eggs",
+      "label": "eggs",
+      "example": "",
+      "hook": "add the hot liquid slowly so the eggs do not scramble"
+    },
+    {
+      "front": "Flambé",
+      "back": "briefly ignite alcohol in the pan",
+      "label": "heat",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Sous vide",
+      "back": "cook sealed food in a precise low-temperature water bath",
+      "label": "heat",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Macerate",
+      "back": "soak fruit in sugar or liquid to soften",
+      "label": "fruit",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Caramelize",
+      "back": "heat sugar until it browns and turns nutty",
+      "label": "sugar",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Dredge",
+      "back": "coat food in flour or crumbs before cooking",
+      "label": "coating",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Truss",
+      "back": "tie poultry with string to keep its shape",
+      "label": "meat",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

@@ -1,0 +1,31 @@
+{
+  "id": "es-false-friends",
+  "name": "Spanish · False friends",
+  "mono": "Es",
+  "category": "lang",
+  "level": "A2",
+  "lang": "es-ES",
+  "kind": "text",
+  "folder": "Languages",
+  "description": "Stop mixing up Spanish words that look like English ones, such as embarazada and actual, and use each one with its real meaning.",
+  "cards": [
+    { "front": "embarazada", "back": "pregnant (not embarrassed)", "label": "false friend · adj", "example": "Mi hermana está embarazada.", "hook": "Embarrassed is avergonzada (or avergonzado)." },
+    { "front": "actual", "back": "current (not actual)", "label": "false friend · adj", "example": "El precio actual es muy alto.", "hook": "English 'actual' is Spanish 'real'." },
+    { "front": "el éxito", "back": "success (not exit)", "label": "false friend · noun", "example": "La película tuvo mucho éxito.", "hook": "" },
+    { "front": "la librería", "back": "bookshop (not library)", "label": "false friend · noun", "example": "Compré un libro en la librería.", "hook": "A library is a biblioteca." },
+    { "front": "sensible", "back": "sensitive (not sensible)", "label": "false friend · adj", "example": "Mi piel es muy sensible al sol.", "hook": "" },
+    { "front": "el colegio", "back": "school (not college)", "label": "false friend · noun", "example": "Los niños van al colegio a las ocho.", "hook": "" },
+    { "front": "la carpeta", "back": "folder (not carpet)", "label": "false friend · noun", "example": "Guarda el archivo en la carpeta azul.", "hook": "" },
+    { "front": "recordar", "back": "to remember (not record)", "label": "false friend · verb", "example": "Intento recordar dónde dejé las llaves.", "hook": "To record is grabar." },
+    { "front": "la noticia", "back": "news item (not notice)", "label": "false friend · noun", "example": "Ayer leí una noticia sobre el clima.", "hook": "" },
+    { "front": "últimamente", "back": "lately (not ultimately)", "label": "false friend · adverb", "example": "Últimamente hace mucho calor.", "hook": "" },
+    { "front": "el/la pariente", "back": "relative (not parent)", "label": "false friend · noun", "example": "Es mi pariente lejano.", "hook": "" },
+    { "front": "atender", "back": "to attend to, serve (not attend)", "label": "false friend · verb", "example": "¿Me puede atender alguien, por favor?", "hook": "" },
+    { "front": "pretender", "back": "to intend (not pretend)", "label": "false friend · verb", "example": "Pretender conseguir ese puesto exige mucho esfuerzo.", "hook": "To pretend is fingir." },
+    { "front": "asumir", "back": "to take on (not assume)", "label": "false friend · verb", "example": "Voy a asumir la responsabilidad del error.", "hook": "" },
+    { "front": "realizar", "back": "to carry out (not realize)", "label": "false friend · verb", "example": "Quiero realizar un viaje a Japón.", "hook": "" },
+    { "front": "la decepción", "back": "disappointment (not deception)", "label": "false friend · noun", "example": "Fue una gran decepción para todos.", "hook": "" },
+    { "front": "la fábrica", "back": "factory (not fabric)", "label": "false friend · noun", "example": "Mi tío trabaja en una fábrica de coches.", "hook": "" },
+    { "front": "el compromiso", "back": "commitment, appointment (not compromise)", "label": "false friend · noun", "example": "Tengo un compromiso importante esta tarde.", "hook": "" }
+  ]
+}

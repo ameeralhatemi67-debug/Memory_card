@@ -1,0 +1,31 @@
+{
+  "id": "si-units-constants",
+  "name": "Physics · SI units",
+  "mono": "Hz",
+  "category": "science",
+  "level": "basics",
+  "lang": null,
+  "kind": "text",
+  "folder": "Science",
+  "description": "Name the seven SI base units, common derived units and key physical constants with their values, for exams and labs.",
+  "cards": [
+    { "front": "SI base unit of length", "back": "metre (m)", "label": "base unit", "example": "", "hook": "" },
+    { "front": "SI base unit of mass", "back": "kilogram (kg)", "label": "base unit", "example": "", "hook": "" },
+    { "front": "SI base unit of time", "back": "second (s)", "label": "base unit", "example": "", "hook": "" },
+    { "front": "SI base unit of electric current", "back": "ampere (A)", "label": "base unit", "example": "", "hook": "" },
+    { "front": "SI base unit of thermodynamic temperature", "back": "kelvin (K)", "label": "base unit", "example": "", "hook": "Written K with no degree sign" },
+    { "front": "SI base unit of amount of substance", "back": "mole (mol)", "label": "base unit", "example": "", "hook": "" },
+    { "front": "SI base unit of luminous intensity", "back": "candela (cd)", "label": "base unit", "example": "", "hook": "" },
+    { "front": "Unit of force", "back": "newton (N), kg·m/s²", "label": "derived unit", "example": "", "hook": "A 100 g apple weighs about 1 N" },
+    { "front": "Unit of energy and work", "back": "joule (J), N·m", "label": "derived unit", "example": "", "hook": "" },
+    { "front": "Unit of power", "back": "watt (W), J/s", "label": "derived unit", "example": "", "hook": "" },
+    { "front": "Unit of pressure", "back": "pascal (Pa), N/m²", "label": "derived unit", "example": "", "hook": "" },
+    { "front": "Speed of light in vacuum (c)", "back": "299,792,458 m/s (exact)", "label": "constant", "example": "", "hook": "" },
+    { "front": "Planck constant (h)", "back": "6.626 × 10^-34 J·s", "label": "constant", "example": "", "hook": "Photon energy E = h × frequency" },
+    { "front": "Elementary charge (e)", "back": "1.602 × 10^-19 C", "label": "constant", "example": "", "hook": "" },
+    { "front": "Avogadro constant (NA)", "back": "6.022 × 10^23 per mol", "label": "constant", "example": "", "hook": "" },
+    { "front": "Gravitational constant (G)", "back": "6.674 × 10^-11 N·m²/kg²", "label": "constant", "example": "", "hook": "" },
+    { "front": "Standard gravity (g)", "back": "9.80665 m/s²", "label": "constant", "example": "", "hook": "" },
+    { "front": "Absolute zero in Celsius", "back": "-273.15 °C", "label": "temperature", "example": "", "hook": "" }
+  ]
+}

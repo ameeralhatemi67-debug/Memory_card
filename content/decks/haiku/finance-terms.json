@@ -1,0 +1,28 @@
+{
+  "id": "finance-terms",
+  "name": "Finance · Terms",
+  "mono": "$%",
+  "category": "knowledge",
+  "level": "basics",
+  "lang": null,
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Learn the money terms behind savings, loans, insurance, and investing so you can read statements and plans with confidence.",
+  "cards": [
+    { "front": "APY", "back": "annual yield, including the effect of compounding", "label": "savings", "example": "", "hook": "APY includes compounding, APR usually does not" },
+    { "front": "Compound interest", "back": "interest earned on earlier interest too", "label": "growth", "example": "", "hook": "" },
+    { "front": "Inflation", "back": "rising prices that reduce what money buys", "label": "economy", "example": "", "hook": "" },
+    { "front": "Net worth", "back": "total assets minus total liabilities", "label": "balance sheet", "example": "", "hook": "what you own minus what you owe" },
+    { "front": "Asset", "back": "something you own that has value", "label": "balance sheet", "example": "", "hook": "" },
+    { "front": "Liability", "back": "money you owe to others", "label": "balance sheet", "example": "", "hook": "" },
+    { "front": "Emergency fund", "back": "cash set aside for unexpected costs or lost income", "label": "savings", "example": "", "hook": "" },
+    { "front": "Gross income", "back": "earnings before taxes and deductions", "label": "income", "example": "", "hook": "" },
+    { "front": "Net income", "back": "earnings after taxes and deductions", "label": "income", "example": "", "hook": "net means after the subtractions" },
+    { "front": "Credit utilization", "back": "share of available credit currently in use", "label": "credit", "example": "", "hook": "" },
+    { "front": "Diversification", "back": "spreading investments to reduce risk from any one", "label": "investing", "example": "", "hook": "do not put all your eggs in one basket" },
+    { "front": "Expense ratio", "back": "yearly fund fee as a share of assets", "label": "investing", "example": "", "hook": "" },
+    { "front": "Index fund", "back": "fund that tracks a market index, usually low cost", "label": "investing", "example": "", "hook": "" },
+    { "front": "Deductible", "back": "amount you pay before insurance starts covering", "label": "insurance", "example": "", "hook": "" },
+    { "front": "Opportunity cost", "back": "value of the best alternative you gave up", "label": "economy", "example": "", "hook": "" }
+  ]
+}

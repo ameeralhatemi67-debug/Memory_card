@@ -1,0 +1,182 @@
+{
+  "id": "de-a1-basics",
+  "name": "German · A1 Basics",
+  "mono": "De",
+  "category": "lang",
+  "level": "A1",
+  "lang": "de-DE",
+  "kind": "text",
+  "folder": "German",
+  "description": "The everyday nouns, verbs and adjectives you meet first, each with an example sentence.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "der Apfel",
+      "back": "the apple",
+      "label": "noun · masculine",
+      "example": "Ich esse jeden Tag einen Apfel.",
+      "hook": ""
+    },
+    {
+      "front": "die Birne",
+      "back": "the pear",
+      "label": "noun · feminine",
+      "example": "Die Birne ist süß.",
+      "hook": ""
+    },
+    {
+      "front": "die Milch",
+      "back": "the milk",
+      "label": "noun · feminine",
+      "example": "Die Milch ist kalt.",
+      "hook": ""
+    },
+    {
+      "front": "das Brot",
+      "back": "the bread",
+      "label": "noun · neuter",
+      "example": "Das Brot ist frisch.",
+      "hook": ""
+    },
+    {
+      "front": "die Butter",
+      "back": "the butter",
+      "label": "noun · feminine",
+      "example": "Ich brauche noch Butter.",
+      "hook": ""
+    },
+    {
+      "front": "das Wasser",
+      "back": "the water",
+      "label": "noun · neuter",
+      "example": "Ein Glas Wasser, bitte.",
+      "hook": ""
+    },
+    {
+      "front": "der Tisch",
+      "back": "the table",
+      "label": "noun · masculine",
+      "example": "Das Buch liegt auf dem Tisch.",
+      "hook": ""
+    },
+    {
+      "front": "der Stuhl",
+      "back": "the chair",
+      "label": "noun · masculine",
+      "example": "Der Stuhl ist bequem.",
+      "hook": ""
+    },
+    {
+      "front": "das Haus",
+      "back": "the house",
+      "label": "noun · neuter",
+      "example": "Das Haus ist groß.",
+      "hook": ""
+    },
+    {
+      "front": "die Tür",
+      "back": "the door",
+      "label": "noun · feminine",
+      "example": "Die Tür ist offen.",
+      "hook": ""
+    },
+    {
+      "front": "die Stadt",
+      "back": "the city",
+      "label": "noun · feminine",
+      "example": "Berlin ist eine große Stadt.",
+      "hook": ""
+    },
+    {
+      "front": "der Hund",
+      "back": "the dog",
+      "label": "noun · masculine",
+      "example": "Der Hund spielt im Park.",
+      "hook": ""
+    },
+    {
+      "front": "die Katze",
+      "back": "the cat",
+      "label": "noun · feminine",
+      "example": "Die Katze schläft.",
+      "hook": ""
+    },
+    {
+      "front": "das Auto",
+      "back": "the car",
+      "label": "noun · neuter",
+      "example": "Das Auto ist neu.",
+      "hook": ""
+    },
+    {
+      "front": "gehen",
+      "back": "to go, to walk",
+      "label": "verb",
+      "example": "Wir gehen nach Hause.",
+      "hook": ""
+    },
+    {
+      "front": "kommen",
+      "back": "to come",
+      "label": "verb",
+      "example": "Kommst du mit?",
+      "hook": ""
+    },
+    {
+      "front": "essen",
+      "back": "to eat",
+      "label": "verb",
+      "example": "Was isst du gern?",
+      "hook": ""
+    },
+    {
+      "front": "trinken",
+      "back": "to drink",
+      "label": "verb",
+      "example": "Ich trinke Tee.",
+      "hook": ""
+    },
+    {
+      "front": "schlafen",
+      "back": "to sleep",
+      "label": "verb",
+      "example": "Das Baby schläft.",
+      "hook": ""
+    },
+    {
+      "front": "sprechen",
+      "back": "to speak",
+      "label": "verb",
+      "example": "Sprechen Sie Englisch?",
+      "hook": ""
+    },
+    {
+      "front": "heute",
+      "back": "today",
+      "label": "adverb",
+      "example": "Heute ist Montag.",
+      "hook": ""
+    },
+    {
+      "front": "morgen",
+      "back": "tomorrow",
+      "label": "adverb",
+      "example": "Bis morgen!",
+      "hook": ""
+    },
+    {
+      "front": "groß",
+      "back": "big, tall",
+      "label": "adjective",
+      "example": "Mein Bruder ist groß.",
+      "hook": ""
+    },
+    {
+      "front": "klein",
+      "back": "small",
+      "label": "adjective",
+      "example": "Die Wohnung ist klein.",
+      "hook": ""
+    }
+  ]
+}

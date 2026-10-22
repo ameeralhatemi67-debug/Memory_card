@@ -1,0 +1,98 @@
+{
+  "id": "dart-basics",
+  "name": "Dart · Basics",
+  "mono": "Da",
+  "category": "code",
+  "level": "basics",
+  "lang": null,
+  "kind": "code",
+  "folder": "Coding",
+  "description": "Null safety, futures and the type system: what you need before writing Flutter.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "final vs const",
+      "back": "set once at runtime vs fixed at compile time",
+      "label": "dart",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "String? name",
+      "back": "a String that may be null",
+      "label": "dart",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "name ?? 'Guest'",
+      "back": "'Guest' when name is null",
+      "label": "dart",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "name!",
+      "back": "assert that name is not null",
+      "label": "dart",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "late",
+      "back": "initialise later, before first use",
+      "label": "dart",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "=> expr",
+      "back": "arrow function that returns expr",
+      "label": "dart",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "List<int> xs = [1, 2];",
+      "back": "a typed list",
+      "label": "dart",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Map<String, int>",
+      "back": "a map from String keys to int values",
+      "label": "dart",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "async / await",
+      "back": "write asynchronous code top to bottom",
+      "label": "dart",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Future<T>",
+      "back": "a value that arrives later",
+      "label": "dart",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Stream<T>",
+      "back": "many values over time",
+      "label": "dart",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "extends vs implements",
+      "back": "inherit code vs promise an interface",
+      "label": "dart",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

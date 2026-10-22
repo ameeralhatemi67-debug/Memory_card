@@ -1,0 +1,182 @@
+{
+  "id": "de-a1-everyday",
+  "name": "German · A1 Everyday",
+  "mono": "De",
+  "category": "lang",
+  "level": "A1",
+  "lang": "de-DE",
+  "kind": "text",
+  "folder": "German",
+  "description": "Everyday nouns with their gender, each in a short example sentence.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "das Eichhörnchen",
+      "back": "the squirrel",
+      "label": "noun · neuter",
+      "example": "Das Eichhörnchen versteckt Nüsse im Garten.",
+      "hook": ""
+    },
+    {
+      "front": "die Brücke",
+      "back": "the bridge",
+      "label": "noun · feminine",
+      "example": "Wir gehen über die alte Brücke.",
+      "hook": ""
+    },
+    {
+      "front": "der Schmetterling",
+      "back": "the butterfly",
+      "label": "noun · masculine",
+      "example": "Ein Schmetterling sitzt auf der Blume.",
+      "hook": ""
+    },
+    {
+      "front": "die Zeitung",
+      "back": "the newspaper",
+      "label": "noun · feminine",
+      "example": "Mein Opa liest jeden Morgen die Zeitung.",
+      "hook": ""
+    },
+    {
+      "front": "das Frühstück",
+      "back": "breakfast",
+      "label": "noun · neuter",
+      "example": "Das Frühstück ist um acht Uhr fertig.",
+      "hook": ""
+    },
+    {
+      "front": "der Regenschirm",
+      "back": "the umbrella",
+      "label": "noun · masculine",
+      "example": "Vergiss deinen Regenschirm nicht!",
+      "hook": ""
+    },
+    {
+      "front": "die Gurke",
+      "back": "the cucumber",
+      "label": "noun · feminine",
+      "example": "Die Gurke ist frisch und grün.",
+      "hook": ""
+    },
+    {
+      "front": "das Gewitter",
+      "back": "the thunderstorm",
+      "label": "noun · neuter",
+      "example": "Heute Abend kommt ein Gewitter.",
+      "hook": ""
+    },
+    {
+      "front": "der Bahnhof",
+      "back": "the train station",
+      "label": "noun · masculine",
+      "example": "Der Bahnhof ist nicht weit von hier.",
+      "hook": ""
+    },
+    {
+      "front": "die Kartoffel",
+      "back": "the potato",
+      "label": "noun · feminine",
+      "example": "Wir essen Kartoffeln mit Quark.",
+      "hook": ""
+    },
+    {
+      "front": "das Fahrrad",
+      "back": "the bicycle",
+      "label": "noun · neuter",
+      "example": "Ich fahre mit dem Fahrrad zur Arbeit.",
+      "hook": ""
+    },
+    {
+      "front": "der Schlüssel",
+      "back": "the key",
+      "label": "noun · masculine",
+      "example": "Wo ist mein Schlüssel?",
+      "hook": ""
+    },
+    {
+      "front": "die Wolke",
+      "back": "the cloud",
+      "label": "noun · feminine",
+      "example": "Am Himmel ist keine Wolke.",
+      "hook": ""
+    },
+    {
+      "front": "das Geschenk",
+      "back": "the gift",
+      "label": "noun · neuter",
+      "example": "Das Geschenk ist für dich.",
+      "hook": ""
+    },
+    {
+      "front": "der Kühlschrank",
+      "back": "the fridge",
+      "label": "noun · masculine",
+      "example": "Die Milch steht im Kühlschrank.",
+      "hook": ""
+    },
+    {
+      "front": "die Treppe",
+      "back": "the stairs",
+      "label": "noun · feminine",
+      "example": "Die Treppe ist sehr steil.",
+      "hook": ""
+    },
+    {
+      "front": "das Fenster",
+      "back": "the window",
+      "label": "noun · neuter",
+      "example": "Mach bitte das Fenster zu.",
+      "hook": ""
+    },
+    {
+      "front": "der Löffel",
+      "back": "the spoon",
+      "label": "noun · masculine",
+      "example": "Ich brauche einen Löffel für die Suppe.",
+      "hook": ""
+    },
+    {
+      "front": "die Rechnung",
+      "back": "the bill",
+      "label": "noun · feminine",
+      "example": "Die Rechnung, bitte!",
+      "hook": ""
+    },
+    {
+      "front": "das Handy",
+      "back": "the mobile phone",
+      "label": "noun · neuter",
+      "example": "Mein Handy ist leer.",
+      "hook": ""
+    },
+    {
+      "front": "der Nachbar",
+      "back": "the neighbour",
+      "label": "noun · masculine",
+      "example": "Unser Nachbar hat einen Hund.",
+      "hook": ""
+    },
+    {
+      "front": "die Ampel",
+      "back": "the traffic light",
+      "label": "noun · feminine",
+      "example": "Die Ampel ist rot.",
+      "hook": ""
+    },
+    {
+      "front": "das Kissen",
+      "back": "the pillow",
+      "label": "noun · neuter",
+      "example": "Das Kissen ist weich.",
+      "hook": ""
+    },
+    {
+      "front": "der Wecker",
+      "back": "the alarm clock",
+      "label": "noun · masculine",
+      "example": "Der Wecker klingelt um sechs.",
+      "hook": ""
+    }
+  ]
+}

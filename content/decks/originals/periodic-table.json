@@ -1,0 +1,126 @@
+{
+  "id": "periodic-table",
+  "name": "Periodic Table",
+  "mono": "Pt",
+  "category": "science",
+  "level": "core",
+  "lang": null,
+  "kind": "text",
+  "folder": "Science",
+  "description": "Element symbols and names, from hydrogen to the metals you use every day.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "H",
+      "back": "hydrogen · 1",
+      "label": "element",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "He",
+      "back": "helium · 2",
+      "label": "element",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "C",
+      "back": "carbon · 6",
+      "label": "element",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "N",
+      "back": "nitrogen · 7",
+      "label": "element",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "O",
+      "back": "oxygen · 8",
+      "label": "element",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Na",
+      "back": "sodium · 11",
+      "label": "element",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Mg",
+      "back": "magnesium · 12",
+      "label": "element",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Cl",
+      "back": "chlorine · 17",
+      "label": "element",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "K",
+      "back": "potassium · 19",
+      "label": "element",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Ca",
+      "back": "calcium · 20",
+      "label": "element",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Fe",
+      "back": "iron · 26",
+      "label": "element",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Cu",
+      "back": "copper · 29",
+      "label": "element",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Ag",
+      "back": "silver · 47",
+      "label": "element",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Sn",
+      "back": "tin · 50",
+      "label": "element",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Au",
+      "back": "gold · 79",
+      "label": "element",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Pb",
+      "back": "lead · 82",
+      "label": "element",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

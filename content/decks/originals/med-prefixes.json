@@ -1,0 +1,98 @@
+{
+  "id": "med-prefixes",
+  "name": "Medical Prefixes",
+  "mono": "Mx",
+  "category": "med",
+  "level": "terms",
+  "lang": null,
+  "kind": "text",
+  "folder": "Medicine",
+  "description": "Decode unfamiliar medical words from the prefix at their start.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "brady-",
+      "back": "slow",
+      "label": "prefix",
+      "example": "bradycardia",
+      "hook": ""
+    },
+    {
+      "front": "tachy-",
+      "back": "fast",
+      "label": "prefix",
+      "example": "tachycardia",
+      "hook": ""
+    },
+    {
+      "front": "hyper-",
+      "back": "above, too much",
+      "label": "prefix",
+      "example": "hypertension",
+      "hook": ""
+    },
+    {
+      "front": "hypo-",
+      "back": "below, too little",
+      "label": "prefix",
+      "example": "hypoglycaemia",
+      "hook": ""
+    },
+    {
+      "front": "cardio-",
+      "back": "heart",
+      "label": "prefix",
+      "example": "cardiology",
+      "hook": ""
+    },
+    {
+      "front": "hepato-",
+      "back": "liver",
+      "label": "prefix",
+      "example": "hepatitis",
+      "hook": ""
+    },
+    {
+      "front": "nephro-",
+      "back": "kidney",
+      "label": "prefix",
+      "example": "nephrology",
+      "hook": ""
+    },
+    {
+      "front": "neuro-",
+      "back": "nerve",
+      "label": "prefix",
+      "example": "neuropathy",
+      "hook": ""
+    },
+    {
+      "front": "osteo-",
+      "back": "bone",
+      "label": "prefix",
+      "example": "osteoporosis",
+      "hook": ""
+    },
+    {
+      "front": "derm-",
+      "back": "skin",
+      "label": "prefix",
+      "example": "dermatitis",
+      "hook": ""
+    },
+    {
+      "front": "gastro-",
+      "back": "stomach",
+      "label": "prefix",
+      "example": "gastroenteritis",
+      "hook": ""
+    },
+    {
+      "front": "-itis",
+      "back": "inflammation",
+      "label": "suffix",
+      "example": "tonsillitis",
+      "hook": ""
+    }
+  ]
+}

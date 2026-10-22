@@ -1,0 +1,28 @@
+{
+  "id": "big-o-operations",
+  "name": "Big-O · Operations",
+  "mono": "O",
+  "category": "code",
+  "level": "core",
+  "lang": null,
+  "kind": "text",
+  "folder": "Coding",
+  "description": "Estimate how fast common data structure and sorting operations run, from O(1) array access up to O(n^2) and O(2^n) growth.",
+  "cards": [
+    { "front": "Array access by index", "back": "O(1)", "label": "arrays", "example": "", "hook": "" },
+    { "front": "Array insert at the start", "back": "O(n), every element shifts", "label": "arrays", "example": "", "hook": "" },
+    { "front": "Array push to the end", "back": "O(1) amortized", "label": "arrays", "example": "", "hook": "occasional resizes are spread across many pushes" },
+    { "front": "Linked list search by value", "back": "O(n)", "label": "linked lists", "example": "", "hook": "" },
+    { "front": "Binary search, sorted array", "back": "O(log n)", "label": "searching", "example": "", "hook": "each step halves the remaining range" },
+    { "front": "Hash table lookup, average case", "back": "O(1), O(n) in the worst case", "label": "hash tables", "example": "", "hook": "collisions can degrade lookups toward O(n)" },
+    { "front": "Balanced binary search tree search", "back": "O(log n)", "label": "trees", "example": "", "hook": "" },
+    { "front": "Heap, read the minimum", "back": "O(1)", "label": "heaps", "example": "", "hook": "" },
+    { "front": "Heap, insert one item", "back": "O(log n)", "label": "heaps", "example": "", "hook": "" },
+    { "front": "Merge sort", "back": "O(n log n) time, O(n) extra space", "label": "sorting", "example": "", "hook": "" },
+    { "front": "Quicksort, average case", "back": "O(n log n), O(n^2) worst case", "label": "sorting", "example": "", "hook": "" },
+    { "front": "Bubble sort", "back": "O(n^2) time, O(1) extra space", "label": "sorting", "example": "", "hook": "" },
+    { "front": "Two nested loops over n items", "back": "O(n^2)", "label": "loops", "example": "", "hook": "" },
+    { "front": "Generating all subsets of n items", "back": "O(2^n)", "label": "recursion", "example": "", "hook": "" },
+    { "front": "Stack push or pop", "back": "O(1)", "label": "stacks", "example": "", "hook": "" }
+  ]
+}

@@ -1,0 +1,98 @@
+{
+  "id": "airport-english",
+  "name": "Airport English",
+  "mono": "Ai",
+  "category": "lang",
+  "level": "travel",
+  "lang": "en-GB",
+  "kind": "text",
+  "folder": "Travel",
+  "description": "Check-in, security and gate phrases, so nothing at the airport surprises you.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "boarding pass",
+      "back": "the pass you show to get on the plane",
+      "label": "travel",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "gate",
+      "back": "where you board the plane",
+      "label": "travel",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "aisle seat",
+      "back": "the seat next to the corridor",
+      "label": "travel",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "window seat",
+      "back": "the seat next to the window",
+      "label": "travel",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "carry-on",
+      "back": "the bag you take into the cabin",
+      "label": "travel",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "layover",
+      "back": "a stop between two flights",
+      "label": "travel",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "customs",
+      "back": "where the goods you bring in are checked",
+      "label": "travel",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "baggage claim",
+      "back": "where you collect checked bags",
+      "label": "travel",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "check-in desk",
+      "back": "where you drop bags and get a boarding pass",
+      "label": "travel",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "delayed",
+      "back": "later than planned",
+      "label": "travel",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "departure lounge",
+      "back": "the waiting area after security",
+      "label": "travel",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "jet lag",
+      "back": "tiredness after crossing time zones",
+      "label": "travel",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

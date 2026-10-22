@@ -1,0 +1,223 @@
+{
+  "id": "paintings",
+  "name": "Art · Famous Paintings",
+  "mono": "Ar",
+  "category": "knowledge",
+  "level": "classics",
+  "lang": null,
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Name the painter behind 30 famous artworks, from the Mona Lisa and The Starry Night to Guernica and The Scream.",
+  "cards": [
+    {
+      "front": "Mona Lisa",
+      "back": "Leonardo da Vinci",
+      "label": "Italian Renaissance",
+      "example": "",
+      "hook": "Painted in oil on a poplar wood panel"
+    },
+    {
+      "front": "The Last Supper",
+      "back": "Leonardo da Vinci",
+      "label": "Italian Renaissance",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Starry Night",
+      "back": "Vincent van Gogh",
+      "label": "Post-Impressionism",
+      "example": "",
+      "hook": "Painted from memory at an asylum in Saint-Rémy"
+    },
+    {
+      "front": "The Persistence of Memory",
+      "back": "Salvador Dalí",
+      "label": "Surrealism",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Scream",
+      "back": "Edvard Munch",
+      "label": "Expressionism",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Girl with a Pearl Earring",
+      "back": "Johannes Vermeer",
+      "label": "Dutch Golden Age",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Birth of Venus",
+      "back": "Sandro Botticelli",
+      "label": "Italian Renaissance",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Guernica",
+      "back": "Pablo Picasso",
+      "label": "Modernism",
+      "example": "",
+      "hook": "Responds to the 1937 bombing of a Basque town"
+    },
+    {
+      "front": "The Kiss",
+      "back": "Gustav Klimt",
+      "label": "Vienna Secession",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "American Gothic",
+      "back": "Grant Wood",
+      "label": "American Regionalism",
+      "example": "",
+      "hook": "The models were his sister and his dentist"
+    },
+    {
+      "front": "Water Lilies",
+      "back": "Claude Monet",
+      "label": "Impressionism",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Impression, Sunrise",
+      "back": "Claude Monet",
+      "label": "Impressionism",
+      "example": "",
+      "hook": "Its title gave the movement its name"
+    },
+    {
+      "front": "The Night Watch",
+      "back": "Rembrandt van Rijn",
+      "label": "Dutch Golden Age",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Las Meninas",
+      "back": "Diego Velázquez",
+      "label": "Spanish Baroque",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Garden of Earthly Delights",
+      "back": "Hieronymus Bosch",
+      "label": "Northern Renaissance",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Creation of Adam",
+      "back": "Michelangelo Buonarroti",
+      "label": "High Renaissance",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The School of Athens",
+      "back": "Raphael",
+      "label": "High Renaissance",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Great Wave off Kanagawa",
+      "back": "Katsushika Hokusai",
+      "label": "Ukiyo-e",
+      "example": "",
+      "hook": "Part of the series Thirty-Six Views of Mount Fuji"
+    },
+    {
+      "front": "Liberty Leading the People",
+      "back": "Eugène Delacroix",
+      "label": "Romanticism",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Third of May 1808",
+      "back": "Francisco Goya",
+      "label": "Romanticism",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Hay Wain",
+      "back": "John Constable",
+      "label": "English landscape",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Fighting Temeraire",
+      "back": "J. M. W. Turner",
+      "label": "Romanticism",
+      "example": "",
+      "hook": "Shows an old warship being towed away to be broken up"
+    },
+    {
+      "front": "Nighthawks",
+      "back": "Edward Hopper",
+      "label": "American realism",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Son of Man",
+      "back": "René Magritte",
+      "label": "Surrealism",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Death of Marat",
+      "back": "Jacques-Louis David",
+      "label": "Neoclassicism",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Ophelia",
+      "back": "John Everett Millais",
+      "label": "Pre-Raphaelite",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Arnolfini Portrait",
+      "back": "Jan van Eyck",
+      "label": "Early Netherlandish",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Ambassadors",
+      "back": "Hans Holbein the Younger",
+      "label": "Northern Renaissance",
+      "example": "",
+      "hook": "Contains a skull that only looks right from an angle"
+    },
+    {
+      "front": "Wanderer above the Sea of Fog",
+      "back": "Caspar David Friedrich",
+      "label": "German Romanticism",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Composition VIII",
+      "back": "Wassily Kandinsky",
+      "label": "Abstract art",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

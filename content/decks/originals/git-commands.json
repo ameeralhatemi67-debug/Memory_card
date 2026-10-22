@@ -1,0 +1,112 @@
+{
+  "id": "git-commands",
+  "name": "Git · Commands",
+  "mono": "Gi",
+  "category": "code",
+  "level": "basics",
+  "lang": null,
+  "kind": "code",
+  "folder": "Coding",
+  "description": "The everyday commands for staging, committing, branching and undoing.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "git status",
+      "back": "show changed and staged files",
+      "label": "git",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "git add -p",
+      "back": "stage changes hunk by hunk",
+      "label": "git",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "git commit --amend",
+      "back": "rewrite the last commit",
+      "label": "git",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "git log --oneline",
+      "back": "one line per commit",
+      "label": "git",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "git diff --staged",
+      "back": "show what is staged",
+      "label": "git",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "git switch -c name",
+      "back": "create a branch and switch to it",
+      "label": "git",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "git stash",
+      "back": "shelve uncommitted changes",
+      "label": "git",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "git stash pop",
+      "back": "bring shelved changes back",
+      "label": "git",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "git rebase main",
+      "back": "replay your commits on top of main",
+      "label": "git",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "git merge --no-ff",
+      "back": "merge, always creating a merge commit",
+      "label": "git",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "git reset --soft HEAD~1",
+      "back": "undo the last commit, keep changes staged",
+      "label": "git",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "git restore file",
+      "back": "discard changes in a file",
+      "label": "git",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "git fetch",
+      "back": "download remote changes without merging",
+      "label": "git",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "git cherry-pick <sha>",
+      "back": "apply one commit onto this branch",
+      "label": "git",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

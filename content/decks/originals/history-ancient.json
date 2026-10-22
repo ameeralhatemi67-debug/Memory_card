@@ -1,0 +1,84 @@
+{
+  "id": "history-ancient",
+  "name": "History · Ancient World",
+  "mono": "An",
+  "category": "knowledge",
+  "level": "dates",
+  "lang": null,
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Pyramids to the fall of Rome: the dates that frame the ancient world.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "Rome founded (legend)",
+      "back": "753 BC",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Battle of Marathon",
+      "back": "490 BC",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Death of Alexander the Great",
+      "back": "323 BC",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Qin Shi Huang unifies China",
+      "back": "221 BC",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Julius Caesar assassinated",
+      "back": "44 BC",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Augustus becomes emperor",
+      "back": "27 BC",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Vesuvius buries Pompeii",
+      "back": "AD 79",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Hadrian's Wall begun",
+      "back": "AD 122",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Constantinople founded",
+      "back": "AD 330",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Code of Hammurabi",
+      "back": "around 1754 BC",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

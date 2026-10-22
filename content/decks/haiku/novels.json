@@ -1,0 +1,433 @@
+{
+  "id": "novels",
+  "name": "Literature · Novels",
+  "mono": "Li",
+  "category": "knowledge",
+  "level": "canon",
+  "lang": null,
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Name the author of 60 famous novels, from Pride and Prejudice and Don Quixote to The Great Gatsby and Beloved.",
+  "cards": [
+    {
+      "front": "Pride and Prejudice",
+      "back": "Jane Austen",
+      "label": "English",
+      "example": "",
+      "hook": "First titled First Impressions"
+    },
+    {
+      "front": "Emma",
+      "back": "Jane Austen",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Sense and Sensibility",
+      "back": "Jane Austen",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Jane Eyre",
+      "back": "Charlotte Brontë",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Wuthering Heights",
+      "back": "Emily Brontë",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Great Expectations",
+      "back": "Charles Dickens",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Oliver Twist",
+      "back": "Charles Dickens",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Middlemarch",
+      "back": "George Eliot",
+      "label": "English",
+      "example": "",
+      "hook": "Pen name of Mary Ann Evans"
+    },
+    {
+      "front": "Vanity Fair",
+      "back": "William Makepeace Thackeray",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Frankenstein",
+      "back": "Mary Shelley",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Dracula",
+      "back": "Bram Stoker",
+      "label": "English",
+      "example": "",
+      "hook": "Stoker was Irish and managed a London theatre"
+    },
+    {
+      "front": "Moby-Dick",
+      "back": "Herman Melville",
+      "label": "English",
+      "example": "",
+      "hook": "Opens with the line Call me Ishmael"
+    },
+    {
+      "front": "Little Women",
+      "back": "Louisa May Alcott",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Adventures of Huckleberry Finn",
+      "back": "Mark Twain",
+      "label": "English",
+      "example": "",
+      "hook": "Mark Twain is the pen name of Samuel Clemens"
+    },
+    {
+      "front": "The Great Gatsby",
+      "back": "F. Scott Fitzgerald",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "To Kill a Mockingbird",
+      "back": "Harper Lee",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Catcher in the Rye",
+      "back": "J. D. Salinger",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Grapes of Wrath",
+      "back": "John Steinbeck",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Old Man and the Sea",
+      "back": "Ernest Hemingway",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Nineteen Eighty-Four",
+      "back": "George Orwell",
+      "label": "English",
+      "example": "",
+      "hook": "Orwell was the pen name of Eric Arthur Blair"
+    },
+    {
+      "front": "Brave New World",
+      "back": "Aldous Huxley",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Fahrenheit 451",
+      "back": "Ray Bradbury",
+      "label": "English",
+      "example": "",
+      "hook": "The title is the temperature at which paper burns"
+    },
+    {
+      "front": "Ulysses",
+      "back": "James Joyce",
+      "label": "English",
+      "example": "",
+      "hook": "Set in Dublin on 16 June 1904"
+    },
+    {
+      "front": "The Trial",
+      "back": "Franz Kafka",
+      "label": "German",
+      "example": "",
+      "hook": "Published after Kafka's death by his friend Max Brod"
+    },
+    {
+      "front": "Lolita",
+      "back": "Vladimir Nabokov",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Stranger",
+      "back": "Albert Camus",
+      "label": "French",
+      "example": "",
+      "hook": "Opens with the line Mother died today"
+    },
+    {
+      "front": "One Hundred Years of Solitude",
+      "back": "Gabriel García Márquez",
+      "label": "Spanish",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Don Quixote",
+      "back": "Miguel de Cervantes",
+      "label": "Spanish",
+      "example": "",
+      "hook": "Published in two parts, in 1605 and 1615"
+    },
+    {
+      "front": "Things Fall Apart",
+      "back": "Chinua Achebe",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "War and Peace",
+      "back": "Leo Tolstoy",
+      "label": "Russian",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Anna Karenina",
+      "back": "Leo Tolstoy",
+      "label": "Russian",
+      "example": "",
+      "hook": "Opens with the line Happy families are all alike"
+    },
+    {
+      "front": "Crime and Punishment",
+      "back": "Fyodor Dostoevsky",
+      "label": "Russian",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Brothers Karamazov",
+      "back": "Fyodor Dostoevsky",
+      "label": "Russian",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Madame Bovary",
+      "back": "Gustave Flaubert",
+      "label": "French",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Les Misérables",
+      "back": "Victor Hugo",
+      "label": "French",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Count of Monte Cristo",
+      "back": "Alexandre Dumas",
+      "label": "French",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Three Musketeers",
+      "back": "Alexandre Dumas",
+      "label": "French",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Little Prince",
+      "back": "Antoine de Saint-Exupéry",
+      "label": "French",
+      "example": "",
+      "hook": "First published in 1943 in New York"
+    },
+    {
+      "front": "The Name of the Rose",
+      "back": "Umberto Eco",
+      "label": "Italian",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Leopard",
+      "back": "Giuseppe Tomasi di Lampedusa",
+      "label": "Italian",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Tale of Genji",
+      "back": "Murasaki Shikibu",
+      "label": "Japanese",
+      "example": "",
+      "hook": "Often called the world's first novel"
+    },
+    {
+      "front": "Norwegian Wood",
+      "back": "Haruki Murakami",
+      "label": "Japanese",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Master and Margarita",
+      "back": "Mikhail Bulgakov",
+      "label": "Russian",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Doctor Zhivago",
+      "back": "Boris Pasternak",
+      "label": "Russian",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Lord of the Flies",
+      "back": "William Golding",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "To the Lighthouse",
+      "back": "Virginia Woolf",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "A Passage to India",
+      "back": "E. M. Forster",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Tess of the d'Urbervilles",
+      "back": "Thomas Hardy",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Robinson Crusoe",
+      "back": "Daniel Defoe",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Picture of Dorian Gray",
+      "back": "Oscar Wilde",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Treasure Island",
+      "back": "Robert Louis Stevenson",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Hobbit",
+      "back": "J. R. R. Tolkien",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Lion, the Witch and the Wardrobe",
+      "back": "C. S. Lewis",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Alice's Adventures in Wonderland",
+      "back": "Lewis Carroll",
+      "label": "English",
+      "example": "",
+      "hook": "Real name was Charles Lutwidge Dodgson"
+    },
+    {
+      "front": "The Handmaid's Tale",
+      "back": "Margaret Atwood",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Beloved",
+      "back": "Toni Morrison",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "The Bell Jar",
+      "back": "Sylvia Plath",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Catch-22",
+      "back": "Joseph Heller",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Slaughterhouse-Five",
+      "back": "Kurt Vonnegut",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Gone with the Wind",
+      "back": "Margaret Mitchell",
+      "label": "English",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

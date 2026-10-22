@@ -1,0 +1,112 @@
+{
+  "id": "python-syntax",
+  "name": "Python · Syntax",
+  "mono": "Py",
+  "category": "code",
+  "level": "basics",
+  "lang": null,
+  "kind": "code",
+  "folder": "Coding",
+  "description": "The built-ins and syntax you look up most: slicing, comprehensions, context managers.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "len(x)",
+      "back": "number of items in x",
+      "label": "python",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "range(5)",
+      "back": "0, 1, 2, 3, 4",
+      "label": "python",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "xs.append(x)",
+      "back": "add x to the end of a list",
+      "label": "python",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "\"a,b\".split(\",\")",
+      "back": "['a', 'b']",
+      "label": "python",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "\", \".join(items)",
+      "back": "join strings with \", \" between them",
+      "label": "python",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "d.get(k, default)",
+      "back": "value for k, or default if k is missing",
+      "label": "python",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "[x*2 for x in xs]",
+      "back": "a new list with every item doubled",
+      "label": "python",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "lambda x: x + 1",
+      "back": "a small anonymous function",
+      "label": "python",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "with open(p) as f:",
+      "back": "open a file and close it automatically",
+      "label": "python",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "except ValueError:",
+      "back": "catch a ValueError raised in try",
+      "label": "python",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "f\"{name}!\"",
+      "back": "f-string: puts name into the text",
+      "label": "python",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "a is b",
+      "back": "true when a and b are the same object",
+      "label": "python",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "*args",
+      "back": "extra positional arguments, as a tuple",
+      "label": "python",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "**kwargs",
+      "back": "extra keyword arguments, as a dict",
+      "label": "python",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

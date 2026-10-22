@@ -1,0 +1,84 @@
+{
+  "id": "guitar-chords",
+  "name": "Guitar · Chords",
+  "mono": "Gu",
+  "category": "knowledge",
+  "level": "music",
+  "lang": null,
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Open chord shapes written as fret numbers, low E string first.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "C major",
+      "back": "x32010",
+      "label": "chord",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "G major",
+      "back": "320003",
+      "label": "chord",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "D major",
+      "back": "xx0232",
+      "label": "chord",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "A minor",
+      "back": "x02210",
+      "label": "chord",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "E minor",
+      "back": "022000",
+      "label": "chord",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "E major",
+      "back": "022100",
+      "label": "chord",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "A major",
+      "back": "x02220",
+      "label": "chord",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "F major (barre)",
+      "back": "133211",
+      "label": "chord",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "D minor",
+      "back": "xx0231",
+      "label": "chord",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "C7",
+      "back": "x32310",
+      "label": "chord",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

@@ -1,0 +1,210 @@
+{
+  "id": "ar-alphabet",
+  "name": "Arabic · Alphabet",
+  "mono": "ع",
+  "category": "lang",
+  "level": "script",
+  "lang": "ar-SA",
+  "kind": "text",
+  "folder": "Languages",
+  "description": "All 28 letters with their names and sounds, including the heavy consonants.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "ا",
+      "back": "alif · a, ā",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ب",
+      "back": "bāʾ · b",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ت",
+      "back": "tāʾ · t",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ث",
+      "back": "thāʾ · th as in think",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ج",
+      "back": "jīm · j",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ح",
+      "back": "ḥāʾ · breathy h",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "خ",
+      "back": "khāʾ · kh as in Bach",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "د",
+      "back": "dāl · d",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ذ",
+      "back": "dhāl · th as in this",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ر",
+      "back": "rāʾ · rolled r",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ز",
+      "back": "zāy · z",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "س",
+      "back": "sīn · s",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ش",
+      "back": "shīn · sh",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ص",
+      "back": "ṣād · heavy s",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ض",
+      "back": "ḍād · heavy d",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ط",
+      "back": "ṭāʾ · heavy t",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ظ",
+      "back": "ẓāʾ · heavy th",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ع",
+      "back": "ʿayn · throat sound",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "غ",
+      "back": "ghayn · gargled g",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ف",
+      "back": "fāʾ · f",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ق",
+      "back": "qāf · deep k",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ك",
+      "back": "kāf · k",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ل",
+      "back": "lām · l",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "م",
+      "back": "mīm · m",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ن",
+      "back": "nūn · n",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ه",
+      "back": "hāʾ · h",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "و",
+      "back": "wāw · w, ū",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ي",
+      "back": "yāʾ · y, ī",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

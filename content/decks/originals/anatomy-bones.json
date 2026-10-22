@@ -1,0 +1,112 @@
+{
+  "id": "anatomy-bones",
+  "name": "Anatomy · Bones",
+  "mono": "Bo",
+  "category": "med",
+  "level": "skeleton",
+  "lang": null,
+  "kind": "text",
+  "folder": "Medicine",
+  "description": "The major bones of the skeleton with their everyday names.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "femur",
+      "back": "thigh bone, the longest in the body",
+      "label": "bone",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "tibia",
+      "back": "shin bone",
+      "label": "bone",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "fibula",
+      "back": "thin bone beside the tibia",
+      "label": "bone",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "patella",
+      "back": "kneecap",
+      "label": "bone",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "humerus",
+      "back": "upper arm bone",
+      "label": "bone",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "radius",
+      "back": "forearm bone on the thumb side",
+      "label": "bone",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ulna",
+      "back": "forearm bone on the little-finger side",
+      "label": "bone",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "clavicle",
+      "back": "collarbone",
+      "label": "bone",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "scapula",
+      "back": "shoulder blade",
+      "label": "bone",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "sternum",
+      "back": "breastbone",
+      "label": "bone",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "mandible",
+      "back": "lower jaw",
+      "label": "bone",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "vertebrae",
+      "back": "the bones of the spine",
+      "label": "bone",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "pelvis",
+      "back": "the hip bones",
+      "label": "bone",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "carpals",
+      "back": "the eight wrist bones",
+      "label": "bone",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

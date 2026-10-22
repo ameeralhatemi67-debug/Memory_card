@@ -1,0 +1,31 @@
+{
+  "id": "sw-greetings",
+  "name": "Swahili · Greetings",
+  "mono": "Sw",
+  "category": "lang",
+  "level": "A1",
+  "lang": "sw-KE",
+  "kind": "text",
+  "folder": "Languages",
+  "description": "Greet people in Swahili from morning to night, ask how they are, and reply, thank and apologise politely in everyday talk.",
+  "cards": [
+    { "front": "Jambo", "back": "hello", "label": "greeting", "example": "Jambo, rafiki yangu!", "hook": "" },
+    { "front": "Habari", "back": "hi, what's the news", "label": "greeting", "example": "Habari yako leo?", "hook": "Literally 'news': Habari gani? means 'what's the news?'" },
+    { "front": "Hujambo?", "back": "how are you? (to one person)", "label": "greeting", "example": "Hujambo, rafiki?", "hook": "" },
+    { "front": "Sijambo", "back": "I'm fine", "label": "reply", "example": "Sijambo, asante.", "hook": "Literally 'no problem', the reply to Hujambo?" },
+    { "front": "Habari za asubuhi", "back": "good morning", "label": "greeting · morning", "example": "Habari za asubuhi, mwalimu.", "hook": "" },
+    { "front": "Habari za mchana", "back": "good afternoon", "label": "greeting · afternoon", "example": "Habari za mchana, dada.", "hook": "" },
+    { "front": "Habari za jioni", "back": "good evening", "label": "greeting · evening", "example": "Habari za jioni, bwana.", "hook": "" },
+    { "front": "Usiku mwema", "back": "good night", "label": "greeting · night", "example": "Usiku mwema, watoto.", "hook": "" },
+    { "front": "Lala salama", "back": "sleep well (reply to good night)", "label": "reply", "example": "Lala salama, mtoto wangu.", "hook": "Literally 'sleep safely', said back to Usiku mwema." },
+    { "front": "Kwaheri", "back": "goodbye", "label": "greeting", "example": "Kwaheri, tutaonana kesho.", "hook": "" },
+    { "front": "Tutaonana", "back": "see you (later)", "label": "phrase", "example": "Tutaonana baadaye.", "hook": "" },
+    { "front": "Shikamoo", "back": "respectful greeting to an elder", "label": "greeting · elder", "example": "Shikamoo, bibi.", "hook": "Said to elders; they answer Marahaba." },
+    { "front": "Marahaba", "back": "reply to shikamoo", "label": "reply", "example": "Marahaba, mwanangu.", "hook": "" },
+    { "front": "Karibu", "back": "welcome / you're welcome", "label": "phrase", "example": "Karibu nyumbani kwetu!", "hook": "Also the reply to Asante: you're welcome." },
+    { "front": "Asante", "back": "thank you", "label": "phrase", "example": "Asante kwa chakula.", "hook": "" },
+    { "front": "Asante sana", "back": "thank you very much", "label": "phrase", "example": "Asante sana kwa msaada wako.", "hook": "" },
+    { "front": "Tafadhali", "back": "please", "label": "phrase", "example": "Tafadhali, nipe maji.", "hook": "" },
+    { "front": "Samahani", "back": "excuse me / sorry", "label": "phrase", "example": "Samahani, nimechelewa kidogo.", "hook": "" }
+  ]
+}

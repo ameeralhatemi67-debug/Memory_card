@@ -1,0 +1,262 @@
+import 'dart:math' as math;
+
+import 'package:flutter/material.dart';
+
+import '../../data/catalog.dart';
+import '../../data/store.dart';
+import '../../data/store_scope.dart';
+import '../../services/speech.dart';
+import '../../ui/fx.dart';
+import '../../ui/icons.dart';
+import '../../ui/motion.dart';
+import '../../ui/overlays.dart';
+import '../../ui/theme.dart';
+import '../../ui/widgets.dart';
+import '../shell/shell.dart';
+
+/// Deck preview (canvas Preview.dc.html): flip through sample cards, pick a folder, add the deck.
+Future<void> showPreview(BuildContext context, String catalogId, {String? folderId}) {
+  final shell = Shell.maybeOf(context);
+  return showMcSheet(context, top: 64, builder: (ctx) => PreviewSheet(catalogId: catalogId, folderId: folderId, shell: shell));
+}
+
+class PreviewSheet extends StatefulWidget {
+  const PreviewSheet({super.key, required this.catalogId, this.folderId, this.shell});
+  final String catalogId;
+  final String? folderId;
+  final ShellState? shell;
+
+  @override
+  State<PreviewSheet> createState() => _PreviewSheetState();
+}
+
+class _PreviewSheetState extends State<PreviewSheet> with SingleTickerProviderStateMixin {
+  late final AppStore store = context.storeRead;
+  late final CatalogDeck deck = store.catalog.byId(widget.catalogId)!;
+  late final AnimationController _flip = AnimationController(vsync: this, duration: const Duration(milliseconds: 480));
+  int _sample = 0;
+  String? _folder; // folder id, or '__new:<name>'
+  late bool _reverse = deck.category == 'lang';
+
+  @override
+  void initState() {
+    super.initState();
+    final match = store.data.folders.where((f) => !f.isArchive && f.name.toLowerCase() == deck.folder.toLowerCase()).firstOrNull;
+    _folder = widget.folderId ?? match?.id ?? '__new:${deck.folder}';
+  }
+
+  @override
+  void dispose() {
+    _flip.dispose();
+    super.dispose();
+  }
+
+  void _tapSample() {
+    Fx.i.reveal();
+    if (_flip.value < 0.5) {
+      _flip.animateTo(1, curve: McCurves.springy);
+    } else {
+      _flip.animateBack(0, curve: Curves.easeOut).whenComplete(() {
+        if (mounted) setState(() => _sample = (_sample + 1) % math.min(deck.cards.length, 6));
+      });
+    }
+  }
+
+  Future<void> _add() async {
+    String folderId;
+    if (_folder!.startsWith('__new:')) {
+      folderId = store.createFolder(_folder!.substring(6), atTop: false).id;
+    } else {
+      folderId = _folder!;
+    }
+    final d = store.addCatalogDeck(deck.id, folderId, reverse: _reverse);
+    final f = store.data.folderById(folderId)!;
+    Fx.i.remembered(easy: true);
+    store.touchFolder(folderId);
+    Navigator.pop(context);
+    widget.shell?.goHome();
+    Toaster.i.show('Added ${d.cardIds.length} cards to ${f.name}', undo: () => store.deleteDeck(d.id));
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final mc = Mc.of(context);
+    final store = context.store;
+    final addedId = store.data.shopAdded[deck.id];
+    final added = addedId != null && store.data.decks.containsKey(addedId);
+    final sample = deck.cards.isEmpty ? null : deck.cards[_sample % deck.cards.length];
+    final folders = store.data.folders.where((f) => !f.isArchive).toList();
+    final newName = _folder!.startsWith('__new:') ? _folder!.substring(6) : null;
+    final bottom = MediaQuery.of(context).padding.bottom;
+    final target = newName ?? store.data.folderById(_folder)?.name ?? 'a folder';
+
+    return Padding(
+      padding: EdgeInsets.fromLTRB(20, 0, 20, 18 + bottom),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.stretch,
+        children: [
+          Expanded(
+            child: ListView(
+              padding: EdgeInsets.zero,
+              children: [
+                // The sample card, fanned over two others.
+                SizedBox(
+                  height: 196,
+                  child: Stack(alignment: Alignment.topCenter, children: [
+                    Positioned(
+                      top: 18,
+                      child: Transform.translate(
+                        offset: const Offset(-4, 0),
+                        child: Transform.rotate(angle: -7 * math.pi / 180, child: _blank(mc.back2, mc)),
+                      ),
+                    ),
+                    Positioned(
+                      top: 12,
+                      child: Transform.translate(
+                        offset: const Offset(4, 0),
+                        child: Transform.rotate(angle: 5 * math.pi / 180, child: _blank(mc.back1, mc)),
+                      ),
+                    ),
+                    if (sample != null)
+                      Positioned(
+                        top: 14,
+                        child: GestureDetector(
+                          onTap: _tapSample,
+                          child: AnimatedBuilder(
+                            animation: _flip,
+                            builder: (context, _) {
+                              final a = _flip.value * math.pi;
+                              final back = a > math.pi / 2;
+                              return Transform(
+                                alignment: Alignment.center,
+                                transform: Matrix4.identity()
+                                  ..setEntry(3, 2, 0.0014)
+                                  ..rotateY(back ? a - math.pi : a),
+                                child: Container(
+                                  width: 214,
+                                  height: 150,
+                                  padding: const EdgeInsets.symmetric(horizontal: 14),
+                                  decoration: BoxDecoration(
+                                    color: back ? Mc.peach : mc.ink,
+                                    borderRadius: BorderRadius.circular(16),
+                                    boxShadow: mc.e2,
+                                  ),
+                                  child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                    Text(back ? 'ANSWER' : (sample.label.isEmpty ? deck.level : sample.label).toUpperCase(),
+                                        maxLines: 1,
+                                        style: T.caps(12, color: (back ? Mc.graphite : mc.onInk).withValues(alpha: 0.7))),
+                                    const SizedBox(height: 6),
+                                    Text(
+                                      back ? sample.back : sample.front,
+                                      textAlign: TextAlign.center,
+                                      maxLines: 3,
+                                      overflow: TextOverflow.ellipsis,
+                                      style: deck.kind == 'code' && !back
+                                          ? T.mono(18, color: mc.onInk)
+                                          : T.d((back ? sample.back : sample.front).length > 18 ? 24 : 34,
+                                              color: back ? Mc.graphite : mc.onInk),
+                                    ),
+                                  ]),
+                                ),
+                              );
+                            },
+                          ),
+                        ),
+                      ),
+                    Positioned(
+                      bottom: 0,
+                      child: Text('Sample card · tap to flip', style: T.t(13, w: FontWeight.w600, color: mc.muted)),
+                    ),
+                  ]),
+                ),
+                const SizedBox(height: 12),
+                Text(deck.name, style: T.d(38, color: mc.ink)),
+                const SizedBox(height: 6),
+                Text('${deck.publisher} · Free', style: T.t(15, w: FontWeight.w600, color: mc.muted)),
+                const SizedBox(height: 14),
+                Row(children: [
+                  Expanded(child: StatTile(value: '${deck.cards.length}', label: 'cards', valueSize: 26)),
+                  const SizedBox(width: 8),
+                  Expanded(child: StatTile(value: deck.level.isEmpty ? '—' : deck.level, label: 'level', valueSize: 26)),
+                  const SizedBox(width: 8),
+                  Expanded(
+                    child: deck.lang != null
+                        ? Pressable(
+                            onTap: () => sample == null ? null : Speech.i.speak(sample.front, deck.lang!),
+                            child: const StatTile(value: 'Audio', label: 'tap to hear', valueSize: 26),
+                          )
+                        : StatTile(value: CatalogCategory.of(deck.category).name, label: 'category', valueSize: 22),
+                  ),
+                ]),
+                const SizedBox(height: 12),
+                Text(deck.description, style: T.t(16, w: FontWeight.w500, color: mc.ink, height: 1.4)),
+                if (deck.cards.any((c) => c.hook.isNotEmpty)) ...[
+                  const SizedBox(height: 8),
+                  Row(children: [
+                    McIcon(McIcons.lightbulb, size: const Size(16, 16), color: mc.muted),
+                    const SizedBox(width: 6),
+                    Text('${deck.cards.where((c) => c.hook.isNotEmpty).length} cards come with a memory hook',
+                        style: T.t(14, w: FontWeight.w600, color: mc.muted)),
+                  ]),
+                ],
+                const SizedBox(height: 16),
+                if (added)
+                  Container(
+                    padding: const EdgeInsets.all(14),
+                    decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(14)),
+                    child: Row(children: [
+                      McIcon(McIcons.done, size: const Size(22, 22), color: mc.ink),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Text('In your library · ${store.data.folderOf(addedId)?.name ?? ''}',
+                            style: T.t(16, w: FontWeight.w700, color: mc.ink)),
+                      ),
+                    ]),
+                  )
+                else ...[
+                  const SectionLabel('Add to folder'),
+                  const SizedBox(height: 8),
+                  Wrap(spacing: 8, runSpacing: 8, children: [
+                    if (!folders.any((f) => f.name.toLowerCase() == deck.folder.toLowerCase()))
+                      Chip2('+ ${deck.folder}', height: 36, selected: newName == deck.folder, onTap: () => setState(() => _folder = '__new:${deck.folder}')),
+                    for (final f in folders) Chip2(f.name, height: 36, selected: _folder == f.id, onTap: () => setState(() => _folder = f.id)),
+                    Chip2('+ New folder', height: 36, selected: newName != null && newName != deck.folder, onTap: () async {
+                      final name = await promptText(context, title: 'Name the folder', initial: 'New folder', action: 'Use it');
+                      if (name != null) setState(() => _folder = '__new:$name');
+                    }),
+                  ]),
+                  if (deck.category == 'lang') ...[
+                    const SizedBox(height: 14),
+                    Row(children: [
+                      Expanded(
+                        child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                          Text('Also study back → front', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
+                          Text('Doubles the deck with reverse cards', style: T.t(14, w: FontWeight.w500, color: mc.muted)),
+                        ]),
+                      ),
+                      McSwitch(value: _reverse, onChanged: (v) => setState(() => _reverse = v)),
+                    ]),
+                  ],
+                ],
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+          if (added)
+            InkButton('Study it now', onTap: () {
+              Navigator.pop(context);
+              widget.shell?.study(addedId);
+            })
+          else
+            InkButton('Add ${deck.cards.length * (_reverse ? 2 : 1)} cards to $target', size: 25, height: 58, onTap: _add),
+        ],
+      ),
+    );
+  }
+
+  Widget _blank(Color c, Mc mc) => Container(
+        width: 214,
+        height: 150,
+        decoration: BoxDecoration(color: c, borderRadius: BorderRadius.circular(16), boxShadow: mc.e1),
+      );
+}

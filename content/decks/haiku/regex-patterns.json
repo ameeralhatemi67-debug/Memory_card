@@ -1,0 +1,28 @@
+{
+  "id": "regex-patterns",
+  "name": "Regex · Patterns",
+  "mono": ".*",
+  "category": "code",
+  "level": "basics",
+  "lang": null,
+  "kind": "code",
+  "folder": "Coding",
+  "description": "Read and write common regular expressions: character classes, anchors, quantifiers, groups and word boundaries.",
+  "cards": [
+    { "front": ".", "back": "any single character except newline", "label": "wildcards", "example": "", "hook": "" },
+    { "front": "\\d", "back": "one digit, same as [0-9]", "label": "classes", "example": "", "hook": "" },
+    { "front": "\\w", "back": "letter, digit, or underscore", "label": "classes", "example": "", "hook": "" },
+    { "front": "\\s", "back": "one whitespace character, such as space, tab, or newline", "label": "classes", "example": "", "hook": "" },
+    { "front": "^abc", "back": "must start with abc", "label": "anchors", "example": "", "hook": "" },
+    { "front": "abc$", "back": "must end with abc", "label": "anchors", "example": "", "hook": "" },
+    { "front": "colou?r", "back": "color or colour, the u is optional", "label": "quantifiers", "example": "", "hook": "? means zero or one of the previous item" },
+    { "front": "a+", "back": "one or more a in a row", "label": "quantifiers", "example": "", "hook": "" },
+    { "front": "a{2,4}", "back": "between two and four a in a row", "label": "quantifiers", "example": "", "hook": "" },
+    { "front": "[^0-9]", "back": "one character that is not a digit", "label": "classes", "example": "", "hook": "" },
+    { "front": "(cat|dog)", "back": "cat or dog, captured as group 1", "label": "groups", "example": "", "hook": "" },
+    { "front": "\\bcat\\b", "back": "cat as a whole word, not inside catalog", "label": "boundaries", "example": "", "hook": "" },
+    { "front": "a.*?b", "back": "lazy: shortest match from a to the next b", "label": "quantifiers", "example": "", "hook": "append ? to make a quantifier lazy" },
+    { "front": "/hello/i", "back": "case-insensitive match, the i flag in JavaScript", "label": "flags", "example": "", "hook": "" },
+    { "front": "\\.", "back": "a literal dot, not any character", "label": "escaping", "example": "", "hook": "" }
+  ]
+}

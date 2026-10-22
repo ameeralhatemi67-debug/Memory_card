@@ -1,0 +1,154 @@
+{
+  "id": "es-verbs",
+  "name": "Spanish · Verbs",
+  "mono": "Es",
+  "category": "lang",
+  "level": "A1",
+  "lang": "es-ES",
+  "kind": "text",
+  "folder": "Languages",
+  "description": "The verbs that carry most Spanish sentences, each in a real example.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "hablar",
+      "back": "to speak",
+      "label": "verb",
+      "example": "Hablo un poco de español.",
+      "hook": ""
+    },
+    {
+      "front": "comer",
+      "back": "to eat",
+      "label": "verb",
+      "example": "Comemos a las dos.",
+      "hook": ""
+    },
+    {
+      "front": "vivir",
+      "back": "to live",
+      "label": "verb",
+      "example": "Vivo en Sevilla.",
+      "hook": ""
+    },
+    {
+      "front": "ser",
+      "back": "to be (lasting)",
+      "label": "verb",
+      "example": "Soy profesora.",
+      "hook": ""
+    },
+    {
+      "front": "estar",
+      "back": "to be (state, place)",
+      "label": "verb",
+      "example": "Estoy cansado.",
+      "hook": ""
+    },
+    {
+      "front": "tener",
+      "back": "to have",
+      "label": "verb",
+      "example": "Tengo dos hermanos.",
+      "hook": ""
+    },
+    {
+      "front": "hacer",
+      "back": "to do, to make",
+      "label": "verb",
+      "example": "¿Qué haces?",
+      "hook": ""
+    },
+    {
+      "front": "ir",
+      "back": "to go",
+      "label": "verb",
+      "example": "Voy al mercado.",
+      "hook": ""
+    },
+    {
+      "front": "venir",
+      "back": "to come",
+      "label": "verb",
+      "example": "¿Vienes conmigo?",
+      "hook": ""
+    },
+    {
+      "front": "poder",
+      "back": "can, to be able to",
+      "label": "verb",
+      "example": "¿Puedo pasar?",
+      "hook": ""
+    },
+    {
+      "front": "querer",
+      "back": "to want, to love",
+      "label": "verb",
+      "example": "Quiero un café.",
+      "hook": ""
+    },
+    {
+      "front": "saber",
+      "back": "to know (facts)",
+      "label": "verb",
+      "example": "No sé la respuesta.",
+      "hook": ""
+    },
+    {
+      "front": "conocer",
+      "back": "to know (people, places)",
+      "label": "verb",
+      "example": "Conozco a tu hermano.",
+      "hook": ""
+    },
+    {
+      "front": "decir",
+      "back": "to say",
+      "label": "verb",
+      "example": "¿Qué dices?",
+      "hook": ""
+    },
+    {
+      "front": "ver",
+      "back": "to see",
+      "label": "verb",
+      "example": "Veo el mar.",
+      "hook": ""
+    },
+    {
+      "front": "dar",
+      "back": "to give",
+      "label": "verb",
+      "example": "Te doy mi número.",
+      "hook": ""
+    },
+    {
+      "front": "salir",
+      "back": "to go out",
+      "label": "verb",
+      "example": "Salimos esta noche.",
+      "hook": ""
+    },
+    {
+      "front": "volver",
+      "back": "to return",
+      "label": "verb",
+      "example": "Vuelvo a las seis.",
+      "hook": ""
+    },
+    {
+      "front": "pensar",
+      "back": "to think",
+      "label": "verb",
+      "example": "Pienso que sí.",
+      "hook": ""
+    },
+    {
+      "front": "dormir",
+      "back": "to sleep",
+      "label": "verb",
+      "example": "Duermo ocho horas.",
+      "hook": ""
+    }
+  ]
+}

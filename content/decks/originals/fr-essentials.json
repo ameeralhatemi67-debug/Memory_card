@@ -1,0 +1,154 @@
+{
+  "id": "fr-essentials",
+  "name": "French · Essentials",
+  "mono": "Fr",
+  "category": "lang",
+  "level": "A1",
+  "lang": "fr-FR",
+  "kind": "text",
+  "folder": "Languages",
+  "description": "Greetings, time words and the four verbs everything else is built on.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "bonjour",
+      "back": "hello, good morning",
+      "label": "greeting",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "merci",
+      "back": "thank you",
+      "label": "phrase",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "s'il vous plaît",
+      "back": "please (formal)",
+      "label": "phrase",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "excusez-moi",
+      "back": "excuse me",
+      "label": "phrase",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "la maison",
+      "back": "the house",
+      "label": "noun · feminine",
+      "example": "La maison est grande.",
+      "hook": ""
+    },
+    {
+      "front": "le livre",
+      "back": "the book",
+      "label": "noun · masculine",
+      "example": "Ce livre est passionnant.",
+      "hook": ""
+    },
+    {
+      "front": "la voiture",
+      "back": "the car",
+      "label": "noun · feminine",
+      "example": "La voiture est garée devant.",
+      "hook": ""
+    },
+    {
+      "front": "le travail",
+      "back": "work",
+      "label": "noun · masculine",
+      "example": "Je vais au travail à pied.",
+      "hook": ""
+    },
+    {
+      "front": "l'école",
+      "back": "the school",
+      "label": "noun · feminine",
+      "example": "L'école commence à huit heures.",
+      "hook": ""
+    },
+    {
+      "front": "la gare",
+      "back": "the train station",
+      "label": "noun · feminine",
+      "example": "La gare est près d'ici.",
+      "hook": ""
+    },
+    {
+      "front": "le jour",
+      "back": "the day",
+      "label": "noun · masculine",
+      "example": "C'est un beau jour.",
+      "hook": ""
+    },
+    {
+      "front": "la nuit",
+      "back": "the night",
+      "label": "noun · feminine",
+      "example": "Bonne nuit !",
+      "hook": ""
+    },
+    {
+      "front": "aujourd'hui",
+      "back": "today",
+      "label": "adverb",
+      "example": "Aujourd'hui, il pleut.",
+      "hook": ""
+    },
+    {
+      "front": "demain",
+      "back": "tomorrow",
+      "label": "adverb",
+      "example": "À demain !",
+      "hook": ""
+    },
+    {
+      "front": "hier",
+      "back": "yesterday",
+      "label": "adverb",
+      "example": "Hier, j'étais malade.",
+      "hook": ""
+    },
+    {
+      "front": "toujours",
+      "back": "always",
+      "label": "adverb",
+      "example": "Il est toujours en retard.",
+      "hook": ""
+    },
+    {
+      "front": "parler",
+      "back": "to speak",
+      "label": "verb",
+      "example": "Vous parlez anglais ?",
+      "hook": ""
+    },
+    {
+      "front": "aller",
+      "back": "to go",
+      "label": "verb",
+      "example": "On va au cinéma.",
+      "hook": ""
+    },
+    {
+      "front": "avoir",
+      "back": "to have",
+      "label": "verb",
+      "example": "J'ai faim.",
+      "hook": ""
+    },
+    {
+      "front": "être",
+      "back": "to be",
+      "label": "verb",
+      "example": "Nous sommes prêts.",
+      "hook": ""
+    }
+  ]
+}

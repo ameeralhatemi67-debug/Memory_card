@@ -1,0 +1,126 @@
+{
+  "id": "de-b1",
+  "name": "German · B1",
+  "mono": "De",
+  "category": "lang",
+  "level": "B1",
+  "lang": "de-DE",
+  "kind": "text",
+  "folder": "German",
+  "description": "Abstract words for arguing a point: advantages, effects, habits and responsibilities.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "die Voraussetzung",
+      "back": "the prerequisite",
+      "label": "noun · feminine",
+      "example": "Deutschkenntnisse sind eine Voraussetzung.",
+      "hook": ""
+    },
+    {
+      "front": "die Auswirkung",
+      "back": "the effect",
+      "label": "noun · feminine",
+      "example": "Das hat Auswirkungen auf die Umwelt.",
+      "hook": ""
+    },
+    {
+      "front": "nachhaltig",
+      "back": "sustainable",
+      "label": "adjective",
+      "example": "Wir wollen nachhaltiger leben.",
+      "hook": ""
+    },
+    {
+      "front": "der Zusammenhang",
+      "back": "the connection, context",
+      "label": "noun · masculine",
+      "example": "In diesem Zusammenhang ist das wichtig.",
+      "hook": ""
+    },
+    {
+      "front": "die Herausforderung",
+      "back": "the challenge",
+      "label": "noun · feminine",
+      "example": "Das ist eine große Herausforderung.",
+      "hook": ""
+    },
+    {
+      "front": "berücksichtigen",
+      "back": "to take into account",
+      "label": "verb",
+      "example": "Bitte berücksichtigen Sie die Kosten.",
+      "hook": ""
+    },
+    {
+      "front": "der Vorteil",
+      "back": "the advantage",
+      "label": "noun · masculine",
+      "example": "Ein Vorteil ist der Preis.",
+      "hook": ""
+    },
+    {
+      "front": "der Nachteil",
+      "back": "the disadvantage",
+      "label": "noun · masculine",
+      "example": "Der Nachteil ist die Entfernung.",
+      "hook": ""
+    },
+    {
+      "front": "überzeugen",
+      "back": "to convince",
+      "label": "verb",
+      "example": "Das Argument hat mich überzeugt.",
+      "hook": ""
+    },
+    {
+      "front": "die Gewohnheit",
+      "back": "the habit",
+      "label": "noun · feminine",
+      "example": "Das ist eine schlechte Gewohnheit.",
+      "hook": ""
+    },
+    {
+      "front": "sich bewerben um",
+      "back": "to apply for",
+      "label": "verb",
+      "example": "Sie bewirbt sich um die Stelle.",
+      "hook": ""
+    },
+    {
+      "front": "die Umfrage",
+      "back": "the survey",
+      "label": "noun · feminine",
+      "example": "Laut einer Umfrage lesen viele weniger.",
+      "hook": ""
+    },
+    {
+      "front": "vermeiden",
+      "back": "to avoid",
+      "label": "verb",
+      "example": "Wir sollten Plastik vermeiden.",
+      "hook": ""
+    },
+    {
+      "front": "die Rücksicht",
+      "back": "consideration",
+      "label": "noun · feminine",
+      "example": "Nimm Rücksicht auf die anderen.",
+      "hook": ""
+    },
+    {
+      "front": "ehrenamtlich",
+      "back": "voluntary, unpaid",
+      "label": "adjective",
+      "example": "Er arbeitet ehrenamtlich im Verein.",
+      "hook": ""
+    },
+    {
+      "front": "die Verantwortung",
+      "back": "the responsibility",
+      "label": "noun · feminine",
+      "example": "Sie trägt viel Verantwortung.",
+      "hook": ""
+    }
+  ]
+}

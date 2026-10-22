@@ -1,0 +1,126 @@
+{
+  "id": "fr-food",
+  "name": "French · Food",
+  "mono": "Fr",
+  "category": "lang",
+  "level": "A1",
+  "lang": "fr-FR",
+  "kind": "text",
+  "folder": "Languages",
+  "description": "Order, shop and cook: the food words of a French market and café.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "le pain",
+      "back": "bread",
+      "label": "noun · masculine",
+      "example": "Une baguette de pain, s'il vous plaît.",
+      "hook": ""
+    },
+    {
+      "front": "le fromage",
+      "back": "cheese",
+      "label": "noun · masculine",
+      "example": "La France a beaucoup de fromages.",
+      "hook": ""
+    },
+    {
+      "front": "la pomme",
+      "back": "the apple",
+      "label": "noun · feminine",
+      "example": "Je mange une pomme.",
+      "hook": ""
+    },
+    {
+      "front": "le beurre",
+      "back": "butter",
+      "label": "noun · masculine",
+      "example": "Du pain avec du beurre.",
+      "hook": ""
+    },
+    {
+      "front": "le poulet",
+      "back": "chicken",
+      "label": "noun · masculine",
+      "example": "Le poulet est rôti.",
+      "hook": ""
+    },
+    {
+      "front": "le poisson",
+      "back": "fish",
+      "label": "noun · masculine",
+      "example": "Le poisson est frais.",
+      "hook": ""
+    },
+    {
+      "front": "la viande",
+      "back": "meat",
+      "label": "noun · feminine",
+      "example": "Je ne mange pas de viande.",
+      "hook": ""
+    },
+    {
+      "front": "les légumes",
+      "back": "vegetables",
+      "label": "noun · masculine plural",
+      "example": "Mange tes légumes !",
+      "hook": ""
+    },
+    {
+      "front": "la fraise",
+      "back": "the strawberry",
+      "label": "noun · feminine",
+      "example": "Une tarte aux fraises.",
+      "hook": ""
+    },
+    {
+      "front": "le lait",
+      "back": "milk",
+      "label": "noun · masculine",
+      "example": "Un café au lait.",
+      "hook": ""
+    },
+    {
+      "front": "l'œuf",
+      "back": "the egg",
+      "label": "noun · masculine",
+      "example": "Un œuf à la coque.",
+      "hook": ""
+    },
+    {
+      "front": "le sel",
+      "back": "salt",
+      "label": "noun · masculine",
+      "example": "Passe-moi le sel.",
+      "hook": ""
+    },
+    {
+      "front": "le sucre",
+      "back": "sugar",
+      "label": "noun · masculine",
+      "example": "Sans sucre, merci.",
+      "hook": ""
+    },
+    {
+      "front": "la soupe",
+      "back": "soup",
+      "label": "noun · feminine",
+      "example": "La soupe est chaude.",
+      "hook": ""
+    },
+    {
+      "front": "le gâteau",
+      "back": "the cake",
+      "label": "noun · masculine",
+      "example": "Le gâteau au chocolat.",
+      "hook": ""
+    },
+    {
+      "front": "l'addition",
+      "back": "the bill",
+      "label": "noun · feminine",
+      "example": "L'addition, s'il vous plaît.",
+      "hook": ""
+    }
+  ]
+}

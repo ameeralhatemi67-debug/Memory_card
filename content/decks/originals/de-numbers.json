@@ -1,0 +1,126 @@
+{
+  "id": "de-numbers",
+  "name": "German · Numbers",
+  "mono": "De",
+  "category": "lang",
+  "level": "A1",
+  "lang": "de-DE",
+  "kind": "text",
+  "folder": "German",
+  "description": "Count from one to a thousand, including the backwards tens like einundzwanzig.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "eins",
+      "back": "one",
+      "label": "number",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "zwei",
+      "back": "two",
+      "label": "number",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "drei",
+      "back": "three",
+      "label": "number",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "vier",
+      "back": "four",
+      "label": "number",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "fünf",
+      "back": "five",
+      "label": "number",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "sechs",
+      "back": "six",
+      "label": "number",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "sieben",
+      "back": "seven",
+      "label": "number",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "acht",
+      "back": "eight",
+      "label": "number",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "neun",
+      "back": "nine",
+      "label": "number",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "zehn",
+      "back": "ten",
+      "label": "number",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "elf",
+      "back": "eleven",
+      "label": "number",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "zwölf",
+      "back": "twelve",
+      "label": "number",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "zwanzig",
+      "back": "twenty",
+      "label": "number",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "einundzwanzig",
+      "back": "twenty-one",
+      "label": "number",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "hundert",
+      "back": "one hundred",
+      "label": "number",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "tausend",
+      "back": "one thousand",
+      "label": "number",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

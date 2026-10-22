@@ -1,0 +1,182 @@
+{
+  "id": "es-basics",
+  "name": "Spanish · Basics",
+  "mono": "Es",
+  "category": "lang",
+  "level": "A1",
+  "lang": "es-ES",
+  "kind": "text",
+  "folder": "Languages",
+  "description": "Home, food, city and the phrases you need on day one, with example sentences.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "el perro",
+      "back": "the dog",
+      "label": "noun · masculine",
+      "example": "El perro duerme en el sofá.",
+      "hook": ""
+    },
+    {
+      "front": "el gato",
+      "back": "the cat",
+      "label": "noun · masculine",
+      "example": "El gato bebe leche.",
+      "hook": ""
+    },
+    {
+      "front": "la casa",
+      "back": "the house",
+      "label": "noun · feminine",
+      "example": "Mi casa es tu casa.",
+      "hook": ""
+    },
+    {
+      "front": "el agua",
+      "back": "the water",
+      "label": "noun · feminine",
+      "example": "El agua está fría.",
+      "hook": ""
+    },
+    {
+      "front": "la mesa",
+      "back": "the table",
+      "label": "noun · feminine",
+      "example": "La comida está en la mesa.",
+      "hook": ""
+    },
+    {
+      "front": "la silla",
+      "back": "the chair",
+      "label": "noun · feminine",
+      "example": "La silla es nueva.",
+      "hook": ""
+    },
+    {
+      "front": "el libro",
+      "back": "the book",
+      "label": "noun · masculine",
+      "example": "Leo un libro cada mes.",
+      "hook": ""
+    },
+    {
+      "front": "la ventana",
+      "back": "the window",
+      "label": "noun · feminine",
+      "example": "Abre la ventana, por favor.",
+      "hook": ""
+    },
+    {
+      "front": "la puerta",
+      "back": "the door",
+      "label": "noun · feminine",
+      "example": "La puerta está cerrada.",
+      "hook": ""
+    },
+    {
+      "front": "el coche",
+      "back": "the car",
+      "label": "noun · masculine",
+      "example": "Mi coche es rojo.",
+      "hook": ""
+    },
+    {
+      "front": "la ciudad",
+      "back": "the city",
+      "label": "noun · feminine",
+      "example": "Madrid es una ciudad grande.",
+      "hook": ""
+    },
+    {
+      "front": "el trabajo",
+      "back": "the work, the job",
+      "label": "noun · masculine",
+      "example": "Voy al trabajo en metro.",
+      "hook": ""
+    },
+    {
+      "front": "la playa",
+      "back": "the beach",
+      "label": "noun · feminine",
+      "example": "Vamos a la playa.",
+      "hook": ""
+    },
+    {
+      "front": "el dinero",
+      "back": "the money",
+      "label": "noun · masculine",
+      "example": "No tengo dinero.",
+      "hook": ""
+    },
+    {
+      "front": "la comida",
+      "back": "the food",
+      "label": "noun · feminine",
+      "example": "La comida está rica.",
+      "hook": ""
+    },
+    {
+      "front": "el desayuno",
+      "back": "breakfast",
+      "label": "noun · masculine",
+      "example": "El desayuno es a las ocho.",
+      "hook": ""
+    },
+    {
+      "front": "hola",
+      "back": "hello",
+      "label": "greeting",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "gracias",
+      "back": "thank you",
+      "label": "phrase",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "por favor",
+      "back": "please",
+      "label": "phrase",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "lo siento",
+      "back": "I'm sorry",
+      "label": "phrase",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "hoy",
+      "back": "today",
+      "label": "adverb",
+      "example": "Hoy hace sol.",
+      "hook": ""
+    },
+    {
+      "front": "mañana",
+      "back": "tomorrow",
+      "label": "adverb",
+      "example": "Hasta mañana.",
+      "hook": ""
+    },
+    {
+      "front": "grande",
+      "back": "big",
+      "label": "adjective",
+      "example": "Es un perro grande.",
+      "hook": ""
+    },
+    {
+      "front": "pequeño",
+      "back": "small",
+      "label": "adjective",
+      "example": "El piso es pequeño.",
+      "hook": ""
+    }
+  ]
+}

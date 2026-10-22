@@ -1,0 +1,28 @@
+{
+  "id": "vitamin-deficiencies",
+  "name": "Nutrition · Vitamins",
+  "mono": "Vt",
+  "category": "med",
+  "level": "core",
+  "lang": null,
+  "kind": "text",
+  "folder": "Medicine",
+  "description": "Match each vitamin to the deficiency disease or condition it causes, so you can spot the signs in a clinical case.",
+  "cards": [
+    { "front": "Vitamin A (retinol)", "back": "night blindness and xerophthalmia", "label": "fat-soluble", "example": "", "hook": "" },
+    { "front": "Vitamin B1 (thiamine)", "back": "beriberi", "label": "water-soluble", "example": "", "hook": "" },
+    { "front": "Vitamin B2 (riboflavin)", "back": "cheilosis (cracks at mouth corners)", "label": "water-soluble", "example": "", "hook": "" },
+    { "front": "Vitamin B3 (niacin)", "back": "pellagra", "label": "water-soluble", "example": "", "hook": "The 3 Ds: dermatitis, diarrhoea, dementia (then death)" },
+    { "front": "Vitamin B6 (pyridoxine)", "back": "peripheral neuropathy", "label": "water-soluble", "example": "", "hook": "" },
+    { "front": "Vitamin B9 (folate)", "back": "megaloblastic anaemia", "label": "water-soluble", "example": "", "hook": "" },
+    { "front": "Folate deficiency in early pregnancy", "back": "neural tube defects such as spina bifida", "label": "water-soluble", "example": "", "hook": "" },
+    { "front": "Lack of intrinsic factor (B12)", "back": "pernicious anaemia", "label": "water-soluble", "example": "", "hook": "Intrinsic factor is made by gastric parietal cells" },
+    { "front": "B12 deficiency damaging the spinal cord", "back": "subacute combined degeneration", "label": "water-soluble", "example": "", "hook": "" },
+    { "front": "Vitamin C (ascorbic acid)", "back": "scurvy", "label": "water-soluble", "example": "", "hook": "Vitamin C is needed to make collagen" },
+    { "front": "Vitamin D in children", "back": "rickets", "label": "fat-soluble", "example": "", "hook": "" },
+    { "front": "Vitamin D in adults", "back": "osteomalacia", "label": "fat-soluble", "example": "", "hook": "" },
+    { "front": "Vitamin K", "back": "bleeding from impaired clotting", "label": "fat-soluble", "example": "", "hook": "" },
+    { "front": "Newborn bleeding (haemorrhagic disease)", "back": "vitamin K deficiency", "label": "fat-soluble", "example": "", "hook": "Many countries give newborns a vitamin K shot at birth" },
+    { "front": "Wernicke encephalopathy", "back": "thiamine (B1) deficiency", "label": "water-soluble", "example": "", "hook": "Classic triad: confusion, ataxia, eye movement problems" }
+  ]
+}

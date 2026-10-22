@@ -1,0 +1,154 @@
+{
+  "id": "world-capitals",
+  "name": "World Capitals",
+  "mono": "Ca",
+  "category": "knowledge",
+  "level": "trivia",
+  "lang": null,
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "The capitals that trip people up, because they are not the biggest city.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "Australia",
+      "back": "Canberra",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Canada",
+      "back": "Ottawa",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Brazil",
+      "back": "Brasília",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Turkey",
+      "back": "Ankara",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Switzerland",
+      "back": "Bern",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "New Zealand",
+      "back": "Wellington",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Morocco",
+      "back": "Rabat",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Nigeria",
+      "back": "Abuja",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Pakistan",
+      "back": "Islamabad",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Vietnam",
+      "back": "Hanoi",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Egypt",
+      "back": "Cairo",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Kenya",
+      "back": "Nairobi",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Argentina",
+      "back": "Buenos Aires",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Norway",
+      "back": "Oslo",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "South Korea",
+      "back": "Seoul",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Peru",
+      "back": "Lima",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Iraq",
+      "back": "Baghdad",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Jordan",
+      "back": "Amman",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Portugal",
+      "back": "Lisbon",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Thailand",
+      "back": "Bangkok",
+      "label": "country",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

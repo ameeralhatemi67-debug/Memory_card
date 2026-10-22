@@ -1,0 +1,98 @@
+{
+  "id": "ar-greetings",
+  "name": "Arabic · Greetings",
+  "mono": "ع",
+  "category": "lang",
+  "level": "phrases",
+  "lang": "ar-SA",
+  "kind": "text",
+  "folder": "Languages",
+  "description": "Greet, thank and take leave politely, with the replies people expect.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "مرحبا",
+      "back": "hello · marḥaban",
+      "label": "greeting",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "السلام عليكم",
+      "back": "peace be upon you · as-salāmu ʿalaykum",
+      "label": "greeting",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "وعليكم السلام",
+      "back": "and upon you peace · wa ʿalaykum as-salām",
+      "label": "reply",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "صباح الخير",
+      "back": "good morning · ṣabāḥ al-khayr",
+      "label": "greeting",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "صباح النور",
+      "back": "good morning (reply) · ṣabāḥ an-nūr",
+      "label": "reply",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "مساء الخير",
+      "back": "good evening · masāʾ al-khayr",
+      "label": "greeting",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "شكرا",
+      "back": "thank you · shukran",
+      "label": "phrase",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "عفوا",
+      "back": "you're welcome · ʿafwan",
+      "label": "phrase",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "كيف حالك؟",
+      "back": "how are you? · kayfa ḥāluk",
+      "label": "question",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "أنا بخير",
+      "back": "I'm fine · anā bikhayr",
+      "label": "reply",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "مع السلامة",
+      "back": "goodbye · maʿa as-salāma",
+      "label": "greeting",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "من فضلك",
+      "back": "please · min faḍlak",
+      "label": "phrase",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

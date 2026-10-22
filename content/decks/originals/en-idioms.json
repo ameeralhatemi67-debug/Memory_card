@@ -1,0 +1,126 @@
+{
+  "id": "en-idioms",
+  "name": "English · Idioms",
+  "mono": "En",
+  "category": "lang",
+  "level": "B2",
+  "lang": "en-GB",
+  "kind": "text",
+  "folder": "Languages",
+  "description": "Idioms native speakers use every week, each in a real sentence.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "break the ice",
+      "back": "ease the first awkward moment",
+      "label": "idiom",
+      "example": "A joke helped break the ice.",
+      "hook": ""
+    },
+    {
+      "front": "a piece of cake",
+      "back": "very easy",
+      "label": "idiom",
+      "example": "The exam was a piece of cake.",
+      "hook": ""
+    },
+    {
+      "front": "hit the sack",
+      "back": "go to bed",
+      "label": "idiom",
+      "example": "I'm going to hit the sack.",
+      "hook": ""
+    },
+    {
+      "front": "under the weather",
+      "back": "feeling ill",
+      "label": "idiom",
+      "example": "She's a bit under the weather.",
+      "hook": ""
+    },
+    {
+      "front": "spill the beans",
+      "back": "reveal a secret",
+      "label": "idiom",
+      "example": "Who spilled the beans?",
+      "hook": ""
+    },
+    {
+      "front": "cost an arm and a leg",
+      "back": "be very expensive",
+      "label": "idiom",
+      "example": "That car cost an arm and a leg.",
+      "hook": ""
+    },
+    {
+      "front": "once in a blue moon",
+      "back": "very rarely",
+      "label": "idiom",
+      "example": "We eat out once in a blue moon.",
+      "hook": ""
+    },
+    {
+      "front": "bite the bullet",
+      "back": "face something unpleasant",
+      "label": "idiom",
+      "example": "I bit the bullet and called him.",
+      "hook": ""
+    },
+    {
+      "front": "let the cat out of the bag",
+      "back": "reveal a secret by mistake",
+      "label": "idiom",
+      "example": "He let the cat out of the bag.",
+      "hook": ""
+    },
+    {
+      "front": "the ball is in your court",
+      "back": "it's your decision now",
+      "label": "idiom",
+      "example": "I've made my offer; the ball is in your court.",
+      "hook": ""
+    },
+    {
+      "front": "call it a day",
+      "back": "stop working for now",
+      "label": "idiom",
+      "example": "Let's call it a day.",
+      "hook": ""
+    },
+    {
+      "front": "on the fence",
+      "back": "undecided",
+      "label": "idiom",
+      "example": "I'm still on the fence about it.",
+      "hook": ""
+    },
+    {
+      "front": "cut corners",
+      "back": "do it badly to save time",
+      "label": "idiom",
+      "example": "Don't cut corners on safety.",
+      "hook": ""
+    },
+    {
+      "front": "beat around the bush",
+      "back": "avoid the main point",
+      "label": "idiom",
+      "example": "Stop beating around the bush.",
+      "hook": ""
+    },
+    {
+      "front": "miss the boat",
+      "back": "lose a chance",
+      "label": "idiom",
+      "example": "Tickets sold out; we missed the boat.",
+      "hook": ""
+    },
+    {
+      "front": "a blessing in disguise",
+      "back": "a good thing that seemed bad",
+      "label": "idiom",
+      "example": "Losing that job was a blessing in disguise.",
+      "hook": ""
+    }
+  ]
+}

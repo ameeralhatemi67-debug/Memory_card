@@ -1,0 +1,98 @@
+{
+  "id": "ja-survival",
+  "name": "Japanese · Survival",
+  "mono": "日",
+  "category": "lang",
+  "level": "phrases",
+  "lang": "ja-JP",
+  "kind": "text",
+  "folder": "Travel",
+  "description": "The polite phrases that get you through a first trip to Japan.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "こんにちは",
+      "back": "hello · konnichiwa",
+      "label": "greeting",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "ありがとう",
+      "back": "thank you · arigatō",
+      "label": "phrase",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "すみません",
+      "back": "excuse me, sorry · sumimasen",
+      "label": "phrase",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "はい",
+      "back": "yes · hai",
+      "label": "word",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "いいえ",
+      "back": "no · iie",
+      "label": "word",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "お願いします",
+      "back": "please · onegaishimasu",
+      "label": "phrase",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "いくらですか",
+      "back": "how much is it? · ikura desu ka",
+      "label": "question",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "トイレはどこですか",
+      "back": "where is the toilet? · toire wa doko desu ka",
+      "label": "question",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "駅",
+      "back": "station · eki",
+      "label": "noun",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "水",
+      "back": "water · mizu",
+      "label": "noun",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "おいしい",
+      "back": "delicious · oishii",
+      "label": "adjective",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "さようなら",
+      "back": "goodbye · sayōnara",
+      "label": "greeting",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

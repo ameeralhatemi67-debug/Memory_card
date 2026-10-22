@@ -1,0 +1,126 @@
+{
+  "id": "de-verbs",
+  "name": "German · Verbs",
+  "mono": "De",
+  "category": "lang",
+  "level": "A1",
+  "lang": "de-DE",
+  "kind": "text",
+  "folder": "German",
+  "description": "Sixteen verbs you use every day, the modal verbs included, each in a sentence.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "machen",
+      "back": "to make, to do",
+      "label": "verb",
+      "example": "Was machst du heute?",
+      "hook": ""
+    },
+    {
+      "front": "haben",
+      "back": "to have",
+      "label": "verb",
+      "example": "Ich habe keine Zeit.",
+      "hook": ""
+    },
+    {
+      "front": "sein",
+      "back": "to be",
+      "label": "verb",
+      "example": "Wir sind müde.",
+      "hook": ""
+    },
+    {
+      "front": "werden",
+      "back": "to become",
+      "label": "verb",
+      "example": "Es wird kalt.",
+      "hook": ""
+    },
+    {
+      "front": "können",
+      "back": "can, to be able to",
+      "label": "verb · modal",
+      "example": "Kannst du schwimmen?",
+      "hook": ""
+    },
+    {
+      "front": "müssen",
+      "back": "must, to have to",
+      "label": "verb · modal",
+      "example": "Ich muss jetzt gehen.",
+      "hook": ""
+    },
+    {
+      "front": "wollen",
+      "back": "to want",
+      "label": "verb · modal",
+      "example": "Sie will Ärztin werden.",
+      "hook": ""
+    },
+    {
+      "front": "sagen",
+      "back": "to say",
+      "label": "verb",
+      "example": "Was sagst du?",
+      "hook": ""
+    },
+    {
+      "front": "fragen",
+      "back": "to ask",
+      "label": "verb",
+      "example": "Darf ich etwas fragen?",
+      "hook": ""
+    },
+    {
+      "front": "antworten",
+      "back": "to answer",
+      "label": "verb",
+      "example": "Er antwortet nicht.",
+      "hook": ""
+    },
+    {
+      "front": "kaufen",
+      "back": "to buy",
+      "label": "verb",
+      "example": "Ich kaufe Brot.",
+      "hook": ""
+    },
+    {
+      "front": "bezahlen",
+      "back": "to pay",
+      "label": "verb",
+      "example": "Kann ich mit Karte bezahlen?",
+      "hook": ""
+    },
+    {
+      "front": "arbeiten",
+      "back": "to work",
+      "label": "verb",
+      "example": "Sie arbeitet in Hamburg.",
+      "hook": ""
+    },
+    {
+      "front": "wohnen",
+      "back": "to live (reside)",
+      "label": "verb",
+      "example": "Wo wohnst du?",
+      "hook": ""
+    },
+    {
+      "front": "lernen",
+      "back": "to learn",
+      "label": "verb",
+      "example": "Ich lerne Deutsch.",
+      "hook": ""
+    },
+    {
+      "front": "vergessen",
+      "back": "to forget",
+      "label": "verb",
+      "example": "Ich habe es vergessen.",
+      "hook": ""
+    }
+  ]
+}

@@ -1,0 +1,126 @@
+{
+  "id": "de-a2",
+  "name": "German · A2",
+  "mono": "De",
+  "category": "lang",
+  "level": "A2",
+  "lang": "de-DE",
+  "kind": "text",
+  "folder": "German",
+  "description": "Words for appointments, flats, work and complaints: the vocabulary of getting things done.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "die Erfahrung",
+      "back": "the experience",
+      "label": "noun · feminine",
+      "example": "Das war eine gute Erfahrung.",
+      "hook": ""
+    },
+    {
+      "front": "der Termin",
+      "back": "the appointment",
+      "label": "noun · masculine",
+      "example": "Ich habe morgen einen Termin beim Arzt.",
+      "hook": ""
+    },
+    {
+      "front": "die Umgebung",
+      "back": "the surroundings",
+      "label": "noun · feminine",
+      "example": "Die Umgebung ist sehr ruhig.",
+      "hook": ""
+    },
+    {
+      "front": "sich erinnern",
+      "back": "to remember",
+      "label": "verb",
+      "example": "Ich erinnere mich an den Urlaub.",
+      "hook": ""
+    },
+    {
+      "front": "sich beschweren",
+      "back": "to complain",
+      "label": "verb",
+      "example": "Er beschwert sich über den Lärm.",
+      "hook": ""
+    },
+    {
+      "front": "vorschlagen",
+      "back": "to suggest",
+      "label": "verb",
+      "example": "Ich schlage vor, wir gehen ins Kino.",
+      "hook": ""
+    },
+    {
+      "front": "die Gelegenheit",
+      "back": "the opportunity",
+      "label": "noun · feminine",
+      "example": "Das ist eine gute Gelegenheit.",
+      "hook": ""
+    },
+    {
+      "front": "der Vertrag",
+      "back": "the contract",
+      "label": "noun · masculine",
+      "example": "Lies den Vertrag genau.",
+      "hook": ""
+    },
+    {
+      "front": "pünktlich",
+      "back": "on time",
+      "label": "adjective",
+      "example": "Der Zug ist heute pünktlich.",
+      "hook": ""
+    },
+    {
+      "front": "gemütlich",
+      "back": "cosy",
+      "label": "adjective",
+      "example": "Das Café ist sehr gemütlich.",
+      "hook": ""
+    },
+    {
+      "front": "die Wohnung",
+      "back": "the flat",
+      "label": "noun · feminine",
+      "example": "Wir suchen eine neue Wohnung.",
+      "hook": ""
+    },
+    {
+      "front": "die Ausbildung",
+      "back": "the vocational training",
+      "label": "noun · feminine",
+      "example": "Sie macht eine Ausbildung als Köchin.",
+      "hook": ""
+    },
+    {
+      "front": "verschieben",
+      "back": "to postpone",
+      "label": "verb",
+      "example": "Wir müssen das Treffen verschieben.",
+      "hook": ""
+    },
+    {
+      "front": "das Gehalt",
+      "back": "the salary",
+      "label": "noun · neuter",
+      "example": "Das Gehalt kommt am Monatsende.",
+      "hook": ""
+    },
+    {
+      "front": "ausgezeichnet",
+      "back": "excellent",
+      "label": "adjective",
+      "example": "Das Essen war ausgezeichnet.",
+      "hook": ""
+    },
+    {
+      "front": "die Erlaubnis",
+      "back": "the permission",
+      "label": "noun · feminine",
+      "example": "Du brauchst eine Erlaubnis.",
+      "hook": ""
+    }
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "id": "morse-code",
+  "name": "Morse Code",
+  "mono": "Mo",
+  "category": "knowledge",
+  "level": "code",
+  "lang": null,
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Letters and the distress call in dots and dashes.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "A",
+      "back": "· −",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "B",
+      "back": "− · · ·",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "C",
+      "back": "− · − ·",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "D",
+      "back": "− · ·",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "E",
+      "back": "·",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "I",
+      "back": "· ·",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "N",
+      "back": "− ·",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "O",
+      "back": "− − −",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "S",
+      "back": "· · ·",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "T",
+      "back": "−",
+      "label": "letter",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

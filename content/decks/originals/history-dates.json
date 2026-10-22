@@ -1,0 +1,112 @@
+{
+  "id": "history-dates",
+  "name": "History · Key Dates",
+  "mono": "Hi",
+  "category": "knowledge",
+  "level": "dates",
+  "lang": null,
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "The turning points of the last 1,500 years, one date per card.",
+  "origin": "originals",
+  "cards": [
+    {
+      "front": "Fall of the Western Roman Empire",
+      "back": "476",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Battle of Hastings",
+      "back": "1066",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Magna Carta sealed",
+      "back": "1215",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Gutenberg's printing press",
+      "back": "around 1440",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Columbus reaches the Americas",
+      "back": "1492",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Start of the French Revolution",
+      "back": "1789",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Battle of Waterloo",
+      "back": "1815",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Start of World War I",
+      "back": "1914",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Start of World War II",
+      "back": "1939",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "End of World War II",
+      "back": "1945",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "First Moon landing",
+      "back": "1969",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Fall of the Berlin Wall",
+      "back": "1989",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "Euro notes and coins introduced",
+      "back": "2002",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    },
+    {
+      "front": "First iPhone released",
+      "back": "2007",
+      "label": "date",
+      "example": "",
+      "hook": ""
+    }
+  ]
+}

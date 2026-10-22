@@ -1,0 +1,28 @@
+{
+  "id": "greek-gods",
+  "name": "Myth · Greek Gods",
+  "mono": "Gk",
+  "category": "knowledge",
+  "level": "classics",
+  "lang": null,
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Recall which Greek god or goddess rules each domain, from the sky and sea to love, war and the underworld.",
+  "cards": [
+    { "front": "Greek king of the gods, ruler of the sky and thunder", "back": "Zeus", "label": "god", "example": "", "hook": "Roman equivalent: Jupiter" },
+    { "front": "Queen of the gods, goddess of marriage and childbirth", "back": "Hera", "label": "goddess", "example": "", "hook": "" },
+    { "front": "God of the sea, storms and earthquakes", "back": "Poseidon", "label": "god", "example": "", "hook": "" },
+    { "front": "God who rules the underworld and the dead", "back": "Hades", "label": "god", "example": "", "hook": "Hades is also the name of the underworld itself" },
+    { "front": "Goddess of wisdom, crafts and strategic warfare", "back": "Athena", "label": "goddess", "example": "", "hook": "" },
+    { "front": "God of music, prophecy, healing and archery", "back": "Apollo", "label": "god", "example": "", "hook": "" },
+    { "front": "Goddess of the hunt and of wild places", "back": "Artemis", "label": "goddess", "example": "", "hook": "" },
+    { "front": "God of violent war and bloodshed", "back": "Ares", "label": "god", "example": "", "hook": "" },
+    { "front": "Goddess of love, beauty and desire", "back": "Aphrodite", "label": "goddess", "example": "", "hook": "" },
+    { "front": "Messenger god of trade, roads and thieves", "back": "Hermes", "label": "god", "example": "", "hook": "" },
+    { "front": "God of fire, metalworking and craftsmen", "back": "Hephaestus", "label": "god", "example": "", "hook": "Roman equivalent: Vulcan" },
+    { "front": "Goddess of grain, harvest and the fertile land", "back": "Demeter", "label": "goddess", "example": "", "hook": "" },
+    { "front": "Goddess of the hearth and of home", "back": "Hestia", "label": "goddess", "example": "", "hook": "" },
+    { "front": "God of wine, festivity and drama", "back": "Dionysus", "label": "god", "example": "", "hook": "" },
+    { "front": "Queen of the underworld who returns each spring", "back": "Persephone", "label": "goddess", "example": "", "hook": "Daughter of Demeter" }
+  ]
+}
