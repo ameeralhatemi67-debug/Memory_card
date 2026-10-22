@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:math' as math;
 
 import 'package:flutter/scheduler.dart';
@@ -123,3 +124,74 @@ double wave(double ms, double periodMs, [double phase = 0]) => math.sin(ms / per
 
 /// Eases `t` (0…1) out with a cubic.
 double easeOutCubic(double t) => 1 - math.pow(1 - t.clamp(0.0, 1.0), 3).toDouble();
+
+/// Plays a short motion now and then: after [delayMs] (stagger many of them), then every [periodMs].
+/// [builder] gets the pass's progress t in 0…1 (0 between passes). Still when motion is reduced.
+class Pulse extends StatefulWidget {
+  const Pulse({super.key, required this.builder, this.delayMs = 0, this.periodMs = 7000, this.durationMs = 1500});
+
+  final Widget Function(BuildContext context, double t) builder;
+  final int delayMs;
+  final int periodMs;
+  final int durationMs;
+
+  @override
+  State<Pulse> createState() => _PulseState();
+}
+
+class _PulseState extends State<Pulse> with SingleTickerProviderStateMixin {
+  late final AnimationController _c = AnimationController(
+    vsync: this,
+    duration: Duration(milliseconds: widget.durationMs),
+  );
+  Timer? _timer;
+  bool _started = false;
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    if (_started || MotionPrefs.reducedOf(context)) return;
+    _started = true;
+    _timer = Timer(Duration(milliseconds: widget.delayMs), () {
+      if (!mounted) return;
+      _c.forward(from: 0);
+      _timer = Timer.periodic(Duration(milliseconds: widget.periodMs), (_) {
+        if (mounted) _c.forward(from: 0);
+      });
+    });
+  }
+
+  @override
+  void dispose() {
+    _timer?.cancel();
+    _c.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) =>
+      AnimatedBuilder(animation: _c, builder: (context, _) => widget.builder(context, _c.isAnimating ? _c.value : 0));
+}
+
+/// A card that now and then rocks, like the two cards fanned under a deck: right, then left, then back
+/// to rest (both swings ease in). [builder] gets v in −1…1; the card beneath mirrors it with −v.
+class Sway extends StatelessWidget {
+  const Sway({super.key, required this.builder, this.delayMs = 0, this.periodMs = 7000});
+
+  final Widget Function(BuildContext context, double v) builder;
+  final int delayMs;
+  final int periodMs;
+
+  /// The swing over one pass, t in 0…1.
+  static double at(double t) {
+    const a = 0.3, b = 0.7;
+    if (t <= 0 || t >= 1) return 0;
+    if (t < a) return Curves.easeIn.transform(t / a);
+    if (t < b) return 1 - 2 * Curves.easeIn.transform((t - a) / (b - a));
+    return -1 + Curves.easeOut.transform((t - b) / (1 - b));
+  }
+
+  @override
+  Widget build(BuildContext context) =>
+      Pulse(delayMs: delayMs, periodMs: periodMs, builder: (context, t) => builder(context, at(t)));
+}

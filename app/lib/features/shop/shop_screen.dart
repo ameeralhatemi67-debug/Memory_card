@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:share_plus/share_plus.dart';
@@ -562,12 +563,19 @@ class _HoldMenu extends StatelessWidget {
           for (var i = 0; i < actions.length; i++)
             Builder(builder: (context) {
               final r = angles[i] * math.pi / 180;
-              final x = (cx + math.cos(r) * rx - 42).clamp(6.0, size.width - 90);
-              final y = (cy + math.sin(r) * ry - 36).clamp(80.0, size.height - 112 - 106);
+              final x = (cx + math.cos(r) * rx - 36).clamp(6.0, size.width - 78);
+              final y = (cy + math.sin(r) * ry - 36).clamp(80.0, size.height - 112 - 76);
+              // Pop in one after another.
               final u = ((ms - i * 45) / 240).clamp(0.0, 1.0);
               final s = u < 0.7 ? 0.4 + (1.08 - 0.4) * (u / 0.7) : 1.08 - 0.08 * ((u - 0.7) / 0.3);
-              final dy = -2 * (1 - math.cos(ms / 2600 * math.pi * 2 + i * 0.8));
+              // A very soft bob, each badge on its own phase.
+              final dy = -1.5 * (1 - math.cos(ms / 3200 * math.pi * 2 + i * 1.3));
+              // Every 4–6 s the badge's shape (not its icon) turns once, easing in.
+              final period = _spinPeriods[i];
+              final since = ms - period;
+              final spin = since < 0 ? 0.0 : Curves.easeIn.transform(((since % period) / _spinMs).clamp(0.0, 1.0));
               final (id, label, icon, shape, tilt) = actions[i];
+              final turn = tilt * math.pi / 180 + spin * math.pi * 2;
               return Positioned(
                 left: x,
                 top: y,
@@ -582,27 +590,22 @@ class _HoldMenu extends StatelessWidget {
                         haptic: true,
                         onTap: () => Navigator.pop(context, id),
                         child: SizedBox(
-                          width: 84,
-                          height: 106,
-                          child: Column(children: [
-                            SizedBox(
-                              width: 72,
-                              height: 72,
-                              child: Stack(alignment: Alignment.center, children: [
-                                CustomPaint(
+                          width: 72,
+                          height: 72,
+                          child: Stack(alignment: Alignment.center, clipBehavior: Clip.none, children: [
+                            // Soft shadow in the badge's own shape.
+                            Transform.translate(
+                              offset: const Offset(0, 5),
+                              child: ImageFiltered(
+                                imageFilter: ui.ImageFilter.blur(sigmaX: 7, sigmaY: 7),
+                                child: CustomPaint(
                                   size: const Size(72, 72),
-                                  painter: PolarPainter(shape, Mc.paper, rotation: tilt * math.pi / 180),
+                                  painter: PolarPainter(shape, const Color(0x38000000), rotation: turn),
                                 ),
-                                McIcon(icon, size: const Size(28, 28), color: Mc.graphite),
-                              ]),
+                              ),
                             ),
-                            const SizedBox(height: 4),
-                            // A dark pill keeps the label readable over the light, held tile.
-                            Container(
-                              padding: const EdgeInsets.fromLTRB(8, 2, 8, 3),
-                              decoration: BoxDecoration(color: const Color(0x8C000000), borderRadius: BorderRadius.circular(10)),
-                              child: Text(label, style: T.t(14, w: FontWeight.w700, color: Mc.paper)),
-                            ),
+                            CustomPaint(size: const Size(72, 72), painter: PolarPainter(shape, Mc.paper, rotation: turn)),
+                            McIcon(icon, size: const Size(28, 28), color: Mc.graphite),
                           ]),
                         ),
                       ),
@@ -615,4 +618,7 @@ class _HoldMenu extends StatelessWidget {
       }),
     ]);
   }
+
+  static const _spinPeriods = [4200.0, 5500.0, 4800.0, 5900.0];
+  static const _spinMs = 1100.0;
 }

@@ -104,18 +104,26 @@ class _PreviewSheetState extends State<PreviewSheet> with SingleTickerProviderSt
                 SizedBox(
                   height: 196,
                   child: Stack(alignment: Alignment.topCenter, children: [
-                    Positioned(
-                      top: 18,
-                      child: Transform.translate(
-                        offset: const Offset(-4, 0),
-                        child: Transform.rotate(angle: -7 * math.pi / 180, child: _blank(mc.back2, mc)),
-                      ),
-                    ),
-                    Positioned(
-                      top: 12,
-                      child: Transform.translate(
-                        offset: const Offset(4, 0),
-                        child: Transform.rotate(angle: 5 * math.pi / 180, child: _blank(mc.back1, mc)),
+                    // The two cards beneath rock as the sheet opens, then every 7 s.
+                    Positioned.fill(
+                      child: Sway(
+                        delayMs: 380,
+                        builder: (context, v) => Stack(alignment: Alignment.topCenter, children: [
+                          Positioned(
+                            top: 18,
+                            child: Transform.translate(
+                              offset: const Offset(-4, 0),
+                              child: Transform.rotate(angle: -7 * math.pi / 180 - v * StackArt.swing, child: _blank(mc.back2, mc)),
+                            ),
+                          ),
+                          Positioned(
+                            top: 12,
+                            child: Transform.translate(
+                              offset: const Offset(4, 0),
+                              child: Transform.rotate(angle: 5 * math.pi / 180 + v * StackArt.swing, child: _blank(mc.back1, mc)),
+                            ),
+                          ),
+                        ]),
                       ),
                     ),
                     if (sample != null)

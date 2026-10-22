@@ -1,13 +1,25 @@
+import 'dart:math' as math;
+
 import 'package:flutter/material.dart';
 
 import '../../data/catalog.dart';
 import '../../ui/icons.dart';
+import '../../ui/motion.dart';
 import '../../ui/theme.dart';
 
 /// A deck drawn as a small physical card stack: two fanned cards behind a dark front card with the
 /// monogram, and the category's coloured tab (canvas Shop.dc.html).
 class StackArt extends StatelessWidget {
-  const StackArt({super.key, required this.mono, required this.tab, this.held = false, this.inverse = false, this.scale = 1});
+  const StackArt({
+    super.key,
+    required this.mono,
+    required this.tab,
+    this.held = false,
+    this.inverse = false,
+    this.scale = 1,
+    this.swayDelayMs,
+    this.swayPeriodMs,
+  });
 
   final String mono;
   final Color tab;
@@ -17,6 +29,13 @@ class StackArt extends StatelessWidget {
   final bool inverse;
   final double scale;
 
+  /// When set, the two cards under the front one rock now and then (see [Sway]).
+  final int? swayDelayMs;
+  final int? swayPeriodMs;
+
+  /// How far the under-cards swing, in radians (5.22°).
+  static const swing = 5.22 * math.pi / 180;
+
   @override
   Widget build(BuildContext context) {
     final mc = Mc.of(context);
@@ -24,6 +43,15 @@ class StackArt extends StatelessWidget {
     final back1 = held ? const Color(0xFF747474) : mc.back1;
     final front = held ? Mc.graphite : (inverse ? mc.canvas : mc.ink);
     final onFront = held ? Mc.paper : (inverse ? mc.ink : mc.onInk);
+    if (swayPeriodMs == null) return _art(back2, back1, front, onFront, 0);
+    return Sway(
+      delayMs: swayDelayMs ?? 0,
+      periodMs: swayPeriodMs!,
+      builder: (context, v) => _art(back2, back1, front, onFront, v),
+    );
+  }
+
+  Widget _art(Color back2, Color back1, Color front, Color onFront, double v) {
     return SizedBox(
       width: 150 * scale,
       height: 120 * scale,
@@ -34,7 +62,7 @@ class StackArt extends StatelessWidget {
             left: 26 * scale,
             top: 14 * scale,
             child: Transform.rotate(
-              angle: -0.14,
+              angle: -0.14 - v * swing,
               child: Container(
                 width: 94 * scale,
                 height: 100 * scale,
@@ -46,7 +74,7 @@ class StackArt extends StatelessWidget {
             left: 30 * scale,
             top: 10 * scale,
             child: Transform.rotate(
-              angle: 0.105,
+              angle: 0.105 + v * swing,
               child: Container(
                 width: 94 * scale,
                 height: 100 * scale,
@@ -120,7 +148,14 @@ class ShopTile extends StatelessWidget {
             child: Stack(
               clipBehavior: Clip.none,
               children: [
-                StackArt(mono: deck.mono, tab: tab, held: held),
+                StackArt(
+                  mono: deck.mono,
+                  tab: tab,
+                  held: held,
+                  // Staggered so the grid never moves in lockstep: each deck has its own delay and beat.
+                  swayDelayMs: held ? null : 250 + (deck.id.hashCode.abs() % 9) * 170,
+                  swayPeriodMs: held ? null : const [7000, 8000, 9000, 7500][deck.id.hashCode.abs() % 4],
+                ),
                 if (added || pinned)
                   Positioned(
                     right: 0,

@@ -119,6 +119,8 @@ void main() {
     tester.view.physicalSize = const Size(390 * 3, 844 * 3);
     tester.view.devicePixelRatio = 3;
     addTearDown(tester.view.reset);
+    // Real, blurred shadows (tests draw them solid by default).
+    debugDisableShadows = false;
     final dir = Directory.systemTemp.createTempSync('mc_gallery_');
     // The library and two weeks of history are built before the UI starts: disk writes begun under the
     // widget-test clock would otherwise never finish.
@@ -289,6 +291,7 @@ void main() {
     await settle(tester, 1600);
     await shot(tester, '47-dark-shop');
 
+    debugDisableShadows = true;
     Toaster.i.hide();
     await tester.pumpWidget(const SizedBox());
     await tester.pump(const Duration(seconds: 10));

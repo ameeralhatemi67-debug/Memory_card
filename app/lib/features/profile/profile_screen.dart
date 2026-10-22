@@ -270,7 +270,7 @@ class _CardFront extends StatelessWidget {
       decoration: BoxDecoration(
         color: mc.ink,
         borderRadius: BorderRadius.circular(18),
-        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: mc.dark ? 0.6 : 0.24), blurRadius: 36, offset: const Offset(0, 16))],
+        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: mc.dark ? 0.32 : 0.24), blurRadius: mc.dark ? 48 : 36, offset: const Offset(0, 16))],
       ),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
@@ -330,7 +330,7 @@ class _CardBack extends StatelessWidget {
       decoration: BoxDecoration(
         color: mc.ink,
         borderRadius: BorderRadius.circular(18),
-        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: mc.dark ? 0.6 : 0.24), blurRadius: 36, offset: const Offset(0, 16))],
+        boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: mc.dark ? 0.32 : 0.24), blurRadius: mc.dark ? 48 : 36, offset: const Offset(0, 16))],
       ),
       clipBehavior: Clip.antiAlias,
       child: Stack(children: [
@@ -521,7 +521,7 @@ class _Badge extends StatelessWidget {
           CustomPaint(
             size: const Size(84, 84),
             painter: PolarPainter(shape, mc.badge, shadow: [
-              BoxShadow(color: Colors.black.withValues(alpha: mc.dark ? 0.6 : 0.25), blurRadius: 10, offset: const Offset(0, 6)),
+              BoxShadow(color: Colors.black.withValues(alpha: mc.dark ? 0.3 : 0.25), blurRadius: mc.dark ? 16 : 10, offset: const Offset(0, 6)),
             ]),
           ),
           McIcon(icon, size: iconSize, color: tint ? mc.badgeInk : null),

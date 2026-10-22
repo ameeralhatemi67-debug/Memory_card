@@ -22,22 +22,22 @@ const _span2 = _step2 - _step1;
 const _gap = 10.0;
 const _margin = 20.0;
 
-/// Four-phase "inward gravity": resists leaving rest, slides freely, then is pulled into each detent;
-/// past option 2 it stretches like a rubber band.
+/// Finger → open distance. The bar follows the finger 1:1 up to the second detent (the springs on
+/// release do the snapping), then stretches like a rubber band that stiffens smoothly: the slope starts
+/// at 1 and falls off, so there is no jump anywhere along the drag.
 double gravity(double raw) {
   final a = raw.abs();
-  if (a <= _step1) {
-    final p = a / _step1;
-    if (p < 0.1) return a * 0.35;
-    if (p < 0.9) return a;
-    return _step1 - (_step1 - a) * 0.35;
-  }
-  final d2 = a - _step1;
-  final p2 = math.min(1.0, d2 / _span2);
-  if (p2 < 0.1) return _step1 + d2 * 0.35;
-  if (p2 < 0.9) return _step1 + d2;
-  if (a <= _step2) return _step2 - (_step2 - (_step1 + d2)) * 0.35;
-  return _step2 + math.min(22, (a - _step2) * 0.22);
+  if (a <= _step2) return a;
+  const give = 26.0;
+  return _step2 + give * (1 - math.exp(-(a - _step2) / give));
+}
+
+/// The inverse of [gravity], to resume a drag from wherever the bar is.
+double _ungravity(double e) {
+  if (e <= _step2) return e;
+  const give = 26.0;
+  final f = ((e - _step2) / give).clamp(0.0, 0.999);
+  return _step2 - give * math.log(1 - f);
 }
 
 /// One deck bar: ink bar with the title, meta line and the stepped progress fan; swipe left for
@@ -84,7 +84,10 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
   bool _passedStep = false;
   Ticker? _spring;
   String? _removing; // 'delete' | 'archive'
-  late final AnimationController _remove = AnimationController(vsync: this, duration: const Duration(milliseconds: 340));
+  late final AnimationController _remove = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 340),
+  );
   late final AnimationController _glow = AnimationController(vsync: this, duration: const Duration(milliseconds: 1400));
 
   @override
@@ -168,14 +171,13 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
         return;
       }
       setState(() => _e = math.max(0, cur));
-    })
-      ..start();
+    })..start();
   }
 
   void _onStart(DragStartDetails d) {
     _spring?.stop();
     _dragging = true;
-    _raw = _dir * _e;
+    _raw = _dir * _ungravity(_e);
     _passedStep = _e >= _step1;
     if (openDeck.value != widget.deck.id) openDeck.value = widget.deck.id;
   }
@@ -242,19 +244,31 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
     final progress = e / _step1;
     final sinkOp = math.min(1.0, progress * 1.5);
     final stop = math.max(0.0, 1 - progress * 0.2);
-    final double tx = dir == 0 ? 0.0 : dir.toDouble() * math.max(0.0, e + _gap - _margin);
+    // The bar moves from the first pixel (half speed at first) and settles to keeping a _gap from the
+    // tile as it opens, with no dead zone.
+    final double tx = dir == 0 ? 0.0 : dir.toDouble() * (e - (_margin - _gap) * (1 - math.exp(-e / 20)));
 
     final s = widget.stats;
     final status = s.slipping > 0
         ? '${s.slipping} slipping'
         : s.fresh == s.total
-            ? 'new'
-            : s.fresh > 0
-                ? '${s.fresh} still new'
-                : 'all strong';
+        ? 'new'
+        : s.fresh > 0
+        ? '${s.fresh} still new'
+        : 'all strong';
     final meta = '${s.total} ${s.total == 1 ? 'card' : 'cards'} · $status';
 
-    Widget tile(Color color, String icon, Size size, double w, {required bool left, double iconW = 65, VoidCallback? onTap, String? label, bool top = false}) {
+    Widget tile(
+      Color color,
+      String icon,
+      Size size,
+      double w, {
+      required bool left,
+      double iconW = 65,
+      VoidCallback? onTap,
+      String? label,
+      bool top = false,
+    }) {
       return Positioned(
         top: 0,
         bottom: 0,
@@ -272,7 +286,15 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
                 borderRadius: left
                     ? const BorderRadius.horizontal(right: Radius.circular(16))
                     : const BorderRadius.horizontal(left: Radius.circular(16)),
-                boxShadow: top ? [BoxShadow(color: Colors.black.withValues(alpha: 0.18), blurRadius: 8, offset: Offset(left ? 3 : -3, 0))] : null,
+                boxShadow: top
+                    ? [
+                        BoxShadow(
+                          color: Colors.black.withValues(alpha: 0.18),
+                          blurRadius: 8,
+                          offset: Offset(left ? 3 : -3, 0),
+                        ),
+                      ]
+                    : null,
               ),
               clipBehavior: Clip.hardEdge,
               child: OverflowBox(
@@ -281,7 +303,9 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
                 maxWidth: math.max(iconW, w),
                 child: SizedBox(
                   width: top ? math.max(iconW, w) : iconW,
-                  child: Center(child: McIcon(icon, size: size, color: Mc.graphite)),
+                  child: Center(
+                    child: McIcon(icon, size: size, color: Mc.graphite),
+                  ),
                 ),
               ),
             ),
@@ -317,7 +341,12 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
                 borderRadius: BorderRadius.circular(10),
                 boxShadow: [
                   ...mc.e1,
-                  if (g > 0) BoxShadow(color: Mc.peach.withValues(alpha: 0.55 * g), blurRadius: 18 * g, spreadRadius: 2 * g),
+                  if (g > 0)
+                    BoxShadow(
+                      color: Mc.peach.withValues(alpha: 0.55 * g),
+                      blurRadius: 18 * g,
+                      spreadRadius: 2 * g,
+                    ),
                 ],
               ),
               clipBehavior: Clip.antiAlias,
@@ -326,26 +355,44 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
           },
           child: Stack(
             children: [
-              for (var i = 0; i < 5; i++)
-                Positioned(
-                  right: -10 + (4 - i) * 15.0,
-                  bottom: -40 + i * 8.0,
-                  child: Transform.rotate(
-                    alignment: Alignment.bottomRight,
-                    angle: (-16 + i * 3) * math.pi / 180,
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 500),
-                      curve: McCurves.paper,
-                      width: 54,
-                      height: 80,
-                      decoration: BoxDecoration(
-                        color: i < s.steps ? mc.fanOn[i] : mc.fanOff,
-                        borderRadius: BorderRadius.circular(7),
-                        boxShadow: const [BoxShadow(color: Color(0x33000000), blurRadius: 4, offset: Offset(-2, 0))],
-                      ),
-                    ),
+              // Now and then the fan riffles: back to front, each card lifts and leans for a moment.
+              Positioned.fill(
+                child: Pulse(
+                  delayMs: 1400 + (widget.deck.id.hashCode.abs() % 7) * 450,
+                  periodMs: const [8000, 9000, 10000][widget.deck.id.hashCode.abs() % 3],
+                  durationMs: 1300,
+                  builder: (context, t) => Stack(
+                    children: [
+                      for (var i = 0; i < 5; i++)
+                        () {
+                          final u = ((t * 1300 - i * 90) / 640).clamp(0.0, 1.0);
+                          final lift = t == 0 ? 0.0 : math.sin(math.pi * Curves.easeInOut.transform(u));
+                          return Positioned(
+                            right: -10 + (4 - i) * 15.0,
+                            bottom: -40 + i * 8.0 + lift * 4,
+                            child: Transform.rotate(
+                              alignment: Alignment.bottomRight,
+                              angle: (-16 + i * 3 - lift * 3.5) * math.pi / 180,
+                              child: AnimatedContainer(
+                                duration: const Duration(milliseconds: 500),
+                                curve: McCurves.paper,
+                                width: 54,
+                                height: 80,
+                                decoration: BoxDecoration(
+                                  color: i < s.steps ? mc.fanOn[i] : mc.fanOff,
+                                  borderRadius: BorderRadius.circular(7),
+                                  boxShadow: const [
+                                    BoxShadow(color: Color(0x33000000), blurRadius: 4, offset: Offset(-2, 0)),
+                                  ],
+                                ),
+                              ),
+                            ),
+                          );
+                        }(),
+                    ],
                   ),
                 ),
+              ),
               Positioned(
                 left: 16,
                 top: 11,
@@ -391,26 +438,57 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
         children: [
           // Delete / Archive (swiping left), flush to the right edge.
           if (dir < 0) ...[
-            tile(Mc.delete, McIcons.x, const Size(20, 20), e,
-                left: false, onTap: () => _removeThen('delete', widget.onDelete), label: 'Delete deck'),
+            tile(
+              Mc.delete,
+              McIcons.x,
+              const Size(20, 20),
+              e,
+              left: false,
+              onTap: () => _removeThen('delete', widget.onDelete),
+              label: 'Delete deck',
+            ),
             if (second > 0)
-              tile(Mc.peach, McIcons.archive, const Size(20, 22), second,
-                  left: false,
-                  top: true,
-                  onTap: () => _removeThen('archive', widget.onArchive),
-                  label: widget.archived ? 'Restore deck' : 'Archive deck'),
+              tile(
+                Mc.peach,
+                McIcons.archive,
+                const Size(20, 22),
+                second,
+                left: false,
+                top: true,
+                onTap: () => _removeThen('archive', widget.onArchive),
+                label: widget.archived ? 'Restore deck' : 'Archive deck',
+              ),
           ],
           // Move / Pin (swiping right), flush to the left edge.
           if (dir > 0) ...[
-            tile(Mc.blue, McIcons.move, const Size(24, 18), e, left: true, iconW: 58, onTap: () {
-              _close();
-              widget.onMove();
-            }, label: 'Move deck to another folder'),
-            if (second > 0)
-              tile(Mc.green, McIcons.pin, const Size(22, 22), second, left: true, top: true, iconW: 54, onTap: () {
+            tile(
+              Mc.blue,
+              McIcons.move,
+              const Size(24, 18),
+              e,
+              left: true,
+              iconW: 58,
+              onTap: () {
                 _close();
-                widget.onPin();
-              }, label: widget.deck.pinned ? 'Unpin deck' : 'Pin deck to the top'),
+                widget.onMove();
+              },
+              label: 'Move deck to another folder',
+            ),
+            if (second > 0)
+              tile(
+                Mc.green,
+                McIcons.pin,
+                const Size(22, 22),
+                second,
+                left: true,
+                top: true,
+                iconW: 54,
+                onTap: () {
+                  _close();
+                  widget.onPin();
+                },
+                label: widget.deck.pinned ? 'Unpin deck' : 'Pin deck to the top',
+              ),
           ],
           Positioned(left: (width - barW) / 2, top: 0, child: bar),
           // The trailing edge sinks into the canvas as the deck slides.
@@ -453,7 +531,13 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
             offset: Offset(_removing == 'archive' && !reduced ? -width * 1.1 * t : 0, 0),
             child: SizedBox(
               height: collapse ? 84 * (1 - t) : 84,
-              child: ClipRect(child: OverflowBox(maxHeight: 84, alignment: Alignment.topCenter, child: Padding(padding: const EdgeInsets.only(bottom: 12), child: child))),
+              child: ClipRect(
+                child: OverflowBox(
+                  maxHeight: 84,
+                  alignment: Alignment.topCenter,
+                  child: Padding(padding: const EdgeInsets.only(bottom: 12), child: child),
+                ),
+              ),
             ),
           ),
         );

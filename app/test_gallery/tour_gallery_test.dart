@@ -70,6 +70,8 @@ void main() {
     tester.view.physicalSize = const Size(390 * 3, 844 * 3);
     tester.view.devicePixelRatio = 3;
     addTearDown(tester.view.reset);
+    // Real, blurred shadows (tests draw them solid by default).
+    debugDisableShadows = false;
     final dir = Directory.systemTemp.createTempSync('mc_gallery_');
     final store = (await tester.runAsync(() => AppStore.open(path: dir.path)))!;
     await tester.pumpWidget(RepaintBoundary(key: shotKey, child: MemoryCardApp(store: store)));
@@ -118,6 +120,7 @@ void main() {
     await tester.tapAt(const Offset(200, 700));
     await settle(tester, 400);
 
+    debugDisableShadows = true;
     Toaster.i.hide();
     await tester.pumpWidget(const SizedBox());
     await tester.pump(const Duration(seconds: 10));

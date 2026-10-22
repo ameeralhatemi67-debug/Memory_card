@@ -180,7 +180,7 @@ class _BrainPainter extends CustomPainter {
     canvas.translate(-100, -100);
     canvas.translate(-8, 18);
     final shadow = Paint()
-      ..color = Colors.black.withValues(alpha: mc.dark ? 0.6 : 0.22)
+      ..color = Colors.black.withValues(alpha: mc.dark ? 0.34 : 0.22)
       ..maskFilter = const MaskFilter.blur(BlurStyle.normal, 8);
     canvas.drawPath(_cerebrum.shift(const Offset(0, 10)), shadow);
     canvas.drawPath(_cerebellum, Paint()..color = mc.ink2);

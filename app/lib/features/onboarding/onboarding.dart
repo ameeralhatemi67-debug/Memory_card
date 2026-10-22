@@ -1138,7 +1138,7 @@ class _MemberPreview extends StatelessWidget {
         decoration: BoxDecoration(
           color: mc.ink,
           borderRadius: BorderRadius.circular(18),
-          boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: mc.dark ? 0.6 : 0.24), blurRadius: 36, offset: const Offset(0, 16))],
+          boxShadow: [BoxShadow(color: Colors.black.withValues(alpha: mc.dark ? 0.32 : 0.24), blurRadius: mc.dark ? 48 : 36, offset: const Offset(0, 16))],
         ),
         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
           Row(children: [
