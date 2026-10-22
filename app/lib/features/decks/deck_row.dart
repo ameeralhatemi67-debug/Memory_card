@@ -245,7 +245,14 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
     final double tx = dir == 0 ? 0.0 : dir.toDouble() * math.max(0.0, e + _gap - _margin);
 
     final s = widget.stats;
-    final meta = '${s.total} ${s.total == 1 ? 'card' : 'cards'} · ${s.slipping > 0 ? '${s.slipping} slipping' : s.fresh == s.total ? 'new' : 'all strong'}';
+    final status = s.slipping > 0
+        ? '${s.slipping} slipping'
+        : s.fresh == s.total
+            ? 'new'
+            : s.fresh > 0
+                ? '${s.fresh} still new'
+                : 'all strong';
+    final meta = '${s.total} ${s.total == 1 ? 'card' : 'cards'} · $status';
 
     Widget tile(Color color, String icon, Size size, double w, {required bool left, double iconW = 65, VoidCallback? onTap, String? label, bool top = false}) {
       return Positioned(

@@ -10,6 +10,7 @@ import 'data/store.dart';
 import 'features/onboarding/splash.dart';
 import 'services/reminders.dart';
 import 'ui/fx.dart';
+import 'ui/icons.dart';
 import 'ui/theme.dart';
 
 Future<void> main() async {
@@ -48,6 +49,8 @@ class _BootState extends State<Boot> {
         ..sounds = store.settings.sounds
         ..haptics = store.settings.haptics;
       unawaited(Fx.i.init());
+      // Icons decode once, here, so the first screen appears complete.
+      unawaited(McIcons.precache().catchError((Object _) => <void>[]));
       // Text fonts download once (then they are cached); never wait more than 2.5 s for them.
       try {
         await GoogleFonts.pendingFonts(T.preload()).timeout(const Duration(milliseconds: 2500));
