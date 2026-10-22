@@ -3,35 +3,44 @@ import 'package:flutter/material.dart';
 import 'fx.dart';
 import 'icons.dart';
 import 'motion.dart';
+import 'textures.dart';
 import 'theme.dart';
 
-/// Anything pressable: shrinks to 97 % under the finger and springs back (Emil's rule: the interface
-/// must feel like it heard you).
-/// A canvas-coloured fade under buttons pinned to the bottom of a scrolling screen, so the rows
-/// scrolling beneath them don't show through the gaps.
-class BottomFade extends StatelessWidget {
-  const BottomFade({super.key, required this.height});
-  final double height;
+/// Fades a scrolling [child] out at its edges, so content melts into the textured wall instead of
+/// vanishing under a band of flat colour. [bottomInset] is a fully hidden strip at the very bottom (under
+/// the nav bar or pinned buttons); [bottom] is the fade above it; [top] the fade at the top.
+class EdgeFade extends StatelessWidget {
+  const EdgeFade({super.key, required this.child, this.top = 0, this.bottom = 0, this.bottomInset = 0});
+
+  final Widget child;
+  final double top;
+  final double bottom;
+  final double bottomInset;
 
   @override
   Widget build(BuildContext context) {
-    final c = Mc.of(context).canvas;
-    return IgnorePointer(
-      child: Container(
-        height: height,
-        decoration: BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [c.withValues(alpha: 0), c.withValues(alpha: 0.94), c],
-            stops: const [0, 0.5, 1],
-          ),
-        ),
-      ),
+    if (top <= 0 && bottom <= 0 && bottomInset <= 0) return child;
+    return ShaderMask(
+      blendMode: BlendMode.dstIn,
+      shaderCallback: (rect) {
+        final h = rect.height <= 0 ? 1.0 : rect.height;
+        final t = (top / h).clamp(0.0, 1.0);
+        final b1 = ((h - bottomInset) / h).clamp(t, 1.0);
+        final b0 = ((h - bottomInset - bottom) / h).clamp(t, b1);
+        return LinearGradient(
+          begin: Alignment.topCenter,
+          end: Alignment.bottomCenter,
+          colors: const [Color(0x00000000), Color(0xFF000000), Color(0xFF000000), Color(0x00000000), Color(0x00000000)],
+          stops: [0, t, b0, b1, 1],
+        ).createShader(rect);
+      },
+      child: child,
     );
   }
 }
 
+/// Anything pressable: shrinks to 97 % under the finger and springs back (Emil's rule: the interface
+/// must feel like it heard you).
 class Pressable extends StatefulWidget {
   const Pressable({
     super.key,
@@ -131,6 +140,7 @@ class InkButton extends StatelessWidget {
       child: Container(
         height: height,
         alignment: Alignment.center,
+        foregroundDecoration: texDeco(context, 'buttons', BorderRadius.circular(16)),
         decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(16), boxShadow: mc.e2),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -167,6 +177,7 @@ class SoftButton extends StatelessWidget {
         height: height,
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 16),
+        foregroundDecoration: texDeco(context, 'buttons', BorderRadius.circular(16)),
         decoration: BoxDecoration(color: color ?? mc.soft, borderRadius: BorderRadius.circular(16), boxShadow: mc.e1),
         child: Row(
           mainAxisSize: MainAxisSize.min,
@@ -409,6 +420,7 @@ class StatTile extends StatelessWidget {
     final mc = Mc.of(context);
     return Container(
       padding: const EdgeInsets.fromLTRB(12, 14, 12, 12),
+      foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(14)),
       decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(14), boxShadow: mc.e1),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,

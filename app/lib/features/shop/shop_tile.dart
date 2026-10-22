@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../data/catalog.dart';
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 
 /// A deck drawn as a small physical card stack: two fanned cards behind a dark front card with the
@@ -135,6 +136,7 @@ class ShopTile extends StatelessWidget {
     return Container(
       height: 214,
       padding: const EdgeInsets.all(12),
+      foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(18)),
       decoration: BoxDecoration(
         color: held ? const Color(0xFFE4E4E4) : mc.soft,
         borderRadius: BorderRadius.circular(18),

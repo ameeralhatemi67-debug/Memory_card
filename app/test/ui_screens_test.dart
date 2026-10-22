@@ -16,6 +16,7 @@ import 'package:memory_card/features/shell/shell.dart';
 import 'package:memory_card/features/today/today_screen.dart';
 import 'package:memory_card/ui/overlays.dart';
 import 'package:memory_card/ui/theme.dart';
+import 'package:memory_card/ui/widgets.dart';
 
 /// Drives the real screens on a phone-sized surface. Any layout or build error fails the test.
 void main() {
@@ -114,6 +115,21 @@ void main() {
         nav.pop();
         await settle(tester, 600);
       }
+
+      // Settings › Texture: the tab opens, a swatch and the master switch change the stored settings.
+      nav.push(SettingsScreen.route());
+      await settle(tester, 1200);
+      await tester.tap(find.text('Texture'));
+      await settle(tester, 900);
+      expect(find.text('Wall · light mode'), findsOneWidget);
+      await tester.tap(find.text('Limewash').first);
+      await settle(tester, 400);
+      expect(store.settings.texture.layer('wallLight').style, 'limewash');
+      await tester.tap(find.byType(McSwitch).first);
+      await settle(tester, 400);
+      expect(store.settings.texture.enabled, isFalse);
+      nav.pop();
+      await settle(tester, 700);
 
       // The editor sheet.
       Shell.current!.create();

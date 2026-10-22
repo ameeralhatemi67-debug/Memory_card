@@ -319,6 +319,76 @@ enum RevealMode { tap, icon, flip, front }
 
 enum Pace { relaxed, balanced, intense }
 
+/// One textured element: which texture ("none" for plain) and how strong (0…1).
+class TextureLayer {
+  TextureLayer(this.style, this.strength);
+  String style;
+  double strength;
+
+  bool get on => style != 'none' && strength > 0;
+
+  List<Object> toJson() => [style, double.parse(strength.toStringAsFixed(3))];
+  static TextureLayer fromJson(Object? j, TextureLayer fallback) {
+    if (j is! List || j.length < 2) return TextureLayer(fallback.style, fallback.strength);
+    return TextureLayer('${j[0]}', ((j[1] as num?)?.toDouble() ?? fallback.strength).clamp(0.0, 1.0));
+  }
+}
+
+/// Every texture in the app, per element. Defaults: a plaster wall in light mode, felt in dark mode,
+/// card stock on cards and tiles, kraft folders, wax on seals; grain and vignette off.
+class TextureSettings {
+  TextureSettings();
+
+  bool enabled = true;
+  final Map<String, TextureLayer> layers = {for (final e in defaults.entries) e.key: TextureLayer(e.value.style, e.value.strength)};
+
+  /// Soft daylight falling across the wall from the top left.
+  bool windowLight = true;
+  double windowStrength = 0.5;
+
+  /// Corners darken a little, like a lit room.
+  bool vignette = false;
+  double vignetteStrength = 0.4;
+
+  static final defaults = <String, TextureLayer>{
+    'wallLight': TextureLayer('plaster', 0.55),
+    'wallDark': TextureLayer('felt', 0.45),
+    'cards': TextureLayer('cardstock', 0.5),
+    'tiles': TextureLayer('cardstock', 0.4),
+    'buttons': TextureLayer('cardstock', 0.35),
+    'sheets': TextureLayer('wall', 0.5),
+    'folders': TextureLayer('kraft', 0.5),
+    'seals': TextureLayer('wax', 0.6),
+    'grain': TextureLayer('none', 0.4),
+  };
+
+  TextureLayer layer(String id) => layers[id] ?? defaults[id]!;
+
+  Map<String, Object?> toJson() => {
+        'on': enabled,
+        'layers': {for (final e in layers.entries) e.key: e.value.toJson()},
+        'window': windowLight,
+        'windowS': windowStrength,
+        'vig': vignette,
+        'vigS': vignetteStrength,
+      };
+
+  factory TextureSettings.fromJson(Map? j) {
+    final t = TextureSettings();
+    if (j == null) return t;
+    t.enabled = _b(j['on'], true);
+    final raw = (j['layers'] as Map?) ?? const {};
+    for (final id in defaults.keys) {
+      t.layers[id] = TextureLayer.fromJson(raw[id], defaults[id]!);
+    }
+    t.windowLight = _b(j['window'], true);
+    t.windowStrength = _d(j['windowS'], 0.5);
+    t.vignette = _b(j['vig']);
+    t.vignetteStrength = _d(j['vigS'], 0.4);
+    return t;
+  }
+}
+
 class Settings {
   Settings();
 
@@ -346,6 +416,9 @@ class Settings {
   /// Show the grade chip after each swipe.
   bool showGrade = true;
 
+  /// Surface textures (Settings › Texture).
+  TextureSettings texture = TextureSettings();
+
   double get paceTarget => switch (pace) { Pace.relaxed => 0.80, Pace.balanced => 0.75, Pace.intense => 0.0 };
 
   Map<String, Object?> toJson() => {
@@ -364,6 +437,7 @@ class Settings {
         'accents': ignoreAccents,
         'name': name,
         'showGrade': showGrade,
+        'texture': texture.toJson(),
       };
 
   factory Settings.fromJson(Map? j) {
@@ -384,6 +458,7 @@ class Settings {
     s.ignoreAccents = _b(j['accents'], true);
     s.name = _s(j['name']);
     s.showGrade = _b(j['showGrade'], true);
+    s.texture = TextureSettings.fromJson(j['texture'] as Map?);
     return s;
   }
 }

@@ -9,6 +9,7 @@ import '../../data/store_scope.dart';
 import '../../ui/icons.dart';
 import '../../ui/overlays.dart';
 import '../../ui/routes.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../editor/editor_sheet.dart';
@@ -73,7 +74,7 @@ class _DeckBrowserState extends State<DeckBrowser> {
 
     return Scaffold(
       backgroundColor: mc.canvas,
-      body: Column(children: [
+      body: Wall(child: Column(children: [
         SizedBox(height: mq.padding.top),
         SizedBox(
           height: 68,
@@ -147,16 +148,17 @@ class _DeckBrowserState extends State<DeckBrowser> {
         Expanded(
           child: cards.isEmpty
               ? Center(child: Text('No cards here', style: T.t(17, w: FontWeight.w600, color: mc.muted)))
-              : Stack(children: [
-                  ListView.builder(
+              : EdgeFade(
+                  bottom: 70,
+                  bottomInset: 40 + mq.padding.bottom,
+                  child: ListView.builder(
                     padding: EdgeInsets.fromLTRB(20, 4, 20, 110 + mq.padding.bottom),
                     itemCount: cards.length,
                     itemBuilder: (context, i) => _CardRow(card: cards[i], recall: store.engine.recall(cards[i], now)),
                   ),
-                  Positioned(left: 0, right: 0, bottom: 0, child: BottomFade(height: 96 + mq.padding.bottom)),
-                ]),
+                ),
         ),
-      ]),
+      ])),
       floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
       floatingActionButton: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -232,6 +234,7 @@ class _CardRow extends StatelessWidget {
         onTap: () => Navigator.of(context).push(CardDetail.route(card.id)),
         child: Container(
           padding: const EdgeInsets.fromLTRB(14, 10, 12, 10),
+          foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(14)),
           decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(14)),
           child: Row(children: [
             Expanded(

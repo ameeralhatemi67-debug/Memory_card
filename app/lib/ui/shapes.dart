@@ -2,6 +2,7 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import 'textures.dart';
 import 'theme.dart';
 
 /// Shapes drawn from polar functions, like the canvas `polar()` helper. Coordinates are in a viewBox of
@@ -93,7 +94,19 @@ class WaxSeal extends StatelessWidget {
       child: Stack(
         alignment: Alignment.center,
         children: [
-          CustomPaint(size: Size.square(size), painter: _SealPainter(color, spin, check)),
+          CustomPaint(
+            size: Size.square(size),
+            painter: _SealPainter(color, spin, check),
+            // Mottled wax inside the scalloped rim, turning with it.
+            foregroundPainter: texPainter(context, 'seals', (s) {
+              final c = s.center(Offset.zero);
+              final m = Matrix4.identity()
+                ..translateByDouble(c.dx, c.dy, 0, 1)
+                ..rotateZ(spin)
+                ..translateByDouble(-c.dx, -c.dy, 0, 1);
+              return PolarShape.seal.path(s).transform(m.storage);
+            }),
+          ),
           ?child,
         ],
       ),

@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../ui/fx.dart';
 import '../../ui/icons.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import 'shell.dart';
@@ -21,10 +22,9 @@ class NavBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final mc = Mc.of(context);
     final bottom = MediaQuery.of(context).padding.bottom;
     return Container(
-      color: current == ShellTab.study ? Colors.transparent : mc.canvas,
+      color: Colors.transparent,
       padding: EdgeInsets.only(bottom: bottom + 8, left: 22, right: 22),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceAround,
@@ -113,6 +113,7 @@ class _PlusDiamond extends StatelessWidget {
               child: Container(
                 width: 58,
                 height: 58,
+                foregroundDecoration: texDeco(context, 'buttons', BorderRadius.circular(15)),
                 decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(15), boxShadow: mc.e2),
               ),
             ),

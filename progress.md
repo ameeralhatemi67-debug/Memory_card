@@ -41,6 +41,13 @@ This document records verified outcomes, technical approaches, and architectural
 
 ## Flutter App Outcomes (pulled forward from Version 4.0)
 
+### 2026-10-22 — Textures (Settings › Texture)
+
+- **Outcome Summary:** Surfaces instead of flat colour, on request: a white plaster wall behind every screen in light mode (felt in dark mode), card stock on cards and tiles, kraft folders, wax seals, soft daylight across the wall, plus optional paper grain and vignette. Every element has its own texture choice and strength in a new Texture tab in Settings, with a live preview and a reset.
+- **How We Built It & Technical Approach:** `tools/make_textures.py` makes 15 seamless maps from periodic noise (white noise shaped in the frequency domain, so they tile with no seam): plaster, limewash, stucco, painted brick, concrete, slate, felt, card stock, linen, laid paper, pressed, kraft, wax, fine and coarse grain. Each is stored white-where-lighter / black-where-darker with the amount in alpha, so one map works on any colour in either theme with plain alpha blending (no costly blend modes). In the app (`lib/ui/textures.dart`) walls are a repeating image shader under each screen, containers get a foreground decoration, folders and seals a painter clipped to their outline; scroll fades now fade the content itself (a mask) so the wall shows through.
+- **Verification Evidence:** texture settings round-trip and old saves get the defaults (`test/texture_settings_test.dart`); the Texture tab drives the stored settings (`test/ui_screens_test.dart`); every screen re-rendered in light and dark and reviewed.
+
+
 ### 2026-10-22 — Memory Card v1.0: the Flutter app, local-only, Android APK
 
 - **Outcome Summary:** The full app, built from the design artifact "Memory Card — App Design" at the owner's request ("a fully working version I can start using on my phone, no publication or backend yet"). Source in `app/`, guide in `app/README.md`, engine in [[RES-48_Engine_v2]].

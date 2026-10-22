@@ -8,6 +8,7 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:memory_card/app.dart';
 import 'package:memory_card/data/store.dart';
 import 'package:memory_card/ui/overlays.dart';
+import 'package:memory_card/ui/textures.dart';
 import 'package:memory_card/ui/theme.dart';
 
 /// Renders the first-run tour to build/gallery/*.png for visual review, light and dark, with real fonts
@@ -73,7 +74,10 @@ void main() {
     // Real, blurred shadows (tests draw them solid by default).
     debugDisableShadows = false;
     final dir = Directory.systemTemp.createTempSync('mc_gallery_');
-    final store = (await tester.runAsync(() => AppStore.open(path: dir.path)))!;
+    final store = (await tester.runAsync(() async {
+      await Future.wait([for (final d in Textures.all) Textures.i.load(d.id)]);
+      return AppStore.open(path: dir.path);
+    }))!;
     await tester.pumpWidget(RepaintBoundary(key: shotKey, child: MemoryCardApp(store: store)));
     await settle(tester, 3000);
 

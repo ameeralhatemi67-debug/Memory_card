@@ -9,6 +9,7 @@ import 'features/onboarding/onboarding.dart';
 import 'features/shell/shell.dart';
 import 'services/reminders.dart';
 import 'ui/motion.dart';
+import 'ui/textures.dart';
 import 'ui/theme.dart';
 
 class MemoryCardApp extends StatefulWidget {
@@ -33,12 +34,14 @@ class _MemoryCardAppState extends State<MemoryCardApp> with WidgetsBindingObserv
     super.initState();
     WidgetsBinding.instance.addObserver(this);
     widget.store.addListener(_onStore);
+    Textures.i.update(widget.store.settings.texture);
     _dayTimer = Timer.periodic(const Duration(seconds: 30), (_) => widget.store.tickDay());
   }
 
   /// Only theme, motion and onboarding changes rebuild the app root; everything else rebuilds locally.
   void _onStore() {
     final s = widget.store.settings;
+    Textures.i.update(s.texture);
     if (s.theme != _theme || s.reducedMotion != _reduced || widget.store.data.onboarded != _onboarded) {
       setState(() {
         _theme = s.theme;
@@ -94,7 +97,8 @@ class _MemoryCardAppState extends State<MemoryCardApp> with WidgetsBindingObserv
               // Text grows with the OS setting, within what the card layouts can hold.
               child: MediaQuery(
                 data: mq.copyWith(textScaler: mq.textScaler.clamp(minScaleFactor: 0.85, maxScaleFactor: 1.3)),
-                child: child!,
+                // Paper grain and vignette sit over everything when they are on.
+                child: TextureScope(child: Stack(children: [child!, const Positioned.fill(child: GrainOverlay())])),
               ),
             ),
           );

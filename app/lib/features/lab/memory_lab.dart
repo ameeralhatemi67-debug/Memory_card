@@ -13,6 +13,7 @@ import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/overlays.dart';
 import '../../ui/routes.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../browse/card_detail.dart';
@@ -117,6 +118,7 @@ class _MemoryLabState extends State<MemoryLab> {
     Widget card({required String title, String? note, required Widget child}) => Container(
           margin: const EdgeInsets.only(bottom: 14),
           padding: const EdgeInsets.all(16),
+          foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(18)),
           decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(18), boxShadow: mc.e1),
           child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
             Text(title, style: T.d(24, color: mc.ink)),
@@ -131,7 +133,7 @@ class _MemoryLabState extends State<MemoryLab> {
 
     return Scaffold(
       backgroundColor: mc.canvas,
-      body: Column(children: [
+      body: Wall(child: Column(children: [
         SizedBox(height: mq.padding.top),
         SizedBox(
           height: 68,
@@ -258,7 +260,7 @@ class _MemoryLabState extends State<MemoryLab> {
             ],
           ),
         ),
-      ]),
+      ])),
     );
   }
 }

@@ -7,6 +7,7 @@ import '../../ui/fx.dart';
 import '../../ui/motion.dart';
 import '../../ui/overlays.dart';
 import '../../ui/shapes.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 
@@ -187,6 +188,7 @@ Future<String?> showGoalDialog(BuildContext context, {required int done, require
               child: Container(
                 height: 48,
                 alignment: Alignment.center,
+                foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(14)),
                 decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(14)),
                 child: Text("See today's summary", style: T.t(16, w: FontWeight.w600, color: mc.ink)),
               ),
@@ -251,6 +253,7 @@ class SealChip extends StatelessWidget {
     if (def == null) return const SizedBox.shrink();
     return Container(
       padding: const EdgeInsets.fromLTRB(4, 4, 12, 4),
+      foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(22)),
       decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(22)),
       child: Row(mainAxisSize: MainAxisSize.min, children: [
         SealBadge(def: def, size: 34),

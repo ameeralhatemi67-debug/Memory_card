@@ -17,6 +17,7 @@ import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
 import '../../ui/overlays.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../study/card_face.dart';
@@ -426,6 +427,7 @@ class _EditorSheetState extends State<EditorSheet> {
           height: 34,
           constraints: const BoxConstraints(maxWidth: 190),
           padding: const EdgeInsets.symmetric(horizontal: 12),
+          foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(17)),
           decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(17)),
           child: Row(mainAxisSize: MainAxisSize.min, children: [
             Flexible(

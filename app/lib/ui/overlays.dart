@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'fx.dart';
 import 'icons.dart';
 import 'motion.dart';
+import 'textures.dart';
 import 'theme.dart';
 import 'widgets.dart';
 
@@ -192,6 +193,7 @@ class _SheetFrameState extends State<_SheetFrame> {
     final sheet = Container(
       decoration: BoxDecoration(
         color: mc.canvas,
+        image: texImage(context, 'sheets'),
         borderRadius: const BorderRadius.vertical(top: Radius.circular(26)),
         boxShadow: mc.sheet,
       ),
@@ -277,7 +279,12 @@ class DialogCard extends StatelessWidget {
     final mc = Mc.of(context);
     return Container(
       padding: padding,
-      decoration: BoxDecoration(color: mc.canvas, borderRadius: BorderRadius.circular(22), boxShadow: mc.e3),
+      decoration: BoxDecoration(
+        color: mc.canvas,
+        image: texImage(context, 'sheets'),
+        borderRadius: BorderRadius.circular(22),
+        boxShadow: mc.e3,
+      ),
       child: Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: children),
     );
   }

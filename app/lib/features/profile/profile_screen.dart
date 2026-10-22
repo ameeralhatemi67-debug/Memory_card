@@ -11,6 +11,7 @@ import '../../ui/icons.dart';
 import '../../ui/overlays.dart';
 import '../../ui/routes.dart';
 import '../../ui/shapes.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../settings/settings_screen.dart';
@@ -56,7 +57,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
     final cardH = math.min(244.0, (w - 28) * 0.63);
     return Scaffold(
       backgroundColor: mc.canvas,
-      body: Stack(children: [
+      body: Wall(child: Stack(children: [
         // The corner of a huge card resting on the page: thickness band, then the face.
         Positioned(
           left: w + 10,
@@ -175,7 +176,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                 textAlign: TextAlign.center, style: T.t(14, w: FontWeight.w500, color: mc.muted)),
           ]),
         ),
-      ]),
+      ])),
     );
   }
 
@@ -267,6 +268,7 @@ class _CardFront extends StatelessWidget {
     final name = store.settings.name.trim().isEmpty ? 'Guest Learner' : store.settings.name.trim();
     return Container(
       padding: const EdgeInsets.fromLTRB(22, 20, 22, 18),
+      foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(18)),
       decoration: BoxDecoration(
         color: mc.ink,
         borderRadius: BorderRadius.circular(18),
@@ -327,6 +329,7 @@ class _CardBack extends StatelessWidget {
         }(),
     ];
     return Container(
+      foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(18)),
       decoration: BoxDecoration(
         color: mc.ink,
         borderRadius: BorderRadius.circular(18),
@@ -430,6 +433,7 @@ class _SealsRow extends StatelessWidget {
       child: Container(
         height: 56,
         padding: const EdgeInsets.symmetric(horizontal: 12),
+        foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(16)),
         decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(16), boxShadow: mc.e1),
         child: Row(children: [
           if (earned.isEmpty)

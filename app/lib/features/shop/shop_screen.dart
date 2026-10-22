@@ -14,6 +14,7 @@ import '../../ui/icons.dart';
 import '../../ui/motion.dart';
 import '../../ui/overlays.dart';
 import '../../ui/shapes.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../profile/profile_screen.dart';
@@ -110,11 +111,15 @@ class _ShopScreenState extends State<ShopScreen> {
     return Scaffold(
       backgroundColor: mc.canvas,
       resizeToAvoidBottomInset: false,
-      body: Stack(
+      body: Wall(child: Stack(
         children: [
           Positioned.fill(
             top: top + 196,
-            child: ListView(
+            child: EdgeFade(
+              top: 10,
+              bottom: 60,
+              bottomInset: navH,
+              child: ListView(
               padding: EdgeInsets.fromLTRB(18, 6, 18, navH + 120),
               physics: const BouncingScrollPhysics(),
               children: [
@@ -167,22 +172,6 @@ class _ShopScreenState extends State<ShopScreen> {
                     textAlign: TextAlign.center, style: T.t(14, w: FontWeight.w500, color: mc.muted)),
               ],
             ),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: navH,
-            height: 70,
-            child: IgnorePointer(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [mc.canvasClear, mc.canvas],
-                  ),
-                ),
-              ),
             ),
           ),
           // Header, search and categories.
@@ -192,7 +181,7 @@ class _ShopScreenState extends State<ShopScreen> {
             top: 0,
             height: top + 196,
             child: ColoredBox(
-              color: mc.canvas,
+              color: Colors.transparent,
               child: Padding(
                 padding: EdgeInsets.only(top: top),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
@@ -238,6 +227,7 @@ class _ShopScreenState extends State<ShopScreen> {
                         child: Container(
                           width: 50,
                           height: 50,
+                          foregroundDecoration: texDeco(context, 'buttons', BorderRadius.circular(14)),
                           decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(14), boxShadow: mc.e1),
                           child: Center(child: McIcon(McIcons.filter, size: const Size(24, 24), color: mc.canvas)),
                         ),
@@ -273,7 +263,7 @@ class _ShopScreenState extends State<ShopScreen> {
             ),
           ),
         ],
-      ),
+      )),
     );
   }
 
@@ -434,6 +424,7 @@ class _Hero extends StatelessWidget {
       onTap: () => showPreview(context, deck.id),
       child: Container(
         height: 160,
+        foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(22)),
         decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(22), boxShadow: mc.e2),
         clipBehavior: Clip.antiAlias,
         child: Stack(children: [

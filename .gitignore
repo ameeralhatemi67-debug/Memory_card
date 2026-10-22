@@ -30,3 +30,6 @@ BernardMTCondensed.ttf
 # Built app packages (see app/README.md)
 release/
 *.apk
+
+# Texture contact sheet (regenerate with python tools/make_textures.py)
+tools/textures_preview.png

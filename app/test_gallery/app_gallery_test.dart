@@ -24,6 +24,7 @@ import 'package:memory_card/features/onboarding/tutorial_deck.dart';
 import 'package:memory_card/features/study/celebrate.dart';
 import 'package:memory_card/features/today/today_screen.dart';
 import 'package:memory_card/ui/overlays.dart';
+import 'package:memory_card/ui/textures.dart';
 import 'package:memory_card/ui/theme.dart';
 
 /// Renders every screen after two weeks of use to build/gallery/*.png for visual review, light and dark, with real fonts
@@ -146,6 +147,7 @@ void main() {
       s.touchFolder(lang.id);
       await s.logs();
       await s.flush();
+      await Future.wait([for (final d in Textures.all) Textures.i.load(d.id)]);
       return s;
     }))!;
     await tester.pumpWidget(RepaintBoundary(key: shotKey, child: MemoryCardApp(store: store)));
@@ -223,6 +225,17 @@ void main() {
       await tester.drag(find.byType(Scrollable).first, const Offset(0, -800));
       await settle(tester, 600);
       await shot(tester, '26-settings-more');
+      await tester.drag(find.byType(Scrollable).first, const Offset(0, 2000));
+      await settle(tester, 400);
+      await tester.tap(find.text('Texture'));
+      await settle(tester, 1200);
+      await shot(tester, '26b-texture-tab');
+      await tester.drag(find.byType(Scrollable).first, const Offset(0, -700));
+      await settle(tester, 800);
+      await shot(tester, '26c-texture-more');
+      await tester.drag(find.byType(Scrollable).first, const Offset(0, -1400));
+      await settle(tester, 800);
+      await shot(tester, '26d-texture-end');
     });
     await page(DeckBrowser.route(deckId), '27-deck-browser');
     final studied = store.data.cardsOf(store.data.decks[deckId]!).firstWhere((c) => c.reps > 2, orElse: () => store.data.cardsOf(store.data.decks[deckId]!).first);

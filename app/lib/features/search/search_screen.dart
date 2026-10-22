@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../data/store_scope.dart';
 import '../../ui/icons.dart';
 import '../../ui/routes.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../browse/card_detail.dart';
@@ -51,7 +52,7 @@ class _SearchScreenState extends State<SearchScreen> {
             .toList();
     return Scaffold(
       backgroundColor: mc.canvas,
-      body: Column(children: [
+      body: Wall(child: Column(children: [
         SizedBox(height: mq.padding.top),
         Padding(
           padding: const EdgeInsets.fromLTRB(10, 14, 20, 8),
@@ -95,6 +96,7 @@ class _SearchScreenState extends State<SearchScreen> {
                             onTap: () => Navigator.of(context).push(CardDetail.route(c.id)),
                             child: Container(
                               padding: const EdgeInsets.fromLTRB(14, 10, 14, 10),
+                              foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(14)),
                               decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(14)),
                               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                                 Text(d?.name ?? '', style: T.caps(11, color: mc.muted)),
@@ -108,7 +110,7 @@ class _SearchScreenState extends State<SearchScreen> {
                       },
                     ),
         ),
-      ]),
+      ])),
     );
   }
 }

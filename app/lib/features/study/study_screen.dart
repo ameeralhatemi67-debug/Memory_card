@@ -20,6 +20,7 @@ import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
 import '../../ui/overlays.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../browse/card_detail.dart';
@@ -797,7 +798,7 @@ class _StudyScreenState extends State<StudyScreen>
       child: Scaffold(
         backgroundColor: mc.canvas,
         resizeToAvoidBottomInset: false,
-        body: LayoutBuilder(
+        body: Wall(child: LayoutBuilder(
           builder: (context, box) {
             final w = box.maxWidth;
             final h = box.maxHeight;
@@ -927,6 +928,7 @@ class _StudyScreenState extends State<StudyScreen>
                                   ),
                                 )
                               : Container(
+                                  foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(18)),
                                   decoration: BoxDecoration(
                                     color: mc.ink,
                                     borderRadius: BorderRadius.circular(18),
@@ -937,6 +939,7 @@ class _StudyScreenState extends State<StudyScreen>
                       },
                     )
                   : Container(
+                      foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(18)),
                       decoration: BoxDecoration(
                         color: mc.ink,
                         borderRadius: BorderRadius.circular(18),
@@ -999,6 +1002,7 @@ class _StudyScreenState extends State<StudyScreen>
                     height: cardH,
                     child: Container(
                       padding: const EdgeInsets.all(20),
+                      foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(18)),
                       decoration: BoxDecoration(
                         color: mc.ink,
                         borderRadius: BorderRadius.circular(18),
@@ -1133,7 +1137,7 @@ class _StudyScreenState extends State<StudyScreen>
               ],
             );
           },
-        ),
+        )),
       ),
     );
   }
@@ -1459,6 +1463,7 @@ class _EmptyCard extends StatelessWidget {
     final mc = Mc.of(context);
     return Container(
       padding: const EdgeInsets.all(20),
+      foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(18)),
       decoration: BoxDecoration(
         color: mc.ink,
         borderRadius: BorderRadius.circular(18),

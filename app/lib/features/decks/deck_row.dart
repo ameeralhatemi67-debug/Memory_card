@@ -1,4 +1,5 @@
 import 'dart:math' as math;
+import 'dart:ui' as ui;
 
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ import '../../ui/coach.dart';
 import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 
 /// Which deck row is swiped open (only one at a time).
@@ -336,6 +338,7 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
             return Container(
               width: barW,
               height: 72,
+              foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(10)),
               decoration: BoxDecoration(
                 color: mc.ink,
                 borderRadius: BorderRadius.circular(10),
@@ -490,31 +493,28 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
                 label: widget.deck.pinned ? 'Unpin deck' : 'Pin deck to the top',
               ),
           ],
-          Positioned(left: (width - barW) / 2, top: 0, child: bar),
-          // The trailing edge sinks into the canvas as the deck slides.
-          if (dir != 0)
-            Positioned(
-              top: -1,
-              bottom: -1,
-              left: dir < 0 ? 0 : null,
-              right: dir > 0 ? 0 : null,
-              width: width / 2,
-              child: IgnorePointer(
-                child: Opacity(
-                  opacity: sinkOp,
-                  child: DecoratedBox(
-                    decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                        begin: dir < 0 ? Alignment.centerRight : Alignment.centerLeft,
-                        end: dir < 0 ? Alignment.centerLeft : Alignment.centerRight,
-                        colors: [mc.canvasClear, mc.canvas],
-                        stops: [0, stop],
-                      ),
-                    ),
+          // The trailing edge sinks into the wall as the deck slides: the bar itself fades there (a mask
+          // fixed to the screen while the bar moves under it), so the wall's texture shows through.
+          Positioned(
+            left: (width - barW) / 2,
+            top: 0,
+            child: dir == 0
+                ? bar
+                : ShaderMask(
+                    blendMode: BlendMode.dstIn,
+                    shaderCallback: (rect) {
+                      final left0 = (width - barW) / 2;
+                      final mid = width / 2 - left0;
+                      final edge = (dir < 0 ? 0.0 : width) - left0;
+                      return ui.Gradient.linear(
+                        Offset(mid, 0),
+                        Offset(mid + (edge - mid) * stop, 0),
+                        [const Color(0xFF000000), Color.fromRGBO(0, 0, 0, 1 - sinkOp)],
+                      );
+                    },
+                    child: bar,
                   ),
-                ),
-              ),
-            ),
+          ),
         ],
       ),
     );

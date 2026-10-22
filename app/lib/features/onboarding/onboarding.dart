@@ -12,6 +12,7 @@ import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
 import '../../ui/overlays.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../shell/shell.dart';
@@ -229,7 +230,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
     return Scaffold(
       backgroundColor: mc.canvas,
       resizeToAvoidBottomInset: true,
-      body: Stack(children: [
+      body: Wall(child: Stack(children: [
         Positioned.fill(
           child: AnimatedSwitcher(
             duration: const Duration(milliseconds: 420),
@@ -288,7 +289,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
               ),
           ]),
         ),
-      ]),
+      ])),
     );
   }
 
@@ -374,6 +375,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
                   ..rotateZ(rot)
                   ..scaleByDouble(1 - 0.14 * p, 1 - 0.14 * p, 1, 1),
                 child: Container(
+                  foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(18)),
                   decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(18), boxShadow: mc.cardShadow),
                   padding: const EdgeInsets.all(20),
                   child: _cardContent(context, cardH),
@@ -707,6 +709,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
           body: [
             Container(
               padding: const EdgeInsets.all(14),
+              foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(16)),
               decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(16), boxShadow: mc.e1),
               child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                 McIcon(McIcons.logo, size: const Size(26, 34), color: mc.ink),
@@ -736,6 +739,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
                   height: 44,
                   padding: const EdgeInsets.symmetric(horizontal: 16),
                   alignment: Alignment.center,
+                  foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(12)),
                   decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(12), boxShadow: mc.e1),
                   child: Text(at, style: T.d(26, color: mc.ink)),
                 ),
@@ -789,6 +793,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
               Container(
                 margin: const EdgeInsets.only(bottom: 8),
                 padding: const EdgeInsets.fromLTRB(14, 10, 14, 11),
+                foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(14)),
                 decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(14), boxShadow: mc.e1),
                 child: Row(children: [
                   McIcon(McIcons.folder, size: const Size(22, 16), color: mc.ink),
@@ -848,6 +853,7 @@ class _NudgeArrow extends StatelessWidget {
           child: Container(
             height: 44,
             padding: const EdgeInsets.symmetric(horizontal: 18),
+            foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(22)),
             decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(22), boxShadow: mc.e1),
             child: Row(mainAxisSize: MainAxisSize.min, children: [
               Text('or tap here', style: T.t(15, w: FontWeight.w700, color: mc.ink)),
@@ -1135,6 +1141,7 @@ class _MemberPreview extends StatelessWidget {
       aspectRatio: 1.6,
       child: Container(
         padding: const EdgeInsets.fromLTRB(22, 20, 22, 18),
+        foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(18)),
         decoration: BoxDecoration(
           color: mc.ink,
           borderRadius: BorderRadius.circular(18),

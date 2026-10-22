@@ -7,6 +7,7 @@ import '../../ui/icons.dart';
 import '../../ui/motion.dart';
 import '../../ui/routes.dart';
 import '../../ui/shapes.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../shell/shell.dart';
@@ -40,7 +41,7 @@ class TodayScreen extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: mc.canvas,
-      body: Column(children: [
+      body: Wall(child: Column(children: [
         SizedBox(height: mq.padding.top),
         SizedBox(
           height: 76,
@@ -54,8 +55,9 @@ class TodayScreen extends StatelessWidget {
           ),
         ),
         Expanded(
-          child: Stack(children: [
-          ListView(
+          child: EdgeFade(
+          bottom: 28,
+          child: ListView(
             padding: const EdgeInsets.fromLTRB(20, 8, 20, 20),
             children: [
               Center(
@@ -90,6 +92,7 @@ class TodayScreen extends StatelessWidget {
               const SizedBox(height: 12),
               Container(
                 padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+                foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(14)),
                 decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(14), boxShadow: mc.e2),
                 child: Row(children: [
                   const SizedBox(width: 26, height: 30, child: FlickerFlame()),
@@ -121,8 +124,7 @@ class TodayScreen extends StatelessWidget {
               ],
             ],
           ),
-          const Positioned(left: 0, right: 0, bottom: 0, child: BottomFade(height: 28)),
-          ]),
+          ),
         ),
         Padding(
           padding: EdgeInsets.fromLTRB(20, 4, 20, 20 + mq.padding.bottom),
@@ -140,7 +142,7 @@ class TodayScreen extends StatelessWidget {
             }),
           ]),
         ),
-      ]),
+      ])),
     );
   }
 }
@@ -199,6 +201,7 @@ class _GradeBar extends StatelessWidget {
     ];
     return Container(
       padding: const EdgeInsets.all(14),
+      foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(14)),
       decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(14), boxShadow: mc.e1),
       child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
         Text('How you answered', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
@@ -238,6 +241,7 @@ class _Health extends StatelessWidget {
     final mc = Mc.of(context);
     return Container(
       padding: const EdgeInsets.fromLTRB(16, 14, 16, 14),
+      foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(14)),
       decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(14), boxShadow: mc.e1),
       child: TweenAnimationBuilder<double>(
         tween: Tween(begin: 0, end: health),

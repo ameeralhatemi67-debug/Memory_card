@@ -10,6 +10,7 @@ import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
 import '../../ui/overlays.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../shell/shell.dart';
@@ -252,6 +253,7 @@ class _PreviewSheetState extends State<PreviewSheet> with SingleTickerProviderSt
                 if (added)
                   Container(
                     padding: const EdgeInsets.all(14),
+                    foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(14)),
                     decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(14)),
                     child: Row(children: [
                       McIcon(McIcons.done, size: const Size(22, 22), color: mc.ink),

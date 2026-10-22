@@ -3,6 +3,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../ui/motion.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 
 /// The launch moment: three cards fan out into the logo, the name arrives, and the app takes over.
@@ -56,7 +57,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
     final mc = dark ? Mc.darkTheme : Mc.light;
     return Scaffold(
       backgroundColor: mc.canvas,
-      body: AnimatedBuilder(
+      body: Wall(child: AnimatedBuilder(
         animation: Listenable.merge([_intro, _out]),
         builder: (context, _) {
           final t = _intro.value;
@@ -99,7 +100,7 @@ class _SplashState extends State<Splash> with TickerProviderStateMixin {
             ),
           );
         },
-      ),
+      )),
     );
   }
 }

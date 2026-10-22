@@ -10,6 +10,7 @@ import '../../engine/days.dart';
 import '../../ui/icons.dart';
 import '../../ui/overlays.dart';
 import '../../ui/routes.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../editor/editor_sheet.dart';
@@ -29,7 +30,7 @@ class CardDetail extends StatelessWidget {
     final mq = MediaQuery.of(context);
     final c = store.data.cards[cardId];
     if (c == null) {
-      return Scaffold(backgroundColor: mc.canvas, body: Center(child: Text('This card was deleted', style: T.d(26, color: mc.ink))));
+      return Scaffold(backgroundColor: mc.canvas, body: Wall(child: Center(child: Text('This card was deleted', style: T.d(26, color: mc.ink)))));
     }
     final deck = store.data.decks[c.deckId];
     final now = store.now();
@@ -52,7 +53,7 @@ class CardDetail extends StatelessWidget {
 
     return Scaffold(
       backgroundColor: mc.canvas,
-      body: Column(children: [
+      body: Wall(child: Column(children: [
         SizedBox(height: mq.padding.top),
         SizedBox(
           height: 68,
@@ -72,6 +73,7 @@ class CardDetail extends StatelessWidget {
             children: [
               Container(
                 padding: const EdgeInsets.all(18),
+                foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(18)),
                 decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(18), boxShadow: mc.cardShadow),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                   Text((c.label.isEmpty ? 'card' : c.label).toUpperCase(), style: T.caps(12, color: mc.mutedOnInk)),
@@ -111,6 +113,7 @@ class CardDetail extends StatelessWidget {
               const SizedBox(height: 10),
               Container(
                 padding: const EdgeInsets.all(14),
+                foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(14)),
                 decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(14), boxShadow: mc.e1),
                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                   Text(
@@ -143,6 +146,7 @@ class CardDetail extends StatelessWidget {
                   Container(
                     margin: const EdgeInsets.only(bottom: 6),
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
+                    foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(12)),
                     decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(12)),
                     child: Row(children: [
                       Container(
@@ -191,7 +195,7 @@ class CardDetail extends StatelessWidget {
             ],
           ),
         ),
-      ]),
+      ])),
     );
   }
 

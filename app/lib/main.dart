@@ -11,6 +11,7 @@ import 'features/onboarding/splash.dart';
 import 'services/reminders.dart';
 import 'ui/fx.dart';
 import 'ui/icons.dart';
+import 'ui/textures.dart';
 import 'ui/theme.dart';
 
 Future<void> main() async {
@@ -51,6 +52,8 @@ class _BootState extends State<Boot> {
       unawaited(Fx.i.init());
       // Icons decode once, here, so the first screen appears complete.
       unawaited(McIcons.precache().catchError((Object _) => <void>[]));
+      // Texture maps in use decode now, so the first screen has its wall.
+      unawaited(Textures.i.preload(store.settings.texture));
       // Text fonts download once (then they are cached); never wait more than 2.5 s for them.
       try {
         await GoogleFonts.pendingFonts(T.preload()).timeout(const Duration(milliseconds: 2500));

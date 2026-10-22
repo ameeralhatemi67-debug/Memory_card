@@ -14,12 +14,14 @@ import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/overlays.dart';
 import '../../ui/routes.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../editor/editor_sheet.dart';
 import '../help/help_screen.dart';
 import '../lab/memory_lab.dart';
 import '../onboarding/onboarding.dart';
+import 'texture_pane.dart';
 
 /// Settings (canvas Settings.dc.html), plus the engine switches, your data and help.
 class SettingsScreen extends StatefulWidget {
@@ -36,6 +38,9 @@ class _SettingsScreenState extends State<SettingsScreen> {
   final _dataKey = GlobalKey();
   int _versionTaps = 0;
   bool _lab = false;
+
+  /// 0 General · 1 Texture.
+  int _tab = 0;
 
   @override
   void initState() {
@@ -72,6 +77,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     Widget panel(List<Widget> children, {EdgeInsets padding = const EdgeInsets.all(14)}) => Container(
           padding: padding,
+          foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(16)),
           decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(16), boxShadow: mc.e1),
           child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: children),
         );
@@ -113,7 +119,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
     return Scaffold(
       backgroundColor: mc.canvas,
-      body: Column(children: [
+      body: Wall(child: Column(children: [
         SizedBox(height: mq.padding.top),
         SizedBox(
           height: 76,
@@ -126,7 +132,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ]),
           ),
         ),
-        Expanded(
+        Padding(
+          padding: const EdgeInsets.fromLTRB(20, 2, 20, 12),
+          child: Seg<int>(
+            options: const [0, 1],
+            value: _tab,
+            labelOf: (i) => i == 0 ? 'General' : 'Texture',
+            onPick: (i) => setState(() => _tab = i),
+          ),
+        ),
+        if (_tab == 1) const Expanded(child: TexturePane()),
+        if (_tab == 0) Expanded(
           child: ListView(
             padding: EdgeInsets.fromLTRB(20, 4, 20, 30 + mq.padding.bottom),
             children: [
@@ -291,6 +307,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 key: _dataKey,
                 Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                   Container(
+                    foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(16)),
                     decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(16), boxShadow: mc.e1),
                     clipBehavior: Clip.antiAlias,
                     child: Column(children: [
@@ -309,6 +326,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               section(
                 'Help',
                 Container(
+                  foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(16)),
                   decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(16), boxShadow: mc.e1),
                   clipBehavior: Clip.antiAlias,
                   child: Column(children: [
@@ -345,7 +363,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ],
           ),
         ),
-      ]),
+      ])),
     );
   }
 
@@ -536,6 +554,7 @@ class _LabPanel extends StatelessWidget {
     final days = (store.data.clockOffset / msPerDay * 10).round() / 10;
     return Container(
       padding: const EdgeInsets.all(14),
+      foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(16)),
       decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(16), boxShadow: mc.e1),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
         Text('Clock ${days == 0 ? '(real time)' : '+$days days'}', style: T.t(16, w: FontWeight.w700, color: mc.ink)),

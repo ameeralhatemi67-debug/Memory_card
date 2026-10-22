@@ -71,6 +71,7 @@ flutter:
   assets:
     - assets/content/
     - assets/sounds/
+    - assets/textures/
 
   # Bernard MT Condensed is a commercial Monotype font, kept out of git (see README). For a public
   # release, license it or swap the family for an open condensed display serif.

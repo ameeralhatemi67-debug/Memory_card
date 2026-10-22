@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 
 /// The corner "ears" (canvas Study.dc.html): hidden at rest, they swing in on an arc around a hinge
@@ -80,6 +81,7 @@ class Ear extends StatelessWidget {
                     child: Container(
                       width: 96,
                       height: 96,
+                      foregroundDecoration: texDeco(context, 'buttons', BorderRadius.circular(16)),
                       decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(16), boxShadow: mc.e2),
                     ),
                   ),

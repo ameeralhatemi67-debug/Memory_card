@@ -10,6 +10,7 @@ import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/overlays.dart';
 import '../../ui/shapes.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../browse/deck_browser.dart';
@@ -62,13 +63,18 @@ class _DecksScreenState extends State<DecksScreen> {
 
     return Scaffold(
       backgroundColor: mc.canvas,
-      body: Stack(
+      body: Wall(child: Stack(
         children: [
           Positioned.fill(
             top: top + 88,
             child: folder == null || decks.isEmpty
                 ? EmptyFolder(folder: folder, bottom: navH)
-                : NotificationListener<ScrollUpdateNotification>(
+                : EdgeFade(
+                    // Melts into the wall: at the top once scrolled, and above the nav bar.
+                    top: _scrolled ? 22 : 0,
+                    bottom: 110,
+                    bottomInset: navH,
+                    child: NotificationListener<ScrollUpdateNotification>(
                     onNotification: (n) {
                       final s = n.metrics.pixels > 2;
                       if (s != _scrolled) setState(() => _scrolled = s);
@@ -112,46 +118,7 @@ class _DecksScreenState extends State<DecksScreen> {
                       ),
                     ),
                   ),
-          ),
-          Positioned(
-            left: 0,
-            right: 0,
-            top: top + 88,
-            height: 22,
-            child: IgnorePointer(
-              child: AnimatedOpacity(
-                opacity: _scrolled ? 1 : 0,
-                duration: const Duration(milliseconds: 160),
-                child: DecoratedBox(
-                  decoration: BoxDecoration(
-                    gradient: LinearGradient(
-                      begin: Alignment.topCenter,
-                      end: Alignment.bottomCenter,
-                      colors: [mc.canvas, mc.canvasClear],
-                    ),
                   ),
-                ),
-              ),
-            ),
-          ),
-          // Soft fade above the nav bar.
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: navH,
-            height: 120,
-            child: IgnorePointer(
-              child: DecoratedBox(
-                decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    begin: Alignment.topCenter,
-                    end: Alignment.bottomCenter,
-                    colors: [mc.canvasClear, mc.canvas],
-                    stops: const [0, 0.92],
-                  ),
-                ),
-              ),
-            ),
           ),
           Positioned(
             left: 0,
@@ -167,7 +134,7 @@ class _DecksScreenState extends State<DecksScreen> {
             ),
           ),
         ],
-      ),
+      )),
     );
   }
 
@@ -284,6 +251,7 @@ class _Header extends StatelessWidget {
               child: Container(
                 height: 32,
                 padding: const EdgeInsets.symmetric(horizontal: 12),
+                foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(16)),
                 decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(16), boxShadow: mc.e1),
                 child: Row(
                   children: [

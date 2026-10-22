@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 import '../../ui/icons.dart';
 import '../../ui/routes.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../onboarding/onboarding.dart';
@@ -83,7 +84,7 @@ class HelpScreen extends StatelessWidget {
     final mq = MediaQuery.of(context);
     return Scaffold(
       backgroundColor: mc.canvas,
-      body: Column(children: [
+      body: Wall(child: Column(children: [
         SizedBox(height: mq.padding.top),
         SizedBox(
           height: 68,
@@ -106,6 +107,7 @@ class HelpScreen extends StatelessWidget {
                   child: Container(
                     margin: const EdgeInsets.only(bottom: 12),
                     padding: const EdgeInsets.all(16),
+                    foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(16)),
                     decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(16), boxShadow: mc.e1),
                     child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
                       Container(
@@ -130,7 +132,7 @@ class HelpScreen extends StatelessWidget {
             ],
           ),
         ),
-      ]),
+      ])),
     );
   }
 }

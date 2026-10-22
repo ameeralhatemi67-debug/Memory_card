@@ -12,6 +12,7 @@ import '../../ui/icons.dart';
 import '../../ui/motion.dart';
 import '../../ui/overlays.dart';
 import '../../ui/shapes.dart';
+import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../settings/settings_screen.dart';
@@ -362,6 +363,7 @@ class _FolderDrawerState extends State<FolderDrawer> with TickerProviderStateMix
                   child: Container(
                     decoration: BoxDecoration(
                       color: mc.canvas,
+                      image: texImage(context, 'sheets'),
                       borderRadius: const BorderRadius.only(topRight: Radius.circular(24)),
                       boxShadow: const [BoxShadow(color: Color(0x2E000000), blurRadius: 24, offset: Offset(8, 0))],
                     ),
@@ -546,6 +548,8 @@ class _FolderDrawerState extends State<FolderDrawer> with TickerProviderStateMix
                             tabWidth: tw,
                             painter: FolderPainter(tabWidth: tw, c1: sh.c1, c2: sh.c2, shadowAlpha: mc.folderShadow, lifted: floating),
                           ),
+                          // Kraft (or the chosen texture) inside the folder's outline.
+                          foregroundPainter: texPainter(context, 'folders', (s) => FolderShape.path(s.width, s.height, tw)),
                         ),
                       ),
                     ),
