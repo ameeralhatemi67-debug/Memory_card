@@ -1,0 +1,266 @@
+{
+  "id": "hxh-powers",
+  "name": "Hunter x Hunter · Powers",
+  "mono": "Hx",
+  "category": "knowledge",
+  "level": "anime",
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Learn the Nen language of Hunter x Hunter: the principles, the six types and the signature abilities.",
+  "style": {
+    "front": "above",
+    "fit": "cover",
+    "back": "text",
+    "reverse": true
+  },
+  "cards": [
+    {
+      "img": "ten.jpg",
+      "front": "",
+      "back": "Ten",
+      "label": "nen",
+      "example": "",
+      "hook": "Every Nen user's basic defence: it keeps aura from leaking out of the body."
+    },
+    {
+      "img": "zetsu.jpg",
+      "front": "",
+      "back": "Zetsu",
+      "label": "nen",
+      "example": "",
+      "hook": "Gon and Killua; stops the flow of aura to hide their presence."
+    },
+    {
+      "img": "ren.jpg",
+      "front": "",
+      "back": "Ren",
+      "label": "nen",
+      "example": "",
+      "hook": "Wing and Killua; intensifies aura output to show raw power."
+    },
+    {
+      "img": "hatsu.jpg",
+      "front": "",
+      "back": "Hatsu",
+      "label": "nen",
+      "example": "",
+      "hook": "Killua; projects aura to create a unique Nen ability of his own."
+    },
+    {
+      "img": "gyo.jpg",
+      "front": "",
+      "back": "Gyo",
+      "label": "nen",
+      "example": "",
+      "hook": "Gon; focuses aura into the eyes to see hidden Nen, like Bungee Gum."
+    },
+    {
+      "img": "en.jpg",
+      "front": "",
+      "back": "En",
+      "label": "nen",
+      "example": "",
+      "hook": "Nobunaga; spreads aura into a sphere to sense movement around him."
+    },
+    {
+      "img": "shu.jpg",
+      "front": "",
+      "back": "Shu",
+      "label": "nen",
+      "example": "",
+      "hook": "Gon and Killua; wraps an object in aura to strengthen it."
+    },
+    {
+      "img": "ken.jpg",
+      "front": "",
+      "back": "Ken",
+      "label": "nen",
+      "example": "",
+      "hook": "Gon; a long defensive state with about ten times the aura of Ten."
+    },
+    {
+      "img": "ko.jpg",
+      "front": "",
+      "back": "Ko",
+      "label": "nen",
+      "example": "",
+      "hook": "Biscuit and Feitan; pours aura into one body part for a powerful blow."
+    },
+    {
+      "img": "enhancer.jpg",
+      "front": "",
+      "back": "Enhancer",
+      "label": "nen",
+      "example": "",
+      "hook": "Strengthens the body and objects with aura; Gon is an Enhancer."
+    },
+    {
+      "img": "transmuter.jpg",
+      "front": "",
+      "back": "Transmuter",
+      "label": "nen",
+      "example": "",
+      "hook": "Changes the nature of aura; Killua's main affinity is Transmutation."
+    },
+    {
+      "img": "emitter.jpg",
+      "front": "",
+      "back": "Emitter",
+      "label": "nen",
+      "example": "",
+      "hook": "Shoots aura outward as bullets or beams; Franklin fires Nen bullets."
+    },
+    {
+      "img": "conjurer.jpg",
+      "front": "",
+      "back": "Conjurer",
+      "label": "nen",
+      "example": "",
+      "hook": "Creates objects from aura; Kurapika conjures his chains."
+    },
+    {
+      "img": "manipulator.jpg",
+      "front": "",
+      "back": "Manipulator",
+      "label": "nen",
+      "example": "",
+      "hook": "Controls living things or objects with aura; Illumi controls people."
+    },
+    {
+      "img": "specialist.jpg",
+      "front": "",
+      "back": "Specialist",
+      "label": "nen",
+      "example": "",
+      "hook": "Unique abilities that do not fit one type; Pakunoda is a Specialist."
+    },
+    {
+      "img": "jajanken.jpg",
+      "front": "",
+      "back": "Jajanken",
+      "label": "nen",
+      "example": "",
+      "hook": "Gon's rock-paper-scissors Nen attack; Rock is the full-power punch."
+    },
+    {
+      "img": "bungee-gum.jpg",
+      "front": "",
+      "back": "Bungee Gum",
+      "label": "nen",
+      "example": "",
+      "hook": "Hisoka's sticky, stretchy gum, used to reattach his own arms."
+    },
+    {
+      "img": "texture-surprise.jpg",
+      "front": "",
+      "back": "Texture Surprise",
+      "label": "nen",
+      "example": "",
+      "hook": "Hisoka; blends seams and names into a surface, hiding them in plain sight."
+    },
+    {
+      "img": "judgment-chain.jpg",
+      "front": "",
+      "back": "Judgment Chain",
+      "label": "nen",
+      "example": "",
+      "hook": "Kurapika; a vow-chain that forbids a bound foe from using Nen."
+    },
+    {
+      "img": "godspeed.jpg",
+      "front": "",
+      "back": "Godspeed",
+      "label": "nen",
+      "example": "",
+      "hook": "Killua; a burst of speed that let him dodge a Royal Guard's clone."
+    },
+    {
+      "img": "lightning-palm.jpg",
+      "front": "",
+      "back": "Lightning Palm",
+      "label": "nen",
+      "example": "",
+      "hook": "Killua; a palm strike that shocks his foe and stuns them briefly."
+    },
+    {
+      "img": "needle-people.jpg",
+      "front": "",
+      "back": "Needle People",
+      "label": "nen",
+      "example": "",
+      "hook": "Illumi; people with needles in them who act on his orders."
+    },
+    {
+      "img": "chain-jail.jpg",
+      "front": "",
+      "back": "Chain Jail",
+      "label": "nen",
+      "example": "",
+      "hook": "Kurapika; chains that restrain a foe, used to capture Uvogin."
+    },
+    {
+      "img": "dowsing-chain.jpg",
+      "front": "",
+      "back": "Dowsing Chain",
+      "label": "nen",
+      "example": "",
+      "hook": "Kurapika; a chain that can find a person he has met, even on video."
+    },
+    {
+      "img": "dragon-dive.jpg",
+      "front": "",
+      "back": "Dragon Dive",
+      "label": "nen",
+      "example": "",
+      "hook": "Zeno; breaks his aura dragon apart so its shards rain on the palace."
+    },
+    {
+      "img": "blinky.jpg",
+      "front": "",
+      "back": "Blinky",
+      "label": "nen",
+      "example": "",
+      "hook": "Shizuku; a conjured vacuum cleaner named Blinky that cleans up the scene."
+    },
+    {
+      "img": "memory-bomb.jpg",
+      "front": "",
+      "back": "Memory Bomb",
+      "label": "nen",
+      "example": "",
+      "hook": "Pakunoda; conjured bullets that implant memories into their target."
+    },
+    {
+      "img": "big-bang-impact.jpg",
+      "front": "",
+      "back": "Big Bang Impact",
+      "label": "nen",
+      "example": "",
+      "hook": "Uvogin's signature punch, which knocked out Worm first."
+    },
+    {
+      "img": "little-flower.jpg",
+      "front": "",
+      "back": "Little Flower",
+      "label": "nen",
+      "example": "",
+      "hook": "Genthru; a deadly Nen ability he used to kill Jispa."
+    },
+    {
+      "img": "rhythm-echo.jpg",
+      "front": "",
+      "back": "Rhythm Echo",
+      "label": "nen",
+      "example": "",
+      "hook": "Killua; used the Rhythm Echo to close in on Sub before shocking him."
+    },
+    {
+      "img": "machi-threads.jpg",
+      "front": "",
+      "back": "The Hand Spinning Nen Threads",
+      "label": "nen",
+      "example": "",
+      "hook": "Machi; Nen threads that can control guns and other objects."
+    }
+  ]
+}

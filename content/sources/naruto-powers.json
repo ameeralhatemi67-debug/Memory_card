@@ -1,0 +1,594 @@
+{
+ "rasengan": {
+  "page": "https://naruto.fandom.com/wiki/Rasengan",
+  "file": "Rasengan.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 960,
+   "h": 720,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 76.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "chidori": {
+  "page": "https://naruto.fandom.com/wiki/Chidori",
+  "file": "Sasuke's_chidori.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 561,
+   "w": 960,
+   "h": 539,
+   "alpha": false,
+   "aspect": 1.7811,
+   "kb": 50.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "shadow-clone": {
+  "page": "https://naruto.fandom.com/wiki/Shadow_Clone_Technique",
+  "file": "Tobirama_creating_Shadow_Clones.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 564,
+   "w": 960,
+   "h": 541,
+   "alpha": false,
+   "aspect": 1.7745,
+   "kb": 72.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "sharingan": {
+  "page": "https://naruto.fandom.com/wiki/File:Itachi's_Sharingan.png",
+  "file": "File:Itachi's Sharingan.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 564,
+   "w": 960,
+   "h": 541,
+   "alpha": false,
+   "aspect": 1.7745,
+   "kb": 49.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "sage-mode": {
+  "page": "https://naruto.fandom.com/wiki/File:Naruto's_Sage_Mode.png",
+  "file": "File:Naruto's Sage Mode.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 56.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "susanoo": {
+  "page": "https://naruto.fandom.com/wiki/File:Sasuke's_Fully_body_Susanoo.png",
+  "file": "File:Sasuke's Fully body Susanoo.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 857,
+   "srcH": 943,
+   "w": 857,
+   "h": 943,
+   "alpha": false,
+   "aspect": 0.9088,
+   "kb": 103.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "amaterasu": {
+  "page": "https://naruto.fandom.com/wiki/File:Amaterasu_vs_Fire_Ball.PNG",
+  "file": "File:Amaterasu vs Fire Ball.PNG",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 60.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "eight-gates": {
+  "page": "https://naruto.fandom.com/wiki/Eight_Gates",
+  "file": "Eight_Gates-Rock_Lee.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 756,
+   "w": 960,
+   "h": 726,
+   "alpha": false,
+   "aspect": 1.3223,
+   "kb": 74.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "edo-tensei": {
+  "page": "https://naruto.fandom.com/wiki/Summoning:_Impure_World_Reincarnation",
+  "file": "Hokage_reincarnated.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 564,
+   "w": 960,
+   "h": 541,
+   "alpha": false,
+   "aspect": 1.7745,
+   "kb": 67.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "tailed-beast-bomb": {
+  "page": "https://naruto.fandom.com/wiki/Tailed_Beast_Ball",
+  "file": "Tailed_Beast_Balls.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 79.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "rasenshuriken": {
+  "page": "https://naruto.fandom.com/wiki/Wind_Release:_Rasenshuriken",
+  "file": "Fūton_Rasenshuriken.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 91.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "kamui": {
+  "page": "https://naruto.fandom.com/wiki/Kamui",
+  "file": "Obito's_kamui.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 47.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "shinra-tensei": {
+  "page": "https://naruto.fandom.com/wiki/Shinra_Tensei",
+  "file": "ShinraTensei.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 564,
+   "w": 960,
+   "h": 541,
+   "alpha": false,
+   "aspect": 1.7745,
+   "kb": 74.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "chibaku-tensei": {
+  "page": "https://naruto.fandom.com/wiki/Chibaku_Tensei",
+  "file": "Chibaku_Tensei_orb.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 565,
+   "w": 960,
+   "h": 542,
+   "alpha": false,
+   "aspect": 1.7712,
+   "kb": 47.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "kirin": {
+  "page": "https://naruto.fandom.com/wiki/Kirin",
+  "file": "Kirin.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 56.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "summoning-jutsu": {
+  "page": "https://naruto.fandom.com/wiki/Summoning_Technique",
+  "file": "Summoning_Technique.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 95.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "hiraishin": {
+  "page": "https://naruto.fandom.com/wiki/File:Minato_flies_to_a_kunai.png",
+  "file": "File:Minato flies to a kunai.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 565,
+   "w": 960,
+   "h": 542,
+   "alpha": false,
+   "aspect": 1.7712,
+   "kb": 77.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "tsukuyomi": {
+  "page": "https://naruto.fandom.com/wiki/Tsukuyomi",
+  "file": "Tsukuyomi.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 519,
+   "w": 960,
+   "h": 498,
+   "alpha": false,
+   "aspect": 1.9277,
+   "kb": 67.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "wood-release": {
+  "page": "https://naruto.fandom.com/wiki/Wood_Release",
+  "file": "Mokuton_no_Tenzo.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 564,
+   "w": 960,
+   "h": 541,
+   "alpha": false,
+   "aspect": 1.7745,
+   "kb": 67.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "shadow-possession": {
+  "page": "https://naruto.fandom.com/wiki/Shadow_Imitation_Technique",
+  "file": "Shadow_Imitation_Technique.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 565,
+   "w": 960,
+   "h": 542,
+   "alpha": false,
+   "aspect": 1.7712,
+   "kb": 84.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "gentle-fist": {
+  "page": "https://naruto.fandom.com/wiki/Gentle_Fist",
+  "file": "Neji_vs_Naruto.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 565,
+   "w": 960,
+   "h": 542,
+   "alpha": false,
+   "aspect": 1.7712,
+   "kb": 102.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "six-paths-sage": {
+  "page": "https://naruto.fandom.com/wiki/File:NTCM_and_SPSM.png",
+  "file": "File:NTCM and SPSM.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1500,
+   "w": 640,
+   "h": 960,
+   "alpha": false,
+   "aspect": 0.6667,
+   "kb": 89.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "nine-tails-mode": {
+  "page": "https://naruto.fandom.com/wiki/Nine-Tails_Chakra_Mode",
+  "file": "Naruto_transforming.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 564,
+   "w": 960,
+   "h": 541,
+   "alpha": false,
+   "aspect": 1.7745,
+   "kb": 61.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "lava-release": {
+  "page": "https://naruto.fandom.com/wiki/File:Lava_Release_Chakra_Mode.png",
+  "file": "File:Lava Release Chakra Mode.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 564,
+   "w": 960,
+   "h": 541,
+   "alpha": false,
+   "aspect": 1.7745,
+   "kb": 72.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "shikotsumyaku": {
+  "page": "https://naruto.fandom.com/wiki/Shikotsumyaku",
+  "file": "Kimimaro's_Shikotsumyaku.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 564,
+   "w": 960,
+   "h": 541,
+   "alpha": false,
+   "aspect": 1.7745,
+   "kb": 95.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "adamantine-chains": {
+  "page": "https://naruto.fandom.com/wiki/Adamantine_Sealing_Chains",
+  "file": "Adamantine_Sealing_chains.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 565,
+   "w": 960,
+   "h": 542,
+   "alpha": false,
+   "aspect": 1.7712,
+   "kb": 67.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "dust-release": {
+  "page": "https://naruto.fandom.com/wiki/Dust_Release",
+  "file": "Dust_Release.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 66.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "raikiri": {
+  "page": "https://naruto.fandom.com/wiki/Lightning_Cutter",
+  "file": "Lightning_cutter.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 557,
+   "w": 960,
+   "h": 535,
+   "alpha": false,
+   "aspect": 1.7944,
+   "kb": 79.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "body-flicker": {
+  "page": "https://naruto.fandom.com/wiki/Body_Flicker_Technique",
+  "file": "Body_flicker_pt_1.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 960,
+   "h": 720,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 79.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "substitution": {
+  "page": "https://naruto.fandom.com/wiki/Body_Replacement_Technique",
+  "file": "Body_Replacement.PNG",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 960,
+   "h": 720,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 81.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "sand-coffin": {
+  "page": "https://naruto.fandom.com/wiki/Sand_Binding_Coffin",
+  "file": "Sand_Coffin.PNG",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 960,
+   "h": 720,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 106.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "mind-transfer": {
+  "page": "https://naruto.fandom.com/wiki/Mind_Body_Switch_Technique",
+  "file": "Mind_Body_Switch_Handseal.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 960,
+   "h": 720,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 76.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "byakugan": {
+  "page": "https://naruto.fandom.com/wiki/File:Byakugan.png",
+  "file": "File:Byakugan.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 564,
+   "w": 960,
+   "h": 541,
+   "alpha": false,
+   "aspect": 1.7745,
+   "kb": 61.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "rinnegan": {
+  "page": "https://naruto.fandom.com/wiki/File:Sasuke's_Rinnegan.png",
+  "file": "File:Sasuke's Rinnegan.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 61.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "mangekyo-sharingan": {
+  "page": "https://naruto.fandom.com/wiki/File:Sasuke's_Mangekyo.png",
+  "file": "File:Sasuke's Mangekyo.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 32.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "eternal-mangekyo": {
+  "page": "https://naruto.fandom.com/wiki/File:Sasuke's_Eternal_Mangekyo.png",
+  "file": "File:Sasuke's Eternal Mangekyo.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 562,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 33.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "great-fireball": {
+  "page": "https://naruto.fandom.com/wiki/File:Grandfire_Ball.PNG",
+  "file": "File:Grandfire Ball.PNG",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 769,
+   "w": 960,
+   "h": 738,
+   "alpha": false,
+   "aspect": 1.3008,
+   "kb": 79.0
+  },
+  "fetched": "2026-10-23"
+ }
+}

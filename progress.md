@@ -7,7 +7,7 @@ tags:
   - document/progress
   - knowledge/dated
 created: 2026-08-13
-updated: 2026-10-22
+updated: 2026-10-23
 status: active
 aliases:
   - Memory Card Progress
@@ -22,7 +22,7 @@ related:
 
 # Memory Card Progress Log
 
-**Last updated:** 2026-10-22
+**Last updated:** 2026-10-23
 
 **Current release line:** Version 2.0 (Design Finalization & Resizable Living Lab)
 
@@ -40,6 +40,19 @@ This document records verified outcomes, technical approaches, and architectural
 ---
 
 ## Flutter App Outcomes (pulled forward from Version 4.0)
+
+### 2026-10-23 — Pictures on cards (v1.1): layouts, a canvas editor, PNG cut-outs, blur before the reveal, 11 picture decks
+
+- **Outcome Summary:** Either side of a card can now hold pictures and text placed where you want them. Pictures can be the answer (with or without words), words can sit over a picture, pictures can be cropped, resized and moved, transparent PNGs stay transparent, and each card is built either in a guided **Structured** mode or on a **Free canvas**. Pictures can be blurred (or hidden) until the reveal, with the strength set in Settings › Study. 11 new picture decks: flags of Africa, Asia, Europe and the Americas, Naruto / One Piece / Hunter x Hunter characters and powers, and car brands.
+- **How We Built It & Technical Approach:**
+  - Model (`lib/data/card_layout.dart`): a `SideLayout` per side (`CardItem.frontLayout` / `backLayout`, stored with the card; null = the classic text card, so old cards are untouched). A layout is a mode, a template and a list of elements: `ImageEl` (frame, fill or whole, zoom and pan like object-fit, corner radius, plate, outline, blur flag) and `TextEl` (words from the card's own fields or custom, size, align, colour, backdrop, font). Positions are fractions of the face, so one layout fits every phone, the editor preview and thumbnails. The text fields stay the single copy the engine, search, typing and speech use.
+  - Editor (`lib/features/layout/layout_editor.dart`): full-screen. Structured = five templates and drag-to-crop; canvas = add pictures and text, move, corner-handle resize (shape lock), a Crop mode that pans and pinches inside the frame and shows the rest of the picture faintly outside it, centre and margin snapping with a tick, z-order, per-element styling, undo. The card form shows both sides as small previews with "+ Picture" quick paths; the buttons are pinned under the form.
+  - Bringing pictures in (`lib/services/image_ingest.dart`): gallery, files or camera; the pure-Dart `image` package decodes (EXIF rotation honoured), shrinks to 1,600 px, keeps transparency as PNG and re-encodes photos as JPEG; the phone's own codec is the fallback for formats it cannot read. Backups embed and restore layout pictures.
+  - Study: tap and icon modes swap the front for the answer face; flip mode turns it, flagged answer pictures sharpen as they land. The answer picture peeks out blurred behind "Tap to reveal". The card texture sits behind pictures so they stay clean; a memory hook over a picture gets a backing. Reverse cards swap pictures with the words (the original's front picture becomes the reverse's answer).
+  - Settings › Study › Pictures before the reveal: Blur / Hide / Show, a strength slider and a live painted preview.
+  - Decks: `tools/imgkit.py` (Fandom MediaWiki, flagcdn, Wikidata logo property + Wikimedia Commons; quality gates, optimisation, near-duplicate check, crop for logos, contact sheets, provenance in `content/sources/`) and a handbook (`content/decks/visual/README.md`). Five Claude Haiku 5.5 agents worked in parallel on it; I reviewed every contact sheet and sent the car-brands agent back once because many logos spelled the brand's name (now emblem-only, 61 brands). `tools/build_catalog.py` validates picture decks, measures images and lists their folders in `pubspec.yaml`.
+- **Verification Evidence:** 19 new tests (layout model and templates, PNG alpha kept through `ImageIngest.prepare`, blur settings, catalogue layouts, picture decks and reverse cards, backup round trip, study with picture cards in tap and flip modes, the editor: add text and drag it, drag inside a picture to crop and slider-zoom) plus the whole existing suite (all passing); every new screen rendered in light and dark with real fonts and reviewed (`test_gallery/pictures_gallery_test.dart`).
+- **Known limits:** anime pictures and car logos are copyrighted / trademarked (see `content/sources/README.md`): fine for a personal study app, not for a public release. Ferrari, Lamborghini, Peugeot, Jaguar, Aston Martin, Jeep, Dodge, Ram and a few others have no free emblem-only file, so they are not in the car deck.
 
 ### 2026-10-22 — Textures (Settings › Texture)
 

@@ -7,7 +7,7 @@ no server, no analytics.
 
 ## Install on an Android phone
 
-1. Copy `../release/MemoryCard-1.0.0.apk` (the same file as `build/app/outputs/flutter-apk/app-release.apk`)
+1. Copy `../release/MemoryCard-1.1.0.apk` (the same file as `build/app/outputs/flutter-apk/app-release.apk`)
    to the phone: USB, a cloud drive, or email it to yourself.
 2. Open it on the phone. Android asks once to allow installs from that app (Files, Drive, Gmail…): allow it.
 3. Install, then open **Memory Card**.
@@ -42,10 +42,10 @@ The deck catalog (`assets/content/catalog.json`) is generated from `../content/d
 | | |
 |---|---|
 | `lib/engine/` | The repetition engine, pure Dart: FSRS-6 (`fsrs.dart`), reading how you answer (`assessor.dart`, `baselines.dart`), personal calibration and training (`calibration.dart`, `optimizer.dart`), stack placement (`stack_rules.dart`), the study loop, pacing, goal and streak (`study_engine.dart`), seals, typed answers. |
-| `lib/data/` | Models, the `AppStore` (single source of truth, `ChangeNotifier`), Hive persistence, the bundled catalog, CSV import. |
+| `lib/data/` | Models, the `AppStore` (single source of truth, `ChangeNotifier`), Hive persistence, the bundled catalog, CSV import, and `card_layout.dart` (how a card side places its text and pictures). |
 | `lib/ui/` | Design tokens and typography (`theme.dart`), motion curves and keyframes, sounds and haptics (`fx.dart`), custom shapes (wax seal, folders, polar badges), sheets/dialogs/toasts, coach marks. |
-| `lib/features/` | One folder per screen: onboarding, decks, study, drawer, shop, editor, today, profile, settings, browse (deck and card detail), search, Memory Lab, help. |
-| `lib/services/` | Daily reminder (local notifications) and text-to-speech. |
+| `lib/features/` | One folder per screen: onboarding, decks, study, drawer, shop, editor, today, profile, settings, browse (deck and card detail), search, Memory Lab, help; `layout/` draws card sides (`layout_face.dart`) and edits them (`layout_editor.dart`, structured or free canvas). |
+| `lib/services/` | Daily reminder (local notifications), text-to-speech, and `image_ingest.dart` (bringing pictures in: PNG transparency kept, big photos shrunk). |
 | `assets/` | 56 decks / 1,355 cards, synthesized sound effects, the Bernard font (local only). |
 
 Data lives in Hive boxes on the device (IndexedDB on web). *Settings › Your data* exports a JSON backup
@@ -62,6 +62,9 @@ flutter test test/model_fit_test.dart   # calibration and on-device training
 flutter test test/ui_tour_test.dart     # the swipe tour, card by card
 flutter test test/ui_study_test.dart    # onboarding → first stack → swipes, chip, undo
 flutter test test/ui_screens_test.dart  # every screen builds; coach marks; shop; editor
+flutter test test/layout_test.dart      # layout model, PNG transparency, blur settings, catalogue layouts
+flutter test test/layout_store_test.dart # picture decks, reverse cards with pictures, backups
+flutter test test/layout_ui_test.dart   # study with picture cards (tap, flip), the layout editor
 ```
 
 Visual review: `test_gallery/` renders every screen to `build/gallery/*.png` with real fonts, light and
@@ -71,7 +74,25 @@ dark, after a simulated two weeks of study:
 flutter test test_gallery/tour_gallery_test.dart
 flutter test test_gallery/app_gallery_test.dart
 flutter test test_gallery/icon_gen_test.dart   # regenerates the launcher icons from the logo
+flutter test test_gallery/pictures_gallery_test.dart  # picture cards, the layout editor, Settings blur → build/gallery/pic-*.png
 ```
+
+## Pictures on cards
+
+Every side of a card can carry pictures and text (`CardItem.frontLayout` / `backLayout`, a `SideLayout`).
+In the editor, tap a side: **Structured** offers five guided shapes (text, picture on top, picture below, full
+picture, picture only) and lets you drag inside the picture to crop it; **Free canvas** lets you add any number of
+pictures and text boxes, move, resize (corner handles), crop (pan and pinch inside the frame), restyle text (size,
+colour, backdrop for reading over pictures) and reorder. PNG cut-outs keep their transparency (`ImageIngest`),
+optionally on a paper or dark plate. Positions are fractions of the card, so a layout looks the same everywhere.
+
+Study: a side without a layout is the classic text card. With pictures, tap and icon modes swap the front for the
+answer face on reveal; flip mode turns it. **Settings › Study › Pictures before the reveal** (blur · hide · show,
+with a strength slider and a live preview) decides what pictures marked *Blur until revealed* do, and the answer
+picture peeks out blurred behind *Tap to reveal*. Reverse cards swap pictures along with the words.
+
+Picture decks come from `content/decks/visual/*.json` (see the README there) with images in
+`assets/content/img/<deck>/`; `python ../tools/imgkit.py` fetches and checks them and `build_catalog.py` bundles them.
 
 ## Hidden tools
 

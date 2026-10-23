@@ -13,6 +13,7 @@ import '../../ui/overlays.dart';
 import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
+import '../layout/layout_face.dart';
 import '../shell/shell.dart';
 import 'shop_tile.dart';
 
@@ -38,7 +39,7 @@ class _PreviewSheetState extends State<PreviewSheet> with SingleTickerProviderSt
   late final AnimationController _flip = AnimationController(vsync: this, duration: const Duration(milliseconds: 480));
   int _sample = 0;
   String? _folder; // folder id, or '__new:<name>'
-  late bool _reverse = deck.category == 'lang';
+  late bool _reverse = deck.category == 'lang' || deck.style.reverse;
 
   @override
   void initState() {
@@ -151,7 +152,22 @@ class _PreviewSheetState extends State<PreviewSheet> with SingleTickerProviderSt
                                     borderRadius: BorderRadius.circular(16),
                                     boxShadow: mc.e2,
                                   ),
-                                  child: Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+                                  child: !back && sample.img.isNotEmpty
+                                      ? Padding(
+                                          padding: const EdgeInsets.symmetric(vertical: 12),
+                                          child: ClipRRect(
+                                            borderRadius: BorderRadius.circular(10),
+                                            child: SizedBox.expand(
+                                              child: ColoredBox(
+                                                color: deck.style.plate == 'paper' ? Mc.paper : const Color(0x14000000),
+                                                child: cardImage(deck.assetOf(sample.img),
+                                                    fit: deck.style.contain ? BoxFit.contain : BoxFit.cover,
+                                                    alignment: deck.style.contain ? Alignment.center : const Alignment(0, -0.5)),
+                                              ),
+                                            ),
+                                          ),
+                                        )
+                                      : Column(mainAxisAlignment: MainAxisAlignment.center, children: [
                                     Text(back ? 'ANSWER' : (sample.label.isEmpty ? deck.level : sample.label).toUpperCase(),
                                         maxLines: 1,
                                         style: T.caps(12, color: (back ? Mc.graphite : mc.onInk).withValues(alpha: 0.7))),
@@ -276,13 +292,14 @@ class _PreviewSheetState extends State<PreviewSheet> with SingleTickerProviderSt
                       if (name != null) setState(() => _folder = '__new:$name');
                     }),
                   ]),
-                  if (deck.category == 'lang') ...[
+                  if (deck.category == 'lang' || deck.hasPictures) ...[
                     const SizedBox(height: 14),
                     Row(children: [
                       Expanded(
                         child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
                           Text('Also study it in reverse', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
-                          Text('Adds a back-to-front card for each one', style: T.t(14, w: FontWeight.w500, color: mc.muted)),
+                          Text(deck.hasPictures ? 'Adds a card for each one that shows the name and asks for the picture' : 'Adds a back-to-front card for each one',
+                              style: T.t(14, w: FontWeight.w500, color: mc.muted, height: 1.3)),
                         ]),
                       ),
                       McSwitch(value: _reverse, onChanged: (v) => setState(() => _reverse = v)),

@@ -7,6 +7,7 @@ import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../browse/card_detail.dart';
+import '../layout/layout_face.dart';
 
 /// Search every card you have, front, back, example and hook.
 class SearchScreen extends StatefulWidget {
@@ -98,11 +99,19 @@ class _SearchScreenState extends State<SearchScreen> {
                               padding: const EdgeInsets.fromLTRB(14, 10, 14, 10),
                               foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(14)),
                               decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(14)),
-                              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                Text(d?.name ?? '', style: T.caps(11, color: mc.muted)),
-                                const SizedBox(height: 3),
-                                Text(c.front, maxLines: 2, overflow: TextOverflow.ellipsis, style: T.d(20, color: mc.ink)),
-                                Text(c.back, maxLines: 2, overflow: TextOverflow.ellipsis, style: T.t(15, w: FontWeight.w500, color: mc.muted)),
+                              child: Row(children: [
+                                if (c.thumbSrc != null) ...[
+                                  CardThumb(card: c, size: 48),
+                                  const SizedBox(width: 12),
+                                ],
+                                Expanded(
+                                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                                    Text(d?.name ?? '', style: T.caps(11, color: mc.muted)),
+                                    const SizedBox(height: 3),
+                                    Text(c.frontText, maxLines: 2, overflow: TextOverflow.ellipsis, style: T.d(20, color: mc.ink)),
+                                    Text(c.backText, maxLines: 2, overflow: TextOverflow.ellipsis, style: T.t(15, w: FontWeight.w500, color: mc.muted)),
+                                  ]),
+                                ),
                               ]),
                             ),
                           ),

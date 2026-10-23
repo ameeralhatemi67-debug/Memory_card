@@ -1,0 +1,338 @@
+{
+  "id": "onepiece-powers",
+  "name": "One Piece · Powers",
+  "mono": "On",
+  "category": "knowledge",
+  "level": "anime",
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Name the power behind the fight: Devil Fruits, the three kinds of Haki, Rokushiki, Gears and the signature swordsmanship of One Piece.",
+  "style": {
+    "front": "above",
+    "fit": "cover",
+    "back": "text",
+    "reverse": true
+  },
+  "cards": [
+    {
+      "img": "gomu-gomu-no-mi.jpg",
+      "front": "",
+      "back": "Gomu Gomu no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Luffy's Paramecia fruit: his body turns to rubber, so he stretches and bounces back."
+    },
+    {
+      "img": "mera-mera-no-mi.jpg",
+      "front": "",
+      "back": "Mera Mera no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Ace's Logia fruit: he turned his body into fire; Sabo later ate it."
+    },
+    {
+      "img": "gear-second.jpg",
+      "front": "",
+      "back": "Gear Second",
+      "label": "power",
+      "example": "",
+      "hook": "Luffy's speed Gear, first used against Blueno; blood races and steam rises."
+    },
+    {
+      "img": "gear-third.jpg",
+      "front": "",
+      "back": "Gear Third",
+      "label": "power",
+      "example": "",
+      "hook": "Luffy inflates his limbs with air to make giant, stronger attacks."
+    },
+    {
+      "img": "gear-fourth.jpg",
+      "front": "",
+      "back": "Gear Fourth",
+      "label": "power",
+      "example": "",
+      "hook": "Luffy's Haki-powered Gear; its Boundman form bounces him around the fight."
+    },
+    {
+      "img": "gear-fifth.jpg",
+      "front": "",
+      "back": "Gear Fifth",
+      "label": "power",
+      "example": "",
+      "hook": "Luffy's awakened Nika form, a cartoon-like rubber body that reshapes the world."
+    },
+    {
+      "img": "santoryu.jpg",
+      "front": "",
+      "back": "Santoryu",
+      "label": "power",
+      "example": "",
+      "hook": "Zoro's Three Sword Style: swords in both hands and one held in his mouth."
+    },
+    {
+      "img": "diable-jambe.jpg",
+      "front": "",
+      "back": "Diable Jambe",
+      "label": "power",
+      "example": "",
+      "hook": "Sanji heats his leg until his kicks set his foes on fire."
+    },
+    {
+      "img": "hito-hito-no-mi.jpg",
+      "front": "",
+      "back": "Hito Hito no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Chopper's Zoan fruit: he changes between human and half-reindeer forms."
+    },
+    {
+      "img": "ope-ope-no-mi.jpg",
+      "front": "",
+      "back": "Ope Ope no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Law's Paramecia fruit: a room where he remodels anyone or anything."
+    },
+    {
+      "img": "gura-gura-no-mi.jpg",
+      "front": "",
+      "back": "Gura Gura no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Whitebeard's quake fruit: his strikes send out earth-shaking vibrations."
+    },
+    {
+      "img": "yami-yami-no-mi.jpg",
+      "front": "",
+      "back": "Yami Yami no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Blackbeard's Logia fruit: he creates, controls and becomes darkness."
+    },
+    {
+      "img": "hie-hie-no-mi.jpg",
+      "front": "",
+      "back": "Hie Hie no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Aokiji's Logia fruit: he creates and becomes ice, freezing whatever he touches."
+    },
+    {
+      "img": "magu-magu-no-mi.jpg",
+      "front": "",
+      "back": "Magu Magu no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Akainu's Logia fruit: he turns into magma and melts his foes."
+    },
+    {
+      "img": "pika-pika-no-mi.jpg",
+      "front": "",
+      "back": "Pika Pika no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Kizaru's Logia fruit: he moves at light speed and fires laser beams."
+    },
+    {
+      "img": "suna-suna-no-mi.jpg",
+      "front": "",
+      "back": "Suna Suna no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Crocodile's Logia fruit: he becomes sand and drains moisture from his foes."
+    },
+    {
+      "img": "mochi-mochi-no-mi.jpg",
+      "front": "",
+      "back": "Mochi Mochi no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Katakuri's special Paramecia fruit: he creates and shapes mochi."
+    },
+    {
+      "img": "hana-hana-no-mi.jpg",
+      "front": "",
+      "back": "Hana Hana no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Robin's flower fruit: she sprouts hands and body parts from any surface."
+    },
+    {
+      "img": "yomi-yomi-no-mi.jpg",
+      "front": "",
+      "back": "Yomi Yomi no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Brook's soul fruit: he revives after his first death."
+    },
+    {
+      "img": "ito-ito-no-mi.jpg",
+      "front": "",
+      "back": "Ito Ito no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Doflamingo's string fruit: he creates strings to control people and objects."
+    },
+    {
+      "img": "mero-mero-no-mi.jpg",
+      "front": "",
+      "back": "Mero Mero no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Hancock's love fruit: her attacks turn foes to stone."
+    },
+    {
+      "img": "doku-doku-no-mi.jpg",
+      "front": "",
+      "back": "Doku Doku no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Magellan's poison fruit: he makes every poison and is immune to all of them."
+    },
+    {
+      "img": "moku-moku-no-mi.jpg",
+      "front": "",
+      "back": "Moku Moku no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Smoker's Logia fruit: he turns into smoke and controls it."
+    },
+    {
+      "img": "zushi-zushi-no-mi.jpg",
+      "front": "",
+      "back": "Zushi Zushi no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Fujitora's gravity fruit: he lifts and crushes things with gravity."
+    },
+    {
+      "img": "goro-goro-no-mi.jpg",
+      "front": "",
+      "back": "Goro Goro no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Enel's Logia fruit: he creates, controls and becomes lightning."
+    },
+    {
+      "img": "kage-kage-no-mi.jpg",
+      "front": "",
+      "back": "Kage Kage no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Moria's shadow fruit: he steals shadows and turns them into a zombie army."
+    },
+    {
+      "img": "jiki-jiki-no-mi.jpg",
+      "front": "",
+      "back": "Jiki Jiki no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Eustass Kid's magnet fruit: he controls metal with magnetic force."
+    },
+    {
+      "img": "uo-uo-no-mi-seiryu.jpg",
+      "front": "",
+      "back": "Uo Uo no Mi, Model: Seiryu",
+      "label": "power",
+      "example": "",
+      "hook": "Kaido's mythical Zoan fruit: he becomes a full Azure Dragon."
+    },
+    {
+      "img": "tori-tori-no-mi-phoenix.jpg",
+      "front": "",
+      "back": "Tori Tori no Mi, Model: Phoenix",
+      "label": "power",
+      "example": "",
+      "hook": "Marco's mythical Zoan fruit: a phoenix that regenerates and heals others."
+    },
+    {
+      "img": "bara-bara-no-mi.jpg",
+      "front": "",
+      "back": "Bara Bara no Mi",
+      "label": "power",
+      "example": "",
+      "hook": "Buggy's fruit: he splits his body into floating pieces, immune to cuts."
+    },
+    {
+      "img": "observation-haki.jpg",
+      "front": "",
+      "back": "Observation Haki",
+      "label": "power",
+      "example": "",
+      "hook": "A sixth sense for presence and emotions; blind Fujitora uses it to see."
+    },
+    {
+      "img": "armament-haki.jpg",
+      "front": "",
+      "back": "Armament Haki",
+      "label": "power",
+      "example": "",
+      "hook": "Invisible spirit armour that lets fists hit Logia users, used by Big Mom."
+    },
+    {
+      "img": "conquerors-haki.jpg",
+      "front": "",
+      "back": "Conqueror's Haki",
+      "label": "power",
+      "example": "",
+      "hook": "The rarest Haki, which overpowers weaker wills; Luffy and Shanks both wield it."
+    },
+    {
+      "img": "geppo.jpg",
+      "front": "",
+      "back": "Geppo",
+      "label": "power",
+      "example": "",
+      "hook": "CP9's leap off thin air, first seen with the disguised Kalifa."
+    },
+    {
+      "img": "soru.jpg",
+      "front": "",
+      "back": "Soru",
+      "label": "power",
+      "example": "",
+      "hook": "CP9's superhuman speed step, first used by the disguised Blueno."
+    },
+    {
+      "img": "shigan.jpg",
+      "front": "",
+      "back": "Shigan",
+      "label": "power",
+      "example": "",
+      "hook": "A fingertip strike; Rob Lucci first fully demonstrated it against Paulie."
+    },
+    {
+      "img": "tekkai.jpg",
+      "front": "",
+      "back": "Tekkai",
+      "label": "power",
+      "example": "",
+      "hook": "A superhuman-defence technique, first used by the disguised Blueno."
+    },
+    {
+      "img": "rankyaku.jpg",
+      "front": "",
+      "back": "Rankyaku",
+      "label": "power",
+      "example": "",
+      "hook": "Air blades launched from a kick, first shown by the disguised Kaku."
+    },
+    {
+      "img": "kami-e.jpg",
+      "front": "",
+      "back": "Kami-e",
+      "label": "power",
+      "example": "",
+      "hook": "Superhuman flexibility, first demonstrated by the CP9 agent Blueno."
+    },
+    {
+      "img": "asura.jpg",
+      "front": "",
+      "back": "Asura",
+      "label": "power",
+      "example": "",
+      "hook": "Zoro's Nine Sword Style: nine swords at once, roughly tripling his power."
+    }
+  ]
+}

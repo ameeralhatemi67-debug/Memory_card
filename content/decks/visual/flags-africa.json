@@ -1,0 +1,450 @@
+{
+  "id": "flags-africa",
+  "name": "Flags · Africa",
+  "mono": "Fl",
+  "category": "knowledge",
+  "level": "flags",
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Name the flag of every country in Africa, from Egypt's tricolour to the small island states.",
+  "style": {
+    "front": "only",
+    "fit": "contain",
+    "back": "text",
+    "reverse": true
+  },
+  "cards": [
+    {
+      "img": "eg.png",
+      "front": "",
+      "back": "Egypt",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Cairo"
+    },
+    {
+      "img": "za.png",
+      "front": "",
+      "back": "South Africa",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Pretoria (executive); Cape Town (legislative); Bloemfontein (judicial)"
+    },
+    {
+      "img": "ng.png",
+      "front": "",
+      "back": "Nigeria",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Abuja"
+    },
+    {
+      "img": "ke.png",
+      "front": "",
+      "back": "Kenya",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Nairobi"
+    },
+    {
+      "img": "ma.png",
+      "front": "",
+      "back": "Morocco",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Rabat"
+    },
+    {
+      "img": "et.png",
+      "front": "",
+      "back": "Ethiopia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Addis Ababa"
+    },
+    {
+      "img": "gh.png",
+      "front": "",
+      "back": "Ghana",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Accra"
+    },
+    {
+      "img": "dz.png",
+      "front": "",
+      "back": "Algeria",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Algiers"
+    },
+    {
+      "img": "tz.png",
+      "front": "",
+      "back": "Tanzania",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Dodoma (Dar es Salaam is the largest city)"
+    },
+    {
+      "img": "ly.png",
+      "front": "",
+      "back": "Libya",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Tripoli"
+    },
+    {
+      "img": "tn.png",
+      "front": "",
+      "back": "Tunisia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Tunis"
+    },
+    {
+      "img": "sd.png",
+      "front": "",
+      "back": "Sudan",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Khartoum"
+    },
+    {
+      "img": "ug.png",
+      "front": "",
+      "back": "Uganda",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Kampala"
+    },
+    {
+      "img": "zw.png",
+      "front": "",
+      "back": "Zimbabwe",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Harare"
+    },
+    {
+      "img": "zm.png",
+      "front": "",
+      "back": "Zambia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Lusaka"
+    },
+    {
+      "img": "ao.png",
+      "front": "",
+      "back": "Angola",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Luanda"
+    },
+    {
+      "img": "mz.png",
+      "front": "",
+      "back": "Mozambique",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Maputo"
+    },
+    {
+      "img": "sn.png",
+      "front": "",
+      "back": "Senegal",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Dakar"
+    },
+    {
+      "img": "ml.png",
+      "front": "",
+      "back": "Mali",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Bamako"
+    },
+    {
+      "img": "cm.png",
+      "front": "",
+      "back": "Cameroon",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Yaoundé"
+    },
+    {
+      "img": "ci.png",
+      "front": "",
+      "back": "Ivory Coast",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Yamoussoukro (official); Abidjan is the largest city"
+    },
+    {
+      "img": "cd.png",
+      "front": "",
+      "back": "DR Congo",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Kinshasa"
+    },
+    {
+      "img": "cg.png",
+      "front": "",
+      "back": "Congo",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Brazzaville"
+    },
+    {
+      "img": "ga.png",
+      "front": "",
+      "back": "Gabon",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Libreville"
+    },
+    {
+      "img": "na.png",
+      "front": "",
+      "back": "Namibia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Windhoek"
+    },
+    {
+      "img": "bw.png",
+      "front": "",
+      "back": "Botswana",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Gaborone"
+    },
+    {
+      "img": "rw.png",
+      "front": "",
+      "back": "Rwanda",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Kigali"
+    },
+    {
+      "img": "mg.png",
+      "front": "",
+      "back": "Madagascar",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Antananarivo"
+    },
+    {
+      "img": "mw.png",
+      "front": "",
+      "back": "Malawi",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Lilongwe"
+    },
+    {
+      "img": "mu.png",
+      "front": "",
+      "back": "Mauritius",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Port Louis"
+    },
+    {
+      "img": "sc.png",
+      "front": "",
+      "back": "Seychelles",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Victoria"
+    },
+    {
+      "img": "er.png",
+      "front": "",
+      "back": "Eritrea",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Asmara"
+    },
+    {
+      "img": "so.png",
+      "front": "",
+      "back": "Somalia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Mogadishu"
+    },
+    {
+      "img": "dj.png",
+      "front": "",
+      "back": "Djibouti",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Djibouti City"
+    },
+    {
+      "img": "ss.png",
+      "front": "",
+      "back": "South Sudan",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Juba"
+    },
+    {
+      "img": "td.png",
+      "front": "",
+      "back": "Chad",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: N'Djamena"
+    },
+    {
+      "img": "ne.png",
+      "front": "",
+      "back": "Niger",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Niamey"
+    },
+    {
+      "img": "bf.png",
+      "front": "",
+      "back": "Burkina Faso",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Ouagadougou"
+    },
+    {
+      "img": "gn.png",
+      "front": "",
+      "back": "Guinea",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Conakry"
+    },
+    {
+      "img": "sl.png",
+      "front": "",
+      "back": "Sierra Leone",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Freetown"
+    },
+    {
+      "img": "lr.png",
+      "front": "",
+      "back": "Liberia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Monrovia"
+    },
+    {
+      "img": "tg.png",
+      "front": "",
+      "back": "Togo",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Lomé"
+    },
+    {
+      "img": "bj.png",
+      "front": "",
+      "back": "Benin",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Porto-Novo (official); Cotonou is the seat of government"
+    },
+    {
+      "img": "gm.png",
+      "front": "",
+      "back": "Gambia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Banjul"
+    },
+    {
+      "img": "cv.png",
+      "front": "",
+      "back": "Cape Verde",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Praia"
+    },
+    {
+      "img": "mr.png",
+      "front": "",
+      "back": "Mauritania",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Nouakchott"
+    },
+    {
+      "img": "cf.png",
+      "front": "",
+      "back": "Central African Republic",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Bangui"
+    },
+    {
+      "img": "gq.png",
+      "front": "",
+      "back": "Equatorial Guinea",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Malabo"
+    },
+    {
+      "img": "ls.png",
+      "front": "",
+      "back": "Lesotho",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Maseru"
+    },
+    {
+      "img": "sz.png",
+      "front": "",
+      "back": "Eswatini",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Mbabane (Lobamba is the legislative capital)"
+    },
+    {
+      "img": "bi.png",
+      "front": "",
+      "back": "Burundi",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Gitega"
+    },
+    {
+      "img": "km.png",
+      "front": "",
+      "back": "Comoros",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Moroni"
+    },
+    {
+      "img": "gw.png",
+      "front": "",
+      "back": "Guinea-Bissau",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Bissau"
+    },
+    {
+      "img": "st.png",
+      "front": "",
+      "back": "São Tomé and Príncipe",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: São Tomé"
+    }
+  ]
+}

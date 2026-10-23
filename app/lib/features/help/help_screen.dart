@@ -71,6 +71,15 @@ class HelpScreen extends StatelessWidget {
           'type the answer instead of revealing it: close spellings count, accents are forgiven if you like.',
     ),
     (
+      'Pictures and layouts',
+      McIcons.move,
+      'Any side of a card can hold pictures and text. In the card editor tap a side (Front or Back) to arrange it. '
+          'Structured gives you a guided shape and lets you crop the picture; Free canvas lets you move, resize and '
+          'zoom everything and put words over a picture. PNGs with a see-through background stay see-through. '
+          'Settings › Study decides how pictures behave before you reveal them: blurred (how much is up to you), '
+          'hidden, or shown.',
+    ),
+    (
       'Your data stays here',
       McIcons.save,
       'There is no account and no server. Everything is stored on this phone. Export a backup now and then '

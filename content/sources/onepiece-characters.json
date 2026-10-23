@@ -1,0 +1,946 @@
+{
+ "monkey-d-luffy": {
+  "page": "https://onepiece.fandom.com/wiki/Monkey_D._Luffy",
+  "file": "Monkey_D._Luffy_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 478,
+   "srcH": 1000,
+   "w": 430,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.4778,
+   "kb": 72.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "roronoa-zoro": {
+  "page": "https://onepiece.fandom.com/wiki/Roronoa_Zoro",
+  "file": "Roronoa_Zoro_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 376,
+   "srcH": 1000,
+   "w": 338,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.3756,
+   "kb": 48.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "nami": {
+  "page": "https://onepiece.fandom.com/wiki/Nami",
+  "file": "Nami_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 597,
+   "srcH": 1000,
+   "w": 537,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.5967,
+   "kb": 84.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "usopp": {
+  "page": "https://onepiece.fandom.com/wiki/Usopp",
+  "file": "Usopp_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 538,
+   "srcH": 1000,
+   "w": 484,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.5378,
+   "kb": 76.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "sanji": {
+  "page": "https://onepiece.fandom.com/wiki/File:Sanji_Anime_Pre_Timeskip_Infobox.png",
+  "file": "File:Sanji Anime Pre Timeskip Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 380,
+   "srcH": 1038,
+   "w": 329,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.3656,
+   "kb": 40.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "tony-tony-chopper": {
+  "page": "https://onepiece.fandom.com/wiki/Tony_Tony_Chopper",
+  "file": "Tony_Tony_Chopper_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 544,
+   "srcH": 697,
+   "w": 544,
+   "h": 697,
+   "alpha": false,
+   "aspect": 0.7805,
+   "kb": 66.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "nico-robin": {
+  "page": "https://onepiece.fandom.com/wiki/Nico_Robin",
+  "file": "Nico_Robin_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 557,
+   "srcH": 999,
+   "w": 502,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.5578,
+   "kb": 63.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "franky": {
+  "page": "https://onepiece.fandom.com/wiki/Franky",
+  "file": "Franky_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 989,
+   "w": 900,
+   "h": 890,
+   "alpha": false,
+   "aspect": 1.0112,
+   "kb": 139.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "brook": {
+  "page": "https://onepiece.fandom.com/wiki/Brook",
+  "file": "Brook_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 428,
+   "srcH": 999,
+   "w": 386,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.4289,
+   "kb": 78.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "jinbe": {
+  "page": "https://onepiece.fandom.com/wiki/Jinbe",
+  "file": "Jinbe_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 784,
+   "srcH": 1000,
+   "w": 706,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.7844,
+   "kb": 120.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "monkey-d-garp": {
+  "page": "https://onepiece.fandom.com/wiki/Monkey_D._Garp",
+  "file": "Monkey_D._Garp_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 971,
+   "w": 900,
+   "h": 874,
+   "alpha": false,
+   "aspect": 1.0297,
+   "kb": 115.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "akainu": {
+  "page": "https://onepiece.fandom.com/wiki/File:Sakazuki_Anime_Post_Timeskip_Infobox.png",
+  "file": "File:Sakazuki Anime Post Timeskip Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1669,
+   "w": 539,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.5989,
+   "kb": 395.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "aokiji": {
+  "page": "https://onepiece.fandom.com/wiki/Kuzan",
+  "file": "Kuzan_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 762,
+   "srcH": 935,
+   "w": 733,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.8144,
+   "kb": 95.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "kizaru": {
+  "page": "https://onepiece.fandom.com/wiki/Borsalino",
+  "file": "Borsalino_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 495,
+   "srcH": 999,
+   "w": 446,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.4956,
+   "kb": 88.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "fujitora": {
+  "page": "https://onepiece.fandom.com/wiki/Issho",
+  "file": "Issho_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 615,
+   "srcH": 999,
+   "w": 554,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6156,
+   "kb": 90.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "sengoku": {
+  "page": "https://onepiece.fandom.com/wiki/Sengoku",
+  "file": "Sengoku_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 724,
+   "srcH": 999,
+   "w": 652,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.7244,
+   "kb": 94.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "smoker": {
+  "page": "https://onepiece.fandom.com/wiki/Smoker",
+  "file": "Smoker_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 764,
+   "srcH": 999,
+   "w": 688,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.7644,
+   "kb": 91.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "tashigi": {
+  "page": "https://onepiece.fandom.com/wiki/Tashigi",
+  "file": "Tashigi_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 654,
+   "srcH": 1000,
+   "w": 589,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6544,
+   "kb": 88.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "koby": {
+  "page": "https://onepiece.fandom.com/wiki/Koby",
+  "file": "Koby_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 750,
+   "srcH": 1000,
+   "w": 675,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.75,
+   "kb": 98.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "ryokugyu": {
+  "page": "https://onepiece.fandom.com/wiki/Aramaki",
+  "file": "Aramaki_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 578,
+   "srcH": 991,
+   "w": 525,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.5833,
+   "kb": 116.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "whitebeard": {
+  "page": "https://onepiece.fandom.com/wiki/Edward_Newgate",
+  "file": "Edward_Newgate_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 990,
+   "w": 900,
+   "h": 891,
+   "alpha": false,
+   "aspect": 1.0101,
+   "kb": 132.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "shanks": {
+  "page": "https://onepiece.fandom.com/wiki/Shanks",
+  "file": "Shanks_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 586,
+   "srcH": 841,
+   "w": 586,
+   "h": 841,
+   "alpha": false,
+   "aspect": 0.6968,
+   "kb": 84.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "kaido": {
+  "page": "https://onepiece.fandom.com/wiki/Kaidou",
+  "file": "Kaidou_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 966,
+   "srcH": 1000,
+   "w": 869,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.9656,
+   "kb": 97.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "big-mom": {
+  "page": "https://onepiece.fandom.com/wiki/Charlotte_Linlin",
+  "file": "Charlotte_Linlin_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 937,
+   "w": 900,
+   "h": 843,
+   "alpha": false,
+   "aspect": 1.0676,
+   "kb": 114.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "blackbeard": {
+  "page": "https://onepiece.fandom.com/wiki/Marshall_D._Teach",
+  "file": "Marshall_D._Teach_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 879,
+   "srcH": 1000,
+   "w": 791,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.8789,
+   "kb": 113.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "buggy": {
+  "page": "https://onepiece.fandom.com/wiki/File:Buggy_Anime_Pre_Timeskip_Infobox.png",
+  "file": "File:Buggy Anime Pre Timeskip Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 704,
+   "srcH": 990,
+   "w": 640,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.7111,
+   "kb": 102.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "portgas-d-ace": {
+  "page": "https://onepiece.fandom.com/wiki/Portgas_D._Ace",
+  "file": "Portgas_D._Ace_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 599,
+   "srcH": 1000,
+   "w": 539,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.5989,
+   "kb": 89.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "marco": {
+  "page": "https://onepiece.fandom.com/wiki/Polo_Marco",
+  "file": "Polo_Marco_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 358,
+   "srcH": 1000,
+   "w": 322,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.3578,
+   "kb": 65.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "trafalgar-law": {
+  "page": "https://onepiece.fandom.com/wiki/Trafalgar_D._Water_Law",
+  "file": "Trafalgar_D._Water_Law_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 444,
+   "srcH": 1000,
+   "w": 400,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.4444,
+   "kb": 66.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "eustass-kid": {
+  "page": "https://onepiece.fandom.com/wiki/Eustass_Kid",
+  "file": "Eustass_Kid_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 841,
+   "srcH": 1000,
+   "w": 757,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.8411,
+   "kb": 94.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "katakuri": {
+  "page": "https://onepiece.fandom.com/wiki/Charlotte_Katakuri",
+  "file": "Charlotte_Katakuri_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 649,
+   "srcH": 973,
+   "w": 600,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6667,
+   "kb": 86.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "yamato": {
+  "page": "https://onepiece.fandom.com/wiki/Yamato",
+  "file": "Yamato_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 672,
+   "srcH": 999,
+   "w": 605,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6722,
+   "kb": 102.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "mihawk": {
+  "page": "https://onepiece.fandom.com/wiki/Dracule_Mihawk",
+  "file": "Dracule_Mihawk_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 643,
+   "srcH": 999,
+   "w": 579,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6433,
+   "kb": 82.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "hancock": {
+  "page": "https://onepiece.fandom.com/wiki/Boa_Hancock",
+  "file": "Boa_Hancock_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 485,
+   "srcH": 1000,
+   "w": 436,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.4844,
+   "kb": 90.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "crocodile": {
+  "page": "https://onepiece.fandom.com/wiki/Crocodile",
+  "file": "Crocodile_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 796,
+   "srcH": 1000,
+   "w": 716,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.7956,
+   "kb": 88.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "doflamingo": {
+  "page": "https://onepiece.fandom.com/wiki/Donquixote_Doflamingo",
+  "file": "Donquixote_Doflamingo_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 861,
+   "srcH": 1000,
+   "w": 775,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.8611,
+   "kb": 117.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "moria": {
+  "page": "https://onepiece.fandom.com/wiki/Gecko_Moria",
+  "file": "Gecko_Moria_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 960,
+   "w": 900,
+   "h": 864,
+   "alpha": false,
+   "aspect": 1.0417,
+   "kb": 118.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "kuma": {
+  "page": "https://onepiece.fandom.com/wiki/Bartholomew_Kuma",
+  "file": "Bartholomew_Kuma_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 595,
+   "srcH": 1000,
+   "w": 536,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.5956,
+   "kb": 79.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "monkey-d-dragon": {
+  "page": "https://onepiece.fandom.com/wiki/Monkey_D._Dragon",
+  "file": "Monkey_D._Dragon_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 686,
+   "srcH": 1000,
+   "w": 617,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6856,
+   "kb": 64.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "sabo": {
+  "page": "https://onepiece.fandom.com/wiki/Sabo",
+  "file": "Sabo_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 661,
+   "srcH": 1000,
+   "w": 595,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6611,
+   "kb": 72.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "ivankov": {
+  "page": "https://onepiece.fandom.com/wiki/Emporio_Ivankov",
+  "file": "Emporio_Ivankov_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 765,
+   "srcH": 1000,
+   "w": 688,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.7644,
+   "kb": 84.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "morley": {
+  "page": "https://onepiece.fandom.com/wiki/Morley",
+  "file": "Morley_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 999,
+   "w": 900,
+   "h": 899,
+   "alpha": false,
+   "aspect": 1.0011,
+   "kb": 121.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "koala": {
+  "page": "https://onepiece.fandom.com/wiki/Koala",
+  "file": "Koala_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 617,
+   "srcH": 1000,
+   "w": 555,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6167,
+   "kb": 82.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "nefertari-vivi": {
+  "page": "https://onepiece.fandom.com/wiki/Nefertari_Vivi",
+  "file": "Nefertari_Vivi_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 365,
+   "srcH": 1000,
+   "w": 328,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.3644,
+   "kb": 73.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "rayleigh": {
+  "page": "https://onepiece.fandom.com/wiki/Silvers_Rayleigh",
+  "file": "Silvers_Rayleigh_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 524,
+   "srcH": 1000,
+   "w": 472,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.5244,
+   "kb": 70.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "gol-d-roger": {
+  "page": "https://onepiece.fandom.com/wiki/Gol_D._Roger",
+  "file": "Gol_D._Roger_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 909,
+   "w": 900,
+   "h": 818,
+   "alpha": false,
+   "aspect": 1.1002,
+   "kb": 127.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "kouzuki-oden": {
+  "page": "https://onepiece.fandom.com/wiki/Kouzuki_Oden",
+  "file": "Kouzuki_Oden_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 985,
+   "w": 900,
+   "h": 886,
+   "alpha": false,
+   "aspect": 1.0158,
+   "kb": 94.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "momonosuke": {
+  "page": "https://onepiece.fandom.com/wiki/Kouzuki_Momonosuke",
+  "file": "Kouzuki_Momonosuke_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 767,
+   "srcH": 1000,
+   "w": 690,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.7667,
+   "kb": 100.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "vegapunk": {
+  "page": "https://onepiece.fandom.com/wiki/Vegapunk",
+  "file": "Vegapunk_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 442,
+   "srcH": 999,
+   "w": 398,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.4422,
+   "kb": 85.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "benn-beckman": {
+  "page": "https://onepiece.fandom.com/wiki/Benn_Beckman",
+  "file": "Benn_Beckman_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 865,
+   "w": 900,
+   "h": 778,
+   "alpha": false,
+   "aspect": 1.1568,
+   "kb": 99.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "shirahoshi": {
+  "page": "https://onepiece.fandom.com/wiki/Shirahoshi",
+  "file": "Shirahoshi_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 935,
+   "w": 900,
+   "h": 842,
+   "alpha": false,
+   "aspect": 1.0689,
+   "kb": 152.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "fisher-tiger": {
+  "page": "https://onepiece.fandom.com/wiki/Fisher_Tiger",
+  "file": "Fisher_Tiger_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 806,
+   "srcH": 1000,
+   "w": 725,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.8056,
+   "kb": 103.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "nekomamushi": {
+  "page": "https://onepiece.fandom.com/wiki/Nekomamushi",
+  "file": "Nekomamushi_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 786,
+   "srcH": 726,
+   "w": 786,
+   "h": 726,
+   "alpha": false,
+   "aspect": 1.0826,
+   "kb": 99.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "yasopp": {
+  "page": "https://onepiece.fandom.com/wiki/Yasopp",
+  "file": "Yasopp_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 717,
+   "srcH": 999,
+   "w": 646,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.7178,
+   "kb": 96.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "lucci": {
+  "page": "https://onepiece.fandom.com/wiki/File:Rob_Lucci_Anime_Post_Timeskip_Infobox.png",
+  "file": "File:Rob Lucci Anime Post Timeskip Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1862,
+   "w": 483,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.5367,
+   "kb": 76.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "kaku": {
+  "page": "https://onepiece.fandom.com/wiki/Kaku",
+  "file": "Kaku_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 669,
+   "srcH": 1000,
+   "w": 602,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6689,
+   "kb": 76.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "enel": {
+  "page": "https://onepiece.fandom.com/wiki/Enel",
+  "file": "Enel_Anime_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 934,
+   "w": 900,
+   "h": 841,
+   "alpha": false,
+   "aspect": 1.0702,
+   "kb": 154.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "magellan": {
+  "page": "https://onepiece.fandom.com/wiki/File:Magellan_Anime_Pre_Timeskip_Infobox.png",
+  "file": "File:Magellan Anime Pre Timeskip Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1830,
+   "w": 492,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.5467,
+   "kb": 71.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "jewelry-bonney": {
+  "page": "https://onepiece.fandom.com/wiki/Jewelry_Bonney",
+  "file": "Jewelry_Bonney_Anime_Post_Timeskip_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 665,
+   "srcH": 999,
+   "w": 599,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6656,
+   "kb": 115.7
+  },
+  "fetched": "2026-10-23"
+ }
+}

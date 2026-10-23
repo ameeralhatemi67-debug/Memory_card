@@ -206,7 +206,7 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
       if (cd == null) continue;
       final fid = folders[cd.folder] ??=
           (store.data.folders.where((f) => f.name == cd.folder).firstOrNull ?? store.createFolder(cd.folder, atTop: false)).id;
-      final d = store.addCatalogDeck(id, fid, reverse: false);
+      final d = store.addCatalogDeck(id, fid);
       first ??= d.id;
     }
     if (store.data.folders.isEmpty) store.createFolder('Library');

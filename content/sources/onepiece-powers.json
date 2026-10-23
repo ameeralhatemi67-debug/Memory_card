@@ -1,0 +1,642 @@
+{
+ "gomu-gomu-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Gomu_Gomu_no_Mi",
+  "file": "Gomu_Gomu_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 687,
+   "srcH": 845,
+   "w": 687,
+   "h": 845,
+   "alpha": false,
+   "aspect": 0.813,
+   "kb": 74.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "mera-mera-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Mera_Mera_no_Mi",
+  "file": "Mera_Mera_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 455,
+   "srcH": 502,
+   "w": 455,
+   "h": 502,
+   "alpha": false,
+   "aspect": 0.9064,
+   "kb": 53.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "hito-hito-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Hito_Hito_no_Mi",
+  "file": "Hito_Hito_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 470,
+   "srcH": 740,
+   "w": 470,
+   "h": 740,
+   "alpha": false,
+   "aspect": 0.6351,
+   "kb": 74.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "gear-fifth": {
+  "page": "https://onepiece.fandom.com/wiki/Gomu_Gomu_no_Mi/Gear_5_Techniques",
+  "file": "Gear_5_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 730,
+   "srcH": 919,
+   "w": 730,
+   "h": 919,
+   "alpha": false,
+   "aspect": 0.7943,
+   "kb": 72.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "ope-ope-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Ope_Ope_no_Mi",
+  "file": "Ope_Ope_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 877,
+   "srcH": 935,
+   "w": 877,
+   "h": 935,
+   "alpha": false,
+   "aspect": 0.938,
+   "kb": 74.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "gura-gura-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Gura_Gura_no_Mi",
+  "file": "Gura_Gura_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 452,
+   "srcH": 696,
+   "w": 452,
+   "h": 696,
+   "alpha": false,
+   "aspect": 0.6494,
+   "kb": 110.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "yami-yami-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Yami_Yami_no_Mi",
+  "file": "Yami_Yami_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 762,
+   "w": 960,
+   "h": 732,
+   "alpha": false,
+   "aspect": 1.3115,
+   "kb": 67.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "hie-hie-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Hie_Hie_no_Mi",
+  "file": "Hie_Hie_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 66.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "magu-magu-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Magu_Magu_no_Mi",
+  "file": "Magu_Magu_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 745,
+   "w": 960,
+   "h": 715,
+   "alpha": false,
+   "aspect": 1.3427,
+   "kb": 101.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "pika-pika-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Pika_Pika_no_Mi",
+  "file": "Pika_Pika_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 70.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "suna-suna-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Suna_Suna_no_Mi",
+  "file": "Suna_Suna_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 582,
+   "srcH": 550,
+   "w": 582,
+   "h": 550,
+   "alpha": false,
+   "aspect": 1.0582,
+   "kb": 109.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "mochi-mochi-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Mochi_Mochi_no_Mi",
+  "file": "Mochi_Mochi_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 473,
+   "srcH": 658,
+   "w": 473,
+   "h": 658,
+   "alpha": false,
+   "aspect": 0.7188,
+   "kb": 90.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "hana-hana-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Hana_Hana_no_Mi",
+  "file": "Hana_Hana_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 580,
+   "srcH": 738,
+   "w": 580,
+   "h": 738,
+   "alpha": false,
+   "aspect": 0.7859,
+   "kb": 112.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "yomi-yomi-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Yomi_Yomi_no_Mi",
+  "file": "Yomi_Yomi_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 476,
+   "srcH": 655,
+   "w": 476,
+   "h": 655,
+   "alpha": false,
+   "aspect": 0.7267,
+   "kb": 85.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "ito-ito-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Ito_Ito_no_Mi",
+  "file": "Ito_Ito_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 923,
+   "w": 960,
+   "h": 886,
+   "alpha": false,
+   "aspect": 1.0835,
+   "kb": 99.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "doku-doku-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Doku_Doku_no_Mi",
+  "file": "Doku_Doku_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 602,
+   "w": 960,
+   "h": 578,
+   "alpha": false,
+   "aspect": 1.6609,
+   "kb": 76.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "mero-mero-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Mero_Mero_no_Mi",
+  "file": "Mero_Mero_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 606,
+   "srcH": 585,
+   "w": 606,
+   "h": 585,
+   "alpha": false,
+   "aspect": 1.0359,
+   "kb": 86.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "moku-moku-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Moku_Moku_no_Mi",
+  "file": "Moku_Moku_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 538,
+   "srcH": 748,
+   "w": 538,
+   "h": 748,
+   "alpha": false,
+   "aspect": 0.7193,
+   "kb": 85.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "zushi-zushi-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Zushi_Zushi_no_Mi",
+  "file": "Zushi_Zushi_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 126.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "goro-goro-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Goro_Goro_no_Mi",
+  "file": "Goro_Goro_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 650,
+   "srcH": 615,
+   "w": 650,
+   "h": 615,
+   "alpha": false,
+   "aspect": 1.0569,
+   "kb": 94.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "kage-kage-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Kage_Kage_no_Mi",
+  "file": "Kage_Kage_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 612,
+   "srcH": 637,
+   "w": 612,
+   "h": 637,
+   "alpha": false,
+   "aspect": 0.9608,
+   "kb": 101.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "jiki-jiki-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Jiki_Jiki_no_Mi",
+  "file": "Jiki_Jiki_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 390,
+   "srcH": 459,
+   "w": 390,
+   "h": 459,
+   "alpha": false,
+   "aspect": 0.8497,
+   "kb": 44.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "uo-uo-no-mi-seiryu": {
+  "page": "https://onepiece.fandom.com/wiki/Uo_Uo_no_Mi,_Model:_Seiryu",
+  "file": "Uo_Uo_no_Mi,_Model_Seiryu_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 475,
+   "srcH": 807,
+   "w": 475,
+   "h": 807,
+   "alpha": false,
+   "aspect": 0.5886,
+   "kb": 103.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "tori-tori-no-mi-phoenix": {
+  "page": "https://onepiece.fandom.com/wiki/Tori_Tori_no_Mi,_Model:_Phoenix",
+  "file": "Tori_Tori_no_Mi,_Model_Phoenix_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 532,
+   "srcH": 727,
+   "w": 532,
+   "h": 727,
+   "alpha": false,
+   "aspect": 0.7318,
+   "kb": 122.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "bara-bara-no-mi": {
+  "page": "https://onepiece.fandom.com/wiki/Bara_Bara_no_Mi",
+  "file": "Bara_Bara_no_Mi_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 576,
+   "srcH": 552,
+   "w": 576,
+   "h": 552,
+   "alpha": false,
+   "aspect": 1.0435,
+   "kb": 34.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "observation-haki": {
+  "page": "https://onepiece.fandom.com/wiki/File:Observation_Haki.png",
+  "file": "File:Observation Haki.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 53.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "armament-haki": {
+  "page": "https://onepiece.fandom.com/wiki/Haki/Armament_Haki",
+  "file": "Armament_Haki_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 95.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "conquerors-haki": {
+  "page": "https://onepiece.fandom.com/wiki/File:Luffy's_Supreme_King_Haki_at_Marineford.png",
+  "file": "File:Luffy's Supreme King Haki at Marineford.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 564,
+   "w": 960,
+   "h": 541,
+   "alpha": false,
+   "aspect": 1.7745,
+   "kb": 106.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "geppo": {
+  "page": "https://onepiece.fandom.com/wiki/Six_Powers/Geppo",
+  "file": "Geppo.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 599,
+   "w": 960,
+   "h": 575,
+   "alpha": false,
+   "aspect": 1.6696,
+   "kb": 76.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "soru": {
+  "page": "https://onepiece.fandom.com/wiki/Six_Powers/Soru",
+  "file": "Soru_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 960,
+   "h": 720,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 83.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "shigan": {
+  "page": "https://onepiece.fandom.com/wiki/Six_Powers/Shigan",
+  "file": "Shigan.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 629,
+   "w": 960,
+   "h": 604,
+   "alpha": false,
+   "aspect": 1.5894,
+   "kb": 68.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "tekkai": {
+  "page": "https://onepiece.fandom.com/wiki/Six_Powers/Tekkai",
+  "file": "Tekkai_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 83.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "rankyaku": {
+  "page": "https://onepiece.fandom.com/wiki/Six_Powers/Rankyaku",
+  "file": "Rankyaku.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 50.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "kami-e": {
+  "page": "https://onepiece.fandom.com/wiki/Six_Powers/Kami-e",
+  "file": "Kami-e.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 702,
+   "w": 960,
+   "h": 674,
+   "alpha": false,
+   "aspect": 1.4243,
+   "kb": 150.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "gear-second": {
+  "page": "https://onepiece.fandom.com/wiki/Gomu_Gomu_no_Mi/Gear_2_Techniques",
+  "file": "Gear_2_Techniques_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 698,
+   "srcH": 1000,
+   "w": 670,
+   "h": 960,
+   "alpha": false,
+   "aspect": 0.6979,
+   "kb": 203.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "gear-third": {
+  "page": "https://onepiece.fandom.com/wiki/Gomu_Gomu_no_Mi/Gear_3_Techniques",
+  "file": "Gear_3.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 84.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "gear-fourth": {
+  "page": "https://onepiece.fandom.com/wiki/Gomu_Gomu_no_Mi/Gear_4_Techniques",
+  "file": "Gear_4_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 938,
+   "w": 960,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0667,
+   "kb": 125.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "santoryu": {
+  "page": "https://onepiece.fandom.com/wiki/File:Tatsu_Maki_TSS.png",
+  "file": "File:Tatsu Maki TSS.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1100,
+   "w": 873,
+   "h": 960,
+   "alpha": false,
+   "aspect": 0.9094,
+   "kb": 126.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "asura": {
+  "page": "https://onepiece.fandom.com/wiki/Three_Sword_Style/Nine_Sword_Style",
+  "file": "Nine_Sword_Style.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 72.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "diable-jambe": {
+  "page": "https://onepiece.fandom.com/wiki/Black_Leg_Style/Diable_Jambe",
+  "file": "Diable_Jambe.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 469,
+   "srcH": 999,
+   "w": 451,
+   "h": 960,
+   "alpha": false,
+   "aspect": 0.4698,
+   "kb": 138.3
+  },
+  "fetched": "2026-10-23"
+ }
+}

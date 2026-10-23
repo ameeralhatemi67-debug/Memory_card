@@ -1,0 +1,314 @@
+{
+  "id": "naruto-powers",
+  "name": "Naruto · Powers",
+  "mono": "Na",
+  "category": "knowledge",
+  "level": "anime",
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Name the jutsu, eyes and modes of Naruto, from the Rasengan and Chidori to Susanoo and the Rinnegan.",
+  "style": {
+    "front": "above",
+    "fit": "cover",
+    "back": "text",
+    "reverse": true
+  },
+  "cards": [
+    {
+      "img": "rasengan.jpg",
+      "front": "",
+      "back": "Rasengan",
+      "label": "technique",
+      "example": "",
+      "hook": "Naruto's spinning sphere of chakra, which he learned from Jiraiya."
+    },
+    {
+      "img": "chidori.jpg",
+      "front": "",
+      "back": "Chidori",
+      "label": "technique",
+      "example": "",
+      "hook": "Lightning chakra in the hand, created by Kakashi and used by Sasuke."
+    },
+    {
+      "img": "shadow-clone.jpg",
+      "front": "",
+      "back": "Shadow Clone Jutsu",
+      "label": "technique",
+      "example": "",
+      "hook": "Naruto's trademark: splits his chakra into solid copies of himself."
+    },
+    {
+      "img": "sharingan.jpg",
+      "front": "",
+      "back": "Sharingan",
+      "label": "technique",
+      "example": "",
+      "hook": "Uchiha eye that copies jutsu and reads movements; Kakashi has one too."
+    },
+    {
+      "img": "byakugan.jpg",
+      "front": "",
+      "back": "Byakugan",
+      "label": "technique",
+      "example": "",
+      "hook": "Hyuga eye with near-360° vision that sees chakra flow and through walls."
+    },
+    {
+      "img": "rinnegan.jpg",
+      "front": "",
+      "back": "Rinnegan",
+      "label": "technique",
+      "example": "",
+      "hook": "Ultimate eye that bends chakra and gravity; Nagato and Sasuke wielded it."
+    },
+    {
+      "img": "sage-mode.jpg",
+      "front": "",
+      "back": "Sage Mode",
+      "label": "technique",
+      "example": "",
+      "hook": "Natural-energy mode that Naruto learned from Jiraiya and the toads."
+    },
+    {
+      "img": "susanoo.jpg",
+      "front": "",
+      "back": "Susanoo",
+      "label": "technique",
+      "example": "",
+      "hook": "Giant chakra warrior that surrounds its user; Sasuke, Itachi and Madara wielded it."
+    },
+    {
+      "img": "amaterasu.jpg",
+      "front": "",
+      "back": "Amaterasu",
+      "label": "technique",
+      "example": "",
+      "hook": "Black flames that burn until the target is consumed; a Mangekyō power."
+    },
+    {
+      "img": "eight-gates.jpg",
+      "front": "",
+      "back": "Eight Inner Gates",
+      "label": "technique",
+      "example": "",
+      "hook": "Rock Lee's taijutsu: opening the gates gives huge power at a terrible cost."
+    },
+    {
+      "img": "edo-tensei.jpg",
+      "front": "",
+      "back": "Edo Tensei",
+      "label": "technique",
+      "example": "",
+      "hook": "Reanimates the dead as controllable bodies; Orochimaru and Kabuto used it."
+    },
+    {
+      "img": "tailed-beast-bomb.jpg",
+      "front": "",
+      "back": "Tailed Beast Bomb",
+      "label": "technique",
+      "example": "",
+      "hook": "A tailed beast's ball of compressed chakra, fired at enemies by Kurama."
+    },
+    {
+      "img": "mangekyo-sharingan.jpg",
+      "front": "",
+      "back": "Mangekyō Sharingan",
+      "label": "technique",
+      "example": "",
+      "hook": "Advanced Sharingan that unlocks powers like Amaterasu and Tsukuyomi."
+    },
+    {
+      "img": "eternal-mangekyo.jpg",
+      "front": "",
+      "back": "Eternal Mangekyō Sharingan",
+      "label": "technique",
+      "example": "",
+      "hook": "Advanced Mangekyō form, awakened only after great trauma; Sasuke's eyes."
+    },
+    {
+      "img": "rasenshuriken.jpg",
+      "front": "",
+      "back": "Rasenshuriken",
+      "label": "technique",
+      "example": "",
+      "hook": "A Rasengan infused with wind chakra, Naruto's powerful spinning blade."
+    },
+    {
+      "img": "kamui.jpg",
+      "front": "",
+      "back": "Kamui",
+      "label": "technique",
+      "example": "",
+      "hook": "Dimension-warping ability that pulls targets or attacks into another space; Obito's."
+    },
+    {
+      "img": "shinra-tensei.jpg",
+      "front": "",
+      "back": "Shinra Tensei",
+      "label": "technique",
+      "example": "",
+      "hook": "Pain's gravity push that blasts everything away from the user."
+    },
+    {
+      "img": "chibaku-tensei.jpg",
+      "front": "",
+      "back": "Chibaku Tensei",
+      "label": "technique",
+      "example": "",
+      "hook": "Planetary Devastation: pulls the land into a floating black orb."
+    },
+    {
+      "img": "kirin.jpg",
+      "front": "",
+      "back": "Kirin",
+      "label": "technique",
+      "example": "",
+      "hook": "Lightning Release technique that calls a thunder strike from the sky; created by Sasuke."
+    },
+    {
+      "img": "summoning-jutsu.jpg",
+      "front": "",
+      "back": "Summoning Jutsu",
+      "label": "technique",
+      "example": "",
+      "hook": "Calls summons such as toads, snakes and slugs through a blood contract."
+    },
+    {
+      "img": "hiraishin.jpg",
+      "front": "",
+      "back": "Flying Thunder God",
+      "label": "technique",
+      "example": "",
+      "hook": "Teleports the user to marked kunai; the Fourth Hokage Minato's signature."
+    },
+    {
+      "img": "tsukuyomi.jpg",
+      "front": "",
+      "back": "Tsukuyomi",
+      "label": "technique",
+      "example": "",
+      "hook": "Mangekyō genjutsu that traps the victim's mind in a 72-hour illusion."
+    },
+    {
+      "img": "wood-release.jpg",
+      "front": "",
+      "back": "Wood Release",
+      "label": "technique",
+      "example": "",
+      "hook": "Mokuton, Hashirama's bloodline: grows trees, walls and cages; Yamato uses it."
+    },
+    {
+      "img": "shadow-possession.jpg",
+      "front": "",
+      "back": "Shadow Possession Jutsu",
+      "label": "technique",
+      "example": "",
+      "hook": "Shikamaru's jutsu that links his shadow to a foe and controls their body."
+    },
+    {
+      "img": "great-fireball.jpg",
+      "front": "",
+      "back": "Great Fireball Jutsu",
+      "label": "technique",
+      "example": "",
+      "hook": "Fire Release: a huge fireball, a classic Uchiha technique like Itachi's."
+    },
+    {
+      "img": "gentle-fist.jpg",
+      "front": "",
+      "back": "Gentle Fist",
+      "label": "technique",
+      "example": "",
+      "hook": "Hyuga palm strikes that close chakra points; Neji uses it against Naruto."
+    },
+    {
+      "img": "six-paths-sage.jpg",
+      "front": "",
+      "back": "Six Paths Sage Mode",
+      "label": "technique",
+      "example": "",
+      "hook": "Naruto's Six Paths power, drawn from the Sage of the Six Paths."
+    },
+    {
+      "img": "nine-tails-mode.jpg",
+      "front": "",
+      "back": "Nine-Tails Chakra Mode",
+      "label": "technique",
+      "example": "",
+      "hook": "Kurama's chakra cloak: fox features, a fiery tail and a big power boost."
+    },
+    {
+      "img": "lava-release.jpg",
+      "front": "",
+      "back": "Lava Release",
+      "label": "technique",
+      "example": "",
+      "hook": "Roshi's bloodline: turns chakra into molten lava that burns everything."
+    },
+    {
+      "img": "shikotsumyaku.jpg",
+      "front": "",
+      "back": "Shikotsumyaku",
+      "label": "technique",
+      "example": "",
+      "hook": "Kimimaro's bone technique: spikes and blades grow from his own skeleton."
+    },
+    {
+      "img": "adamantine-chains.jpg",
+      "front": "",
+      "back": "Adamantine Sealing Chains",
+      "label": "technique",
+      "example": "",
+      "hook": "Uzumaki chakra chains, tough enough that even the Nine-Tails struggles to break them."
+    },
+    {
+      "img": "dust-release.jpg",
+      "front": "",
+      "back": "Dust Release",
+      "label": "technique",
+      "example": "",
+      "hook": "Ōnoki's Jinton that turns whatever it touches into fine dust."
+    },
+    {
+      "img": "raikiri.jpg",
+      "front": "",
+      "back": "Lightning Blade",
+      "label": "technique",
+      "example": "",
+      "hook": "Kakashi's chakra blade of lightning that pierces through targets."
+    },
+    {
+      "img": "body-flicker.jpg",
+      "front": "",
+      "back": "Body Flicker Technique",
+      "label": "technique",
+      "example": "",
+      "hook": "A ninja speed move that jumps the user in an instant, with a puff of smoke."
+    },
+    {
+      "img": "substitution.jpg",
+      "front": "",
+      "back": "Substitution Jutsu",
+      "label": "technique",
+      "example": "",
+      "hook": "Kawarimi: swap places with a nearby log to dodge an attack."
+    },
+    {
+      "img": "sand-coffin.jpg",
+      "front": "",
+      "back": "Sand Coffin",
+      "label": "technique",
+      "example": "",
+      "hook": "Gaara's sand technique that encases an enemy in a sand coffin."
+    },
+    {
+      "img": "mind-transfer.jpg",
+      "front": "",
+      "back": "Mind Transfer Jutsu",
+      "label": "technique",
+      "example": "",
+      "hook": "Yamanaka clan jutsu that moves the user's mind into another person's body."
+    }
+  ]
+}

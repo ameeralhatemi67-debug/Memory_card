@@ -33,3 +33,7 @@ release/
 
 # Texture contact sheet (regenerate with python tools/make_textures.py)
 tools/textures_preview.png
+
+# image toolkit staging
+content/_imgwork/
+tools/__pycache__/

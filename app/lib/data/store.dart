@@ -4,12 +4,14 @@ import 'dart:io';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
+import 'package:path_provider/path_provider.dart';
 
 import '../engine/assessor.dart';
 import '../engine/days.dart';
 import '../engine/seals.dart';
 import '../engine/study_engine.dart';
 import 'app_data.dart';
+import 'card_layout.dart';
 import 'catalog.dart';
 import 'models.dart';
 import 'persistence.dart';
@@ -23,13 +25,26 @@ String uid(String prefix) =>
 
 /// Fields of a card being written in the editor.
 class CardDraft {
-  const CardDraft({required this.front, required this.back, this.label = '', this.example = '', this.hook = '', this.image});
+  const CardDraft({
+    required this.front,
+    required this.back,
+    this.label = '',
+    this.example = '',
+    this.hook = '',
+    this.image,
+    this.frontLayout,
+    this.backLayout,
+  });
   final String front;
   final String back;
   final String label;
   final String example;
   final String hook;
+
+  /// The older single picture (kept so imported or old cards still show it).
   final String? image;
+  final SideLayout? frontLayout;
+  final SideLayout? backLayout;
 }
 
 /// Everything needed to undo one swipe exactly (RES-47 §5.1: stack, card state and review log).
@@ -401,7 +416,7 @@ class AppStore extends ChangeNotifier {
 
   /// Adds a shop deck to [folderId]. New decks start with up to 15 active cards; the rest wait in the
   /// reservoir and join as you get comfortable (Intense puts them all in at once).
-  Deck addCatalogDeck(String catalogId, String folderId, {bool reverse = false}) {
+  Deck addCatalogDeck(String catalogId, String folderId, {bool? reverse}) {
     final cd = catalog.byId(catalogId)!;
     final d = createDeck(
       name: cd.name,
@@ -416,9 +431,20 @@ class AppStore extends ChangeNotifier {
     );
     final rows = [
       for (final c in cd.cards)
-        CardDraft(front: c.front, back: c.back, label: c.label, example: c.example, hook: c.hook),
+        () {
+          final (fl, bl) = cd.layoutsFor(c);
+          return CardDraft(
+            front: c.front,
+            back: c.back,
+            label: c.label,
+            example: c.example,
+            hook: c.hook,
+            frontLayout: fl,
+            backLayout: bl,
+          );
+        }(),
     ];
-    _fillNewDeck(d, rows, reverse: reverse);
+    _fillNewDeck(d, rows, reverse: reverse ?? cd.style.reverse);
     data.shopAdded[cd.id] = d.id;
     _saveMeta();
     _changed();
@@ -458,6 +484,8 @@ class AppStore extends ChangeNotifier {
       example: r.example.trim(),
       hook: r.hook.trim(),
       image: r.image,
+      frontLayout: r.frontLayout?.copy(),
+      backLayout: r.backLayout?.copy(),
       created: now(),
     );
     data.cards[c.id] = c;
@@ -473,6 +501,9 @@ class AppStore extends ChangeNotifier {
       back: c.front,
       label: 'reverse',
       hook: c.hook,
+      // The reverse shows what the original hid: pictures swap sides along with the words.
+      frontLayout: c.backLayout?.flagged(blur: false),
+      backLayout: c.frontLayout?.flagged(blur: true) ?? _pictureOnBack(c),
       isReverse: true,
       siblingId: c.id,
       created: now(),
@@ -481,6 +512,13 @@ class AppStore extends ChangeNotifier {
     data.cards[rc.id] = rc;
     d.cardIds.add(rc.id);
     return rc;
+  }
+
+  /// A card that has only the older single picture: its reverse shows that picture as the answer.
+  SideLayout? _pictureOnBack(CardItem c) {
+    final src = c.image;
+    if (src == null || src.isEmpty) return null;
+    return SideLayout.forPicture(Tpl.below, back: true, src: src, blur: true);
   }
 
   // ---------------------------------------------------------------- cards
@@ -522,14 +560,18 @@ class AppStore extends ChangeNotifier {
       ..label = draft.label.trim()
       ..example = draft.example.trim()
       ..hook = draft.hook.trim()
-      ..image = draft.image;
+      ..image = draft.image
+      ..frontLayout = draft.frontLayout?.copy()
+      ..backLayout = draft.backLayout?.copy();
     _db.saveCard(c);
     final sib = c.siblingId == null ? null : data.cards[c.siblingId];
     if (sib != null) {
       sib
         ..front = c.back
         ..back = c.front
-        ..hook = c.hook;
+        ..hook = c.hook
+        ..frontLayout = c.backLayout?.flagged(blur: false)
+        ..backLayout = c.frontLayout?.flagged(blur: true) ?? _pictureOnBack(c);
       _db.saveCard(sib);
     }
     _changed();
@@ -857,16 +899,69 @@ class AppStore extends ChangeNotifier {
 
   // ---------------------------------------------------------------- backup
 
-  /// On a phone, card images are files: a backup carries them inline so they survive a move to a new phone.
-  static Map<String, Object?> _embedImage(Map<String, Object?> j) {
-    final src = j['img'];
-    if (kIsWeb || src is! String || src.startsWith('data:') || src.startsWith('http')) return j;
+  static String _mimeOf(String path) {
+    final p = path.toLowerCase();
+    return p.endsWith('.png') ? 'image/png' : (p.endsWith('.webp') ? 'image/webp' : 'image/jpeg');
+  }
+
+  /// A picture file as a data URI (anything else — bundled `asset:` pictures, data URIs — stays as it is).
+  static Object? _embedSrc(Object? src) {
+    if (kIsWeb || src is! String || src.isEmpty || src.startsWith('data:') || src.startsWith('http') || src.startsWith('asset:')) return src;
     try {
       final f = File(src);
-      if (!f.existsSync()) return j;
-      return {...j, 'img': 'data:image/jpeg;base64,${base64Encode(f.readAsBytesSync())}'};
+      if (!f.existsSync()) return src;
+      return 'data:${_mimeOf(src)};base64,${base64Encode(f.readAsBytesSync())}';
     } catch (_) {
-      return j;
+      return src;
+    }
+  }
+
+  /// On a phone, card pictures are files: a backup carries them inline (the older single picture and
+  /// every picture in a card's layouts) so they survive a move to a new phone.
+  static Map<String, Object?> _embedImage(Map<String, Object?> j) {
+    var out = {...j, 'img': _embedSrc(j['img'])};
+    for (final key in const ['fl', 'bl']) {
+      final side = j[key];
+      if (side is! Map) continue;
+      final els = [
+        for (final e in (side['e'] as List?) ?? const [])
+          if (e is Map && e['k'] == 'i') {...e, 's': _embedSrc(e['s'])} else e,
+      ];
+      out = {...out, key: {...side, 'e': els}};
+    }
+    return out;
+  }
+
+  /// The reverse of embedding: pictures that came back inside a backup are written to files again, so
+  /// cards do not decode a huge data URI every time they are drawn.
+  Future<void> _restorePictures() async {
+    if (kIsWeb) return;
+    Directory? folder;
+    Future<String> toFile(String src) async {
+      if (!src.startsWith('data:')) return src;
+      try {
+        folder ??= Directory('${(await getApplicationDocumentsDirectory()).path}/card_images');
+        if (!await folder!.exists()) await folder!.create(recursive: true);
+        final data = Uri.parse(src).data;
+        if (data == null) return src;
+        final ext = data.mimeType == 'image/png' ? 'png' : (data.mimeType == 'image/webp' ? 'webp' : 'jpg');
+        final path = '${folder!.path}/${uid('img')}.$ext';
+        await File(path).writeAsBytes(data.contentAsBytes(), flush: true);
+        return path;
+      } catch (_) {
+        return src; // no storage plugin (tests): the data URI keeps working
+      }
+    }
+
+    for (final c in data.cards.values) {
+      final legacy = c.image;
+      if (legacy != null && legacy.startsWith('data:')) c.image = await toFile(legacy);
+      for (final side in [c.frontLayout, c.backLayout]) {
+        if (side == null) continue;
+        for (final img in side.images) {
+          img.src = await toFile(img.src);
+        }
+      }
     }
   }
 
@@ -907,6 +1002,7 @@ class AppStore extends ChangeNotifier {
     data.cards
       ..clear()
       ..addEntries((j['cards'] as List).map((e) => CardItem.fromJson(e as Map)).map((c) => MapEntry(c.id, c)));
+    await _restorePictures();
     data.settings = Settings.fromJson(j['settings'] as Map?);
     if (j['profile'] is Map) data.profile = Profile.fromJson(j['profile'] as Map);
     data.today = j['today'] is Map ? Today.fromJson(j['today'] as Map) : null;

@@ -1,0 +1,770 @@
+{
+ "jp": {
+  "page": "https://flagcdn.com/jp.svg",
+  "file": "flagcdn w640 jp",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 3.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "cn": {
+  "page": "https://flagcdn.com/cn.svg",
+  "file": "flagcdn w640 cn",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 4.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "kr": {
+  "page": "https://flagcdn.com/kr.svg",
+  "file": "flagcdn w640 kr",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 10.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "in": {
+  "page": "https://flagcdn.com/in.svg",
+  "file": "flagcdn w640 in",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 9.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "kp": {
+  "page": "https://flagcdn.com/kp.svg",
+  "file": "flagcdn w640 kp",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 320,
+   "w": 640,
+   "h": 320,
+   "alpha": false,
+   "aspect": 2.0,
+   "kb": 3.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "sa": {
+  "page": "https://flagcdn.com/sa.svg",
+  "file": "flagcdn w640 sa",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 19.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "tr": {
+  "page": "https://flagcdn.com/tr.svg",
+  "file": "flagcdn w640 tr",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 5.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "ir": {
+  "page": "https://flagcdn.com/ir.svg",
+  "file": "flagcdn w640 ir",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 366,
+   "w": 640,
+   "h": 366,
+   "alpha": false,
+   "aspect": 1.7486,
+   "kb": 7.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "il": {
+  "page": "https://flagcdn.com/il.svg",
+  "file": "flagcdn w640 il",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 465,
+   "w": 640,
+   "h": 465,
+   "alpha": false,
+   "aspect": 1.3763,
+   "kb": 5.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "id": {
+  "page": "https://flagcdn.com/id.svg",
+  "file": "flagcdn w640 id",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 1.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "pk": {
+  "page": "https://flagcdn.com/pk.svg",
+  "file": "flagcdn w640 pk",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 4.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "th": {
+  "page": "https://flagcdn.com/th.svg",
+  "file": "flagcdn w640 th",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 1.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "vn": {
+  "page": "https://flagcdn.com/vn.svg",
+  "file": "flagcdn w640 vn",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 3.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "ph": {
+  "page": "https://flagcdn.com/ph.svg",
+  "file": "flagcdn w640 ph",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 320,
+   "w": 640,
+   "h": 320,
+   "alpha": false,
+   "aspect": 2.0,
+   "kb": 8.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "my": {
+  "page": "https://flagcdn.com/my.svg",
+  "file": "flagcdn w640 my",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 320,
+   "w": 640,
+   "h": 320,
+   "alpha": false,
+   "aspect": 2.0,
+   "kb": 5.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "sg": {
+  "page": "https://flagcdn.com/sg.svg",
+  "file": "flagcdn w640 sg",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 6.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "ae": {
+  "page": "https://flagcdn.com/ae.svg",
+  "file": "flagcdn w640 ae",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 320,
+   "w": 640,
+   "h": 320,
+   "alpha": false,
+   "aspect": 2.0,
+   "kb": 1.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "iq": {
+  "page": "https://flagcdn.com/iq.svg",
+  "file": "flagcdn w640 iq",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 3.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "af": {
+  "page": "https://flagcdn.com/af.svg",
+  "file": "flagcdn w640 af",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 79.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "bd": {
+  "page": "https://flagcdn.com/bd.svg",
+  "file": "flagcdn w640 bd",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 384,
+   "w": 640,
+   "h": 384,
+   "alpha": false,
+   "aspect": 1.6667,
+   "kb": 2.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "np": {
+  "page": "https://flagcdn.com/np.svg",
+  "file": "flagcdn w640 np",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 780,
+   "w": 525,
+   "h": 640,
+   "alpha": true,
+   "aspect": 0.8203,
+   "kb": 50.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "lk": {
+  "page": "https://flagcdn.com/lk.svg",
+  "file": "flagcdn w640 lk",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 320,
+   "w": 640,
+   "h": 320,
+   "alpha": false,
+   "aspect": 2.0,
+   "kb": 22.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "mm": {
+  "page": "https://flagcdn.com/mm.svg",
+  "file": "flagcdn w640 mm",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 4.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "kh": {
+  "page": "https://flagcdn.com/kh.svg",
+  "file": "flagcdn w640 kh",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 410,
+   "w": 640,
+   "h": 410,
+   "alpha": false,
+   "aspect": 1.561,
+   "kb": 16.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "la": {
+  "page": "https://flagcdn.com/la.svg",
+  "file": "flagcdn w640 la",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 2.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "mn": {
+  "page": "https://flagcdn.com/mn.svg",
+  "file": "flagcdn w640 mn",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 320,
+   "w": 640,
+   "h": 320,
+   "alpha": false,
+   "aspect": 2.0,
+   "kb": 3.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "kz": {
+  "page": "https://flagcdn.com/kz.svg",
+  "file": "flagcdn w640 kz",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 320,
+   "w": 640,
+   "h": 320,
+   "alpha": false,
+   "aspect": 2.0,
+   "kb": 22.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "uz": {
+  "page": "https://flagcdn.com/uz.svg",
+  "file": "flagcdn w640 uz",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 320,
+   "w": 640,
+   "h": 320,
+   "alpha": false,
+   "aspect": 2.0,
+   "kb": 2.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "tw": {
+  "page": "https://flagcdn.com/tw.svg",
+  "file": "flagcdn w640 tw",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 4.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "ps": {
+  "page": "https://flagcdn.com/ps.svg",
+  "file": "flagcdn w640 ps",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 320,
+   "w": 640,
+   "h": 320,
+   "alpha": false,
+   "aspect": 2.0,
+   "kb": 2.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "ge": {
+  "page": "https://flagcdn.com/ge.svg",
+  "file": "flagcdn w640 ge",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 4.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "am": {
+  "page": "https://flagcdn.com/am.svg",
+  "file": "flagcdn w640 am",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 320,
+   "w": 640,
+   "h": 320,
+   "alpha": false,
+   "aspect": 2.0,
+   "kb": 1.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "az": {
+  "page": "https://flagcdn.com/az.svg",
+  "file": "flagcdn w640 az",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 320,
+   "w": 640,
+   "h": 320,
+   "alpha": false,
+   "aspect": 2.0,
+   "kb": 2.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "kg": {
+  "page": "https://flagcdn.com/kg.svg",
+  "file": "flagcdn w640 kg",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 384,
+   "w": 640,
+   "h": 384,
+   "alpha": false,
+   "aspect": 1.6667,
+   "kb": 14.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "tj": {
+  "page": "https://flagcdn.com/tj.svg",
+  "file": "flagcdn w640 tj",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 320,
+   "w": 640,
+   "h": 320,
+   "alpha": false,
+   "aspect": 2.0,
+   "kb": 3.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "tm": {
+  "page": "https://flagcdn.com/tm.svg",
+  "file": "flagcdn w640 tm",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 51.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "sy": {
+  "page": "https://flagcdn.com/sy.svg",
+  "file": "flagcdn w640 sy",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 3.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "lb": {
+  "page": "https://flagcdn.com/lb.svg",
+  "file": "flagcdn w640 lb",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 5.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "jo": {
+  "page": "https://flagcdn.com/jo.svg",
+  "file": "flagcdn w640 jo",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 320,
+   "w": 640,
+   "h": 320,
+   "alpha": false,
+   "aspect": 2.0,
+   "kb": 2.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "qa": {
+  "page": "https://flagcdn.com/qa.svg",
+  "file": "flagcdn w640 qa",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 251,
+   "w": 640,
+   "h": 251,
+   "alpha": false,
+   "aspect": 2.5498,
+   "kb": 1.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "kw": {
+  "page": "https://flagcdn.com/kw.svg",
+  "file": "flagcdn w640 kw",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 320,
+   "w": 640,
+   "h": 320,
+   "alpha": false,
+   "aspect": 2.0,
+   "kb": 1.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "bh": {
+  "page": "https://flagcdn.com/bh.svg",
+  "file": "flagcdn w640 bh",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 384,
+   "w": 640,
+   "h": 384,
+   "alpha": false,
+   "aspect": 1.6667,
+   "kb": 2.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "om": {
+  "page": "https://flagcdn.com/om.svg",
+  "file": "flagcdn w640 om",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 366,
+   "w": 640,
+   "h": 366,
+   "alpha": false,
+   "aspect": 1.7486,
+   "kb": 7.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "ye": {
+  "page": "https://flagcdn.com/ye.svg",
+  "file": "flagcdn w640 ye",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 1.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "bn": {
+  "page": "https://flagcdn.com/bn.svg",
+  "file": "flagcdn w640 bn",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 320,
+   "w": 640,
+   "h": 320,
+   "alpha": false,
+   "aspect": 2.0,
+   "kb": 16.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "mv": {
+  "page": "https://flagcdn.com/mv.svg",
+  "file": "flagcdn w640 mv",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 2.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "bt": {
+  "page": "https://flagcdn.com/bt.svg",
+  "file": "flagcdn w640 bt",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 427,
+   "w": 640,
+   "h": 427,
+   "alpha": false,
+   "aspect": 1.4988,
+   "kb": 63.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "tl": {
+  "page": "https://flagcdn.com/tl.svg",
+  "file": "flagcdn w640 tl",
+  "license": "flag artwork, public domain",
+  "source": "flagcdn",
+  "facts": {
+   "srcW": 640,
+   "srcH": 320,
+   "w": 640,
+   "h": 320,
+   "alpha": false,
+   "aspect": 2.0,
+   "kb": 4.3
+  },
+  "fetched": "2026-10-23"
+ }
+}

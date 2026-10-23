@@ -1,0 +1,490 @@
+{
+  "id": "onepiece-characters",
+  "name": "One Piece · Characters",
+  "mono": "On",
+  "category": "knowledge",
+  "level": "anime",
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Put a name to the face: the Straw Hats, the Marines, the Four Emperors and the great villains and allies of One Piece.",
+  "style": {
+    "front": "full",
+    "fit": "cover",
+    "back": "text",
+    "reverse": true
+  },
+  "cards": [
+    {
+      "img": "monkey-d-luffy.jpg",
+      "front": "",
+      "back": "Monkey D. Luffy",
+      "label": "character",
+      "example": "",
+      "hook": "Straw Hat captain who ate the Gomu Gomu no Mi and seeks the One Piece."
+    },
+    {
+      "img": "roronoa-zoro.jpg",
+      "front": "",
+      "back": "Roronoa Zoro",
+      "label": "character",
+      "example": "",
+      "hook": "Straw Hat swordsman and master of the Three Sword Style, fighting with three swords."
+    },
+    {
+      "img": "nami.jpg",
+      "front": "",
+      "back": "Nami",
+      "label": "character",
+      "example": "",
+      "hook": "Straw Hat navigator nicknamed the Cat Burglar; her Clima-Tact controls the weather."
+    },
+    {
+      "img": "usopp.jpg",
+      "front": "",
+      "back": "Usopp",
+      "label": "character",
+      "example": "",
+      "hook": "Straw Hat sniper nicknamed God Usopp; joined at the end of the Syrup Village arc."
+    },
+    {
+      "img": "sanji.jpg",
+      "front": "",
+      "back": "Sanji",
+      "label": "character",
+      "example": "",
+      "hook": "Straw Hat cook nicknamed Black Leg; a martial artist who fights mainly with kicks."
+    },
+    {
+      "img": "tony-tony-chopper.jpg",
+      "front": "",
+      "back": "Tony Tony Chopper",
+      "label": "character",
+      "example": "",
+      "hook": "Straw Hat doctor, a reindeer who ate the Human-Human Fruit."
+    },
+    {
+      "img": "nico-robin.jpg",
+      "front": "",
+      "back": "Nico Robin",
+      "label": "character",
+      "example": "",
+      "hook": "Straw Hat archaeologist who sprouts body parts with her Flower-Flower fruit."
+    },
+    {
+      "img": "franky.jpg",
+      "front": "",
+      "back": "Franky",
+      "label": "character",
+      "example": "",
+      "hook": "Straw Hat shipwright and cyborg who built the Thousand Sunny."
+    },
+    {
+      "img": "brook.jpg",
+      "front": "",
+      "back": "Brook",
+      "label": "character",
+      "example": "",
+      "hook": "Straw Hat musician, a skeleton revived by the Revive-Revive fruit."
+    },
+    {
+      "img": "jinbe.jpg",
+      "front": "",
+      "back": "Jinbe",
+      "label": "character",
+      "example": "",
+      "hook": "Straw Hat helmsman, a whale shark fish-man and former Seven Warlord of the Sea."
+    },
+    {
+      "img": "monkey-d-garp.jpg",
+      "front": "",
+      "back": "Monkey D. Garp",
+      "label": "character",
+      "example": "",
+      "hook": "Marine vice admiral and Luffy's grandfather, nicknamed Garp the Fist."
+    },
+    {
+      "img": "akainu.png",
+      "front": "",
+      "back": "Akainu",
+      "label": "character",
+      "example": "",
+      "hook": "Current Fleet Admiral of the Marines; a magma user with the Magu Magu no Mi."
+    },
+    {
+      "img": "aokiji.jpg",
+      "front": "",
+      "back": "Aokiji",
+      "label": "character",
+      "example": "",
+      "hook": "Former Marine admiral with the Hie Hie no Mi; now a Blackbeard Pirates captain."
+    },
+    {
+      "img": "kizaru.jpg",
+      "front": "",
+      "back": "Kizaru",
+      "label": "character",
+      "example": "",
+      "hook": "Marine admiral with the Pika Pika no Mi; he moves at the speed of light."
+    },
+    {
+      "img": "fujitora.jpg",
+      "front": "",
+      "back": "Fujitora",
+      "label": "character",
+      "example": "",
+      "hook": "Blind Marine admiral who controls gravity with the Zushi Zushi no Mi."
+    },
+    {
+      "img": "sengoku.jpg",
+      "front": "",
+      "back": "Sengoku",
+      "label": "character",
+      "example": "",
+      "hook": "Former Fleet Admiral nicknamed the Buddha; retired after the Summit War."
+    },
+    {
+      "img": "smoker.jpg",
+      "front": "",
+      "back": "Smoker",
+      "label": "character",
+      "example": "",
+      "hook": "Marine vice admiral nicknamed the White Hunter; base commander of G-5."
+    },
+    {
+      "img": "tashigi.jpg",
+      "front": "",
+      "back": "Tashigi",
+      "label": "character",
+      "example": "",
+      "hook": "Marine captain and swordswoman who serves under Smoker at the G-5 base."
+    },
+    {
+      "img": "koby.jpg",
+      "front": "",
+      "back": "Koby",
+      "label": "character",
+      "example": "",
+      "hook": "Marine captain of the SWORD unit, trained by Vice Admiral Garp."
+    },
+    {
+      "img": "ryokugyu.jpg",
+      "front": "",
+      "back": "Ryokugyu",
+      "label": "character",
+      "example": "",
+      "hook": "Marine admiral and former policeman from the Taya Kingdom."
+    },
+    {
+      "img": "whitebeard.jpg",
+      "front": "",
+      "back": "Whitebeard",
+      "label": "character",
+      "example": "",
+      "hook": "Captain of the Whitebeard Pirates, widely known as the Strongest Man in the World."
+    },
+    {
+      "img": "shanks.jpg",
+      "front": "",
+      "back": "Shanks",
+      "label": "character",
+      "example": "",
+      "hook": "Red Hair Pirates captain and Four Emperor who gave Luffy his straw hat."
+    },
+    {
+      "img": "kaido.jpg",
+      "front": "",
+      "back": "Kaido",
+      "label": "character",
+      "example": "",
+      "hook": "Former Four Emperor called the Strongest Creature; the father of Yamato."
+    },
+    {
+      "img": "big-mom.jpg",
+      "front": "",
+      "back": "Big Mom",
+      "label": "character",
+      "example": "",
+      "hook": "The only female Emperor, captain of the Big Mom Pirates."
+    },
+    {
+      "img": "blackbeard.jpg",
+      "front": "",
+      "back": "Blackbeard",
+      "label": "character",
+      "example": "",
+      "hook": "One of the Four Emperors, leading the Blackbeard Pirates; ate the Yami Yami no Mi."
+    },
+    {
+      "img": "buggy.jpg",
+      "front": "",
+      "back": "Buggy",
+      "label": "character",
+      "example": "",
+      "hook": "Star Clown and captain of the Buggy Pirates, now one of the Four Emperors."
+    },
+    {
+      "img": "portgas-d-ace.jpg",
+      "front": "",
+      "back": "Portgas D. Ace",
+      "label": "character",
+      "example": "",
+      "hook": "Luffy's sworn brother and Whitebeard's 2nd division commander; ate the Mera Mera no Mi."
+    },
+    {
+      "img": "marco.jpg",
+      "front": "",
+      "back": "Marco",
+      "label": "character",
+      "example": "",
+      "hook": "Former 1st division commander of Whitebeard; a phoenix who regenerates."
+    },
+    {
+      "img": "trafalgar-law.jpg",
+      "front": "",
+      "back": "Trafalgar Law",
+      "label": "character",
+      "example": "",
+      "hook": "Surgeon of Death and captain of the Heart Pirates, who ate the Ope Ope no Mi."
+    },
+    {
+      "img": "eustass-kid.jpg",
+      "front": "",
+      "back": "Eustass Kid",
+      "label": "character",
+      "example": "",
+      "hook": "Captain of the Kid Pirates, a Worst Generation pirate with magnetic powers."
+    },
+    {
+      "img": "katakuri.jpg",
+      "front": "",
+      "back": "Katakuri",
+      "label": "character",
+      "example": "",
+      "hook": "One of Big Mom's Three Sweet Commanders, famed for seeing a moment into the future."
+    },
+    {
+      "img": "yamato.jpg",
+      "front": "",
+      "back": "Yamato",
+      "label": "character",
+      "example": "",
+      "hook": "Kaido's child who idolised the samurai Kouzuki Oden."
+    },
+    {
+      "img": "mihawk.jpg",
+      "front": "",
+      "back": "Dracule Mihawk",
+      "label": "character",
+      "example": "",
+      "hook": "The world's strongest swordsman; a former Seven Warlord of the Sea."
+    },
+    {
+      "img": "hancock.jpg",
+      "front": "",
+      "back": "Boa Hancock",
+      "label": "character",
+      "example": "",
+      "hook": "Pirate Empress and former Warlord; a Mero Mero no Mi user."
+    },
+    {
+      "img": "crocodile.jpg",
+      "front": "",
+      "back": "Crocodile",
+      "label": "character",
+      "example": "",
+      "hook": "Desert King and former Warlord; a sand user with the Suna Suna no Mi."
+    },
+    {
+      "img": "doflamingo.jpg",
+      "front": "",
+      "back": "Doflamingo",
+      "label": "character",
+      "example": "",
+      "hook": "Heavenly Yaksha, a former Warlord who controls people with the Ito Ito no Mi strings."
+    },
+    {
+      "img": "moria.jpg",
+      "front": "",
+      "back": "Gecko Moria",
+      "label": "character",
+      "example": "",
+      "hook": "Thriller Bark captain and former Seven Warlord of the Sea."
+    },
+    {
+      "img": "kuma.jpg",
+      "front": "",
+      "back": "Kuma",
+      "label": "character",
+      "example": "",
+      "hook": "Former Warlord and Revolutionary founding member, once king of the Sorbet Kingdom."
+    },
+    {
+      "img": "monkey-d-dragon.jpg",
+      "front": "",
+      "back": "Monkey D. Dragon",
+      "label": "character",
+      "example": "",
+      "hook": "Supreme commander and founder of the Revolutionary Army; Luffy's father."
+    },
+    {
+      "img": "sabo.jpg",
+      "front": "",
+      "back": "Sabo",
+      "label": "character",
+      "example": "",
+      "hook": "Revolutionary Army chief of staff and Luffy's sworn brother."
+    },
+    {
+      "img": "ivankov.jpg",
+      "front": "",
+      "back": "Emporio Ivankov",
+      "label": "character",
+      "example": "",
+      "hook": "Queen of the Kamabakka Kingdom and a founder of the Revolutionary Army."
+    },
+    {
+      "img": "morley.jpg",
+      "front": "",
+      "back": "Morley",
+      "label": "character",
+      "example": "",
+      "hook": "Giant Revolutionary commander of the West Army."
+    },
+    {
+      "img": "koala.jpg",
+      "front": "",
+      "back": "Koala",
+      "label": "character",
+      "example": "",
+      "hook": "Revolutionary officer and former slave on Mary Geoise, freed by Fisher Tiger."
+    },
+    {
+      "img": "nefertari-vivi.jpg",
+      "front": "",
+      "back": "Nefertari Vivi",
+      "label": "character",
+      "example": "",
+      "hook": "Princess of Arabasta and a close ally of the Straw Hat Pirates."
+    },
+    {
+      "img": "rayleigh.jpg",
+      "front": "",
+      "back": "Silvers Rayleigh",
+      "label": "character",
+      "example": "",
+      "hook": "Former Roger Pirates first mate, the Dark King; he tutored Luffy in Haki."
+    },
+    {
+      "img": "gol-d-roger.jpg",
+      "front": "",
+      "back": "Gol D. Roger",
+      "label": "character",
+      "example": "",
+      "hook": "The Pirate King, captain of the Roger Pirates who held the One Piece."
+    },
+    {
+      "img": "kouzuki-oden.jpg",
+      "front": "",
+      "back": "Kouzuki Oden",
+      "label": "character",
+      "example": "",
+      "hook": "Daimyo of Kuri in Wano and the father of Momonosuke."
+    },
+    {
+      "img": "momonosuke.jpg",
+      "front": "",
+      "back": "Momonosuke",
+      "label": "character",
+      "example": "",
+      "hook": "Shogun of Wano Country and son of Kouzuki Oden."
+    },
+    {
+      "img": "vegapunk.jpg",
+      "front": "",
+      "back": "Dr. Vegapunk",
+      "label": "character",
+      "example": "",
+      "hook": "Leading SSG scientist for the Marines, who studied how Devil Fruit powers work."
+    },
+    {
+      "img": "benn-beckman.jpg",
+      "front": "",
+      "back": "Benn Beckman",
+      "label": "character",
+      "example": "",
+      "hook": "First mate of the Red Hair Pirates, under Shanks."
+    },
+    {
+      "img": "shirahoshi.jpg",
+      "front": "",
+      "back": "Shirahoshi",
+      "label": "character",
+      "example": "",
+      "hook": "Mermaid Princess of Ryugu Kingdom, the youngest child of King Neptune."
+    },
+    {
+      "img": "fisher-tiger.jpg",
+      "front": "",
+      "back": "Fisher Tiger",
+      "label": "character",
+      "example": "",
+      "hook": "Sea bream fish-man and founder of the Sun Pirates, known as the Adventurer."
+    },
+    {
+      "img": "nekomamushi.jpg",
+      "front": "",
+      "back": "Nekomamushi",
+      "label": "character",
+      "example": "",
+      "hook": "Feline mink and former guardian of the Whale Forest on Zou."
+    },
+    {
+      "img": "yasopp.jpg",
+      "front": "",
+      "back": "Yasopp",
+      "label": "character",
+      "example": "",
+      "hook": "Red Hair Pirates sniper and the father of Usopp."
+    },
+    {
+      "img": "lucci.jpg",
+      "front": "",
+      "back": "Rob Lucci",
+      "label": "character",
+      "example": "",
+      "hook": "Former CP9 member, now a CP0 agent nicknamed Massacre Weapon."
+    },
+    {
+      "img": "kaku.jpg",
+      "front": "",
+      "back": "Kaku",
+      "label": "character",
+      "example": "",
+      "hook": "Former CP9 assassin who later became a masked CP0 agent."
+    },
+    {
+      "img": "enel.jpg",
+      "front": "",
+      "back": "Enel",
+      "label": "character",
+      "example": "",
+      "hook": "Former 'God' of Skypiea who ruled over the sky island with lightning."
+    },
+    {
+      "img": "magellan.jpg",
+      "front": "",
+      "back": "Magellan",
+      "label": "character",
+      "example": "",
+      "hook": "Vice warden of Impel Down who uses venom from the Doku Doku no Mi."
+    },
+    {
+      "img": "jewelry-bonney.jpg",
+      "front": "",
+      "back": "Jewelry Bonney",
+      "label": "character",
+      "example": "",
+      "hook": "Worst Generation pirate nicknamed the Big Eater; captain of the Bonney Pirates."
+    }
+  ]
+}

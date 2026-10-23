@@ -1,4 +1,5 @@
 import 'dart:convert';
+import 'dart:ui' as ui;
 
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
@@ -162,6 +163,45 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     },
                     onPick: (m) => store.updateSettings((x) => x.reveal = m),
                   ),
+                  const SizedBox(height: 14),
+                  Text('Pictures before the reveal', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
+                  const SizedBox(height: 8),
+                  Seg<String>(
+                    options: const ['blur', 'hide', 'show'],
+                    value: s.imageReveal,
+                    labelOf: (m) => const {'blur': 'Blur', 'hide': 'Hide', 'show': 'Show'}[m]!,
+                    onPick: (m) => store.updateSettings((x) => x.imageReveal = m),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    switch (s.imageReveal) {
+                      'blur' => 'Answer pictures peek out blurred behind "Tap to reveal", and any picture you marked '
+                          '"Blur until revealed" stays blurred until you reveal it.',
+                      'hide' => 'Pictures marked "Blur until revealed" stay invisible until you reveal them, and answers show no peek.',
+                      _ => 'Pictures are always shown clearly, nothing waits for the reveal.',
+                    },
+                    style: T.t(14, w: FontWeight.w500, color: mc.muted, height: 1.35),
+                  ),
+                  if (s.imageReveal == 'blur') ...[
+                    const SizedBox(height: 10),
+                    _BlurPreview(sigma: s.blurSigma),
+                    Row(children: [
+                      Text('Blur', style: T.t(14, w: FontWeight.w600, color: mc.muted)),
+                      Expanded(
+                        child: McSlider(
+                          value: s.blurAmount,
+                          divisions: 20,
+                          label: 'Blur strength',
+                          onChanged: (v) => store.updateSettings((x) => x.blurAmount = double.parse(v.toStringAsFixed(2))),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 40,
+                        child: Text('${(s.blurAmount * 100).round()}%',
+                            textAlign: TextAlign.right, style: T.t(14, w: FontWeight.w700, color: mc.ink)),
+                      ),
+                    ]),
+                  ],
                   const SizedBox(height: 14),
                   Text('Pace', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
                   const SizedBox(height: 8),
@@ -576,4 +616,69 @@ class _LabPanel extends StatelessWidget {
       ]),
     );
   }
+}
+
+
+/// A painted landscape under the current blur, so you can see what a picture looks like before the reveal.
+class _BlurPreview extends StatelessWidget {
+  const _BlurPreview({required this.sigma});
+  final double sigma;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12),
+      child: SizedBox(
+        height: 96,
+        child: LayoutBuilder(
+          builder: (context, box) => Stack(fit: StackFit.expand, children: [
+            ImageFiltered(
+              imageFilter: ui.ImageFilter.blur(sigmaX: sigma * box.maxWidth / 276, sigmaY: sigma * box.maxWidth / 276, tileMode: TileMode.clamp),
+              child: const CustomPaint(painter: _ScenePainter()),
+            ),
+            Positioned(
+              right: 8,
+              bottom: 6,
+              child: Text('what it looks like', style: T.t(12, w: FontWeight.w700, color: Mc.paper)),
+            ),
+          ]),
+        ),
+      ),
+    );
+  }
+}
+
+class _ScenePainter extends CustomPainter {
+  const _ScenePainter();
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final rect = Offset.zero & size;
+    canvas.drawRect(
+      rect,
+      Paint()
+        ..shader = const LinearGradient(begin: Alignment.topCenter, end: Alignment.bottomCenter, colors: [Color(0xFF80AEFF), Color(0xFFFFC680)])
+            .createShader(rect),
+    );
+    canvas.drawCircle(Offset(size.width * 0.72, size.height * 0.34), size.height * 0.2, Paint()..color = const Color(0xFFFFF3C4));
+    final far = Path()
+      ..moveTo(0, size.height * 0.72)
+      ..quadraticBezierTo(size.width * 0.25, size.height * 0.35, size.width * 0.5, size.height * 0.7)
+      ..quadraticBezierTo(size.width * 0.75, size.height * 0.45, size.width, size.height * 0.66)
+      ..lineTo(size.width, size.height)
+      ..lineTo(0, size.height)
+      ..close();
+    canvas.drawPath(far, Paint()..color = const Color(0xFF8BD3A0));
+    final near = Path()
+      ..moveTo(0, size.height * 0.88)
+      ..quadraticBezierTo(size.width * 0.4, size.height * 0.62, size.width, size.height * 0.9)
+      ..lineTo(size.width, size.height)
+      ..lineTo(0, size.height)
+      ..close();
+    canvas.drawPath(near, Paint()..color = const Color(0xFF333333));
+    canvas.drawCircle(Offset(size.width * 0.2, size.height * 0.62), size.height * 0.09, Paint()..color = const Color(0xFFD35F5F));
+  }
+
+  @override
+  bool shouldRepaint(_ScenePainter old) => false;
 }

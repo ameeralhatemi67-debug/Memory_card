@@ -1,0 +1,298 @@
+{
+  "id": "flags-americas",
+  "name": "Flags · Americas",
+  "mono": "Fl",
+  "category": "knowledge",
+  "level": "flags",
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Name the flag of every country in North, Central and South America and the Caribbean, from the stars and stripes to the smallest islands.",
+  "style": {
+    "front": "only",
+    "fit": "contain",
+    "back": "text",
+    "reverse": true
+  },
+  "cards": [
+    {
+      "img": "us.png",
+      "front": "",
+      "back": "United States",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Washington, D.C."
+    },
+    {
+      "img": "ca.png",
+      "front": "",
+      "back": "Canada",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Ottawa"
+    },
+    {
+      "img": "mx.png",
+      "front": "",
+      "back": "Mexico",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Mexico City"
+    },
+    {
+      "img": "br.png",
+      "front": "",
+      "back": "Brazil",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Brasília"
+    },
+    {
+      "img": "ar.png",
+      "front": "",
+      "back": "Argentina",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Buenos Aires"
+    },
+    {
+      "img": "cu.png",
+      "front": "",
+      "back": "Cuba",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Havana"
+    },
+    {
+      "img": "jm.png",
+      "front": "",
+      "back": "Jamaica",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Kingston"
+    },
+    {
+      "img": "cl.png",
+      "front": "",
+      "back": "Chile",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Santiago"
+    },
+    {
+      "img": "co.png",
+      "front": "",
+      "back": "Colombia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Bogotá"
+    },
+    {
+      "img": "pe.png",
+      "front": "",
+      "back": "Peru",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Lima"
+    },
+    {
+      "img": "ve.png",
+      "front": "",
+      "back": "Venezuela",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Caracas"
+    },
+    {
+      "img": "ec.png",
+      "front": "",
+      "back": "Ecuador",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Quito"
+    },
+    {
+      "img": "bo.png",
+      "front": "",
+      "back": "Bolivia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Sucre (constitutional); La Paz is the seat of government"
+    },
+    {
+      "img": "py.png",
+      "front": "",
+      "back": "Paraguay",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Asunción"
+    },
+    {
+      "img": "uy.png",
+      "front": "",
+      "back": "Uruguay",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Montevideo"
+    },
+    {
+      "img": "gy.png",
+      "front": "",
+      "back": "Guyana",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Georgetown"
+    },
+    {
+      "img": "sr.png",
+      "front": "",
+      "back": "Suriname",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Paramaribo"
+    },
+    {
+      "img": "cr.png",
+      "front": "",
+      "back": "Costa Rica",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: San José"
+    },
+    {
+      "img": "pa.png",
+      "front": "",
+      "back": "Panama",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Panama City"
+    },
+    {
+      "img": "gt.png",
+      "front": "",
+      "back": "Guatemala",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Guatemala City"
+    },
+    {
+      "img": "hn.png",
+      "front": "",
+      "back": "Honduras",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Tegucigalpa"
+    },
+    {
+      "img": "ni.png",
+      "front": "",
+      "back": "Nicaragua",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Managua"
+    },
+    {
+      "img": "sv.png",
+      "front": "",
+      "back": "El Salvador",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: San Salvador"
+    },
+    {
+      "img": "bz.png",
+      "front": "",
+      "back": "Belize",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Belmopan"
+    },
+    {
+      "img": "ht.png",
+      "front": "",
+      "back": "Haiti",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Port-au-Prince"
+    },
+    {
+      "img": "do.png",
+      "front": "",
+      "back": "Dominican Republic",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Santo Domingo"
+    },
+    {
+      "img": "bs.png",
+      "front": "",
+      "back": "Bahamas",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Nassau"
+    },
+    {
+      "img": "tt.png",
+      "front": "",
+      "back": "Trinidad and Tobago",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Port of Spain"
+    },
+    {
+      "img": "bb.png",
+      "front": "",
+      "back": "Barbados",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Bridgetown"
+    },
+    {
+      "img": "ag.png",
+      "front": "",
+      "back": "Antigua and Barbuda",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Saint John's"
+    },
+    {
+      "img": "lc.png",
+      "front": "",
+      "back": "Saint Lucia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Castries"
+    },
+    {
+      "img": "vc.png",
+      "front": "",
+      "back": "Saint Vincent and the Grenadines",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Kingstown"
+    },
+    {
+      "img": "kn.png",
+      "front": "",
+      "back": "Saint Kitts and Nevis",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Basseterre"
+    },
+    {
+      "img": "gd.png",
+      "front": "",
+      "back": "Grenada",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Saint George's"
+    },
+    {
+      "img": "dm.png",
+      "front": "",
+      "back": "Dominica",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Roseau"
+    }
+  ]
+}

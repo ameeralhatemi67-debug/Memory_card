@@ -1,0 +1,402 @@
+{
+  "id": "flags-asia",
+  "name": "Flags · Asia",
+  "mono": "Fl",
+  "category": "knowledge",
+  "level": "flags",
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Name the flag of every country in Asia, from Japan's red disc to the Himalayan kingdoms, plus Palestine and Taiwan.",
+  "style": {
+    "front": "only",
+    "fit": "contain",
+    "back": "text",
+    "reverse": true
+  },
+  "cards": [
+    {
+      "img": "jp.png",
+      "front": "",
+      "back": "Japan",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Tokyo"
+    },
+    {
+      "img": "cn.png",
+      "front": "",
+      "back": "China",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Beijing"
+    },
+    {
+      "img": "kr.png",
+      "front": "",
+      "back": "South Korea",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Seoul"
+    },
+    {
+      "img": "in.png",
+      "front": "",
+      "back": "India",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: New Delhi"
+    },
+    {
+      "img": "kp.png",
+      "front": "",
+      "back": "North Korea",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Pyongyang"
+    },
+    {
+      "img": "sa.png",
+      "front": "",
+      "back": "Saudi Arabia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Riyadh"
+    },
+    {
+      "img": "tr.png",
+      "front": "",
+      "back": "Turkey",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Ankara"
+    },
+    {
+      "img": "ir.png",
+      "front": "",
+      "back": "Iran",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Tehran"
+    },
+    {
+      "img": "il.png",
+      "front": "",
+      "back": "Israel",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Jerusalem (claimed; most embassies are in Tel Aviv)"
+    },
+    {
+      "img": "id.png",
+      "front": "",
+      "back": "Indonesia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Jakarta"
+    },
+    {
+      "img": "pk.png",
+      "front": "",
+      "back": "Pakistan",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Islamabad"
+    },
+    {
+      "img": "th.png",
+      "front": "",
+      "back": "Thailand",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Bangkok"
+    },
+    {
+      "img": "vn.png",
+      "front": "",
+      "back": "Vietnam",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Hanoi"
+    },
+    {
+      "img": "ph.png",
+      "front": "",
+      "back": "Philippines",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Manila"
+    },
+    {
+      "img": "my.png",
+      "front": "",
+      "back": "Malaysia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Kuala Lumpur (Putrajaya is the administrative centre)"
+    },
+    {
+      "img": "sg.png",
+      "front": "",
+      "back": "Singapore",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Singapore"
+    },
+    {
+      "img": "ae.png",
+      "front": "",
+      "back": "United Arab Emirates",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Abu Dhabi"
+    },
+    {
+      "img": "iq.png",
+      "front": "",
+      "back": "Iraq",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Baghdad"
+    },
+    {
+      "img": "af.png",
+      "front": "",
+      "back": "Afghanistan",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Kabul"
+    },
+    {
+      "img": "bd.png",
+      "front": "",
+      "back": "Bangladesh",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Dhaka"
+    },
+    {
+      "img": "np.png",
+      "front": "",
+      "back": "Nepal",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Kathmandu"
+    },
+    {
+      "img": "lk.png",
+      "front": "",
+      "back": "Sri Lanka",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Sri Jayawardenepura Kotte (Colombo is the largest city)"
+    },
+    {
+      "img": "mm.png",
+      "front": "",
+      "back": "Myanmar",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Naypyidaw"
+    },
+    {
+      "img": "kh.png",
+      "front": "",
+      "back": "Cambodia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Phnom Penh"
+    },
+    {
+      "img": "la.png",
+      "front": "",
+      "back": "Laos",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Vientiane"
+    },
+    {
+      "img": "mn.png",
+      "front": "",
+      "back": "Mongolia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Ulaanbaatar"
+    },
+    {
+      "img": "kz.png",
+      "front": "",
+      "back": "Kazakhstan",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Astana"
+    },
+    {
+      "img": "uz.png",
+      "front": "",
+      "back": "Uzbekistan",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Tashkent"
+    },
+    {
+      "img": "tw.png",
+      "front": "",
+      "back": "Taiwan",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Taipei"
+    },
+    {
+      "img": "ps.png",
+      "front": "",
+      "back": "Palestine",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: East Jerusalem (claimed); Ramallah is the seat of government"
+    },
+    {
+      "img": "ge.png",
+      "front": "",
+      "back": "Georgia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Tbilisi"
+    },
+    {
+      "img": "am.png",
+      "front": "",
+      "back": "Armenia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Yerevan"
+    },
+    {
+      "img": "az.png",
+      "front": "",
+      "back": "Azerbaijan",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Baku"
+    },
+    {
+      "img": "kg.png",
+      "front": "",
+      "back": "Kyrgyzstan",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Bishkek"
+    },
+    {
+      "img": "tj.png",
+      "front": "",
+      "back": "Tajikistan",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Dushanbe"
+    },
+    {
+      "img": "tm.png",
+      "front": "",
+      "back": "Turkmenistan",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Ashgabat"
+    },
+    {
+      "img": "sy.png",
+      "front": "",
+      "back": "Syria",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Damascus"
+    },
+    {
+      "img": "lb.png",
+      "front": "",
+      "back": "Lebanon",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Beirut"
+    },
+    {
+      "img": "jo.png",
+      "front": "",
+      "back": "Jordan",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Amman"
+    },
+    {
+      "img": "qa.png",
+      "front": "",
+      "back": "Qatar",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Doha"
+    },
+    {
+      "img": "kw.png",
+      "front": "",
+      "back": "Kuwait",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Kuwait City"
+    },
+    {
+      "img": "bh.png",
+      "front": "",
+      "back": "Bahrain",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Manama"
+    },
+    {
+      "img": "om.png",
+      "front": "",
+      "back": "Oman",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Muscat"
+    },
+    {
+      "img": "ye.png",
+      "front": "",
+      "back": "Yemen",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Sana'a"
+    },
+    {
+      "img": "bn.png",
+      "front": "",
+      "back": "Brunei",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Bandar Seri Begawan"
+    },
+    {
+      "img": "mv.png",
+      "front": "",
+      "back": "Maldives",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Malé"
+    },
+    {
+      "img": "bt.png",
+      "front": "",
+      "back": "Bhutan",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Thimphu"
+    },
+    {
+      "img": "tl.png",
+      "front": "",
+      "back": "Timor-Leste",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Dili"
+    }
+  ]
+}

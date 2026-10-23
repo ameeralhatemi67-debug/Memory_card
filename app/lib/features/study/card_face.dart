@@ -1,35 +1,19 @@
-import 'dart:io' show File;
 import 'dart:math' as math;
 
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 
+import '../../data/card_layout.dart';
 import '../../data/models.dart';
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
+import '../layout/layout_face.dart';
 
-/// Display size of the prompt, by length (the canvas `termSize`).
-double termSize(String text, bool code) {
-  final n = text.length;
-  if (code) return n > 26 ? 18 : n > 18 ? 21 : n > 12 ? 24 : 27;
-  return n > 40 ? 22 : n > 30 ? 24 : n > 20 ? 28 : n > 12 ? 32 : 36;
-}
-
-/// A card image from a file path (phone) or a data URI (web).
-Widget cardImage(String src, {double? height, BoxFit fit = BoxFit.cover}) {
-  if (src.startsWith('data:')) {
-    final comma = src.indexOf(',');
-    final bytes = Uri.parse(src).data?.contentAsBytes() ?? Uint8List(0);
-    if (comma < 0 || bytes.isEmpty) return const SizedBox.shrink();
-    return Image.memory(bytes, height: height, fit: fit, gaplessPlayback: true);
-  }
-  if (kIsWeb) return Image.network(src, height: height, fit: fit);
-  return Image.file(File(src), height: height, fit: fit, gaplessPlayback: true);
-}
+export '../layout/layout_face.dart' show CardThumb, cardImage, termSize;
 
 /// The front of a study card: label, the prompt, context, then the reveal area and "Hear it".
+/// Cards with a picture layout draw it behind the same label and reveal controls.
 class CardFront extends StatelessWidget {
   const CardFront({
     super.key,
@@ -43,6 +27,7 @@ class CardFront extends StatelessWidget {
     this.onSpeak,
     this.typing,
     this.typedResult,
+    this.pre = PreReveal.none,
   });
 
   final CardItem card;
@@ -60,42 +45,121 @@ class CardFront extends StatelessWidget {
   /// After a typed answer: 'exact' · 'close' · 'wrong'.
   final String? typedResult;
 
+  /// What pictures marked "blur until revealed" do now (Settings).
+  final PreReveal pre;
+
+  /// The answer has its own face (pictures or a free canvas): it replaces the front on reveal.
+  bool get _answerReplacesFront =>
+      revealed && typing == null && card.hasRichBack && (mode == RevealMode.tap || mode == RevealMode.icon);
+
   @override
   Widget build(BuildContext context) {
+    final reduced = MotionPrefs.reducedOf(context);
+    final layout = card.frontLayout;
+    final front = layout != null && !layout.isPlain ? _pictured(context, layout) : _classic(context);
+    return AnimatedSwitcher(
+      duration: Duration(milliseconds: reduced ? 0 : 240),
+      switchInCurve: McCurves.out,
+      layoutBuilder: (current, previous) => Stack(fit: StackFit.expand, children: [...previous, ?current]),
+      child: _answerReplacesFront
+          ? CardBack(
+              key: const ValueKey('rich-answer'),
+              card: card,
+              deck: deck,
+              compact: compact,
+              speaking: speaking,
+              onSpeak: onSpeak,
+              pre: pre,
+            )
+          : KeyedSubtree(key: const ValueKey('front'), child: front),
+    );
+  }
+
+  Widget _labelRow(Mc mc, {bool backed = false}) {
+    final label = card.isReverse ? 'reverse' : (card.label.isNotEmpty ? card.label : deck.category == 'custom' ? 'card' : deck.level);
+    Widget text = Text(label.toUpperCase(),
+        maxLines: 1, overflow: TextOverflow.ellipsis, style: T.caps(12, color: backed ? Mc.paper : mc.mutedOnInk));
+    if (backed) {
+      text = Container(
+        padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 3),
+        decoration: BoxDecoration(color: const Color(0x99222222), borderRadius: BorderRadius.circular(9)),
+        child: text,
+      );
+    }
+    return Row(
+      children: [
+        Expanded(child: Align(alignment: Alignment.centerLeft, child: text)),
+        if (card.isNew)
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+            decoration: BoxDecoration(color: Mc.peach, borderRadius: BorderRadius.circular(8)),
+            child: Text('NEW', style: T.caps(11, color: Mc.graphite, spacing: 1)),
+          )
+        else if (card.leech)
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
+            decoration: BoxDecoration(color: Mc.delete, borderRadius: BorderRadius.circular(8)),
+            child: Text('TRICKY', style: T.caps(11, color: Mc.graphite, spacing: 1)),
+          ),
+      ],
+    );
+  }
+
+  /// A blurred look at the answer's picture, shown inside the reveal button.
+  Widget? _peek() {
+    if (typing != null || pre.sigma <= 0 || !(mode == RevealMode.tap || mode == RevealMode.icon)) return null;
+    final bl = card.backLayout;
+    if (bl == null || !card.hasRichBack) return null;
+    final pic = bl.images.where((i) => i.blur).firstOrNull;
+    return pic == null ? null : PeekStrip(el: pic, sigma: pre.sigma);
+  }
+
+  /// Everything under the prompt: the type-it field, the reveal button or the answer, hints, "Hear it".
+  List<Widget> _footer(Mc mc, {bool overPicture = false}) {
+    final flip = mode == RevealMode.flip;
+    return [
+      if (typing != null && !revealed) typing!,
+      if (mode != RevealMode.front && !flip && typing == null)
+        AnimatedSwitcher(
+          duration: const Duration(milliseconds: 260),
+          switchInCurve: McCurves.out,
+          transitionBuilder: (c, a) => FadeTransition(
+            opacity: a,
+            child: ScaleTransition(scale: Tween(begin: 0.96, end: 1.0).animate(a), child: c),
+          ),
+          child: revealed
+              ? _Answer(key: const ValueKey('a'), card: card, typedResult: typedResult, overPicture: overPicture)
+              : _RevealButton(key: const ValueKey('r'), icon: mode == RevealMode.icon, onTap: onReveal, peek: _peek()),
+        ),
+      if (typing != null && revealed) _Answer(card: card, typedResult: typedResult, overPicture: overPicture),
+      if (flip && !revealed)
+        Text('Tap the card to flip it', textAlign: TextAlign.center, style: T.t(14, w: FontWeight.w600, color: mc.mutedOnInk)),
+      if (mode == RevealMode.front)
+        Text('Self-check · swipe right if you knew it',
+            textAlign: TextAlign.center, style: T.t(14, w: FontWeight.w600, color: mc.mutedOnInk)),
+      if (onSpeak != null) ...[
+        const SizedBox(height: 10),
+        _SpeakButton(speaking: speaking, compact: compact, onTap: onSpeak!),
+      ],
+    ];
+  }
+
+  /// The classic text card (with the older single picture under the prompt).
+  Widget _classic(BuildContext context) {
     final mc = Mc.of(context);
     final code = deck.kind == 'code' && !card.isReverse;
     final prompt = card.front;
-    final label = card.isReverse ? 'reverse' : (card.label.isNotEmpty ? card.label : deck.category == 'custom' ? 'card' : deck.level);
     final flip = mode == RevealMode.flip;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.stretch,
         children: [
-          Row(
-            children: [
-              Expanded(
-                child: Text(label.toUpperCase(),
-                    maxLines: 1, overflow: TextOverflow.ellipsis, style: T.caps(12, color: mc.mutedOnInk)),
-              ),
-              if (card.isNew)
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                  decoration: BoxDecoration(color: Mc.peach, borderRadius: BorderRadius.circular(8)),
-                  child: Text('NEW', style: T.caps(11, color: Mc.graphite, spacing: 1)),
-                )
-              else if (card.leech)
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 2),
-                  decoration: BoxDecoration(color: Mc.delete, borderRadius: BorderRadius.circular(8)),
-                  child: Text('TRICKY', style: T.caps(11, color: Mc.graphite, spacing: 1)),
-                ),
-            ],
-          ),
+          _labelRow(mc),
           const SizedBox(height: 6),
           Text(
             prompt,
-            textDirection: _dir(prompt),
+            textDirection: dirOf(prompt),
             style: code
                 ? T.mono(termSize(prompt, true), color: mc.onInk)
                 : T.d(termSize(prompt, false), color: mc.onInk, height: 1.05),
@@ -105,7 +169,7 @@ class CardFront extends StatelessWidget {
             Text(card.example,
                 maxLines: compact ? 2 : 3,
                 overflow: TextOverflow.ellipsis,
-                textDirection: _dir(card.example),
+                textDirection: dirOf(card.example),
                 style: T.t(compact ? 15 : 17, w: FontWeight.w500, color: mc.mutedOnInk, height: 1.3)),
           ],
           if (card.image != null && card.image!.isNotEmpty) ...[
@@ -118,45 +182,74 @@ class CardFront extends StatelessWidget {
             ),
           ],
           const Spacer(),
-          if (typing != null && !revealed) typing!,
-          if (mode != RevealMode.front && !flip && typing == null)
-            AnimatedSwitcher(
-              duration: const Duration(milliseconds: 260),
-              switchInCurve: McCurves.out,
-              transitionBuilder: (c, a) => FadeTransition(
-                opacity: a,
-                child: ScaleTransition(scale: Tween(begin: 0.96, end: 1.0).animate(a), child: c),
-              ),
-              child: revealed
-                  ? _Answer(key: const ValueKey('a'), card: card, typedResult: typedResult)
-                  : _RevealButton(key: const ValueKey('r'), icon: mode == RevealMode.icon, onTap: onReveal),
-            ),
-          if (typing != null && revealed) _Answer(card: card, typedResult: typedResult),
-          if (flip && !revealed)
-            Text('Tap the card to flip it', textAlign: TextAlign.center, style: T.t(14, w: FontWeight.w600, color: mc.mutedOnInk)),
-          if (mode == RevealMode.front)
-            Text('Self-check · swipe right if you knew it',
-                textAlign: TextAlign.center, style: T.t(14, w: FontWeight.w600, color: mc.mutedOnInk)),
-          if (onSpeak != null) ...[
-            const SizedBox(height: 10),
-            _SpeakButton(speaking: speaking, compact: compact, onTap: onSpeak!),
-          ],
+          ..._footer(mc),
         ],
       ),
     );
   }
+
+  /// A card with a picture layout: the layout fills the face, the controls sit on top of it.
+  Widget _pictured(BuildContext context, SideLayout layout) {
+    final mc = Mc.of(context);
+    final reduced = MotionPrefs.reducedOf(context);
+    final sharp = revealed || mode == RevealMode.front;
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        TweenAnimationBuilder<double>(
+          tween: Tween(end: sharp ? 1.0 : 0.0),
+          duration: Duration(milliseconds: reduced ? 0 : 600),
+          curve: Curves.easeOut,
+          builder: (context, t, _) => LayoutFace(
+            layout: layout,
+            texts: LayoutTexts.of(card, deck, back: false),
+            back: false,
+            pre: pre,
+            reveal: t,
+          ),
+        ),
+        Padding(
+          padding: const EdgeInsets.all(20),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              _labelRow(mc, backed: layout.imageUnderLabel),
+              const Spacer(),
+              ..._footer(mc, overPicture: layout.hasImage),
+            ],
+          ),
+        ),
+      ],
+    );
+  }
 }
 
-/// The back face for flip mode: the answer in peach.
+/// The back face: the answer in peach. With a layout it shows its pictures and text where you put them.
 class CardBack extends StatelessWidget {
-  const CardBack({super.key, required this.card, required this.compact, required this.speaking, this.onSpeak});
+  const CardBack({
+    super.key,
+    required this.card,
+    required this.compact,
+    required this.speaking,
+    this.onSpeak,
+    this.deck,
+    this.pre = PreReveal.none,
+    this.reveal,
+  });
   final CardItem card;
+  final Deck? deck;
   final bool compact;
   final bool speaking;
   final VoidCallback? onSpeak;
+  final PreReveal pre;
+
+  /// 0…1 as the face turns up (flip mode); null = sharpen on its own, once, as it appears.
+  final double? reveal;
 
   @override
   Widget build(BuildContext context) {
+    final layout = card.backLayout;
+    if (layout != null && !layout.isPlain) return _pictured(context, layout);
     final answer = card.back;
     return Container(
       decoration: BoxDecoration(color: Mc.peach, borderRadius: BorderRadius.circular(18)),
@@ -166,7 +259,7 @@ class CardBack extends StatelessWidget {
         children: [
           Text('ANSWER', style: T.caps(12, color: Mc.graphite.withValues(alpha: 0.67))),
           const SizedBox(height: 6),
-          Text(answer, textDirection: _dir(answer), style: T.d(termSize(answer, false), color: Mc.graphite, height: 1.05)),
+          Text(answer, textDirection: dirOf(answer), style: T.d(termSize(answer, false), color: Mc.graphite, height: 1.05)),
           if (card.example.isNotEmpty) ...[
             const SizedBox(height: 8),
             Text(card.example, style: T.t(16, w: FontWeight.w500, color: Mc.graphite.withValues(alpha: 0.7), height: 1.3)),
@@ -181,12 +274,83 @@ class CardBack extends StatelessWidget {
       ),
     );
   }
+
+  Widget _pictured(BuildContext context, SideLayout layout) {
+    final reduced = MotionPrefs.reducedOf(context);
+    Widget face(double t) => LayoutFace(
+          layout: layout,
+          texts: LayoutTexts.of(card, deck, back: true),
+          back: true,
+          pre: pre,
+          reveal: t,
+        );
+    final backed = layout.imageUnderLabel;
+    return Container(
+      clipBehavior: Clip.antiAlias,
+      decoration: BoxDecoration(color: Mc.peach, borderRadius: BorderRadius.circular(18)),
+      child: Stack(
+        fit: StackFit.expand,
+        children: [
+          reveal != null
+              ? face(reveal!)
+              : TweenAnimationBuilder<double>(
+                  tween: Tween(begin: reduced ? 1.0 : 0.0, end: 1.0),
+                  duration: const Duration(milliseconds: 650),
+                  curve: Curves.easeOut,
+                  builder: (context, t, _) => face(t),
+                ),
+          Padding(
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                Align(
+                  alignment: Alignment.centerLeft,
+                  child: Container(
+                    padding: backed ? const EdgeInsets.symmetric(horizontal: 9, vertical: 3) : EdgeInsets.zero,
+                    decoration: backed ? BoxDecoration(color: const Color(0x99222222), borderRadius: BorderRadius.circular(9)) : null,
+                    child: Text('ANSWER', style: T.caps(12, color: backed ? Mc.paper : Mc.graphite.withValues(alpha: 0.67))),
+                  ),
+                ),
+                const Spacer(),
+                if (onSpeak != null) _SpeakButton(speaking: speaking, compact: compact, onTap: onSpeak!),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// A blurred sliver of the answer's picture: a hint that something is waiting behind the reveal.
+class PeekStrip extends StatelessWidget {
+  const PeekStrip({super.key, required this.el, required this.sigma});
+  final ImageEl el;
+  final double sigma;
+
+  @override
+  Widget build(BuildContext context) {
+    return Stack(
+      fit: StackFit.expand,
+      children: [
+        PictureView(
+          el: ImageEl(
+              x: 0, y: 0, w: 1, h: 1, src: el.src, aspect: el.aspect, contain: false, radius: 0, zoom: el.zoom, panX: el.panX, panY: el.panY),
+          k: 1,
+          forceBlur: sigma,
+        ),
+        const ColoredBox(color: Color(0x40000000)),
+      ],
+    );
+  }
 }
 
 class _RevealButton extends StatelessWidget {
-  const _RevealButton({super.key, required this.icon, required this.onTap});
+  const _RevealButton({super.key, required this.icon, required this.onTap, this.peek});
   final bool icon;
   final VoidCallback onTap;
+  final Widget? peek;
 
   @override
   Widget build(BuildContext context) {
@@ -196,12 +360,23 @@ class _RevealButton extends StatelessWidget {
       label: 'Reveal the answer',
       child: Container(
         height: 56,
+        clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(color: mc.pill, borderRadius: BorderRadius.circular(12)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
+        child: Stack(
+          fit: StackFit.expand,
           children: [
-            if (icon) ...[McIcon(McIcons.eye, size: const Size(22, 22), color: Mc.graphite), const SizedBox(width: 8)],
-            Text(icon ? 'Show answer' : 'Tap to reveal', style: T.t(17, w: FontWeight.w600, color: Mc.graphite)),
+            ?peek,
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                if (icon) ...[
+                  McIcon(McIcons.eye, size: const Size(22, 22), color: peek == null ? Mc.graphite : Mc.paper),
+                  const SizedBox(width: 8),
+                ],
+                Text(icon ? 'Show answer' : 'Tap to reveal',
+                    style: T.t(17, w: FontWeight.w600, color: peek == null ? Mc.graphite : Mc.paper)),
+              ],
+            ),
           ],
         ),
       ),
@@ -210,9 +385,12 @@ class _RevealButton extends StatelessWidget {
 }
 
 class _Answer extends StatelessWidget {
-  const _Answer({super.key, required this.card, this.typedResult});
+  const _Answer({super.key, required this.card, this.typedResult, this.overPicture = false});
   final CardItem card;
   final String? typedResult;
+
+  /// The card has a picture behind this: the hook gets a backing so it stays readable.
+  final bool overPicture;
 
   @override
   Widget build(BuildContext context) {
@@ -225,7 +403,13 @@ class _Answer extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         if (card.hook.isNotEmpty) ...[
-          _Hook(text: card.hook, color: mc.mutedOnInk),
+          overPicture
+              ? Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                  decoration: BoxDecoration(color: const Color(0xB8222222), borderRadius: BorderRadius.circular(10)),
+                  child: _Hook(text: card.hook, color: Mc.paper),
+                )
+              : _Hook(text: card.hook, color: mc.mutedOnInk),
           const SizedBox(height: 8),
         ],
         Semantics(
@@ -238,7 +422,7 @@ class _Answer extends StatelessWidget {
             child: Text(
               answer,
               textAlign: TextAlign.center,
-              textDirection: _dir(answer),
+              textDirection: dirOf(answer),
               style: long
                   ? T.t(answer.length > 44 ? 17 : 19, w: FontWeight.w700, color: Mc.graphite, height: 1.2)
                   : T.d(28, color: Mc.graphite),
@@ -304,4 +488,3 @@ class _SpeakButton extends StatelessWidget {
   }
 }
 
-TextDirection? _dir(String s) => RegExp(r'[֐-ࣿ]').hasMatch(s) ? TextDirection.rtl : null;

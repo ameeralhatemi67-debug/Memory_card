@@ -1,13 +1,9 @@
-import 'dart:convert';
-import 'dart:io' show Directory, File;
 import 'dart:math' as math;
 
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:image_picker/image_picker.dart';
-import 'package:path_provider/path_provider.dart';
 
+import '../../data/card_layout.dart';
 import '../../data/csv_import.dart';
 import '../../data/models.dart';
 import '../../data/store.dart';
@@ -20,7 +16,9 @@ import '../../ui/overlays.dart';
 import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
-import '../study/card_face.dart';
+import '../layout/layout_editor.dart';
+import '../layout/layout_face.dart';
+import '../layout/pick_picture.dart';
 import '../study/celebrate.dart';
 
 /// Opens the editor sheet (canvas Editor.dc.html): write a card, or paste / pick a CSV.
@@ -152,6 +150,9 @@ class _EditorSheetState extends State<EditorSheet> {
   bool _reverse = false;
   bool _showHook = false;
   String? _image;
+
+  /// How each side is laid out; null = the classic text card.
+  SideLayout? _fl, _bl;
   int _saved = 0;
   int _shakeFront = 0, _shakeBack = 0;
 
@@ -169,6 +170,8 @@ class _EditorSheetState extends State<EditorSheet> {
       _hook.text = e.hook;
       _showHook = e.hook.isNotEmpty;
       _image = e.image;
+      _fl = e.frontLayout?.copy();
+      _bl = e.backLayout?.copy();
       _reverse = e.siblingId != null;
     } else {
       _deckId = widget.deckId ?? _guessDeck();
@@ -176,6 +179,14 @@ class _EditorSheetState extends State<EditorSheet> {
       _reverse = d?.category == 'lang';
     }
     _csv.addListener(() => setState(() {}));
+    // The little previews follow what you type.
+    for (final c in [_front, _back, _example, _hook]) {
+      c.addListener(_typed);
+    }
+  }
+
+  void _typed() {
+    if (mounted) setState(() {});
   }
 
   String? _guessDeck() {
@@ -192,6 +203,9 @@ class _EditorSheetState extends State<EditorSheet> {
 
   @override
   void dispose() {
+    for (final c in [_front, _back, _example, _hook]) {
+      c.removeListener(_typed);
+    }
     _front.dispose();
     _back.dispose();
     _example.dispose();
@@ -266,35 +280,67 @@ class _EditorSheetState extends State<EditorSheet> {
     }
   }
 
-  Future<void> _pickImage() async {
-    try {
-      final x = await ImagePicker().pickImage(source: ImageSource.gallery, maxWidth: 1024, maxHeight: 1024, imageQuality: 82);
-      if (x == null) return;
-      String src;
-      if (kIsWeb) {
-        final bytes = await x.readAsBytes();
-        src = 'data:image/jpeg;base64,${base64Encode(bytes)}';
+  /// A picture is on this side (from its layout, or the older single picture on the front).
+  bool _hasPicture(bool back) => back ? (_bl?.hasImage ?? false) : (_fl?.hasImage ?? (_image != null && _image!.isNotEmpty));
+
+  Future<void> _openLayout(bool back) async {
+    FocusScope.of(context).unfocus();
+    final deck = _deckId == null ? null : store.data.decks[_deckId];
+    final label = deck == null ? 'card' : (deck.category == 'custom' ? 'card' : deck.level);
+    final r = await showLayoutEditor(
+      context,
+      back: back,
+      initial: back ? _bl : _fl,
+      main: back ? _back : _front,
+      example: _example,
+      hook: _hook,
+      label: label.isEmpty ? 'card' : label,
+      code: !back && deck?.kind == 'code',
+      legacyPicture: back || _fl != null ? null : _image,
+    );
+    if (r == null || !mounted) return;
+    setState(() {
+      if (back) {
+        _bl = r.layout;
       } else {
-        final dir = await getApplicationDocumentsDirectory();
-        final folder = Directory('${dir.path}/card_images');
-        if (!await folder.exists()) await folder.create(recursive: true);
-        final path = '${folder.path}/${uid('img')}.jpg';
-        await File(x.path).copy(path);
-        src = path;
+        _fl = r.layout;
+        _image = null; // the layout now owns the front's picture
       }
-      if (mounted) setState(() => _image = src);
-    } catch (e) {
-      Toaster.i.show('Could not add that image');
-    }
+    });
+  }
+
+  /// The quick path: pick a picture and it goes under the text; fine-tune it in the layout editor.
+  Future<void> _quickPicture(bool back) async {
+    FocusScope.of(context).unfocus();
+    final p = await pickPicture(context);
+    if (p == null || !mounted) return;
+    final layout = SideLayout.forPicture(
+      Tpl.below,
+      back: back,
+      src: p.src,
+      aspect: p.aspect,
+      alpha: p.alpha,
+      contain: p.alpha,
+      blur: back,
+    );
+    setState(() {
+      if (back) {
+        _bl = layout;
+      } else {
+        _fl = layout;
+        _image = null;
+      }
+    });
   }
 
   bool _validate() {
     var ok = true;
-    if (_front.text.trim().isEmpty) {
+    // A side can be only a picture.
+    if (_front.text.trim().isEmpty && !_hasPicture(false)) {
       setState(() => _shakeFront++);
       ok = false;
     }
-    if (_back.text.trim().isEmpty) {
+    if (_back.text.trim().isEmpty && !_hasPicture(true)) {
       setState(() => _shakeBack++);
       ok = false;
     }
@@ -307,7 +353,9 @@ class _EditorSheetState extends State<EditorSheet> {
         back: _back.text,
         example: _example.text,
         hook: _hook.text,
-        image: _image,
+        image: _fl == null ? _image : null,
+        frontLayout: _fl,
+        backLayout: _bl,
       );
 
   Future<void> _saveNext() async {
@@ -325,12 +373,14 @@ class _EditorSheetState extends State<EditorSheet> {
       _example.clear();
       _hook.clear();
       _image = null;
+      _fl = null;
+      _bl = null;
     });
     _frontFocus.requestFocus();
   }
 
   void _done() {
-    if (_front.text.trim().isNotEmpty || _back.text.trim().isNotEmpty) {
+    if (_front.text.trim().isNotEmpty || _back.text.trim().isNotEmpty || _hasPicture(false) || _hasPicture(true)) {
       if (_deckId == null || !_validate()) return;
       store.addCard(_deckId!, _draft, reverse: _reverse);
       _saved++;
@@ -441,8 +491,23 @@ class _EditorSheetState extends State<EditorSheet> {
       );
 
   Widget _cardPane(Mc mc, Deck? deck, CardItem? editing) {
-    return ListView(
+    // The buttons stay put under the form: with pictures the form can be taller than the sheet.
+    final buttons = editing == null
+        ? Row(children: [
+            Expanded(child: SoftButton('Done', height: 54, onTap: _done)),
+            const SizedBox(width: 10),
+            Expanded(child: InkButton(_saved > 0 ? 'Saved $_saved · next' : 'Save & next', height: 54, size: 23, onTap: _saveNext)),
+          ])
+        : Row(children: [
+            Expanded(child: SoftButton('Delete', height: 54, textColor: Mc.red, onTap: _delete)),
+            const SizedBox(width: 10),
+            Expanded(child: InkButton('Save', height: 54, size: 23, onTap: _saveEdit)),
+          ]);
+    return Column(
       key: const ValueKey('card'),
+      crossAxisAlignment: CrossAxisAlignment.stretch,
+      children: [
+        Expanded(child: ListView(
       padding: EdgeInsets.zero,
       children: [
         Row(children: [
@@ -506,39 +571,7 @@ class _EditorSheetState extends State<EditorSheet> {
                   ),
                 ),
         ),
-        if (_image == null)
-          Pressable(
-            onTap: _pickImage,
-            child: DashedBox(
-              color: mc.dash,
-              child: SizedBox(
-                height: 60,
-                child: Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-                  McIcon(McIcons.plus, size: const Size(20, 20), color: mc.muted),
-                  const SizedBox(width: 8),
-                  Text('Add image', style: T.t(16, w: FontWeight.w700, color: mc.muted)),
-                ]),
-              ),
-            ),
-          )
-        else
-          Stack(children: [
-            ClipRRect(borderRadius: BorderRadius.circular(12), child: SizedBox(height: 120, width: double.infinity, child: cardImage(_image!))),
-            Positioned(
-              right: 8,
-              top: 8,
-              child: Pressable(
-                onTap: () => setState(() => _image = null),
-                label: 'Remove image',
-                child: Container(
-                  width: 32,
-                  height: 32,
-                  decoration: BoxDecoration(color: mc.ink, shape: BoxShape.circle),
-                  child: Center(child: McIcon(McIcons.x, size: const Size(12, 12), color: mc.canvas)),
-                ),
-              ),
-            ),
-          ]),
+        _design(mc, deck),
         if (editing == null || !editing.isReverse) ...[
           const SizedBox(height: 12),
           Row(children: [
@@ -551,20 +584,87 @@ class _EditorSheetState extends State<EditorSheet> {
             McSwitch(value: _reverse, onChanged: (v) => setState(() => _reverse = v), label: 'Also study back to front'),
           ]),
         ],
-        const SizedBox(height: 18),
-        if (editing == null)
-          Row(children: [
-            Expanded(child: SoftButton('Done', height: 54, onTap: _done)),
-            const SizedBox(width: 10),
-            Expanded(child: InkButton(_saved > 0 ? 'Saved $_saved · next' : 'Save & next', height: 54, size: 23, onTap: _saveNext)),
-          ])
-        else
-          Row(children: [
-            Expanded(child: SoftButton('Delete', height: 54, textColor: Mc.red, onTap: _delete)),
-            const SizedBox(width: 10),
-            Expanded(child: InkButton('Save', height: 54, size: 23, onTap: _saveEdit)),
-          ]),
+        const SizedBox(height: 12),
       ],
+    )),
+        const SizedBox(height: 10),
+        buttons,
+      ],
+    );
+  }
+
+  /// Both sides of the card as small previews: tap one to arrange its pictures and text.
+  Widget _design(Mc mc, Deck? deck) {
+    Widget side(bool back) {
+      final layout = back ? _bl : _fl;
+      final legacy = !back && _fl == null && _image != null && _image!.isNotEmpty ? _image : null;
+      final shown = layout ??
+          (legacy != null ? SideLayout.forPicture(Tpl.below, back: false, src: legacy) : SideLayout.template(Tpl.text, back: back));
+      final texts = LayoutTexts(
+        main: back ? _back.text : _front.text,
+        example: _example.text,
+        hook: _hook.text,
+        code: !back && deck?.kind == 'code',
+      );
+      final pictures = shown.images.length;
+      final note = layout == null && legacy == null
+          ? 'Text only'
+          : '${pictures == 0 ? 'Text' : '$pictures ${pictures == 1 ? 'picture' : 'pictures'}'} · ${shown.mode == LayoutMode.canvas ? 'free canvas' : 'guided'}';
+      return Expanded(
+        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          Text(back ? 'Back' : 'Front', style: T.t(14, w: FontWeight.w700, color: mc.muted)),
+          const SizedBox(height: 5),
+          Center(
+            child: Pressable(
+              onTap: () => _openLayout(back),
+              label: 'Arrange the ${back ? 'back' : 'front'}',
+              child: Container(
+                width: 112,
+                height: 112 * 384 / 276,
+                clipBehavior: Clip.antiAlias,
+                decoration: BoxDecoration(
+                  color: back ? Mc.peach : mc.ink,
+                  borderRadius: BorderRadius.circular(12),
+                  boxShadow: mc.e1,
+                ),
+                child: Stack(fit: StackFit.expand, children: [
+                  LayoutFace(layout: shown, texts: texts, back: back),
+                  Positioned(
+                    right: 6,
+                    bottom: 6,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 3),
+                      decoration: BoxDecoration(color: const Color(0xCC222222), borderRadius: BorderRadius.circular(9)),
+                      child: Text('Arrange', style: T.t(11.5, w: FontWeight.w700, color: Mc.paper)),
+                    ),
+                  ),
+                ]),
+              ),
+            ),
+          ),
+          const SizedBox(height: 6),
+          Text(note, textAlign: TextAlign.center, style: T.t(13, w: FontWeight.w600, color: mc.muted)),
+          const SizedBox(height: 6),
+          Center(
+            child: Chip2(
+              _hasPicture(back) ? 'Change picture' : '+ Picture',
+              height: 32,
+              onTap: () => _hasPicture(back) ? _openLayout(back) : _quickPicture(back),
+            ),
+          ),
+        ]),
+      );
+    }
+
+    return Padding(
+      padding: const EdgeInsets.only(top: 4),
+      child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+        Text('Pictures & layout', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
+        Text('Put a picture on either side, or on both. PNG cut-outs keep their see-through background.',
+            style: T.t(14, w: FontWeight.w500, color: mc.muted, height: 1.3)),
+        const SizedBox(height: 10),
+        Row(crossAxisAlignment: CrossAxisAlignment.start, children: [side(false), const SizedBox(width: 12), side(true)]),
+      ]),
     );
   }
 

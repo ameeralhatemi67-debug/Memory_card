@@ -1,0 +1,386 @@
+{
+  "id": "flags-europe",
+  "name": "Flags · Europe",
+  "mono": "Fl",
+  "category": "knowledge",
+  "level": "flags",
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Name the flag of every country in Europe, Russia and Cyprus included, plus the Vatican and Kosovo.",
+  "style": {
+    "front": "only",
+    "fit": "contain",
+    "back": "text",
+    "reverse": true
+  },
+  "cards": [
+    {
+      "img": "fr.png",
+      "front": "",
+      "back": "France",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Paris"
+    },
+    {
+      "img": "de.png",
+      "front": "",
+      "back": "Germany",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Berlin"
+    },
+    {
+      "img": "it.png",
+      "front": "",
+      "back": "Italy",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Rome"
+    },
+    {
+      "img": "es.png",
+      "front": "",
+      "back": "Spain",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Madrid"
+    },
+    {
+      "img": "gb.png",
+      "front": "",
+      "back": "United Kingdom",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: London"
+    },
+    {
+      "img": "ru.png",
+      "front": "",
+      "back": "Russia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Moscow"
+    },
+    {
+      "img": "pt.png",
+      "front": "",
+      "back": "Portugal",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Lisbon"
+    },
+    {
+      "img": "nl.png",
+      "front": "",
+      "back": "Netherlands",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Amsterdam (constitutional); The Hague is the seat of government"
+    },
+    {
+      "img": "ch.png",
+      "front": "",
+      "back": "Switzerland",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Bern (federal city)"
+    },
+    {
+      "img": "se.png",
+      "front": "",
+      "back": "Sweden",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Stockholm"
+    },
+    {
+      "img": "no.png",
+      "front": "",
+      "back": "Norway",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Oslo"
+    },
+    {
+      "img": "dk.png",
+      "front": "",
+      "back": "Denmark",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Copenhagen"
+    },
+    {
+      "img": "fi.png",
+      "front": "",
+      "back": "Finland",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Helsinki"
+    },
+    {
+      "img": "is.png",
+      "front": "",
+      "back": "Iceland",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Reykjavík"
+    },
+    {
+      "img": "ie.png",
+      "front": "",
+      "back": "Ireland",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Dublin"
+    },
+    {
+      "img": "pl.png",
+      "front": "",
+      "back": "Poland",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Warsaw"
+    },
+    {
+      "img": "ua.png",
+      "front": "",
+      "back": "Ukraine",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Kyiv"
+    },
+    {
+      "img": "gr.png",
+      "front": "",
+      "back": "Greece",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Athens"
+    },
+    {
+      "img": "at.png",
+      "front": "",
+      "back": "Austria",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Vienna"
+    },
+    {
+      "img": "be.png",
+      "front": "",
+      "back": "Belgium",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Brussels"
+    },
+    {
+      "img": "cz.png",
+      "front": "",
+      "back": "Czechia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Prague"
+    },
+    {
+      "img": "hu.png",
+      "front": "",
+      "back": "Hungary",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Budapest"
+    },
+    {
+      "img": "ro.png",
+      "front": "",
+      "back": "Romania",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Bucharest"
+    },
+    {
+      "img": "bg.png",
+      "front": "",
+      "back": "Bulgaria",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Sofia"
+    },
+    {
+      "img": "hr.png",
+      "front": "",
+      "back": "Croatia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Zagreb"
+    },
+    {
+      "img": "rs.png",
+      "front": "",
+      "back": "Serbia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Belgrade"
+    },
+    {
+      "img": "si.png",
+      "front": "",
+      "back": "Slovenia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Ljubljana"
+    },
+    {
+      "img": "sk.png",
+      "front": "",
+      "back": "Slovakia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Bratislava"
+    },
+    {
+      "img": "ba.png",
+      "front": "",
+      "back": "Bosnia and Herzegovina",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Sarajevo"
+    },
+    {
+      "img": "me.png",
+      "front": "",
+      "back": "Montenegro",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Podgorica"
+    },
+    {
+      "img": "mk.png",
+      "front": "",
+      "back": "North Macedonia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Skopje"
+    },
+    {
+      "img": "al.png",
+      "front": "",
+      "back": "Albania",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Tirana"
+    },
+    {
+      "img": "by.png",
+      "front": "",
+      "back": "Belarus",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Minsk"
+    },
+    {
+      "img": "md.png",
+      "front": "",
+      "back": "Moldova",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Chișinău"
+    },
+    {
+      "img": "lt.png",
+      "front": "",
+      "back": "Lithuania",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Vilnius"
+    },
+    {
+      "img": "lv.png",
+      "front": "",
+      "back": "Latvia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Riga"
+    },
+    {
+      "img": "ee.png",
+      "front": "",
+      "back": "Estonia",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Tallinn"
+    },
+    {
+      "img": "lu.png",
+      "front": "",
+      "back": "Luxembourg",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Luxembourg City"
+    },
+    {
+      "img": "mt.png",
+      "front": "",
+      "back": "Malta",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Valletta"
+    },
+    {
+      "img": "cy.png",
+      "front": "",
+      "back": "Cyprus",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Nicosia"
+    },
+    {
+      "img": "li.png",
+      "front": "",
+      "back": "Liechtenstein",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Vaduz"
+    },
+    {
+      "img": "mc.png",
+      "front": "",
+      "back": "Monaco",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Monaco"
+    },
+    {
+      "img": "ad.png",
+      "front": "",
+      "back": "Andorra",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Andorra la Vella"
+    },
+    {
+      "img": "sm.png",
+      "front": "",
+      "back": "San Marino",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: San Marino"
+    },
+    {
+      "img": "xk.png",
+      "front": "",
+      "back": "Kosovo",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Pristina"
+    },
+    {
+      "img": "va.png",
+      "front": "",
+      "back": "Vatican City",
+      "label": "flag",
+      "example": "",
+      "hook": "Capital: Vatican City"
+    }
+  ]
+}

@@ -1,0 +1,786 @@
+{
+ "gon-freecss": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Gon_Freecss",
+  "file": "HxH2011_EP147_Gon_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 75.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "killua-zoldyck": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Killua_Zoldyck",
+  "file": "HxH2011_EP147_Killua_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 86.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "kurapika": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Kurapika",
+  "file": "Kurapika_HCE_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 85.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "leorio-paradinight": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Leorio_Paradinight",
+  "file": "HxH2011_EP145_Leorio_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 59.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "hisoka-morow": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Hisoka_Morow",
+  "file": "Hisoka_Morow_YC_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 721,
+   "srcH": 721,
+   "w": 721,
+   "h": 721,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 52.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "chrollo-lucilfer": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Chrollo_Lucilfer",
+  "file": "Chrollo_Lucilfer_GI_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 749,
+   "srcH": 749,
+   "w": 749,
+   "h": 749,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 335.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "illumi-zoldyck": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Illumi_Zoldyck",
+  "file": "Illumi_Zoldyck_HCE_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 358,
+   "srcH": 358,
+   "w": 358,
+   "h": 358,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 17.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "meruem": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Meruem",
+  "file": "Meruem_CA_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 61.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "neferpitou": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Neferpitou",
+  "file": "109_-_Neferpitou_portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 965,
+   "w": 900,
+   "h": 868,
+   "alpha": false,
+   "aspect": 1.0369,
+   "kb": 58.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "isaac-netero": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Isaac_Netero",
+  "file": "Isaac_Netero_HE_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 79.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "ging-freecss": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Ging_Freecss",
+  "file": "GingAv.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 510,
+   "srcH": 510,
+   "w": 510,
+   "h": 510,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 34.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "silva-zoldyck": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Silva_Zoldyck",
+  "file": "HxH2011_EP117_Silva_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 900,
+   "h": 675,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 65.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "zeno-zoldyck": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Zeno_Zoldyck",
+  "file": "Zeno_Zoldyck_YC_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 546,
+   "srcH": 546,
+   "w": 546,
+   "h": 546,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 47.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "feitan-portor": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Feitan_Portor",
+  "file": "HxH2011_EP50_Feitan_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 82.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "machi-komacine": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Machi_Komacine",
+  "file": "Machi_Komacine_HA_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 925,
+   "w": 900,
+   "h": 832,
+   "alpha": false,
+   "aspect": 1.0817,
+   "kb": 80.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "phinks-magcub": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Phinks_Magcub",
+  "file": "HxH2011_EP41_Phinks_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 55.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "franklin-bordeau": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Franklin_Bordeau",
+  "file": "HxH2011_EP58_Franklin_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 53.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "nobunaga-hazama": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Nobunaga_Hazama",
+  "file": "HxH2011_EP50_Nobunaga_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 79.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "shizuku-murasaki": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Shizuku_Murasaki",
+  "file": "HxH2011_EP53_Shizuku_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 82.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "pakunoda": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Pakunoda",
+  "file": "Pakunoda_YC_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 768,
+   "srcH": 768,
+   "w": 768,
+   "h": 768,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 49.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "uvogin": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Uvogin",
+  "file": "HxH2011_EP41_Uvogin_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 60.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "kalluto-zoldyck": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Kalluto_Zoldyck",
+  "file": "HxH2011_EP97_Kalluto_Close_Up.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 900,
+   "h": 675,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 42.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "alluka-zoldyck": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Alluka_Zoldyck",
+  "file": "147_-_Alluka_face.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 445,
+   "srcH": 445,
+   "w": 445,
+   "h": 445,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 30.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "milluki-zoldyck": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Milluki_Zoldyck",
+  "file": "Milluki_Zoldyck_2011.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 358,
+   "srcH": 652,
+   "w": 358,
+   "h": 652,
+   "alpha": true,
+   "aspect": 0.5491,
+   "kb": 436.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "canary": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Canary",
+  "file": "2011_canary.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 701,
+   "srcH": 532,
+   "w": 701,
+   "h": 532,
+   "alpha": false,
+   "aspect": 1.3177,
+   "kb": 43.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "mito-freecss": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Mito_Freecss",
+  "file": "HxH2011_EP26_Mito_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 72.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "biscuit-krueger": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Biscuit_Krueger",
+  "file": "Biscuit_Krueger_CA_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 531,
+   "srcH": 531,
+   "w": 531,
+   "h": 531,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 49.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "wing": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Wing",
+  "file": "Wing_HxH_2011.PNG",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 73.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "kite": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Kite",
+  "file": "Kite_CA_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 348,
+   "srcH": 348,
+   "w": 348,
+   "h": 348,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 21.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "shaiapouf": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Shaiapouf",
+  "file": "109_-_Shaiapouf_portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 949,
+   "w": 900,
+   "h": 854,
+   "alpha": false,
+   "aspect": 1.0539,
+   "kb": 91.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "menthuthuyoupi": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Menthuthuyoupi",
+  "file": "109_-_Menthuthuyoupi_portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 985,
+   "w": 900,
+   "h": 886,
+   "alpha": false,
+   "aspect": 1.0158,
+   "kb": 65.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "komugi": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Komugi",
+  "file": "Komugi_CA_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 535,
+   "srcH": 535,
+   "w": 535,
+   "h": 535,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 45.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "cheadle-yorkshire": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Cheadle_Yorkshire",
+  "file": "Cheadle_Yorkshire_HCE_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 565,
+   "srcH": 565,
+   "w": 565,
+   "h": 565,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 44.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "morel-mackernasey": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Morel_Mackernasey",
+  "file": "Morel_Mackernasey_CA_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 315,
+   "srcH": 315,
+   "w": 315,
+   "h": 315,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 18.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "knov": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Knov",
+  "file": "Knov148.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 65.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "knuckle-bine": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Knuckle_Bine",
+  "file": "Knuckle_Bine_CA_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 61.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "tonpa": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Tonpa",
+  "file": "Tonpa_HE_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 347,
+   "srcH": 347,
+   "w": 347,
+   "h": 347,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 16.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "hanzo": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Hanzo",
+  "file": "HxH2011_EP3_Hanzo_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 999,
+   "w": 900,
+   "h": 899,
+   "alpha": false,
+   "aspect": 1.0011,
+   "kb": 66.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "pokkle": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Pokkle",
+  "file": "Pokkle_HxH_11.PNG",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 508,
+   "srcH": 467,
+   "w": 508,
+   "h": 467,
+   "alpha": false,
+   "aspect": 1.0878,
+   "kb": 41.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "botobai-gigante": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Botobai_Gigante",
+  "file": "Botobai_Gigante_HCE_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 729,
+   "srcH": 729,
+   "w": 729,
+   "h": 729,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 65.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "kanzai": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Kanzai",
+  "file": "Kanzai_HCE_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 573,
+   "srcH": 573,
+   "w": 573,
+   "h": 573,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 48.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "saiyu": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Saiyu",
+  "file": "HxH2011_EP137_Saiyu_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 74.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "ginta": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Ginta",
+  "file": "Ginta_HCE_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 527,
+   "srcH": 527,
+   "w": 527,
+   "h": 527,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 35.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "pyon": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Pyon",
+  "file": "Pyon_HCE_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 311,
+   "srcH": 311,
+   "w": 311,
+   "h": 311,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 18.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "shalnark": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Shalnark",
+  "file": "HxH2011_EP53_Shalnark_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 999,
+   "w": 900,
+   "h": 899,
+   "alpha": false,
+   "aspect": 1.0011,
+   "kb": 63.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "bonolenov-ndongo": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Bonolenov_Ndongo",
+  "file": "HxH2011_EP96_Bonolenov_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 80.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "ikalgo": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Ikalgo",
+  "file": "HxH2011_EP119_Ikalgo_IMG.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 900,
+   "h": 507,
+   "alpha": false,
+   "aspect": 1.7751,
+   "kb": 44.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "shoot-mcmahon": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Shoot_McMahon",
+  "file": "2011_EP90_Shoot_McMahon_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 65.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "palm-siberia": {
+  "page": "https://hunterxhunter.fandom.com/wiki/Palm_Siberia",
+  "file": "Palm_Siberia_(Ant)_CA_Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 458,
+   "srcH": 458,
+   "w": 458,
+   "h": 458,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 28.9
+  },
+  "fetched": "2026-10-23"
+ }
+}

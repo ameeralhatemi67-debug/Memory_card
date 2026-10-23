@@ -250,7 +250,7 @@ class _MemoryLabState extends State<MemoryLab> {
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 6),
                           child: Row(children: [
-                            Expanded(child: Text(c.front, maxLines: 1, overflow: TextOverflow.ellipsis, style: T.d(19, color: mc.ink))),
+                            Expanded(child: Text(c.frontText, maxLines: 1, overflow: TextOverflow.ellipsis, style: T.d(19, color: mc.ink))),
                             Text('${(c.successRate * 100).round()}% · ${c.lapses} misses', style: T.t(13, w: FontWeight.w600, color: mc.muted)),
                           ]),
                         ),

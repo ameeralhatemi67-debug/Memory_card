@@ -2,22 +2,86 @@ import 'dart:convert';
 
 import 'package:flutter/services.dart';
 
+import 'card_layout.dart';
+
 /// A deck in the shop catalogue (bundled with the app, works offline).
 class CatalogCard {
-  const CatalogCard({required this.front, required this.back, this.label = '', this.example = '', this.hook = ''});
+  const CatalogCard({
+    required this.front,
+    required this.back,
+    this.label = '',
+    this.example = '',
+    this.hook = '',
+    this.img = '',
+    this.bimg = '',
+    this.aspect = 0,
+    this.backAspect = 0,
+    this.alpha = false,
+    this.backAlpha = false,
+  });
   final String front;
   final String back;
   final String label;
   final String example;
   final String hook;
 
+  /// Picture file names inside the deck's folder (assets/content/img/DECK_ID/) for the front and back.
+  final String img;
+  final String bimg;
+
+  /// Width ÷ height of those pictures, and whether they have transparent areas.
+  final double aspect;
+  final double backAspect;
+  final bool alpha;
+  final bool backAlpha;
+
+  bool get hasPicture => img.isNotEmpty || bimg.isNotEmpty;
+
   factory CatalogCard.fromJson(Map j) => CatalogCard(
-        front: (j['front'] as String).trim(),
+        front: ((j['front'] as String?) ?? '').trim(),
         back: (j['back'] as String).trim(),
         label: ((j['label'] as String?) ?? '').trim(),
         example: ((j['example'] as String?) ?? '').trim(),
         hook: ((j['hook'] as String?) ?? '').trim(),
+        img: ((j['img'] as String?) ?? '').trim(),
+        bimg: ((j['bimg'] as String?) ?? '').trim(),
+        aspect: (j['a'] as num?)?.toDouble() ?? 0,
+        backAspect: (j['ba'] as num?)?.toDouble() ?? 0,
+        alpha: j['al'] == 1,
+        backAlpha: j['bal'] == 1,
       );
+}
+
+/// How a picture deck lays its cards out (decided once per deck).
+class CatalogStyle {
+  const CatalogStyle({
+    this.front = Tpl.text,
+    this.back = Tpl.text,
+    this.contain = false,
+    this.reverse = false,
+    this.plate = '',
+  });
+
+  final Tpl front;
+  final Tpl back;
+  final bool contain;
+
+  /// Add a reverse card (name → picture) by default.
+  final bool reverse;
+
+  /// A solid plate behind transparent pictures ('paper' for logos).
+  final String plate;
+
+  factory CatalogStyle.fromJson(Object? j) {
+    if (j is! Map) return const CatalogStyle();
+    return CatalogStyle(
+      front: Tpl.parse(j['front']),
+      back: Tpl.parse(j['back']),
+      contain: j['fit'] == 'contain',
+      reverse: j['reverse'] == true,
+      plate: (j['plate'] as String?) ?? '',
+    );
+  }
 }
 
 class CatalogDeck {
@@ -33,6 +97,7 @@ class CatalogDeck {
     required this.description,
     required this.origin,
     required this.cards,
+    this.style = const CatalogStyle(),
   });
 
   final String id;
@@ -48,6 +113,36 @@ class CatalogDeck {
   /// originals · haiku
   final String origin;
   final List<CatalogCard> cards;
+  final CatalogStyle style;
+
+  /// A deck whose cards show pictures.
+  bool get hasPictures => cards.any((c) => c.hasPicture);
+
+  /// The bundled file for one of this deck's pictures.
+  String assetOf(String file) => 'asset:assets/content/img/$id/$file';
+
+  /// The front and back layouts of [c] (null = a plain text side).
+  (SideLayout?, SideLayout?) layoutsFor(CatalogCard c) {
+    SideLayout? side(String file, double aspect, bool alpha, Tpl tpl, bool back, CatalogCard c) {
+      if (file.isEmpty) return null;
+      return SideLayout.forPicture(
+        tpl == Tpl.text ? Tpl.below : tpl,
+        back: back,
+        src: assetOf(file),
+        aspect: aspect,
+        contain: style.contain,
+        alpha: alpha,
+        plate: style.plate,
+        outline: style.contain,
+        // Cropped pictures keep the top: faces sit above the middle of a figure.
+        panY: style.contain ? 0.5 : 0.15,
+        blur: back,
+        textless: back ? (c.back.isEmpty && c.hook.isEmpty) : (c.front.isEmpty && c.example.isEmpty),
+      );
+    }
+
+    return (side(c.img, c.aspect, c.alpha, style.front, false, c), side(c.bimg, c.backAspect, c.backAlpha, style.back, true, c));
+  }
 
   String get publisher => origin == 'haiku' ? 'Memory Card Studio' : 'Memory Card Originals';
 
@@ -63,6 +158,7 @@ class CatalogDeck {
         description: (j['description'] as String?) ?? '',
         origin: (j['origin'] as String?) ?? 'originals',
         cards: ((j['cards'] as List?) ?? const []).map((e) => CatalogCard.fromJson(e as Map)).toList(),
+        style: CatalogStyle.fromJson(j['style']),
       );
 }
 

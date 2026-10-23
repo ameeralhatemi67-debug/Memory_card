@@ -574,3 +574,52 @@ class _CascadeState extends State<Cascade> with SingleTickerProviderStateMixin {
     );
   }
 }
+
+/// The app's slider: an ink thumb on a thin track.
+class McSlider extends StatelessWidget {
+  const McSlider({
+    super.key,
+    required this.value,
+    required this.onChanged,
+    this.min = 0,
+    this.max = 1,
+    this.divisions,
+    this.onChangeStart,
+    this.onChangeEnd,
+    this.label,
+  });
+
+  final double value;
+  final ValueChanged<double> onChanged;
+  final double min;
+  final double max;
+  final int? divisions;
+  final VoidCallback? onChangeStart;
+  final VoidCallback? onChangeEnd;
+  final String? label;
+
+  @override
+  Widget build(BuildContext context) {
+    final mc = Mc.of(context);
+    return SliderTheme(
+      data: SliderTheme.of(context).copyWith(
+        activeTrackColor: mc.ink,
+        inactiveTrackColor: mc.line,
+        thumbColor: mc.ink,
+        overlayColor: mc.ink.withValues(alpha: 0.08),
+        trackHeight: 4,
+        thumbShape: const RoundSliderThumbShape(enabledThumbRadius: 9),
+      ),
+      child: Slider(
+        value: value.clamp(min, max),
+        min: min,
+        max: max,
+        divisions: divisions,
+        semanticFormatterCallback: label == null ? null : (v) => '$label ${v.toStringAsFixed(2)}',
+        onChangeStart: onChangeStart == null ? null : (_) => onChangeStart!(),
+        onChangeEnd: onChangeEnd == null ? null : (_) => onChangeEnd!(),
+        onChanged: onChanged,
+      ),
+    );
+  }
+}

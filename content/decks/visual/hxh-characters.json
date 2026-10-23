@@ -1,0 +1,410 @@
+{
+  "id": "hxh-characters",
+  "name": "Hunter x Hunter · Chars",
+  "mono": "Hx",
+  "category": "knowledge",
+  "level": "anime",
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Put a name to the face: the heroes, villains and Hunters of Hunter x Hunter, in 2011 anime art.",
+  "style": {
+    "front": "full",
+    "fit": "cover",
+    "back": "text",
+    "reverse": true
+  },
+  "cards": [
+    {
+      "img": "gon-freecss.jpg",
+      "front": "",
+      "back": "Gon Freecss",
+      "label": "character",
+      "example": "",
+      "hook": "Ging's son and a Rookie Hunter who wants to find his father."
+    },
+    {
+      "img": "killua-zoldyck.jpg",
+      "front": "",
+      "back": "Killua Zoldyck",
+      "label": "character",
+      "example": "",
+      "hook": "Zoldyck assassin heir who walks away from his family to befriend Gon."
+    },
+    {
+      "img": "kurapika.jpg",
+      "front": "",
+      "back": "Kurapika",
+      "label": "character",
+      "example": "",
+      "hook": "The last Kurta, sworn to hunt the Phantom Troupe for his slaughtered clan."
+    },
+    {
+      "img": "leorio-paradinight.jpg",
+      "front": "",
+      "back": "Leorio Paradinight",
+      "label": "character",
+      "example": "",
+      "hook": "Rookie Hunter and medical student who wants to become a doctor."
+    },
+    {
+      "img": "hisoka-morow.jpg",
+      "front": "",
+      "back": "Hisoka Morow",
+      "label": "character",
+      "example": "",
+      "hook": "Former Phantom Troupe member who spares promising rivals like Gon and Killua."
+    },
+    {
+      "img": "chrollo-lucilfer.png",
+      "front": "",
+      "back": "Chrollo Lucilfer",
+      "label": "character",
+      "example": "",
+      "hook": "Founder and leader of the Phantom Troupe; Kurapika's main target."
+    },
+    {
+      "img": "ging-freecss.jpg",
+      "front": "",
+      "back": "Ging Freecss",
+      "label": "character",
+      "example": "",
+      "hook": "Gon's father, a Double-Star Hunter and former Zodiac."
+    },
+    {
+      "img": "meruem.jpg",
+      "front": "",
+      "back": "Meruem",
+      "label": "character",
+      "example": "",
+      "hook": "The Chimera Ant King, the most powerful offspring of the Ant Queen."
+    },
+    {
+      "img": "neferpitou.jpg",
+      "front": "",
+      "back": "Neferpitou",
+      "label": "character",
+      "example": "",
+      "hook": "Cat-like Chimera Ant, the firstborn of the three Royal Guards."
+    },
+    {
+      "img": "isaac-netero.jpg",
+      "front": "",
+      "back": "Isaac Netero",
+      "label": "character",
+      "example": "",
+      "hook": "Hunter Association Chairman, once hailed as the world's most powerful Nen user."
+    },
+    {
+      "img": "illumi-zoldyck.jpg",
+      "front": "",
+      "back": "Illumi Zoldyck",
+      "label": "character",
+      "example": "",
+      "hook": "Killua's eldest brother, an assassin who hid as Gittarackur in the Hunter Exam."
+    },
+    {
+      "img": "uvogin.jpg",
+      "front": "",
+      "back": "Uvogin",
+      "label": "character",
+      "example": "",
+      "hook": "Phantom Troupe member #11, and physically the strongest of the group."
+    },
+    {
+      "img": "feitan-portor.jpg",
+      "front": "",
+      "back": "Feitan Portor",
+      "label": "character",
+      "example": "",
+      "hook": "Phantom Troupe #2; took over the Troupe after defeating Zazan."
+    },
+    {
+      "img": "nobunaga-hazama.jpg",
+      "front": "",
+      "back": "Nobunaga Hazama",
+      "label": "character",
+      "example": "",
+      "hook": "Phantom Troupe #1, a samurai who fights with a chained katana."
+    },
+    {
+      "img": "machi-komacine.jpg",
+      "front": "",
+      "back": "Machi Komacine",
+      "label": "character",
+      "example": "",
+      "hook": "Phantom Troupe #3; a needle-and-thread user who controls guns with her threads."
+    },
+    {
+      "img": "phinks-magcub.jpg",
+      "front": "",
+      "back": "Phinks Magcub",
+      "label": "character",
+      "example": "",
+      "hook": "Phantom Troupe #5, second-strongest in the group physically."
+    },
+    {
+      "img": "franklin-bordeau.jpg",
+      "front": "",
+      "back": "Franklin Bordeau",
+      "label": "character",
+      "example": "",
+      "hook": "Phantom Troupe #7; fires Nen bullets from a Double Machine Gun."
+    },
+    {
+      "img": "shizuku-murasaki.jpg",
+      "front": "",
+      "back": "Shizuku Murasaki",
+      "label": "character",
+      "example": "",
+      "hook": "Phantom Troupe #8; fights and cleans up with a conjured vacuum cleaner."
+    },
+    {
+      "img": "pakunoda.jpg",
+      "front": "",
+      "back": "Pakunoda",
+      "label": "character",
+      "example": "",
+      "hook": "Phantom Troupe #9, a Specialist who can read memories."
+    },
+    {
+      "img": "shalnark.jpg",
+      "front": "",
+      "back": "Shalnark",
+      "label": "character",
+      "example": "",
+      "hook": "Phantom Troupe #6, a Pro-Hunter who ranks tenth in physical strength."
+    },
+    {
+      "img": "bonolenov-ndongo.jpg",
+      "front": "",
+      "back": "Bonolenov Ndongo",
+      "label": "character",
+      "example": "",
+      "hook": "Phantom Troupe #10; bandaged all over to cover the holes in his body."
+    },
+    {
+      "img": "kalluto-zoldyck.jpg",
+      "front": "",
+      "back": "Kalluto Zoldyck",
+      "label": "character",
+      "example": "",
+      "hook": "Silva's youngest child, who replaced Hisoka as Phantom Troupe member #4."
+    },
+    {
+      "img": "silva-zoldyck.jpg",
+      "front": "",
+      "back": "Silva Zoldyck",
+      "label": "character",
+      "example": "",
+      "hook": "Head of the Zoldyck Family and father of Killua's siblings."
+    },
+    {
+      "img": "zeno-zoldyck.jpg",
+      "front": "",
+      "back": "Zeno Zoldyck",
+      "label": "character",
+      "example": "",
+      "hook": "Silva's father and Killua's grandfather, an elite assassin and Nen master."
+    },
+    {
+      "img": "alluka-zoldyck.jpg",
+      "front": "",
+      "back": "Alluka Zoldyck",
+      "label": "character",
+      "example": "",
+      "hook": "Killua's younger sister, who shares her body with the spirit Nanika."
+    },
+    {
+      "img": "milluki-zoldyck.png",
+      "front": "",
+      "back": "Milluki Zoldyck",
+      "label": "character",
+      "example": "",
+      "hook": "Killua's second-eldest brother, who usually takes jobs remotely."
+    },
+    {
+      "img": "canary.jpg",
+      "front": "",
+      "back": "Canary",
+      "label": "character",
+      "example": "",
+      "hook": "Zoldyck apprentice butler who expels intruders from the estate by force."
+    },
+    {
+      "img": "mito-freecss.jpg",
+      "front": "",
+      "back": "Mito Freecss",
+      "label": "character",
+      "example": "",
+      "hook": "Ging's cousin and the foster mother who raised Gon."
+    },
+    {
+      "img": "biscuit-krueger.jpg",
+      "front": "",
+      "back": "Biscuit Krueger",
+      "label": "character",
+      "example": "",
+      "hook": "Double-Star Stone Hunter; the tritagonist of the Greed Island arc."
+    },
+    {
+      "img": "wing.jpg",
+      "front": "",
+      "back": "Wing",
+      "label": "character",
+      "example": "",
+      "hook": "Shingen-ryu kung fu master who introduced Gon and Killua to Nen."
+    },
+    {
+      "img": "kite.jpg",
+      "front": "",
+      "back": "Kite",
+      "label": "character",
+      "example": "",
+      "hook": "Ging's student, reborn as a Chimera Ant after his death."
+    },
+    {
+      "img": "shaiapouf.jpg",
+      "front": "",
+      "back": "Shaiapouf",
+      "label": "character",
+      "example": "",
+      "hook": "Butterfly-like Chimera Ant and one of the King's Royal Guards."
+    },
+    {
+      "img": "menthuthuyoupi.jpg",
+      "front": "",
+      "back": "Menthuthuyoupi",
+      "label": "character",
+      "example": "",
+      "hook": "The youngest of the three Royal Guards, a Chimera Ant nicknamed Youpi."
+    },
+    {
+      "img": "ikalgo.jpg",
+      "front": "",
+      "back": "Ikalgo",
+      "label": "character",
+      "example": "",
+      "hook": "Octopus-like Chimera Ant and former captain of Leol's squad."
+    },
+    {
+      "img": "komugi.jpg",
+      "front": "",
+      "back": "Komugi",
+      "label": "character",
+      "example": "",
+      "hook": "World Gungi Champion who keeps her eyes shut unless playing Gungi."
+    },
+    {
+      "img": "palm-siberia.jpg",
+      "front": "",
+      "back": "Palm Siberia",
+      "label": "character",
+      "example": "",
+      "hook": "Knov's apprentice; later reborn as a Chimera Ant soldier."
+    },
+    {
+      "img": "cheadle-yorkshire.jpg",
+      "front": "",
+      "back": "Cheadle Yorkshire",
+      "label": "character",
+      "example": "",
+      "hook": "Dog Zodiac and the current Hunter Association Chairwoman."
+    },
+    {
+      "img": "botobai-gigante.jpg",
+      "front": "",
+      "back": "Botobai Gigante",
+      "label": "character",
+      "example": "",
+      "hook": "Dragon Zodiac, the eldest Zodiac and a Triple-Star Terrorist Hunter."
+    },
+    {
+      "img": "kanzai.jpg",
+      "front": "",
+      "back": "Kanzai",
+      "label": "character",
+      "example": "",
+      "hook": "Tiger Zodiac and a Treasure Hunter on the Defense Team."
+    },
+    {
+      "img": "saiyu.jpg",
+      "front": "",
+      "back": "Saiyu",
+      "label": "character",
+      "example": "",
+      "hook": "Monkey Zodiac and Blacklist Hunter who colludes with Pariston."
+    },
+    {
+      "img": "ginta.jpg",
+      "front": "",
+      "back": "Ginta",
+      "label": "character",
+      "example": "",
+      "hook": "Sheep Zodiac and a Poacher Hunter on the Flora and Fauna Team."
+    },
+    {
+      "img": "pyon.jpg",
+      "front": "",
+      "back": "Pyon",
+      "label": "character",
+      "example": "",
+      "hook": "Rabbit Zodiac and a Paleograph Hunter on the Intelligence Team."
+    },
+    {
+      "img": "morel-mackernasey.jpg",
+      "front": "",
+      "back": "Morel Mackernasey",
+      "label": "character",
+      "example": "",
+      "hook": "Single-Star Sea Hunter who fights with a giant pipe and its smoke."
+    },
+    {
+      "img": "knov.jpg",
+      "front": "",
+      "back": "Knov",
+      "label": "character",
+      "example": "",
+      "hook": "Chimera Ant extermination Hunter and master of Palm Siberia."
+    },
+    {
+      "img": "knuckle-bine.jpg",
+      "front": "",
+      "back": "Knuckle Bine",
+      "label": "character",
+      "example": "",
+      "hook": "Beast Hunter and Morel's apprentice."
+    },
+    {
+      "img": "shoot-mcmahon.jpg",
+      "front": "",
+      "back": "Shoot McMahon",
+      "label": "character",
+      "example": "",
+      "hook": "Morel Mackernasey's disciple and Knuckle Bine's partner."
+    },
+    {
+      "img": "tonpa.jpg",
+      "front": "",
+      "back": "Tonpa",
+      "label": "character",
+      "example": "",
+      "hook": "Self-proclaimed Rookie Crusher of the Hunter Exam, examinee #16."
+    },
+    {
+      "img": "hanzo.jpg",
+      "front": "",
+      "back": "Hanzo",
+      "label": "character",
+      "example": "",
+      "hook": "Cloud-Hidden jonin who joined the Hunter Exam to find the Hermit's Scroll."
+    },
+    {
+      "img": "pokkle.jpg",
+      "front": "",
+      "back": "Pokkle",
+      "label": "character",
+      "example": "",
+      "hook": "Hunter Exam examinee on his second try, later a Fantastic Beasts Hunter."
+    }
+  ]
+}

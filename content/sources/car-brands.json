@@ -1,0 +1,978 @@
+{
+ "toyota": {
+  "page": "https://commons.wikimedia.org/wiki/File:Toyota_Logo.svg",
+  "file": "File:Toyota Logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 766,
+   "srcH": 458,
+   "w": 512,
+   "h": 306,
+   "alpha": true,
+   "aspect": 1.6732,
+   "kb": 21.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "ford": {
+  "page": "https://commons.wikimedia.org/wiki/File:Ford_logo_flat.svg",
+  "file": "File:Ford logo flat.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 960,
+   "srcH": 346,
+   "w": 512,
+   "h": 185,
+   "alpha": true,
+   "aspect": 2.7676,
+   "kb": 56.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "volkswagen": {
+  "page": "https://commons.wikimedia.org/wiki/File:Volkswagen_logo_2019.svg",
+  "file": "File:Volkswagen logo 2019.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 55.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "mercedes-benz": {
+  "page": "https://commons.wikimedia.org/wiki/File:Mercedes-Benz_Star_2022.svg",
+  "file": "File:Mercedes-Benz Star 2022.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 150.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "bmw": {
+  "page": "https://commons.wikimedia.org/wiki/File:BMW.svg",
+  "file": "File:BMW.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 128.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "audi": {
+  "page": "https://commons.wikimedia.org/wiki/File:Audi-Logo_2016.svg",
+  "file": "File:Audi-Logo 2016.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 960,
+   "srcH": 339,
+   "w": 512,
+   "h": 181,
+   "alpha": true,
+   "aspect": 2.8287,
+   "kb": 18.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "honda": {
+  "page": "https://commons.wikimedia.org/wiki/File:Honda_auto_logo.svg",
+  "file": "File:Honda auto logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 680,
+   "w": 512,
+   "h": 363,
+   "alpha": true,
+   "aspect": 1.4105,
+   "kb": 13.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "chevrolet": {
+  "page": "https://commons.wikimedia.org/wiki/File:Chevrolet_bowtie_2023.svg",
+  "file": "File:Chevrolet bowtie 2023.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 307,
+   "w": 512,
+   "h": 164,
+   "alpha": true,
+   "aspect": 3.122,
+   "kb": 5.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "hyundai": {
+  "page": "https://commons.wikimedia.org/wiki/File:Hyundai_Motor_Company_logo.svg",
+  "file": "File:Hyundai Motor Company logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 250,
+   "srcH": 124,
+   "w": 250,
+   "h": 124,
+   "alpha": true,
+   "aspect": 2.0161,
+   "kb": 7.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "kia": {
+  "page": "https://commons.wikimedia.org/wiki/File:KIA_logo3.svg",
+  "file": "File:KIA logo3.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 960,
+   "srcH": 240,
+   "w": 512,
+   "h": 128,
+   "alpha": true,
+   "aspect": 4.0,
+   "kb": 11.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "tesla": {
+  "page": "https://commons.wikimedia.org/wiki/File:Tesla_T_symbol.svg",
+  "file": "File:Tesla T symbol.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 956,
+   "w": 512,
+   "h": 510,
+   "alpha": true,
+   "aspect": 1.0039,
+   "kb": 32.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "porsche": {
+  "page": "https://commons.wikimedia.org/wiki/File:Newporschecrest.jpg",
+  "file": "File:Newporschecrest.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 960,
+   "srcH": 768,
+   "w": 512,
+   "h": 410,
+   "alpha": false,
+   "aspect": 1.2488,
+   "kb": 60.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "mazda": {
+  "page": "https://commons.wikimedia.org/wiki/File:Mazda_logo_2024_(vertical).svg",
+  "file": "File:Mazda logo 2024 (vertical).svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 798,
+   "srcH": 633,
+   "w": 512,
+   "h": 406,
+   "alpha": true,
+   "aspect": 1.2611,
+   "kb": 19.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "subaru": {
+  "page": "https://commons.wikimedia.org/wiki/File:Subaru_logo_(transparent).svg",
+  "file": "File:Subaru logo (transparent).svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 819,
+   "srcH": 407,
+   "w": 512,
+   "h": 254,
+   "alpha": true,
+   "aspect": 2.0157,
+   "kb": 118.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "renault": {
+  "page": "https://commons.wikimedia.org/wiki/File:Renault_logo.svg",
+  "file": "File:Renault logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 439,
+   "srcH": 475,
+   "w": 439,
+   "h": 475,
+   "alpha": true,
+   "aspect": 0.9242,
+   "kb": 66.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "citroen": {
+  "page": "https://commons.wikimedia.org/wiki/File:Citroen_2022.svg",
+  "file": "File:Citroen 2022.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 628,
+   "srcH": 712,
+   "w": 452,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.8828,
+   "kb": 24.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "fiat": {
+  "page": "https://commons.wikimedia.org/wiki/File:Fiat_Automobiles_logo.svg",
+  "file": "File:Fiat Automobiles logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 77.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "volvo": {
+  "page": "https://commons.wikimedia.org/wiki/File:Volvo-Iron-Mark-Black.svg",
+  "file": "File:Volvo-Iron-Mark-Black.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 25.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "cadillac": {
+  "page": "https://commons.wikimedia.org/wiki/File:Cadillac_Logo_2021.svg",
+  "file": "File:Cadillac Logo 2021.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 741,
+   "srcH": 290,
+   "w": 512,
+   "h": 200,
+   "alpha": true,
+   "aspect": 2.56,
+   "kb": 24.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "lexus": {
+  "page": "https://commons.wikimedia.org/wiki/File:Lexus_Logo.svg",
+  "file": "File:Lexus Logo.svg",
+  "license": "Wikimedia Commons: CC0; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 707,
+   "w": 512,
+   "h": 377,
+   "alpha": true,
+   "aspect": 1.3581,
+   "kb": 19.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "mini": {
+  "page": "https://commons.wikimedia.org/wiki/File:MINI_logo.svg",
+  "file": "File:MINI logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 960,
+   "srcH": 422,
+   "w": 512,
+   "h": 225,
+   "alpha": true,
+   "aspect": 2.2756,
+   "kb": 17.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "rolls-royce": {
+  "page": "https://commons.wikimedia.org/wiki/File:Rolls-Royce_Motor_Cars_logo.svg",
+  "file": "File:Rolls-Royce Motor Cars logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 960,
+   "srcH": 1200,
+   "w": 410,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.8008,
+   "kb": 22.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "maserati": {
+  "page": "https://commons.wikimedia.org/wiki/File:Maserati_logo_2.svg",
+  "file": "File:Maserati logo 2.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 216,
+   "srcH": 242,
+   "w": 216,
+   "h": 242,
+   "alpha": true,
+   "aspect": 0.8926,
+   "kb": 4.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "mitsubishi": {
+  "page": "https://commons.wikimedia.org/wiki/File:Mitsubishi_logo.svg",
+  "file": "File:Mitsubishi logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 829,
+   "w": 512,
+   "h": 442,
+   "alpha": true,
+   "aspect": 1.1584,
+   "kb": 19.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "suzuki": {
+  "page": "https://commons.wikimedia.org/wiki/File:Suzuki_logo_2025_(symbol).svg",
+  "file": "File:Suzuki logo 2025 (symbol).svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 33.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "opel": {
+  "page": "https://commons.wikimedia.org/wiki/File:Opel_logo_2023.svg",
+  "file": "File:Opel logo 2023.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 960,
+   "srcH": 629,
+   "w": 512,
+   "h": 335,
+   "alpha": true,
+   "aspect": 1.5284,
+   "kb": 15.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "skoda": {
+  "page": "https://commons.wikimedia.org/wiki/File:Škoda_Auto.svg",
+  "file": "File:Škoda Auto.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 876,
+   "srcH": 853,
+   "w": 512,
+   "h": 499,
+   "alpha": true,
+   "aspect": 1.0261,
+   "kb": 107.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "seat": {
+  "page": "https://commons.wikimedia.org/wiki/File:SEAT_Logo_from_2017.svg",
+  "file": "File:SEAT Logo from 2017.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 604,
+   "srcH": 488,
+   "w": 512,
+   "h": 414,
+   "alpha": true,
+   "aspect": 1.2367,
+   "kb": 26.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "dacia": {
+  "page": "https://commons.wikimedia.org/wiki/File:Dacia_2021_symbol.svg",
+  "file": "File:Dacia 2021 symbol.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 269,
+   "w": 512,
+   "h": 143,
+   "alpha": true,
+   "aspect": 3.5804,
+   "kb": 3.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "buick": {
+  "page": "https://commons.wikimedia.org/wiki/File:Buick_logo_1980.png",
+  "file": "File:Buick logo 1980.png",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 571,
+   "srcH": 542,
+   "w": 512,
+   "h": 486,
+   "alpha": true,
+   "aspect": 1.0535,
+   "kb": 117.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "chrysler": {
+  "page": "https://commons.wikimedia.org/wiki/File:Chrysler_Group_logo.svg",
+  "file": "File:Chrysler Group logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 512,
+   "srcH": 397,
+   "w": 512,
+   "h": 397,
+   "alpha": true,
+   "aspect": 1.2897,
+   "kb": 41.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "gmc": {
+  "page": "https://commons.wikimedia.org/wiki/File:GMC.svg",
+  "file": "File:GMC.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 424,
+   "w": 512,
+   "h": 226,
+   "alpha": true,
+   "aspect": 2.2655,
+   "kb": 6.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "infiniti": {
+  "page": "https://commons.wikimedia.org/wiki/File:Infiniti_logo_1989_-_no_text.svg",
+  "file": "File:Infiniti logo 1989 - no text.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 473,
+   "w": 512,
+   "h": 252,
+   "alpha": true,
+   "aspect": 2.0317,
+   "kb": 15.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "acura": {
+  "page": "https://commons.wikimedia.org/wiki/File:Acura_logo.svg",
+  "file": "File:Acura logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 344,
+   "srcH": 322,
+   "w": 344,
+   "h": 322,
+   "alpha": true,
+   "aspect": 1.0683,
+   "kb": 10.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "byd": {
+  "page": "https://commons.wikimedia.org/wiki/File:BYD_Auto_Logo.svg",
+  "file": "File:BYD Auto Logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 594,
+   "w": 512,
+   "h": 317,
+   "alpha": true,
+   "aspect": 1.6151,
+   "kb": 32.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "geely": {
+  "page": "https://commons.wikimedia.org/wiki/File:Geely_Auto_2023.svg",
+  "file": "File:Geely Auto 2023.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 322,
+   "w": 512,
+   "h": 172,
+   "alpha": true,
+   "aspect": 2.9767,
+   "kb": 10.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "chery": {
+  "page": "https://commons.wikimedia.org/wiki/File:Chery_symbol.svg",
+  "file": "File:Chery symbol.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 320,
+   "w": 512,
+   "h": 171,
+   "alpha": true,
+   "aspect": 2.9942,
+   "kb": 22.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "nio": {
+  "page": "https://commons.wikimedia.org/wiki/File:NIO_logo_emblem.svg",
+  "file": "File:NIO logo emblem.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 818,
+   "srcH": 729,
+   "w": 512,
+   "h": 456,
+   "alpha": true,
+   "aspect": 1.1228,
+   "kb": 14.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "tata": {
+  "page": "https://commons.wikimedia.org/wiki/File:Tata_logo.svg",
+  "file": "File:Tata logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 728,
+   "srcH": 505,
+   "w": 512,
+   "h": 355,
+   "alpha": true,
+   "aspect": 1.4423,
+   "kb": 33.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "mclaren": {
+  "page": "https://commons.wikimedia.org/wiki/File:McLaren_Speedmark.svg",
+  "file": "File:McLaren Speedmark.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 527,
+   "w": 512,
+   "h": 281,
+   "alpha": true,
+   "aspect": 1.8221,
+   "kb": 9.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "bugatti": {
+  "page": "https://commons.wikimedia.org/wiki/File:Bugatti_logo.svg",
+  "file": "File:Bugatti logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 960,
+   "srcH": 473,
+   "w": 512,
+   "h": 252,
+   "alpha": true,
+   "aspect": 2.0317,
+   "kb": 75.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "koenigsegg": {
+  "page": "https://commons.wikimedia.org/wiki/File:Koenigsegg_logo.svg",
+  "file": "File:Koenigsegg logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 163,
+   "srcH": 241,
+   "w": 163,
+   "h": 241,
+   "alpha": true,
+   "aspect": 0.6763,
+   "kb": 9.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "polestar": {
+  "page": "https://commons.wikimedia.org/wiki/File:Polestar_logo_2020.svg",
+  "file": "File:Polestar logo 2020.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 960,
+   "srcH": 887,
+   "w": 512,
+   "h": 473,
+   "alpha": true,
+   "aspect": 1.0825,
+   "kb": 9.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "ssangyong": {
+  "page": "https://commons.wikimedia.org/wiki/File:Ssangyong_company_logo.svg",
+  "file": "File:Ssangyong company logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 173,
+   "srcH": 138,
+   "w": 173,
+   "h": 138,
+   "alpha": true,
+   "aspect": 1.2536,
+   "kb": 4.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "daihatsu": {
+  "page": "https://commons.wikimedia.org/wiki/File:Daihatsu_symbol.svg",
+  "file": "File:Daihatsu symbol.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 368,
+   "w": 512,
+   "h": 196,
+   "alpha": true,
+   "aspect": 2.6122,
+   "kb": 20.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "ds": {
+  "page": "https://commons.wikimedia.org/wiki/File:DS_Automobiles_2009_logo.svg",
+  "file": "File:DS Automobiles 2009 logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 960,
+   "srcH": 1176,
+   "w": 418,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.8164,
+   "kb": 23.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "cupra": {
+  "page": "https://commons.wikimedia.org/wiki/File:Cupra_symbol.svg",
+  "file": "File:Cupra symbol.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 738,
+   "w": 512,
+   "h": 394,
+   "alpha": true,
+   "aspect": 1.2995,
+   "kb": 16.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "alpine": {
+  "page": "https://commons.wikimedia.org/wiki/File:Logo-alpine.jpg",
+  "file": "File:Logo-alpine.jpg",
+  "license": "Wikimedia Commons: CC0; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 427,
+   "srcH": 286,
+   "w": 427,
+   "h": 286,
+   "alpha": false,
+   "aspect": 1.493,
+   "kb": 13.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "mg": {
+  "page": "https://commons.wikimedia.org/wiki/File:Mg_logo.svg",
+  "file": "File:Mg logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 960,
+   "srcH": 927,
+   "w": 512,
+   "h": 494,
+   "alpha": true,
+   "aspect": 1.0364,
+   "kb": 31.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "pontiac": {
+  "page": "https://commons.wikimedia.org/wiki/File:Pontiac_logo_and_wordmark_1981.svg",
+  "file": "File:Pontiac logo and wordmark 1981.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 443,
+   "srcH": 729,
+   "w": 311,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.6074,
+   "kb": 39.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "proton": {
+  "page": "https://commons.wikimedia.org/wiki/File:PROTON_Holdings.png",
+  "file": "File:PROTON Holdings.png",
+  "license": "Wikimedia Commons: CC0; logo may be a registered trademark of its owner",
+  "source": "wikidata-logo",
+  "facts": {
+   "srcW": 333,
+   "srcH": 321,
+   "w": 333,
+   "h": 321,
+   "alpha": true,
+   "aspect": 1.0374,
+   "kb": 88.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "smart": {
+  "page": "https://commons.wikimedia.org/wiki/File:Smart_2022.svg",
+  "file": "File:Smart 2022.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 934,
+   "w": 512,
+   "h": 498,
+   "alpha": true,
+   "aspect": 1.0281,
+   "kb": 16.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "changan": {
+  "page": "https://commons.wikimedia.org/wiki/File:Changan_icon.svg",
+  "file": "File:Changan icon.svg",
+  "license": "Wikimedia Commons: CC BY-SA 4.0; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 829,
+   "w": 512,
+   "h": 442,
+   "alpha": true,
+   "aspect": 1.1584,
+   "kb": 69.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "vauxhall": {
+  "page": "https://commons.wikimedia.org/wiki/File:Vauxhall_logo_2026.svg",
+  "file": "File:Vauxhall logo 2026.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 498,
+   "srcH": 480,
+   "w": 498,
+   "h": 480,
+   "alpha": true,
+   "aspect": 1.0375,
+   "kb": 21.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "wuling": {
+  "page": "https://commons.wikimedia.org/wiki/File:Wuling_Motor_logo.png",
+  "file": "File:Wuling Motor logo.png",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 660,
+   "srcH": 429,
+   "w": 512,
+   "h": 333,
+   "alpha": true,
+   "aspect": 1.5375,
+   "kb": 65.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "perodua": {
+  "page": "https://commons.wikimedia.org/wiki/File:Perodua_Logo_(2008_-_Present).svg",
+  "file": "File:Perodua Logo (2008 - Present).svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 748,
+   "srcH": 482,
+   "w": 512,
+   "h": 330,
+   "alpha": true,
+   "aspect": 1.5515,
+   "kb": 86.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "vinfast": {
+  "page": "https://commons.wikimedia.org/wiki/File:VinFast_logo_(simple_variant).svg",
+  "file": "File:VinFast logo (simple variant).svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 840,
+   "srcH": 778,
+   "w": 512,
+   "h": 474,
+   "alpha": true,
+   "aspect": 1.0802,
+   "kb": 60.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "li-auto": {
+  "page": "https://commons.wikimedia.org/wiki/File:Li_Auto_English_logo.svg",
+  "file": "File:Li Auto English logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 230,
+   "srcH": 148,
+   "w": 230,
+   "h": 148,
+   "alpha": true,
+   "aspect": 1.5541,
+   "kb": 2.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "dongfeng": {
+  "page": "https://commons.wikimedia.org/wiki/File:Dongfeng_Motor_logo.svg",
+  "file": "File:Dongfeng Motor logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 211,
+   "srcH": 248,
+   "w": 211,
+   "h": 248,
+   "alpha": true,
+   "aspect": 0.8508,
+   "kb": 11.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "xpeng": {
+  "page": "https://commons.wikimedia.org/wiki/File:XPeng_logo.svg",
+  "file": "File:XPeng logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 134,
+   "srcH": 118,
+   "w": 134,
+   "h": 118,
+   "alpha": true,
+   "aspect": 1.1356,
+   "kb": 1.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "zeekr": {
+  "page": "https://commons.wikimedia.org/wiki/File:Zeekr_logo.svg",
+  "file": "File:Zeekr logo.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 192,
+   "srcH": 243,
+   "w": 192,
+   "h": 243,
+   "alpha": true,
+   "aspect": 0.7901,
+   "kb": 0.8
+  },
+  "fetched": "2026-10-23"
+ }
+}

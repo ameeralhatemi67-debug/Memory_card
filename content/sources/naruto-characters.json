@@ -1,0 +1,930 @@
+{
+ "naruto-uzumaki": {
+  "page": "https://naruto.fandom.com/wiki/Naruto_Uzumaki",
+  "file": "Naruto_Part_I.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 747,
+   "w": 900,
+   "h": 672,
+   "alpha": false,
+   "aspect": 1.3393,
+   "kb": 69.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "sasuke-uchiha": {
+  "page": "https://naruto.fandom.com/wiki/Sasuke_Uchiha",
+  "file": "Sasuke_Part_1.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 741,
+   "w": 900,
+   "h": 667,
+   "alpha": false,
+   "aspect": 1.3493,
+   "kb": 61.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "sakura-haruno": {
+  "page": "https://naruto.fandom.com/wiki/Sakura_Haruno",
+  "file": "Sakura_Part_1.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 747,
+   "w": 900,
+   "h": 672,
+   "alpha": false,
+   "aspect": 1.3393,
+   "kb": 74.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "kakashi-hatake": {
+  "page": "https://naruto.fandom.com/wiki/Kakashi_Hatake",
+  "file": "Kakashi_Hatake.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 748,
+   "w": 900,
+   "h": 673,
+   "alpha": false,
+   "aspect": 1.3373,
+   "kb": 55.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "jiraiya": {
+  "page": "https://naruto.fandom.com/wiki/Jiraiya",
+  "file": "Jiraiya_Young.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 399,
+   "srcH": 502,
+   "w": 399,
+   "h": 502,
+   "alpha": true,
+   "aspect": 0.7948,
+   "kb": 144.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "tsunade": {
+  "page": "https://naruto.fandom.com/wiki/Tsunade",
+  "file": "Kid_Tsunade.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 603,
+   "srcH": 1000,
+   "w": 543,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6033,
+   "kb": 93.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "orochimaru": {
+  "page": "https://naruto.fandom.com/wiki/Orochimaru",
+  "file": "Orochimaru_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 756,
+   "w": 900,
+   "h": 680,
+   "alpha": false,
+   "aspect": 1.3235,
+   "kb": 45.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "itachi-uchiha": {
+  "page": "https://naruto.fandom.com/wiki/File:Itachi.png",
+  "file": "File:Itachi.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 900,
+   "h": 675,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 53.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "minato-namikaze": {
+  "page": "https://naruto.fandom.com/wiki/Minato_Namikaze",
+  "file": "Minato_Jonin.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 386,
+   "srcH": 999,
+   "w": 348,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.3867,
+   "kb": 236.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "hinata-hyuga": {
+  "page": "https://naruto.fandom.com/wiki/Hinata_Hyūga",
+  "file": "Hinata.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 756,
+   "w": 900,
+   "h": 680,
+   "alpha": false,
+   "aspect": 1.3235,
+   "kb": 58.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "shikamaru-nara": {
+  "page": "https://naruto.fandom.com/wiki/Shikamaru_Nara",
+  "file": "Shikamaru_Part_I.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 789,
+   "w": 900,
+   "h": 710,
+   "alpha": false,
+   "aspect": 1.2676,
+   "kb": 36.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "gaara": {
+  "page": "https://naruto.fandom.com/wiki/Gaara",
+  "file": "Gaara_in_Part_I.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 747,
+   "w": 900,
+   "h": 672,
+   "alpha": false,
+   "aspect": 1.3393,
+   "kb": 55.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "rock-lee": {
+  "page": "https://naruto.fandom.com/wiki/Rock_Lee",
+  "file": "Rock_Lee_Part_I.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 747,
+   "w": 900,
+   "h": 672,
+   "alpha": false,
+   "aspect": 1.3393,
+   "kb": 59.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "neji-hyuga": {
+  "page": "https://naruto.fandom.com/wiki/Neji_Hyūga",
+  "file": "Neji_Part_I.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 749,
+   "w": 900,
+   "h": 674,
+   "alpha": false,
+   "aspect": 1.3353,
+   "kb": 69.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "might-guy": {
+  "page": "https://naruto.fandom.com/wiki/Might_Guy",
+  "file": "Might_Guy.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 724,
+   "w": 900,
+   "h": 652,
+   "alpha": false,
+   "aspect": 1.3804,
+   "kb": 71.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "kiba-inuzuka": {
+  "page": "https://naruto.fandom.com/wiki/Kiba_Inuzuka",
+  "file": "Kiba.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 747,
+   "w": 900,
+   "h": 672,
+   "alpha": false,
+   "aspect": 1.3393,
+   "kb": 77.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "shino-aburame": {
+  "page": "https://naruto.fandom.com/wiki/Shino_Aburame",
+  "file": "Shino.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 748,
+   "w": 900,
+   "h": 673,
+   "alpha": false,
+   "aspect": 1.3373,
+   "kb": 58.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "choji-akimichi": {
+  "page": "https://naruto.fandom.com/wiki/Chōji_Akimichi",
+  "file": "Chōji_Akimichi.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 747,
+   "w": 900,
+   "h": 672,
+   "alpha": false,
+   "aspect": 1.3393,
+   "kb": 67.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "ino-yamanaka": {
+  "page": "https://naruto.fandom.com/wiki/Ino_Yamanaka",
+  "file": "Ino.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 747,
+   "w": 900,
+   "h": 672,
+   "alpha": false,
+   "aspect": 1.3393,
+   "kb": 64.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "tenten": {
+  "page": "https://naruto.fandom.com/wiki/Tenten",
+  "file": "Tenten_Part_1.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 743,
+   "w": 900,
+   "h": 669,
+   "alpha": false,
+   "aspect": 1.3453,
+   "kb": 71.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "nagato": {
+  "page": "https://naruto.fandom.com/wiki/Nagato",
+  "file": "Nagato_Early_Akatsuki.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 320,
+   "srcH": 510,
+   "w": 320,
+   "h": 510,
+   "alpha": true,
+   "aspect": 0.6275,
+   "kb": 52.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "konan": {
+  "page": "https://naruto.fandom.com/wiki/File:Konan_Infobox.png",
+  "file": "File:Konan Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 900,
+   "h": 675,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 64.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "madara-uchiha": {
+  "page": "https://naruto.fandom.com/wiki/Madara_Uchiha",
+  "file": "Kid_Madara.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 786,
+   "srcH": 1000,
+   "w": 707,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.7856,
+   "kb": 182.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "hashirama-senju": {
+  "page": "https://naruto.fandom.com/wiki/File:Shodai_Hokage.PNG",
+  "file": "File:Shodai Hokage.PNG",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 883,
+   "srcH": 787,
+   "w": 883,
+   "h": 787,
+   "alpha": false,
+   "aspect": 1.122,
+   "kb": 84.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "hiruzen-sarutobi": {
+  "page": "https://naruto.fandom.com/wiki/File:Hiruzen_Sarutobi.png",
+  "file": "File:Hiruzen Sarutobi.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 735,
+   "w": 900,
+   "h": 662,
+   "alpha": false,
+   "aspect": 1.3595,
+   "kb": 61.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "obito-uchiha": {
+  "page": "https://naruto.fandom.com/wiki/Obito_Uchiha",
+  "file": "Obito_Uchiha.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 900,
+   "h": 675,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 42.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "kabuto-yakushi": {
+  "page": "https://naruto.fandom.com/wiki/Kabuto_Yakushi",
+  "file": "Kabuto_Part_1.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 747,
+   "w": 900,
+   "h": 672,
+   "alpha": false,
+   "aspect": 1.3393,
+   "kb": 54.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "kisame-hoshigaki": {
+  "page": "https://naruto.fandom.com/wiki/Kisame_Hoshigaki",
+  "file": "Kisame_Hoshigaki_full.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 492,
+   "srcH": 999,
+   "w": 443,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.4922,
+   "kb": 269.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "deidara": {
+  "page": "https://naruto.fandom.com/wiki/Deidara",
+  "file": "NUNSRDeidara.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 391,
+   "srcH": 999,
+   "w": 352,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.3911,
+   "kb": 192.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "sasori": {
+  "page": "https://naruto.fandom.com/wiki/Sasori",
+  "file": "Sasori_UNSR.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 387,
+   "srcH": 1000,
+   "w": 348,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.3867,
+   "kb": 211.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "hidan": {
+  "page": "https://naruto.fandom.com/wiki/Hidan",
+  "file": "NSUNRHidan.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 674,
+   "srcH": 999,
+   "w": 607,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.6744,
+   "kb": 253.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "kakuzu": {
+  "page": "https://naruto.fandom.com/wiki/Kakuzu",
+  "file": "Kakuzu_UNSR.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 318,
+   "srcH": 479,
+   "w": 318,
+   "h": 479,
+   "alpha": true,
+   "aspect": 0.6639,
+   "kb": 93.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "killer-bee": {
+  "page": "https://naruto.fandom.com/wiki/Killer_B",
+  "file": "Killer_B.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 671,
+   "w": 900,
+   "h": 604,
+   "alpha": false,
+   "aspect": 1.4901,
+   "kb": 39.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "mei-terumi": {
+  "page": "https://naruto.fandom.com/wiki/Mei_Terumī",
+  "file": "Mei.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 787,
+   "w": 900,
+   "h": 708,
+   "alpha": false,
+   "aspect": 1.2712,
+   "kb": 49.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "kurenai-yuhi": {
+  "page": "https://naruto.fandom.com/wiki/Kurenai_Yūhi",
+  "file": "Kurenai_Part_I.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 858,
+   "w": 900,
+   "h": 772,
+   "alpha": false,
+   "aspect": 1.1658,
+   "kb": 80.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "asuma-sarutobi": {
+  "page": "https://naruto.fandom.com/wiki/Asuma_Sarutobi",
+  "file": "Asuma.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 671,
+   "w": 900,
+   "h": 604,
+   "alpha": false,
+   "aspect": 1.4901,
+   "kb": 68.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "iruka-umino": {
+  "page": "https://naruto.fandom.com/wiki/Iruka_Umino",
+  "file": "Iruka.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 884,
+   "w": 900,
+   "h": 796,
+   "alpha": false,
+   "aspect": 1.1307,
+   "kb": 70.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "tobirama-senju": {
+  "page": "https://naruto.fandom.com/wiki/File:Tobirama_Senju.png",
+  "file": "File:Tobirama Senju.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 900,
+   "h": 675,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 82.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "danzo-shimura": {
+  "page": "https://naruto.fandom.com/wiki/File:Danzō.png",
+  "file": "File:Danzō.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 732,
+   "w": 900,
+   "h": 659,
+   "alpha": false,
+   "aspect": 1.3657,
+   "kb": 62.5
+  },
+  "fetched": "2026-10-23"
+ },
+ "kushina-uzumaki": {
+  "page": "https://naruto.fandom.com/wiki/Kushina_Uzumaki",
+  "file": "Kid_Kushina.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 608,
+   "srcH": 703,
+   "w": 608,
+   "h": 703,
+   "alpha": true,
+   "aspect": 0.8649,
+   "kb": 200.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "kaguya-otsutsuki": {
+  "page": "https://naruto.fandom.com/wiki/Kaguya_Ōtsutsuki",
+  "file": "Kaguya_Ōtsutsuki.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 699,
+   "w": 900,
+   "h": 629,
+   "alpha": false,
+   "aspect": 1.4308,
+   "kb": 60.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "sai": {
+  "page": "https://naruto.fandom.com/wiki/Sai",
+  "file": "Sai_Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 747,
+   "w": 900,
+   "h": 672,
+   "alpha": false,
+   "aspect": 1.3393,
+   "kb": 58.0
+  },
+  "fetched": "2026-10-23"
+ },
+ "yamato": {
+  "page": "https://naruto.fandom.com/wiki/Yamato",
+  "file": "Yamato_newshot.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 747,
+   "w": 900,
+   "h": 672,
+   "alpha": false,
+   "aspect": 1.3393,
+   "kb": 58.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "anko-mitarashi": {
+  "page": "https://naruto.fandom.com/wiki/Anko_Mitarashi",
+  "file": "Anko_Part_I.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 747,
+   "w": 900,
+   "h": 672,
+   "alpha": false,
+   "aspect": 1.3393,
+   "kb": 71.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "jugo": {
+  "page": "https://naruto.fandom.com/wiki/Jūgo",
+  "file": "Jugo.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 696,
+   "w": 900,
+   "h": 626,
+   "alpha": false,
+   "aspect": 1.4377,
+   "kb": 63.4
+  },
+  "fetched": "2026-10-23"
+ },
+ "suigetsu-hozuki": {
+  "page": "https://naruto.fandom.com/wiki/Suigetsu_Hōzuki",
+  "file": "Suigetsu_Hōzuki.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 747,
+   "w": 900,
+   "h": 672,
+   "alpha": false,
+   "aspect": 1.3393,
+   "kb": 53.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "kankuro": {
+  "page": "https://naruto.fandom.com/wiki/Kankurō",
+  "file": "Kankurō1.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 756,
+   "w": 900,
+   "h": 680,
+   "alpha": false,
+   "aspect": 1.3235,
+   "kb": 62.3
+  },
+  "fetched": "2026-10-23"
+ },
+ "temari": {
+  "page": "https://naruto.fandom.com/wiki/Temari",
+  "file": "Temari_newshot.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 853,
+   "w": 900,
+   "h": 768,
+   "alpha": false,
+   "aspect": 1.1719,
+   "kb": 84.9
+  },
+  "fetched": "2026-10-23"
+ },
+ "hiashi-hyuga": {
+  "page": "https://naruto.fandom.com/wiki/Hiashi_Hyūga",
+  "file": "Hiashi_Hyuga.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 778,
+   "w": 900,
+   "h": 700,
+   "alpha": false,
+   "aspect": 1.2857,
+   "kb": 60.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "hanabi-hyuga": {
+  "page": "https://naruto.fandom.com/wiki/Hanabi_Hyūga",
+  "file": "Hanabi_Hyuga.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 747,
+   "w": 900,
+   "h": 672,
+   "alpha": false,
+   "aspect": 1.3393,
+   "kb": 55.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "onoki": {
+  "page": "https://naruto.fandom.com/wiki/Ōnoki",
+  "file": "Ōnoki.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 747,
+   "w": 900,
+   "h": 672,
+   "alpha": false,
+   "aspect": 1.3393,
+   "kb": 60.7
+  },
+  "fetched": "2026-10-23"
+ },
+ "rasa": {
+  "page": "https://naruto.fandom.com/wiki/Rasa",
+  "file": "Yondaime_Kazekage.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 900,
+   "h": 675,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 55.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "roshi": {
+  "page": "https://naruto.fandom.com/wiki/File:Roshi.png",
+  "file": "File:Roshi.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 900,
+   "h": 675,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 55.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "yugito-nii": {
+  "page": "https://naruto.fandom.com/wiki/Yugito_Nii",
+  "file": "Yugito.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 900,
+   "h": 675,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 40.6
+  },
+  "fetched": "2026-10-23"
+ },
+ "chiyo": {
+  "page": "https://naruto.fandom.com/wiki/Chiyo",
+  "file": "Chiyo.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 900,
+   "h": 675,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 62.8
+  },
+  "fetched": "2026-10-23"
+ },
+ "zetsu": {
+  "page": "https://naruto.fandom.com/wiki/File:Black_Zetsu.png",
+  "file": "File:Black Zetsu.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 900,
+   "h": 675,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 59.2
+  },
+  "fetched": "2026-10-23"
+ },
+ "karin-uzumaki": {
+  "page": "https://naruto.fandom.com/wiki/File:Karin3.png",
+  "file": "File:Karin3.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 747,
+   "w": 900,
+   "h": 672,
+   "alpha": false,
+   "aspect": 1.3393,
+   "kb": 60.1
+  },
+  "fetched": "2026-10-23"
+ },
+ "kimimaro": {
+  "page": "https://naruto.fandom.com/wiki/File:Kimimaro_infobox.png",
+  "file": "File:Kimimaro infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 900,
+   "h": 507,
+   "alpha": false,
+   "aspect": 1.7751,
+   "kb": 67.5
+  },
+  "fetched": "2026-10-23"
+ }
+}

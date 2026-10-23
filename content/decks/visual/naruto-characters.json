@@ -1,0 +1,482 @@
+{
+  "id": "naruto-characters",
+  "name": "Naruto · Characters",
+  "mono": "Na",
+  "category": "knowledge",
+  "level": "anime",
+  "kind": "text",
+  "folder": "Knowledge",
+  "description": "Put a name to the face: the heroes, Hokage, Akatsuki and villains of the Naruto series.",
+  "style": {
+    "front": "full",
+    "fit": "cover",
+    "back": "text",
+    "reverse": true
+  },
+  "cards": [
+    {
+      "img": "naruto-uzumaki.jpg",
+      "front": "",
+      "back": "Naruto Uzumaki",
+      "label": "character",
+      "example": "",
+      "hook": "Nine-Tails jinchuriki of Konoha who dreams of becoming Hokage."
+    },
+    {
+      "img": "sasuke-uchiha.jpg",
+      "front": "",
+      "back": "Sasuke Uchiha",
+      "label": "character",
+      "example": "",
+      "hook": "Team 7's Uchiha, last survivor of his clan, who seeks revenge on Itachi."
+    },
+    {
+      "img": "sakura-haruno.jpg",
+      "front": "",
+      "back": "Sakura Haruno",
+      "label": "character",
+      "example": "",
+      "hook": "Team 7's kunoichi, trained by Tsunade as a medical ninja with huge strength."
+    },
+    {
+      "img": "kakashi-hatake.jpg",
+      "front": "",
+      "back": "Kakashi Hatake",
+      "label": "character",
+      "example": "",
+      "hook": "Copy Ninja with the Sharingan; Team 7's sensei, later the Sixth Hokage."
+    },
+    {
+      "img": "itachi-uchiha.jpg",
+      "front": "",
+      "back": "Itachi Uchiha",
+      "label": "character",
+      "example": "",
+      "hook": "Sasuke's older brother: a prodigy who wiped out his clan and joined Akatsuki."
+    },
+    {
+      "img": "jiraiya.png",
+      "front": "",
+      "back": "Jiraiya",
+      "label": "character",
+      "example": "",
+      "hook": "Toad Sage and Sannin, Naruto's teacher; author of the Icha Icha novels."
+    },
+    {
+      "img": "tsunade.jpg",
+      "front": "",
+      "back": "Tsunade",
+      "label": "character",
+      "example": "",
+      "hook": "Legendary Sannin and Fifth Hokage; a medical ninja with monstrous strength."
+    },
+    {
+      "img": "orochimaru.jpg",
+      "front": "",
+      "back": "Orochimaru",
+      "label": "character",
+      "example": "",
+      "hook": "Sannin who experimented on people for immortality and led the Sound Village."
+    },
+    {
+      "img": "minato-namikaze.png",
+      "front": "",
+      "back": "Minato Namikaze",
+      "label": "character",
+      "example": "",
+      "hook": "The Yellow Flash, Fourth Hokage who sealed the Nine-Tails inside his newborn son."
+    },
+    {
+      "img": "gaara.jpg",
+      "front": "",
+      "back": "Gaara",
+      "label": "character",
+      "example": "",
+      "hook": "One-Tail jinchuriki who became Kazekage of Sunagakure."
+    },
+    {
+      "img": "madara-uchiha.png",
+      "front": "",
+      "back": "Madara Uchiha",
+      "label": "character",
+      "example": "",
+      "hook": "Hashirama's rival who co-founded Konoha, then sought the power of the Ten-Tails."
+    },
+    {
+      "img": "hinata-hyuga.jpg",
+      "front": "",
+      "back": "Hinata Hyuga",
+      "label": "character",
+      "example": "",
+      "hook": "Hyuga heiress with the Byakugan, shy at first and later a fierce fighter."
+    },
+    {
+      "img": "shikamaru-nara.jpg",
+      "front": "",
+      "back": "Shikamaru Nara",
+      "label": "character",
+      "example": "",
+      "hook": "Team 10's genius strategist who uses the Shadow Possession Jutsu."
+    },
+    {
+      "img": "rock-lee.jpg",
+      "front": "",
+      "back": "Rock Lee",
+      "label": "character",
+      "example": "",
+      "hook": "Taijutsu specialist and Might Guy's student who cannot use ninjutsu or genjutsu."
+    },
+    {
+      "img": "neji-hyuga.jpg",
+      "front": "",
+      "back": "Neji Hyuga",
+      "label": "character",
+      "example": "",
+      "hook": "Branch-family Hyuga prodigy with the Gentle Fist, and Hinata's cousin."
+    },
+    {
+      "img": "might-guy.jpg",
+      "front": "",
+      "back": "Might Guy",
+      "label": "character",
+      "example": "",
+      "hook": "Taijutsu master who opens the Eight Inner Gates and trains Rock Lee."
+    },
+    {
+      "img": "kiba-inuzuka.jpg",
+      "front": "",
+      "back": "Kiba Inuzuka",
+      "label": "character",
+      "example": "",
+      "hook": "Ninja who fights with his dog Akamaru and uses Fang Over Fang."
+    },
+    {
+      "img": "shino-aburame.jpg",
+      "front": "",
+      "back": "Shino Aburame",
+      "label": "character",
+      "example": "",
+      "hook": "Bug user whose insect partners live inside his body."
+    },
+    {
+      "img": "choji-akimichi.jpg",
+      "front": "",
+      "back": "Choji Akimichi",
+      "label": "character",
+      "example": "",
+      "hook": "Team 10's member who uses the Expansion Jutsu and loves to eat."
+    },
+    {
+      "img": "ino-yamanaka.jpg",
+      "front": "",
+      "back": "Ino Yamanaka",
+      "label": "character",
+      "example": "",
+      "hook": "Team 10's kunoichi who can enter other minds with the Mind Transfer Jutsu."
+    },
+    {
+      "img": "tenten.jpg",
+      "front": "",
+      "back": "Tenten",
+      "label": "character",
+      "example": "",
+      "hook": "Weapons mistress who stores hundreds of weapons in her scrolls."
+    },
+    {
+      "img": "asuma-sarutobi.jpg",
+      "front": "",
+      "back": "Asuma Sarutobi",
+      "label": "character",
+      "example": "",
+      "hook": "Hiruzen's son and Shikamaru's sensei, who fights with chakra-coated blades."
+    },
+    {
+      "img": "kurenai-yuhi.jpg",
+      "front": "",
+      "back": "Kurenai Yuhi",
+      "label": "character",
+      "example": "",
+      "hook": "Genjutsu expert and Team 8's jonin sensei, who taught Hinata."
+    },
+    {
+      "img": "iruka-umino.jpg",
+      "front": "",
+      "back": "Iruka Umino",
+      "label": "character",
+      "example": "",
+      "hook": "Naruto's teacher at the Ninja Academy, marked by a scar across his nose."
+    },
+    {
+      "img": "hiruzen-sarutobi.jpg",
+      "front": "",
+      "back": "Hiruzen Sarutobi",
+      "label": "character",
+      "example": "",
+      "hook": "The Third Hokage, teacher of the Sannin and Asuma's father."
+    },
+    {
+      "img": "hashirama-senju.jpg",
+      "front": "",
+      "back": "Hashirama Senju",
+      "label": "character",
+      "example": "",
+      "hook": "First Hokage and founder of Konoha, the God of Shinobi who wields Wood Release."
+    },
+    {
+      "img": "tobirama-senju.jpg",
+      "front": "",
+      "back": "Tobirama Senju",
+      "label": "character",
+      "example": "",
+      "hook": "Hashirama's younger brother and the Second Hokage, who built the village's institutions."
+    },
+    {
+      "img": "obito-uchiha.jpg",
+      "front": "",
+      "back": "Obito Uchiha",
+      "label": "character",
+      "example": "",
+      "hook": "Hidden behind the mask of Tobi; once Kakashi's teammate on Team Minato."
+    },
+    {
+      "img": "nagato.png",
+      "front": "",
+      "back": "Pain (Nagato)",
+      "label": "character",
+      "example": "",
+      "hook": "Akatsuki leader who fought through the Six Paths of Pain; once Jiraiya's student."
+    },
+    {
+      "img": "konan.jpg",
+      "front": "",
+      "back": "Konan",
+      "label": "character",
+      "example": "",
+      "hook": "Akatsuki's paper-jutsu user and childhood friend of Nagato."
+    },
+    {
+      "img": "kisame-hoshigaki.png",
+      "front": "",
+      "back": "Kisame Hoshigaki",
+      "label": "character",
+      "example": "",
+      "hook": "Akatsuki swordsman who wields the living blade Samehada."
+    },
+    {
+      "img": "deidara.png",
+      "front": "",
+      "back": "Deidara",
+      "label": "character",
+      "example": "",
+      "hook": "Akatsuki bomber who calls art 'a bang' and shapes explosive clay."
+    },
+    {
+      "img": "sasori.png",
+      "front": "",
+      "back": "Sasori",
+      "label": "character",
+      "example": "",
+      "hook": "Suna puppet master who turned his own body into a puppet."
+    },
+    {
+      "img": "hidan.png",
+      "front": "",
+      "back": "Hidan",
+      "label": "character",
+      "example": "",
+      "hook": "Immortal Akatsuki member with a three-pronged scythe and the Jashin faith."
+    },
+    {
+      "img": "kakuzu.png",
+      "front": "",
+      "back": "Kakuzu",
+      "label": "character",
+      "example": "",
+      "hook": "Akatsuki member who carries five hearts inside his body."
+    },
+    {
+      "img": "zetsu.jpg",
+      "front": "",
+      "back": "Zetsu",
+      "label": "character",
+      "example": "",
+      "hook": "Split white and black plant clone in Akatsuki; the Black half is Kaguya's will."
+    },
+    {
+      "img": "kabuto-yakushi.jpg",
+      "front": "",
+      "back": "Kabuto Yakushi",
+      "label": "character",
+      "example": "",
+      "hook": "Orochimaru's spy and medical ninja, known for his round glasses."
+    },
+    {
+      "img": "danzo-shimura.jpg",
+      "front": "",
+      "back": "Danzo Shimura",
+      "label": "character",
+      "example": "",
+      "hook": "Advisor to the Hokage who led Root and hid a Sharingan under his bandage."
+    },
+    {
+      "img": "kaguya-otsutsuki.jpg",
+      "front": "",
+      "back": "Kaguya Ōtsutsuki",
+      "label": "character",
+      "example": "",
+      "hook": "Ōtsutsuki goddess from the Moon, the source of all chakra in the Naruto world."
+    },
+    {
+      "img": "kushina-uzumaki.png",
+      "front": "",
+      "back": "Kushina Uzumaki",
+      "label": "character",
+      "example": "",
+      "hook": "Naruto's mother, a Nine-Tails jinchuriki of the Uzumaki clan."
+    },
+    {
+      "img": "killer-bee.jpg",
+      "front": "",
+      "back": "Killer Bee",
+      "label": "character",
+      "example": "",
+      "hook": "Eight-Tails jinchuriki, rapper and master of seven swords."
+    },
+    {
+      "img": "mei-terumi.jpg",
+      "front": "",
+      "back": "Mei Terumi",
+      "label": "character",
+      "example": "",
+      "hook": "Fifth Mizukage of Kirigakure, who fights with Water Release."
+    },
+    {
+      "img": "onoki.jpg",
+      "front": "",
+      "back": "Ōnoki",
+      "label": "character",
+      "example": "",
+      "hook": "Third Tsuchikage of Iwagakure, famously known as 'Ōnoki of Both Scales'."
+    },
+    {
+      "img": "rasa.jpg",
+      "front": "",
+      "back": "Rasa",
+      "label": "character",
+      "example": "",
+      "hook": "Fourth Kazekage and the father of Gaara, Kankurō and Temari."
+    },
+    {
+      "img": "roshi.jpg",
+      "front": "",
+      "back": "Roshi",
+      "label": "character",
+      "example": "",
+      "hook": "Four-Tails jinchuriki of Iwagakure who can take a Lava Release Chakra Mode."
+    },
+    {
+      "img": "yugito-nii.jpg",
+      "front": "",
+      "back": "Yugito Nii",
+      "label": "character",
+      "example": "",
+      "hook": "Two-Tails jinchuriki of Kumogakure, a jonin of the Cloud."
+    },
+    {
+      "img": "chiyo.jpg",
+      "front": "",
+      "back": "Chiyo",
+      "label": "character",
+      "example": "",
+      "hook": "Veteran Suna puppeteer and medical ninja who is Sasori's grandmother."
+    },
+    {
+      "img": "temari.jpg",
+      "front": "",
+      "back": "Temari",
+      "label": "character",
+      "example": "",
+      "hook": "Suna kunoichi who fights with a giant iron war fan."
+    },
+    {
+      "img": "kankuro.jpg",
+      "front": "",
+      "back": "Kankurō",
+      "label": "character",
+      "example": "",
+      "hook": "Suna puppeteer and Gaara's older brother, who fights with puppets."
+    },
+    {
+      "img": "sai.jpg",
+      "front": "",
+      "back": "Sai",
+      "label": "character",
+      "example": "",
+      "hook": "Root ninja who draws living ink creatures and joins Team 7."
+    },
+    {
+      "img": "yamato.jpg",
+      "front": "",
+      "back": "Yamato",
+      "label": "character",
+      "example": "",
+      "hook": "Team 7's sensei who uses Wood Release with Hashirama's cells."
+    },
+    {
+      "img": "anko-mitarashi.jpg",
+      "front": "",
+      "back": "Anko Mitarashi",
+      "label": "character",
+      "example": "",
+      "hook": "Snake summoner and former student of Orochimaru, who proctored the Second Chunin Exam."
+    },
+    {
+      "img": "jugo.jpg",
+      "front": "",
+      "back": "Jūgo",
+      "label": "character",
+      "example": "",
+      "hook": "Taka member whose Cursed Seal turns him into a violent beast."
+    },
+    {
+      "img": "suigetsu-hozuki.jpg",
+      "front": "",
+      "back": "Suigetsu Hōzuki",
+      "label": "character",
+      "example": "",
+      "hook": "Hōzuki clan member whose body can turn into water."
+    },
+    {
+      "img": "karin-uzumaki.jpg",
+      "front": "",
+      "back": "Karin Uzumaki",
+      "label": "character",
+      "example": "",
+      "hook": "Uzumaki kunoichi who can sense chakra and joined Sasuke's Taka team."
+    },
+    {
+      "img": "kimimaro.jpg",
+      "front": "",
+      "back": "Kimimaro Kaguya",
+      "label": "character",
+      "example": "",
+      "hook": "Last survivor of the Kaguya clan, who grows bones into weapons."
+    },
+    {
+      "img": "hiashi-hyuga.jpg",
+      "front": "",
+      "back": "Hiashi Hyuga",
+      "label": "character",
+      "example": "",
+      "hook": "Head of the Hyuga clan and Hinata's father, with the Byakugan."
+    },
+    {
+      "img": "hanabi-hyuga.jpg",
+      "front": "",
+      "back": "Hanabi Hyuga",
+      "label": "character",
+      "example": "",
+      "hook": "Youngest Hyuga, Hinata's younger sister, who has the Byakugan."
+    }
+  ]
+}

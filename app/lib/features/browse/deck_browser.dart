@@ -15,6 +15,7 @@ import '../../ui/widgets.dart';
 import '../editor/editor_sheet.dart';
 import '../shell/shell.dart';
 import 'card_detail.dart';
+import '../layout/layout_face.dart';
 
 enum _Filter { all, slipping, fresh, tricky, mastered, suspended }
 
@@ -237,14 +238,18 @@ class _CardRow extends StatelessWidget {
           foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(14)),
           decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(14)),
           child: Row(children: [
+            if (card.thumbSrc != null) ...[
+              CardThumb(card: card, size: 44),
+              const SizedBox(width: 12),
+            ],
             Expanded(
               child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                Text(card.front,
+                Text(card.frontText,
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
                     style: T.d(19, color: card.suspended ? mc.muted : mc.ink)),
                 const SizedBox(height: 2),
-                Text(card.back, maxLines: 1, overflow: TextOverflow.ellipsis, style: T.t(14, w: FontWeight.w500, color: mc.muted)),
+                Text(card.backText, maxLines: 1, overflow: TextOverflow.ellipsis, style: T.t(14, w: FontWeight.w500, color: mc.muted)),
               ]),
             ),
             const SizedBox(width: 10),

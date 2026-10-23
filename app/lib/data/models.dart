@@ -4,6 +4,7 @@
 import '../engine/assessor.dart';
 import '../engine/baselines.dart';
 import '../engine/calibration.dart';
+import 'card_layout.dart';
 
 int _i(Object? v, [int d = 0]) => (v as num?)?.toInt() ?? d;
 double? _dn(Object? v) => (v as num?)?.toDouble();
@@ -175,6 +176,8 @@ class CardItem {
     this.example = '',
     this.hook = '',
     this.image,
+    this.frontLayout,
+    this.backLayout,
     this.isReverse = false,
     this.siblingId,
     this.suspended = false,
@@ -204,8 +207,12 @@ class CardItem {
   /// Memory hook shown with the answer.
   String hook;
 
-  /// Image path (mobile) or data URI (web).
+  /// Image path (mobile) or data URI (web). Cards made before layouts: shown under the prompt.
   String? image;
+
+  /// How each side is laid out (pictures, text placement). null = the classic text card.
+  SideLayout? frontLayout;
+  SideLayout? backLayout;
   bool isReverse;
   String? siblingId;
   bool suspended;
@@ -231,6 +238,20 @@ class CardItem {
 
   bool get isNew => s == null;
   double get successRate => reps == 0 ? 0 : succ / reps;
+
+  /// A picture on the front, from a layout or the older single image.
+  bool get hasFrontPicture => frontLayout?.hasImage ?? (image != null && image!.isNotEmpty);
+  bool get hasBackPicture => backLayout?.hasImage ?? false;
+
+  /// The answer needs its own face (pictures or a free canvas) instead of the text pill under the prompt.
+  bool get hasRichBack => backLayout != null && (backLayout!.hasImage || backLayout!.mode == LayoutMode.canvas);
+
+  /// What lists and search show for a side that is only a picture.
+  String get frontText => front.isNotEmpty ? front : (hasFrontPicture ? 'Picture' : '');
+  String get backText => back.isNotEmpty ? back : (hasBackPicture ? 'Picture' : '');
+
+  /// The first picture to use as a thumbnail (front first).
+  String? get thumbSrc => frontLayout?.firstImage?.src ?? ((image != null && image!.isNotEmpty) ? image : backLayout?.firstImage?.src);
 
   /// The side that is read out for the deck's language.
   String get spokenSide => isReverse ? back : front;
@@ -271,6 +292,8 @@ class CardItem {
         'e': example,
         'h': hook,
         'img': image,
+        if (frontLayout != null) 'fl': frontLayout!.toJson(),
+        if (backLayout != null) 'bl': backLayout!.toJson(),
         'rev': isReverse,
         'sib': siblingId,
         'sus': suspended,
@@ -297,6 +320,8 @@ class CardItem {
         example: _s(j['e']),
         hook: _s(j['h']),
         image: j['img'] as String?,
+        frontLayout: SideLayout.fromJson(j['fl']),
+        backLayout: SideLayout.fromJson(j['bl']),
         isReverse: _b(j['rev']),
         siblingId: j['sib'] as String?,
         suspended: _b(j['sus']),
@@ -416,8 +441,17 @@ class Settings {
   /// Show the grade chip after each swipe.
   bool showGrade = true;
 
+  /// Pictures that wait for the reveal: blur · hide · show.
+  String imageReveal = 'blur';
+
+  /// How strongly they blur, 0…1 (Settings › Study).
+  double blurAmount = 0.45;
+
   /// Surface textures (Settings › Texture).
   TextureSettings texture = TextureSettings();
+
+  /// Gaussian sigma for the blur at [blurAmount]; 0 when pictures are not blurred.
+  double get blurSigma => imageReveal == 'blur' ? 6 + 34 * blurAmount : 0;
 
   double get paceTarget => switch (pace) { Pace.relaxed => 0.80, Pace.balanced => 0.75, Pace.intense => 0.0 };
 
@@ -437,6 +471,8 @@ class Settings {
         'accents': ignoreAccents,
         'name': name,
         'showGrade': showGrade,
+        'imgReveal': imageReveal,
+        'blurAmt': double.parse(blurAmount.toStringAsFixed(3)),
         'texture': texture.toJson(),
       };
 
@@ -458,6 +494,9 @@ class Settings {
     s.ignoreAccents = _b(j['accents'], true);
     s.name = _s(j['name']);
     s.showGrade = _b(j['showGrade'], true);
+    final reveal = _s(j['imgReveal'], 'blur');
+    s.imageReveal = const ['blur', 'hide', 'show'].contains(reveal) ? reveal : 'blur';
+    s.blurAmount = _d(j['blurAmt'], 0.45).clamp(0.0, 1.0);
     s.texture = TextureSettings.fromJson(j['texture'] as Map?);
     return s;
   }

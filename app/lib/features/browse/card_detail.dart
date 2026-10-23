@@ -15,6 +15,7 @@ import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../editor/editor_sheet.dart';
 import '../study/card_face.dart';
+import '../layout/layout_face.dart';
 
 /// "Why this card?": the card's memory, its forgetting curve and every answer you gave it.
 class CardDetail extends StatelessWidget {
@@ -78,7 +79,11 @@ class CardDetail extends StatelessWidget {
                 child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
                   Text((c.label.isEmpty ? 'card' : c.label).toUpperCase(), style: T.caps(12, color: mc.mutedOnInk)),
                   const SizedBox(height: 6),
-                  Text(c.front,
+                  if (c.frontLayout?.firstImage != null || (c.image ?? '').isNotEmpty) ...[
+                    _Picture(src: c.frontLayout?.firstImage?.src ?? c.image!, contain: c.frontLayout?.firstImage?.contain ?? false),
+                    const SizedBox(height: 8),
+                  ],
+                  Text(c.frontText,
                       style: deck?.kind == 'code' && !c.isReverse
                           ? T.mono(termSize(c.front, true), color: mc.onInk)
                           : T.d(termSize(c.front, false), color: mc.onInk, height: 1.05)),
@@ -90,7 +95,14 @@ class CardDetail extends StatelessWidget {
                   Container(
                     padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 12),
                     decoration: BoxDecoration(color: Mc.peach, borderRadius: BorderRadius.circular(12)),
-                    child: Text(c.back, textAlign: TextAlign.center, style: T.d(c.back.length > 22 ? 22 : 28, color: Mc.graphite)),
+                    child: Column(mainAxisSize: MainAxisSize.min, children: [
+                      if (c.backLayout?.firstImage != null) ...[
+                        _Picture(src: c.backLayout!.firstImage!.src, contain: c.backLayout!.firstImage!.contain),
+                        if (c.back.isNotEmpty) const SizedBox(height: 8),
+                      ],
+                      if (c.back.isNotEmpty || c.backLayout?.firstImage == null)
+                        Text(c.backText, textAlign: TextAlign.center, style: T.d(c.backText.length > 22 ? 22 : 28, color: Mc.graphite)),
+                    ]),
                   ),
                   if (c.hook.isNotEmpty) ...[
                     const SizedBox(height: 8),
@@ -274,4 +286,27 @@ class _CurvePainter extends CustomPainter {
 
   @override
   bool shouldRepaint(_CurvePainter old) => true;
+}
+
+
+/// A card's picture in the detail view: whole if it was meant to be, otherwise filling a short band.
+class _Picture extends StatelessWidget {
+  const _Picture({required this.src, required this.contain});
+  final String src;
+  final bool contain;
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      borderRadius: BorderRadius.circular(12),
+      child: SizedBox(
+        height: 150,
+        width: double.infinity,
+        child: ColoredBox(
+          color: const Color(0x14000000),
+          child: cardImage(src, height: 150, fit: contain ? BoxFit.contain : BoxFit.cover),
+        ),
+      ),
+    );
+  }
 }

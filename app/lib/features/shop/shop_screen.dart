@@ -327,7 +327,7 @@ class _ShopScreenState extends State<ShopScreen> {
         store.toggleShopPin(deck.id);
         Toaster.i.show(store.data.shopPins.contains(deck.id) ? 'Pinned to favourites' : 'Removed from favourites');
       case 'share':
-        final sample = deck.cards.take(5).map((c) => '${c.front} → ${c.back}').join('\n');
+        final sample = deck.cards.take(5).map((c) => '${c.front.isEmpty ? 'Picture' : c.front} → ${c.back}').join('\n');
         try {
           await SharePlus.instance.share(ShareParams(
             text: 'Memory Card · ${deck.name}\n${deck.description}\n\n$sample\n…and ${math.max(0, deck.cards.length - 5)} more cards.',
@@ -349,7 +349,7 @@ class _ShopScreenState extends State<ShopScreen> {
         }
         final folder = store.data.folders.where((f) => f.name.toLowerCase() == deck.folder.toLowerCase() && !f.isArchive).firstOrNull ??
             store.createFolder(deck.folder, atTop: false);
-        final d = store.addCatalogDeck(deck.id, folder.id, reverse: false);
+        final d = store.addCatalogDeck(deck.id, folder.id);
         Fx.i.remembered();
         Toaster.i.show('Saved to ${folder.name}', undo: () => store.deleteDeck(d.id));
     }

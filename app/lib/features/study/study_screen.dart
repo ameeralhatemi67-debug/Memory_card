@@ -26,6 +26,7 @@ import '../../ui/widgets.dart';
 import '../browse/card_detail.dart';
 import '../browse/deck_browser.dart';
 import '../editor/editor_sheet.dart';
+import '../layout/layout_face.dart';
 import '../shell/nav_bar.dart';
 import '../shell/shell.dart';
 import '../today/today_screen.dart';
@@ -407,7 +408,8 @@ class _StudyScreenState extends State<StudyScreen>
       velocity: velocity,
       viaButton: viaButton,
       interrupted: _interrupted,
-      promptChars: card.front.length,
+      // A picture prompt takes about as long to recognise as a short word.
+      promptChars: card.front.isEmpty ? 8 : card.front.length,
       typedSimilarity: _typedSim,
     );
 
@@ -887,9 +889,17 @@ class _StudyScreenState extends State<StudyScreen>
                   ),
             ];
 
+            final pre = PreReveal.of(store.settings);
+            final fl = card?.frontLayout;
+            // The card texture goes behind a picture, so the picture itself stays clean.
+            final richAnswer = _revealed && (card?.hasRichBack ?? false) && !_typing && (_mode == RevealMode.tap || _mode == RevealMode.icon);
+            final facePic = (fl != null && !fl.isPlain && fl.hasImage) || richAnswer;
+            final pictured = next != null && next.frontLayout != null && !next.frontLayout!.isPlain;
+
             Widget topCard() {
               if (card == null || deck == null) return const SizedBox.shrink();
               final face = CardFront(
+                pre: pre,
                 card: card,
                 deck: deck,
                 revealed: _revealed,
@@ -922,16 +932,20 @@ class _StudyScreenState extends State<StudyScreen>
                                     ..rotateY(math.pi),
                                   child: CardBack(
                                     card: card,
+                                    deck: deck,
+                                    pre: pre,
+                                    reveal: ((_flip.value - 0.5) * 2).clamp(0.0, 1.0),
                                     compact: compact,
                                     speaking: _speaking,
                                     onSpeak: deck.lang == null ? null : _speak,
                                   ),
                                 )
                               : Container(
-                                  foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(18)),
+                                  foregroundDecoration: facePic ? null : texDeco(context, 'cards', BorderRadius.circular(18)),
                                   decoration: BoxDecoration(
                                     color: mc.ink,
                                     borderRadius: BorderRadius.circular(18),
+                                    image: facePic ? texImage(context, 'cards') : null,
                                   ),
                                   child: face,
                                 ),
@@ -939,10 +953,11 @@ class _StudyScreenState extends State<StudyScreen>
                       },
                     )
                   : Container(
-                      foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(18)),
+                      foregroundDecoration: facePic ? null : texDeco(context, 'cards', BorderRadius.circular(18)),
                       decoration: BoxDecoration(
                         color: mc.ink,
                         borderRadius: BorderRadius.circular(18),
+                        image: facePic ? texImage(context, 'cards') : null,
                         boxShadow: mc.cardShadow,
                       ),
                       child: face,
@@ -961,7 +976,7 @@ class _StudyScreenState extends State<StudyScreen>
                 height: cardH,
                 child: Semantics(
                   label:
-                      'Card: ${card.front}${_revealed ? '. Answer: ${card.back}' : ''}',
+                      'Card: ${card.frontText}${_revealed ? '. Answer: ${card.backText}' : ''}',
                   customSemanticsActions: {
                     const CustomSemanticsAction(label: 'Remembered'): () =>
                         _commit(true, viaButton: true),
@@ -1001,7 +1016,8 @@ class _StudyScreenState extends State<StudyScreen>
                     width: cardW,
                     height: cardH,
                     child: Container(
-                      padding: const EdgeInsets.all(20),
+                      padding: pictured ? EdgeInsets.zero : const EdgeInsets.all(20),
+                      clipBehavior: pictured ? Clip.antiAlias : Clip.none,
                       foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(18)),
                       decoration: BoxDecoration(
                         color: mc.ink,
@@ -1009,7 +1025,18 @@ class _StudyScreenState extends State<StudyScreen>
                       ),
                       child: next == null
                           ? null
-                          : Opacity(
+                          : pictured
+                              ? Opacity(
+                                  opacity: p,
+                                  child: LayoutFace(
+                                    layout: next.frontLayout!,
+                                    texts: LayoutTexts.of(next, store.data.decks[next.deckId], back: false),
+                                    back: false,
+                                    pre: pre,
+                                    reveal: 0,
+                                  ),
+                                )
+                              : Opacity(
                               opacity: p,
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
