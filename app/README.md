@@ -7,7 +7,7 @@ no server, no analytics.
 
 ## Install on an Android phone
 
-1. Copy `../release/MemoryCard-1.1.0.apk` (the same file as `build/app/outputs/flutter-apk/app-release.apk`)
+1. Copy `../release/MemoryCard-1.1.1.apk` (the same file as `build/app/outputs/flutter-apk/app-release.apk`)
    to the phone: USB, a cloud drive, or email it to yourself.
 2. Open it on the phone. Android asks once to allow installs from that app (Files, Drive, Gmail…): allow it.
 3. Install, then open **Memory Card**.

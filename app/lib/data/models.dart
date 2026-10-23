@@ -359,8 +359,8 @@ class TextureLayer {
   }
 }
 
-/// Every texture in the app, per element. Defaults: a plaster wall in light mode, felt in dark mode,
-/// card stock on cards and tiles, kraft folders, wax on seals; grain and vignette off.
+/// Every texture in the app, per element. Defaults: a faint felt wall in light mode, faint concrete in dark
+/// mode, plain cards and tiles, card-stock buttons, kraft folders, wax seals; grain and vignette off.
 class TextureSettings {
   TextureSettings();
 
@@ -376,14 +376,14 @@ class TextureSettings {
   double vignetteStrength = 0.4;
 
   static final defaults = <String, TextureLayer>{
-    'wallLight': TextureLayer('plaster', 0.55),
-    'wallDark': TextureLayer('felt', 0.45),
-    'cards': TextureLayer('cardstock', 0.5),
-    'tiles': TextureLayer('cardstock', 0.4),
-    'buttons': TextureLayer('cardstock', 0.35),
-    'sheets': TextureLayer('wall', 0.5),
-    'folders': TextureLayer('kraft', 0.5),
-    'seals': TextureLayer('wax', 0.6),
+    'wallLight': TextureLayer('felt', 0.10),
+    'wallDark': TextureLayer('concrete', 0.05),
+    'cards': TextureLayer('none', 0.5),
+    'tiles': TextureLayer('none', 0.4),
+    'buttons': TextureLayer('cardstock', 0.20),
+    'sheets': TextureLayer('wall', 0.15),
+    'folders': TextureLayer('kraft', 0.15),
+    'seals': TextureLayer('wax', 0.55),
     'grain': TextureLayer('none', 0.4),
   };
 

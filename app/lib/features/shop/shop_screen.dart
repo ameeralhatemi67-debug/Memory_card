@@ -449,24 +449,18 @@ class _Hero extends StatelessWidget {
               ),
             ]),
           ),
-          Positioned(right: 30, top: 26, child: _rot(-12, Container(width: 92, height: 116, decoration: _card(mc.heroBack2)))),
-          Positioned(right: 22, top: 22, child: _rot(7, Container(width: 92, height: 116, decoration: _card(mc.heroBack1)))),
-          Positioned(
-            right: 24,
-            top: 24,
-            child: AmbientClock(
-              builder: (context, ms) => Transform.rotate(
-                angle: 0.03 * math.sin(ms / 2400),
-                child: Container(
-                  width: 92,
-                  height: 116,
-                  alignment: Alignment.center,
-                  decoration: _card(mc.canvas),
-                  child: Text(deck.mono, style: T.d(46, color: mc.ink)),
-                ),
-              ),
+          // The two cards under the front one rock now and then, exactly like the shop's deck tiles.
+          Positioned.fill(
+            child: Sway(
+              delayMs: 500,
+              periodMs: 7000,
+              builder: (context, v) => Stack(children: [
+                Positioned(right: 30, top: 26, child: _rot(-12 - v * StackArt.swing * 180 / math.pi, Container(width: 92, height: 116, decoration: _card(mc.heroBack2)))),
+                Positioned(right: 22, top: 22, child: _rot(7 + v * StackArt.swing * 180 / math.pi, Container(width: 92, height: 116, decoration: _card(mc.heroBack1)))),
+              ]),
             ),
           ),
+          // The category tab sits one level down, behind the front card, so only its top shows.
           Positioned(
             right: 30,
             top: 18,
@@ -474,6 +468,17 @@ class _Hero extends StatelessWidget {
               width: 30,
               height: 12,
               decoration: BoxDecoration(color: Color(CatalogCategory.of(deck.category).color), borderRadius: BorderRadius.circular(5)),
+            ),
+          ),
+          Positioned(
+            right: 24,
+            top: 24,
+            child: Container(
+              width: 92,
+              height: 116,
+              alignment: Alignment.center,
+              decoration: _card(mc.canvas),
+              child: Text(deck.mono, style: T.d(46, color: mc.ink)),
             ),
           ),
         ]),
@@ -561,10 +566,10 @@ class _HoldMenu extends StatelessWidget {
               final s = u < 0.7 ? 0.4 + (1.08 - 0.4) * (u / 0.7) : 1.08 - 0.08 * ((u - 0.7) / 0.3);
               // A very soft bob, each badge on its own phase.
               final dy = -1.5 * (1 - math.cos(ms / 3200 * math.pi * 2 + i * 1.3));
-              // Every 4–6 s the badge's shape (not its icon) turns once, easing in.
-              final period = _spinPeriods[i];
-              final since = ms - period;
-              final spin = since < 0 ? 0.0 : Curves.easeIn.transform(((since % period) / _spinMs).clamp(0.0, 1.0));
+              // Every 6 s the badge's shape (not its icon) turns once, slowly, easing out. The four start one
+              // after another, so the turns roll through the arc instead of moving in lockstep.
+              final since = ms - (_spinFirstMs + i * _spinGapMs);
+              final spin = since < 0 ? 0.0 : Curves.easeOut.transform(((since % _spinPeriodMs) / _spinMs).clamp(0.0, 1.0));
               final (id, label, icon, shape, tilt) = actions[i];
               final turn = tilt * math.pi / 180 + spin * math.pi * 2;
               return Positioned(
@@ -610,6 +615,10 @@ class _HoldMenu extends StatelessWidget {
     ]);
   }
 
-  static const _spinPeriods = [4200.0, 5500.0, 4800.0, 5900.0];
-  static const _spinMs = 1100.0;
+  /// A turn begins every [_spinPeriodMs]; each takes [_spinMs]. The first badge starts [_spinFirstMs] after the
+  /// menu opens and each next one [_spinGapMs] later.
+  static const _spinPeriodMs = 6000.0;
+  static const _spinMs = 2600.0;
+  static const _spinFirstMs = 1200.0;
+  static const _spinGapMs = 900.0;
 }

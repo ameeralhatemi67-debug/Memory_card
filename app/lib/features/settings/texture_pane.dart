@@ -119,32 +119,33 @@ class _LayerEditor extends StatelessWidget {
         Text(Textures.nameOf(layer.style), style: T.t(14, w: FontWeight.w600, color: mc.muted)),
       ]),
       Text(note, style: T.t(14, w: FontWeight.w500, color: mc.muted, height: 1.3)),
-      const SizedBox(height: 10),
-      SizedBox(
-        height: 96,
-        child: ListView(
-          scrollDirection: Axis.horizontal,
-          clipBehavior: Clip.none,
+      const SizedBox(height: 12),
+      // Every choice is visible at once, four to a row: nothing slides out of the panel or gets cut off.
+      LayoutBuilder(builder: (context, box) {
+        const gap = 8.0, columns = 4;
+        final width = ((box.maxWidth - gap * (columns - 1)) / columns).floorToDouble();
+        return Wrap(
+          spacing: gap,
+          runSpacing: 12,
           children: [
             for (final style in Textures.choices[id]!)
-              Padding(
-                padding: const EdgeInsets.only(right: 10),
-                child: _Swatch(
-                  element: id,
-                  style: style,
-                  selected: style == layer.style,
-                  onTap: () {
-                    Fx.i.tap();
-                    edit((l) {
-                      l.style = style;
-                      if (l.strength <= 0) l.strength = 0.5;
-                    });
-                  },
-                ),
+              _Swatch(
+                element: id,
+                style: style,
+                width: width,
+                selected: style == layer.style,
+                onTap: () {
+                  Fx.i.tap();
+                  edit((l) {
+                    l.style = style;
+                    if (l.strength <= 0) l.strength = 0.5;
+                  });
+                },
               ),
           ],
-        ),
-      ),
+        );
+      }),
+      const SizedBox(height: 4),
       if (layer.style != 'none') _Strength(value: layer.strength, onChanged: (v) => edit((l) => l.strength = v)),
     ]);
   }
@@ -152,9 +153,12 @@ class _LayerEditor extends StatelessWidget {
 
 /// A small square of the element's own colour wearing one texture.
 class _Swatch extends StatelessWidget {
-  const _Swatch({required this.element, required this.style, required this.selected, required this.onTap});
+  const _Swatch({required this.element, required this.style, required this.width, required this.selected, required this.onTap});
   final String element;
   final String style;
+
+  /// The width of its column; the square is as wide, the name wraps under it.
+  final double width;
   final bool selected;
   final VoidCallback onTap;
 
@@ -177,12 +181,12 @@ class _Swatch extends StatelessWidget {
       onTap: onTap,
       label: '${Textures.nameOf(style)}${selected ? ', selected' : ''}',
       child: SizedBox(
-        width: 66,
+        width: width,
         child: Column(children: [
           AnimatedContainer(
             duration: const Duration(milliseconds: 180),
-            width: 62,
-            height: 62,
+            width: width,
+            height: width * 0.86,
             decoration: BoxDecoration(
               color: base,
               borderRadius: BorderRadius.circular(14),
@@ -212,12 +216,12 @@ class _Swatch extends StatelessWidget {
                 : null,
           ),
           const SizedBox(height: 5),
+          // Two lines, so "Painted brick" and "Match the wall" show in full.
           Text(
             Textures.nameOf(style),
-            maxLines: 1,
-            overflow: TextOverflow.ellipsis,
+            maxLines: 2,
             textAlign: TextAlign.center,
-            style: T.t(12, w: FontWeight.w700, color: selected ? mc.ink : mc.muted),
+            style: T.t(12.5, w: FontWeight.w700, color: selected ? mc.ink : mc.muted, height: 1.1),
           ),
         ]),
       ),
@@ -285,8 +289,8 @@ class _Strength extends StatelessWidget {
   }
 }
 
-/// A little room: a wall, a study card, a deck tile, a button, a folder tab and a seal, all wearing the
-/// current textures.
+/// A little room: a wall, a study card, a deck tile, a button, a folder and a seal, all wearing the current
+/// textures. Everything has its own place: nothing overlaps and nothing runs off the edge.
 class _Preview extends StatelessWidget {
   const _Preview();
 
@@ -296,73 +300,88 @@ class _Preview extends StatelessWidget {
     return ClipRRect(
       borderRadius: BorderRadius.circular(18),
       child: Container(
-        height: 200,
+        height: 224,
         decoration: BoxDecoration(
           color: mc.canvas,
           border: Border.all(color: mc.line),
           borderRadius: BorderRadius.circular(18),
         ),
         child: Wall(
-          child: Stack(children: [
-            // A folder tab peeking from the left.
-            Positioned(
-              left: -20,
-              bottom: 24,
-              width: 150,
-              height: 70,
-              child: CustomPaint(
-                painter: FolderPainter(tabWidth: 80, c1: const Color(0xFF6A6A6A), c2: const Color(0xFF555555), shadowAlpha: 0.3),
-                foregroundPainter: texPainter(context, 'folders', (s) => FolderShape.path(s.width, s.height, 80)),
-              ),
-            ),
-            // A deck tile.
-            Positioned(
-              right: 16,
-              top: 16,
-              width: 104,
-              height: 112,
-              child: Container(
-                foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(14)),
-                decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(14), boxShadow: mc.e1),
-                alignment: Alignment.center,
-                child: Text('Es', style: T.d(34, color: mc.ink)),
-              ),
-            ),
-            // A study card.
-            Positioned(
-              left: 64,
-              top: 18,
-              width: 116,
-              height: 140,
-              child: Transform.rotate(
-                angle: -0.06,
-                child: Container(
-                  padding: const EdgeInsets.all(12),
-                  foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(14)),
-                  decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(14), boxShadow: mc.cardShadow),
-                  child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                    Text('NOUN', style: T.caps(9, color: mc.mutedOnInk)),
-                    const SizedBox(height: 4),
-                    Text('el gato', style: T.d(24, color: mc.onInk)),
-                  ]),
+          child: Padding(
+            padding: const EdgeInsets.all(16),
+            child: Row(crossAxisAlignment: CrossAxisAlignment.start, children: [
+              // A study card.
+              SizedBox(
+                width: 114,
+                child: Padding(
+                  padding: const EdgeInsets.only(top: 8),
+                  child: Transform.rotate(
+                    angle: -0.05,
+                    child: Container(
+                      height: 152,
+                      padding: const EdgeInsets.all(12),
+                      foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(14)),
+                      decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(14), boxShadow: mc.cardShadow),
+                      child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                        Text('NOUN', style: T.caps(9, color: mc.mutedOnInk)),
+                        const SizedBox(height: 4),
+                        Text('el gato', style: T.d(26, color: mc.onInk)),
+                      ]),
+                    ),
+                  ),
                 ),
               ),
-            ),
-            // A button and a seal.
-            Positioned(
-              right: 16,
-              bottom: 16,
-              width: 104,
-              height: 40,
-              child: Container(
-                foregroundDecoration: texDeco(context, 'buttons', BorderRadius.circular(12)),
-                decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(12), boxShadow: mc.e2),
-                alignment: Alignment.center,
-                child: Text('Study', style: T.d(20, color: mc.canvas)),
+              const SizedBox(width: 14),
+              Expanded(
+                child: Column(children: [
+                  // A deck tile and a button.
+                  SizedBox(
+                    height: 72,
+                    child: Row(children: [
+                      Container(
+                        width: 72,
+                        foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(14)),
+                        decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(14), boxShadow: mc.e1),
+                        alignment: Alignment.center,
+                        child: Text('Es', style: T.d(30, color: mc.ink)),
+                      ),
+                      const SizedBox(width: 10),
+                      Expanded(
+                        child: Center(
+                          child: Container(
+                            height: 40,
+                            foregroundDecoration: texDeco(context, 'buttons', BorderRadius.circular(12)),
+                            decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(12), boxShadow: mc.e2),
+                            alignment: Alignment.center,
+                            child: Text('Study', style: T.d(20, color: mc.canvas)),
+                          ),
+                        ),
+                      ),
+                    ]),
+                  ),
+                  const SizedBox(height: 12),
+                  // A folder and a seal.
+                  Expanded(
+                    child: Row(children: [
+                      Expanded(
+                        child: LayoutBuilder(builder: (context, box) {
+                          // A folder is drawn from a tab and a body: it needs room for both.
+                          final tab = (box.maxWidth * 0.5).clamp(48.0, 70.0);
+                          return CustomPaint(
+                            size: Size(box.maxWidth, box.maxHeight),
+                            painter: FolderPainter(tabWidth: tab, c1: const Color(0xFF6A6A6A), c2: const Color(0xFF555555), shadowAlpha: 0.3),
+                            foregroundPainter: texPainter(context, 'folders', (s) => FolderShape.path(s.width, s.height, tab)),
+                          );
+                        }),
+                      ),
+                      const SizedBox(width: 10),
+                      const WaxSeal(size: 54, check: true),
+                    ]),
+                  ),
+                ]),
               ),
-            ),
-            const Positioned(left: 180, bottom: 14, child: WaxSeal(size: 54, check: true)),
-          ]),
+            ]),
+          ),
         ),
       ),
     );

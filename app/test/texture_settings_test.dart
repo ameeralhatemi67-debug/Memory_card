@@ -22,11 +22,11 @@ void main() {
     expect(back.texture.windowLight, isFalse);
   });
 
-  test('saves from before textures get the defaults: a plaster wall in light mode', () {
+  test('saves from before textures get the defaults: a faint felt wall in light mode', () {
     final s = Settings.fromJson({'goal': 30});
     expect(s.goal, 30);
     expect(s.texture.enabled, isTrue);
-    expect(s.texture.layer('wallLight').style, 'plaster');
+    expect(s.texture.layer('wallLight').style, 'felt');
     expect(s.texture.layer('grain').on, isFalse);
   });
 
@@ -49,7 +49,7 @@ void main() {
       expect(Textures.i.resolveLayer(e, dark: false), isNull, reason: e);
     }
     Textures.i.update(TextureSettings());
-    expect(Textures.i.resolveLayer('wallLight', dark: false)?.def.id, 'plaster');
-    expect(Textures.i.resolveLayer('sheets', dark: true)?.def.id, 'felt');
+    expect(Textures.i.resolveLayer('wallLight', dark: false)?.def.id, 'felt');
+    expect(Textures.i.resolveLayer('sheets', dark: true)?.def.id, 'concrete');
   });
 }
