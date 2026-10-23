@@ -88,7 +88,9 @@ void main() {
       // With decks in the library, the hero is the deck of the day.
       final hero = store.catalog.deckOfTheDay(dayNumber(store.data.now()), store.data.shopAdded.containsKey)!;
       expect(find.text('DECK OF THE DAY'), findsOneWidget);
-      await tester.tap(find.text('Preview').first);
+      // The whole hero opens the preview (its small "Preview" button can sit past the card's edge in the
+      // test font, whose letters are far wider than the real ones).
+      await tester.tap(find.text('DECK OF THE DAY'));
       await settle(tester, 1200);
       expect(find.textContaining('cards to'), findsWidgets);
       await tester.tap(find.textContaining('cards to').last);

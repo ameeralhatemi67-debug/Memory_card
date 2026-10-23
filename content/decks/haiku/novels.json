@@ -2,11 +2,11 @@
   "id": "novels",
   "name": "Literature · Novels",
   "mono": "Li",
-  "category": "knowledge",
+  "category": "arts",
   "level": "canon",
   "lang": null,
   "kind": "text",
-  "folder": "Knowledge",
+  "folder": "History & Culture",
   "description": "Name the author of 60 famous novels, from Pride and Prejudice and Don Quixote to The Great Gatsby and Beloved.",
   "cards": [
     {

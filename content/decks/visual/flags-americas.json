@@ -2,10 +2,10 @@
   "id": "flags-americas",
   "name": "Flags · Americas",
   "mono": "Fl",
-  "category": "knowledge",
+  "category": "geo",
   "level": "flags",
   "kind": "text",
-  "folder": "Knowledge",
+  "folder": "Geography",
   "description": "Name the flag of every country in North, Central and South America and the Caribbean, from the stars and stripes to the smallest islands.",
   "style": {
     "front": "only",

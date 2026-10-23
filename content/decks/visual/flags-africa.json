@@ -2,10 +2,10 @@
   "id": "flags-africa",
   "name": "Flags · Africa",
   "mono": "Fl",
-  "category": "knowledge",
+  "category": "geo",
   "level": "flags",
   "kind": "text",
-  "folder": "Knowledge",
+  "folder": "Geography",
   "description": "Name the flag of every country in Africa, from Egypt's tricolour to the small island states.",
   "style": {
     "front": "only",

@@ -64,7 +64,10 @@ void main() {
     await tester.tap(find.text('or tap here'));
     await settle(tester);
 
-    // Setup: the decks chosen by default are on screen, featured first.
+    // Setup: the decks chosen by default are on screen, featured first. (A tall screen: the test font is so
+    // wide that the topic chips fill several rows and would push the decks out of view.)
+    tester.view.physicalSize = const Size(360 * 3, 1700 * 3);
+    await settle(tester, 400);
     expect(find.text('What do you want to remember?'), findsOneWidget);
     expect(find.text('Spanish · Basics'), findsOneWidget);
     expect(find.text('Italian · Basics'), findsOneWidget);

@@ -2,11 +2,11 @@
   "id": "greek-gods",
   "name": "Myth · Greek Gods",
   "mono": "Gk",
-  "category": "knowledge",
+  "category": "arts",
   "level": "classics",
   "lang": null,
   "kind": "text",
-  "folder": "Knowledge",
+  "folder": "History & Culture",
   "description": "Recall which Greek god or goddess rules each domain, from the sky and sea to love, war and the underworld.",
   "cards": [
     { "front": "Greek king of the gods, ruler of the sky and thunder", "back": "Zeus", "label": "god", "example": "", "hook": "Roman equivalent: Jupiter" },

@@ -23,8 +23,18 @@ OUT = ROOT / "app" / "assets" / "content" / "catalog.json"
 IMG = ROOT / "app" / "assets" / "content" / "img"
 PUBSPEC = ROOT / "app" / "pubspec.yaml"
 
-CATEGORIES = {"lang": "Languages", "code": "Coding", "med": "Medicine", "science": "Science", "knowledge": "Knowledge"}
-ORDER = ["lang", "code", "med", "science", "knowledge"]
+CATEGORIES = {
+    "lang": "Languages",
+    "code": "Coding",
+    "med": "Medicine",
+    "science": "Science",
+    "geo": "Geography",
+    "arts": "History & Culture",
+    "anime": "Anime",
+    "cars": "Cars",
+    "knowledge": "Knowledge",
+}
+ORDER = ["lang", "code", "med", "science", "geo", "arts", "anime", "cars", "knowledge"]
 TEMPLATES = {"text", "above", "below", "full", "only"}
 FITS = {"cover", "contain"}
 

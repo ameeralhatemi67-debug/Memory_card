@@ -2,10 +2,10 @@
   "id": "flags-asia",
   "name": "Flags · Asia",
   "mono": "Fl",
-  "category": "knowledge",
+  "category": "geo",
   "level": "flags",
   "kind": "text",
-  "folder": "Knowledge",
+  "folder": "Geography",
   "description": "Name the flag of every country in Asia, from Japan's red disc to the Himalayan kingdoms, plus Palestine and Taiwan.",
   "style": {
     "front": "only",

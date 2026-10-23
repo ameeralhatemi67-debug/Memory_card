@@ -2,11 +2,11 @@
   "id": "latin-phrases",
   "name": "Latin · Common Phrases",
   "mono": "La",
-  "category": "knowledge",
+  "category": "arts",
   "level": "everyday",
   "lang": "la",
   "kind": "text",
-  "folder": "Knowledge",
+  "folder": "History & Culture",
   "description": "Match everyday Latin phrases used in English, like ad hoc, status quo and carpe diem, to their meanings.",
   "cards": [
     { "front": "Carpe diem", "back": "Seize the day", "label": "phrase", "example": "", "hook": "From the Roman poet Horace, in his Odes" },

@@ -1,8 +1,8 @@
 import 'dart:math' as math;
 import 'dart:ui' as ui;
 
-import 'package:flutter/scheduler.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/physics.dart';
 
 import '../../data/models.dart';
 import '../../engine/study_engine.dart';
@@ -11,6 +11,7 @@ import '../../ui/coach.dart';
 import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
+import '../../ui/sink_mask.dart';
 import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 
@@ -23,6 +24,9 @@ const _step2 = 125.0;
 const _span2 = _step2 - _step1;
 const _gap = 10.0;
 const _margin = 20.0;
+
+/// Room above and below the bar inside the fade, so its soft shadow is not cut off while it slides.
+const _shadowRoom = 24.0;
 
 /// Finger → open distance. The bar follows the finger 1:1 up to the second detent (the springs on
 /// release do the snapping), then stretches like a rubber band that stiffens smoothly: the slope starts
@@ -78,13 +82,34 @@ class DeckRow extends StatefulWidget {
   State<DeckRow> createState() => _DeckRowState();
 }
 
+/// How far a deck bar is swiped open and to which side. A notifier, so that while the bar moves only the
+/// parts that depend on it repaint.
+class _Motion extends ChangeNotifier {
+  double e = 0; // extent of the open side
+  int dir = 0; // -1 open to the left (delete side), 1 to the right (move side)
+
+  void update({double? e, int? dir}) {
+    final ne = e ?? this.e, nd = dir ?? this.dir;
+    if (ne == this.e && nd == this.dir) return;
+    this.e = ne;
+    this.dir = nd;
+    notifyListeners();
+  }
+}
+
 class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
-  double _e = 0; // extent of the open side
-  int _dir = 0; // -1 open to the left (delete side), 1 to the right (move side)
+  /// The swipe's extent and side. A swipe repaints the bar's offset, the action tiles and the edge fade;
+  /// the bar itself (text, fan, textures, shadows) is built once and kept as a cached layer.
+  final _motion = _Motion();
+  double get _e => _motion.e;
+  int get _dir => _motion.dir;
   double _raw = 0;
   bool _dragging = false;
   bool _passedStep = false;
-  Ticker? _spring;
+  double _target = 0;
+  late final AnimationController _spring = AnimationController.unbounded(vsync: this)
+    ..addListener(() => _motion.update(e: math.max(0.0, _spring.value)))
+    ..addStatusListener(_onSpringStatus);
   String? _removing; // 'delete' | 'archive'
   late final AnimationController _remove = AnimationController(
     vsync: this,
@@ -103,14 +128,15 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
   @override
   void dispose() {
     openDeck.removeListener(_onOpenChanged);
-    _spring?.dispose();
+    _spring.dispose();
+    _motion.dispose();
     _remove.dispose();
     _glow.dispose();
     super.dispose();
   }
 
   void _onOpenChanged() {
-    if (openDeck.value != widget.deck.id && _e > 0 && !_dragging) _animateTo(0, overshoot: false);
+    if (openDeck.value != widget.deck.id && _e > 0 && !_dragging) _animateTo(0);
   }
 
   Future<void> _playDemo() async {
@@ -122,62 +148,50 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
       await Future.delayed(const Duration(milliseconds: 400));
     }
     if (!mounted || _dragging) return;
-    _dir = -1;
-    _animateTo(_step1, overshoot: true);
+    _motion.update(dir: -1);
+    _animateTo(_step1, bounce: true);
     await Future.delayed(const Duration(milliseconds: 1100));
     if (!mounted || _dragging) return;
-    _animateTo(0, overshoot: false);
+    _animateTo(0);
     await Future.delayed(const Duration(milliseconds: 650));
     if (!mounted || _dragging) return;
-    _dir = 1;
-    _animateTo(_step1, overshoot: true);
+    _motion.update(dir: 1);
+    _animateTo(_step1, bounce: true);
     await Future.delayed(const Duration(milliseconds: 1100));
     if (!mounted || _dragging) return;
-    _animateTo(0, overshoot: false);
+    _animateTo(0);
   }
 
-  /// Spring engine from the canvas: opening overshoots +12px, closing past a detent squashes −9px.
-  void _animateTo(double target, {required bool overshoot}) {
-    _spring?.dispose();
-    var cur = _e;
-    var vel = 0.0;
-    var over = target;
-    if (overshoot) {
-      if (target > cur) {
-        over = target + 12;
-      } else if (cur > target + 1) {
-        over = target - 9;
-      }
+  /// One real spring takes the bar from wherever it is (and however fast the finger was going) to a
+  /// detent. Closing is critically damped: no wobble, no undershoot. Opening to a detent is a touch
+  /// under-damped: it lands with one soft overshoot of a couple of pixels and settles, no more.
+  void _animateTo(double target, {double velocity = 0, bool bounce = false}) {
+    _target = target;
+    _spring.stop();
+    final from = _e;
+    if ((from - target).abs() < 0.05 && velocity.abs() < 1) {
+      _settle();
+      return;
     }
-    var phase = overshoot && (over - target).abs() > 1 ? 0 : 1;
-    Duration last = Duration.zero;
-    _spring = createTicker((elapsed) {
-      // Step the original 60 fps physics, whatever the display rate.
-      final frames = ((elapsed - last).inMicroseconds / 16667).clamp(0.0, 4.0);
-      last = elapsed;
-      var steps = frames;
-      while (steps > 0) {
-        final k = math.min(1.0, steps);
-        final dest = phase == 0 ? over : target;
-        vel = (vel + (dest - cur) * 0.16 * k) * math.pow(0.74, k).toDouble();
-        cur += vel * k;
-        steps -= 1;
-      }
-      if (phase == 0 && (cur - over).abs() < 1.2) phase = 1;
-      if (phase == 1 && (cur - target).abs() < 0.3 && vel.abs() < 0.15) {
-        _spring?.stop();
-        setState(() {
-          _e = target;
-          if (target == 0) _dir = 0;
-        });
-        return;
-      }
-      setState(() => _e = math.max(0, cur));
-    })..start();
+    _spring.value = from;
+    // A finger still moving away from the detent the bar is about to snap back to hands over only a
+    // fraction of its speed, so the bar does not fly past before returning.
+    if (velocity * (target - from) < 0) velocity *= 0.3;
+    final spring = SpringDescription.withDampingRatio(mass: 1, stiffness: 360, ratio: bounce ? 0.74 : 1.0);
+    _spring.animateWith(
+      SpringSimulation(spring, from, target, velocity, tolerance: const Tolerance(distance: 0.05, velocity: 1.5)),
+    );
   }
+
+  void _onSpringStatus(AnimationStatus status) {
+    if (status == AnimationStatus.completed) _settle();
+  }
+
+  /// Rests exactly on the target.
+  void _settle() => _motion.update(e: _target, dir: _target == 0 ? 0 : _dir);
 
   void _onStart(DragStartDetails d) {
-    _spring?.stop();
+    _spring.stop();
     _dragging = true;
     _raw = _dir * _ungravity(_e);
     _passedStep = _e >= _step1;
@@ -193,36 +207,39 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
       _passedStep = step;
       if (step) Fx.i.lock();
     }
-    setState(() {
-      _dir = dir;
-      _e = e;
-    });
+    _motion.update(e: e, dir: dir);
   }
 
   void _onEnd(DragEndDetails d) {
     _dragging = false;
     final raw = _raw.abs();
     final v = d.velocity.pixelsPerSecond.dx;
+    // How fast the bar's opening is changing as the finger lets go (positive = opening further): the
+    // spring starts from that speed, so the bar carries on from the finger instead of restarting.
+    final open = (_dir * v).clamp(-2500.0, 2500.0);
     // A quick flick in the open direction advances one detent; against it, closes.
     if (v.abs() > 700 && (v.sign != _dir.sign || _dir == 0)) {
-      _animateTo(0, overshoot: false);
+      _animateTo(0, velocity: open);
       return;
     }
     if (raw <= _step1) {
       if (raw / _step1 < 0.5 && v.abs() < 700) {
-        _animateTo(0, overshoot: false);
+        _animateTo(0, velocity: open);
       } else {
-        _animateTo(_step1, overshoot: true);
+        _animateTo(_step1, velocity: open, bounce: true);
       }
     } else if ((raw - _step1) / _span2 < 0.5 && v.abs() < 700) {
-      _animateTo(_step1, overshoot: false);
+      _animateTo(_step1, velocity: open);
     } else {
-      _animateTo(_step2, overshoot: true);
+      _animateTo(_step2, velocity: open, bounce: true);
     }
   }
 
+  /// A drag that the system took away (a call, the list scrolling): settle like a gentle release.
+  void _onCancel() => _onEnd(DragEndDetails(velocity: Velocity.zero));
+
   void _close() {
-    _animateTo(0, overshoot: false);
+    _animateTo(0);
     if (openDeck.value == widget.deck.id) openDeck.value = null;
   }
 
@@ -239,16 +256,6 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
     final reduced = MotionPrefs.reducedOf(context);
     final width = MediaQuery.of(context).size.width;
     final barW = math.min(width - 2 * _margin, 520.0);
-    final e = _e < 0.5 ? 0.0 : _e;
-    final dir = e == 0 ? 0 : _dir;
-    final excess = math.max(0.0, e - _step2);
-    final second = e <= _step1 ? 0.0 : math.min(65.0, e - _step1) + excess * 0.45;
-    final progress = e / _step1;
-    final sinkOp = math.min(1.0, progress * 1.5);
-    final stop = math.max(0.0, 1 - progress * 0.2);
-    // The bar moves from the first pixel (half speed at first) and settles to keeping a _gap from the
-    // tile as it opens, with no dead zone.
-    final double tx = dir == 0 ? 0.0 : dir.toDouble() * (e - (_margin - _gap) * (1 - math.exp(-e / 20)));
 
     final s = widget.stats;
     final status = s.slipping > 0
@@ -261,6 +268,7 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
     final meta = '${s.total} ${s.total == 1 ? 'card' : 'cards'} · $status';
 
     Widget tile(
+      String id,
       Color color,
       String icon,
       Size size,
@@ -272,6 +280,7 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
       bool top = false,
     }) {
       return Positioned(
+        key: ValueKey('tile-$id'),
         top: 0,
         bottom: 0,
         left: left ? 0 : null,
@@ -316,206 +325,243 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
       );
     }
 
-    final bar = GestureDetector(
-      behavior: HitTestBehavior.opaque,
-      onHorizontalDragStart: _removing == null ? _onStart : null,
-      onHorizontalDragUpdate: _removing == null ? _onUpdate : null,
-      onHorizontalDragEnd: _removing == null ? _onEnd : null,
-      onTap: () {
-        if (e > 0) {
-          _close();
-        } else {
-          Fx.i.tap();
-          widget.onOpen();
-        }
-      },
-      child: Transform.translate(
-        offset: Offset(tx, 0),
-        child: AnimatedBuilder(
-          animation: _glow,
-          builder: (context, child) {
-            final g = _glow.isAnimating ? math.sin(_glow.value * math.pi) : 0.0;
-            return Container(
-              width: barW,
-              height: 72,
-              foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(10)),
-              decoration: BoxDecoration(
-                color: mc.ink,
-                borderRadius: BorderRadius.circular(10),
-                boxShadow: [
-                  ...mc.e1,
-                  if (g > 0)
-                    BoxShadow(
-                      color: Mc.peach.withValues(alpha: 0.55 * g),
-                      blurRadius: 18 * g,
-                      spreadRadius: 2 * g,
-                    ),
-                ],
-              ),
-              clipBehavior: Clip.antiAlias,
-              child: child,
-            );
-          },
-          child: Stack(
-            children: [
-              // Now and then the fan riffles: back to front, each card lifts and leans for a moment.
-              Positioned.fill(
-                child: Pulse(
-                  delayMs: 1400 + (widget.deck.id.hashCode.abs() % 7) * 450,
-                  periodMs: const [8000, 9000, 10000][widget.deck.id.hashCode.abs() % 3],
-                  durationMs: 1300,
-                  builder: (context, t) => Stack(
-                    children: [
-                      for (var i = 0; i < 5; i++)
-                        () {
-                          final u = ((t * 1300 - i * 90) / 640).clamp(0.0, 1.0);
-                          final lift = t == 0 ? 0.0 : math.sin(math.pi * Curves.easeInOut.transform(u));
-                          return Positioned(
-                            right: -10 + (4 - i) * 15.0,
-                            bottom: -40 + i * 8.0 + lift * 4,
-                            child: Transform.rotate(
-                              alignment: Alignment.bottomRight,
-                              angle: (-16 + i * 3 - lift * 3.5) * math.pi / 180,
-                              child: AnimatedContainer(
-                                duration: const Duration(milliseconds: 500),
-                                curve: McCurves.paper,
-                                width: 54,
-                                height: 80,
-                                decoration: BoxDecoration(
-                                  color: i < s.steps ? mc.fanOn[i] : mc.fanOff,
-                                  borderRadius: BorderRadius.circular(7),
-                                  boxShadow: const [
-                                    BoxShadow(color: Color(0x33000000), blurRadius: 4, offset: Offset(-2, 0)),
-                                  ],
-                                ),
+    // The bar itself: built once and kept as its own cached layer, so sliding it is only a change of
+    // offset. Nothing in here depends on how far it is swiped.
+    final barVisual = RepaintBoundary(
+      key: ValueKey('deck-bar-${widget.deck.id}'),
+      child: AnimatedBuilder(
+        animation: _glow,
+        builder: (context, child) {
+          final g = _glow.isAnimating ? math.sin(_glow.value * math.pi) : 0.0;
+          return Container(
+            width: barW,
+            height: 72,
+            foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(10)),
+            decoration: BoxDecoration(
+              color: mc.ink,
+              borderRadius: BorderRadius.circular(10),
+              boxShadow: [
+                ...mc.e1,
+                if (g > 0)
+                  BoxShadow(
+                    color: Mc.peach.withValues(alpha: 0.55 * g),
+                    blurRadius: 18 * g,
+                    spreadRadius: 2 * g,
+                  ),
+              ],
+            ),
+            clipBehavior: Clip.antiAlias,
+            child: child,
+          );
+        },
+        child: Stack(
+          children: [
+            // Now and then the fan riffles: back to front, each card lifts and leans for a moment.
+            Positioned.fill(
+              child: Pulse(
+                delayMs: 1400 + (widget.deck.id.hashCode.abs() % 7) * 450,
+                periodMs: const [8000, 9000, 10000][widget.deck.id.hashCode.abs() % 3],
+                durationMs: 1300,
+                builder: (context, t) => Stack(
+                  children: [
+                    for (var i = 0; i < 5; i++)
+                      () {
+                        final u = ((t * 1300 - i * 90) / 640).clamp(0.0, 1.0);
+                        final lift = t == 0 ? 0.0 : math.sin(math.pi * Curves.easeInOut.transform(u));
+                        return Positioned(
+                          right: -10 + (4 - i) * 15.0,
+                          bottom: -40 + i * 8.0 + lift * 4,
+                          child: Transform.rotate(
+                            alignment: Alignment.bottomRight,
+                            angle: (-16 + i * 3 - lift * 3.5) * math.pi / 180,
+                            child: AnimatedContainer(
+                              duration: const Duration(milliseconds: 500),
+                              curve: McCurves.paper,
+                              width: 54,
+                              height: 80,
+                              decoration: BoxDecoration(
+                                color: i < s.steps ? mc.fanOn[i] : mc.fanOff,
+                                borderRadius: BorderRadius.circular(7),
+                                boxShadow: const [
+                                  BoxShadow(color: Color(0x33000000), blurRadius: 4, offset: Offset(-2, 0)),
+                                ],
                               ),
                             ),
-                          );
-                        }(),
-                    ],
-                  ),
-                ),
-              ),
-              Positioned(
-                left: 16,
-                top: 11,
-                right: 112,
-                child: Row(
-                  children: [
-                    if (widget.deck.pinned) ...[
-                      McIcon(McIcons.pin, size: const Size(15, 15), color: Mc.green),
-                      const SizedBox(width: 6),
-                    ],
-                    Flexible(
-                      child: Text(
-                        widget.deck.name,
-                        maxLines: 1,
-                        overflow: TextOverflow.ellipsis,
-                        style: T.d(23, color: mc.onInk, height: 1.05),
-                      ),
-                    ),
+                          ),
+                        );
+                      }(),
                   ],
                 ),
               ),
-              Positioned(
-                left: 16,
-                bottom: 11,
-                right: 112,
-                child: Text(
-                  meta,
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  style: T.t(13, w: FontWeight.w500, color: mc.mutedOnInk, spacing: 0.2),
-                ),
+            ),
+            Positioned(
+              left: 16,
+              top: 11,
+              right: 112,
+              child: Row(
+                children: [
+                  if (widget.deck.pinned) ...[
+                    McIcon(McIcons.pin, size: const Size(15, 15), color: Mc.green),
+                    const SizedBox(width: 6),
+                  ],
+                  Flexible(
+                    child: Text(
+                      widget.deck.name,
+                      maxLines: 1,
+                      overflow: TextOverflow.ellipsis,
+                      style: T.d(23, color: mc.onInk, height: 1.05),
+                    ),
+                  ),
+                ],
               ),
-            ],
-          ),
+            ),
+            Positioned(
+              left: 16,
+              bottom: 11,
+              right: 112,
+              child: Text(
+                meta,
+                maxLines: 1,
+                overflow: TextOverflow.ellipsis,
+                style: T.t(13, w: FontWeight.w500, color: mc.mutedOnInk, spacing: 0.2),
+              ),
+            ),
+          ],
         ),
       ),
     );
 
+    // Everything that moves with the swipe, and only that.
     final row = SizedBox(
       height: 72,
-      child: Stack(
-        clipBehavior: Clip.none,
-        children: [
-          // Delete / Archive (swiping left), flush to the right edge.
-          if (dir < 0) ...[
-            tile(
-              Mc.delete,
-              McIcons.x,
-              const Size(20, 20),
-              e,
-              left: false,
-              onTap: () => _removeThen('delete', widget.onDelete),
-              label: 'Delete deck',
-            ),
-            if (second > 0)
-              tile(
-                Mc.peach,
-                McIcons.archive,
-                const Size(20, 22),
-                second,
-                left: false,
-                top: true,
-                onTap: () => _removeThen('archive', widget.onArchive),
-                label: widget.archived ? 'Restore deck' : 'Archive deck',
-              ),
-          ],
-          // Move / Pin (swiping right), flush to the left edge.
-          if (dir > 0) ...[
-            tile(
-              Mc.blue,
-              McIcons.move,
-              const Size(24, 18),
-              e,
-              left: true,
-              iconW: 58,
-              onTap: () {
-                _close();
-                widget.onMove();
-              },
-              label: 'Move deck to another folder',
-            ),
-            if (second > 0)
-              tile(
-                Mc.green,
-                McIcons.pin,
-                const Size(22, 22),
-                second,
-                left: true,
-                top: true,
-                iconW: 54,
-                onTap: () {
-                  _close();
-                  widget.onPin();
-                },
-                label: widget.deck.pinned ? 'Unpin deck' : 'Pin deck to the top',
-              ),
-          ],
-          // The trailing edge sinks into the wall as the deck slides: the bar itself fades there (a mask
-          // fixed to the screen while the bar moves under it), so the wall's texture shows through.
-          Positioned(
-            left: (width - barW) / 2,
-            top: 0,
-            child: dir == 0
-                ? bar
-                : ShaderMask(
-                    blendMode: BlendMode.dstIn,
-                    shaderCallback: (rect) {
-                      final left0 = (width - barW) / 2;
-                      final mid = width / 2 - left0;
-                      final edge = (dir < 0 ? 0.0 : width) - left0;
-                      return ui.Gradient.linear(
-                        Offset(mid, 0),
-                        Offset(mid + (edge - mid) * stop, 0),
-                        [const Color(0xFF000000), Color.fromRGBO(0, 0, 0, 1 - sinkOp)],
-                      );
-                    },
-                    child: bar,
+      child: AnimatedBuilder(
+        animation: _motion,
+        child: barVisual,
+        builder: (context, bar) {
+          final e = _motion.e < 0.5 ? 0.0 : _motion.e;
+          final dir = e == 0 ? 0 : _motion.dir;
+          final excess = math.max(0.0, e - _step2);
+          final second = e <= _step1 ? 0.0 : math.min(65.0, e - _step1) + excess * 0.45;
+          final progress = e / _step1;
+          final sinkOp = math.min(1.0, progress * 1.5);
+          final stop = math.max(0.0, 1 - progress * 0.2);
+          // The bar moves from the first pixel (half speed at first) and settles to keeping a _gap from
+          // the tile as it opens, with no dead zone.
+          final double tx = dir == 0 ? 0.0 : dir.toDouble() * (e - (_margin - _gap) * (1 - math.exp(-e / 20)));
+          final left0 = (width - barW) / 2;
+
+          return Stack(
+            clipBehavior: Clip.none,
+            children: [
+              // Delete / Archive (swiping left), flush to the right edge.
+              if (dir < 0) ...[
+                tile(
+                  'delete',
+                  Mc.delete,
+                  McIcons.x,
+                  const Size(20, 20),
+                  e,
+                  left: false,
+                  onTap: () => _removeThen('delete', widget.onDelete),
+                  label: 'Delete deck',
+                ),
+                if (second > 0)
+                  tile(
+                    'archive',
+                    Mc.peach,
+                    McIcons.archive,
+                    const Size(20, 22),
+                    second,
+                    left: false,
+                    top: true,
+                    onTap: () => _removeThen('archive', widget.onArchive),
+                    label: widget.archived ? 'Restore deck' : 'Archive deck',
                   ),
-          ),
-        ],
+              ],
+              // Move / Pin (swiping right), flush to the left edge.
+              if (dir > 0) ...[
+                tile(
+                  'move',
+                  Mc.blue,
+                  McIcons.move,
+                  const Size(24, 18),
+                  e,
+                  left: true,
+                  iconW: 58,
+                  onTap: () {
+                    _close();
+                    widget.onMove();
+                  },
+                  label: 'Move deck to another folder',
+                ),
+                if (second > 0)
+                  tile(
+                    'pin',
+                    Mc.green,
+                    McIcons.pin,
+                    const Size(22, 22),
+                    second,
+                    left: true,
+                    top: true,
+                    iconW: 54,
+                    onTap: () {
+                      _close();
+                      widget.onPin();
+                    },
+                    label: widget.deck.pinned ? 'Unpin deck' : 'Pin deck to the top',
+                  ),
+              ],
+              // The trailing edge sinks into the wall as the deck slides: the bar itself fades there (a mask
+              // fixed to the screen while the bar moves under it), so the wall's texture shows through.
+              // The mask is part of the tree at rest too (switched off), so a swipe never rebuilds the bar.
+              Positioned(
+                key: const ValueKey('bar'),
+                left: 0,
+                top: -_shadowRoom,
+                child: SinkMask(
+                  // The mask spans the whole row, so the bar sliding past its own box is faded too (a
+                  // mask only as wide as the bar left a hard-edged strip of it un-faded at the screen edge).
+                  shaderCallback: dir == 0
+                      ? null
+                      : (rect) => ui.Gradient.linear(
+                            Offset(width / 2, 0),
+                            Offset(width / 2 + ((dir < 0 ? 0.0 : width) - width / 2) * stop, 0),
+                            [const Color(0xFF000000), Color.fromRGBO(0, 0, 0, 1 - sinkOp)],
+                          ),
+                  child: SizedBox(
+                    width: width,
+                    height: 72 + 2 * _shadowRoom,
+                    child: Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Positioned(
+                          left: left0,
+                          top: _shadowRoom,
+                          child: GestureDetector(
+                            behavior: HitTestBehavior.opaque,
+                            onHorizontalDragStart: _removing == null ? _onStart : null,
+                            onHorizontalDragUpdate: _removing == null ? _onUpdate : null,
+                            onHorizontalDragEnd: _removing == null ? _onEnd : null,
+                            onHorizontalDragCancel: _removing == null ? _onCancel : null,
+                            onTap: () {
+                              if (_motion.e > 0.5) {
+                                _close();
+                              } else {
+                                Fx.i.tap();
+                                widget.onOpen();
+                              }
+                            },
+                            child: Transform.translate(offset: Offset(tx, 0), child: bar),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+            ],
+          );
+        },
       ),
     );
 

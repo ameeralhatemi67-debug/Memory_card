@@ -7,7 +7,7 @@ no server, no analytics.
 
 ## Install on an Android phone
 
-1. Copy `../release/MemoryCard-1.1.1.apk` (the same file as `build/app/outputs/flutter-apk/app-release.apk`)
+1. Copy `../release/MemoryCard-1.1.2.apk` (the same file as `build/app/outputs/flutter-apk/app-release.apk`)
    to the phone: USB, a cloud drive, or email it to yourself.
 2. Open it on the phone. Android asks once to allow installs from that app (Files, Drive, Gmail…): allow it.
 3. Install, then open **Memory Card**.
@@ -65,6 +65,7 @@ flutter test test/ui_screens_test.dart  # every screen builds; coach marks; shop
 flutter test test/layout_test.dart      # layout model, PNG transparency, blur settings, catalogue layouts
 flutter test test/layout_store_test.dart # picture decks, reverse cards with pictures, backups
 flutter test test/layout_ui_test.dart   # study with picture cards (tap, flip), the layout editor
+flutter test test/deck_swipe_test.dart  # the deck bar's swipe: follows the finger, one spring, no wobble, nothing rebuilt
 ```
 
 Visual review: `test_gallery/` renders every screen to `build/gallery/*.png` with real fonts, light and
@@ -75,6 +76,8 @@ flutter test test_gallery/tour_gallery_test.dart
 flutter test test_gallery/app_gallery_test.dart
 flutter test test_gallery/icon_gen_test.dart   # regenerates the launcher icons from the logo
 flutter test test_gallery/pictures_gallery_test.dart  # picture cards, the layout editor, Settings blur → build/gallery/pic-*.png
+flutter test test_gallery/swipe_gallery_test.dart     # a deck bar mid-swipe and on each detent, both ways
+flutter test test_gallery/shop_texture_gallery_test.dart  # shop hero, long-press badges, the Texture tab
 ```
 
 ## Pictures on cards

@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -16,6 +17,9 @@ import 'ui/theme.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
+  // Touch events arrive at the touch panel's own rate (often not the screen's): resample them to the frame
+  // clock so a dragged card or deck bar moves a little every frame instead of in uneven steps.
+  GestureBinding.instance.resamplingEnabled = true;
   GoogleFonts.config.allowRuntimeFetching = true;
   if (!kIsWeb) {
     await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);

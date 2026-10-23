@@ -2,10 +2,10 @@
   "id": "naruto-characters",
   "name": "Naruto · Characters",
   "mono": "Na",
-  "category": "knowledge",
+  "category": "anime",
   "level": "anime",
   "kind": "text",
-  "folder": "Knowledge",
+  "folder": "Anime",
   "description": "Put a name to the face: the heroes, Hokage, Akatsuki and villains of the Naruto series.",
   "style": {
     "front": "full",

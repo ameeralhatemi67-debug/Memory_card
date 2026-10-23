@@ -2,11 +2,11 @@
   "id": "paintings",
   "name": "Art · Famous Paintings",
   "mono": "Ar",
-  "category": "knowledge",
+  "category": "arts",
   "level": "classics",
   "lang": null,
   "kind": "text",
-  "folder": "Knowledge",
+  "folder": "History & Culture",
   "description": "Name the painter behind 30 famous artworks, from the Mona Lisa and The Starry Night to Guernica and The Scream.",
   "cards": [
     {

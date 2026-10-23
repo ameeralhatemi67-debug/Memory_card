@@ -68,10 +68,10 @@ A manifest lists one entry per image. `kind` sets size limits and quality gates
   "id": "naruto-characters",
   "name": "Naruto · Characters",
   "mono": "Na",
-  "category": "knowledge",
+  "category": "anime",
   "level": "anime",
   "kind": "text",
-  "folder": "Knowledge",
+  "folder": "Anime",
   "description": "Put a name to the face: the heroes, rivals and legends of Naruto.",
   "style": { "front": "full", "fit": "cover", "back": "text", "reverse": true },
   "cards": [

@@ -2,11 +2,11 @@
   "id": "world-capitals",
   "name": "World Capitals",
   "mono": "Ca",
-  "category": "knowledge",
+  "category": "geo",
   "level": "trivia",
   "lang": null,
   "kind": "text",
-  "folder": "Knowledge",
+  "folder": "Geography",
   "description": "The capitals that trip people up, because they are not the biggest city.",
   "origin": "originals",
   "cards": [

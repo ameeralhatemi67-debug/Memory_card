@@ -2,10 +2,10 @@
   "id": "flags-europe",
   "name": "Flags · Europe",
   "mono": "Fl",
-  "category": "knowledge",
+  "category": "geo",
   "level": "flags",
   "kind": "text",
-  "folder": "Knowledge",
+  "folder": "Geography",
   "description": "Name the flag of every country in Europe, Russia and Cyprus included, plus the Vatican and Kosovo.",
   "style": {
     "front": "only",

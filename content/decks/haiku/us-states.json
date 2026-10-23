@@ -2,11 +2,11 @@
   "id": "us-states",
   "name": "USA · State Capitals",
   "mono": "US",
-  "category": "knowledge",
+  "category": "geo",
   "level": "core",
   "lang": null,
   "kind": "text",
-  "folder": "Knowledge",
+  "folder": "Geography",
   "description": "Learn the capital city of all 50 US states, from Montgomery in Alabama to Cheyenne in Wyoming.",
   "cards": [
     { "front": "Alabama", "back": "Montgomery", "label": "South", "example": "", "hook": "" },

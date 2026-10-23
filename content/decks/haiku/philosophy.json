@@ -2,11 +2,11 @@
   "id": "philosophy",
   "name": "Philosophy · Key Ideas",
   "mono": "Ph",
-  "category": "knowledge",
+  "category": "arts",
   "level": "classics",
   "lang": null,
   "kind": "text",
-  "folder": "Knowledge",
+  "folder": "History & Culture",
   "description": "Name the central idea of 28 famous philosophers, from Socrates and Plato to Kant, Nietzsche and Beauvoir.",
   "cards": [
     { "front": "Socrates", "back": "Socratic method: questioning to expose assumptions", "label": "Ancient Greek", "example": "", "hook": "" },

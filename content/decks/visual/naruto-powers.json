@@ -2,10 +2,10 @@
   "id": "naruto-powers",
   "name": "Naruto · Powers",
   "mono": "Na",
-  "category": "knowledge",
+  "category": "anime",
   "level": "anime",
   "kind": "text",
-  "folder": "Knowledge",
+  "folder": "Anime",
   "description": "Name the jutsu, eyes and modes of Naruto, from the Rasengan and Chidori to Susanoo and the Rinnegan.",
   "style": {
     "front": "above",

@@ -2,10 +2,10 @@
   "id": "car-brands",
   "name": "Car Brands",
   "mono": "Ca",
-  "category": "knowledge",
+  "category": "cars",
   "level": "cars",
   "kind": "text",
-  "folder": "Knowledge",
+  "folder": "Cars",
   "description": "Name the badge: the emblems of car makers from around the world, from Toyota and Ford to Wuling and VinFast.",
   "style": { "front": "only", "fit": "contain", "back": "text", "reverse": true, "plate": "paper" },
   "cards": [

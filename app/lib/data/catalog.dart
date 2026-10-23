@@ -174,6 +174,10 @@ class CatalogCategory {
     CatalogCategory('code', 'Coding', 0xFFFFC680),
     CatalogCategory('med', 'Medicine', 0xFFD35F5F),
     CatalogCategory('science', 'Science', 0xFF8BD3A0),
+    CatalogCategory('geo', 'Geography', 0xFF6FD0C8),
+    CatalogCategory('arts', 'History & Culture', 0xFFD9A273),
+    CatalogCategory('anime', 'Anime', 0xFFB59CFF),
+    CatalogCategory('cars', 'Cars', 0xFFF0D060),
     CatalogCategory('knowledge', 'Knowledge', 0xFFB4B4B4),
   ];
 
@@ -214,6 +218,7 @@ class Catalog {
     'anatomy-bones', 'cranial-nerves', 'med-prefixes', 'medical-abbreviations', 'pharm-basics', 'vitamin-deficiencies',
     'periodic-table', 'solar-system', 'organelles', 'si-units-constants', 'functional-groups',
     'world-capitals', 'history-dates', 'us-states', 'greek-gods', 'latin-phrases', 'paintings', 'philosophy', 'fallacies',
+    'flags-europe', 'naruto-characters', 'car-brands', 'onepiece-characters', 'flags-asia', 'hxh-characters',
   ];
 
   /// [list] with the featured decks first, in [featuredIds] order; the others keep their order.
