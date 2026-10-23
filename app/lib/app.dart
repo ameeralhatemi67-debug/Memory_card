@@ -7,6 +7,8 @@ import 'data/store.dart';
 import 'data/store_scope.dart';
 import 'features/onboarding/onboarding.dart';
 import 'features/shell/shell.dart';
+import 'features/today/today_screen.dart';
+import 'services/home_widgets.dart';
 import 'services/reminders.dart';
 import 'ui/motion.dart';
 import 'ui/textures.dart';
@@ -25,6 +27,7 @@ class _MemoryCardAppState extends State<MemoryCardApp> with WidgetsBindingObserv
   static final _dark = Mc.theme(Mc.darkTheme);
 
   Timer? _dayTimer;
+  final _nav = GlobalKey<NavigatorState>();
   late String _theme = widget.store.settings.theme;
   late bool _reduced = widget.store.settings.reducedMotion;
   late bool _onboarded = widget.store.data.onboarded;
@@ -36,6 +39,26 @@ class _MemoryCardAppState extends State<MemoryCardApp> with WidgetsBindingObserv
     widget.store.addListener(_onStore);
     Textures.i.update(widget.store.settings.texture);
     _dayTimer = Timer.periodic(const Duration(seconds: 30), (_) => widget.store.tickDay());
+    HomeWidgets.i.listen(_fromWidget);
+  }
+
+  /// A home-screen widget was tapped: memorycard://study (optionally ?deck=…) or memorycard://today.
+  void _fromWidget(Uri uri) {
+    final store = widget.store;
+    final shell = Shell.current;
+    if (shell == null) return;
+    _nav.currentState?.popUntil((r) => r.isFirst);
+    switch (uri.host) {
+      case 'study':
+        final id = uri.queryParameters['deck'] ?? store.data.today?.lastDeck ?? store.data.lastDeckId;
+        if (id != null && store.data.decks.containsKey(id)) {
+          shell.study(id);
+        } else {
+          shell.goHome();
+        }
+      case 'today':
+        _nav.currentState?.push(TodayScreen.route());
+    }
   }
 
   /// Only theme, motion and onboarding changes rebuild the app root; everything else rebuilds locally.
@@ -64,8 +87,10 @@ class _MemoryCardAppState extends State<MemoryCardApp> with WidgetsBindingObserv
     if (state == AppLifecycleState.paused || state == AppLifecycleState.inactive) {
       widget.store.flush();
       Reminders.i.reschedule(widget.store);
+      HomeWidgets.i.publish();
     } else if (state == AppLifecycleState.resumed) {
-      widget.store.tickDay();
+      // Quick card answers given meanwhile count for their own day before a new day starts.
+      HomeWidgets.i.catchUp().whenComplete(widget.store.tickDay);
     }
   }
 
@@ -75,6 +100,7 @@ class _MemoryCardAppState extends State<MemoryCardApp> with WidgetsBindingObserv
     return StoreScope(
       store: widget.store,
       child: MaterialApp(
+        navigatorKey: _nav,
         debugShowCheckedModeBanner: false,
         title: 'Memory Card',
         theme: _light,

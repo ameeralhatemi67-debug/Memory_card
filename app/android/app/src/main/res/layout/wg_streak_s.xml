@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Streak flame, 1×1: an ink pill with the flame and the days. -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/wg_ink_pill"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="4dp">
+
+    <ImageView
+        android:id="@+id/flame"
+        android:layout_width="18dp"
+        android:layout_height="22dp"
+        android:importantForAccessibility="no"
+        android:src="@drawable/wg_flame" />
+
+    <ImageView
+        android:id="@+id/big"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:tint="@color/mc_on_ink" />
+
+    <TextView
+        android:id="@+id/sub"
+        style="@style/WgText.Caps"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="1dp"
+        android:text="days"
+        android:textColor="@color/mc_muted_on_ink"
+        android:textSize="9sp" />
+</LinearLayout>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The Memory Card mark (three fanned cards), white: the layout tints it. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="12dp" android:height="15dp"
+    android:viewportWidth="11.7" android:viewportHeight="14.5">
+    <group android:translateX="0.2">
+        <path android:fillColor="#FFFFFFFF" android:fillAlpha="0.55" android:pathData="M0.001,0 L6.927,0 L6.927,11.206 L0.001,11.206 Z" />
+        <path android:fillColor="#FFFFFFFF" android:fillAlpha="0.78" android:pathData="M2.781,0.09 L9.471,1.882 L6.57,12.706 L-0.12,10.914 Z" />
+        <path android:fillColor="#FFFFFFFF" android:pathData="M5.408,1.209 L11.406,4.672 L5.803,14.377 L-0.195,10.914 Z" />
+    </group>
+</vector>

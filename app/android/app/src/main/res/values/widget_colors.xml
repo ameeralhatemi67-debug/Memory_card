@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Home-screen widgets: the app's "inverse ink" tokens (lib/ui/theme.dart). values-night holds the dark ones. -->
+<resources>
+    <color name="mc_paper">#F1F1F1</color>
+    <color name="mc_ink">#333333</color>
+    <color name="mc_on_ink">#F1F1F1</color>
+    <color name="mc_muted">#666666</color>
+    <color name="mc_muted_on_ink">#BDBDBD</color>
+    <color name="mc_soft">#E3E3E3</color>
+    <color name="mc_line">#D2D2D2</color>
+    <color name="mc_track">#CFCFCF</color>
+
+    <!-- The same in both themes. -->
+    <color name="mc_red">#D35F5F</color>
+    <color name="mc_again">#FF8080</color>
+    <color name="mc_good">#8BD3A0</color>
+    <color name="mc_blue">#80AEFF</color>
+    <color name="mc_graphite">#333333</color>
+</resources>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A grace shield already used. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="24dp" android:height="28dp"
+    android:viewportWidth="24" android:viewportHeight="28">
+    <path android:strokeColor="#FF80AEFF" android:strokeWidth="2" android:pathData="M12,2.2 L21,5.8 L21,13 C21,18.9 17.1,23.3 12,25.8 C6.9,23.3 3,18.9 3,13 L3,5.8 Z" />
+</vector>

@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'app.dart';
 import 'data/store.dart';
 import 'features/onboarding/splash.dart';
+import 'services/home_widgets.dart';
 import 'services/reminders.dart';
 import 'ui/fx.dart';
 import 'ui/icons.dart';
@@ -49,7 +50,11 @@ class _BootState extends State<Boot> {
 
   Future<void> _open() async {
     try {
-      final store = await AppStore.open();
+      // Quick card answers given while the app was closed count before the day is brought up to date.
+      final widgetReviews = await HomeWidgets.i.pendingReviews();
+      final store = await AppStore.open(widgetReviews: widgetReviews);
+      await HomeWidgets.i.markApplied(widgetReviews);
+      unawaited(HomeWidgets.i.attach(store));
       Fx.i
         ..sounds = store.settings.sounds
         ..haptics = store.settings.haptics;

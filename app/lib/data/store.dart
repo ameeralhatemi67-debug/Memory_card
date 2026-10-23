@@ -15,6 +15,7 @@ import 'card_layout.dart';
 import 'catalog.dart';
 import 'models.dart';
 import 'persistence.dart';
+import 'widget_snapshot.dart';
 
 final _rand = math.Random();
 int _seq = 0;
@@ -72,11 +73,14 @@ class StudySnapshot {
 class AppStore extends ChangeNotifier {
   AppStore._(this._db, this.data, this.catalog) : engine = StudyEngine(data);
 
-  static Future<AppStore> open({String? path}) async {
+  /// [widgetReviews] (answers given on the Quick card while the app was closed) are replayed before the
+  /// day is brought up to date, so they count for the day they were given on.
+  static Future<AppStore> open({String? path, List<WidgetReview> widgetReviews = const []}) async {
     final db = await Persistence.open(path: path);
     final catalog = await Catalog.load();
     final data = db.isEmpty ? AppData() : db.load();
     final store = AppStore._(db, data, catalog);
+    if (widgetReviews.isNotEmpty) store.applyWidgetReviews(widgetReviews);
     store.engine.ensureToday(data.now());
     store._saveMeta();
     return store;
@@ -756,6 +760,53 @@ class AppStore extends ChangeNotifier {
     _logCache?.add(out.log);
     _changed();
     return out;
+  }
+
+  /// Replays answers given on the Quick card widget through the engine, at the time they were given
+  /// (mode "widget"). A widget reads no hesitation, so each is Again or Good, and its timing is never
+  /// learned from. Returns how many were applied.
+  ///
+  /// The day only moves forward: an answer from a day the app has already left counts at the start of
+  /// today, and one older than the card's last review (it was studied in the app since) is dropped.
+  int applyWidgetReviews(List<WidgetReview> reviews) {
+    var applied = 0;
+    for (final r in [...reviews]..sort((a, b) => a.ts.compareTo(b.ts))) {
+      final c = data.cards[r.cardId];
+      final d = c == null ? null : data.decks[c.deckId];
+      if (c == null || d == null || c.suspended) continue;
+      var at = math.min(r.ts + data.clockOffset, now());
+      if (c.last != null && at < c.last!) continue;
+      final t = data.today;
+      if (t != null && dayNumber(at) < t.day) at = math.max(at, t.startedAt);
+      final out = engine.swipe(
+        d,
+        c.id,
+        recalled: r.grade > 1,
+        signals: ReviewSignals(
+          thinkMs: 0,
+          verifyMs: r.verifyMs,
+          viaButton: true,
+          interrupted: true,
+          promptChars: c.frontText.length,
+        ),
+        now: at,
+        mode: 'widget',
+        forcedGrade: r.grade,
+      );
+      // You picked the grade yourself, even when it matches what the engine would have read.
+      final log = ReviewLog.fromJson({...out.log.toJson(), 'auto': false});
+      _db.saveCard(c);
+      _db.saveDeck(d);
+      _db.addLog(log).catchError((Object _) => 0);
+      _logCache?.add(log);
+      _pendingSeals.addAll(out.seals);
+      applied++;
+    }
+    if (applied > 0) {
+      _saveMeta();
+      _changed();
+    }
+    return applied;
   }
 
   /// Undo: restores the deck, the card, the day, the profile, the engine and removes the log entry.

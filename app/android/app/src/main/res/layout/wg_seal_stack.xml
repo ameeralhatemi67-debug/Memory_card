@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The day's seal, layered: grey seal, ring track, red progress (drawn by SealWidget), the count; or the
+     red DONE seal once the goal is met. Included at each widget size. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/seal_base"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:src="@drawable/wg_seal"
+        android:tint="@color/mc_soft" />
+
+    <ImageView
+        android:id="@+id/seal_track"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:src="@drawable/wg_seal_track"
+        android:tint="@color/mc_line" />
+
+    <ImageView
+        android:id="@+id/seal_arc"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no" />
+
+    <ImageView
+        android:id="@+id/seal_done"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:src="@drawable/wg_seal_done"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/seal_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:tint="@color/mc_ink" />
+
+    <!-- "DONE", stamped at an angle in paper white: never tinted. -->
+    <ImageView
+        android:id="@+id/seal_done_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:importantForAccessibility="no"
+        android:visibility="gone" />
+</FrameLayout>

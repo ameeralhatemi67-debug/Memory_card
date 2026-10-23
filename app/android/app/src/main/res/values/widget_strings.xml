@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="wg_seal_name">Daily goal seal</string>
+    <string name="wg_seal_desc">Today\'s cards against your goal; the red seal once it is met.</string>
+    <string name="wg_streak_name">Streak flame</string>
+    <string name="wg_streak_desc">Your streak and the grace shields left this month.</string>
+    <string name="wg_quick_name">Quick card</string>
+    <string name="wg_quick_desc">Review the card you are closest to forgetting, right here.</string>
+    <string name="wg_loading">Memory Card</string>
+</resources>

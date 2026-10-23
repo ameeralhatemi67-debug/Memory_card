@@ -10,6 +10,7 @@ import '../../data/models.dart';
 import '../../data/store.dart';
 import '../../data/store_scope.dart';
 import '../../engine/days.dart';
+import '../../services/home_widgets.dart';
 import '../../services/reminders.dart';
 import '../../ui/fx.dart';
 import '../../ui/icons.dart';
@@ -342,6 +343,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   ],
                 ]),
               ),
+              if (HomeWidgets.i.supported)
+                section(
+                  'Home screen widgets',
+                  Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                    Container(
+                      foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(16)),
+                      decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(16), boxShadow: mc.e1),
+                      clipBehavior: Clip.antiAlias,
+                      child: Column(children: [
+                        for (final (i, e) in HomeWidgets.kinds.entries.indexed)
+                          row(e.value, () => _addWidget(e.key), hint: 'Add', last: i == HomeWidgets.kinds.length - 1),
+                      ]),
+                    ),
+                    const SizedBox(height: 8),
+                    Text(
+                      'Answers on the Quick card count as reviews, Again or Good, the next time you open the app.',
+                      style: T.t(14, w: FontWeight.w500, color: mc.muted, height: 1.35),
+                    ),
+                  ]),
+                ),
               section(
                 'Your data',
                 key: _dataKey,
@@ -417,6 +438,15 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (t == null) return;
     store.updateSettings((x) => x.remindMinutes = t.hour * 60 + t.minute);
     await Reminders.i.reschedule(store);
+  }
+
+  /// Asks the launcher to place the widget; launchers that cannot are told how to do it by hand.
+  Future<void> _addWidget(String kind) async {
+    if (await HomeWidgets.i.canPin()) {
+      await HomeWidgets.i.pin(kind);
+    } else {
+      Toaster.i.show('Long-press your home screen, tap Widgets, then find Memory Card');
+    }
   }
 
   Future<void> _export(BuildContext context, AppStore store) async {

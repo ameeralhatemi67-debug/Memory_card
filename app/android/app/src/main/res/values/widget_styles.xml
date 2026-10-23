@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Widget text. Barlow Semi Condensed is not on the phone, so the system's condensed face stands in;
+     display text (Bernard) is drawn as tinted bitmaps by the widget code. -->
+<resources>
+    <style name="WgText">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:textColor">@color/mc_muted</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+
+    <style name="WgText.Bold">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/mc_ink</item>
+    </style>
+
+    <style name="WgText.Caps">
+        <item name="android:textSize">10sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.1</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:ellipsize">end</item>
+    </style>
+
+    <style name="WgButton">
+        <item name="android:fontFamily">sans-serif-condensed</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:layout_height">40dp</item>
+        <item name="android:includeFontPadding">false</item>
+    </style>
+</resources>

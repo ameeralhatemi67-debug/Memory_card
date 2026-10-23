@@ -7,7 +7,7 @@ no server, no analytics.
 
 ## Install on an Android phone
 
-1. Copy `../release/MemoryCard-1.1.2.apk` (the same file as `build/app/outputs/flutter-apk/app-release.apk`)
+1. Copy `../release/MemoryCard-1.2.0.apk` (the same file as `build/app/outputs/flutter-apk/app-release.apk`)
    to the phone: USB, a cloud drive, or email it to yourself.
 2. Open it on the phone. Android asks once to allow installs from that app (Files, Drive, Gmail…): allow it.
 3. Install, then open **Memory Card**.
@@ -66,6 +66,7 @@ flutter test test/layout_test.dart      # layout model, PNG transparency, blur s
 flutter test test/layout_store_test.dart # picture decks, reverse cards with pictures, backups
 flutter test test/layout_ui_test.dart   # study with picture cards (tap, flip), the layout editor
 flutter test test/deck_swipe_test.dart  # the deck bar's swipe: follows the finger, one spring, no wobble, nothing rebuilt
+flutter test test/widget_snapshot_test.dart # home-screen widgets: the snapshot, the inbox, answers replayed through the engine
 ```
 
 Visual review: `test_gallery/` renders every screen to `build/gallery/*.png` with real fonts, light and
@@ -96,6 +97,37 @@ picture peeks out blurred behind *Tap to reveal*. Reverse cards swap pictures al
 
 Picture decks come from `content/decks/visual/*.json` (see the README there) with images in
 `assets/content/img/<deck>/`; `python ../tools/imgkit.py` fetches and checks them and `build_catalog.py` bundles them.
+
+## Home-screen widgets (Android)
+
+Three widgets, added from the launcher's widget list or *Settings › Home screen widgets*. Each redraws at the size
+it is given (Android 12+ gets every layout and picks the one that fits; older launchers report their size):
+
+| Widget | Sizes | Tap |
+|---|---|---|
+| **Daily goal seal**: today's cards against the goal; the red DONE seal once it is met | 1×1, 2×1, 2×2 | studies the last deck |
+| **Streak flame**: the streak and this month's grace shields; after 18:00 with the goal not met, it asks for today | 1×1, 2×1, 4×1 | opens Today |
+| **Quick card**: the card you are closest to forgetting; Reveal, then Again or Got it | 2×2, 4×2, 4×3 | the buttons answer; the deck name opens it |
+
+How it fits together:
+
+- **The app writes, the widgets draw.** `lib/data/widget_snapshot.dart` builds one JSON snapshot (the day, goal,
+  streak, shields, and the Quick card's queue: the 12 lowest-recall cards, interleaved across decks, new cards left
+  out). `lib/services/home_widgets.dart` saves it through the `home_widget` plugin a moment after any change, when
+  the app goes to the background, and books redraws for 04:00 (a new study day) and 18:00.
+- **The widgets are native** (`android/app/src/main/kotlin/com/memorycard/memory_card/widgets/`, RemoteViews):
+  display text is drawn in Bernard as white masks the layouts tint, so light and dark follow the phone; the seal,
+  flame and shields are vector drawables. `WidgetState.kt` brings the snapshot up to the present on its own: a new
+  study day starts empty, missed days use grace shields or end the streak, as the engine would.
+- **Quick card answers never need Dart in the background.** A tap appends `{card, deck, grade, ts}` to an inbox in
+  the widget's storage and shows the next card. When the app next opens (or comes back from the background),
+  `AppStore.applyWidgetReviews` replays them through `StudyEngine.swipe` at the time they were given, as mode
+  `widget`, Again or Good only, never learning timing from them; then it moves a watermark so nothing is applied
+  twice. The seal and the streak count those answers straight away.
+- Taps open `memorycard://study` or `memorycard://today`, routed in `lib/app.dart`. Flutter's own deep linking
+  is turned off in the manifest so it does not push a second home screen over that.
+- After an APK update Android shows each widget's placeholder layout again; the widgets listen for
+  `MY_PACKAGE_REPLACED` and redraw themselves from the last snapshot without waiting for the app.
 
 ## Hidden tools
 
