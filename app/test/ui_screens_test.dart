@@ -84,7 +84,8 @@ void main() {
       // Shop and a preview.
       Shell.current!.openShop();
       await settle(tester, 1200);
-      expect(find.text('Shop'), findsOneWidget);
+      expect(Shell.current!.tab, ShellTab.shop);
+      expect(find.text('Shop'), findsWidgets); // the header, and the drawn Shop card in the hand
       // With decks in the library, the hero is the deck of the day.
       final hero = store.catalog.deckOfTheDay(dayNumber(store.data.now()), store.data.shopAdded.containsKey)!;
       expect(find.text('DECK OF THE DAY'), findsOneWidget);
@@ -141,7 +142,7 @@ void main() {
       Shell.current!.openAccount();
       await settle(tester, 1200);
       expect(Shell.current!.tab, ShellTab.account);
-      expect(find.text('Account'), findsOneWidget);
+      expect(find.text('Account'), findsWidgets);
       Shell.current!.openLab();
       await settle(tester, 900);
       expect(Shell.current!.tab, ShellTab.lab, reason: 'a tab further down comes back to the top');

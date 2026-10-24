@@ -34,15 +34,23 @@ class Shell extends StatefulWidget {
   State<Shell> createState() => ShellState();
 }
 
-class ShellState extends State<Shell> {
+class ShellState extends State<Shell> with SingleTickerProviderStateMixin {
   final _nav = GlobalKey<NavigatorState>();
-  final _plus = GlobalKey();
   final _routes = <ShellTab>[ShellTab.decks];
   bool _drawer = false;
   String? _studyDeck;
 
+  /// The + card has dealt New deck / New card ([_deal] runs while they fly out and back).
+  bool _menu = false;
+  late final AnimationController _deal = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 650),
+    reverseDuration: const Duration(milliseconds: 320),
+  );
+
   ShellTab get tab => _routes.last;
   bool get drawerOpen => _drawer;
+  bool get createOpen => _menu;
   String? get studyDeckId => tab == ShellTab.study ? _studyDeck : null;
 
   @override
@@ -54,6 +62,7 @@ class ShellState extends State<Shell> {
   @override
   void dispose() {
     if (Shell.current == this) Shell.current = null;
+    _deal.dispose();
     super.dispose();
   }
 
@@ -72,6 +81,7 @@ class ShellState extends State<Shell> {
 
   void goHome() {
     closeDrawer();
+    closeCreate();
     if (_routes.length > 1) {
       _nav.currentState!.popUntil((r) => r.isFirst);
       setState(() => _routes
@@ -90,6 +100,7 @@ class ShellState extends State<Shell> {
   /// over the current page, so Back returns there.
   void _openTab(ShellTab t, Widget Function() screen) {
     closeDrawer();
+    closeCreate();
     if (tab == t) return;
     if (_routes.contains(t)) {
       _nav.currentState!.popUntil((r) => r.settings.name == t.name);
@@ -106,6 +117,7 @@ class ShellState extends State<Shell> {
   /// Opens a deck's study stack ([deckId] null = the cross-deck daily mix).
   void study(String? deckId) {
     closeDrawer();
+    closeCreate();
     final screen = StudyScreen(key: ValueKey('study-$deckId-${DateTime.now().millisecondsSinceEpoch}'), deckId: deckId);
     if (tab == ShellTab.study) {
       _studyDeck = deckId;
@@ -144,23 +156,37 @@ class ShellState extends State<Shell> {
       );
 
   /// The context-aware "+": in a deck's stack it writes a card for that deck; in the Daily mix, a card for
-  /// any deck; everywhere else it asks whether to make a deck or a card.
-  Future<void> create() async {
-    final store = context.storeRead;
+  /// any deck; everywhere else the + card deals two cards, New deck and New card (tap it again to take
+  /// them back).
+  void create() {
     if (tab == ShellTab.study) {
       createCard();
       return;
     }
-    final box = _plus.currentContext?.findRenderObject() as RenderBox?;
-    if (box == null || !box.hasSize) {
-      createCard();
-      return;
-    }
-    final pick = await showCreateMenu(context, box.localToGlobal(Offset.zero) & box.size);
-    if (!mounted) return;
-    if (pick == 'deck') {
+    _menu ? closeCreate() : openCreate();
+  }
+
+  void openCreate() {
+    if (_menu) return;
+    closeDrawer();
+    Fx.i.whoosh();
+    setState(() => _menu = true);
+    _deal.forward();
+  }
+
+  void closeCreate() {
+    if (!_menu) return;
+    setState(() => _menu = false);
+    _deal.reverse();
+  }
+
+  void _pick(String what) {
+    final store = context.storeRead;
+    Fx.i.pop();
+    closeCreate();
+    if (what == 'deck') {
       showEditor(context, folderId: store.currentFolder?.id, newDeck: true);
-    } else if (pick == 'card') {
+    } else {
       createCard();
     }
   }
@@ -177,6 +203,10 @@ class ShellState extends State<Shell> {
   Future<bool> _onBack() async {
     if (_drawer) {
       closeDrawer();
+      return false;
+    }
+    if (_menu) {
+      closeCreate();
       return false;
     }
     if (_nav.currentState?.canPop() ?? false) {
@@ -220,6 +250,15 @@ class ShellState extends State<Shell> {
                 ),
               ),
             ),
+            // The page dims while the + card's two cards are out; the hand stays above it, live.
+            // (Always a positioned child: an empty unpositioned one would shrink the whole stack.)
+            Positioned.fill(
+              child: AnimatedBuilder(
+                animation: _deal,
+                builder: (context, child) => _deal.isDismissed ? const SizedBox.shrink() : child!,
+                child: CreateDim(anim: _deal, onClose: closeCreate),
+              ),
+            ),
             Positioned(
               left: 0,
               right: 0,
@@ -227,12 +266,19 @@ class ShellState extends State<Shell> {
               height: navH,
               child: NavBar(
                 current: tab,
-                diamondKey: _plus,
+                open: _menu,
                 onHome: goHome,
                 onLab: openLab,
                 onCreate: create,
                 onShop: openShop,
                 onAccount: openAccount,
+              ),
+            ),
+            Positioned.fill(
+              child: AnimatedBuilder(
+                animation: _deal,
+                builder: (context, child) => _deal.isDismissed ? const SizedBox.shrink() : child!,
+                child: CreateDeal(anim: _deal, onPick: _pick),
               ),
             ),
             Positioned.fill(child: FolderDrawer(open: _drawer, onClose: closeDrawer)),

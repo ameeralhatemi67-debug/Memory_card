@@ -103,11 +103,15 @@ Picture decks come from `content/decks/visual/*.json` (see the README there) wit
 
 ## Navigation and the +
 
-The nav bar has five places: **Home** (the decks of the current folder) · **Memory Lab** · **+** · **Shop** ·
-**Account** (the membership card, seals and sign-in). Lab and Account are tabs inside the shell (`ShellTab.lab`,
+The nav bar is a hand of cards (design B of the nav canvas, https://claude.ai/artifact/BAzpHdCtH8nxanCYBifZFe):
+**Home** · **Memory Lab** · the **+** card · **Shop** · **Account** (the membership card, seals and sign-in), fanned
+about a point far below the screen. The chosen card is drawn up, shows its name and floats; the + is a card back
+(`features/shell/nav_bar.dart`). Lab and Account are tabs inside the shell (`ShellTab.lab`,
 `ShellTab.account`); `MemoryLab.route()` / `ProfileScreen.route()` still push them as full pages (Settings › Help).
 The + depends on where you are: studying a deck it writes a card for that deck; in the Daily mix a card for any
-deck; on Home, Lab, Shop and Account it fans out **New deck** / **New card** (`create_menu.dart`).
+deck; on Home, Lab, Shop and Account the + card deals **New deck** / **New card**: two cards leave the hand face
+down, flip in the air and land above it, while the hand spreads and stays live (`create_menu.dart`, drawn by the
+shell itself, so a tab, Back or a tap on the page puts them back).
 
 ## Deck looks and deck seals
 

@@ -189,7 +189,7 @@ void main() {
     await tester.tap(find.bySemanticsLabel('Create'));
     await settle(tester, 1200);
     await shot(tester, '12-create-from-account');
-    nav.pop();
+    Shell.current!.closeCreate();
     await settle(tester, 600);
 
     // Seals: pressed, and the gallery.
@@ -229,7 +229,7 @@ void main() {
     await tester.tap(find.bySemanticsLabel('Create'));
     await settle(tester, 1200);
     await shot(tester, '17-create-from-shop');
-    nav.pop();
+    Shell.current!.closeCreate();
     await settle(tester, 600);
     showPreview(tester.element(find.byType(Shell)), 'football-legends');
     await settle(tester, 1500);
@@ -254,6 +254,13 @@ void main() {
     store.updateSettings((s) => s.theme = 'dark');
     await settle(tester, 1200);
     await shot(tester, '20-dark-home');
+    await tester.tap(find.bySemanticsLabel('Create'));
+    await settle(tester, 350);
+    await shot(tester, '20b-dark-create-dealing');
+    await settle(tester, 900);
+    await shot(tester, '20c-dark-create');
+    Shell.current!.closeCreate();
+    await settle(tester, 700);
     openDeckMaker(tester.element(find.byType(Shell)), deckId: ownId);
     await settle(tester, 1600);
     await shot(tester, '21-dark-deck-maker');

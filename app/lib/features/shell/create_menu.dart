@@ -1,138 +1,120 @@
 import 'dart:math' as math;
+import 'dart:ui' show lerpDouble;
 
 import 'package:flutter/material.dart';
 
-import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
 import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
+import 'nav_bar.dart';
 
-/// The "+" asks what to make: two paper cards fan up out of it ("New deck", "New card") and the + turns
-/// into an ×. [anchor] is the + in global coordinates. Returns 'deck', 'card' or null.
-Future<String?> showCreateMenu(BuildContext context, Rect anchor) {
-  Fx.i.whoosh();
-  return Navigator.of(context, rootNavigator: true).push<String>(PageRouteBuilder<String>(
-    opaque: false,
-    barrierDismissible: true,
-    barrierColor: Colors.transparent,
-    barrierLabel: 'Close',
-    transitionDuration: const Duration(milliseconds: 520),
-    reverseTransitionDuration: const Duration(milliseconds: 220),
-    pageBuilder: (context, a, b) => Material(type: MaterialType.transparency, child: _CreateMenu(anchor: anchor, animation: a)),
-  ));
-}
+// What the + card deals (nav canvas, design B): two cards leave the hand face down, flip in the air and land
+// above it, "New deck" and "New card". The shell draws them over the page and under nothing, with the hand
+// spread and still live below; [anim] runs 0 → 1 as they are dealt and back as they return.
 
-class _CreateMenu extends StatelessWidget {
-  const _CreateMenu({required this.anchor, required this.animation});
-  final Rect anchor;
-  final Animation<double> animation;
+/// The page behind dims while the cards are out; a tap on it puts them back.
+class CreateDim extends StatelessWidget {
+  const CreateDim({super.key, required this.anim, required this.onClose});
+  final Animation<double> anim;
+  final VoidCallback onClose;
 
   @override
   Widget build(BuildContext context) {
     final mc = Mc.of(context);
-    final reduced = MotionPrefs.reducedOf(context);
-    final size = MediaQuery.of(context).size;
-    final c = anchor.center;
-    const tileW = 156.0, tileH = 112.0, gap = 12.0;
-    final top = anchor.top - tileH - 18;
-    final options = [
-      ('deck', 'New deck', 'Its name, look and seals', McIcons.newFolder),
-      ('card', 'New card', 'For any of your decks', McIcons.plus),
-    ];
     return AnimatedBuilder(
-      animation: animation,
+      animation: anim,
+      builder: (context, _) => GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onClose,
+        child: ColoredBox(color: mc.canvas.withValues(alpha: 0.78 * Curves.easeOut.transform(anim.value.clamp(0.0, 1.0)))),
+      ),
+    );
+  }
+}
+
+/// The two dealt cards. [onPick] gets 'deck' or 'card'.
+class CreateDeal extends StatelessWidget {
+  const CreateDeal({super.key, required this.anim, required this.onPick});
+  final Animation<double> anim;
+  final ValueChanged<String> onPick;
+
+  static const _w = 142.0;
+  static const _h = 180.0;
+
+  @override
+  Widget build(BuildContext context) {
+    final mq = MediaQuery.of(context);
+    final reduced = MotionPrefs.reducedOf(context);
+    final cx = mq.size.width / 2;
+    final gap = math.min(80.0, (mq.size.width - 2 * _w - 24) / 2 + _w / 2);
+    // They leave from the + card's face and land above the hand.
+    final fromBottom = mq.padding.bottom - 18.0;
+    final toBottom = mq.padding.bottom + 118.0;
+    return AnimatedBuilder(
+      animation: anim,
       builder: (context, _) {
-        final v = animation.value;
+        final v = anim.value;
         return Stack(children: [
-          // The page dims and steps back a little.
-          Positioned.fill(
-            child: GestureDetector(
-              behavior: HitTestBehavior.opaque,
-              onTap: () => Navigator.pop(context),
-              child: ColoredBox(color: mc.canvas.withValues(alpha: 0.78 * Curves.easeOut.transform(v.clamp(0.0, 1.0)))),
-            ),
-          ),
-          for (var i = 0; i < options.length; i++)
+          for (var i = 0; i < 2; i++)
             () {
-              // Each card leaves the + a beat after the other and lands with a soft overshoot.
-              final local = ((v * 520 - i * 70) / 450).clamp(0.0, 1.0);
-              final t = reduced ? local : McCurves.springy.transform(local);
-              final restX = c.dx + (i == 0 ? -(tileW + gap / 2) : gap / 2);
-              final left = restX.clamp(16.0, size.width - tileW - 16);
-              final dx = (c.dx - tileW / 2 - left) * (1 - t);
-              final dy = (anchor.top - top) * (1 - t);
-              final angle = (i == 0 ? -1 : 1) * (1 - t) * 18 * math.pi / 180;
-              final (id, title, note, icon) = options[i];
+              final t = ((v * 650 - i * 90) / 560).clamp(0.0, 1.0);
+              final pos = reduced ? t : McCurves.springy.transform(t);
+              final flip = reduced ? 1.0 : Curves.easeOut.transform(t);
+              final side = i == 0 ? -1.0 : 1.0;
+              final angleY = math.pi * (1 - flip);
+              final m = Matrix4.identity()
+                ..setEntry(3, 2, 0.0012)
+                ..rotateZ(side * 6 * math.pi / 180 * pos)
+                ..rotateY(angleY)
+                ..scaleByDouble(lerpDouble(0.42, 1, pos)!, lerpDouble(0.42, 1, pos)!, 1, 1);
               return Positioned(
-                left: left,
-                top: top,
-                width: tileW,
-                height: tileH,
-                child: Opacity(
-                  opacity: local.clamp(0.0, 1.0),
-                  child: Transform.translate(
-                    offset: Offset(dx, dy),
-                    child: Transform.rotate(
-                      angle: angle,
-                      child: Transform.scale(
-                        scale: 0.5 + 0.5 * t,
-                        child: _Option(
-                          title: title,
-                          note: note,
-                          icon: icon,
-                          deck: id == 'deck',
-                          onTap: () {
-                            Fx.i.pop();
-                            Navigator.pop(context, id);
-                          },
-                        ),
-                      ),
+                left: cx + side * gap * pos - _w / 2,
+                bottom: lerpDouble(fromBottom, toBottom, pos),
+                width: _w,
+                height: _h,
+                child: IgnorePointer(
+                  ignoring: v < 0.95,
+                  child: Opacity(
+                    opacity: (t * 5).clamp(0.0, 1.0),
+                    child: Transform(
+                      alignment: Alignment.center,
+                      transform: m,
+                      child: angleY > math.pi / 2
+                          ? const _Back()
+                          : i == 0
+                              ? _Face(
+                                  title: 'New deck',
+                                  note: 'Name, look and seals',
+                                  band: Mc.blue,
+                                  art: const _DeckArt(),
+                                  onTap: () => onPick('deck'),
+                                )
+                              : _Face(
+                                  title: 'New card',
+                                  note: 'For any of your decks',
+                                  band: Mc.peach,
+                                  art: const _CardArt(),
+                                  onTap: () => onPick('card'),
+                                ),
                     ),
                   ),
                 ),
               );
             }(),
-          // The + turned ×, right over the one in the nav bar.
-          Positioned(
-            left: anchor.left,
-            top: anchor.top,
-            width: anchor.width,
-            height: anchor.height,
-            child: Pressable(
-              label: 'Close',
-              scale: 0.9,
-              onTap: () => Navigator.pop(context),
-              child: Stack(alignment: Alignment.center, children: [
-                Transform.rotate(
-                  angle: math.pi / 4,
-                  child: Container(
-                    width: 58,
-                    height: 58,
-                    foregroundDecoration: texDeco(context, 'buttons', BorderRadius.circular(15)),
-                    decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(15), boxShadow: mc.e2),
-                  ),
-                ),
-                Transform.rotate(
-                  angle: Curves.easeOutBack.transform(v.clamp(0.0, 1.0)) * math.pi / 4,
-                  child: McIcon(McIcons.plus, size: const Size(30, 30), color: mc.canvas),
-                ),
-              ]),
-            ),
-          ),
         ]);
       },
     );
   }
 }
 
-class _Option extends StatelessWidget {
-  const _Option({required this.title, required this.note, required this.icon, required this.deck, required this.onTap});
+class _Face extends StatelessWidget {
+  const _Face({required this.title, required this.note, required this.band, required this.art, required this.onTap});
   final String title;
   final String note;
-  final String icon;
-  final bool deck;
+  final Color band;
+  final Widget art;
   final VoidCallback onTap;
 
   @override
@@ -143,22 +125,25 @@ class _Option extends StatelessWidget {
       haptic: true,
       onTap: onTap,
       child: Container(
-        padding: const EdgeInsets.fromLTRB(14, 12, 12, 12),
         foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(16)),
-        decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(16), boxShadow: mc.e3),
-        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-          SizedBox(height: 34, child: deck ? const _MiniDeck() : const _MiniCard()),
-          // The words sit at the bottom and shrink rather than spill if the text is set large.
-          Expanded(
-            child: FittedBox(
-              fit: BoxFit.scaleDown,
-              alignment: Alignment.bottomLeft,
-              child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
-                Text(title, style: T.d(22, color: mc.onInk, height: 1.05)),
-                const SizedBox(height: 2),
-                Text(note, maxLines: 1, style: T.t(12.5, w: FontWeight.w600, color: mc.mutedOnInk)),
-              ]),
-            ),
+        decoration: BoxDecoration(
+          color: mc.ink,
+          borderRadius: BorderRadius.circular(16),
+          boxShadow: const [BoxShadow(color: Color(0x73000000), blurRadius: 36, offset: Offset(0, 18))],
+        ),
+        clipBehavior: Clip.antiAlias,
+        child: Stack(children: [
+          Positioned(left: 0, right: 0, top: 0, height: 10, child: ColoredBox(color: band)),
+          Positioned(left: 14, top: 26, child: art),
+          Positioned(
+            left: 14,
+            right: 12,
+            bottom: 14,
+            child: Column(crossAxisAlignment: CrossAxisAlignment.start, mainAxisSize: MainAxisSize.min, children: [
+              FittedBox(fit: BoxFit.scaleDown, child: Text(title, style: T.d(27, color: mc.onInk, height: 1))),
+              const SizedBox(height: 4),
+              Text(note, maxLines: 2, style: T.t(13, w: FontWeight.w600, color: mc.onInk.withValues(alpha: 0.62), height: 1.15)),
+            ]),
           ),
         ]),
       ),
@@ -166,48 +151,67 @@ class _Option extends StatelessWidget {
   }
 }
 
-/// Three little deck bars, fanned: a deck.
-class _MiniDeck extends StatelessWidget {
-  const _MiniDeck();
+class _Back extends StatelessWidget {
+  const _Back();
 
   @override
   Widget build(BuildContext context) {
     final mc = Mc.of(context);
-    return Stack(clipBehavior: Clip.none, children: [
-      for (var i = 0; i < 3; i++)
-        Positioned(
-          left: i * 7.0,
-          top: 12 - i * 6.0,
-          child: Transform.rotate(
-            angle: (-8 + i * 6) * math.pi / 180,
-            child: Container(
-              width: 46,
-              height: 18,
-              decoration: BoxDecoration(color: [Mc.blue, Mc.peach, mc.onInk][i], borderRadius: BorderRadius.circular(4)),
+    return Container(
+      decoration: BoxDecoration(
+        color: mc.canvas,
+        borderRadius: BorderRadius.circular(16),
+        border: Border.all(color: mc.ink, width: 2),
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: CustomPaint(painter: CardBackPainter(mc.ink.withValues(alpha: 0.16), gap: 12, width: 3)),
+    );
+  }
+}
+
+/// Three deck bars, fanned: a deck.
+class _DeckArt extends StatelessWidget {
+  const _DeckArt();
+
+  @override
+  Widget build(BuildContext context) {
+    final mc = Mc.of(context);
+    return SizedBox(
+      width: 74,
+      height: 52,
+      child: Stack(clipBehavior: Clip.none, children: [
+        for (var i = 0; i < 3; i++)
+          Positioned(
+            left: 4 + i * 6.0,
+            top: 30 - i * 13.0,
+            child: Transform.rotate(
+              angle: (-9 + i * 4.5) * math.pi / 180,
+              child: Container(
+                width: 54,
+                height: 18,
+                decoration: BoxDecoration(color: [Mc.blue, Mc.peach, mc.onInk][i], borderRadius: BorderRadius.circular(5)),
+              ),
             ),
           ),
-        ),
-    ]);
+      ]),
+    );
   }
 }
 
 /// One card with a + on it: a card.
-class _MiniCard extends StatelessWidget {
-  const _MiniCard();
+class _CardArt extends StatelessWidget {
+  const _CardArt();
 
   @override
   Widget build(BuildContext context) {
     final mc = Mc.of(context);
-    return Align(
-      alignment: Alignment.centerLeft,
-      child: Transform.rotate(
-        angle: -6 * math.pi / 180,
-        child: Container(
-          width: 26,
-          height: 34,
-          decoration: BoxDecoration(color: mc.onInk, borderRadius: BorderRadius.circular(5)),
-          child: Center(child: McIcon(McIcons.plus, size: const Size(12, 12), color: mc.ink)),
-        ),
+    return Transform.rotate(
+      angle: -7 * math.pi / 180,
+      child: Container(
+        width: 34,
+        height: 48,
+        decoration: BoxDecoration(color: mc.onInk, borderRadius: BorderRadius.circular(7)),
+        child: Center(child: McIcon(McIcons.plus, size: const Size(16, 16), color: mc.ink)),
       ),
     );
   }
