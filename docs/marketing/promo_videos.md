@@ -163,6 +163,20 @@ lose ink one by one, the way a memory fades, until only "THIS" is left. A card s
 **Cut-downs.** 15 s (drop the speed montage to 2 s); 6 s bumper (hook → DONE seal → logo).
 **Capture.** Study screen with a clean language deck, a goal one card from done, a 4-day streak, light theme.
 
+> [!success] Produced 2026-10-24: 9:16 master
+> The project is `promo/v01-you-will-forget-this/` (HyperFrames). Its numbers are in `SPEC.md` and its creative
+> calls and checks in `REVIEW.md`. The render goes to `renders/MemoryCard-V1-YouWillForgetThis-9x16.mp4`
+> (local, gitignored).
+>
+> Departures from the table above:
+> - THIS is caught by the card sliding over it, then drops onto it.
+> - The montage uses Demon Slayer, flags, English crests and French, following "Decks to feature".
+> - The missed card visibly tucks back into the stack.
+> - The end card has a "Coming to Android" placeholder pill.
+>
+> The music is a placeholder made with the app's synth. Still to do: the 1:1 cut, the 15 s and 6 s cut-downs,
+> and a licensed music bed.
+
 ---
 
 ## 2 · The endless stack (full introduction, 55 s)

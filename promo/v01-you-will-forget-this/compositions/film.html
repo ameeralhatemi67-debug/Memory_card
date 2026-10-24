@@ -1,0 +1,570 @@
+<template>
+  <style>
+    @font-face { font-family: "Bernard"; src: url("assets/fonts/BernardMTCondensed.ttf"); }
+    @font-face { font-family: "Barlow Semi Condensed"; font-weight: 500; src: url("assets/fonts/barlow-semi-condensed-latin-500-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Barlow Semi Condensed"; font-weight: 600; src: url("assets/fonts/barlow-semi-condensed-latin-600-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Barlow Semi Condensed"; font-weight: 700; src: url("assets/fonts/barlow-semi-condensed-latin-700-normal.woff2") format("woff2"); }
+
+    #root {
+      position: absolute; inset: 0; overflow: hidden;
+      --ink: #333333; --paper: #F1F1F1; --muted: #666666; --muted-on-ink: #BDBDBD; --soft: #E3E3E3;
+      --peach: #FFC680; --red: #D35F5F; --green: #8BD3A0; --graphite: #333333;
+      font-family: "Barlow Semi Condensed", sans-serif;
+    }
+    #f-shake { position: absolute; inset: 0; }
+
+    /* The world behind the phone: a felt wall in window light (frame px). */
+    #f-world { position: absolute; inset: 0; background: #EAEAEA; }
+    .felt { position: absolute; inset: 0; background-image: url("assets/textures/felt.png"); mix-blend-mode: multiply; }
+    #f-world .felt { background-size: 520px 520px; opacity: 0.14; }
+    #f-flood { position: absolute; inset: 0; opacity: 0; background: #B59CFF; }
+    #f-flood .felt { background-size: 520px 520px; opacity: 0.16; }
+    #f-light {
+      position: absolute; inset: 0; pointer-events: none;
+      background: radial-gradient(circle 2400px at -5% -7.5%, rgba(255,255,255,0.33) 0%, rgba(255,255,255,0) 55%, rgba(0,0,0,0.05) 100%);
+    }
+
+    /* The camera: everything inside is in the app's logical px (390 x 844). */
+    #f-cam { position: absolute; left: 0; top: 0; width: 390px; height: 844px; }
+    #f-phone {
+      position: absolute; left: -10px; top: -10px; width: 410px; height: 864px; border-radius: 56px;
+      background: #1B1B1B;
+      box-shadow: inset 0 0 0 1.5px #2E2E2E, 10px 22px 44px rgba(0,0,0,0.26), 3px 6px 12px rgba(0,0,0,0.16);
+    }
+    #f-screen { position: absolute; left: 0; top: 0; width: 390px; height: 844px; border-radius: 46px; overflow: hidden; background: var(--paper); }
+    #f-screen > .felt { background-size: 300px 300px; opacity: 0.06; }
+    #f-wall-light {
+      position: absolute; inset: 0;
+      background: radial-gradient(circle 1055px at -5% -7.5%, rgba(255,255,255,0.33) 0%, rgba(255,255,255,0) 55%, rgba(0,0,0,0.042) 100%);
+    }
+
+    /* Hook headline on the screen's wall. */
+    .hk { position: absolute; left: 77px; font-family: "Bernard", "Barlow Semi Condensed"; font-size: 48.91px; line-height: 1.05; color: var(--ink); white-space: nowrap; }
+    .hk span { display: inline-block; }
+
+    /* Status bar, header, goal bar. */
+    #f-status { position: absolute; left: 0; top: 0; width: 390px; height: 36px; }
+    #f-status .time { position: absolute; left: 26px; top: 10px; font-weight: 600; font-size: 14px; color: var(--ink); }
+    #f-status .hole { position: absolute; left: 189.5px; top: 12.5px; width: 11px; height: 11px; border-radius: 50%; background: #0E0E0E; }
+    #f-status .sig { position: absolute; left: 318px; top: 13px; width: 16px; height: 11px; }
+    #f-status .bat { position: absolute; left: 340px; top: 13px; width: 22px; height: 11px; border: 1.5px solid var(--ink); border-radius: 3px; }
+    #f-status .bat::after { content: ""; position: absolute; left: 1.5px; top: 1.5px; width: 12px; height: 5px; border-radius: 1px; background: var(--ink); }
+    #f-hdr { position: absolute; left: 0; top: 36px; width: 390px; height: 68px; }
+    #f-hdr .logo { position: absolute; left: 25px; top: 24px; width: 28px; height: 36px; }
+    #f-hdr .ttl { position: absolute; left: 74px; top: 21px; height: 24px; width: 280px; }
+    #f-hdr .ttl span { position: absolute; left: 0; top: 0; white-space: nowrap; font-family: "Bernard", "Barlow Semi Condensed"; font-size: 23px; line-height: 1; color: var(--ink); }
+    #f-hdr .sub { position: absolute; left: 74px; top: 47px; height: 16px; display: flex; font-weight: 600; font-size: 13px; line-height: 16px; color: var(--muted); white-space: nowrap; }
+    #f-hdr .num { display: inline-block; height: 16px; overflow: hidden; font-variant-numeric: tabular-nums; }
+    #f-hdr .num div { line-height: 16px; }
+    #f-hdr .sfx { position: relative; }
+    #f-hdr .sfx span { position: absolute; left: 0; top: 0; }
+    #f-hdr .dots { position: absolute; left: 348px; top: 29px; width: 8px; height: 26px; }
+    #f-goal { position: absolute; left: 22px; top: 108px; width: 346px; height: 4px; border-radius: 2px; overflow: hidden; background: var(--soft); }
+    #f-goal-fill { position: absolute; inset: 0; background: var(--ink); transform-origin: 0 50%; }
+
+    /* The stack (the canvas Study.dc.html layers). */
+    #f-stack { position: absolute; left: 0; top: 0; width: 390px; height: 844px; }
+    .layer { position: absolute; left: 57px; width: 276px; height: 384px; border-radius: 18px; }
+    .card { position: absolute; left: 57px; top: 190px; width: 276px; height: 384px; }
+    .flip { position: absolute; inset: 0; transform-style: preserve-3d; }
+    .face { position: absolute; inset: 0; border-radius: 18px; overflow: hidden; }
+    .ink { background: var(--ink); }
+    .back { background: var(--peach); transform: rotateY(180deg); opacity: 0; }
+    .col { position: absolute; inset: 0; padding: 20px; display: flex; flex-direction: column; }
+    .spacer { flex: 1; }
+    .lbl { font-weight: 700; font-size: 12px; letter-spacing: 1.2px; line-height: 14.4px; color: var(--muted-on-ink); align-self: flex-start; }
+    .lbl.backed { padding: 3px 9px; border-radius: 9px; background: rgba(34,34,34,0.6); color: var(--paper); }
+    .prompt { margin-top: 6px; font-family: "Bernard", "Barlow Semi Condensed"; font-size: 36px; line-height: 1.05; color: var(--paper); }
+    .ex { margin-top: 8px; font-weight: 500; font-size: 17px; line-height: 1.3; color: var(--muted-on-ink); }
+    .hint { font-weight: 600; font-size: 14px; line-height: 17px; text-align: center; color: var(--muted-on-ink); }
+    .hear { margin-top: 10px; height: 76px; border-radius: 12px; background: var(--red); display: flex; align-items: center; justify-content: center; gap: 10px; }
+    .hear svg { width: 30px; height: 30px; }
+    .hear span { font-family: "Bernard"; font-size: 25px; line-height: 1; color: var(--paper); }
+    .b-lbl { font-weight: 700; font-size: 12px; letter-spacing: 1.2px; line-height: 14.4px; color: rgba(51,51,51,0.67); }
+    .b-ans { margin-top: 6px; font-family: "Bernard", "Barlow Semi Condensed"; font-size: 36px; line-height: 1.05; color: var(--graphite); }
+    .b-ex { margin-top: 8px; font-weight: 500; font-size: 16px; line-height: 1.3; color: rgba(51,51,51,0.7); }
+    .hook { display: flex; gap: 6px; align-items: flex-start; font-weight: 600; font-size: 14px; line-height: 1.3; color: var(--paper); padding: 6px 10px; border-radius: 10px; background: rgba(34,34,34,0.72); margin-bottom: 8px; }
+    .hook svg { flex: none; width: 16px; height: 16px; margin-top: 1px; }
+    .ans { min-height: 56px; padding: 6px 12px; border-radius: 12px; background: var(--peach); display: flex; align-items: center; justify-content: center; text-align: center; font-family: "Bernard", "Barlow Semi Condensed"; font-size: 28px; line-height: 1; color: var(--graphite); }
+    .ans.long { padding: 10px 12px; font-family: "Barlow Semi Condensed"; font-weight: 700; font-size: 19px; line-height: 1.2; }
+    .cover { position: absolute; left: 0; top: 0; width: 100%; height: 100%; object-fit: cover; object-position: 50% 0%; }
+    .flagpic { position: absolute; left: 20px; top: 52px; width: 236px; height: 157px; border-radius: 10px; object-fit: contain; }
+    .plate { position: absolute; left: 20px; top: 50px; width: 236px; height: 170px; border-radius: 10px; background: var(--paper); box-shadow: inset 0 0 0 1px #C9C9C9; }
+    .plate img { position: absolute; left: 12px; top: 12px; width: 212px; height: 146px; object-fit: contain; }
+    .edge { position: absolute; inset: 0; border-radius: 18px; opacity: 0; pointer-events: none; }
+    .edge.green { box-shadow: inset 0 0 0 3px var(--green), 0 0 18px 2px rgba(139,211,160,0.55); }
+    .edge.red { box-shadow: inset 0 0 0 3px var(--red), 0 0 18px 2px rgba(211,95,95,0.5); }
+    .this-out { position: absolute; left: 20px; top: 26.96px; }
+    .this-in { font-family: "Bernard"; font-size: 48.91px; line-height: 1.05; color: var(--paper); white-space: nowrap; transform-origin: 0 0; }
+
+    /* Corner ears (ears.dart): hinged off-screen, swing in as the card is dragged. */
+    .ear { position: absolute; top: 604px; width: 96px; height: 128px; }
+    #f-earL { left: 0; transform-origin: -150px -120px; }
+    #f-earR { left: 294px; transform-origin: 246px -120px; }
+    .ear .sq { position: absolute; width: 96px; height: 96px; border-radius: 16px; }
+    .ear .bk { background: #5C5C5C; }
+    .ear .fr { background: var(--ink); box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 10px 24px rgba(0,0,0,0.2); }
+    .ear svg { position: absolute; top: 47px; width: 34px; height: 34px; }
+
+    /* The note chip. */
+    #f-chip { position: absolute; top: 680px; left: 0; width: 390px; display: flex; justify-content: center; }
+    #f-chip .pill { height: 34px; padding: 0 4px 0 12px; border-radius: 17px; background: var(--soft); display: flex; align-items: center; gap: 6px; box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 10px 24px rgba(0,0,0,0.2); font-weight: 600; font-size: 14px; color: var(--ink); white-space: nowrap; }
+    #f-chip .cnt { display: inline-block; height: 17px; overflow: hidden; vertical-align: top; text-align: center; }
+    #f-chip .cnt div { line-height: 17px; height: 17px; }
+    #f-chip .undo { height: 26px; padding: 0 10px; border-radius: 13px; background: var(--ink); display: flex; align-items: center; gap: 4px; font-weight: 700; font-size: 13px; color: var(--paper); }
+    #f-chip .undo svg { width: 14px; height: 14px; }
+
+    /* The card-hand nav (nav_bar.dart). */
+    #f-nav { position: absolute; left: 0; top: 0; width: 390px; height: 844px; }
+    .hand { position: absolute; left: 162px; top: 760px; width: 66px; height: 98px; border-radius: 11px; background: var(--ink); overflow: hidden; transform-origin: 33px 403px; box-shadow: 0 3px 10px rgba(0,0,0,0.32); }
+    .hand .acc { position: absolute; left: 0; right: 0; top: 0; height: 4px; }
+    .hand .rank { position: absolute; left: 7px; top: 9px; font-family: "Bernard"; font-size: 13px; line-height: 1; color: var(--paper); opacity: 0.55; }
+    .hand svg { position: absolute; left: 21px; top: 26px; width: 24px; height: 24px; opacity: 0.62; }
+    .hand.plus { background: var(--paper); box-shadow: inset 0 0 0 2px var(--ink), 0 10px 24px rgba(0,0,0,0.45);
+      background-image: repeating-linear-gradient(-45deg, rgba(51,51,51,0.18) 0 2px, transparent 2px 9px); }
+    .hand.plus svg { left: 18px; top: 18px; width: 30px; height: 30px; opacity: 1; }
+
+    #f-dim { position: absolute; inset: 0; background: rgba(22,22,22,0.4); opacity: 0; }
+    #f-seal { position: absolute; left: 30px; top: 217px; width: 330px; height: 330px; }
+    #f-touch { position: absolute; left: 0; top: 0; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%;
+      background: rgba(51,51,51,0.3); box-shadow: inset 0 0 0 3px rgba(255,255,255,0.88), 0 3px 8px rgba(0,0,0,0.18); opacity: 0; }
+  </style>
+
+  <div data-hf-id="hf-j4us" id="root" data-composition-id="film" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
+    <svg data-hf-id="hf-8rgt" width="0" height="0" style="position:absolute">
+      <filter data-hf-id="hf-fsnv" id="f-hb" x="-25%" y="-5%" width="150%" height="110%"><feGaussianBlur data-hf-id="hf-4o9d" id="f-hb-blur" stdDeviation="0 0" /></filter>
+    </svg>
+    <div data-hf-id="hf-yqzo" id="f-shake">
+      <div data-hf-id="hf-3f4i" id="f-world"><div data-hf-id="hf-ocm7" class="felt"></div></div>
+      <div data-hf-id="hf-g2gy" id="f-flood"><div data-hf-id="hf-oti7" class="felt"></div></div>
+      <div data-hf-id="hf-y40i" id="f-light"></div>
+
+      <div data-hf-id="hf-126z" id="f-cam">
+        <div data-hf-id="hf-7sby" id="f-phone"></div>
+        <div data-hf-id="hf-gp1u" id="f-screen">
+          <div data-hf-id="hf-of76" class="felt"></div>
+          <div data-hf-id="hf-9go5" id="f-wall-light"></div>
+
+          <!-- Hook: YOU WILL / FORGET / THIS. on the wall (225 px on screen at 4.6x). -->
+          <div data-hf-id="hf-4x4n" class="hk" id="f-hk1" style="top:123.91px"><span data-hf-id="hf-d8tk">Y</span><span data-hf-id="hf-h7vu">O</span><span data-hf-id="hf-eu1o">U</span> <span data-hf-id="hf-e1fm">W</span><span data-hf-id="hf-jlq0">I</span><span data-hf-id="hf-hm6v">L</span><span data-hf-id="hf-cs5z">L</span></div>
+          <div data-hf-id="hf-xy7b" class="hk" id="f-hk2" style="top:170.43px"><span data-hf-id="hf-k011">F</span><span data-hf-id="hf-mgvi">O</span><span data-hf-id="hf-f8cp">R</span><span data-hf-id="hf-kec2">G</span><span data-hf-id="hf-l6y4">E</span><span data-hf-id="hf-efqn">T</span></div>
+          <div data-hf-id="hf-p3az" class="hk" id="f-hk3" style="top:216.96px">THIS.</div>
+
+          <div data-hf-id="hf-b4ng" id="f-status">
+            <div data-hf-id="hf-zmej" class="time">9:41</div>
+            <div data-hf-id="hf-hm9y" class="hole"></div>
+            <svg data-hf-id="hf-0870" class="sig" viewBox="0 0 16 11"><rect data-hf-id="hf-1cbo" x="0" y="7" width="3" height="4" rx="1" fill="#333"/><rect data-hf-id="hf-w8ml" x="4.3" y="5" width="3" height="6" rx="1" fill="#333"/><rect data-hf-id="hf-q447" x="8.6" y="2.5" width="3" height="8.5" rx="1" fill="#333"/><rect data-hf-id="hf-adx1" x="12.9" y="0" width="3" height="11" rx="1" fill="#333"/></svg>
+            <div data-hf-id="hf-z5kp" class="bat"></div>
+          </div>
+
+          <div data-hf-id="hf-gk24" id="f-hdr">
+            <svg data-hf-id="hf-w1qb" class="logo" viewBox="0 0 11.211 14.182"><g data-hf-id="hf-qfma" transform="translate(-3014.7719,-1275.9218)"><g data-hf-id="hf-nhmu" transform="translate(-69.860379)"><rect data-hf-id="hf-9iz6" x="3084.633" y="1275.922" width="6.926" height="11.206" ry="0.534" fill="#333" fill-opacity=".55"/><rect data-hf-id="hf-6h1q" x="3312.468" y="433.451" width="6.926" height="11.206" ry="0.534" transform="rotate(15)" fill="#333" fill-opacity=".78"/><rect data-hf-id="hf-59bk" x="3314.619" y="-438.992" width="6.926" height="11.206" ry="0.534" transform="rotate(30)" fill="#333"/></g></g></svg>
+            <div data-hf-id="hf-65oc" class="ttl">
+              <span data-hf-id="hf-f16g" class="hd hd-es">Spanish · Basics</span>
+              <span data-hf-id="hf-cvqj" class="hd hd-ds">Demon Slayer · Characters</span>
+              <span data-hf-id="hf-yxfb" class="hd hd-fe">Flags · Europe</span>
+              <span data-hf-id="hf-vy28" class="hd hd-ce">Crests · English Clubs</span>
+              <span data-hf-id="hf-kq6b" class="hd hd-ff">French · Food</span>
+              <span data-hf-id="hf-92lv" class="hd hd-fa">Flags · Asia</span>
+            </div>
+            <div data-hf-id="hf-28hz" class="sub">Today&nbsp;<div data-hf-id="hf-7d5t" class="num" data-layout-ignore><div data-hf-id="hf-psb7" id="f-num-col"><div data-hf-id="hf-w8cp">10</div><div data-hf-id="hf-wmnq">11</div><div data-hf-id="hf-x0yr">12</div><div data-hf-id="hf-xf9s">13</div><div data-hf-id="hf-un4l">14</div><div data-hf-id="hf-v1fm">15</div><div data-hf-id="hf-vfqn">16</div><div data-hf-id="hf-vu1o">17</div><div data-hf-id="hf-t1wh">18</div><div data-hf-id="hf-tg7i">19</div><div data-hf-id="hf-x00i">20</div></div></div><div data-hf-id="hf-x2xh" class="sfx">
+              <span data-hf-id="hf-1jeh" class="hd hd-es">&nbsp;/ 20 · stack of 24</span>
+              <span data-hf-id="hf-8d74" class="hd hd-ds">&nbsp;/ 20 · stack of 15 · 11 waiting</span>
+              <span data-hf-id="hf-vr6w" class="hd hd-fe">&nbsp;/ 20 · stack of 15 · 46 waiting</span>
+              <span data-hf-id="hf-txlj" class="hd hd-ce">&nbsp;/ 20 · stack of 15 · 8 waiting</span>
+              <span data-hf-id="hf-q31w" class="hd hd-ff">&nbsp;/ 20 · stack of 16</span>
+              <span data-hf-id="hf-3djc" class="hd hd-fa">&nbsp;/ 20 · stack of 15 · 33 waiting</span>
+            </div></div>
+            <svg data-hf-id="hf-rd0d" class="dots" viewBox="0 0 2.444 8.911"><g data-hf-id="hf-ptof" transform="translate(-2998.7693,-1277.1094)"><g data-hf-id="hf-buvn" transform="translate(-455.15531,250.69204)" fill="#333"><circle data-hf-id="hf-j7iv" cx="3455.146" cy="1034.107" r="1.222"/><circle data-hf-id="hf-jitf" cx="3455.146" cy="1030.873" r="1.222"/><circle data-hf-id="hf-ofjv" cx="3455.146" cy="1027.639" r="1.222"/></g></g></svg>
+          </div>
+          <div data-hf-id="hf-0ghb" id="f-goal"><div data-hf-id="hf-t3gr" id="f-goal-fill"></div></div>
+
+          <div data-hf-id="hf-1e4u" id="f-stack">
+            <div data-hf-id="hf-tany" class="layer" id="f-below3" style="top:241px; background:#3D3D3D; z-index:1"></div>
+            <div data-hf-id="hf-lmse" class="layer" id="f-below2" style="top:224px; background:#4E4E4E; z-index:3"></div>
+            <div data-hf-id="hf-17kw" class="layer" id="f-below1" style="top:207px; background:#666666; z-index:4"></div>
+            <div data-hf-id="hf-nw8h" class="layer above" id="f-above4" style="top:122px; z-index:5; background:linear-gradient(#EFEFEF 0, #E9E9E9 17px, #E9E9E9 100%)"></div>
+            <div data-hf-id="hf-5kmp" class="layer above" id="f-above3" style="top:139px; z-index:6; background:linear-gradient(#E4E4E4 0, #DEDEDE 17px, #DEDEDE 100%)"></div>
+            <div data-hf-id="hf-62w5" class="layer above" id="f-above2" style="top:156px; z-index:7; background:linear-gradient(#D6D6D6 0, #CDCDCD 17px, #CDCDCD 100%)"></div>
+            <div data-hf-id="hf-ml00" class="layer above" id="f-above1" style="top:173px; z-index:8; background:linear-gradient(#C7C7C7 0, #BCBCBC 17px, #BCBCBC 100%)"></div>
+            <div data-hf-id="hf-4nha" class="layer ink" id="f-under" style="top:190px; z-index:9"></div>
+
+            <!-- c3: la casa (on top after the left swipe). -->
+            <div data-hf-id="hf-cyyl" class="card" id="f-c3" style="z-index:10">
+              <div data-hf-id="hf-km63" class="face ink">
+                <div data-hf-id="hf-7s1i" class="col">
+                  <div data-hf-id="hf-aw38" class="lbl" id="f-c3-lbl">NOUN · FEMININE</div>
+                  <div data-hf-id="hf-x5m5" class="prompt" id="f-c3-prompt">la casa</div>
+                  <div data-hf-id="hf-eywu" class="ex f-c3-rest">Mi casa es tu casa.</div>
+                  <div data-hf-id="hf-x5ec" class="spacer"></div>
+                  <div data-hf-id="hf-pmn0" class="hint f-c3-rest">Tap the card to flip it</div>
+                  <div data-hf-id="hf-fje8" class="hear f-c3-rest"><svg data-hf-id="hf-f7vo" viewBox="0 0 24 24" fill="none" stroke="#F1F1F1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-stgm" d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z" fill="#F1F1F1"/><path data-hf-id="hf-5kx7" d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path data-hf-id="hf-7687" d="M18 6.5a7.8 7.8 0 0 1 0 11"/></svg><span data-hf-id="hf-0a12">Hear it</span></div>
+                </div>
+              </div>
+            </div>
+
+            <!-- c2: el desayuno (the one you miss). -->
+            <div data-hf-id="hf-9fq7" class="card" id="f-c2" style="z-index:11">
+              <div data-hf-id="hf-fbh9" class="flip" id="f-c2-flip">
+                <div data-hf-id="hf-g8sf" class="face ink" id="f-c2-front">
+                  <div data-hf-id="hf-vmze" class="col">
+                    <div data-hf-id="hf-4wul" class="lbl" id="f-c2-lbl">NOUN · MASCULINE</div>
+                    <div data-hf-id="hf-z65w" class="prompt" id="f-c2-prompt">el desayuno</div>
+                    <div data-hf-id="hf-82ir" class="ex f-c2-rest">El desayuno es a las ocho.</div>
+                    <div data-hf-id="hf-1ing" class="spacer"></div>
+                    <div data-hf-id="hf-3g7x" class="hint f-c2-rest">Tap the card to flip it</div>
+                    <div data-hf-id="hf-otlv" class="hear f-c2-rest"><svg data-hf-id="hf-b5ng" viewBox="0 0 24 24" fill="none" stroke="#F1F1F1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-3s8a" d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z" fill="#F1F1F1"/><path data-hf-id="hf-xszv" d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path data-hf-id="hf-fejr" d="M18 6.5a7.8 7.8 0 0 1 0 11"/></svg><span data-hf-id="hf-y7re">Hear it</span></div>
+                  </div>
+                </div>
+                <div data-hf-id="hf-kvxq" class="face back" id="f-c2-back">
+                  <div data-hf-id="hf-w1af" class="col">
+                    <div data-hf-id="hf-iq3x" class="b-lbl">ANSWER</div>
+                    <div data-hf-id="hf-028a" class="b-ans">breakfast</div>
+                    <div data-hf-id="hf-4d13" class="b-ex">El desayuno es a las ocho.</div>
+                    <div data-hf-id="hf-0bqd" class="spacer"></div>
+                    <div data-hf-id="hf-oaa0" class="hear"><svg data-hf-id="hf-9yqd" viewBox="0 0 24 24" fill="none" stroke="#F1F1F1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-46jb" d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z" fill="#F1F1F1"/><path data-hf-id="hf-xeou" d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path data-hf-id="hf-f08q" d="M18 6.5a7.8 7.8 0 0 1 0 11"/></svg><span data-hf-id="hf-ym2f">Hear it</span></div>
+                  </div>
+                </div>
+              </div>
+              <div data-hf-id="hf-5fx2" class="edge red" id="f-c2-edge"></div>
+            </div>
+
+            <!-- c1: el gato; THIS. lands on it first. -->
+            <div data-hf-id="hf-yblt" class="card" id="f-c1" style="z-index:12">
+              <div data-hf-id="hf-mus4" class="flip" id="f-c1-flip">
+                <div data-hf-id="hf-xoks" class="face ink" id="f-c1-front">
+                  <div data-hf-id="hf-wflg" class="col">
+                    <div data-hf-id="hf-73s1" class="lbl f-c1-part">NOUN · MASCULINE</div>
+                    <div data-hf-id="hf-xl8t" class="prompt f-c1-part">el gato</div>
+                    <div data-hf-id="hf-prg9" class="ex f-c1-part">El gato bebe leche.</div>
+                    <div data-hf-id="hf-0q1e" class="spacer"></div>
+                    <div data-hf-id="hf-ckst" class="hint f-c1-part">Tap the card to flip it</div>
+                    <div data-hf-id="hf-s1nf" class="hear f-c1-part"><svg data-hf-id="hf-ad1e" viewBox="0 0 24 24" fill="none" stroke="#F1F1F1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-4kuc" d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z" fill="#F1F1F1"/><path data-hf-id="hf-x0dt" d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path data-hf-id="hf-elxp" d="M18 6.5a7.8 7.8 0 0 1 0 11"/></svg><span data-hf-id="hf-z0dg">Hear it</span></div>
+                  </div>
+                  <div data-hf-id="hf-ydah" class="this-out" id="f-this-out"><div data-hf-id="hf-f7l7" class="this-in" id="f-this-in">THIS.</div></div>
+                </div>
+                <div data-hf-id="hf-fm5z" class="face back" id="f-c1-back">
+                  <div data-hf-id="hf-wtwh" class="col">
+                    <div data-hf-id="hf-rujl" class="b-lbl">ANSWER</div>
+                    <div data-hf-id="hf-lrwc" class="b-ans">the cat</div>
+                    <div data-hf-id="hf-u31x" class="b-ex">El gato bebe leche.</div>
+                    <div data-hf-id="hf-2pkj" class="spacer"></div>
+                    <div data-hf-id="hf-slfk" class="hear"><svg data-hf-id="hf-cckj" viewBox="0 0 24 24" fill="none" stroke="#F1F1F1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-4z5d" d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z" fill="#F1F1F1"/><path data-hf-id="hf-wm2s" d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path data-hf-id="hf-he2w" d="M18 6.5a7.8 7.8 0 0 1 0 11"/></svg><span data-hf-id="hf-zeoh">Hear it</span></div>
+                  </div>
+                </div>
+              </div>
+              <div data-hf-id="hf-wgj7" class="edge green" id="f-c1-edge"></div>
+            </div>
+
+            <!-- Montage cards, revealed (tap mode), one per beat. -->
+            <div data-hf-id="hf-4n9s" class="card mcard" id="f-m0" style="z-index:13">
+              <div data-hf-id="hf-5tyz" class="face ink"><img data-hf-id="hf-8w6o" class="cover" src="assets/img/tanjiro-kamado.png" alt="" />
+                <div data-hf-id="hf-x87i" class="col"><div data-hf-id="hf-r7a3" class="lbl backed">CHARACTER</div><div data-hf-id="hf-33vk" class="spacer"></div>
+                  <div data-hf-id="hf-7sj9" class="hook"><svg data-hf-id="hf-cqvk" viewBox="0 0 24 24" fill="none" stroke="#F1F1F1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-v6wx" d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.8.6 1.1 1.4 1.1 2.2h5c0-.8.3-1.6 1.1-2.2A6 6 0 0 0 12 3z"/></svg><span data-hf-id="hf-7hw4">Kind swordsman who hunts demons to turn his sister Nezuko back into a human.</span></div>
+                  <div data-hf-id="hf-kr6s" class="ans">Tanjiro Kamado</div></div></div>
+              <div data-hf-id="hf-rqe2" class="edge green"></div>
+            </div>
+            <div data-hf-id="hf-ogn3" class="card mcard" id="f-m1" style="z-index:13">
+              <div data-hf-id="hf-5fny" class="face ink"><img data-hf-id="hf-eekw" class="flagpic" src="assets/img/flag-gr.png" alt="" />
+                <div data-hf-id="hf-xmij" class="col"><div data-hf-id="hf-p9qg" class="lbl">FLAG</div><div data-hf-id="hf-1wyh" class="spacer"></div>
+                  <div data-hf-id="hf-vxih" class="hook"><svg data-hf-id="hf-bjyh" viewBox="0 0 24 24" fill="none" stroke="#F1F1F1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-sset" d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.8.6 1.1 1.4 1.1 2.2h5c0-.8.3-1.6 1.1-2.2A6 6 0 0 0 12 3z"/></svg><span data-hf-id="hf-curc">Capital: Athens</span></div>
+                  <div data-hf-id="hf-aytb" class="ans">Greece</div></div></div>
+              <div data-hf-id="hf-juke" class="edge green"></div>
+            </div>
+            <div data-hf-id="hf-kr6u" class="card mcard" id="f-m2" style="z-index:13">
+              <div data-hf-id="hf-51cx" class="face ink"><div data-hf-id="hf-69d8" class="plate"><img data-hf-id="hf-yb7r" src="assets/img/tottenham.png" alt="" /></div>
+                <div data-hf-id="hf-y0tk" class="col"><div data-hf-id="hf-hjrl" class="lbl">CREST</div><div data-hf-id="hf-2b9i" class="spacer"></div>
+                  <div data-hf-id="hf-x4fk" class="hook"><svg data-hf-id="hf-by9i" viewBox="0 0 24 24" fill="none" stroke="#F1F1F1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-tzbw" d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.8.6 1.1 1.4 1.1 2.2h5c0-.8.3-1.6 1.1-2.2A6 6 0 0 0 12 3z"/></svg><span data-hf-id="hf-mthq">London · founded 1882</span></div>
+                  <div data-hf-id="hf-iqxr" class="ans">Tottenham Hotspur</div></div></div>
+              <div data-hf-id="hf-k8vf" class="edge green"></div>
+            </div>
+            <div data-hf-id="hf-bg7p" class="card mcard" id="f-m3" style="z-index:13">
+              <div data-hf-id="hf-4n1w" class="face ink">
+                <div data-hf-id="hf-yf4l" class="col"><div data-hf-id="hf-8gxm" class="lbl">NOUN · MASCULINE</div><div data-hf-id="hf-6zru" class="prompt">le fromage</div><div data-hf-id="hf-y1c9" class="ex">La France a beaucoup de fromages.</div><div data-hf-id="hf-xxw7" class="spacer"></div>
+                  <div data-hf-id="hf-klux" class="ans">cheese</div>
+                  <div data-hf-id="hf-reih" class="hear"><svg data-hf-id="hf-7kw7" viewBox="0 0 24 24" fill="none" stroke="#F1F1F1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-5dge" d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z" fill="#F1F1F1"/><path data-hf-id="hf-w7rr" d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path data-hf-id="hf-gzrv" d="M18 6.5a7.8 7.8 0 0 1 0 11"/></svg><span data-hf-id="hf-zszi">Hear it</span></div></div></div>
+              <div data-hf-id="hf-p2je" class="edge red"></div>
+            </div>
+            <div data-hf-id="hf-xk8k" class="card mcard" id="f-m4" style="z-index:13">
+              <div data-hf-id="hf-48qv" class="face ink"><img data-hf-id="hf-lsu7" class="cover" src="assets/img/nezuko-kamado.png" alt="" />
+                <div data-hf-id="hf-ytfm" class="col"><div data-hf-id="hf-38bf" class="lbl backed">CHARACTER</div><div data-hf-id="hf-yc78" class="spacer"></div>
+                  <div data-hf-id="hf-wq4j" class="hook"><svg data-hf-id="hf-7z78" viewBox="0 0 24 24" fill="none" stroke="#F1F1F1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-tl0v" d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.8.6 1.1 1.4 1.1 2.2h5c0-.8.3-1.6 1.1-2.2A6 6 0 0 0 12 3z"/></svg><span data-hf-id="hf-0n8a">Tanjiro's younger sister, turned into a demon but still protective of humans.</span></div>
+                  <div data-hf-id="hf-tw3l" class="ans">Nezuko Kamado</div></div></div>
+              <div data-hf-id="hf-kn6g" class="edge green"></div>
+            </div>
+            <div data-hf-id="hf-hz2b" class="card mcard" id="f-m5" style="z-index:13">
+              <div data-hf-id="hf-3ufu" class="face ink"><img data-hf-id="hf-ksqh" class="flagpic" src="assets/img/flag-jp.png" alt="" />
+                <div data-hf-id="hf-flem" class="col"><div data-hf-id="hf-t534" class="lbl">FLAG</div><div data-hf-id="hf-5g9g" class="spacer"></div>
+                  <div data-hf-id="hf-uqle" class="hook"><svg data-hf-id="hf-p91g" viewBox="0 0 24 24" fill="none" stroke="#F1F1F1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-ytx2" d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.8.6 1.1 1.4 1.1 2.2h5c0-.8.3-1.6 1.1-2.2A6 6 0 0 0 12 3z"/></svg><span data-hf-id="hf-0ia9">Capital: Tokyo</span></div>
+                  <div data-hf-id="hf-answ" class="ans">Japan</div></div></div>
+              <div data-hf-id="hf-hv19" class="edge green"></div>
+            </div>
+            <div data-hf-id="hf-iim2" class="card mcard" id="f-m6" style="z-index:13">
+              <div data-hf-id="hf-3g4t" class="face ink"><div data-hf-id="hf-lk78" class="plate"><img data-hf-id="hf-v8sv" src="assets/img/wolves.png" alt="" /></div>
+                <div data-hf-id="hf-f73l" class="col"><div data-hf-id="hf-jk5h" class="lbl">CREST</div><div data-hf-id="hf-51yf" class="spacer"></div>
+                  <div data-hf-id="hf-ucad" class="hook"><svg data-hf-id="hf-ouqf" viewBox="0 0 24 24" fill="none" stroke="#F1F1F1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-yfm1" d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.8.6 1.1 1.4 1.1 2.2h5c0-.8.3-1.6 1.1-2.2A6 6 0 0 0 12 3z"/></svg><span data-hf-id="hf-wgpk">Wolverhampton · founded 1877</span></div>
+                  <div data-hf-id="hf-74ev" class="ans long">Wolverhampton Wanderers</div></div></div>
+              <div data-hf-id="hf-i9ca" class="edge green"></div>
+            </div>
+            <div data-hf-id="hf-54ex" class="card mcard" id="f-m7" style="z-index:13">
+              <div data-hf-id="hf-9eq8" class="face ink">
+                <div data-hf-id="hf-ge0o" class="col"><div data-hf-id="hf-ld2q" class="lbl">NOUN · FEMININE</div><div data-hf-id="hf-0zu1" class="prompt">la fraise</div><div data-hf-id="hf-y57k" class="ex">Une tarte aux fraises.</div><div data-hf-id="hf-4nne" class="spacer"></div>
+                  <div data-hf-id="hf-n12s" class="ans">the strawberry</div>
+                  <div data-hf-id="hf-rsti" class="hear"><svg data-hf-id="hf-ogfe" viewBox="0 0 24 24" fill="none" stroke="#F1F1F1" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-5rrf" d="M4 9.5v5h3.5L12 18.5v-13L7.5 9.5H4z" fill="#F1F1F1"/><path data-hf-id="hf-vtgq" d="M15.5 9a4.2 4.2 0 0 1 0 6"/><path data-hf-id="hf-glgu" d="M18 6.5a7.8 7.8 0 0 1 0 11"/></svg><span data-hf-id="hf-07aj">Hear it</span></div></div></div>
+              <div data-hf-id="hf-innb" class="edge green"></div>
+            </div>
+          </div>
+
+          <!-- Ears: again (left), done (right). -->
+          <div data-hf-id="hf-4s79" class="ear" id="f-earL">
+            <div data-hf-id="hf-31ts" class="sq bk" style="left:-42px; top:14px; transform:rotate(30deg)"></div>
+            <div data-hf-id="hf-adyt" class="sq fr" style="left:-48px; top:16px; transform:rotate(45deg)"></div>
+            <svg data-hf-id="hf-1fv6" viewBox="0 0 10.26 10.395" style="left:10px"><g data-hf-id="hf-hc97" transform="translate(-3016.4154,-1338.5752)"><path data-hf-id="hf-g0pa" fill="#F1F1F1" d="m 3018.609,1338.575 c -0.257,0 -0.504,0.177 -0.606,0.314 -0.102,0.136 -0.14,0.233 -0.171,0.281 l -1.143,1.783 a 0.478,0.478 0 0 0 -0.01,0.01 c -0.011,0.017 -0.013,0.037 -0.022,0.055 0,0 -0,0.01 0,0.01 -0.151,0.243 -0.242,0.534 -0.242,0.843 v 5.503 c 0,0.876 0.72,1.596 1.596,1.596 h 7.069 c 0.876,0 1.596,-0.72 1.596,-1.596 v -5.503 c 0,-0.238 -0.109,-0.439 -0.203,-0.643 v -0.01 a 0.478,0.478 0 0 0 -0.074,-0.256 l -1.131,-1.782 c -0.031,-0.049 -0.07,-0.147 -0.172,-0.284 -0.102,-0.137 -0.349,-0.313 -0.606,-0.313 z m 5.768,0.956 c 0.02,0.037 0.035,0.065 0.09,0.152 l 1.055,1.665 v -0.133 a 0.478,0.478 0 0 0 0.033,0.165 h -8.004 l 1.086,-1.692 c 0.056,-0.087 0.07,-0.116 0.09,-0.154 z m -6.999,2.805 h 8.347 v 5.026 c 0,0.363 -0.277,0.639 -0.64,0.639 h -7.068 c -0.363,0 -0.639,-0.276 -0.639,-0.639 z m 4.176,0.977 a 0.478,0.478 0 0 0 -0.478,0.478 v 1.606 l -0.506,-0.506 a 0.478,0.478 0 0 0 -0.676,0 0.478,0.478 0 0 0 0,0.676 l 1.323,1.323 a 0.478,0.478 0 0 0 0.013,0.01 0.478,0.478 0 0 0 0.075,0.057 0.478,0.478 0 0 0 0.018,0.012 0.478,0.478 0 0 0 0.098,0.04 0.478,0.478 0 0 0 0.014,0.01 0.478,0.478 0 0 0 0.12,0.017 0.478,0.478 0 0 0 0.352,-0.154 l 1.307,-1.306 a 0.478,0.478 0 0 0 0,-0.676 0.478,0.478 0 0 0 -0.676,0 l -0.506,0.506 v -1.606 a 0.478,0.478 0 0 0 -0.478,-0.478 z"/></g></svg>
+          </div>
+          <div data-hf-id="hf-ezmj" class="ear" id="f-earR">
+            <div data-hf-id="hf-qxuc" class="sq bk" style="left:42px; top:14px; transform:rotate(-30deg)"></div>
+            <div data-hf-id="hf-2tkc" class="sq fr" style="left:48px; top:16px; transform:rotate(45deg)"></div>
+            <svg data-hf-id="hf-6iol" viewBox="0 0 10.6 10.604" style="left:52px"><g data-hf-id="hf-bxk8" transform="translate(-2994.9515,-1300.9293)"><path data-hf-id="hf-y3bh" fill="#F1F1F1" d="m 3000.15,1300.93 c -1.461,0.029 -2.885,0.661 -3.89,1.812 -1.533,1.753 -1.74,4.309 -0.512,6.287 1.229,1.978 3.61,2.924 5.861,2.328 2.251,-0.596 3.853,-2.597 3.941,-4.924 a 0.59,0.59 0 0 0 -0.566,-0.613 0.59,0.59 0 0 0 -0.611,0.568 c -0.069,1.814 -1.31,3.364 -3.064,3.828 -1.754,0.465 -3.601,-0.269 -4.558,-1.811 -0.958,-1.542 -0.796,-3.52 0.398,-4.887 1.194,-1.367 3.135,-1.792 4.791,-1.049 a 0.59,0.59 0 0 0 0.779,-0.297 0.59,0.59 0 0 0 -0.297,-0.779 c -0.531,-0.238 -1.087,-0.385 -1.644,-0.44 -0.209,-0.021 -0.419,-0.028 -0.627,-0.024 z m 4.571,1.611 a 0.632,0.632 0 0 0 -0.348,0.177 l -4.076,4.076 -1.521,-1.521 a 0.632,0.632 0 0 0 -0.894,0 0.632,0.632 0 0 0 0,0.895 l 1.969,1.969 a 0.633,0.633 0 0 0 0.895,0 l 4.523,-4.524 a 0.632,0.632 0 0 0 0,-0.894 0.632,0.632 0 0 0 -0.546,-0.177 z"/></g></svg>
+          </div>
+
+          <div data-hf-id="hf-btnk" id="f-chip"><div data-hf-id="hf-8s5a" class="pill" id="f-chip-pill"><span data-hf-id="hf-hred">Back in</span><div data-hf-id="hf-1a5g" class="cnt" data-layout-ignore><div data-hf-id="hf-m0tm" id="f-cnt-col"><div data-hf-id="hf-oy6b">1</div><div data-hf-id="hf-ojva">2</div><div data-hf-id="hf-o5k9">3</div><div data-hf-id="hf-nr98">4</div><div data-hf-id="hf-ncy7">5</div><div data-hf-id="hf-myn6">6</div><div data-hf-id="hf-mkc5">7</div><div data-hf-id="hf-m614">8</div><div data-hf-id="hf-lrq3">9</div><div data-hf-id="hf-j2v1">10</div><div data-hf-id="hf-xeze">11</div><div data-hf-id="hf-9mw3">12</div></div></div><span data-hf-id="hf-smeo">cards</span>
+            <div data-hf-id="hf-xb40" class="undo"><svg data-hf-id="hf-ozvs" viewBox="0 0 24 24" fill="none" stroke="#F1F1F1" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-u8ox" d="M9 14 4 9l5-5"/><path data-hf-id="hf-jtl2" d="M4 9h10.5a5.5 5.5 0 0 1 0 11H11"/></svg>Undo</div></div></div>
+
+          <div data-hf-id="hf-phvi" id="f-nav" data-layout-ignore>
+            <div data-hf-id="hf-ygmb" class="hand" style="transform:rotate(-16deg)"><div data-hf-id="hf-vc5e" class="acc" style="background:#80AEFF"></div><div data-hf-id="hf-x906" class="rank">H</div><svg data-hf-id="hf-y8mu" viewBox="0 0 11.321 11.322"><g data-hf-id="hf-w20q" transform="translate(-3015.3506,-1319.8992)"><g data-hf-id="hf-cct2" transform="matrix(0.73369523,0,0,0.73369523,2071.0345,1201.7805)" fill="#F1F1F1"><path data-hf-id="hf-4ctb" d="m 1294.783,160.991 c -0.349,0 -0.699,0.134 -0.966,0.402 l -4.247,4.247 c -0.026,0.02 -0.051,0.042 -0.074,0.066 l -2.181,2.181 c -0.329,0.329 -0.329,0.858 0,1.187 0.329,0.329 0.858,0.329 1.187,0 l 0.076,-0.076 0,-0 2.104,-2.104 3.135,-3.135 c 0.535,-0.535 1.397,-0.535 1.933,-0 l 3.135,3.135 1.951,1.951 0.229,0.229 c 0.329,0.329 0.858,0.329 1.187,0 0.329,-0.329 0.329,-0.858 -0,-1.187 l -2.181,-2.181 c -0.024,-0.024 -0.05,-0.046 -0.076,-0.066 l -4.246,-4.246 c -0.268,-0.268 -0.617,-0.402 -0.966,-0.402 z"/><path data-hf-id="hf-q9pg" d="m 1294.784,164.627 c -0.349,0 -0.699,0.134 -0.966,0.402 l -5.431,5.432 -0.021,0.021 c -0.148,0.153 -0.24,0.361 -0.24,0.591 h 0.001 v 2.893 1.182 c 0,0.707 0.569,1.276 1.276,1.276 h 1.182 2.262 v -3.618 c 0,-0.178 0.143,-0.321 0.321,-0.321 h 3.224 c 0.178,0 0.321,0.143 0.321,0.321 v 3.618 h 2.272 1.18 c 0.707,0 1.276,-0.569 1.276,-1.276 v -1.181 -2.894 h -0.001 c 0,-0.233 -0.093,-0.443 -0.244,-0.597 l -0.01,-0.01 -5.436,-5.436 c -0.268,-0.268 -0.617,-0.402 -0.966,-0.402 z"/></g></g></svg></div>
+            <div data-hf-id="hf-xacg" class="hand" style="transform:rotate(-8deg)"><div data-hf-id="hf-noia" class="acc" style="background:#8BD3A0"></div><div data-hf-id="hf-vns2" class="rank">L</div><svg data-hf-id="hf-gqzj" viewBox="0 0 24 24" fill="#F1F1F1"><rect data-hf-id="hf-lbdy" x="7.6" y="1.4" width="8.8" height="2.9" rx="1.45"/><path data-hf-id="hf-omcj" fill-rule="evenodd" d="M9.5 5.9h5v3.7l5.3 8.9c1.1 1.8-.2 4.1-2.3 4.1H6.5c-2.1 0-3.4-2.3-2.3-4.1l5.3-8.9zM10.4 15.9a1.55 1.55 0 1 0 0 3.1 1.55 1.55 0 0 0 0-3.1zm3.6-2.9a1.050 1.05 0 1 0 0 2.1 1.05 1.05 0 0 0 0-2.1z"/></svg></div>
+            <div data-hf-id="hf-ii0b" class="hand" style="transform:rotate(8deg)"><div data-hf-id="hf-qw4b" class="acc" style="background:#FFC680"></div><div data-hf-id="hf-4vqj" class="rank">S</div><svg data-hf-id="hf-6m97" viewBox="0 0 11.322 9.794" style="height:21px; top:28px"><g data-hf-id="hf-m5im" transform="translate(-3035.2904,-1321.978)"><g data-hf-id="hf-jjpu" transform="matrix(0.52297311,0,0,0.52297311,2612.2188,1252.0369)" fill="#F1F1F1"><path data-hf-id="hf-7a78" d="m 812.241,133.738 c -0.992,0 -1.791,0.799 -1.791,1.791 -0.034,0.069 -1.488,2.963 -1.475,4.327 -0.005,1.418 0.607,2.381 1.475,2.877 1.3,0.742 3.178,0.437 4.436,-0.963 1.573,1.755 3.209,1.752 4.907,-0.011 1.524,1.701 3.173,1.704 4.946,0.011 1.023,1.257 3.009,1.581 4.389,0.824 0.866,-0.475 1.494,-1.374 1.494,-2.738 0,-1.193 -1.448,-4.229 -1.494,-4.327 0,-0.086 -0.009,-0.203 -0.021,-0.286 -0.123,-0.871 -0.864,-1.504 -1.769,-1.504 z"/><path data-hf-id="hf-kl2w" d="m 819.793,143.182 c -1.698,1.763 -3.333,1.766 -4.907,0.011 -1.255,1.396 -3.127,1.703 -4.427,0.967 v 6.513 c 0,0.992 0.799,1.79 1.791,1.79 h 4.831 v -5.076 c 0,-0.25 0.201,-0.451 0.451,-0.451 h 4.522 c 0.25,0 0.451,0.201 0.451,0.451 v 5.076 h 4.843 c 0.992,0 1.791,-0.798 1.791,-1.79 v -6.663 c -0.003,0.002 -0.006,0.004 -0.01,0.006 -1.38,0.757 -3.366,0.434 -4.389,-0.824 -1.773,1.693 -3.422,1.689 -4.946,-0.011 z"/></g></g></svg></div>
+            <div data-hf-id="hf-87di" class="hand" style="transform:rotate(16deg)"><div data-hf-id="hf-9qd7" class="acc" style="background:#D35F5F"></div><div data-hf-id="hf-to8x" class="rank">A</div><svg data-hf-id="hf-8owv" viewBox="0 0 24 24" fill="#F1F1F1"><circle data-hf-id="hf-xuia" cx="12" cy="6.9" r="4.6"/><path data-hf-id="hf-99p2" d="M3.2 20.6c0-4.6 3.9-7.6 8.8-7.6s8.8 3 8.8 7.6c0 .9-.7 1.6-1.6 1.6H4.8c-.9 0-1.6-.7-1.6-1.6z"/></svg></div>
+            <div data-hf-id="hf-yafp" class="hand plus"><svg data-hf-id="hf-phmf" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="3.2" stroke-linecap="round"><path data-hf-id="hf-s4pu" d="M12 4.5v15M4.5 12h15"/></svg></div>
+          </div>
+
+          <div data-hf-id="hf-lyc4" id="f-dim"></div>
+          <svg data-hf-id="hf-qrv3" id="f-seal" viewBox="0 0 100 100">
+            <defs data-hf-id="hf-mh0t">
+              <pattern data-hf-id="hf-e3z3" id="f-wax" patternUnits="userSpaceOnUse" width="33.3" height="33.3"><image data-hf-id="hf-ytd2" href="assets/textures/wax.png" width="33.3" height="33.3" /></pattern>
+              <filter data-hf-id="hf-vw5b" id="f-seal-shadow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur data-hf-id="hf-qw3h" stdDeviation="3" /></filter>
+            </defs>
+            <polygon data-hf-id="hf-k9cl" transform="translate(0 4)" fill="rgba(0,0,0,0.3)" filter="url(#f-seal-shadow)" points="96.00,50.00 90.65,55.35 94.43,61.91 87.88,65.69 89.84,73.00 82.53,74.96 82.53,82.53 74.96,82.53 73.00,89.84 65.69,87.88 61.91,94.43 55.35,90.65 50.00,96.00 44.65,90.65 38.09,94.43 34.31,87.88 27.00,89.84 25.04,82.53 17.47,82.53 17.47,74.96 10.16,73.00 12.12,65.69 5.57,61.91 9.35,55.35 4.00,50.00 9.35,44.65 5.57,38.09 12.12,34.31 10.16,27.00 17.47,25.04 17.47,17.47 25.04,17.47 27.00,10.16 34.31,12.12 38.09,5.57 44.65,9.35 50.00,4.00 55.35,9.35 61.91,5.57 65.69,12.12 73.00,10.16 74.96,17.47 82.53,17.47 82.53,25.04 89.84,27.00 87.88,34.31 94.43,38.09 90.65,44.65" />
+            <polygon data-hf-id="hf-xm62" fill="#D35F5F" points="96.00,50.00 90.65,55.35 94.43,61.91 87.88,65.69 89.84,73.00 82.53,74.96 82.53,82.53 74.96,82.53 73.00,89.84 65.69,87.88 61.91,94.43 55.35,90.65 50.00,96.00 44.65,90.65 38.09,94.43 34.31,87.88 27.00,89.84 25.04,82.53 17.47,82.53 17.47,74.96 10.16,73.00 12.12,65.69 5.57,61.91 9.35,55.35 4.00,50.00 9.35,44.65 5.57,38.09 12.12,34.31 10.16,27.00 17.47,25.04 17.47,17.47 25.04,17.47 27.00,10.16 34.31,12.12 38.09,5.57 44.65,9.35 50.00,4.00 55.35,9.35 61.91,5.57 65.69,12.12 73.00,10.16 74.96,17.47 82.53,17.47 82.53,25.04 89.84,27.00 87.88,34.31 94.43,38.09 90.65,44.65" />
+            <polygon data-hf-id="hf-k5cq" fill="url(#f-wax)" opacity="0.275" style="mix-blend-mode:multiply" points="96.00,50.00 90.65,55.35 94.43,61.91 87.88,65.69 89.84,73.00 82.53,74.96 82.53,82.53 74.96,82.53 73.00,89.84 65.69,87.88 61.91,94.43 55.35,90.65 50.00,96.00 44.65,90.65 38.09,94.43 34.31,87.88 27.00,89.84 25.04,82.53 17.47,82.53 17.47,74.96 10.16,73.00 12.12,65.69 5.57,61.91 9.35,55.35 4.00,50.00 9.35,44.65 5.57,38.09 12.12,34.31 10.16,27.00 17.47,25.04 17.47,17.47 25.04,17.47 27.00,10.16 34.31,12.12 38.09,5.57 44.65,9.35 50.00,4.00 55.35,9.35 61.91,5.57 65.69,12.12 73.00,10.16 74.96,17.47 82.53,17.47 82.53,25.04 89.84,27.00 87.88,34.31 94.43,38.09 90.65,44.65" />
+            <circle data-hf-id="hf-pnxh" cx="50" cy="50" r="33" fill="none" stroke="rgba(241,241,241,0.5)" stroke-width="1.6" />
+            <circle data-hf-id="hf-d53w" cx="50" cy="50" r="28" fill="none" stroke="rgba(241,241,241,0.35)" stroke-width="1" />
+            <text data-hf-id="hf-5nva" x="50" y="50" transform="rotate(-12 50 50)" text-anchor="middle" dominant-baseline="central" font-family="Bernard" font-size="18" letter-spacing="1" fill="#F1F1F1">DONE</text>
+          </svg>
+          <div data-hf-id="hf-vff3" id="f-touch"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      gsap.registerPlugin(CustomEase);
+      const paper = CustomEase.create("mcPaper", "M0,0 C0.2,0.8 0.2,1 1,1");
+      const springy = CustomEase.create("mcSpringy", "M0,0 C0.34,1.35 0.5,1 1,1");
+      const out = CustomEase.create("mcOut", "M0,0 C0.23,1 0.32,1 1,1");
+      const tl = gsap.timeline({ paused: true, defaults: { immediateRender: false } });
+      const B = (n) => (n * 60) / 104; // beat n in seconds (104 BPM)
+      const q = (s) => document.querySelector(s);
+      const qa = (s) => Array.from(document.querySelectorAll(s));
+
+      // First time an ease reaches v (the app swaps the flip's face at 90 degrees).
+      const cross = (ease, v) => { let lo = 0, hi = 1; for (let i = 0; i < 40; i++) { const m = (lo + hi) / 2; if (ease(m) < v) lo = m; else hi = m; } return hi; };
+
+      // The study screen's drag maths (study_screen.dart): rotation, sag and shrink follow dx.
+      const rot = (dx) => Math.max(-28, Math.min(28, dx * 0.09));
+      const sag = (dx) => Math.min(140, dx * dx * 0.0005);
+      const shrink = (dx) => 1 - 0.14 * Math.min(1, Math.abs(dx) / 276);
+      const drag = (el, t0, t1, dx0, dx1, ease) =>
+        tl.fromTo(el, { x: dx0, y: sag(dx0), rotation: rot(dx0), scale: shrink(dx0) },
+          { x: dx1, y: sag(dx1), rotation: rot(dx1), scale: shrink(dx1), duration: t1 - t0, ease }, t0);
+      // Horizontal motion blur on a flight, peaking on its fastest frames.
+      const blur = (el, t0) => {
+        tl.set(el, { filter: "url(#f-hb)" }, t0);
+        tl.fromTo("#f-hb-blur", { attr: { stdDeviation: "0 0" } }, { attr: { stdDeviation: "9 0" }, duration: 0.05, ease: "none" }, t0);
+        tl.fromTo("#f-hb-blur", { attr: { stdDeviation: "9 0" } }, { attr: { stdDeviation: "0 0" }, duration: 0.17, ease: "power1.out" }, t0 + 0.05);
+        tl.set(el, { filter: "none" }, t0 + 0.23);
+      };
+      const flip = (id, t, from = 0) => {
+        tl.fromTo(`#${id}-flip`, { rotationY: from }, { rotationY: from + 180, duration: 0.52, ease: springy }, t);
+        const tc = t + 0.52 * cross(springy, 0.5);
+        tl.set(`#${id}-front`, { opacity: 0 }, tc);
+        tl.set(`#${id}-back`, { opacity: 1 }, tc);
+      };
+      // Ears: right -48 deg out, 0 in, +5 past the commit line; left mirrored.
+      const ear = (side, t, a0, a1, dur, ease) => {
+        const s = side === "R" ? -1 : 1;
+        tl.fromTo(`#f-ear${side}`, { rotation: s * a0 }, { rotation: s * a1, duration: dur, ease }, t);
+      };
+      const setN = (n, t) => {
+        tl.set("#f-num-col", { y: -16 * (n - 10) }, t);
+        tl.fromTo("#f-goal-fill", { scaleX: (n - 1) / 20 }, { scaleX: n / 20, duration: 0.3, ease: "power1.out" }, t);
+      };
+      const showDeck = (id, t) => qa("#f-hdr .hd").forEach((e) => tl.set(e, { opacity: e.classList.contains("hd-" + id) ? 1 : 0 }, t));
+      const dot = (x, y, t) => tl.set("#f-touch", { x, y }, t);
+      const dotDown = (t) => tl.fromTo("#f-touch", { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: 0.1, ease: "power2.out" }, t);
+      const dotUp = (t) => tl.fromTo("#f-touch", { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.15, duration: 0.14, ease: "power1.out" }, t);
+
+      // ---------- Initial state (frame 0), set outside the timeline so it renders at once ----------
+      gsap.set("#f-cam", { transformOrigin: "0 0", x: -220.2, y: -18, scale: 4.6 });
+      gsap.set(["#f-status", "#f-hdr", "#f-goal", "#f-nav", ".above", "#f-chip", "#f-dim", "#f-seal"], { opacity: 0 });
+      gsap.set("#f-stack", { y: 560 });
+      gsap.set("#f-this-out", { y: -560 });
+      gsap.set("#f-this-in", { y: 0, scale: 1, opacity: 1, textShadow: "0px 14px 16px rgba(0,0,0,0.5)" });
+      gsap.set(".f-c1-part", { opacity: 0, filter: "blur(8px)" });
+      gsap.set(["#f-c2-lbl", "#f-c2-prompt", ".f-c2-rest", "#f-c3-lbl", "#f-c3-prompt", ".f-c3-rest"], { opacity: 0 });
+      gsap.set(["#f-c1-flip", "#f-c2-flip"], { transformPerspective: 833, rotationY: 0 });
+      gsap.set(".mcard", { autoAlpha: 0 });
+      gsap.set(".edge", { opacity: 0 });
+      gsap.set("#f-earR", { rotation: -48 });
+      gsap.set("#f-earL", { rotation: 48 });
+      gsap.set("#f-num-col", { y: 0 });
+      gsap.set("#f-goal-fill", { scaleX: 0.5 });
+      gsap.set("#f-touch", { opacity: 0, x: 200, y: 405 });
+      gsap.set("#f-flood", { opacity: 0 });
+      gsap.set("#f-seal", { transformOrigin: "50% 50%" });
+      gsap.set("#f-shake", { x: 0, y: 0 });
+      qa("#f-hdr .hd").forEach((e) => gsap.set(e, { opacity: e.classList.contains("hd-es") ? 1 : 0 }));
+
+      // ---------- Hook: the letters lose their ink, left to right ----------
+      qa("#f-hk1 span, #f-hk2 span").forEach((el, i) => {
+        tl.fromTo(el, { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(3px)", duration: 0.36, ease: "power1.in" }, 0.7 + i * 0.04);
+      });
+
+      // ---------- The stack rises and catches THIS ----------
+      tl.fromTo("#f-stack", { y: 560 }, { y: 100, duration: 0.3, ease: "none" }, 1.5);
+      tl.fromTo("#f-stack", { y: 100 }, { y: 0, duration: 0.5, ease: "power2.out" }, 1.8);
+      tl.fromTo("#f-this-out", { y: -560 }, { y: -100, duration: 0.3, ease: "none" }, 1.5);
+      tl.fromTo("#f-this-out", { y: -100 }, { y: 0, duration: 0.5, ease: "power2.out" }, 1.8);
+      tl.set("#f-hk3", { opacity: 0 }, 2.3);
+      // THIS falls onto the card and lands on beat 4.
+      tl.fromTo("#f-this-in", { y: 0, scale: 1, textShadow: "0px 14px 16px rgba(0,0,0,0.5)" },
+        { y: 13.04, scale: 0.736, textShadow: "0px 2px 3px rgba(0,0,0,0.25)", duration: B(4) - 2.16, ease: "power2.in" }, 2.16);
+      tl.fromTo("#f-stack", { y: 0 }, { y: 3, duration: 0.07, ease: "power1.out" }, B(4));
+      tl.fromTo("#f-stack", { y: 3 }, { y: 0, duration: 0.26, ease: springy }, B(4) + 0.07);
+
+      // ---------- Camera pulls back to the phone ----------
+      tl.fromTo("#f-cam", { x: -220.2, y: -18, scale: 4.6 }, { x: 212.4, y: 472.96, scale: 1.68, duration: 0.95, ease: "power2.inOut" }, 2.45);
+      tl.fromTo(".above", { opacity: 0 }, { opacity: 1, duration: 0.3, ease: "power1.out" }, 2.4);
+      tl.fromTo(["#f-status", "#f-hdr", "#f-goal"], { opacity: 0, y: -12 }, { opacity: 1, y: 0, duration: 0.45, ease: paper, stagger: 0.05 }, 2.7);
+      tl.fromTo("#f-nav", { opacity: 0, y: 40 }, { opacity: 1, y: 0, duration: 0.45, ease: paper }, 2.75);
+      // THIS becomes the first card: el gato.
+      tl.fromTo("#f-this-in", { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.16, ease: "power1.in" }, 2.72);
+      tl.fromTo(".f-c1-part", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.18, ease: "power2.out", stagger: 0.04 }, 2.84);
+
+      // ---------- Think. Tap. (flip on beat 8) ----------
+      dot(200, 405, 4.5); dotDown(4.5);
+      dotUp(B(8));
+      flip("f-c1", B(8));
+
+      // ---------- Knew it? Drag right, release on beat 12 ----------
+      dot(168, 430, 5.88); dotDown(5.88);
+      drag("#f-c1", 5.95, 6.8, 0, 182, "sine.inOut");
+      drag("#f-c1", 6.8, B(12), 182, 190, "none");
+      tl.fromTo("#f-touch", { x: 168, y: 430 }, { x: 350, y: 446.6, duration: 0.85, ease: "sine.inOut" }, 5.95);
+      tl.fromTo("#f-touch", { x: 350, y: 446.6 }, { x: 358, y: 448, duration: B(12) - 6.8, ease: "none" }, 6.8);
+      ear("R", 5.95, 48, 0, 0.48, "sine.in");
+      ear("R", 6.635, 0, -5, 0.07, "power1.out");
+      tl.fromTo("#f-c1-edge", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power1.out" }, 6.635);
+      tl.fromTo(["#f-c2-lbl", "#f-c2-prompt"], { opacity: 0 }, { opacity: 0.66, duration: 0.85, ease: "sine.inOut" }, 5.95);
+      tl.fromTo(["#f-c2-lbl", "#f-c2-prompt"], { opacity: 0.66 }, { opacity: 0.69, duration: B(12) - 6.8, ease: "none" }, 6.8);
+      // Release: the card flies off right.
+      dotUp(B(12));
+      drag("#f-c1", B(12), B(12) + 0.32, 190, 550, "power1.out"); // a touch slower than the app so the flight reads on video
+      blur("#f-c1", B(12));
+      ear("R", B(12), -5, 48, 0.34, springy);
+      tl.fromTo("#f-c1-edge", { opacity: 1 }, { opacity: 0, duration: 0.15, ease: "power1.in" }, B(12) + 0.03);
+      tl.fromTo(["#f-c2-lbl", "#f-c2-prompt"], { opacity: 0.69 }, { opacity: 1, duration: 0.23, ease: paper }, B(12));
+      tl.set("#f-c1", { autoAlpha: 0 }, B(12) + 0.32);
+      tl.fromTo(".f-c2-rest", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power1.out" }, B(12) + 0.23);
+      setN(11, B(12) + 0.23);
+
+      // ---------- Not yet? Flip on beat 13, drag left, release on beat 15 ----------
+      dot(195, 400, 7.4); dotDown(7.4);
+      dotUp(B(13));
+      flip("f-c2", B(13));
+      dot(222, 432, 7.9); dotDown(7.9);
+      drag("#f-c2", 7.98, 8.5, 0, -186, "sine.inOut");
+      drag("#f-c2", 8.5, B(15), -186, -192, "none");
+      tl.fromTo("#f-touch", { x: 222, y: 432 }, { x: 36, y: 449.3, duration: 0.52, ease: "sine.inOut" }, 7.98);
+      tl.fromTo("#f-touch", { x: 36, y: 449.3 }, { x: 30, y: 450.4, duration: B(15) - 8.5, ease: "none" }, 8.5);
+      ear("L", 7.98, 48, 0, 0.29, "sine.in");
+      ear("L", 8.39, 0, -5, 0.06, "power1.out");
+      tl.fromTo("#f-c2-edge", { opacity: 0 }, { opacity: 1, duration: 0.11, ease: "power1.out" }, 8.39);
+      tl.fromTo(["#f-c3-lbl", "#f-c3-prompt"], { opacity: 0 }, { opacity: 0.67, duration: 0.52, ease: "sine.inOut" }, 7.98);
+      tl.fromTo(["#f-c3-lbl", "#f-c3-prompt"], { opacity: 0.67 }, { opacity: 0.7, duration: B(15) - 8.5, ease: "none" }, 8.5);
+      dotUp(B(15));
+      drag("#f-c2", B(15), B(15) + 0.22, -192, -400, "power2.out");
+      blur("#f-c2", B(15));
+      ear("L", B(15), -5, 48, 0.34, springy);
+      tl.fromTo(["#f-c3-lbl", "#f-c3-prompt"], { opacity: 0.7 }, { opacity: 1, duration: 0.22, ease: paper }, B(15));
+      tl.fromTo(".f-c3-rest", { opacity: 0 }, { opacity: 1, duration: 0.12, ease: "power1.out" }, B(15) + 0.22);
+      setN(12, B(15) + 0.22);
+      // It comes back: the card swings back and tucks into the stack, its red edge left sticking out.
+      // Off screen it turns face down, then slides back in under the new top card.
+      const tk = B(15) + 0.225;
+      tl.set("#f-c2", { zIndex: 2 }, tk);
+      tl.fromTo("#f-c2-flip", { rotationY: 180 }, { rotationY: 360, duration: 0.12, ease: "power1.inOut" }, tk);
+      tl.set("#f-c2-back", { opacity: 0 }, tk + 0.06);
+      tl.set("#f-c2-front", { opacity: 1 }, tk + 0.06);
+      tl.fromTo("#f-c2", { x: -400, y: sag(-400), rotation: -28, scale: shrink(-400) },
+        { x: -16, y: 40, rotation: 0, scale: 1, duration: 0.44, ease: "power3.out" }, tk + 0.12);
+      tl.fromTo("#f-c2", { x: -16 }, { x: 0, duration: 0.2, ease: "power2.in" }, 9.86);
+      tl.fromTo("#f-c2-edge", { opacity: 1 }, { opacity: 0, duration: 0.16, ease: "power1.in" }, 9.9);
+      tl.set("#f-c2", { autoAlpha: 0 }, 10.07);
+      // The chip: Back in 1 ... 12 cards.
+      tl.fromTo("#f-chip", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.22, ease: out }, 8.9);
+      tl.fromTo("#f-cnt-col", { y: 0 }, { y: -17 * 11, duration: 0.45, ease: "steps(11)" }, 8.95);
+
+      // ---------- Montage: one card per beat, beats 18-25 ----------
+      const shots = [
+        { id: "f-m0", deck: "ds", col: "#B59CFF", dir: 1 },
+        { id: "f-m1", deck: "fe", col: "#6FD0C8", dir: 1 },
+        { id: "f-m2", deck: "ce", col: "#79C267", dir: 1 },
+        { id: "f-m3", deck: "ff", col: "#80AEFF", dir: -1 },
+        { id: "f-m4", deck: "ds", col: "#B59CFF", dir: 1 },
+        { id: "f-m5", deck: "fa", col: "#6FD0C8", dir: 1 },
+        { id: "f-m6", deck: "ce", col: "#79C267", dir: 1 },
+        { id: "f-m7", deck: "ff", col: "#80AEFF", dir: 1 },
+      ];
+      // Each shot is cut on the previous card's flight with two blurred frames of it on screen: 0.07 s after a release.
+      shots.forEach((sh, k) => {
+        const tb = B(18 + k), s = k === 0 ? tb - 0.29 : B(17 + k) + 0.07, d = sh.dir, side = d > 0 ? "R" : "L";
+        const el = "#" + sh.id, last = k === shots.length - 1;
+        if (k === 0) {
+          tl.set(["#f-c3", "#f-chip"], { autoAlpha: 0 }, s);
+          tl.set("#f-flood", { opacity: 1 }, s);
+        }
+        tl.set(el, { autoAlpha: 1 }, s);
+        tl.set("#f-flood", { backgroundColor: sh.col }, s);
+        showDeck(sh.deck, s);
+        tl.set(`#f-ear${side === "R" ? "L" : "R"}`, { rotation: side === "R" ? 48 : -48 }, s);
+        drag(el, s, tb, 24 * d, 172 * d, "power2.in");
+        ear(side, s, 48 * (1 - 24 / 110), 0, Math.min(0.24, tb - s - 0.08), "power1.in");
+        ear(side, tb - 0.07, 0, -5, 0.07, "power1.out");
+        tl.fromTo(`${el} .edge`, { opacity: 0 }, { opacity: 1, duration: 0.07, ease: "none" }, tb - 0.07);
+        drag(el, tb, tb + 0.3, 172 * d, 560 * d, "power1.out");
+        blur(el, tb);
+        // The ear swings out with the flight; the cut takes it away mid-swing (the next shot resets it).
+        ear(side, tb, -5, 48, last ? 0.34 : 0.07, last ? springy : "power1.in");
+        tl.set(el, { autoAlpha: 0 }, last ? tb + 0.3 : tb + 0.07);
+        setN(13 + k, last ? tb + 0.3 : tb + 0.07);
+      });
+
+      // ---------- Goal: back to paper, the DONE seal stamps on beat 26 ----------
+      tl.set("#f-flood", { opacity: 0 }, 14.62);
+      tl.fromTo("#f-dim", { opacity: 0 }, { opacity: 1, duration: 0.2, ease: "power1.out" }, 14.62);
+      const t0 = B(26) - 0.315;
+      tl.fromTo("#f-seal", { opacity: 0, scale: 1.5, rotation: -22 }, { opacity: 1, scale: 0.92, rotation: -2, duration: 0.315, ease: "sine.inOut" }, t0);
+      tl.fromTo("#f-seal", { scale: 0.92, rotation: -2 }, { scale: 1.04, rotation: 1, duration: 0.175, ease: "sine.inOut" }, t0 + 0.315);
+      tl.fromTo("#f-seal", { scale: 1.04, rotation: 1 }, { scale: 1, rotation: 0, duration: 0.21, ease: "sine.inOut" }, t0 + 0.49);
+      // Two frames of camera shake on the impact.
+      tl.set("#f-shake", { x: 8, y: -6 }, B(26));
+      tl.set("#f-shake", { x: -5, y: 4 }, B(26) + 1 / 30);
+      tl.set("#f-shake", { x: 0, y: 0 }, B(26) + 2 / 30);
+
+      tl.set("#f-shake", { x: 0 }, 20);
+      window.__timelines["film"] = tl;
+    })();
+  </script>
+</template>

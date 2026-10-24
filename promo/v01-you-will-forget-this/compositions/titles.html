@@ -1,0 +1,103 @@
+<template>
+  <style>
+    @font-face { font-family: "Bernard"; src: url("assets/fonts/BernardMTCondensed.ttf"); }
+    @font-face { font-family: "Barlow Semi Condensed"; font-weight: 600; src: url("assets/fonts/barlow-semi-condensed-latin-600-normal.woff2") format("woff2"); }
+
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    /* One line at a time in the band above the phone, flush left with the hook (x = 134). */
+    .t-line { position: absolute; left: 134px; top: 252px; height: 132px; display: flex; align-items: center; gap: 30px; white-space: nowrap; }
+    .t-word { font-family: "Bernard"; font-size: 132px; line-height: 1; color: #333333; }
+    .t-sub { position: absolute; left: 136px; top: 392px; font-family: "Barlow Semi Condensed"; font-weight: 600; font-size: 50px; line-height: 1; color: #555555; white-space: nowrap; }
+    .t-tile { width: 112px; height: 112px; border-radius: 22px; display: flex; align-items: center; justify-content: center; }
+    .t-tile svg { width: 74px; height: 74px; }
+
+    /* The streak pill (the app's home header pill, made big): flame, split-flap digit, words. */
+    #t-streak { position: absolute; left: 134px; top: 244px; height: 156px; padding: 0 40px 0 30px; border-radius: 78px; background: #E3E3E3;
+      display: flex; align-items: center; gap: 22px; box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 14px 30px rgba(0,0,0,0.18); }
+    #t-flame { width: 74px; height: 104px; }
+    .flap { position: relative; width: 104px; height: 128px; }
+    .half { position: absolute; left: 0; width: 104px; height: 64px; overflow: hidden; background: #333333; }
+    .half.top { top: 0; border-radius: 14px 14px 0 0; transform-origin: 50% 100%; }
+    .half.bot { top: 64px; border-radius: 0 0 14px 14px; transform-origin: 50% 0%; }
+    .half span { position: absolute; left: 0; width: 104px; height: 128px; display: flex; align-items: center; justify-content: center; font-family: "Bernard"; font-size: 112px; line-height: 1; color: #F1F1F1; }
+    .half.top span { top: 0; }
+    .half.bot span { top: -64px; }
+    .flap .seam { position: absolute; left: 0; top: 63px; width: 104px; height: 2px; background: #1E1E1E; }
+    #t-streak .words { font-family: "Bernard"; font-size: 100px; line-height: 1; color: #333333; }
+  </style>
+
+  <div data-hf-id="hf-0m3w" id="root" data-composition-id="titles" data-width="1080" data-height="1920" data-layout-allow-overlap>
+    <div data-hf-id="hf-w6mx" class="t-line" id="t-l1"><span data-hf-id="hf-oxwf" class="t-word" id="t-think">Think.</span><span data-hf-id="hf-44uv" class="t-word" id="t-tap">Tap.</span></div>
+
+    <div data-hf-id="hf-04qy" class="t-line" id="t-l2"><span data-hf-id="hf-mgx7" class="t-word">Knew it?</span>
+      <span data-hf-id="hf-8gkd" class="t-tile" id="t-tile-r" style="background:#8BD3A0"><svg data-hf-id="hf-qz6a" viewBox="0 0 74 74" fill="none" stroke="#333333" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-gsx0" d="M12 37h48M42 19l18 18-18 18"/></svg></span></div>
+
+    <div data-hf-id="hf-6agr" class="t-line" id="t-l3"><span data-hf-id="hf-cqtw" class="t-word">Not yet?</span>
+      <span data-hf-id="hf-enti" class="t-tile" id="t-tile-l" style="background:#D35F5F"><svg data-hf-id="hf-dzb5" viewBox="0 0 74 74" fill="none" stroke="#F1F1F1" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-fm9z" d="M62 37H14M32 19 14 37l18 18"/></svg></span></div>
+    <div data-hf-id="hf-eeen" class="t-sub" id="t-s3">It comes back.</div>
+
+    <div data-hf-id="hf-isz8" class="t-line" id="t-l4"><span data-hf-id="hf-c7x9" class="t-word">Goal met.</span></div>
+
+    <div data-hf-id="hf-bin6" id="t-streak">
+      <svg data-hf-id="hf-5ubr" id="t-flame" viewBox="5.2 1.6 13.6 19.2"><path data-hf-id="hf-pbj4" fill="#D35F5F" d="M12 2c1.2 4 6 6.2 6 11.5A6 6 0 0 1 6 13.5c0-2.6 1.2-4.3 2.6-5.6.3 1.9 1.4 3 2.6 3.3C11 8.6 10.6 5.4 12 2z"/></svg>
+      <div data-hf-id="hf-xrdl" class="flap">
+        <div data-hf-id="hf-y946" class="half top"><span data-hf-id="hf-gzgc">5</span></div>
+        <div data-hf-id="hf-o7me" class="half bot" id="t-bot-old"><span data-hf-id="hf-gl5b">4</span></div>
+        <div data-hf-id="hf-2a0m" class="half top" id="t-top-old"><span data-hf-id="hf-rktr">4</span></div>
+        <div data-hf-id="hf-g7un" class="half bot" id="t-bot-new"><span data-hf-id="hf-qzn8">5</span></div>
+        <div data-hf-id="hf-30oq" class="seam"></div>
+      </div>
+      <span data-hf-id="hf-xk6s" class="words">day streak</span>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      gsap.registerPlugin(CustomEase);
+      const out = CustomEase.create("mcOut", "M0,0 C0.23,1 0.32,1 1,1");
+      const springy = CustomEase.create("mcSpringy", "M0,0 C0.34,1.35 0.5,1 1,1");
+      const tl = gsap.timeline({ paused: true, defaults: { immediateRender: false } });
+      const B = (n) => (n * 60) / 104;
+
+      // One stage: in = blur 8 -> 0 with opacity; out = blur and fade. Landed titles stay still.
+      const inn = (el, t) => tl.fromTo(el, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power2.out" }, t);
+      const away = (el, t) => tl.fromTo(el, { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.16, ease: "power1.in" }, t);
+      const tile = (el, t) => tl.fromTo(el, { scale: 0.6, rotation: -8 }, { scale: 1, rotation: 0, duration: 0.34, ease: springy }, t);
+
+      gsap.set(["#t-think", "#t-tap", "#t-l2", "#t-l3", "#t-s3", "#t-l4", "#t-streak"], { opacity: 0 });
+      gsap.set("#t-streak", { transformOrigin: "0% 50%" });
+      gsap.set("#t-flame", { transformOrigin: "50% 90%" });
+      gsap.set("#t-bot-new", { rotationX: 90, transformPerspective: 500 });
+      gsap.set("#t-top-old", { rotationX: 0, transformPerspective: 500 });
+
+      inn("#t-think", B(6));
+      inn("#t-tap", B(8));
+      away("#t-l1", 5.6);
+
+      inn("#t-l2", B(10));
+      tile("#t-tile-r", B(10));
+      away("#t-l2", 7.3);
+
+      inn("#t-l3", B(13));
+      tile("#t-tile-l", B(13));
+      inn("#t-s3", B(15));
+      away(["#t-l3", "#t-s3"], 9.92);
+
+      inn("#t-l4", B(26));
+      away("#t-l4", 15.92);
+
+      // The streak: the pill arrives, the flame flickers, the digit flips 4 -> 5 on beat 28.5.
+      tl.fromTo("#t-streak", { opacity: 0, scale: 0.92, filter: "blur(8px)" }, { opacity: 1, scale: 1, filter: "blur(0px)", duration: 0.22, ease: out }, 16.1);
+      tl.fromTo("#t-flame", { scaleY: 1, rotation: 0 }, { keyframes: [
+        { scaleY: 1.07, rotation: -3, duration: 0.08 }, { scaleY: 0.96, rotation: 2, duration: 0.08 },
+        { scaleY: 1.05, rotation: -2, duration: 0.08 }, { scaleY: 1, rotation: 0, duration: 0.08 }], ease: "sine.inOut" }, 16.12);
+      const tf = B(28.5);
+      tl.fromTo("#t-top-old", { rotationX: 0 }, { rotationX: -90, duration: 0.12, ease: "power2.in" }, tf);
+      tl.fromTo("#t-bot-new", { rotationX: 90 }, { rotationX: 0, duration: 0.14, ease: "power2.out" }, tf + 0.12);
+      tl.fromTo("#t-flame", { scale: 1 }, { scale: 1.2, duration: 0.12, ease: "power2.out" }, tf);
+      tl.fromTo("#t-flame", { scale: 1.2 }, { scale: 1, duration: 0.36, ease: springy }, tf + 0.12);
+
+      window.__timelines["titles"] = tl;
+    })();
+  </script>
+</template>

@@ -41,6 +41,17 @@ This document records verified outcomes, technical approaches, and architectural
 
 ## Flutter App Outcomes (pulled forward from Version 4.0)
 
+### 2026-10-24 — Promo Video 1 "You will forget this" (20 s, 9:16)
+
+- **Outcome Summary:** The first promotional video is produced: 1080 × 1920, 30 fps, 20.0 s, sound mastered for social (-14.9 LUFS, -1.4 dBTP). It follows the beat sheet in `docs/marketing/promo_videos.md` §1 on a 104 BPM grid:
+  - the headline loses its ink and THIS is caught by a card;
+  - the camera pulls back into the phone, and the card flips to "the cat";
+  - a right swipe, then a left swipe whose card tucks back into the stack ("Back in 12 cards");
+  - an eight-beat montage over category-colour floods (Demon Slayer, flags, English crests, French);
+  - the DONE seal, a split-flap streak, and the three-card logo dealt onto a paper end card.
+- **How We Built It & Technical Approach:** a HyperFrames project in `promo/v01-you-will-forget-this/` (HTML + GSAP rendered frame by frame) with three scenes (`film`, `titles`, `endcard`). The study screen is rebuilt from the app's code at its logical size: colours, Bernard/Barlow, felt and window light, the drag maths, the springy flip, the ears, the chip, the card-hand nav and the wax-seal keyframes. A camera transform pulls back from 4.6× to 1.68×, and the app's own sound files are placed one frame after their picture. The music bed is a placeholder made with the app's synth (`tools/make_music.py`). `tools/mix_preview.py` checks levels without rendering, and `tools/master.py` does the loudness pass. Details and kept warnings are in `REVIEW.md`; every number is in `SPEC.md`.
+- **Verification Evidence:** `npx hyperframes check` ok; snapshots at every beat and cut and frame by frame around the montage releases; the 360 px phone review sheet; 18 frames decoded from the final MP4; loudness and onset timing measured (the sound was not listened to).
+
 ### 2026-10-24 — Promo video plan and 13 decks made for the videos
 
 - **Outcome Summary:** A motion-design plan for nine promotional videos (`docs/marketing/promo_videos.md`: a 20 s and a 55 s introduction, widgets, the engine, creating, a "guess it in 3 seconds" quiz series, and three bonus shorts) with beat sheets, the shared motion and sound kit taken from the app, deck ideas and feature suggestions. On the owner's call (the app is free and personal) the plan uses the anime and football art and the Bernard font freely. Thirteen decks were added for the videos, built by four Claude Sonnet 5.5 agents and reviewed card by card: Anime · Whose Eyes? (eyes strip → full character), Demon Slayer, Jujutsu Kaisen, Dragon Ball and Attack on Titan characters (each with a skin and two seals), Countries · Silhouettes (black shape → the shape filled with its flag), Flags · Look-alikes, Paintings · From a Detail, Road Signs · World, Capitals · Not the Big City, Kanji · Pictures, Mind · Cognitive Biases, NATO Phonetic Alphabet. Catalogue: 90 decks, 2,507 cards. A prompt of one to three characters now shows as one big glyph on the card.

@@ -1,0 +1,6 @@
+# HyperFrames working state (history, snapshots, caches) and rendered videos stay local.
+.hyperframes/
+.thumbnails/
+.waveform-cache/
+renders/
+node_modules/
