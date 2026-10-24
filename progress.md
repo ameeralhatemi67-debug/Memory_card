@@ -41,6 +41,36 @@ This document records verified outcomes, technical approaches, and architectural
 
 ## Flutter App Outcomes (pulled forward from Version 4.0)
 
+### 2026-10-24 — Promo Video 3 "Your home screen remembers too" (32 s, 9:16)
+
+- **Outcome Summary:** The widgets video is produced: 1080 × 1920, 30 fps, 32.0 s, mastered to -15.2 LUFS and
+  -1.2 dBTP. It follows `docs/marketing/promo_videos.md` §3 on a 108 BPM grid:
+  - The nav bar's hand of cards deals four widgets onto an empty home screen.
+  - The Quick card is answered on the home screen (Reveal, Got it).
+  - The goal ring sweeps to 20 and DONE stamps.
+  - The Membership card swaps to its back and returns.
+  - A Settings › Widgets split turns every widget blue, green, dark and light in a wave.
+  - The camera falls into the screen for a one-widget-per-beat montage (six more widgets and the Quick
+    Settings tile).
+  - Video 1's end card closes, "On your home screen."
+- **How We Built It & Technical Approach:**
+  - The project is in `promo/v03-home-screen/`. Every widget is the app's own drawing.
+  - The debug `DebugReceiver` DUMP gained `sub`, `look` and `pieces` extras. With `pieces`,
+    `widgets/Preview.kt` writes each widget's face, its drawing alone, and a JSON of its moving pieces.
+  - `tools/dump_widgets.py` runs the dump per widget class (a full dump outlives a broadcast's 60 s).
+    `tools/build_widgets.py` turns it into `assets/widgets.js`.
+  - `assets/wgkit.js` puts the seal, flame, pulse and sheen back between face and drawing, using the
+    launcher's own motion constants. The turn and swap follow the launcher's animations.
+  - Settings and Quick Settings are emulator captures.
+  - The sounds are the app's own, each placed one frame after its picture by `tools/build_root.py`. The bed is
+    a placeholder from the app's synth.
+  - `master.py` and `mix_preview.py` moved to `promo/tools/`, shared by every video.
+- **Verification Evidence:**
+  - `npx hyperframes check` is ok, with two warnings kept and explained in REVIEW.md.
+  - Looked at: snapshots at every QA beat, the review sheets, and frames decoded from the final MP4.
+  - Measured: title clearance over the phone (15 px), and sound onsets within one frame of their picture.
+  - Sound was measured, not listened to.
+
 ### 2026-10-24 — Promo Video 1 cuts: 1:1, 15 s and 6 s bumper
 
 - **Outcome Summary:** Three more versions of Video 1, all mastered to about -15 LUFS:

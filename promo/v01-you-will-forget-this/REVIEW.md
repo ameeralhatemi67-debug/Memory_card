@@ -126,13 +126,13 @@ npx hyperframes render --quality delivery --output renders/v01-raw.mp4
 npx hyperframes render ../build/v01-15s --quality delivery --output renders/v01-15s-raw.mp4
 npx hyperframes render ../build/v01-6s --quality delivery --output renders/v01-6s-raw.mp4
 npx hyperframes render ../build/v01-square --quality delivery --output renders/v01-square-raw.mp4
-python tools/master.py renders/v01-raw.mp4 renders/MemoryCard-V1-YouWillForgetThis-9x16.mp4
-python tools/master.py renders/v01-15s-raw.mp4 renders/MemoryCard-V1-YouWillForgetThis-15s-9x16.mp4
-python tools/master.py renders/v01-6s-raw.mp4 renders/MemoryCard-V1-YouWillForgetThis-6s-bumper-9x16.mp4
-python tools/master.py renders/v01-square-raw.mp4 renders/MemoryCard-V1-YouWillForgetThis-1x1.mp4
+python ../tools/master.py renders/v01-raw.mp4 renders/MemoryCard-V1-YouWillForgetThis-9x16.mp4
+python ../tools/master.py renders/v01-15s-raw.mp4 renders/MemoryCard-V1-YouWillForgetThis-15s-9x16.mp4
+python ../tools/master.py renders/v01-6s-raw.mp4 renders/MemoryCard-V1-YouWillForgetThis-6s-bumper-9x16.mp4
+python ../tools/master.py renders/v01-square-raw.mp4 renders/MemoryCard-V1-YouWillForgetThis-1x1.mp4
 ```
 
-`tools/mix_preview.py [project dir]` mixes a cut's `<audio>` tags with ffmpeg to check levels without
+`promo/tools/mix_preview.py [project dir]` mixes a cut's `<audio>` tags with ffmpeg to check levels without
 rendering the picture. Bernard MT Condensed is gitignored (commercial): copy
 `app/assets/fonts/BernardMTCondensed.ttf` to `assets/fonts/` before rendering on another machine, then run
 `build_cuts.py` so the cut projects get it too. To snapshot or check a generated cut, run the command inside

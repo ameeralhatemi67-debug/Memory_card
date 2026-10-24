@@ -1,0 +1,373 @@
+<template>
+  <style>
+    @font-face { font-family: "Bernard"; src: url("assets/fonts/BernardMTCondensed.ttf"); }
+    @font-face { font-family: "Barlow Semi Condensed"; font-weight: 600; src: url("assets/fonts/barlow-semi-condensed-latin-600-normal.woff2") format("woff2"); }
+
+    #root { position: absolute; inset: 0; overflow: hidden; font-family: "Barlow Semi Condensed", sans-serif; }
+    #h-shake { position: absolute; inset: 0; }
+    /* The world of Video 1: a felt wall in window light (frame px). */
+    #h-world { position: absolute; inset: 0; background: #EAEAEA; }
+    #h-world .felt { position: absolute; inset: 0; background-image: url("assets/textures/felt.png"); background-size: 520px 520px; opacity: 0.14; mix-blend-mode: multiply; }
+    #h-light { position: absolute; inset: 0; background: radial-gradient(circle 2400px at -5% -7.5%, rgba(255,255,255,0.33) 0%, rgba(255,255,255,0) 55%, rgba(0,0,0,0.05) 100%); }
+
+    /* The phone: a neutral body; inside, dp (the screen is 411 x 914 dp, the size the widgets were measured on). */
+    #h-cam { position: absolute; left: 0; top: 0; width: 411px; height: 914px; }
+    #h-body { position: absolute; left: -10px; top: -10px; width: 431px; height: 934px; border-radius: 50px; background: #1B1B1B;
+      box-shadow: inset 0 0 0 1.5px #2E2E2E, 10px 22px 44px rgba(0,0,0,0.26), 3px 6px 12px rgba(0,0,0,0.16); }
+    #h-screen { position: absolute; left: 0; top: 0; width: 411px; height: 914px; border-radius: 40px; overflow: hidden; }
+    #h-wall { position: absolute; left: -40px; top: 0; width: 491px; height: 914px;
+      background: radial-gradient(130% 90% at 18% 6%, #A8B8CC 0%, #8199B5 45%, #6D85A2 72%, #5E7592 100%); }
+    #h-wall::after { content: ""; position: absolute; inset: 0; background-image: url("assets/textures/grain_fine.png"); background-size: 128px 128px; opacity: 0.22; mix-blend-mode: soft-light; }
+    #h-pages { position: absolute; left: 0; top: 0; width: 822px; height: 914px; }
+    .page { position: absolute; top: 0; width: 411px; height: 914px; }
+    #h-p1 { left: 0; }
+    #h-p2 { left: 411px; }
+    .slot { position: absolute; }
+    .wgl { position: absolute; left: 0; top: 0; opacity: 0; }
+
+    #h-status { position: absolute; left: 0; top: 0; width: 411px; height: 40px; color: #F4F6F9; }
+    #h-status .time { position: absolute; left: 28px; top: 12px; font-weight: 600; font-size: 15px; }
+    #h-status svg { position: absolute; top: 14px; }
+    #h-dots { position: absolute; left: 0; top: 756px; width: 411px; display: flex; justify-content: center; gap: 8px; }
+    #h-dots i { width: 7px; height: 7px; border-radius: 50%; background: #F4F6F9; opacity: 0.45; }
+    #h-dots i.on { opacity: 1; }
+    #h-dock { position: absolute; left: 0; top: 784px; width: 411px; display: flex; justify-content: center; gap: 30px; }
+    #h-dock .app { width: 56px; height: 56px; border-radius: 50%; background: rgba(244,246,249,0.9); display: flex; align-items: center; justify-content: center; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+    #h-dock .app svg { width: 26px; height: 26px; }
+    #h-dock img { width: 56px; height: 56px; border-radius: 50%; box-shadow: 0 2px 6px rgba(0,0,0,0.15); }
+    #h-pill { position: absolute; left: 145px; top: 896px; width: 121px; height: 5px; border-radius: 3px; background: rgba(244,246,249,0.85); }
+
+    /* The hand of cards: the nav bar's five cards (nav_bar.dart), dealt at 1.6x. */
+    .hand { position: absolute; left: 172.5px; top: 818px; width: 66px; height: 98px; border-radius: 11px; background: #333333; overflow: hidden; box-shadow: 0 3px 10px rgba(0,0,0,0.32); backface-visibility: hidden; }
+    .hand .acc { position: absolute; left: 0; right: 0; top: 0; height: 4px; }
+    .hand .rank { position: absolute; left: 7px; top: 9px; font-family: "Bernard"; font-size: 13px; line-height: 1; color: #F1F1F1; opacity: 0.55; }
+    .hand svg { position: absolute; left: 21px; top: 26px; width: 24px; height: 24px; opacity: 0.62; }
+    .hand.plus { background: #F1F1F1; box-shadow: inset 0 0 0 2px #333333, 0 10px 24px rgba(0,0,0,0.45);
+      background-image: repeating-linear-gradient(-45deg, rgba(51,51,51,0.18) 0 2px, transparent 2px 9px); }
+    .hand.plus svg { left: 18px; top: 18px; width: 30px; height: 30px; opacity: 1; }
+
+    #h-touch { position: absolute; left: 0; top: 0; width: 44px; height: 44px; margin: -22px 0 0 -22px; border-radius: 50%;
+      background: rgba(40,40,40,0.32); box-shadow: inset 0 0 0 3px rgba(255,255,255,0.9), 0 3px 8px rgba(0,0,0,0.2); opacity: 0; }
+    #h-sweep { position: absolute; left: 0; top: 0; width: 172px; height: 233px; opacity: 0; }
+    #h-sweep text { font-family: "Bernard"; fill: #333333; }
+
+    /* Settings › Widgets (the app on the emulator): the Theme and Accent rows, in a window above the phone. */
+    #h-set { position: absolute; left: 135px; top: 420px; width: 810px; height: 390px; border-radius: 30px; overflow: hidden; background: #F1F1F1;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.12), 0 16px 34px rgba(0,0,0,0.22); }
+    #h-set img { position: absolute; left: 0; top: -892.5px; width: 810px; height: 1800px; opacity: 0; }
+    #h-ftouch { position: absolute; left: 0; top: 0; width: 66px; height: 66px; margin: -33px 0 0 -33px; border-radius: 50%;
+      background: rgba(40,40,40,0.3); box-shadow: inset 0 0 0 4px rgba(255,255,255,0.9), 0 3px 8px rgba(0,0,0,0.2); opacity: 0; }
+  </style>
+
+  <div data-hf-id="hf-tin7" id="root" data-composition-id="home" data-width="1080" data-height="1920" data-layout-allow-overflow data-layout-allow-overlap>
+    <div data-hf-id="hf-sawy" id="h-shake">
+      <div data-hf-id="hf-hyhw" id="h-world"><div data-hf-id="hf-ocm7" class="felt"></div></div>
+      <div data-hf-id="hf-0evg" id="h-light"></div>
+
+      <div data-hf-id="hf-93gt" id="h-cam">
+        <div data-hf-id="hf-t4qs" id="h-body"></div>
+        <div data-hf-id="hf-gnn5" id="h-screen" data-layout-ignore>
+          <div data-hf-id="hf-so44" id="h-wall"></div>
+          <div data-hf-id="hf-44wo" id="h-pages">
+            <div data-hf-id="hf-b8e7" class="page" id="h-p1">
+              <div data-hf-id="hf-b87w" class="slot" id="s1-streak" style="left:25.5px; top:64px"></div>
+              <div data-hf-id="hf-icnt" class="slot" id="s1-seal" style="left:25.5px; top:189px"></div>
+              <div data-hf-id="hf-w3j4" class="slot" id="s1-actions" style="left:213.5px; top:189px"></div>
+              <div data-hf-id="hf-cm7z" class="slot" id="s1-today" style="left:25.5px; top:439px"></div>
+            </div>
+            <div data-hf-id="hf-2kic" class="page" id="h-p2">
+              <div data-hf-id="hf-4f5m" class="slot" id="s2-quick" style="left:25.5px; top:64px"></div>
+              <div data-hf-id="hf-krm1" class="slot" id="s2-member" style="left:25.5px; top:314px"></div>
+              <div data-hf-id="hf-qmma" class="slot" id="s2-seals" style="left:25.5px; top:564px"></div>
+            </div>
+          </div>
+
+          <div data-hf-id="hf-wxt2" id="h-status">
+            <div data-hf-id="hf-zmej" class="time">9:41</div>
+            <svg data-hf-id="hf-3vms" style="left:324px" width="17" height="12" viewBox="0 0 17 12"><rect data-hf-id="hf-b1k5" x="0" y="8" width="3" height="4" rx="1" fill="#F4F6F9"/><rect data-hf-id="hf-gw8j" x="4.5" y="5.5" width="3" height="6.5" rx="1" fill="#F4F6F9"/><rect data-hf-id="hf-z26c" x="9" y="3" width="3" height="9" rx="1" fill="#F4F6F9"/><rect data-hf-id="hf-f5vp" x="13.5" y="0" width="3" height="12" rx="1" fill="#F4F6F9"/></svg>
+            <svg data-hf-id="hf-7y5m" style="left:348px" width="26" height="12" viewBox="0 0 26 12"><rect data-hf-id="hf-un6l" x="0.75" y="0.75" width="21.5" height="10.5" rx="3" fill="none" stroke="#F4F6F9" stroke-width="1.5"/><rect data-hf-id="hf-o15o" x="3" y="3" width="15" height="6" rx="1.2" fill="#F4F6F9"/><rect data-hf-id="hf-4kfy" x="23.5" y="4" width="2" height="4" rx="1" fill="#F4F6F9"/></svg>
+          </div>
+          <div data-hf-id="hf-0qq4" id="h-dots"><i data-hf-id="hf-wv4y" class="on" id="h-dot1"></i><i data-hf-id="hf-6nlt" id="h-dot2"></i></div>
+          <div data-hf-id="hf-5w7x" id="h-dock">
+            <div data-hf-id="hf-gk5l" class="app"><svg data-hf-id="hf-wovc" viewBox="0 0 24 24" fill="none" stroke="#5E7592" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-a4xy" d="M5 4h4l2 5-2.5 1.5a11 11 0 0 0 5 5L15 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 6a2 2 0 0 1 2-2"/></svg></div>
+            <div data-hf-id="hf-8l4t" class="app"><svg data-hf-id="hf-jeu8" viewBox="0 0 24 24" fill="none" stroke="#5E7592" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-4r4q" d="M21 12a8 8 0 0 1-11.6 7.1L4 20l1.1-4.4A8 8 0 1 1 21 12z"/></svg></div>
+            <img data-hf-id="hf-10ra" src="assets/img/app-icon.png" alt="" />
+            <div data-hf-id="hf-9s1w" class="app"><svg data-hf-id="hf-i7x5" viewBox="0 0 24 24" fill="none" stroke="#5E7592" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path data-hf-id="hf-j58y" d="M4 8h3l2-3h6l2 3h3v11H4z"/><circle data-hf-id="hf-z2b3" cx="12" cy="13" r="3.5"/></svg></div>
+          </div>
+          <div data-hf-id="hf-3oop" id="h-pill"></div>
+
+          <!-- The hand of cards (Home, Lab, +, Shop, Account), as in the nav bar. -->
+          <div data-hf-id="hf-u9sh" class="hand" id="h-c-home"><div data-hf-id="hf-vc5e" class="acc" style="background:#80AEFF"></div><div data-hf-id="hf-x906" class="rank">H</div><svg data-hf-id="hf-y8mu" viewBox="0 0 11.321 11.322"><g data-hf-id="hf-w20q" transform="translate(-3015.3506,-1319.8992)"><g data-hf-id="hf-cct2" transform="matrix(0.73369523,0,0,0.73369523,2071.0345,1201.7805)" fill="#F1F1F1"><path data-hf-id="hf-4ctb" d="m 1294.783,160.991 c -0.349,0 -0.699,0.134 -0.966,0.402 l -4.247,4.247 c -0.026,0.02 -0.051,0.042 -0.074,0.066 l -2.181,2.181 c -0.329,0.329 -0.329,0.858 0,1.187 0.329,0.329 0.858,0.329 1.187,0 l 0.076,-0.076 0,-0 2.104,-2.104 3.135,-3.135 c 0.535,-0.535 1.397,-0.535 1.933,-0 l 3.135,3.135 1.951,1.951 0.229,0.229 c 0.329,0.329 0.858,0.329 1.187,0 0.329,-0.329 0.329,-0.858 -0,-1.187 l -2.181,-2.181 c -0.024,-0.024 -0.05,-0.046 -0.076,-0.066 l -4.246,-4.246 c -0.268,-0.268 -0.617,-0.402 -0.966,-0.402 z"/><path data-hf-id="hf-q9pg" d="m 1294.784,164.627 c -0.349,0 -0.699,0.134 -0.966,0.402 l -5.431,5.432 -0.021,0.021 c -0.148,0.153 -0.24,0.361 -0.24,0.591 h 0.001 v 2.893 1.182 c 0,0.707 0.569,1.276 1.276,1.276 h 1.182 2.262 v -3.618 c 0,-0.178 0.143,-0.321 0.321,-0.321 h 3.224 c 0.178,0 0.321,0.143 0.321,0.321 v 3.618 h 2.272 1.18 c 0.707,0 1.276,-0.569 1.276,-1.276 v -1.181 -2.894 h -0.001 c 0,-0.233 -0.093,-0.443 -0.244,-0.597 l -0.01,-0.01 -5.436,-5.436 c -0.268,-0.268 -0.617,-0.402 -0.966,-0.402 z"/></g></g></svg></div>
+          <div data-hf-id="hf-lich" class="hand" id="h-c-lab"><div data-hf-id="hf-noia" class="acc" style="background:#8BD3A0"></div><div data-hf-id="hf-vns2" class="rank">L</div><svg data-hf-id="hf-gqzj" viewBox="0 0 24 24" fill="#F1F1F1"><rect data-hf-id="hf-lbdy" x="7.6" y="1.4" width="8.8" height="2.9" rx="1.45"/><path data-hf-id="hf-zzbl" fill-rule="evenodd" d="M9.5 5.9h5v3.7l5.3 8.9c1.1 1.8-.2 4.1-2.3 4.1H6.5c-2.1 0-3.4-2.3-2.3-4.1l5.3-8.9zM10.4 15.9a1.55 1.55 0 1 0 0 3.1 1.55 1.55 0 0 0 0-3.1zm3.6-2.9a1.05 1.05 0 1 0 0 2.1 1.05 1.05 0 0 0 0-2.1z"/></svg></div>
+          <div data-hf-id="hf-t900" class="hand" id="h-c-shop"><div data-hf-id="hf-qw4b" class="acc" style="background:#FFC680"></div><div data-hf-id="hf-4vqj" class="rank">S</div><svg data-hf-id="hf-6m97" viewBox="0 0 11.322 9.794" style="height:21px; top:28px"><g data-hf-id="hf-m5im" transform="translate(-3035.2904,-1321.978)"><g data-hf-id="hf-jjpu" transform="matrix(0.52297311,0,0,0.52297311,2612.2188,1252.0369)" fill="#F1F1F1"><path data-hf-id="hf-7a78" d="m 812.241,133.738 c -0.992,0 -1.791,0.799 -1.791,1.791 -0.034,0.069 -1.488,2.963 -1.475,4.327 -0.005,1.418 0.607,2.381 1.475,2.877 1.3,0.742 3.178,0.437 4.436,-0.963 1.573,1.755 3.209,1.752 4.907,-0.011 1.524,1.701 3.173,1.704 4.946,0.011 1.023,1.257 3.009,1.581 4.389,0.824 0.866,-0.475 1.494,-1.374 1.494,-2.738 0,-1.193 -1.448,-4.229 -1.494,-4.327 0,-0.086 -0.009,-0.203 -0.021,-0.286 -0.123,-0.871 -0.864,-1.504 -1.769,-1.504 z"/><path data-hf-id="hf-kl2w" d="m 819.793,143.182 c -1.698,1.763 -3.333,1.766 -4.907,0.011 -1.255,1.396 -3.127,1.703 -4.427,0.967 v 6.513 c 0,0.992 0.799,1.79 1.791,1.79 h 4.831 v -5.076 c 0,-0.25 0.201,-0.451 0.451,-0.451 h 4.522 c 0.25,0 0.451,0.201 0.451,0.451 v 5.076 h 4.843 c 0.992,0 1.791,-0.798 1.791,-1.79 v -6.663 c -0.003,0.002 -0.006,0.004 -0.01,0.006 -1.38,0.757 -3.366,0.434 -4.389,-0.824 -1.773,1.693 -3.422,1.689 -4.946,-0.011 z"/></g></g></svg></div>
+          <div data-hf-id="hf-cohl" class="hand" id="h-c-account"><div data-hf-id="hf-9qd7" class="acc" style="background:#D35F5F"></div><div data-hf-id="hf-to8x" class="rank">A</div><svg data-hf-id="hf-8owv" viewBox="0 0 24 24" fill="#F1F1F1"><circle data-hf-id="hf-xuia" cx="12" cy="6.9" r="4.6"/><path data-hf-id="hf-99p2" d="M3.2 20.6c0-4.6 3.9-7.6 8.8-7.6s8.8 3 8.8 7.6c0 .9-.7 1.6-1.6 1.6H4.8c-.9 0-1.6-.7-1.6-1.6z"/></svg></div>
+          <div data-hf-id="hf-9scu" class="hand plus" id="h-c-plus"><svg data-hf-id="hf-phmf" viewBox="0 0 24 24" fill="none" stroke="#333" stroke-width="3.2" stroke-linecap="round"><path data-hf-id="hf-s4pu" d="M12 4.5v15M4.5 12h15"/></svg></div>
+
+          <div data-hf-id="hf-gx1x" id="h-touch"></div>
+        </div>
+      </div>
+
+      <div data-hf-id="hf-fnz4" id="h-set">
+        <img data-hf-id="hf-4gdm" id="h-set-red" src="assets/captures/settings-accent-red.png" alt="" />
+        <img data-hf-id="hf-eykm" id="h-set-blue" src="assets/captures/settings-accent-blue.png" alt="" />
+        <img data-hf-id="hf-2epq" id="h-set-green" src="assets/captures/settings-accent-green.png" alt="" />
+        <img data-hf-id="hf-i8v4" id="h-set-dark" src="assets/captures/settings-accent-green-dark.png" alt="" />
+        <img data-hf-id="hf-bkbw" id="h-set-light" src="assets/captures/settings-accent-green-light.png" alt="" />
+      </div>
+      <div data-hf-id="hf-lsa7" id="h-ftouch"></div>
+    </div>
+  </div>
+
+  <script>
+    (function () {
+      gsap.registerPlugin(CustomEase);
+      const paper = CustomEase.create("mcPaper", "M0,0 C0.2,0.8 0.2,1 1,1");
+      const springy = CustomEase.create("mcSpringy", "M0,0 C0.34,1.35 0.5,1 1,1");
+      const tl = gsap.timeline({ paused: true, defaults: { immediateRender: false } });
+      const B = (n) => (n * 60) / 108; // beat n in seconds (108 BPM)
+      const $ = (s) => document.querySelector(s);
+      const kit = window.MC_WGKIT;
+      const END = B(44); // the montage cuts in
+
+      // ---------- Widgets: one layer per state in each slot ----------
+      const L = {}; // slot -> state -> { el, pieces }
+      const layer = (slot, state, key) => {
+        const el = document.createElement("div");
+        el.className = "wgl";
+        $("#" + slot).appendChild(el);
+        const pieces = kit.mount(el, key);
+        (L[slot] = L[slot] || {})[state] = { el, pieces, key };
+        return L[slot][state];
+      };
+      const page1 = [["s1-streak", "StreakWidget_4x1"], ["s1-seal", "SealWidget_2x2"], ["s1-actions", "ActionsGridWidget_2x2"], ["s1-today", "TodayWidget_4x2"]];
+      page1.forEach(([slot, w]) => {
+        layer(slot, "a", w + "_a_red_day");
+        layer(slot, "h", w + "_h_red_day");
+        layer(slot, "b", w + "_b_red_day");
+        layer(slot, "blue", w + "_b_blue_day");
+        layer(slot, "green", w + "_b_green_day");
+        layer(slot, "night", w + "_b_green_night");
+      });
+      layer("s2-quick", "a", "QuickCardWidget_4x2_a_red_day");
+      layer("s2-quick", "d", "QuickCardWidget_4x2_d_red_day");
+      layer("s2-quick", "h", "QuickCardWidget_4x2_h_red_day");
+      layer("s2-member", "a", "MembershipWidget_4x2_a_red_day");
+      layer("s2-member", "g", "MembershipWidget_4x2_g_red_day");
+      layer("s2-seals", "a", "SealsWidget_4x1_a_red_day");
+
+      // The goal seal's own 20 / 20: the red seal and its DONE are stamped, the rest of the face fades in.
+      const sealB = L["s1-seal"].b;
+      const bFace = sealB.el.querySelector(".wg-face");
+      const bInk = sealB.el.querySelector(".wg-ink");
+      const stamp = document.createElement("div");
+      Object.assign(stamp.style, { position: "absolute", inset: "0" });
+      sealB.el.insertBefore(stamp, bInk);
+      stamp.appendChild(sealB.pieces[0].box);
+      const stampInk = bInk.cloneNode();
+      stampInk.style.clipPath = "circle(46px at 86px 92.78px)";
+      stamp.appendChild(stampInk);
+      bInk.style.clipPath = "inset(140px 0 0 0)";
+
+      // The ring sweeping from 13 to the goal: the widget's own arc and count, drawn over the 13 / 20 face.
+      const R = 31.28, CIRC = 2 * Math.PI * R;
+      const sweep = document.createElementNS("http://www.w3.org/2000/svg", "svg");
+      sweep.id = "h-sweep";
+      sweep.setAttribute("viewBox", "0 0 172 233");
+      let inner = `<circle cx="86" cy="92.78" r="28.4" fill="#E1E1E1"/>` +
+        `<circle id="h-arc" cx="86" cy="92.78" r="${R}" fill="none" stroke="#D35F5F" stroke-width="4.6" stroke-linecap="round" stroke-dasharray="${CIRC}" stroke-dashoffset="${CIRC * (1 - 13 / 20)}" transform="rotate(-90 86 92.78)"/>` +
+        `<rect x="12" y="140" width="148" height="31" fill="#F1F1F1"/>`;
+      for (let n = 13; n <= 19; n++) {
+        inner += `<text class="h-n" data-n="${n}" x="86" y="101.3" font-size="21.62" text-anchor="middle" opacity="0">${n}/20</text>`;
+        inner += `<text class="h-t" data-n="${n}" x="86" y="165.22" font-size="27" text-anchor="middle" opacity="0">${20 - n} to go</text>`;
+      }
+      sweep.innerHTML = inner;
+      $("#s1-seal").appendChild(sweep);
+
+      const show = (slot, state, t) => tl.set(L[slot][state].el, { opacity: 1 }, t);
+      const hide = (slot, state, t) => tl.set(L[slot][state].el, { opacity: 0 }, t);
+      const run = (slot, state, t0, t1, age = 0) => kit.animate(tl, L[slot][state].pieces, t0, t1, age);
+      // The launcher's refresh (wg_fade_out / wg_fade_in): the old drawing dissolves, the new one rises 6 % into place.
+      const refresh = (slot, from, to, t) => {
+        const a = L[slot][from].el, b = L[slot][to].el, h = window.MC_WIDGETS[L[slot][to].key].h;
+        tl.fromTo(a, { opacity: 1 }, { opacity: 0, duration: 0.26, ease: "none" }, t);
+        tl.fromTo(b, { opacity: 0, y: h * 0.06 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, t);
+      };
+
+      // ---------- Camera ----------
+      const CAM = {
+        shot: { x: 231.75, y: 470, scale: 1.5 },
+        quick: { x: 57.08, y: 470, scale: 2.35 },
+        seal: { x: 272.4, y: 470, scale: 2.4 },
+        member: { x: 149.55, y: 470, scale: 1.9 },
+        split: { x: 283.13, y: 872.5, scale: 1.25 },
+        dive: { x: -35.4, y: -300, scale: 2.8 }, // the screen fills the frame: the montage cuts in on its wallpaper
+      };
+      const move = (from, to, t, d = 0.6) => tl.fromTo("#h-cam", CAM[from], { ...CAM[to], duration: d, ease: "power2.inOut" }, t);
+      const toPage = (n, t) => {
+        tl.fromTo("#h-pages", { x: n === 2 ? 0 : -411 }, { x: n === 2 ? -411 : 0, duration: 0.45, ease: "power3.inOut" }, t);
+        tl.fromTo("#h-wall", { x: n === 2 ? 0 : -30 }, { x: n === 2 ? -30 : 0, duration: 0.45, ease: "power3.inOut" }, t);
+        tl.set("#h-dot1", { opacity: n === 1 ? 1 : 0.45 }, t + 0.22);
+        tl.set("#h-dot2", { opacity: n === 2 ? 1 : 0.45 }, t + 0.22);
+      };
+      const tap = (x, y, t) => {
+        tl.set("#h-touch", { x, y }, t - 0.1);
+        tl.fromTo("#h-touch", { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: 0.1, ease: "power2.out" }, t - 0.1);
+        tl.fromTo("#h-touch", { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.15, duration: 0.14, ease: "power1.out" }, t);
+      };
+      // The launcher's turn (wg_turn_out / wg_turn_in): the card narrows to its edge, the other side opens out.
+      const turn = (slot, from, to, t) => {
+        const a = L[slot][from].el, b = L[slot][to].el;
+        gsap.set([a, b], { transformOrigin: "50% 50%" });
+        tl.fromTo(a, { scaleX: 1 }, { scaleX: 0.02, duration: 0.17, ease: "power1.in" }, t);
+        tl.set(a, { opacity: 0 }, t + 0.17);
+        tl.set(b, { opacity: 1, scaleX: 0.02 }, t + 0.16);
+        tl.fromTo(b, { scaleX: 0.02 }, { scaleX: 1, duration: 0.21, ease: "power1.out" }, t + 0.16);
+      };
+      // The launcher's swap (wg_swap_out / wg_swap_in): one side slips away left, the other comes round from the right.
+      const swap = (slot, from, to, t) => {
+        const a = L[slot][from].el, b = L[slot][to].el;
+        gsap.set([a, b], { transformOrigin: "50% 50%" });
+        tl.fromTo(a, { x: 0, y: 0, rotation: 0, scale: 1, opacity: 1 }, { x: -86.4, y: 16.3, rotation: -11, scale: 0.86, opacity: 0, duration: 0.3, ease: "power1.in" }, t);
+        tl.fromTo(b, { x: 86.4, y: 16.3, rotation: 11, scale: 0.86 }, { x: 0, y: 0, rotation: 0, scale: 1, duration: 0.42, ease: "back.out(2)" }, t + 0.07);
+        tl.fromTo(b, { opacity: 0 }, { opacity: 1, duration: 0.25, ease: "power2.out" }, t + 0.07);
+      };
+
+      // ---------- Initial state ----------
+      gsap.set("#h-cam", { transformOrigin: "0 0", ...CAM.shot });
+      gsap.set("#h-pages", { x: 0 });
+      gsap.set("#h-wall", { x: 0 });
+      gsap.set(".wgl", { opacity: 0 });
+      gsap.set("#h-touch", { opacity: 0 });
+      gsap.set("#h-sweep", { opacity: 0 });
+      gsap.set([bFace, bInk, stamp], { opacity: 0 });
+      gsap.set(stamp, { transformOrigin: "86px 92.78px" });
+      gsap.set("#h-set", { y: -520, opacity: 0 });
+      gsap.set("#h-set img", { opacity: 0 });
+      gsap.set("#h-ftouch", { opacity: 0 });
+      gsap.set("#h-shake", { x: 0, y: 0 });
+
+      // ---------- Hook: the hand of cards rises, then deals four widgets, one per beat ----------
+      // Each card is turned about a pivot 403 dp below its top (x 1.6), like the nav bar's hand.
+      const cards = [["#h-c-home", -16], ["#h-c-lab", -8], ["#h-c-plus", 0], ["#h-c-shop", 8], ["#h-c-account", 16]];
+      const rest = {};
+      cards.forEach(([id, deg]) => {
+        const a = (deg * Math.PI) / 180, arm = (403 - 49) * 1.6;
+        rest[id] = { x: Math.sin(a) * arm, y: arm - Math.cos(a) * arm, rotation: deg, scale: 1.6 };
+        gsap.set(id, { transformOrigin: "50% 50%", transformPerspective: 900, ...rest[id], y: rest[id].y + 95 }); // peeking on frame 0
+      });
+      cards.forEach(([id], i) => tl.fromTo(id, { y: rest[id].y + 95 }, { y: rest[id].y, duration: 0.9, ease: springy }, 0.15 + i * 0.05));
+      // Card -> widget: it flies to its cell, goes edge-on, and the widget opens out of the turn.
+      const deals = [["#h-c-account", "s1-streak", 3], ["#h-c-home", "s1-seal", 4], ["#h-c-lab", "s1-actions", 5], ["#h-c-shop", "s1-today", 6]];
+      const cardCentre = { x: 172.5 + 33, y: 818 + 49 };
+      deals.forEach(([id, slot, beat]) => {
+        const s = $("#" + slot), w = window.MC_WIDGETS[L[slot].a.key];
+        const cx = parseFloat(s.style.left) + w.w / 2, cy = parseFloat(s.style.top) + w.h / 2;
+        const land = B(beat), go = land - 0.42;
+        const to = { x: cx - cardCentre.x, y: cy - cardCentre.y };
+        tl.fromTo(id, { x: rest[id].x, y: rest[id].y }, { x: to.x, y: to.y, duration: 0.42, ease: "power2.out" }, go);
+        tl.fromTo(id, { rotation: rest[id].rotation, scale: 1.6 }, { rotation: 0, scale: 1.25, duration: 0.42, ease: "sine.inOut" }, go);
+        tl.fromTo(id, { rotationY: 0 }, { rotationY: 90, duration: 0.14, ease: "power1.in" }, land - 0.14);
+        tl.set(id, { autoAlpha: 0 }, land);
+        const el = L[slot].a.el;
+        gsap.set(el, { transformOrigin: "50% 50%", transformPerspective: 900 });
+        tl.set(el, { opacity: 1 }, land);
+        tl.fromTo(el, { rotationY: -90 }, { rotationY: 0, duration: 0.3, ease: "power2.out" }, land);
+        tl.fromTo(el, { scale: 0.82 }, { scale: 1, duration: 0.42, ease: springy }, land);
+        run(slot, "a", land, B(18));
+      });
+      tl.fromTo("#h-c-plus", { y: rest["#h-c-plus"].y }, { y: rest["#h-c-plus"].y + 330, duration: 0.35, ease: "power3.in" }, B(7));
+
+      // ---------- Quick card: answered on the home screen ----------
+      toPage(2, B(12));
+      show("s2-quick", "a", 0); show("s2-member", "a", 0); show("s2-seals", "a", 0);
+      run("s2-quick", "a", B(11.5), B(15));
+      run("s2-member", "a", B(11.5), B(34));
+      run("s2-seals", "a", B(11.5), B(34), 3);
+      move("shot", "quick", B(13));
+      tap(205.5, 263, B(15));
+      turn("s2-quick", "a", "d", B(15));
+      tap(290.5, 263, B(18));
+      turn("s2-quick", "d", "h", B(18));
+      // The answer reaches the other widgets (page 1 is out of sight).
+      page1.forEach(([slot]) => { hide(slot, "a", B(18)); show(slot, "h", B(18)); run(slot, "h", B(18), B(26.3), 7); });
+      move("quick", "shot", B(20), 0.55);
+
+      // ---------- The goal seal fills and is stamped ----------
+      toPage(1, B(21));
+      move("shot", "seal", B(22));
+      tl.set("#h-sweep", { opacity: 1 }, B(22.6));
+      const n0 = B(23), n1 = B(25.5);
+      tl.fromTo("#h-arc", { attr: { "stroke-dashoffset": CIRC * (1 - 13 / 20) } }, { attr: { "stroke-dashoffset": CIRC * (1 - 19.6 / 20) }, duration: n1 - n0, ease: "power1.inOut" }, n0);
+      for (let n = 13; n <= 19; n++) {
+        const t = n === 13 ? B(22.6) : n0 + ((n - 13) / 6) * (n1 - n0);
+        tl.set(`#h-sweep .h-n[data-n="${n}"], #h-sweep .h-t[data-n="${n}"]`, { opacity: 1 }, t);
+        if (n < 19) tl.set(`#h-sweep .h-n[data-n="${n}"], #h-sweep .h-t[data-n="${n}"]`, { opacity: 0 }, n0 + ((n - 12) / 6) * (n1 - n0));
+      }
+      // The stamp: the app's seal keyframes (celebrate.dart), impact on beat 26.
+      const st = B(26), s0 = st - 0.315;
+      tl.set(sealB.el, { opacity: 1 }, s0);
+      tl.fromTo(stamp, { opacity: 0, scale: 1.5, rotation: -22 }, { opacity: 1, scale: 0.92, rotation: -2, duration: 0.315, ease: "sine.inOut" }, s0);
+      tl.fromTo(stamp, { scale: 0.92, rotation: -2 }, { scale: 1.04, rotation: 1, duration: 0.175, ease: "sine.inOut" }, st);
+      tl.fromTo(stamp, { scale: 1.04, rotation: 1 }, { scale: 1, rotation: 0, duration: 0.21, ease: "sine.inOut" }, st + 0.175);
+      tl.set(bFace, { opacity: 1 }, st);
+      tl.set(["#h-sweep", L["s1-seal"].h.el], { opacity: 0 }, st);
+      tl.fromTo(bInk, { opacity: 0, y: 14 }, { opacity: 1, y: 0, duration: 0.32, ease: "power2.out" }, st + 0.05);
+      run("s1-seal", "b", s0, B(36.2), 0);
+      tl.set("#h-shake", { x: 8, y: -6 }, st);
+      tl.set("#h-shake", { x: -5, y: 4 }, st + 1 / 30);
+      tl.set("#h-shake", { x: 0, y: 0 }, st + 2 / 30);
+      // The rest of page 1 catches up: goal met.
+      [["s1-streak", 0.18], ["s1-actions", 0.26], ["s1-today", 0.34]].forEach(([slot, d]) => {
+        refresh(slot, "h", "b", st + d);
+        run(slot, "b", st + d, B(36.2), 7);
+      });
+
+      // ---------- The membership card turns over, and back ----------
+      move("seal", "shot", B(27.5), 0.5);
+      toPage(2, B(28));
+      move("shot", "member", B(28.5), 0.5);
+      tap(300, 450, B(29.5));
+      swap("s2-member", "a", "g", B(29.5));
+      run("s2-member", "g", B(29.5), B(32.5));
+      tap(300, 450, B(32));
+      swap("s2-member", "g", "a", B(32));
+
+      // ---------- Make them yours: Settings above, the home screen below ----------
+      toPage(1, B(34));
+      move("member", "split", B(34), 0.6);
+      tl.fromTo("#h-set", { y: -520, opacity: 0 }, { y: 0, opacity: 1, duration: 0.5, ease: paper }, B(34.4));
+      tl.set("#h-set-red", { opacity: 1 }, B(34.4));
+      const ftap = (x, y, t) => {
+        tl.set("#h-ftouch", { x, y }, t - 0.1);
+        tl.fromTo("#h-ftouch", { opacity: 0, scale: 1.3 }, { opacity: 1, scale: 1, duration: 0.1, ease: "power2.out" }, t - 0.1);
+        tl.fromTo("#h-ftouch", { opacity: 1, scale: 1 }, { opacity: 0, scale: 1.15, duration: 0.14, ease: "power1.out" }, t);
+      };
+      // Settings capture px -> frame px: x * 0.75 + 135, (y - 1190) * 0.75 + 420.
+      const at = (x, y) => [x * 0.75 + 135, (y - 1190) * 0.75 + 420];
+      const steps = [
+        [B(36), at(551, 1574), "#h-set-red", "#h-set-blue", "b", "blue"],
+        [B(38), at(414, 1574), "#h-set-blue", "#h-set-green", "blue", "green"],
+        [B(40), at(833, 1346), "#h-set-green", "#h-set-dark", "green", "night"],
+        [B(42), at(540, 1346), "#h-set-dark", "#h-set-light", "night", "green"],
+      ];
+      steps.forEach(([t, [x, y], img0, img1, from, to], k) => {
+        ftap(x, y, t);
+        tl.set(img1, { opacity: 1 }, t + 0.05);
+        tl.set(img0, { opacity: 0 }, t + 0.05);
+        // The wave: every widget on page 1 redraws, 60 ms apart from the top down.
+        page1.forEach(([slot], i) => {
+          const tw = t + 0.15 + i * 0.06;
+          refresh(slot, from, to, tw);
+          run(slot, to, tw, k === steps.length - 1 ? END : steps[k + 1][0] + 0.5, 9);
+        });
+      });
+
+      // Into the glass: Settings lifts away with the title, the camera falls into the screen and the montage cuts on 44.
+      tl.fromTo("#h-set", { y: 0, opacity: 1 }, { y: -60, opacity: 0, duration: 0.22, ease: "power1.in" }, B(43.4));
+      tl.fromTo("#h-cam", CAM.split, { ...CAM.dive, duration: END - B(43.5), ease: "power2.in" }, B(43.5));
+
+      tl.set("#h-shake", { x: 0 }, END);
+      window.__timelines["home"] = tl;
+    })();
+  </script>
+</template>

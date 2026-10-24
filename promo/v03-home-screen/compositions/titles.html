@@ -1,0 +1,45 @@
+<template>
+  <style>
+    @font-face { font-family: "Bernard"; src: url("assets/fonts/BernardMTCondensed.ttf"); }
+    @font-face { font-family: "Barlow Semi Condensed"; font-weight: 600; src: url("assets/fonts/barlow-semi-condensed-latin-600-normal.woff2") format("woff2"); }
+
+    #root { position: absolute; inset: 0; pointer-events: none; }
+    /* One title at a time in the band above the phone, flush left at x = 134 (Video 1's grid). */
+    .t { position: absolute; left: 134px; top: 240px; font-family: "Bernard"; font-size: 96px; line-height: 96px; color: #333333; white-space: nowrap; }
+    .t-sub { position: absolute; left: 136px; top: 350px; font-family: "Barlow Semi Condensed"; font-weight: 600; font-size: 44px; line-height: 1; color: #555555; white-space: nowrap; }
+  </style>
+
+  <div data-hf-id="hf-0m3w" id="root" data-composition-id="titles" data-width="1080" data-height="1920" data-layout-allow-overlap>
+    <div data-hf-id="hf-zn21" class="t" id="t1">Your home screen<br data-hf-id="hf-x5px" />remembers too.</div>
+    <div data-hf-id="hf-4f68" class="t" id="t2">Widgets that<br data-hf-id="hf-rsrt" />keep you going.</div>
+    <div data-hf-id="hf-lepn" class="t" id="t3">Review without<br data-hf-id="hf-szow" />opening the app.</div>
+    <div data-hf-id="hf-lvus" class="t" id="t4">Your goal,<br data-hf-id="hf-sldv" />at a glance.</div>
+    <div data-hf-id="hf-8ht7" class="t" id="t5">Your card.<br data-hf-id="hf-qluq" />Both sides.</div>
+    <div data-hf-id="hf-6n7u" class="t" id="t6">Make them yours.</div>
+    <div data-hf-id="hf-0igg" class="t" id="t7">13 widgets</div>
+    <div data-hf-id="hf-cwbh" class="t-sub" id="t7s">and a Quick Settings tile · Android</div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true, defaults: { immediateRender: false } });
+      const B = (n) => (n * 60) / 108;
+      // One stage: in = blur 8 -> 0 with opacity; out = blur and fade. Landed titles stay still.
+      const inn = (el, t) => tl.fromTo(el, { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.16, ease: "power2.out" }, t);
+      const away = (el, t) => tl.fromTo(el, { opacity: 1, filter: "blur(0px)" }, { opacity: 0, filter: "blur(8px)", duration: 0.16, ease: "power1.in" }, t);
+
+      gsap.set(["#t2", "#t3", "#t4", "#t5", "#t6", "#t7", "#t7s"], { opacity: 0 });
+      gsap.set("#t1", { opacity: 1 }); // frame 0 is the thumbnail: the line is already there
+      away("#t1", B(5));
+      inn("#t2", B(7)); away("#t2", B(11.6));
+      inn("#t3", B(13)); away("#t3", B(20.6));
+      inn("#t4", B(22)); away("#t4", B(27.4));
+      inn("#t5", B(28.5)); away("#t5", B(33.6));
+      inn("#t6", B(35)); away("#t6", B(43.6));
+      inn("#t7", B(44)); inn("#t7s", B(44.5));
+
+      tl.set("#t1", { x: 0 }, B(51) + 0.6);
+      window.__timelines["titles"] = tl;
+    })();
+  </script>
+</template>

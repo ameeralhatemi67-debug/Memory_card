@@ -452,14 +452,17 @@ internal class Scene(
         else -> Triple(tone.paper, tone.ink, tone.paper)
     }
 
-    /** The whole widget as one picture, for the previews (the home screen composes the same layers itself). */
-    fun flatten(night: Boolean): Bitmap {
+    /**
+     * The whole widget as one picture, for the previews (the home screen composes the same layers itself).
+     * Without [withFace], only the drawing on a clear ground (development dumps that put the moving pieces back).
+     */
+    fun flatten(night: Boolean, withFace: Boolean = true): Bitmap {
         val tone = if (night) look.night else look.day
         val (face, main, over) = faceColors(tone)
         val out = Bitmap.createBitmap(wPx, hPx, Bitmap.Config.ARGB_8888)
         val c = Canvas(out)
         val p = Paint(Paint.ANTI_ALIAS_FLAG)
-        if (surface != Surface.CLEAR) {
+        if (withFace && surface != Surface.CLEAR) {
             val radius = (if (pill) 999f else look.radius) * d
             p.color = (face and 0x00FFFFFF) or ((look.opacity * 255 / 100) shl 24)
             c.drawRoundRect(RectF(0f, 0f, wPx.toFloat(), hPx.toFloat()), min(radius, min(wPx, hPx) / 2f), min(radius, min(wPx, hPx) / 2f), p)

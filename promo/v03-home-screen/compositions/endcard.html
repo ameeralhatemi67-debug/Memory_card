@@ -1,0 +1,69 @@
+<template>
+  <style>
+    @font-face { font-family: "Bernard"; src: url("assets/fonts/BernardMTCondensed.ttf"); }
+    @font-face { font-family: "Barlow Semi Condensed"; font-weight: 600; src: url("assets/fonts/barlow-semi-condensed-latin-600-normal.woff2") format("woff2"); }
+    @font-face { font-family: "Barlow Semi Condensed"; font-weight: 700; src: url("assets/fonts/barlow-semi-condensed-latin-700-normal.woff2") format("woff2"); }
+
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    /* A full-bleed paper card slides over the film and becomes the ground. */
+    #e-sheet { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; background: #F1F1F1; overflow: hidden; }
+    #e-sheet .felt { position: absolute; inset: 0; background-image: url("assets/textures/felt.png"); background-size: 520px 520px; opacity: 0.12; mix-blend-mode: multiply; }
+    #e-sheet .light { position: absolute; inset: 0; background: radial-gradient(circle 2400px at -5% -7.5%, rgba(255,255,255,0.33) 0%, rgba(255,255,255,0) 55%, rgba(0,0,0,0.05) 100%); }
+
+    /* The three-card logo (icons/logoLightMode.svg) at 24.975 px per unit: cards 173 x 280, r 13.3. */
+    .lg { position: absolute; width: 173px; height: 280px; border-radius: 13.3px; box-shadow: 0 6px 14px rgba(0,0,0,0.22); }
+    #e-l1 { left: 400px; top: 470px; background: #686868; }
+    #e-l2 { left: 430.3px; top: 489.9px; background: #4B4B4B; }
+    #e-l3 { left: 453.4px; top: 524.7px; background: #323232; }
+
+    #e-name { position: absolute; left: 0; top: 872px; width: 1080px; text-align: center; font-family: "Bernard"; font-size: 150px; line-height: 1; color: #333333; }
+    #e-line { position: absolute; left: 0; top: 1046px; width: 1080px; text-align: center; font-family: "Barlow Semi Condensed"; font-weight: 600; font-size: 54px; line-height: 1.1; color: #555555; }
+    #e-badge-row { position: absolute; left: 0; top: 1168px; width: 1080px; display: flex; justify-content: center; }
+    #e-badge { height: 92px; padding: 0 46px; border-radius: 46px; background: #333333; display: flex; align-items: center; font-family: "Barlow Semi Condensed"; font-weight: 700; font-size: 40px; color: #F1F1F1; white-space: nowrap; }
+  </style>
+
+  <div data-hf-id="hf-zlo1" id="root" data-composition-id="endcard" data-width="1080" data-height="1920" data-layout-allow-overflow
+    data-composition-variables='[{"id":"endLine","type":"string","label":"End line","default":"On your home screen."},{"id":"storeBadge","type":"string","label":"Store pill (placeholder until published)","default":"Coming to Android"}]'>
+    <div data-hf-id="hf-2fda" id="e-sheet" data-layout-allow-occlusion><div data-hf-id="hf-ocm7" class="felt"></div><div data-hf-id="hf-k6as" class="light"></div></div>
+    <div data-hf-id="hf-yv5q" class="lg" id="e-l1"></div>
+    <div data-hf-id="hf-ux1p" class="lg" id="e-l2"></div>
+    <div data-hf-id="hf-u5dw" class="lg" id="e-l3"></div>
+    <div data-hf-id="hf-5d9x" id="e-name">Memory Card</div>
+    <div data-hf-id="hf-pnwy" id="e-line" data-var-text="endLine">On your home screen.</div>
+    <div data-hf-id="hf-76y3" id="e-badge-row"><div data-hf-id="hf-y3k4" id="e-badge" data-var-text="storeBadge">Coming to Android</div></div>
+  </div>
+
+  <script>
+    (function () {
+      gsap.registerPlugin(CustomEase);
+      const out = CustomEase.create("mcOut", "M0,0 C0.23,1 0.32,1 1,1");
+      const springy = CustomEase.create("mcSpringy", "M0,0 C0.34,1.35 0.5,1 1,1");
+      const tl = gsap.timeline({ paused: true, defaults: { immediateRender: false } });
+      const B = (n) => (n * 60) / 108;
+      const T0 = B(51); // this scene starts on beat 51
+      const L = (beat) => B(beat) - T0;
+
+      gsap.set("#e-sheet", { y: 1980, rotation: 3, borderRadius: 64, transformOrigin: "50% 0%", boxShadow: "0px -24px 60px rgba(0,0,0,0.28)" });
+      gsap.set(["#e-l1", "#e-l2", "#e-l3"], { transformOrigin: "50% 50%", opacity: 0 });
+      gsap.set(["#e-line", "#e-badge"], { opacity: 0 });
+      gsap.set("#e-name", { clipPath: "inset(0% 100% 0% 0%)" });
+      tl.fromTo("#e-sheet", { y: 1980, rotation: 3, borderRadius: 64, boxShadow: "0px -24px 60px rgba(0,0,0,0.28)" },
+        { y: 0, rotation: 0, borderRadius: 0, boxShadow: "0px 0px 0px rgba(0,0,0,0)", duration: 0.48, ease: "power3.inOut" }, 0);
+
+      // The logo deals itself from the bottom right (where the hand of cards is held), one card a half beat.
+      const cards = [["#e-l1", 0, L(52)], ["#e-l2", 15, L(52.5)], ["#e-l3", 30, L(53)]];
+      cards.forEach(([el, r, land]) => {
+        tl.set(el, { opacity: 1 }, land - 0.4);
+        tl.fromTo(el, { x: 520, y: 1150 }, { x: 0, y: 0, duration: 0.4, ease: "power3.out" }, land - 0.4);
+        tl.fromTo(el, { rotation: r - 34, scale: 1.08 }, { rotation: r, scale: 1, duration: 0.4, ease: springy }, land - 0.4);
+      });
+      const l3 = L(53);
+      tl.fromTo("#e-name", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "power2.out" }, l3 + 0.04);
+      tl.fromTo("#e-line", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, l3 + 0.29);
+      tl.fromTo("#e-badge", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.22, ease: out }, l3 + 0.44);
+
+      tl.set("#e-sheet", { x: 0 }, 32 - T0);
+      window.__timelines["endcard"] = tl;
+    })();
+  </script>
+</template>

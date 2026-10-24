@@ -1,9 +1,9 @@
 """Mixes index.html's <audio> clips (start, duration, volume) the way the renderer does, to measure levels
 without rendering the picture.
 
-    python promo/v01-you-will-forget-this/tools/mix_preview.py [project dir] [out.wav]
+    python promo/tools/mix_preview.py [project dir] [out.wav]
 
-The project dir defaults to this one (the 20 s cut); the other cuts live in promo/build/v01-<cut>.
+Shared by every promo video. The project dir defaults to the current folder (generated cuts live in promo/build/).
 
 Prints integrated loudness and true peak (ffmpeg ebur128). Target for social: -16 to -14 LUFS, <= -1 dBTP.
 """
@@ -12,7 +12,7 @@ import re
 import subprocess
 import sys
 
-ROOT = pathlib.Path(sys.argv[1]).resolve() if len(sys.argv) > 1 else pathlib.Path(__file__).resolve().parents[1]
+ROOT = pathlib.Path(sys.argv[1] if len(sys.argv) > 1 else ".").resolve()
 html = (ROOT / "index.html").read_text(encoding="utf-8")
 clips = []
 for tag in re.findall(r"<audio [^>]*>", html):

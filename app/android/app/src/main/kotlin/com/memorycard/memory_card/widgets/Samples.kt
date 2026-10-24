@@ -15,6 +15,8 @@ internal object Samples {
         turned: Boolean = false,
         empty: Boolean = false,
         memberBack: Boolean = false,
+        /** Cards answered on the Quick card that the app has not seen yet (the widget moves on to the next one). */
+        answered: List<String> = emptyList(),
     ): WidgetState {
         val now = System.currentTimeMillis()
         val day = dayNumber(now)
@@ -43,7 +45,8 @@ internal object Samples {
         if (look != null) snap.put("look", look)
         WidgetSamples.extend(snap, day)
         val open = if (turned) "c1" else null
-        return WidgetState(snap, emptyList(), 0L, open, if (turned) now - 4000 else null, now, memberBack)
+        val inbox = answered.map { Review(it, "de-a1", 3, now - 60_000, null) }
+        return WidgetState(snap, inbox, 0L, open, if (turned) now - 4000 else null, now, memberBack)
     }
 
     /** A phone that has never heard from the app: no snapshot at all (widgets just placed, before the app first runs). */

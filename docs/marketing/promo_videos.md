@@ -236,6 +236,24 @@ edge, and with a flick each card *flies onto the wallpaper and becomes a widget.
 frame rate: record on a real phone, or render the widget frames with the debug widget dump and animate them in
 the composition. (Android only today; say "Android" in the caption, not "your phone".)
 
+> [!success] Produced 2026-10-24: 9:16 master, 32 s
+> The project is `promo/v03-home-screen/` (HyperFrames). Its numbers are in `SPEC.md` and its creative calls and
+> checks in `REVIEW.md`. The render goes to `renders/MemoryCard-V3-HomeScreen-9x16.mp4` (local, gitignored).
+>
+> Every widget is the app's own drawing, from the debug widget dump (now with a `pieces` mode). The video puts
+> the moving pieces back with the launcher's motion.
+>
+> Departures from the table above:
+> - The film runs on a 108 BPM grid, so the sections start a little earlier than the times above.
+> - The four dealt widgets are Streak, the goal seal, Quick actions and Today, which fill page 1. Next two weeks
+>   opens the montage instead.
+> - The Quick card sits on page 2 with the Membership card and Seals.
+> - The camera falls into the phone's screen to cut to the montage.
+> - The Quick Settings tile reads "19 to go" (the emulator's real state).
+> - The end card has a "Coming to Android" placeholder pill.
+>
+> The music is a placeholder made with the app's synth. Still to do: a licensed music bed.
+
 ---
 
 ## 4 · We read how you answer (the engine, 45 s)

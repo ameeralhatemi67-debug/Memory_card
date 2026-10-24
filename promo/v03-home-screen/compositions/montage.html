@@ -1,0 +1,58 @@
+<template>
+  <style>
+    #root { position: absolute; inset: 0; overflow: hidden; }
+    /* The home screen's wallpaper, filling the frame: the camera has gone through the phone's glass. */
+    #m-wall { position: absolute; inset: 0; background: radial-gradient(130% 90% at 18% 6%, #A8B8CC 0%, #8199B5 45%, #6D85A2 72%, #5E7592 100%); }
+    #m-wall::after { content: ""; position: absolute; inset: 0; background-image: url("assets/textures/grain_fine.png"); background-size: 256px 256px; opacity: 0.22; mix-blend-mode: soft-light; }
+    .m-shot { position: absolute; left: 0; top: 0; width: 1080px; height: 1920px; opacity: 0; }
+    .m-wg { position: absolute; transform-origin: 0 0; }
+    /* The tile alone, cut from the capture (px box 550,525 - 1036,734, corner 72) at 1.7x, 4 px inside its rim. */
+    #m-qs { position: absolute; left: 130px; top: 825.5px; width: 820px; height: 349px; border-radius: 118px; overflow: hidden;
+      box-shadow: 0 16px 40px rgba(0,0,0,0.28); }
+    #m-qs img { position: absolute; left: -939px; top: -896.5px; width: 1836px; height: 4080px; }
+  </style>
+
+  <div data-hf-id="hf-q58p" id="root" data-composition-id="montage" data-width="1080" data-height="1920" data-layout-allow-overflow>
+    <div data-hf-id="hf-oyvf" id="m-wall"></div>
+    <div data-hf-id="hf-1wdr" class="m-shot" id="m-s0"><div data-hf-id="hf-8kxd" class="m-wg" id="m-w0"></div></div>
+    <div data-hf-id="hf-vqny" class="m-shot" id="m-s1"><div data-hf-id="hf-7t9k" class="m-wg" id="m-w1"></div></div>
+    <div data-hf-id="hf-rsjx" class="m-shot" id="m-s2"><div data-hf-id="hf-gh5f" class="m-wg" id="m-w2"></div></div>
+    <div data-hf-id="hf-r0w4" class="m-shot" id="m-s3"><div data-hf-id="hf-cj1e" class="m-wg" id="m-w3"></div></div>
+    <div data-hf-id="hf-eidn" class="m-shot" id="m-s4"><div data-hf-id="hf-trbp" class="m-wg" id="m-w4"></div></div>
+    <div data-hf-id="hf-ak9m" class="m-shot" id="m-s5"><div data-hf-id="hf-sznw" class="m-wg" id="m-w5"></div></div>
+    <!-- The Quick Settings tile, from the emulator's panel: "Memory Card · 19 to go · tap to study". -->
+    <div data-hf-id="hf-6m5l" class="m-shot" id="m-s6"><div data-hf-id="hf-s7rn" id="m-qs"><img data-hf-id="hf-gxtq" src="assets/captures/quick-settings.png" alt="" /></div></div>
+  </div>
+
+  <script>
+    (function () {
+      const tl = gsap.timeline({ paused: true, defaults: { immediateRender: false } });
+      const B = (n) => (n * 60) / 108;
+      const T0 = B(44); // this scene starts on beat 44
+      const kit = window.MC_WGKIT;
+      // One widget per beat, centred in the band under the titles, big enough to read on a phone.
+      const shots = [
+        ["ForecastWidget_4x2_b_red_day", 2.3], ["ActivityWidget_4x2_b_red_day", 2.3], ["CardOfDayWidget_4x2_b_red_day", 2.3],
+        ["SealsWidget_4x1_b_red_day", 2.3], ["DecksWidget_4x2_b_red_day", 2.3], ["StreakTallWidget_1x2_b_red_day", 3.0],
+      ];
+      gsap.set(".m-shot", { opacity: 0 });
+      shots.forEach(([key, k], i) => {
+        const el = document.getElementById("m-w" + i);
+        const pieces = kit.mount(el, key);
+        const m = window.MC_WIDGETS[key];
+        gsap.set(el, { x: 540 - (m.w * k) / 2, y: 1000 - (m.h * k) / 2, scale: k });
+        const t = B(44 + i) - T0;
+        kit.animate(tl, pieces, t - 0.4, t + 0.6, 2 + i);
+      });
+      for (let i = 0; i < 7; i++) {
+        const t = B(44 + i) - T0;
+        tl.set("#m-s" + i, { opacity: 1 }, t);
+        if (i < 6) tl.set("#m-s" + i, { opacity: 0 }, B(45 + i) - T0);
+        // Each cut lands on its beat with a small settle.
+        tl.fromTo("#m-s" + i, { scale: 1.035, transformOrigin: "50% 52%" }, { scale: 1, duration: 0.28, ease: "power2.out" }, t);
+      }
+      tl.set("#m-wall", { x: 0 }, B(51) + 0.6 - T0);
+      window.__timelines["montage"] = tl;
+    })();
+  </script>
+</template>

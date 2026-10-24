@@ -8,13 +8,16 @@ import android.content.Intent
 import android.util.Log
 import com.memorycard.memory_card.widgets.Preview
 import com.memorycard.memory_card.widgets.Widgets
+import org.json.JSONObject
 import java.io.File
 
 /**
  * Development only (the debug manifest registers it): drive the widgets over adb.
  *   adb shell am broadcast -n com.memorycard.app/com.memorycard.memory_card.DebugReceiver -a com.memorycard.debug.PIN --es cls SealWidget
  *   adb shell am broadcast -n com.memorycard.app/com.memorycard.memory_card.DebugReceiver -a com.memorycard.debug.DUMP [--es only SealWidget,ForecastWidget]
- * The dump lands in /sdcard/Android/data/com.memorycard.app/files/widget_dump.
+ *       [--es look '{"accent":"blue"}'] [--ez pieces true] [--es sub blue]
+ * The dump lands in /sdcard/Android/data/com.memorycard.app/files/widget_dump (or widget_dump/<sub>). `look` is laid
+ * over every sample day; `pieces` leaves the moving pieces out of the pictures and writes where they go beside them.
  */
 class DebugReceiver : BroadcastReceiver() {
     override fun onReceive(ctx: Context, intent: Intent) {
@@ -39,13 +42,16 @@ class DebugReceiver : BroadcastReceiver() {
                 }
             }
             "com.memorycard.debug.DUMP" -> {
-                val dir = File(ctx.getExternalFilesDir(null), "widget_dump")
+                val sub = intent.getStringExtra("sub")
+                val dir = File(ctx.getExternalFilesDir(null), if (sub == null) "widget_dump" else "widget_dump/$sub")
                 val only = intent.getStringExtra("only")?.split(',')?.toSet()
+                val look = intent.getStringExtra("look")?.let { JSONObject(it) }
+                val pieces = intent.getBooleanExtra("pieces", false)
                 // Off the main thread: a full dump takes longer than a broadcast may.
                 val pending = goAsync()
                 Thread {
                     try {
-                        Preview.dump(ctx, dir, only)
+                        Preview.dump(ctx, dir, only, look, pieces)
                         Log.i("McDebug", "dumped ${dir.listFiles()?.size} pictures to $dir")
                     } catch (e: Throwable) {
                         Log.e("McDebug", "dump failed", e)

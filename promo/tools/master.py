@@ -1,7 +1,9 @@
 """Masters a rendered video's sound for social platforms: two-pass loudness normalisation to -15 LUFS with a
 -1.5 dBTP ceiling (a soft limiter catches the hits first). The picture is copied untouched.
 
-    python promo/v01-you-will-forget-this/tools/master.py renders/in.mp4 renders/out.mp4
+    python promo/tools/master.py renders/in.mp4 renders/out.mp4
+
+Shared by every promo video.
 """
 import json
 import subprocess
