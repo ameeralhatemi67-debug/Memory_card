@@ -4,3 +4,4 @@
 .waveform-cache/
 renders/
 node_modules/
+build/

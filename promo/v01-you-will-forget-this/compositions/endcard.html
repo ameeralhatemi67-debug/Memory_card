@@ -20,11 +20,20 @@
     #e-line { position: absolute; left: 0; top: 1046px; width: 1080px; text-align: center; font-family: "Barlow Semi Condensed"; font-weight: 600; font-size: 54px; line-height: 1.1; color: #555555; }
     #e-badge-row { position: absolute; left: 0; top: 1168px; width: 1080px; display: flex; justify-content: center; }
     #e-badge { height: 92px; padding: 0 46px; border-radius: 46px; background: #333333; display: flex; align-items: center; font-family: "Barlow Semi Condensed"; font-weight: 700; font-size: 40px; color: #F1F1F1; white-space: nowrap; }
+    /* 1:1: the same lockup at 19.62 px per logo unit (cards 136 x 220, r 10.5), centred in the square. */
+    .sq .lg { width: 135.9px; height: 219.9px; border-radius: 10.5px; }
+    .sq #e-l1 { left: 430px; top: 225px; }
+    .sq #e-l2 { left: 453.75px; top: 240.55px; }
+    .sq #e-l3 { left: 471.95px; top: 267.95px; }
+    .sq #e-name { top: 545px; font-size: 120px; }
+    .sq #e-line { top: 687px; font-size: 46px; }
+    .sq #e-badge-row { top: 775px; }
+    .sq #e-badge { height: 80px; padding: 0 40px; border-radius: 40px; font-size: 34px; }
   </style>
 
   <div data-hf-id="hf-5sq0" id="root" data-composition-id="endcard" data-width="1080" data-height="1920" data-layout-allow-overflow
-    data-composition-variables='[{"id":"endLine","type":"string","label":"End line","default":"Remember it for good."},{"id":"storeBadge","type":"string","label":"Store pill (placeholder until published)","default":"Coming to Android"}]'>
-    <div data-hf-id="hf-52f8" id="e-sheet"><div data-hf-id="hf-ocm7" class="felt"></div><div data-hf-id="hf-k6as" class="light"></div></div>
+    data-composition-variables='[{"id":"cut","type":"enum","label":"Cut","default":"full","options":[{"value":"full","label":"20 s"},{"value":"short","label":"15 s"},{"value":"bumper","label":"6 s"}]},{"id":"format","type":"enum","label":"Frame","default":"portrait","options":[{"value":"portrait","label":"9:16"},{"value":"square","label":"1:1"}]},{"id":"endLine","type":"string","label":"End line","default":"Remember it for good."},{"id":"storeBadge","type":"string","label":"Store pill (placeholder until published)","default":"Coming to Android"}]'>
+    <div data-hf-id="hf-52f8" id="e-sheet" data-layout-allow-occlusion><div data-hf-id="hf-ocm7" class="felt"></div><div data-hf-id="hf-k6as" class="light"></div></div>
     <div data-hf-id="hf-yv5q" class="lg" id="e-l1"></div>
     <div data-hf-id="hf-ux1p" class="lg" id="e-l2"></div>
     <div data-hf-id="hf-u5dw" class="lg" id="e-l3"></div>
@@ -40,28 +49,36 @@
       const springy = CustomEase.create("mcSpringy", "M0,0 C0.34,1.35 0.5,1 1,1");
       const tl = gsap.timeline({ paused: true, defaults: { immediateRender: false } });
       const B = (n) => (n * 60) / 104;
-      const T0 = B(30); // this scene starts on beat 30
+      const vars = (window.__hyperframes && window.__hyperframes.getVariables && window.__hyperframes.getVariables()) || {};
+      const P = window.MC_PLANS[vars.cut || "full"];
+      const sq = (vars.format || "portrait") === "square";
+      if (sq) document.getElementById("e-sheet").parentElement.classList.add("sq"); // the scene root
+      const T0 = B(P.wipe); // this scene starts on the wipe's beat
       const L = (beat) => B(beat) - T0; // a beat in local seconds
+      const below = (sq ? 1080 : 1920) + 60;
 
-      gsap.set("#e-sheet", { y: 1980, rotation: 3, borderRadius: 64, transformOrigin: "50% 0%", boxShadow: "0px -24px 60px rgba(0,0,0,0.28)" });
+      gsap.set("#e-sheet", { y: below, rotation: 3, borderRadius: 64, transformOrigin: "50% 0%", boxShadow: "0px -24px 60px rgba(0,0,0,0.28)" });
       gsap.set(["#e-l1", "#e-l2", "#e-l3"], { transformOrigin: "50% 50%", opacity: 0 });
       gsap.set(["#e-line", "#e-badge"], { opacity: 0 });
       gsap.set("#e-name", { clipPath: "inset(0% 100% 0% 0%)" });
-      tl.fromTo("#e-sheet", { y: 1980, rotation: 3, borderRadius: 64, boxShadow: "0px -24px 60px rgba(0,0,0,0.28)" },
+      tl.fromTo("#e-sheet", { y: below, rotation: 3, borderRadius: 64, boxShadow: "0px -24px 60px rgba(0,0,0,0.28)" },
         { y: 0, rotation: 0, borderRadius: 0, boxShadow: "0px 0px 0px rgba(0,0,0,0)", duration: 0.48, ease: "power3.inOut" }, 0);
 
       // The logo deals itself from the bottom right (where the hand of cards is held), one card a half beat.
-      const cards = [["#e-l1", 0, L(31)], ["#e-l2", 15, L(31.5)], ["#e-l3", 30, L(32)]];
+      const fl = P.flightS, from = sq ? { x: 420, y: 760 } : { x: 520, y: 1150 };
+      const cards = [["#e-l1", 0, L(P.deals[0])], ["#e-l2", 15, L(P.deals[1])], ["#e-l3", 30, L(P.deals[2])]];
       cards.forEach(([el, r, land]) => {
-        tl.set(el, { opacity: 1 }, land - 0.4);
-        tl.fromTo(el, { x: 520, y: 1150 }, { x: 0, y: 0, duration: 0.4, ease: "power3.out" }, land - 0.4);
-        tl.fromTo(el, { rotation: r - 34, scale: 1.08 }, { rotation: r, scale: 1, duration: 0.4, ease: springy }, land - 0.4);
+        tl.set(el, { opacity: 1 }, land - fl);
+        tl.fromTo(el, from, { x: 0, y: 0, duration: fl, ease: "power3.out" }, land - fl);
+        tl.fromTo(el, { rotation: r - 34, scale: 1.08 }, { rotation: r, scale: 1, duration: fl, ease: springy }, land - fl);
       });
 
-      tl.fromTo("#e-name", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "power2.out" }, 18.5 - T0);
-      tl.fromTo("#e-line", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, 18.75 - T0);
-      tl.fromTo("#e-badge", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.22, ease: out }, 18.9 - T0);
+      const l3 = L(P.deals[2]), [en, el, ep] = P.endS;
+      tl.fromTo("#e-name", { clipPath: "inset(0% 100% 0% 0%)" }, { clipPath: "inset(0% 0% 0% 0%)", duration: 0.4, ease: "power2.out" }, l3 + en);
+      tl.fromTo("#e-line", { opacity: 0, filter: "blur(8px)" }, { opacity: 1, filter: "blur(0px)", duration: 0.2, ease: "power2.out" }, l3 + el);
+      tl.fromTo("#e-badge", { opacity: 0, scale: 0.92 }, { opacity: 1, scale: 1, duration: 0.22, ease: out }, l3 + ep);
 
+      tl.set("#e-sheet", { x: 0 }, P.duration - T0);
       window.__timelines["endcard"] = tl;
     })();
   </script>

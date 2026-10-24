@@ -77,3 +77,10 @@ QA:      f0 full headline readable (thumbnail); f60 THIS mid-drop over the risin
          streak pill showing 5; f560 logo dealt; f599 final still end card. Every word inside y 250-1500,
          x 0-940.
 ```
+
+## Cuts
+
+The 15 s cut-down, the 6 s bumper and the 1:1 version use the same look, objects and motion. Their timing is
+in `assets/plans.js` (one schedule per cut, beats on the same grid), and their camera framing is in
+`MC_FORMATS` (1:1: the hook close-up at 4.09×, the phone at 1.2× on the left, the titles on the right at
+x = 568). REVIEW.md has the beat-by-beat of each cut.

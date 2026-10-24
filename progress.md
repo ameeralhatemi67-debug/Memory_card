@@ -41,6 +41,24 @@ This document records verified outcomes, technical approaches, and architectural
 
 ## Flutter App Outcomes (pulled forward from Version 4.0)
 
+### 2026-10-24 — Promo Video 1 cuts: 1:1, 15 s and 6 s bumper
+
+- **Outcome Summary:** Three more versions of Video 1, all mastered to about -15 LUFS:
+  - a 1:1 feed version of the full 20 s, with the phone on the left and the titles on the right;
+  - a 15 s cut-down (a four-card montage, no streak beat);
+  - a 6 s bumper: the headline, THIS caught on a card, DONE stamped under THIS on the phone, then the logo dealt
+    onto paper.
+- **How We Built It & Technical Approach:**
+  - Each cut is re-timed, not trimmed: one schedule per cut in `promo/v01-you-will-forget-this/assets/plans.js`
+    (beats on the 104 BPM grid). The three scenes read the cut and frame shape as HyperFrames variables.
+  - `tools/build_cuts.py` writes each cut's root file and places the app's sounds from the schedule. Because
+    HyperFrames allows one root file per project, it generates the other cuts as small projects in
+    `promo/build/` (gitignored).
+  - `tools/make_music.py` arranges one bed per cut from the same pieces; the 20 s bed stayed byte-identical.
+- **Verification Evidence:** `npx hyperframes check` passes on all four projects; snapshots at every beat of each
+  cut and frames decoded from the final MP4s; durations and sizes probed; loudness and sound onsets measured
+  on the beats (not listened to).
+
 ### 2026-10-24 — Promo Video 1 "You will forget this" (20 s, 9:16)
 
 - **Outcome Summary:** The first promotional video is produced: 1080 × 1920, 30 fps, 20.0 s, sound mastered for social (-14.9 LUFS, -1.4 dBTP). It follows the beat sheet in `docs/marketing/promo_videos.md` §1 on a 104 BPM grid:

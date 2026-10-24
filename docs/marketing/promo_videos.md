@@ -174,8 +174,15 @@ lose ink one by one, the way a memory fades, until only "THIS" is left. A card s
 > - The missed card visibly tucks back into the stack.
 > - The end card has a "Coming to Android" placeholder pill.
 >
-> The music is a placeholder made with the app's synth. Still to do: the 1:1 cut, the 15 s and 6 s cut-downs,
-> and a licensed music bed.
+> The music is a placeholder made with the app's synth. Still to do: a licensed music bed.
+>
+> **Cuts produced the same day.** Their schedules are in `assets/plans.js`; `tools/build_cuts.py` generates
+> their projects into `promo/build/`. REVIEW.md has the details.
+> - **1:1, 20 s:** the phone on the left at 1.2×, the titles on the right. A centred phone with captions under
+>   it would shrink the card to about a quarter of the frame.
+> - **15 s:** the montage is four cards (about 2 s), and the streak beat is dropped.
+> - **6 s bumper:** the headline, THIS caught by the card, the DONE seal stamped under THIS on the phone, then
+>   the logo.
 
 ---
 

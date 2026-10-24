@@ -1,7 +1,14 @@
 # Video 1 · You will forget this · review (2026-10-24)
 
-Delivered: `renders/MemoryCard-V1-YouWillForgetThis-9x16.mp4` (1080 × 1920, 30 fps, 20.0 s, H.264 + AAC,
--14.9 LUFS, -1.4 dBTP). Renders are gitignored. Rebuild them with the commands at the end of this file.
+Delivered (all 30 fps, H.264 + AAC, mastered to about -15 LUFS with a -1.5 dBTP ceiling; renders are gitignored,
+rebuild them with the commands at the end of this file):
+
+| File in `renders/` | Cut | Size | Length | Loudness |
+|---|---|---|---|---|
+| `MemoryCard-V1-YouWillForgetThis-9x16.mp4` | the master | 1080 × 1920 | 20.0 s | -14.9 LUFS, -1.4 dBTP |
+| `MemoryCard-V1-YouWillForgetThis-1x1.mp4` | feed square | 1080 × 1080 | 20.0 s | -14.9 LUFS, -1.4 dBTP |
+| `MemoryCard-V1-YouWillForgetThis-15s-9x16.mp4` | 15 s cut-down | 1080 × 1920 | 15.0 s | -14.9 LUFS, -1.5 dBTP |
+| `MemoryCard-V1-YouWillForgetThis-6s-bumper-9x16.mp4` | 6 s bumper | 1080 × 1920 | 6.0 s | -15.0 LUFS, -2.5 dBTP |
 
 ## Creative calls
 
@@ -42,6 +49,45 @@ Delivered: `renders/MemoryCard-V1-YouWillForgetThis-9x16.mp4` (1080 × 1920, 30 
   climbing arpeggio for the montage, a held chord under the stamp and a final chord on beat 32. Swap
   `assets/sounds/music.wav` for a licensed track at 96–110 BPM and keep `<audio id="music">`.
 
+## The cuts (added 2026-10-24)
+
+The cuts are re-timed compositions, not trims of the 20 s render. One schedule per cut lives in
+`assets/plans.js` (beats on the 104 BPM grid), and the three scenes read their cut and frame shape as
+variables. `tools/build_cuts.py` writes each cut's root file with the app's sounds placed from that schedule.
+The 20 s 9:16 cut is this project's `index.html`. HyperFrames wants exactly one root file per project, so the
+other cuts are generated as their own small projects in `promo/build/v01-15s`, `v01-6s` and `v01-square`
+(gitignored copies of `assets/` and `compositions/`). `tools/make_music.py` arranges one bed per cut from
+the same pieces; the 20 s bed is byte-identical to the first delivery.
+
+- **15 s** (26 beats, as the brief asks: the montage is cut to about 2 s).
+  - Same hook and pull-back; "Think." on beat 5.5 and the tap/flip on 7.
+  - Right swipe released on 10; the miss flipped on 11 and released on 13, then the tuck and "It comes back.".
+  - Four montage cards released on beats 16–19: Tanjiro, Tottenham, le fromage (the left swipe), Japan. The
+    header counts Today 14 → 20.
+  - DONE on beat 20, end card from 22, logo dealt on 23, 23.5 and 24.
+  - To reach 15 s, the streak beat is dropped and the end card is 0.3 s shorter. It still holds 0.7 s at the end.
+- **6 s bumper** (hook → DONE seal → logo, as the brief asks).
+  - The headline fades faster (30 ms per letter from 0.55 s), and THIS is caught on beat 3.
+  - A 0.75 s pull-back shows THIS on the phone (no swap to "el gato").
+  - The DONE seal stamps just under THIS on beat 5: "THIS." → done.
+  - The paper sheet arrives on beat 6, the logo is dealt on 7, 7.5 and 8, and the end card holds dead still
+    for the last second.
+- **1:1** (the full 20 s).
+  - The brief's "phone centred, captions under it" would shrink the phone to about 1.0× (the card about a
+    quarter of the frame). Instead the whole phone sits on the left at 1.2× and the titles sit on the right,
+    level with the card's top third, at 100 px Bernard.
+  - The hook keeps the same lines: 200 px, flush left at x = 100, with the camera close-up at 4.09×.
+  - The end card is the same lockup at 80 % size, centred in the square.
+- On the 15 s and 6 s cuts the third logo card lands on the bed's final chord, and every card is dealt onto
+  the paper sheet, never over the outgoing scene.
+- **Checked:**
+  - `npx hyperframes check` passes on all four projects.
+  - Snapshots of every cut at its beats, plus frames decoded from each final MP4.
+  - Sound onsets measured on the beats: 15 s flip 4.07, lock 5.51, swipe 5.77, again 7.50, tuck 8.28,
+    montage 9.23–10.96, stamp 11.57, deals 13.30/13.59/13.88; bumper landing 1.73, stamp 2.92, deals
+    4.07/4.36/4.65.
+  - Not listened to.
+
 ## Measured vs looked at
 
 - `npx hyperframes check`: ok (lint, runtime, layout, motion, contrast and craft pass with no errors).
@@ -73,12 +119,21 @@ Delivered: `renders/MemoryCard-V1-YouWillForgetThis-9x16.mp4` (1080 × 1920, 30 
 ## Rebuild
 
 ```bash
-python promo/v01-you-will-forget-this/tools/make_music.py
 cd promo/v01-you-will-forget-this
+python tools/make_music.py all        # the three beds (assets/sounds/music*.wav)
+python tools/build_cuts.py            # index.html here + promo/build/v01-15s, v01-6s, v01-square
 npx hyperframes render --quality delivery --output renders/v01-raw.mp4
+npx hyperframes render ../build/v01-15s --quality delivery --output renders/v01-15s-raw.mp4
+npx hyperframes render ../build/v01-6s --quality delivery --output renders/v01-6s-raw.mp4
+npx hyperframes render ../build/v01-square --quality delivery --output renders/v01-square-raw.mp4
 python tools/master.py renders/v01-raw.mp4 renders/MemoryCard-V1-YouWillForgetThis-9x16.mp4
+python tools/master.py renders/v01-15s-raw.mp4 renders/MemoryCard-V1-YouWillForgetThis-15s-9x16.mp4
+python tools/master.py renders/v01-6s-raw.mp4 renders/MemoryCard-V1-YouWillForgetThis-6s-bumper-9x16.mp4
+python tools/master.py renders/v01-square-raw.mp4 renders/MemoryCard-V1-YouWillForgetThis-1x1.mp4
 ```
 
-`tools/mix_preview.py` mixes the `<audio>` tags with ffmpeg to check levels without rendering the picture.
-Bernard MT Condensed is gitignored (commercial): copy `app/assets/fonts/BernardMTCondensed.ttf` to
-`assets/fonts/` before rendering on another machine.
+`tools/mix_preview.py [project dir]` mixes a cut's `<audio>` tags with ffmpeg to check levels without
+rendering the picture. Bernard MT Condensed is gitignored (commercial): copy
+`app/assets/fonts/BernardMTCondensed.ttf` to `assets/fonts/` before rendering on another machine, then run
+`build_cuts.py` so the cut projects get it too. To snapshot or check a generated cut, run the command inside
+its `promo/build/...` folder.
