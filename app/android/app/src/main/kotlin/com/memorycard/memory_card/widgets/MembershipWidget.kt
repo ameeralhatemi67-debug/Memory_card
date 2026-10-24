@@ -51,6 +51,7 @@ class MembershipWidget : SceneWidget() {
     override val kind = "membership"
     override val natural = Surface.INK
     override val turns = true
+    override val swaps = true
     override val cells = listOf(4 to 2)
 
     override fun draw(s: Scene, st: WidgetState, id: Int) {

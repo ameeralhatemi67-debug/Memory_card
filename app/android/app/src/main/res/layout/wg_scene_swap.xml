@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A drawn widget whose two sides swap like two cards in a hand (the membership card, nav canvas design B):
+     the side showing slips away to the left as the other comes round from the right. Each side has its own face. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layoutDirection="ltr"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <include layout="@layout/wg_scene_fxb" />
+
+    <ViewFlipper
+        android:id="@+id/pages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inAnimation="@anim/wg_swap_in"
+        android:outAnimation="@anim/wg_swap_out">
+
+        <include layout="@layout/wg_scene_spage0" />
+
+        <include layout="@layout/wg_scene_spage1" />
+    </ViewFlipper>
+
+    <include layout="@layout/wg_scene_fxf" />
+
+    <include layout="@layout/wg_scene_hits" />
+</FrameLayout>

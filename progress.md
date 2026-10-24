@@ -41,6 +41,12 @@ This document records verified outcomes, technical approaches, and architectural
 
 ## Flutter App Outcomes (pulled forward from Version 4.0)
 
+### 2026-10-24 — Membership card widget swaps its sides (design B · Swap)
+
+- **Outcome Summary:** The owner picked **B · Swap** from the four turns on the design canvas. Tapping the membership card widget now swaps it like two cards in a hand: the side showing slips away to the left, tilting and shrinking as it fades, while the other side comes round from the right and settles with a small overshoot. The blank face that used to show mid-turn is gone, because each side now carries its own face and moves with it.
+- **How We Built It & Technical Approach:** a new `wg_scene_swap` layout whose two flipper pages (`wg_scene_spage0/1`) each hold their own face image, `wg_swap_in/out` view animations (translate, rotate, scale, alpha), and `SceneWidget.swaps` (the membership card), which tints both faces in `SceneViews.build`. A custom overshoot interpolator resource silently stopped the launcher from playing the animation; Android's built-in `@android:anim/overshoot_interpolator` plays it.
+- **Verification Evidence:** on the emulator's Pixel launcher (debug build with the swap slowed 8×, screenshots mid-swap), then the release APK flipping front to back and back. Not yet seen on the Samsung.
+
 ### 2026-10-24 — Tall streak widget, nav sounds and a volume control; membership card turns on the canvas
 
 - **Outcome Summary:** **Streak flame · tall** is back as its own widget entry, one column wide and two or three rows tall (the three-row one lists the week down the card). Picking a tab in the hand nav plays a new "card snap" sound and the + card's deal has its own two-flick sound; *Settings › Feel* gains a **Volume** slider for every sound and a **Nav bar** sound choice (Card snap · Soft tick · Silent). Four ways for the membership card widget to turn over (Turn over, Swap, Page turn, Stamp) were added to the design canvas (https://claude.ai/artifact/BAzpHdCtH8nxanCYBifZFe) for the owner to choose; all four turn the whole card, face included (today only the contents turn over a fixed blank face), and use only 2D scale, slide, rotate and fade so the chosen one can be played by an Android widget.

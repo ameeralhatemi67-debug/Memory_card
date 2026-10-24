@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The other side comes round from the right and settles with a small overshoot. -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/overshoot_interpolator">
+    <translate android:duration="420" android:startOffset="70" android:fromXDelta="24%" android:toXDelta="0%" android:fromYDelta="7%" android:toYDelta="0%" />
+    <rotate android:duration="420" android:startOffset="70" android:fromDegrees="11" android:toDegrees="0" android:pivotX="50%" android:pivotY="50%" />
+    <scale android:duration="420" android:startOffset="70" android:fromXScale="0.86" android:toXScale="1" android:fromYScale="0.86" android:toYScale="1" android:pivotX="50%" android:pivotY="50%" />
+    <alpha android:duration="250" android:startOffset="70" android:fromAlpha="0" android:toAlpha="1" android:interpolator="@android:anim/decelerate_interpolator" />
+</set>

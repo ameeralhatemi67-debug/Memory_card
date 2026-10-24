@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The side showing slips away to the left, tilting and shrinking a little as it fades. -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:fillAfter="true"
+    android:interpolator="@android:anim/accelerate_interpolator">
+    <translate android:duration="300" android:fromXDelta="0%" android:toXDelta="-24%" android:fromYDelta="0%" android:toYDelta="7%" />
+    <rotate android:duration="300" android:fromDegrees="0" android:toDegrees="-11" android:pivotX="50%" android:pivotY="50%" />
+    <scale android:duration="300" android:fromXScale="1" android:toXScale="0.86" android:fromYScale="1" android:toYScale="0.86" android:pivotX="50%" android:pivotY="50%" />
+    <alpha android:duration="300" android:fromAlpha="1" android:toAlpha="0" />
+</set>

@@ -38,6 +38,9 @@ abstract class SceneWidget : HomeWidgetProvider() {
     /** A change turns the card over (Quick card, membership card) instead of dissolving. */
     internal open val turns: Boolean get() = false
 
+    /** A change swaps the card for its other side, like two cards in a hand (the membership card). */
+    internal open val swaps: Boolean get() = false
+
     /** The sizes it comes in as (columns, rows), the default first: for previews, the picker and the dump. */
     internal abstract val cells: List<Pair<Int, Int>>
 
@@ -104,7 +107,7 @@ abstract class SceneWidget : HomeWidgetProvider() {
         val size = if (w > 0 && h > 0) SizeF(w.toFloat(), h.toFloat()) else fallback
         Log.d(TAG, "${javaClass.simpleName} $id is ${size.width.toInt()}×${size.height.toInt()} dp")
         val scene = scene(ctx, st, size, animated = st.look.motion && Scene.canAnimate, id = id)
-        return SceneViews.build(ctx, scene, id, turns)
+        return SceneViews.build(ctx, scene, id, turns, swaps)
     }
 
     internal companion object {
@@ -144,9 +147,11 @@ internal object SceneViews {
     private val HIT_SLOTS = intArrayOf(R.id.hit0, R.id.hit1, R.id.hit2, R.id.hit3, R.id.hit4, R.id.hit5, R.id.hit6, R.id.hit7)
 
     @SuppressLint("NewApi")
-    fun build(ctx: Context, scene: Scene, id: Int, turns: Boolean): RemoteViews {
+    fun build(ctx: Context, scene: Scene, id: Int, turns: Boolean, swaps: Boolean = false): RemoteViews {
+        val swap = swaps && scene.look.motion
         val layout = when {
             !scene.look.motion -> R.layout.wg_scene_still
+            swaps -> R.layout.wg_scene_swap
             turns -> R.layout.wg_scene_turn
             else -> R.layout.wg_scene_fade
         }
@@ -158,17 +163,21 @@ internal object SceneViews {
         // The face: a white shape tinted with the paper (or ink) of the day's and the night's theme, as solid as the user likes.
         val (dayFace, dayMain, dayOver) = scene.faceColors(look.day)
         val (nightFace, nightMain, nightOver) = scene.faceColors(look.night)
-        if (scene.surface == Surface.CLEAR) {
-            v.setViewVisibility(R.id.bg, View.GONE)
-        } else {
+        // A card that swaps has a face on each side (it moves with the side); everything else has one, fixed.
+        val faces = if (swap) listOf(R.id.p0_bg, R.id.p1_bg) else listOf(R.id.bg)
+        for (bg in faces) {
+            if (scene.surface == Surface.CLEAR) {
+                v.setViewVisibility(bg, View.GONE)
+                continue
+            }
             val alpha = look.opacity * 255 / 100
-            v.setImageViewResource(R.id.bg, look.faceRes(scene.pill))
+            v.setImageViewResource(bg, look.faceRes(scene.pill))
             val dayTint = (dayFace and 0x00FFFFFF) or (alpha shl 24)
             val nightTint = (nightFace and 0x00FFFFFF) or (alpha shl 24)
             if (modern) {
-                v.setColorStateList(R.id.bg, "setImageTintList", ColorStateList.valueOf(dayTint), ColorStateList.valueOf(nightTint))
+                v.setColorStateList(bg, "setImageTintList", ColorStateList.valueOf(dayTint), ColorStateList.valueOf(nightTint))
             } else {
-                v.setInt(R.id.bg, "setColorFilter", if (nightNow) nightTint else dayTint)
+                v.setInt(bg, "setColorFilter", if (nightNow) nightTint else dayTint)
             }
         }
 
