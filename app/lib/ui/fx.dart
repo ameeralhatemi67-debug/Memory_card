@@ -12,10 +12,16 @@ class Fx {
 
   bool sounds = true;
   bool haptics = true;
+
+  /// How loud every sound is, 0…1 (Settings › Feel).
+  double volume = 0.8;
+
+  /// What picking a tab in the nav bar sounds like: card · soft · off.
+  String navSound = 'card';
   final Map<String, _Voice> _voices = {};
   bool _ready = false;
 
-  static const _names = ['tick', 'flip', 'good', 'easy', 'again', 'pop', 'stamp', 'whoosh', 'undo', 'fanfare', 'seal'];
+  static const _names = ['tick', 'flip', 'good', 'easy', 'again', 'pop', 'stamp', 'whoosh', 'undo', 'fanfare', 'seal', 'card', 'soft', 'deal'];
 
   Future<void> init() async {
     if (_ready) return;
@@ -28,7 +34,7 @@ class Fx {
         ).build());
       }
       for (final n in _names) {
-        final count = n == 'tick' || n == 'pop' || n == 'good' ? 3 : (n == 'fanfare' ? 1 : 2);
+        final count = n == 'tick' || n == 'pop' || n == 'good' || n == 'card' ? 3 : (n == 'fanfare' ? 1 : 2);
         final players = <AudioPlayer>[];
         for (var k = 0; k < count; k++) {
           final p = AudioPlayer();
@@ -45,7 +51,7 @@ class Fx {
   }
 
   void _play(String name, [double volume = 1]) {
-    if (!sounds) return;
+    if (!sounds || this.volume <= 0) return;
     final v = _voices[name];
     if (v == null) return;
     final p = v.players[v.next];
@@ -53,7 +59,7 @@ class Fx {
     unawaited(() async {
       try {
         await p.stop();
-        await p.setVolume(volume);
+        await p.setVolume((volume * this.volume).clamp(0.0, 1.0));
         await p.resume();
       } catch (_) {}
     }());
@@ -71,6 +77,16 @@ class Fx {
   }
 
   void tap() => _haptic(HapticFeedback.selectionClick);
+
+  /// A tab picked in the nav bar: a card drawn from the hand.
+  void nav() {
+    if (navSound == 'card') _play('card', 0.7);
+    if (navSound == 'soft') _play('soft', 0.6);
+    _haptic(HapticFeedback.selectionClick);
+  }
+
+  /// The + card deals New deck / New card.
+  void deal() => _play('deal', 0.6);
 
   void reveal() {
     _play('flip', 0.7);

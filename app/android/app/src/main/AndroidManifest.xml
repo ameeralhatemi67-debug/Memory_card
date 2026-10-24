@@ -60,6 +60,13 @@
             </intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/wg_streak_info" />
         </receiver>
+        <receiver android:name=".widgets.StreakTallWidget" android:exported="false" android:label="@string/wg_streak_tall_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/wg_streak_tall_info" />
+        </receiver>
         <receiver android:name=".widgets.QuickCardWidget" android:exported="false" android:label="@string/wg_quick_name">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

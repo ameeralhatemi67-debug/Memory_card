@@ -132,6 +132,16 @@ def main():
     write("fanfare", mix(arp, chord, offsets=[0, 0.36]), 0.8)
     # A seal (achievement): two bells a fifth apart.
     write("seal", mix(bell(783.99, 1.0, 0.25), bell(1174.66, 0.9, 0.18), offsets=[0, 0.08]), 0.7)
+    # The nav bar's hand: a card drawn from it snaps (a crisp paper edge over a small knock).
+    write("card", mix(noise(0.045, 0.5, decay=8, attack=0.001, low=0.18, high=0.75),
+                      tone(1500, 0.03, 0.14, decay=9, glide_to=950),
+                      tone(170, 0.06, 0.32, decay=7, attack=0.001)), 0.55)
+    # The same, softer: one small wooden tick.
+    write("soft", marimba(1318.5, 0.09, 0.3), 0.32)
+    # The + card deals two cards: two quick flicks, the second a touch higher.
+    write("deal", mix(noise(0.07, 0.42, decay=6, attack=0.003, low=0.1, high=0.6),
+                      noise(0.07, 0.4, decay=6, attack=0.003, low=0.14, high=0.7),
+                      tone(900, 0.05, 0.1, decay=8, glide_to=1300), offsets=[0, 0.09, 0.09]), 0.5)
 
 
 if __name__ == "__main__":

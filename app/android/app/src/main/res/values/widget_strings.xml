@@ -4,6 +4,8 @@
     <string name="wg_seal_desc">Today\'s cards against your goal; the red seal once it is met. Resize it to a slim bar or a small pill.</string>
     <string name="wg_streak_name">Streak flame</string>
     <string name="wg_streak_desc">Your streak and the grace shields left this month, in a row 1 to 4 columns wide.</string>
+    <string name="wg_streak_tall_name">Streak flame · tall</string>
+    <string name="wg_streak_tall_desc">Your streak, this week day by day, the shields and your best: one column wide, two or three rows tall.</string>
     <string name="wg_quick_name">Quick card</string>
     <string name="wg_quick_desc">Review the card you are closest to forgetting, right here.</string>
     <string name="wg_today_name">Today</string>

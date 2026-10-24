@@ -2,6 +2,7 @@ package com.memorycard.memory_card.widgets
 
 import android.util.SizeF
 import com.memorycard.memory_card.R
+import kotlin.math.max
 import kotlin.math.min
 
 /**
@@ -117,5 +118,82 @@ class StreakWidget : SceneWidget() {
         s.text(s.ink(), big, tx, cy + 1f, 26f, s.display, maxW = textW)
         s.text(s.ink(Shade.MUTED), sub, tx, cy + 20f, 13f, s.ui, maxW = textW)
         shieldRow(s, st, s.w - pad, cy - 12f, 20f, 24f, 4f, leftToRight = false)
+    }
+}
+
+private val WEEK_LETTERS = charArrayOf('M', 'T', 'W', 'T', 'F', 'S', 'S')
+
+/**
+ * Streak flame · tall: one column, two or three rows. The flame, the days, this week (a row of days at two rows,
+ * a column of named days at three), the shields and your best. Tap: Today.
+ */
+class StreakTallWidget : SceneWidget() {
+    override val kind = "streak"
+    override val natural = Surface.INK
+    override val cells = listOf(1 to 2, 1 to 3)
+
+    override fun draw(s: Scene, st: WidgetState, id: Int) {
+        s.anywhere = open(s.ctx, "memorycard://today")
+        s.description = "${st.streak}-day streak, ${st.shields} grace shields left"
+        if (s.h >= 290f) three(s, st) else two(s, st)
+    }
+
+    /** Flame, number and DAYS from [top]; returns the y under them. */
+    private fun head(s: Scene, st: WidgetState, top: Float, u: Float): Float {
+        val flameH = 32f * u
+        flameMark(s, st, s.w / 2f - flameH * 0.4f, top, flameH * 0.8f, flameH)
+        val numberSize = 42f * u
+        val base = top + flameH + 6f + numberSize * 0.72f
+        s.text(s.ink(), "${st.streak}", s.w / 2f, base, numberSize, s.display, Align.CENTER, maxW = s.w - 10f)
+        s.text(s.ink(Shade.MUTED), if (st.atRisk) "TODAY" else "DAYS", s.w / 2f, base + 15f * u, 9f, s.uiBold, Align.CENTER, spacing = 1.1f)
+        return base + 26f * u
+    }
+
+    /** 1×2: this week as a row of seven, with its weekday letters. */
+    private fun two(s: Scene, st: WidgetState) {
+        val u = min(1f, s.h / 201f).coerceAtLeast(0.8f)
+        val rule = head(s, st, max(10f, 14f * u), u)
+        s.rect(s.ink(Shade.LINE), s.w / 2f - 20f, rule, 40f, 1f, 0.5f)
+        val cell = 6f
+        val gap = (s.w - 16f - 7 * cell) / 6f
+        val x0 = (s.w - (7 * cell + 6 * gap)) / 2f
+        val dots = rule + 10f * u
+        weekRow(s, st, x0, dots, cell, gap)
+        for (i in 0 until 7) {
+            s.text(s.ink(Shade.DIM), WEEK_LETTERS[i].toString(), x0 + i * (cell + gap) + cell / 2f, dots + cell + 10f, 7.5f, s.uiBold, Align.CENTER)
+        }
+        shieldRow(s, st, s.w / 2f - 12.5f, dots + cell + 22f * u, 11f, 13f, 3f)
+        if (st.best > 0) s.text(s.ink(Shade.MUTED), "best ${st.best}", s.w / 2f, s.h - max(10f, 12f * u), 10.5f, s.uiBold, Align.CENTER)
+    }
+
+    /** 1×3: this week down the card, a letter and a square for each day. */
+    private fun three(s: Scene, st: WidgetState) {
+        val u = min(1f, s.h / 313f).coerceAtLeast(0.85f)
+        val rule = head(s, st, max(12f, 16f * u), u)
+        s.rect(s.ink(Shade.LINE), s.w / 2f - 20f, rule, 40f, 1f, 0.5f)
+        val shieldsH = 13f
+        val bottom = s.h - (if (st.best > 0) 28f else 14f) - shieldsH - 10f
+        val top = rule + 10f
+        val step = min(18f, (bottom - top) / 7f)
+        val cell = min(11f, step - 5f)
+        val wd = weekdayOf(st.today)
+        for (i in 0 until 7) {
+            val y = top + i * step
+            val day = st.today - wd + i
+            s.text(s.ink(if (day == st.today) Shade.MUTED else Shade.DIM), WEEK_LETTERS[i].toString(), s.w / 2f - 6f, y + cell - 1f, 8.5f, s.uiBold, Align.END)
+            val x = s.w / 2f + 1f
+            val r = cell * 0.3f
+            when {
+                day > st.today -> s.rect(s.ink(0.14f), x, y, cell, cell, r)
+                day == st.today -> {
+                    if (st.goalHit) s.rect(s.ink(), x, y, cell, cell, r)
+                    s.outline(s.accent, x, y, cell, cell, r, 1.6f)
+                }
+                day in st.goalDays -> s.rect(s.ink(), x, y, cell, cell, r)
+                else -> s.rect(s.ink(0.26f), x, y, cell, cell, r)
+            }
+        }
+        shieldRow(s, st, s.w / 2f - 12.5f, top + 7 * step + 6f, 11f, shieldsH, 3f)
+        if (st.best > 0) s.text(s.ink(Shade.MUTED), "best ${st.best}", s.w / 2f, s.h - max(10f, 12f * u), 10.5f, s.uiBold, Align.CENTER)
     }
 }

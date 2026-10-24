@@ -57,7 +57,9 @@ class _BootState extends State<Boot> {
       unawaited(HomeWidgets.i.attach(store));
       Fx.i
         ..sounds = store.settings.sounds
-        ..haptics = store.settings.haptics;
+        ..haptics = store.settings.haptics
+        ..volume = store.settings.volume
+        ..navSound = store.settings.navSound;
       unawaited(Fx.i.init());
       // Icons decode once, here, so the first screen appears complete.
       unawaited(McIcons.precache().catchError((Object _) => <void>[]));

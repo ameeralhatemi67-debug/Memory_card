@@ -160,7 +160,7 @@ class _HandCardState extends State<_HandCard> with SingleTickerProviderStateMixi
                 label: widget.label,
                 scale: 0.94,
                 onTap: () {
-                  Fx.i.tap();
+                  Fx.i.nav();
                   widget.onTap();
                 },
                 child: Container(

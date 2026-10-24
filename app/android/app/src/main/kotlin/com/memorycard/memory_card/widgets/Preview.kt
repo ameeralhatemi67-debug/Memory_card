@@ -13,6 +13,7 @@ internal object Widgets {
         listOf(
             SealWidget(),
             StreakWidget(),
+            StreakTallWidget(),
             TodayWidget(),
             QuickCardWidget(),
             ActionsWidget(),
@@ -28,7 +29,7 @@ internal object Widgets {
 
     /** The provider class names, in the order of [all] (kept as text: a release build may rename the classes). */
     private val names = listOf(
-        "SealWidget", "StreakWidget", "TodayWidget", "QuickCardWidget",
+        "SealWidget", "StreakWidget", "StreakTallWidget", "TodayWidget", "QuickCardWidget",
         "ActionsWidget", "ActionsGridWidget", "ActivityWidget", "ForecastWidget", "MembershipWidget",
         "CardOfDayWidget", "SealsWidget", "DecksWidget",
     )

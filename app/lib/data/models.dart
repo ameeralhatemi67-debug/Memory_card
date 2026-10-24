@@ -573,6 +573,12 @@ class Settings {
   String theme = 'system';
   bool sounds = true;
   bool haptics = true;
+
+  /// Loudness of every sound, 0…1.
+  double volume = 0.8;
+
+  /// The nav bar's tab sound: card · soft · off.
+  String navSound = 'card';
   bool reducedMotion = false;
   bool remind = false;
   int remindMinutes = 19 * 60;
@@ -632,6 +638,8 @@ class Settings {
         'goal': goal,
         'theme': theme,
         'sounds': sounds,
+        'volume': double.parse(volume.toStringAsFixed(2)),
+        'navSound': navSound,
         'haptics': haptics,
         'reduced': reducedMotion,
         'remind': remind,
@@ -662,6 +670,8 @@ class Settings {
     s.goal = _i(j['goal'], 20);
     s.theme = _s(j['theme'], 'system');
     s.sounds = _b(j['sounds'], true);
+    s.volume = _d(j['volume'], 0.8).clamp(0.0, 1.0);
+    s.navSound = const ['card', 'soft', 'off'].contains(j['navSound']) ? j['navSound'] as String : 'card';
     s.haptics = _b(j['haptics'], true);
     s.reducedMotion = _b(j['reduced']);
     s.remind = _b(j['remind']);

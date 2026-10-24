@@ -169,7 +169,7 @@ class ShellState extends State<Shell> with SingleTickerProviderStateMixin {
   void openCreate() {
     if (_menu) return;
     closeDrawer();
-    Fx.i.whoosh();
+    Fx.i.deal();
     setState(() => _menu = true);
     _deal.forward();
   }

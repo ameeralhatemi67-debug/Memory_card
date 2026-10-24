@@ -257,7 +257,49 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     store.updateSettings((x) => x.sounds = v);
                     Fx.i.sounds = v;
                     if (v) Fx.i.pop();
-                  }),
+                  }, last: !s.sounds),
+                  if (s.sounds) ...[
+                    Padding(
+                      padding: const EdgeInsets.only(top: 12),
+                      child: Text('Volume', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
+                    ),
+                    Row(children: [
+                      Expanded(
+                        child: McSlider(
+                          value: s.volume,
+                          divisions: 20,
+                          label: 'Volume',
+                          onChanged: (v) {
+                            store.updateSettings((x) => x.volume = double.parse(v.toStringAsFixed(2)));
+                            Fx.i.volume = v;
+                          },
+                          // Hear the new level as soon as the thumb is let go.
+                          onChangeEnd: () => Fx.i.nav(),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 44,
+                        child: Text('${(s.volume * 100).round()}%',
+                            textAlign: TextAlign.right, style: T.t(14, w: FontWeight.w700, color: mc.ink)),
+                      ),
+                    ]),
+                    Text('Nav bar', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
+                    Text('What picking a tab sounds like', style: T.t(14, w: FontWeight.w500, color: mc.muted, height: 1.3)),
+                    const SizedBox(height: 8),
+                    Seg<String>(
+                      options: const ['card', 'soft', 'off'],
+                      value: s.navSound,
+                      labelOf: (v) => const {'card': 'Card snap', 'soft': 'Soft tick', 'off': 'Silent'}[v]!,
+                      fontSize: 15,
+                      onPick: (v) {
+                        store.updateSettings((x) => x.navSound = v);
+                        Fx.i.navSound = v;
+                        Fx.i.nav();
+                      },
+                    ),
+                    const SizedBox(height: 12),
+                    Container(height: 1, color: mc.line),
+                  ],
                   toggle('Haptics', 'A tick when a swipe locks in', s.haptics, (v) {
                     store.updateSettings((x) => x.haptics = v);
                     Fx.i.haptics = v;

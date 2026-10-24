@@ -34,6 +34,7 @@ class WidgetsScreen extends StatelessWidget {
   static const kindOf = {
     'SealWidget': 'seal',
     'StreakWidget': 'streak',
+    'StreakTallWidget': 'streak',
     'TodayWidget': 'today',
     'QuickCardWidget': 'quick',
     'ActionsWidget': 'actions',

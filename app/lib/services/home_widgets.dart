@@ -24,6 +24,7 @@ class HomeWidgets {
   static const kinds = {
     'SealWidget': 'Daily goal seal',
     'StreakWidget': 'Streak flame',
+    'StreakTallWidget': 'Streak flame · tall',
     'TodayWidget': 'Today',
     'QuickCardWidget': 'Quick card',
     'ActionsWidget': 'Quick actions',
@@ -40,6 +41,7 @@ class HomeWidgets {
   static const sizes = {
     'SealWidget': '1×1 to 2×2',
     'StreakWidget': '1×1 to 4×1',
+    'StreakTallWidget': '1×2 or 1×3',
     'TodayWidget': '4×2 or 4×3',
     'QuickCardWidget': '4×2 or 4×3',
     'ActionsWidget': '1×1 to 4×1',
@@ -56,6 +58,7 @@ class HomeWidgets {
   static const previewSize = {
     'SealWidget': (172.0, 233.0),
     'StreakWidget': (172.0, 108.0),
+    'StreakTallWidget': (78.0, 233.0),
     'TodayWidget': (360.0, 233.0),
     'QuickCardWidget': (360.0, 233.0),
     'ActionsWidget': (360.0, 108.0),
