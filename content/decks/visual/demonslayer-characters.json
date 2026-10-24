@@ -1,0 +1,258 @@
+{
+  "id": "demonslayer-characters",
+  "name": "Demon Slayer · Characters",
+  "mono": "Ds",
+  "category": "anime",
+  "level": "anime",
+  "kind": "text",
+  "folder": "Anime",
+  "description": "Put a name to the face: the Hashira, demon slayers and Twelve Kizuki of Demon Slayer, in anime art.",
+  "style": {
+    "front": "full",
+    "fit": "cover",
+    "back": "text",
+    "reverse": true
+  },
+  "skin": {
+    "img": "skin.jpg",
+    "x": 0.5,
+    "y": 0.55,
+    "zoom": 1,
+    "shade": 0.6,
+    "text": "light"
+  },
+  "seals": [
+    {
+      "id": "destroy-demons",
+      "title": "Demon Slayer Corps",
+      "note": "Every Corps member and demon named.",
+      "when": "seen",
+      "shape": "square",
+      "color": "wine",
+      "text": "",
+      "img": "seal-metsu.png",
+      "art": "stamp"
+    },
+    {
+      "id": "nine-pillars",
+      "title": "Hashira",
+      "note": "Every card above 90%: you know the Pillars.",
+      "when": "mastered",
+      "shape": "wide",
+      "color": "gold",
+      "text": "柱",
+      "img": "",
+      "art": "stamp"
+    }
+  ],
+  "cards": [
+    {
+      "img": "tanjiro-kamado.png",
+      "front": "",
+      "back": "Tanjiro Kamado",
+      "label": "character",
+      "example": "",
+      "hook": "Kind swordsman who hunts demons to turn his sister Nezuko back into a human."
+    },
+    {
+      "img": "nezuko-kamado.png",
+      "front": "",
+      "back": "Nezuko Kamado",
+      "label": "character",
+      "example": "",
+      "hook": "Tanjiro's younger sister, turned into a demon but still protective of humans."
+    },
+    {
+      "img": "zenitsu-agatsuma.png",
+      "front": "",
+      "back": "Zenitsu Agatsuma",
+      "label": "character",
+      "example": "",
+      "hook": "Thunder Breathing swordsman who is terrified awake but deadly while asleep."
+    },
+    {
+      "img": "inosuke-hashibira.png",
+      "front": "",
+      "back": "Inosuke Hashibira",
+      "label": "character",
+      "example": "",
+      "hook": "Boar-masked, dual-blade fighter raised by wild boars; he uses Beast Breathing."
+    },
+    {
+      "img": "giyu-tomioka.png",
+      "front": "",
+      "back": "Giyu Tomioka",
+      "label": "character",
+      "example": "",
+      "hook": "Water Hashira who spared Nezuko and sent Tanjiro to train under Urokodaki."
+    },
+    {
+      "img": "shinobu-kocho.png",
+      "front": "",
+      "back": "Shinobu Kocho",
+      "label": "character",
+      "example": "",
+      "hook": "Insect Hashira who fights with a poison-tipped sword and runs the Butterfly Mansion."
+    },
+    {
+      "img": "kyojuro-rengoku.png",
+      "front": "",
+      "back": "Kyojuro Rengoku",
+      "label": "character",
+      "example": "",
+      "hook": "Flame Hashira who fell protecting the passengers of the Mugen Train."
+    },
+    {
+      "img": "muzan-kibutsuji.png",
+      "front": "",
+      "back": "Muzan Kibutsuji",
+      "label": "character",
+      "example": "",
+      "hook": "The first demon and chief villain, the source of every other demon's blood."
+    },
+    {
+      "img": "tengen-uzui.png",
+      "front": "",
+      "back": "Tengen Uzui",
+      "label": "character",
+      "example": "",
+      "hook": "Sound Hashira, a former shinobi with three wives, who wields twin cleaver-swords."
+    },
+    {
+      "img": "akaza.png",
+      "front": "",
+      "back": "Akaza",
+      "label": "character",
+      "example": "",
+      "hook": "Upper Moon Three, a martial-arts demon who killed Rengoku."
+    },
+    {
+      "img": "mitsuri-kanroji.png",
+      "front": "",
+      "back": "Mitsuri Kanroji",
+      "label": "character",
+      "example": "",
+      "hook": "Love Hashira with superhuman muscle and a whip-like flexible sword."
+    },
+    {
+      "img": "muichiro-tokito.png",
+      "front": "",
+      "back": "Muichiro Tokito",
+      "label": "character",
+      "example": "",
+      "hook": "Mist Hashira, a swordsman prodigy who became a Hashira at age 14."
+    },
+    {
+      "img": "gyomei-himejima.png",
+      "front": "",
+      "back": "Gyomei Himejima",
+      "label": "character",
+      "example": "",
+      "hook": "Stone Hashira, the strongest Hashira: a blind giant with a spiked axe and chain."
+    },
+    {
+      "img": "sanemi-shinazugawa.png",
+      "front": "",
+      "back": "Sanemi Shinazugawa",
+      "label": "character",
+      "example": "",
+      "hook": "Wind Hashira, scarred and fierce, whose rare blood intoxicates demons."
+    },
+    {
+      "img": "obanai-iguro.png",
+      "front": "",
+      "back": "Obanai Iguro",
+      "label": "character",
+      "example": "",
+      "hook": "Serpent Hashira who keeps a snake, Kaburamaru, around his neck."
+    },
+    {
+      "img": "kanao-tsuyuri.png",
+      "front": "",
+      "back": "Kanao Tsuyuri",
+      "label": "character",
+      "example": "",
+      "hook": "Butterfly Mansion swordswoman who flips a coin to make her choices."
+    },
+    {
+      "img": "doma.png",
+      "front": "",
+      "back": "Doma",
+      "label": "character",
+      "example": "",
+      "hook": "Upper Moon Two, a smiling cult leader whose Blood Demon Art uses ice."
+    },
+    {
+      "img": "kokushibo.png",
+      "front": "",
+      "back": "Kokushibo",
+      "label": "character",
+      "example": "",
+      "hook": "Upper Moon One, Yoriichi's twin brother, who has six eyes."
+    },
+    {
+      "img": "daki.png",
+      "front": "",
+      "back": "Daki",
+      "label": "character",
+      "example": "",
+      "hook": "Upper Moon Six who fights with ribbon-like sashes, alongside her brother Gyutaro."
+    },
+    {
+      "img": "gyutaro.png",
+      "front": "",
+      "back": "Gyutaro",
+      "label": "character",
+      "example": "",
+      "hook": "Upper Moon Six with Daki; he wields poison-coated sickles and blood blades."
+    },
+    {
+      "img": "rui.png",
+      "front": "",
+      "back": "Rui",
+      "label": "character",
+      "example": "",
+      "hook": "Lower Moon Five who forms a spider 'family' and fights with sharp threads."
+    },
+    {
+      "img": "enmu.png",
+      "front": "",
+      "back": "Enmu",
+      "label": "character",
+      "example": "",
+      "hook": "Lower Moon One who trapped the Mugen Train passengers in endless dreams."
+    },
+    {
+      "img": "genya-shinazugawa.png",
+      "front": "",
+      "back": "Genya Shinazugawa",
+      "label": "character",
+      "example": "",
+      "hook": "Sanemi's younger brother, who gains demon traits by eating demon flesh."
+    },
+    {
+      "img": "kagaya-ubuyashiki.png",
+      "front": "",
+      "back": "Kagaya Ubuyashiki",
+      "label": "character",
+      "example": "",
+      "hook": "Leader of the Demon Slayer Corps, whom the Hashira deeply revere."
+    },
+    {
+      "img": "yoriichi-tsugikuni.jpg",
+      "front": "",
+      "back": "Yoriichi Tsugikuni",
+      "label": "character",
+      "example": "",
+      "hook": "The original Sun Breathing swordsman who nearly killed Muzan 400 years ago."
+    },
+    {
+      "img": "sakonji-urokodaki.png",
+      "front": "",
+      "back": "Sakonji Urokodaki",
+      "label": "character",
+      "example": "",
+      "hook": "Retired Water Hashira who trained Tanjiro and wears a tengu mask."
+    }
+  ]
+}

@@ -1,0 +1,274 @@
+{
+  "id": "dragonball-characters",
+  "name": "Dragon Ball · Characters",
+  "mono": "Db",
+  "category": "anime",
+  "level": "anime",
+  "kind": "text",
+  "folder": "Anime",
+  "description": "Put a name to the face: the Z Fighters, Saiyans, gods and villains of Dragon Ball, Z and Super.",
+  "style": {
+    "front": "full",
+    "fit": "cover",
+    "back": "text",
+    "reverse": true
+  },
+  "skin": {
+    "img": "skin.jpg",
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1,
+    "shade": 0.6,
+    "text": "light"
+  },
+  "seals": [
+    {
+      "id": "four-star-ball",
+      "title": "Four-Star Ball",
+      "note": "Every fighter, god and villain seen at least once.",
+      "when": "seen",
+      "shape": "square",
+      "color": "blue",
+      "text": "",
+      "img": "seal-ball.png",
+      "art": "color"
+    },
+    {
+      "id": "turtle-school",
+      "title": "Turtle School",
+      "note": "Every character known by heart.",
+      "when": "mastered",
+      "shape": "wide",
+      "color": "wine",
+      "text": "",
+      "img": "seal-kame.png",
+      "art": "color"
+    }
+  ],
+  "cards": [
+    {
+      "img": "goku.png",
+      "front": "",
+      "back": "Goku",
+      "label": "character",
+      "example": "",
+      "hook": "Saiyan raised on Earth as Son Goku; born Kakarot, hero of Dragon Ball."
+    },
+    {
+      "img": "vegeta.jpg",
+      "front": "",
+      "back": "Vegeta",
+      "label": "character",
+      "example": "",
+      "hook": "Prince of the fallen Saiyan race, Bulma's husband, forever out to surpass Goku."
+    },
+    {
+      "img": "gohan.jpg",
+      "front": "",
+      "back": "Gohan",
+      "label": "character",
+      "example": "",
+      "hook": "Half-Saiyan elder son of Goku and Chi-Chi; Videl's husband, Pan's father."
+    },
+    {
+      "img": "piccolo.jpg",
+      "front": "",
+      "back": "Piccolo",
+      "label": "character",
+      "example": "",
+      "hook": "Namekian reincarnation of King Piccolo who became Gohan's trainer."
+    },
+    {
+      "img": "frieza.png",
+      "front": "",
+      "back": "Frieza",
+      "label": "character",
+      "example": "",
+      "hook": "Galactic tyrant; King Cold's younger son and Cooler's younger brother."
+    },
+    {
+      "img": "cell.jpg",
+      "front": "",
+      "back": "Cell",
+      "label": "character",
+      "example": "",
+      "hook": "Dr. Gero's ultimate creation, built from the cells of the greatest fighters."
+    },
+    {
+      "img": "majin-buu.jpg",
+      "front": "",
+      "back": "Majin Buu",
+      "label": "character",
+      "example": "",
+      "hook": "Majin with many forms, each its own personality; this is Good Buu."
+    },
+    {
+      "img": "trunks.jpg",
+      "front": "",
+      "back": "Trunks",
+      "label": "character",
+      "example": "",
+      "hook": "Vegeta and Bulma's firstborn; shown here as Future Trunks."
+    },
+    {
+      "img": "krillin.jpg",
+      "front": "",
+      "back": "Krillin",
+      "label": "character",
+      "example": "",
+      "hook": "Goku's lifelong best friend and fellow student of Master Roshi."
+    },
+    {
+      "img": "bulma.png",
+      "front": "",
+      "back": "Bulma",
+      "label": "character",
+      "example": "",
+      "hook": "Capsule Corp engineer; Goku's first friend, later Vegeta's wife."
+    },
+    {
+      "img": "beerus.jpg",
+      "front": "",
+      "back": "Beerus",
+      "label": "character",
+      "example": "",
+      "hook": "God of Destruction of Universe 7; Whis is his attendant."
+    },
+    {
+      "img": "whis.jpg",
+      "front": "",
+      "back": "Whis",
+      "label": "character",
+      "example": "",
+      "hook": "Beerus's Guide Angel Attendant and martial arts teacher."
+    },
+    {
+      "img": "broly.jpg",
+      "front": "",
+      "back": "Broly",
+      "label": "character",
+      "example": "",
+      "hook": "Legendary Super Saiyan and villain of the Broly movie trilogy."
+    },
+    {
+      "img": "goten.jpg",
+      "front": "",
+      "back": "Goten",
+      "label": "character",
+      "example": "",
+      "hook": "Goku and Chi-Chi's younger son; Trunks' best friend."
+    },
+    {
+      "img": "master-roshi.jpg",
+      "front": "",
+      "back": "Master Roshi",
+      "label": "character",
+      "example": "",
+      "hook": "The Turtle Hermit of Kame House; teacher of Goku, Krillin and Yamcha."
+    },
+    {
+      "img": "android-18.jpg",
+      "front": "",
+      "back": "Android 18",
+      "label": "character",
+      "example": "",
+      "hook": "Dr. Gero's eighteenth android and older twin sister of Android 17."
+    },
+    {
+      "img": "android-17.jpg",
+      "front": "",
+      "back": "Android 17",
+      "label": "character",
+      "example": "",
+      "hook": "Dr. Gero's seventeenth android; later a national park ranger on an island."
+    },
+    {
+      "img": "tien-shinhan.jpg",
+      "front": "",
+      "back": "Tien Shinhan",
+      "label": "character",
+      "example": "",
+      "hook": "Three-eyed Triclops descendant; he began as a Crane School student."
+    },
+    {
+      "img": "yamcha.jpg",
+      "front": "",
+      "back": "Yamcha",
+      "label": "character",
+      "example": "",
+      "hook": "Former desert bandit turned Z Fighter; Bulma's ex and Puar's best friend."
+    },
+    {
+      "img": "videl.jpg",
+      "front": "",
+      "back": "Videl",
+      "label": "character",
+      "example": "",
+      "hook": "Mr. Satan's daughter; Gohan's wife and Pan's mother."
+    },
+    {
+      "img": "chi-chi.jpg",
+      "front": "",
+      "back": "Chi-Chi",
+      "label": "character",
+      "example": "",
+      "hook": "Princess of Fire Mountain, Ox-King's daughter and Goku's wife."
+    },
+    {
+      "img": "raditz.jpg",
+      "front": "",
+      "back": "Raditz",
+      "label": "character",
+      "example": "",
+      "hook": "Goku's older brother, the first villain of Dragon Ball Z."
+    },
+    {
+      "img": "nappa.jpg",
+      "front": "",
+      "back": "Nappa",
+      "label": "character",
+      "example": "",
+      "hook": "Saiyan general and Vegeta's partner before Planet Vegeta fell."
+    },
+    {
+      "img": "mr-satan.jpg",
+      "front": "",
+      "back": "Mr. Satan",
+      "label": "character",
+      "example": "",
+      "hook": "World Martial Arts Champion, called Hercule Satan in the dub."
+    },
+    {
+      "img": "jiren.jpg",
+      "front": "",
+      "back": "Jiren",
+      "label": "character",
+      "example": "",
+      "hook": "Most powerful Pride Trooper; a major contestant in the Tournament of Power."
+    },
+    {
+      "img": "hit.jpg",
+      "front": "",
+      "back": "Hit",
+      "label": "character",
+      "example": "",
+      "hook": "Universe 6's legendary assassin, known as Never-Miss Hit."
+    },
+    {
+      "img": "zamasu.jpg",
+      "front": "",
+      "back": "Zamasu",
+      "label": "character",
+      "example": "",
+      "hook": "Supreme Kai apprentice of Universe 10, serving Gowasu."
+    },
+    {
+      "img": "bardock.jpg",
+      "front": "",
+      "back": "Bardock",
+      "label": "character",
+      "example": "",
+      "hook": "Low-class Saiyan; husband of Gine and father of Raditz and Goku."
+    }
+  ]
+}

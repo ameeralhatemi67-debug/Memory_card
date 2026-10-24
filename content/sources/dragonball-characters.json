@@ -1,0 +1,498 @@
+{
+ "skin": {
+  "page": "https://dragonball.fandom.com/wiki/File:West_City_morning.png",
+  "file": "File:West City morning.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 1000,
+   "h": 563,
+   "alpha": false,
+   "aspect": 1.7762,
+   "kb": 88.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "seal-ball": {
+  "page": "https://dragonball.fandom.com/wiki/File:Dragonball_(4-Sterne).svg",
+  "file": "File:Dragonball (4-Sterne).svg",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1077,
+   "srcH": 974,
+   "w": 512,
+   "h": 463,
+   "alpha": true,
+   "aspect": 1.1058,
+   "kb": 99.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "seal-kame": {
+  "page": "https://commons.wikimedia.org/wiki/File:Kame-sennin_mark.svg",
+  "file": "File:Kame-sennin mark.svg",
+  "license": "Wikimedia Commons: CC0; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 41.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "goku": {
+  "page": "https://dragonball.fandom.com/wiki/File:Goku_anime_profile.png",
+  "file": "File:Goku anime profile.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 844,
+   "srcH": 733,
+   "w": 844,
+   "h": 733,
+   "alpha": true,
+   "aspect": 1.1514,
+   "kb": 515.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "vegeta": {
+  "page": "https://dragonball.fandom.com/wiki/File:Vegeta_Original_Armor.png",
+  "file": "File:Vegeta Original Armor.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1436,
+   "srcH": 1436,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 129.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "gohan": {
+  "page": "https://dragonball.fandom.com/wiki/File:Gohan_anime_profile_2.png",
+  "file": "File:Gohan anime profile 2.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 971,
+   "srcH": 1022,
+   "w": 855,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.95,
+   "kb": 84.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "piccolo": {
+  "page": "https://dragonball.fandom.com/wiki/File:Super_Hero_-_Piccolo_artwork_3.png",
+  "file": "File:Super Hero - Piccolo artwork 3.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1393,
+   "srcH": 1393,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 92.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "frieza": {
+  "page": "https://dragonball.fandom.com/wiki/File:DBS_Broly_Frieza_Render.png",
+  "file": "File:DBS Broly Frieza Render.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 674,
+   "srcH": 749,
+   "w": 674,
+   "h": 749,
+   "alpha": true,
+   "aspect": 0.8999,
+   "kb": 246.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "cell": {
+  "page": "https://dragonball.fandom.com/wiki/File:Cell_(DBZ_ep_177).png",
+  "file": "File:Cell (DBZ ep 177).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1439,
+   "srcH": 1439,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 125.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "majin-buu": {
+  "page": "https://dragonball.fandom.com/wiki/File:Good_Buu.png",
+  "file": "File:Good Buu.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1057,
+   "srcH": 1174,
+   "w": 810,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.9,
+   "kb": 112.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "trunks": {
+  "page": "https://dragonball.fandom.com/wiki/File:TrunksFutureNV020.png",
+  "file": "File:TrunksFutureNV020.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1417,
+   "srcH": 1574,
+   "w": 810,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.9,
+   "kb": 84.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "krillin": {
+  "page": "https://dragonball.fandom.com/wiki/File:Krillin_DB_Episode_134.png",
+  "file": "File:Krillin DB Episode 134.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 713,
+   "srcH": 792,
+   "w": 713,
+   "h": 792,
+   "alpha": false,
+   "aspect": 0.9003,
+   "kb": 96.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "bulma": {
+  "page": "https://dragonball.fandom.com/wiki/File:Bulma_anime_profile.png",
+  "file": "File:Bulma anime profile.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 650,
+   "srcH": 722,
+   "w": 650,
+   "h": 722,
+   "alpha": true,
+   "aspect": 0.9003,
+   "kb": 437.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "beerus": {
+  "page": "https://dragonball.fandom.com/wiki/File:BeerusWikia_(3).jpg",
+  "file": "File:BeerusWikia (3).jpg",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1600,
+   "srcH": 1778,
+   "w": 810,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.9,
+   "kb": 87.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "broly": {
+  "page": "https://dragonball.fandom.com/wiki/File:Broly_Infobox_image.png",
+  "file": "File:Broly Infobox image.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 804,
+   "srcH": 893,
+   "w": 804,
+   "h": 893,
+   "alpha": false,
+   "aspect": 0.9003,
+   "kb": 79.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "goten": {
+  "page": "https://dragonball.fandom.com/wiki/File:Super_Hero_-_Goten_artwork.jpg",
+  "file": "File:Super Hero - Goten artwork.jpg",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 856,
+   "srcH": 951,
+   "w": 810,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.9,
+   "kb": 94.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "master-roshi": {
+  "page": "https://dragonball.fandom.com/wiki/File:Master_Roshi_mourns_his_dead_friends.jpg",
+  "file": "File:Master Roshi mourns his dead friends.jpg",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1224,
+   "srcH": 1257,
+   "w": 876,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.9733,
+   "kb": 121.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "android-18": {
+  "page": "https://dragonball.fandom.com/wiki/File:Android_18.jpg",
+  "file": "File:Android 18.jpg",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1440,
+   "srcH": 1080,
+   "w": 900,
+   "h": 675,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 89.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "android-17": {
+  "page": "https://dragonball.fandom.com/wiki/File:Android_17_(DBZ_ep.148).jpg",
+  "file": "File:Android 17 (DBZ ep.148).jpg",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1412,
+   "srcH": 1486,
+   "w": 855,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.95,
+   "kb": 84.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "tien-shinhan": {
+  "page": "https://dragonball.fandom.com/wiki/File:Tien_Shinhan.png",
+  "file": "File:Tien Shinhan.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1516,
+   "srcH": 1784,
+   "w": 765,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.85,
+   "kb": 71.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "yamcha": {
+  "page": "https://dragonball.fandom.com/wiki/File:Yamcha_DB_Episode_138.png",
+  "file": "File:Yamcha DB Episode 138.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1268,
+   "srcH": 1492,
+   "w": 765,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.85,
+   "kb": 112.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "videl": {
+  "page": "https://dragonball.fandom.com/wiki/File:Videl_Episode_207.png",
+  "file": "File:Videl Episode 207.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1263,
+   "srcH": 1403,
+   "w": 810,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.9,
+   "kb": 102.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "chi-chi": {
+  "page": "https://dragonball.fandom.com/wiki/File:Chi-Chi_infected_by_the_Black_Water_Mist.png",
+  "file": "File:Chi-Chi infected by the Black Water Mist.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1385,
+   "srcH": 1539,
+   "w": 810,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.9,
+   "kb": 75.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "raditz": {
+  "page": "https://dragonball.fandom.com/wiki/File:Raditz_arrives_at_Kame_House.png",
+  "file": "File:Raditz arrives at Kame House.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1270,
+   "srcH": 1098,
+   "w": 900,
+   "h": 778,
+   "alpha": false,
+   "aspect": 1.1568,
+   "kb": 96.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "nappa": {
+  "page": "https://dragonball.fandom.com/wiki/File:Nappa_DBZ_Episode_24.png",
+  "file": "File:Nappa DBZ Episode 24.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 708,
+   "srcH": 833,
+   "w": 708,
+   "h": 833,
+   "alpha": false,
+   "aspect": 0.8499,
+   "kb": 121.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "mr-satan": {
+  "page": "https://dragonball.fandom.com/wiki/File:Mr_Satan_at_the_Cell_Games.png",
+  "file": "File:Mr Satan at the Cell Games.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1374,
+   "srcH": 1446,
+   "w": 855,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.95,
+   "kb": 99.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "jiren": {
+  "page": "https://dragonball.fandom.com/wiki/File:Jiren1.png",
+  "file": "File:Jiren1.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 972,
+   "srcH": 938,
+   "w": 900,
+   "h": 869,
+   "alpha": false,
+   "aspect": 1.0357,
+   "kb": 65.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "hit": {
+  "page": "https://dragonball.fandom.com/wiki/File:Hit_Profile.jpg",
+  "file": "File:Hit Profile.jpg",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1600,
+   "srcH": 1778,
+   "w": 810,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.9,
+   "kb": 70.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "zamasu": {
+  "page": "https://dragonball.fandom.com/wiki/File:Zamasu_DBS_Ep_53_006.png",
+  "file": "File:Zamasu DBS Ep 53 006.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 960,
+   "srcH": 902,
+   "w": 900,
+   "h": 846,
+   "alpha": false,
+   "aspect": 1.0638,
+   "kb": 108.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "bardock": {
+  "page": "https://dragonball.fandom.com/wiki/File:Bardock_-_The_Father_of_Goku_-_Bardock_after_landing_on_Planet_Meat.png",
+  "file": "File:Bardock - The Father of Goku - Bardock after landing on Planet Meat.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1443,
+   "srcH": 1603,
+   "w": 810,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.9,
+   "kb": 110.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "whis": {
+  "page": "https://dragonball.fandom.com/wiki/File:Whis_eating_while_noticing_Vegeta's_power_up.jpg",
+  "file": "File:Whis eating while noticing Vegeta's power up.jpg",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 676,
+   "srcH": 755,
+   "w": 676,
+   "h": 755,
+   "alpha": false,
+   "aspect": 0.8954,
+   "kb": 50.8
+  },
+  "fetched": "2026-10-24"
+ }
+}

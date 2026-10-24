@@ -1,0 +1,802 @@
+{
+ "naruto-uzumaki-eyes": {
+  "page": "https://naruto.fandom.com/wiki/File:Naruto's_Sage_Mode.png",
+  "file": "File:Naruto's Sage Mode.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 768,
+   "srcH": 259,
+   "w": 768,
+   "h": 259,
+   "alpha": false,
+   "aspect": 2.9653,
+   "kb": 27.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "naruto-uzumaki": {
+  "page": "https://naruto.fandom.com/wiki/File:Naruto's_Sage_Mode.png",
+  "file": "File:Naruto's Sage Mode.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 900,
+   "h": 507,
+   "alpha": false,
+   "aspect": 1.7751,
+   "kb": 52.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "sasuke-uchiha-eyes": {
+  "page": "https://naruto.fandom.com/wiki/File:Sasuke_Cursed_Mode.png",
+  "file": "File:Sasuke Cursed Mode.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 960,
+   "srcH": 281,
+   "w": 900,
+   "h": 263,
+   "alpha": false,
+   "aspect": 3.4221,
+   "kb": 23.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "sasuke-uchiha": {
+  "page": "https://naruto.fandom.com/wiki/File:Sasuke_Cursed_Mode.png",
+  "file": "File:Sasuke Cursed Mode.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 900,
+   "h": 507,
+   "alpha": false,
+   "aspect": 1.7751,
+   "kb": 45.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "monkey-d-luffy-eyes": {
+  "page": "https://onepiece.fandom.com/wiki/File:Straw_Hat_Luffy_is_Back.png",
+  "file": "File:Straw Hat Luffy is Back.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1076,
+   "srcH": 324,
+   "w": 900,
+   "h": 271,
+   "alpha": false,
+   "aspect": 3.321,
+   "kb": 33.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "monkey-d-luffy": {
+  "page": "https://onepiece.fandom.com/wiki/File:Straw_Hat_Luffy_is_Back.png",
+  "file": "File:Straw Hat Luffy is Back.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 900,
+   "h": 507,
+   "alpha": false,
+   "aspect": 1.7751,
+   "kb": 63.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "goku-eyes": {
+  "page": "https://dragonball.fandom.com/wiki/File:Goku_DBS_Ep_23_004.png",
+  "file": "File:Goku DBS Ep 23 004.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 957,
+   "srcH": 447,
+   "w": 900,
+   "h": 420,
+   "alpha": false,
+   "aspect": 2.1429,
+   "kb": 50.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "goku": {
+  "page": "https://dragonball.fandom.com/wiki/File:Goku_DBS_Ep_23_004.png",
+  "file": "File:Goku DBS Ep 23 004.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 898,
+   "w": 900,
+   "h": 808,
+   "alpha": false,
+   "aspect": 1.1139,
+   "kb": 126.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "satoru-gojo-eyes": {
+  "page": "https://jujutsu-kaisen.fandom.com/wiki/File:Satoru_Gojo_intimidates_Jogo_(Anime).png",
+  "file": "File:Satoru Gojo intimidates Jogo (Anime).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1152,
+   "srcH": 368,
+   "w": 900,
+   "h": 288,
+   "alpha": false,
+   "aspect": 3.125,
+   "kb": 44.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "satoru-gojo": {
+  "page": "https://jujutsu-kaisen.fandom.com/wiki/File:Satoru_Gojo_intimidates_Jogo_(Anime).png",
+  "file": "File:Satoru Gojo intimidates Jogo (Anime).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 900,
+   "h": 507,
+   "alpha": false,
+   "aspect": 1.7751,
+   "kb": 57.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "tanjiro-kamado-eyes": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Tanjiro's_sad_smile_at_Kazumi's_words.png",
+  "file": "File:Tanjiro's sad smile at Kazumi's words.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 960,
+   "srcH": 324,
+   "w": 900,
+   "h": 304,
+   "alpha": false,
+   "aspect": 2.9605,
+   "kb": 30.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "tanjiro-kamado": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Tanjiro's_sad_smile_at_Kazumi's_words.png",
+  "file": "File:Tanjiro's sad smile at Kazumi's words.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 900,
+   "h": 507,
+   "alpha": false,
+   "aspect": 1.7751,
+   "kb": 56.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "kakashi-hatake-eyes": {
+  "page": "https://naruto.fandom.com/wiki/File:The_Sharingan_Revived.png",
+  "file": "File:The Sharingan Revived.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1609,
+   "srcH": 516,
+   "w": 900,
+   "h": 289,
+   "alpha": false,
+   "aspect": 3.1142,
+   "kb": 33.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "kakashi-hatake": {
+  "page": "https://naruto.fandom.com/wiki/File:The_Sharingan_Revived.png",
+  "file": "File:The Sharingan Revived.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 562,
+   "w": 900,
+   "h": 506,
+   "alpha": false,
+   "aspect": 1.7787,
+   "kb": 65.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "itachi-uchiha-eyes": {
+  "page": "https://naruto.fandom.com/wiki/File:Itachi_Using_Genjutsu.png",
+  "file": "File:Itachi Using Genjutsu.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1662,
+   "srcH": 731,
+   "w": 900,
+   "h": 396,
+   "alpha": false,
+   "aspect": 2.2727,
+   "kb": 42.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "itachi-uchiha": {
+  "page": "https://naruto.fandom.com/wiki/File:Itachi.png",
+  "file": "File:Itachi.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 900,
+   "h": 675,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 53.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "roronoa-zoro-eyes": {
+  "page": "https://onepiece.fandom.com/wiki/File:Zoro_&_Hiyori_&_Toko_Episode_1084.png",
+  "file": "File:Zoro & Hiyori & Toko Episode 1084.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 614,
+   "srcH": 259,
+   "w": 614,
+   "h": 259,
+   "alpha": false,
+   "aspect": 2.3707,
+   "kb": 22.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "roronoa-zoro": {
+  "page": "https://onepiece.fandom.com/wiki/File:Zoro_&_Hiyori_&_Toko_Episode_1084.png",
+  "file": "File:Zoro & Hiyori & Toko Episode 1084.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 500,
+   "srcH": 479,
+   "w": 500,
+   "h": 479,
+   "alpha": false,
+   "aspect": 1.0438,
+   "kb": 37.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "vegeta-eyes": {
+  "page": "https://dragonball.fandom.com/wiki/File:Vegeta.Ep.058.png",
+  "file": "File:Vegeta.Ep.058.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 748,
+   "srcH": 238,
+   "w": 748,
+   "h": 238,
+   "alpha": false,
+   "aspect": 3.1429,
+   "kb": 25.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "vegeta": {
+  "page": "https://dragonball.fandom.com/wiki/File:Vegeta.Ep.058.png",
+  "file": "File:Vegeta.Ep.058.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 750,
+   "w": 900,
+   "h": 675,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 80.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "gon-freecss-eyes": {
+  "page": "https://hunterxhunter.fandom.com/wiki/File:GonAnticipation1.png",
+  "file": "File:GonAnticipation1.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1152,
+   "srcH": 383,
+   "w": 900,
+   "h": 299,
+   "alpha": false,
+   "aspect": 3.01,
+   "kb": 27.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "gon-freecss": {
+  "page": "https://hunterxhunter.fandom.com/wiki/File:GonAnticipation1.png",
+  "file": "File:GonAnticipation1.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 900,
+   "h": 507,
+   "alpha": false,
+   "aspect": 1.7751,
+   "kb": 49.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "killua-zoldyck-eyes": {
+  "page": "https://hunterxhunter.fandom.com/wiki/File:KilluaSuperZetsu.png",
+  "file": "File:KilluaSuperZetsu.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1306,
+   "srcH": 411,
+   "w": 900,
+   "h": 283,
+   "alpha": false,
+   "aspect": 3.1802,
+   "kb": 40.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "killua-zoldyck": {
+  "page": "https://hunterxhunter.fandom.com/wiki/File:KilluaSuperZetsu.png",
+  "file": "File:KilluaSuperZetsu.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 900,
+   "h": 507,
+   "alpha": false,
+   "aspect": 1.7751,
+   "kb": 75.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "nezuko-kamado-eyes": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Nezuko_addresses_Zenitsu_as_Inosuke.png",
+  "file": "File:Nezuko addresses Zenitsu as Inosuke.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1190,
+   "srcH": 368,
+   "w": 900,
+   "h": 278,
+   "alpha": false,
+   "aspect": 3.2374,
+   "kb": 32.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "nezuko-kamado": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Nezuko_addresses_Zenitsu_as_Inosuke.png",
+  "file": "File:Nezuko addresses Zenitsu as Inosuke.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 900,
+   "h": 507,
+   "alpha": false,
+   "aspect": 1.7751,
+   "kb": 65.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "eren-yeager-eyes": {
+  "page": "https://attackontitan.fandom.com/wiki/File:Eren_Jaeger_(Anime)_character_image_(845).png",
+  "file": "File:Eren Jaeger (Anime) character image (845).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 820,
+   "srcH": 281,
+   "w": 820,
+   "h": 281,
+   "alpha": false,
+   "aspect": 2.9181,
+   "kb": 34.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "eren-yeager": {
+  "page": "https://attackontitan.fandom.com/wiki/File:Eren_Jaeger_(Anime)_character_image_(845).png",
+  "file": "File:Eren Jaeger (Anime) character image (845).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 92.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "mikasa-ackerman-eyes": {
+  "page": "https://attackontitan.fandom.com/wiki/File:Mikasa_Ackermann_(Anime)_character_image_(850).png",
+  "file": "File:Mikasa Ackermann (Anime) character image (850).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 604,
+   "srcH": 194,
+   "w": 604,
+   "h": 194,
+   "alpha": false,
+   "aspect": 3.1134,
+   "kb": 17.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "mikasa-ackerman": {
+  "page": "https://attackontitan.fandom.com/wiki/File:Mikasa_Ackermann_(Anime)_character_image_(850).png",
+  "file": "File:Mikasa Ackermann (Anime) character image (850).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 76.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "yuji-itadori-eyes": {
+  "page": "https://jujutsu-kaisen.fandom.com/wiki/File:Yuji_understanding_how_to_flow_his_cursed_energy_(Anime).png",
+  "file": "File:Yuji understanding how to flow his cursed energy (Anime).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 691,
+   "srcH": 238,
+   "w": 691,
+   "h": 238,
+   "alpha": false,
+   "aspect": 2.9034,
+   "kb": 29.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "yuji-itadori": {
+  "page": "https://jujutsu-kaisen.fandom.com/wiki/File:Yuji_understanding_how_to_flow_his_cursed_energy_(Anime).png",
+  "file": "File:Yuji understanding how to flow his cursed energy (Anime).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 900,
+   "h": 507,
+   "alpha": false,
+   "aspect": 1.7751,
+   "kb": 82.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "ryomen-sukuna-eyes": {
+  "page": "https://jujutsu-kaisen.fandom.com/wiki/File:Sukuna_demands_Jogo,_Mimiko,_and_Nanako_bow_to_him_(Anime).png",
+  "file": "File:Sukuna demands Jogo, Mimiko, and Nanako bow to him (Anime).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 902,
+   "srcH": 270,
+   "w": 900,
+   "h": 269,
+   "alpha": false,
+   "aspect": 3.3457,
+   "kb": 35.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "ryomen-sukuna": {
+  "page": "https://jujutsu-kaisen.fandom.com/wiki/File:Sukuna_demands_Jogo,_Mimiko,_and_Nanako_bow_to_him_(Anime).png",
+  "file": "File:Sukuna demands Jogo, Mimiko, and Nanako bow to him (Anime).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 900,
+   "h": 507,
+   "alpha": false,
+   "aspect": 1.7751,
+   "kb": 57.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "shanks-eyes": {
+  "page": "https://onepiece.fandom.com/wiki/File:Shanks'_Intimidation.png",
+  "file": "File:Shanks' Intimidation.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1146,
+   "srcH": 346,
+   "w": 900,
+   "h": 272,
+   "alpha": false,
+   "aspect": 3.3088,
+   "kb": 38.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "shanks": {
+  "page": "https://onepiece.fandom.com/wiki/File:Shanks'_Intimidation.png",
+  "file": "File:Shanks' Intimidation.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 603,
+   "w": 900,
+   "h": 543,
+   "alpha": false,
+   "aspect": 1.6575,
+   "kb": 80.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "gaara-eyes": {
+  "page": "https://naruto.fandom.com/wiki/File:Gaara_Kazekage.png",
+  "file": "File:Gaara Kazekage.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 692,
+   "srcH": 238,
+   "w": 692,
+   "h": 238,
+   "alpha": false,
+   "aspect": 2.9076,
+   "kb": 16.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "gaara": {
+  "page": "https://naruto.fandom.com/wiki/File:Gaara_Kazekage.png",
+  "file": "File:Gaara Kazekage.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 900,
+   "h": 507,
+   "alpha": false,
+   "aspect": 1.7751,
+   "kb": 40.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "hisoka-morow-eyes": {
+  "page": "https://hunterxhunter.fandom.com/wiki/File:Hisoka_4_-_141.png",
+  "file": "File:Hisoka 4 - 141.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1344,
+   "srcH": 410,
+   "w": 900,
+   "h": 275,
+   "alpha": false,
+   "aspect": 3.2727,
+   "kb": 26.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "hisoka-morow": {
+  "page": "https://hunterxhunter.fandom.com/wiki/File:Hisoka_4_-_141.png",
+  "file": "File:Hisoka 4 - 141.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 900,
+   "h": 507,
+   "alpha": false,
+   "aspect": 1.7751,
+   "kb": 61.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "kurapika-eyes": {
+  "page": "https://hunterxhunter.fandom.com/wiki/File:Kurapika_2_-_140.png",
+  "file": "File:Kurapika 2 - 140.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1152,
+   "srcH": 378,
+   "w": 900,
+   "h": 295,
+   "alpha": false,
+   "aspect": 3.0508,
+   "kb": 36.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "kurapika": {
+  "page": "https://hunterxhunter.fandom.com/wiki/File:Kurapika_2_-_140.png",
+  "file": "File:Kurapika 2 - 140.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 900,
+   "h": 507,
+   "alpha": false,
+   "aspect": 1.7751,
+   "kb": 54.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "kyojuro-rengoku-eyes": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Kyojuro's_introduction_(anime).png",
+  "file": "File:Kyojuro's introduction (anime).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1171,
+   "srcH": 410,
+   "w": 900,
+   "h": 315,
+   "alpha": false,
+   "aspect": 2.8571,
+   "kb": 54.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "kyojuro-rengoku": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Kyojuro's_introduction_(anime).png",
+  "file": "File:Kyojuro's introduction (anime).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 680,
+   "srcH": 563,
+   "w": 680,
+   "h": 563,
+   "alpha": false,
+   "aspect": 1.2078,
+   "kb": 93.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "muzan-kibutsuji-eyes": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Muzan_Anime_Profile.png",
+  "file": "File:Muzan Anime Profile.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 696,
+   "srcH": 248,
+   "w": 696,
+   "h": 248,
+   "alpha": false,
+   "aspect": 2.8065,
+   "kb": 16.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "muzan-kibutsuji": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Muzan_Anime_Profile.png",
+  "file": "File:Muzan Anime Profile.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 66.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "dracule-mihawk-eyes": {
+  "page": "https://onepiece.fandom.com/wiki/File:Dracule_Mihawk_One_day.png",
+  "file": "File:Dracule Mihawk One day.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 689,
+   "srcH": 286,
+   "w": 689,
+   "h": 286,
+   "alpha": false,
+   "aspect": 2.4091,
+   "kb": 19.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "dracule-mihawk": {
+  "page": "https://onepiece.fandom.com/wiki/File:Dracule_Mihawk_One_day.png",
+  "file": "File:Dracule Mihawk One day.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 564,
+   "w": 900,
+   "h": 508,
+   "alpha": false,
+   "aspect": 1.7717,
+   "kb": 59.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "chrollo-lucilfer-eyes": {
+  "page": "https://hunterxhunter.fandom.com/wiki/File:2011_EP52_Chrollo_Portrait.png",
+  "file": "File:2011 EP52 Chrollo Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1728,
+   "srcH": 562,
+   "w": 900,
+   "h": 293,
+   "alpha": false,
+   "aspect": 3.0717,
+   "kb": 31.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "chrollo-lucilfer": {
+  "page": "https://hunterxhunter.fandom.com/wiki/File:2011_EP52_Chrollo_Portrait.png",
+  "file": "File:2011 EP52 Chrollo Portrait.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1000,
+   "w": 900,
+   "h": 900,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 77.3
+  },
+  "fetched": "2026-10-24"
+ }
+}

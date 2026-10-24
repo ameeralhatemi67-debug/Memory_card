@@ -1,0 +1,451 @@
+{
+ "tanjiro-kamado": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Tanjiro_anime_right_face.png",
+  "file": "File:Tanjiro anime right face.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 682,
+   "srcH": 1191,
+   "w": 515,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.5722,
+   "kb": 332.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "nezuko-kamado": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Nezuko_anime_right_face.png",
+  "file": "File:Nezuko anime right face.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 689,
+   "srcH": 1154,
+   "w": 537,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.5967,
+   "kb": 371.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "zenitsu-agatsuma": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Zenitsu_anime_right_face.png",
+  "file": "File:Zenitsu anime right face.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 696,
+   "srcH": 1169,
+   "w": 536,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.5956,
+   "kb": 352.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "inosuke-hashibira": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Inosuke_anime.png",
+  "file": "File:Inosuke anime.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 722,
+   "srcH": 1031,
+   "w": 630,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.7,
+   "kb": 333.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "giyu-tomioka": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Giyu_anime_design.png",
+  "file": "File:Giyu anime design.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 572,
+   "srcH": 817,
+   "w": 572,
+   "h": 817,
+   "alpha": true,
+   "aspect": 0.7001,
+   "kb": 241.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "shinobu-kocho": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Shinobu_anime.png",
+  "file": "File:Shinobu anime.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 760,
+   "srcH": 1086,
+   "w": 630,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.7,
+   "kb": 350.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "kyojuro-rengoku": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Kyojuro_anime_right_face.png",
+  "file": "File:Kyojuro anime right face.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 760,
+   "srcH": 947,
+   "w": 722,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.8022,
+   "kb": 371.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "muzan-kibutsuji": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Muzan_Kibutsuji_Full_Body_(Anime).png",
+  "file": "File:Muzan Kibutsuji Full Body (Anime).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 700,
+   "srcH": 742,
+   "w": 700,
+   "h": 742,
+   "alpha": true,
+   "aspect": 0.9434,
+   "kb": 421.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "tengen-uzui": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Tengen_anime.png",
+  "file": "File:Tengen anime.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 760,
+   "srcH": 1086,
+   "w": 630,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.7,
+   "kb": 303.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "mitsuri-kanroji": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Mitsuri_anime.png",
+  "file": "File:Mitsuri anime.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 760,
+   "srcH": 1086,
+   "w": 630,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.7,
+   "kb": 291.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "muichiro-tokito": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Muichiro_Tokito_Full_Body_(Anime).png",
+  "file": "File:Muichiro Tokito Full Body (Anime).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 760,
+   "srcH": 1086,
+   "w": 630,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.7,
+   "kb": 262.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "akaza": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Akaza_HIROMA.png",
+  "file": "File:Akaza HIROMA.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 700,
+   "srcH": 719,
+   "w": 700,
+   "h": 719,
+   "alpha": true,
+   "aspect": 0.9736,
+   "kb": 435.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "gyomei-himejima": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Gyomei_anime.png",
+  "file": "File:Gyomei anime.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 760,
+   "srcH": 1086,
+   "w": 630,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.7,
+   "kb": 352.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "sanemi-shinazugawa": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Sanemi_Shinazugawa_Full_Body_(Anime).png",
+  "file": "File:Sanemi Shinazugawa Full Body (Anime).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 760,
+   "srcH": 1086,
+   "w": 630,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.7,
+   "kb": 330.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "obanai-iguro": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Obanai_anime_right_face.png",
+  "file": "File:Obanai anime right face.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 651,
+   "srcH": 1144,
+   "w": 512,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.5689,
+   "kb": 328.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "kanao-tsuyuri": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Kanao_anime_right_face.png",
+  "file": "File:Kanao anime right face.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 689,
+   "srcH": 1154,
+   "w": 537,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.5967,
+   "kb": 266.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "doma": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Anime_Doma's_cult_wear.png",
+  "file": "File:Anime Doma's cult wear.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 700,
+   "srcH": 670,
+   "w": 700,
+   "h": 670,
+   "alpha": true,
+   "aspect": 1.0448,
+   "kb": 391.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "daki": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Daki_Anime_(Awakened).png",
+  "file": "File:Daki Anime (Awakened).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 700,
+   "srcH": 931,
+   "w": 677,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.7522,
+   "kb": 683.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "gyutaro": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Gyutaro_Anime.png",
+  "file": "File:Gyutaro Anime.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 700,
+   "srcH": 921,
+   "w": 684,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.76,
+   "kb": 567.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "kokushibo": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Kokushibo_(Anime).png",
+  "file": "File:Kokushibo (Anime).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 700,
+   "srcH": 1220,
+   "w": 516,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.5733,
+   "kb": 473.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "rui": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Rui_anime_2.png",
+  "file": "File:Rui anime 2.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 700,
+   "srcH": 782,
+   "w": 700,
+   "h": 782,
+   "alpha": true,
+   "aspect": 0.8951,
+   "kb": 422.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "enmu": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Enmu_anime.png",
+  "file": "File:Enmu anime.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 760,
+   "srcH": 1012,
+   "w": 676,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.7511,
+   "kb": 285.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "genya-shinazugawa": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Genya_Shinazugawa_Full_Body_(Anime).png",
+  "file": "File:Genya Shinazugawa Full Body (Anime).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 724,
+   "srcH": 1024,
+   "w": 636,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.7067,
+   "kb": 274.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "kagaya-ubuyashiki": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Kagaya_anime.png",
+  "file": "File:Kagaya anime.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 751,
+   "srcH": 1073,
+   "w": 630,
+   "h": 900,
+   "alpha": true,
+   "aspect": 0.7,
+   "kb": 379.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "yoriichi-tsugikuni": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Yoriichi_Tsugikuni_(Anime).png",
+  "file": "File:Yoriichi Tsugikuni (Anime).png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1344,
+   "srcH": 1080,
+   "w": 900,
+   "h": 723,
+   "alpha": false,
+   "aspect": 1.2448,
+   "kb": 90.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "sakonji-urokodaki": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Sakonji_visual_Hinokami_Chronicles.png",
+  "file": "File:Sakonji visual Hinokami Chronicles.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 700,
+   "srcH": 766,
+   "w": 700,
+   "h": 766,
+   "alpha": true,
+   "aspect": 0.9138,
+   "kb": 570.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "skin": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Infinity_Castle_-_18.png",
+  "file": "File:Infinity Castle - 18.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1400,
+   "srcH": 788,
+   "w": 1400,
+   "h": 788,
+   "alpha": false,
+   "aspect": 1.7766,
+   "kb": 143.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "seal-metsu": {
+  "page": "https://kimetsu-no-yaiba.fandom.com/wiki/File:Demon_Slayer_Corps_Insignia.png",
+  "file": "File:Demon Slayer Corps Insignia.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 559,
+   "srcH": 553,
+   "w": 512,
+   "h": 507,
+   "alpha": true,
+   "aspect": 1.0099,
+   "kb": 106.2
+  },
+  "fetched": "2026-10-24",
+  "note": "white-on-black insignia converted to a transparent cut-out (luminance to alpha) with Pillow"
+ }
+}

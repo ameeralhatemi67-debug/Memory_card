@@ -1,0 +1,258 @@
+{
+  "id": "flags-lookalike",
+  "name": "Flags · Look-alikes",
+  "mono": "Fl",
+  "category": "geo",
+  "level": "flags",
+  "kind": "text",
+  "folder": "Geography",
+  "description": "Tell the twins apart: Chad or Romania, Indonesia or Monaco, Norway or Iceland, and the other flags everyone mixes up.",
+  "style": {
+    "front": "only",
+    "fit": "contain",
+    "back": "text",
+    "reverse": true
+  },
+  "cards": [
+    {
+      "img": "au.png",
+      "front": "",
+      "back": "Australia",
+      "label": "flag",
+      "example": "",
+      "hook": "Six white stars (a big Commonwealth Star and five of the Southern Cross); NZ's are red."
+    },
+    {
+      "img": "nz.png",
+      "front": "",
+      "back": "New Zealand",
+      "label": "flag",
+      "example": "",
+      "hook": "Four red stars edged in white; Australia's flag has six white ones."
+    },
+    {
+      "img": "nl.png",
+      "front": "",
+      "back": "Netherlands",
+      "label": "flag",
+      "example": "",
+      "hook": "Darker red and blue than Luxembourg's, on a shorter flag."
+    },
+    {
+      "img": "lu.png",
+      "front": "",
+      "back": "Luxembourg",
+      "label": "flag",
+      "example": "",
+      "hook": "Longer than the Dutch flag, with a sky-blue stripe and a lighter red."
+    },
+    {
+      "img": "it.png",
+      "front": "",
+      "back": "Italy",
+      "label": "flag",
+      "example": "",
+      "hook": "Green, white, red: where Ireland has orange, Italy has red."
+    },
+    {
+      "img": "ie.png",
+      "front": "",
+      "back": "Ireland",
+      "label": "flag",
+      "example": "",
+      "hook": "Green at the hoist, orange at the fly; Ivory Coast reverses it on a squarer flag."
+    },
+    {
+      "img": "ci.png",
+      "front": "",
+      "back": "Côte d'Ivoire",
+      "label": "flag",
+      "example": "",
+      "hook": "Orange at the hoist: Ireland's tricolour reversed, on a less oblong flag."
+    },
+    {
+      "img": "no.png",
+      "front": "",
+      "back": "Norway",
+      "label": "flag",
+      "example": "",
+      "hook": "Red with a navy cross edged in white; Iceland is blue with a red cross."
+    },
+    {
+      "img": "is.png",
+      "front": "",
+      "back": "Iceland",
+      "label": "flag",
+      "example": "",
+      "hook": "Blue with a red cross edged in white; Norway swaps the colours."
+    },
+    {
+      "img": "ru.png",
+      "front": "",
+      "back": "Russia",
+      "label": "flag",
+      "example": "",
+      "hook": "White, blue, red with no emblem; Slovakia and Slovenia add a shield."
+    },
+    {
+      "img": "sk.png",
+      "front": "",
+      "back": "Slovakia",
+      "label": "flag",
+      "example": "",
+      "hook": "Shield with a white double cross at the hoist; Slovenia's shows Mount Triglav."
+    },
+    {
+      "img": "si.png",
+      "front": "",
+      "back": "Slovenia",
+      "label": "flag",
+      "example": "",
+      "hook": "Small shield with Mount Triglav high in the corner; Slovakia's shield is bigger."
+    },
+    {
+      "img": "id.png",
+      "front": "",
+      "back": "Indonesia",
+      "label": "flag",
+      "example": "",
+      "hook": "Red on top, 2:3, and a slightly lighter red than Monaco's."
+    },
+    {
+      "img": "mc.png",
+      "front": "",
+      "back": "Monaco",
+      "label": "flag",
+      "example": "",
+      "hook": "Squarer (4:5) than Indonesia's 2:3, with a slightly darker red."
+    },
+    {
+      "img": "pl.png",
+      "front": "",
+      "back": "Poland",
+      "label": "flag",
+      "example": "",
+      "hook": "White on top, red below; Indonesia and Monaco put the red on top."
+    },
+    {
+      "img": "ro.png",
+      "front": "",
+      "back": "Romania",
+      "label": "flag",
+      "example": "",
+      "hook": "Plain stripes in a lighter blue than Chad's; Andorra and Moldova add arms."
+    },
+    {
+      "img": "td.png",
+      "front": "",
+      "back": "Chad",
+      "label": "flag",
+      "example": "",
+      "hook": "Indigo blue, darker than Romania's; the stripes are otherwise the same."
+    },
+    {
+      "img": "ad.png",
+      "front": "",
+      "back": "Andorra",
+      "label": "flag",
+      "example": "",
+      "hook": "Arms with two cows; a squarer flag (7:10) than Moldova's long 1:2."
+    },
+    {
+      "img": "md.png",
+      "front": "",
+      "back": "Moldova",
+      "label": "flag",
+      "example": "",
+      "hook": "Eagle and aurochs-head shield in the arms; Andorra's arms show cows."
+    },
+    {
+      "img": "co.png",
+      "front": "",
+      "back": "Colombia",
+      "label": "flag",
+      "example": "",
+      "hook": "Plain, with a double-height yellow band; Ecuador adds arms, Venezuela stars."
+    },
+    {
+      "img": "ec.png",
+      "front": "",
+      "back": "Ecuador",
+      "label": "flag",
+      "example": "",
+      "hook": "Coat of arms with a condor in the centre; otherwise the same as Colombia's."
+    },
+    {
+      "img": "ve.png",
+      "front": "",
+      "back": "Venezuela",
+      "label": "flag",
+      "example": "",
+      "hook": "An arc of eight white stars on the blue band; Colombia has none."
+    },
+    {
+      "img": "qa.png",
+      "front": "",
+      "back": "Qatar",
+      "label": "flag",
+      "example": "",
+      "hook": "Maroon, nine white points, very long (11:28); Bahrain is red with five."
+    },
+    {
+      "img": "bh.png",
+      "front": "",
+      "back": "Bahrain",
+      "label": "flag",
+      "example": "",
+      "hook": "Red with five white points; Qatar's is maroon with nine, and much longer."
+    },
+    {
+      "img": "ml.png",
+      "front": "",
+      "back": "Mali",
+      "label": "flag",
+      "example": "",
+      "hook": "Plain green, yellow, red; Guinea reverses the order, Senegal adds a star."
+    },
+    {
+      "img": "sn.png",
+      "front": "",
+      "back": "Senegal",
+      "label": "flag",
+      "example": "",
+      "hook": "A green star on the yellow stripe; Mali and Guinea have none."
+    },
+    {
+      "img": "gn.png",
+      "front": "",
+      "back": "Guinea",
+      "label": "flag",
+      "example": "",
+      "hook": "Red at the hoist: Mali's order reversed, with no star like Senegal's."
+    },
+    {
+      "img": "hn.png",
+      "front": "",
+      "back": "Honduras",
+      "label": "flag",
+      "example": "",
+      "hook": "Five blue stars on the white stripe and no emblem, unlike Nicaragua and El Salvador."
+    },
+    {
+      "img": "ni.png",
+      "front": "",
+      "back": "Nicaragua",
+      "label": "flag",
+      "example": "",
+      "hook": "A rainbow triangle ringed by gold lettering; El Salvador's adds flags and a wreath."
+    },
+    {
+      "img": "sv.png",
+      "front": "",
+      "back": "El Salvador",
+      "label": "flag",
+      "example": "",
+      "hook": "Rainbow triangle with flags, a laurel wreath and a scroll; Nicaragua's has none."
+    }
+  ]
+}

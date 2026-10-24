@@ -1,0 +1,387 @@
+{
+  "id": "country-silhouettes",
+  "name": "Countries · Silhouettes",
+  "mono": "Sh",
+  "category": "geo",
+  "level": "maps",
+  "kind": "text",
+  "folder": "Geography",
+  "description": "Name the country from its outline alone, then see the shape filled with its flag.",
+  "style": {
+    "front": "only",
+    "fit": "contain",
+    "back": "above",
+    "reverse": false, "plate": "paper"
+  },
+  "cards": [
+    {
+      "img": "it-shape.png",
+      "bimg": "it-flag.png",
+      "front": "",
+      "back": "Italy",
+      "label": "silhouette",
+      "example": "",
+      "hook": "A boot kicking Sicily."
+    },
+    {
+      "img": "jp-shape.png",
+      "bimg": "jp-flag.png",
+      "front": "",
+      "back": "Japan",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Five main islands, north to south: Hokkaido, Honshu, Shikoku, Kyushu, Okinawa."
+    },
+    {
+      "img": "au-shape.png",
+      "bimg": "au-flag.png",
+      "front": "",
+      "back": "Australia",
+      "label": "silhouette",
+      "example": "",
+      "hook": "The sixth-largest country by total area; Tasmania hangs off its south-east."
+    },
+    {
+      "img": "gb-shape.png",
+      "bimg": "gb-flag.png",
+      "front": "",
+      "back": "United Kingdom",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Great Britain plus Northern Ireland, in the north-east of Ireland."
+    },
+    {
+      "img": "br-shape.png",
+      "bimg": "br-flag.png",
+      "front": "",
+      "back": "Brazil",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Covers roughly half of South America's land area."
+    },
+    {
+      "img": "us-shape.png",
+      "bimg": "us-flag.png",
+      "front": "",
+      "back": "United States",
+      "label": "silhouette",
+      "example": "",
+      "hook": "The 48 contiguous states: Alaska and Hawaii are not shown."
+    },
+    {
+      "img": "in-shape.png",
+      "bimg": "in-flag.png",
+      "front": "",
+      "back": "India",
+      "label": "silhouette",
+      "example": "",
+      "hook": "A great peninsula pointing south into the Indian Ocean."
+    },
+    {
+      "img": "eg-shape.png",
+      "bimg": "eg-flag.png",
+      "front": "",
+      "back": "Egypt",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Africa's north-east corner, reaching into Asia through the Sinai Peninsula."
+    },
+    {
+      "img": "mx-shape.png",
+      "bimg": "mx-flag.png",
+      "front": "",
+      "back": "Mexico",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Baja California is the long peninsula hanging off the north-west."
+    },
+    {
+      "img": "cl-shape.png",
+      "bimg": "cl-flag.png",
+      "front": "",
+      "back": "Chile",
+      "label": "silhouette",
+      "example": "",
+      "hook": "About 4,300 km long, but only 350 km wide at its widest."
+    },
+    {
+      "img": "cu-shape.png",
+      "bimg": "cu-flag.png",
+      "front": "",
+      "back": "Cuba",
+      "label": "silhouette",
+      "example": "",
+      "hook": "The largest island in the Caribbean, about 1,250 km long."
+    },
+    {
+      "img": "gr-shape.png",
+      "bimg": "gr-flag.png",
+      "front": "",
+      "back": "Greece",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Up to 227 inhabited islands and the longest Mediterranean coastline."
+    },
+    {
+      "img": "es-shape.png",
+      "bimg": "es-flag.png",
+      "front": "",
+      "back": "Spain",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Covers most of the Iberian Peninsula; Portugal is the strip on its west edge."
+    },
+    {
+      "img": "fr-shape.png",
+      "bimg": "fr-flag.png",
+      "front": "",
+      "back": "France",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Mainland France is popularly called \"the Hexagon\"."
+    },
+    {
+      "img": "de-shape.png",
+      "bimg": "de-flag.png",
+      "front": "",
+      "back": "Germany",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Borders nine countries, from Denmark to Switzerland."
+    },
+    {
+      "img": "tr-shape.png",
+      "bimg": "tr-flag.png",
+      "front": "",
+      "back": "Turkey",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Mostly Anatolia in Asia, with a small toe in Europe: East Thrace."
+    },
+    {
+      "img": "no-shape.png",
+      "bimg": "no-flag.png",
+      "front": "",
+      "back": "Norway",
+      "label": "silhouette",
+      "example": "",
+      "hook": "A rugged coast broken by huge fjords and thousands of islands."
+    },
+    {
+      "img": "nz-shape.png",
+      "bimg": "nz-flag.png",
+      "front": "",
+      "back": "New Zealand",
+      "label": "silhouette",
+      "example": "",
+      "hook": "The North Island is Te Ika-a-Māui, “the fish of Māui”."
+    },
+    {
+      "img": "ca-shape.png",
+      "bimg": "ca-flag.png",
+      "front": "",
+      "back": "Canada",
+      "label": "silhouette",
+      "example": "",
+      "hook": "The second-largest country, with the longest coastline."
+    },
+    {
+      "img": "ru-shape.png",
+      "bimg": "ru-flag.png",
+      "front": "",
+      "back": "Russia",
+      "label": "silhouette",
+      "example": "",
+      "hook": "The largest country, spanning eleven time zones."
+    },
+    {
+      "img": "cn-shape.png",
+      "bimg": "cn-flag.png",
+      "front": "",
+      "back": "China",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Borders 14 nations, as many as Russia."
+    },
+    {
+      "img": "id-shape.png",
+      "bimg": "id-flag.png",
+      "front": "",
+      "back": "Indonesia",
+      "label": "silhouette",
+      "example": "",
+      "hook": "The world's largest archipelagic state: 13,000 to 17,000 islands."
+    },
+    {
+      "img": "ph-shape.png",
+      "bimg": "ph-flag.png",
+      "front": "",
+      "back": "Philippines",
+      "label": "silhouette",
+      "example": "",
+      "hook": "About 7,641 islands in three groups: Luzon, Visayas, Mindanao."
+    },
+    {
+      "img": "mg-shape.png",
+      "bimg": "mg-flag.png",
+      "front": "",
+      "back": "Madagascar",
+      "label": "silhouette",
+      "example": "",
+      "hook": "The world's fourth-largest island, off Africa's south-east coast."
+    },
+    {
+      "img": "is-shape.png",
+      "bimg": "is-flag.png",
+      "front": "",
+      "back": "Iceland",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Sits on the Mid-Atlantic Ridge between Europe and North America."
+    },
+    {
+      "img": "pt-shape.png",
+      "bimg": "pt-flag.png",
+      "front": "",
+      "back": "Portugal",
+      "label": "silhouette",
+      "example": "",
+      "hook": "A strip down Iberia's west coast; Spain fills the rest."
+    },
+    {
+      "img": "th-shape.png",
+      "bimg": "th-flag.png",
+      "front": "",
+      "back": "Thailand",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Its shape resembles an elephant's head with a long trunk."
+    },
+    {
+      "img": "vn-shape.png",
+      "bimg": "vn-flag.png",
+      "front": "",
+      "back": "Vietnam",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Roughly S-shaped: 1,650 km long, only 50 km wide at its narrowest."
+    },
+    {
+      "img": "ar-shape.png",
+      "bimg": "ar-flag.png",
+      "front": "",
+      "back": "Argentina",
+      "label": "silhouette",
+      "example": "",
+      "hook": "The second-largest country in South America, after Brazil."
+    },
+    {
+      "img": "pe-shape.png",
+      "bimg": "pe-flag.png",
+      "front": "",
+      "back": "Peru",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Pacific desert coast, the Andes, then the Amazon rainforest."
+    },
+    {
+      "img": "za-shape.png",
+      "bimg": "za-flag.png",
+      "front": "",
+      "back": "South Africa",
+      "label": "silhouette",
+      "example": "",
+      "hook": "The hole is Lesotho, a country completely surrounded by South Africa."
+    },
+    {
+      "img": "so-shape.png",
+      "bimg": "so-flag.png",
+      "front": "",
+      "back": "Somalia",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Stretches across the Horn of Africa."
+    },
+    {
+      "img": "ie-shape.png",
+      "bimg": "ie-flag.png",
+      "front": "",
+      "back": "Ireland",
+      "label": "silhouette",
+      "example": "",
+      "hook": "The island of Ireland minus Northern Ireland, which belongs to the UK."
+    },
+    {
+      "img": "lk-shape.png",
+      "bimg": "lk-flag.png",
+      "front": "",
+      "back": "Sri Lanka",
+      "label": "silhouette",
+      "example": "",
+      "hook": "An island off India's southern tip, split from it by the Palk Strait."
+    },
+    {
+      "img": "hr-shape.png",
+      "bimg": "hr-flag.png",
+      "front": "",
+      "back": "Croatia",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Its shape is described as a horseshoe (potkova)."
+    },
+    {
+      "img": "my-shape.png",
+      "bimg": "my-flag.png",
+      "front": "",
+      "back": "Malaysia",
+      "label": "silhouette",
+      "example": "",
+      "hook": "Split by the South China Sea: a peninsula plus northern Borneo."
+    },
+    {
+      "img": "se-shape.png",
+      "bimg": "se-flag.png",
+      "front": "",
+      "back": "Sweden",
+      "label": "silhouette",
+      "example": "",
+      "hook": "The largest Nordic country; it shares the Scandinavian Peninsula with Norway."
+    },
+    {
+      "img": "na-shape.png",
+      "bimg": "na-flag.png",
+      "front": "",
+      "back": "Namibia",
+      "label": "silhouette",
+      "example": "",
+      "hook": "The Caprivi Strip reaches east like a panhandle."
+    },
+    {
+      "img": "pa-shape.png",
+      "bimg": "pa-flag.png",
+      "front": "",
+      "back": "Panama",
+      "label": "silhouette",
+      "example": "",
+      "hook": "A land bridge between North and South America."
+    },
+    {
+      "img": "la-shape.png",
+      "bimg": "la-flag.png",
+      "front": "",
+      "back": "Laos",
+      "label": "silhouette",
+      "example": "",
+      "hook": "The only landlocked country in Southeast Asia."
+    },
+    {
+      "img": "gm-shape.png",
+      "bimg": "gm-flag.png",
+      "front": "",
+      "back": "Gambia",
+      "label": "silhouette",
+      "example": "",
+      "hook": "The smallest country in continental Africa, on both sides of the Gambia River."
+    }
+  ]
+}

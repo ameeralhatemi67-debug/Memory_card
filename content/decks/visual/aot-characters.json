@@ -1,0 +1,266 @@
+{
+  "id": "aot-characters",
+  "name": "Attack on Titan · Characters",
+  "mono": "At",
+  "category": "anime",
+  "level": "anime",
+  "kind": "text",
+  "folder": "Anime",
+  "description": "Put a name to the face: the Scouts, Warriors and soldiers of Attack on Titan.",
+  "style": {
+    "front": "full",
+    "fit": "cover",
+    "back": "text",
+    "reverse": true
+  },
+  "skin": {
+    "img": "skin.jpg",
+    "x": 0.5,
+    "y": 0.4,
+    "zoom": 1,
+    "shade": 0.6,
+    "text": "light"
+  },
+  "seals": [
+    {
+      "id": "wings-of-freedom",
+      "title": "Wings of Freedom",
+      "note": "Every soldier of the Walls seen at least once.",
+      "when": "seen",
+      "shape": "square",
+      "color": "wine",
+      "text": "",
+      "img": "seal-wings.png",
+      "art": "color"
+    },
+    {
+      "id": "unicorn-brigade",
+      "title": "Unicorn Brigade",
+      "note": "Every Scout, Warrior and soldier known by heart.",
+      "when": "mastered",
+      "shape": "wide",
+      "color": "gold",
+      "text": "",
+      "img": "seal-unicorn.png",
+      "art": "color"
+    }
+  ],
+  "cards": [
+    {
+      "img": "eren-yeager.jpg",
+      "front": "",
+      "back": "Eren Yeager",
+      "label": "character",
+      "example": "",
+      "hook": "Swore to wipe out every Titan after Wall Maria fell and his mother died."
+    },
+    {
+      "img": "levi-ackerman.jpg",
+      "front": "",
+      "back": "Levi Ackerman",
+      "label": "character",
+      "example": "",
+      "hook": "Survey Corps squad captain, widely known as humanity's strongest soldier."
+    },
+    {
+      "img": "mikasa-ackerman.jpg",
+      "front": "",
+      "back": "Mikasa Ackerman",
+      "label": "character",
+      "example": "",
+      "hook": "Top-ranked of the 104th Training Corps; follows Eren to protect him."
+    },
+    {
+      "img": "armin-arlert.jpg",
+      "front": "",
+      "back": "Armin Arlert",
+      "label": "character",
+      "example": "",
+      "hook": "Strategic genius of the 104th; later the Survey Corps' 15th commander."
+    },
+    {
+      "img": "erwin-smith.jpg",
+      "front": "",
+      "back": "Erwin Smith",
+      "label": "character",
+      "example": "",
+      "hook": "13th Survey Corps commander; created the Long-Distance Scouting Formation."
+    },
+    {
+      "img": "hange-zoe.jpg",
+      "front": "",
+      "back": "Hange Zoë",
+      "label": "character",
+      "example": "",
+      "hook": "Titan researcher and squad leader, named the Survey Corps' 14th commander."
+    },
+    {
+      "img": "reiner-braun.jpg",
+      "front": "",
+      "back": "Reiner Braun",
+      "label": "character",
+      "example": "",
+      "hook": "Armored Titan warrior who infiltrated the Walls and graduated 2nd in the 104th."
+    },
+    {
+      "img": "annie-leonhart.jpg",
+      "front": "",
+      "back": "Annie Leonhart",
+      "label": "character",
+      "example": "",
+      "hook": "The Female Titan; ranked 4th in the 104th, then joined the Military Police."
+    },
+    {
+      "img": "zeke-yeager.jpg",
+      "front": "",
+      "back": "Zeke Yeager",
+      "label": "character",
+      "example": "",
+      "hook": "Marley's Beast Titan and Warrior captain; Eren's older half-brother."
+    },
+    {
+      "img": "historia-reiss.jpg",
+      "front": "",
+      "back": "Historia Reiss",
+      "label": "character",
+      "example": "",
+      "hook": "Raised as Krista Lenz; later crowned Queen of the Walls."
+    },
+    {
+      "img": "jean-kirstein.jpg",
+      "front": "",
+      "back": "Jean Kirstein",
+      "label": "character",
+      "example": "",
+      "hook": "Ranked 6th in the 104th; wanted the Military Police, joined the Survey Corps."
+    },
+    {
+      "img": "sasha-blouse.jpg",
+      "front": "",
+      "back": "Sasha Blouse",
+      "label": "character",
+      "example": "",
+      "hook": "Compulsive food hoarder from Dauper village who joined the Survey Corps."
+    },
+    {
+      "img": "connie-springer.jpg",
+      "front": "",
+      "back": "Connie Springer",
+      "label": "character",
+      "example": "",
+      "hook": "Ranked 8th in the 104th; hails from Ragako village in Wall Rose."
+    },
+    {
+      "img": "bertholdt-hoover.jpg",
+      "front": "",
+      "back": "Bertholdt Hoover",
+      "label": "character",
+      "example": "",
+      "hook": "The Colossal Titan; ranked 3rd in the 104th and Reiner's childhood friend."
+    },
+    {
+      "img": "ymir.jpg",
+      "front": "",
+      "back": "Ymir",
+      "label": "character",
+      "example": "",
+      "hook": "Jaw Titan holder and Historia's best friend; knew the truth about Titans."
+    },
+    {
+      "img": "grisha-yeager.jpg",
+      "front": "",
+      "back": "Grisha Yeager",
+      "label": "character",
+      "example": "",
+      "hook": "Eren's father: an Eldian doctor who held the Attack Titan."
+    },
+    {
+      "img": "kenny-ackerman.jpg",
+      "front": "",
+      "back": "Kenny Ackerman",
+      "label": "character",
+      "example": "",
+      "hook": "Serial killer 'Kenny the Ripper'; Levi's maternal uncle and teacher."
+    },
+    {
+      "img": "pieck-finger.jpg",
+      "front": "",
+      "back": "Pieck Finger",
+      "label": "character",
+      "example": "",
+      "hook": "One of Marley's Warriors; held the Cart Titan."
+    },
+    {
+      "img": "porco-galliard.jpg",
+      "front": "",
+      "back": "Porco Galliard",
+      "label": "character",
+      "example": "",
+      "hook": "Marley Warrior who inherited the Jaw Titan; Marcel's younger brother."
+    },
+    {
+      "img": "falco-grice.jpg",
+      "front": "",
+      "back": "Falco Grice",
+      "label": "character",
+      "example": "",
+      "hook": "Warrior candidate who inherited the Jaw Titan; Colt's younger brother."
+    },
+    {
+      "img": "gabi-braun.jpg",
+      "front": "",
+      "back": "Gabi Braun",
+      "label": "character",
+      "example": "",
+      "hook": "Warrior candidate from Liberio; Reiner's cousin, set to inherit the Armored Titan."
+    },
+    {
+      "img": "floch-forster.jpg",
+      "front": "",
+      "back": "Floch Forster",
+      "label": "character",
+      "example": "",
+      "hook": "Survey Corps recruit who became the Yeagerists' de facto leader."
+    },
+    {
+      "img": "petra-ral.jpg",
+      "front": "",
+      "back": "Petra Ral",
+      "label": "character",
+      "example": "",
+      "hook": "Soldier hand-picked by Levi for his Special Operations Squad."
+    },
+    {
+      "img": "hannes.jpg",
+      "front": "",
+      "back": "Hannes",
+      "label": "character",
+      "example": "",
+      "hook": "Garrison captain, a friend of the Yeagers, who saved Mikasa and Eren from a Titan."
+    },
+    {
+      "img": "marco-bott.jpg",
+      "front": "",
+      "back": "Marco Bott",
+      "label": "character",
+      "example": "",
+      "hook": "Ranked 7th in the 104th; given command of a squad at Trost."
+    },
+    {
+      "img": "keith-shadis.jpg",
+      "front": "",
+      "back": "Keith Shadis",
+      "label": "character",
+      "example": "",
+      "hook": "Head instructor of the 104th; formerly the 12th Survey Corps commander."
+    },
+    {
+      "img": "dot-pixis.jpg",
+      "front": "",
+      "back": "Dot Pixis",
+      "label": "character",
+      "example": "",
+      "hook": "Garrison commander of the Southern Territories, which include Trost."
+    }
+  ]
+}

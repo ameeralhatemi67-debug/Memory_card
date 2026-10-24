@@ -150,6 +150,8 @@ class CardFront extends StatelessWidget {
     final code = deck.kind == 'code' && !card.isReverse;
     final prompt = card.front;
     final flip = mode == RevealMode.flip;
+    // A kanji, a letter, a kana: one big glyph in the middle of the card.
+    final glyph = !code && prompt.trim().isNotEmpty && prompt.trim().runes.length <= 3;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -157,13 +159,23 @@ class CardFront extends StatelessWidget {
         children: [
           _labelRow(mc),
           const SizedBox(height: 6),
-          Text(
-            prompt,
-            textDirection: dirOf(prompt),
-            style: code
-                ? T.mono(termSize(prompt, true), color: mc.onInk)
-                : T.d(termSize(prompt, false), color: mc.onInk, height: 1.05),
-          ),
+          if (glyph)
+            Expanded(
+              child: Center(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(prompt.trim(), textDirection: dirOf(prompt), style: T.d(compact ? 84 : 120, color: mc.onInk, height: 1)),
+                ),
+              ),
+            )
+          else
+            Text(
+              prompt,
+              textDirection: dirOf(prompt),
+              style: code
+                  ? T.mono(termSize(prompt, true), color: mc.onInk)
+                  : T.d(termSize(prompt, false), color: mc.onInk, height: 1.05),
+            ),
           if (card.example.isNotEmpty && !(flip && revealed)) ...[
             const SizedBox(height: 8),
             Text(card.example,
@@ -181,7 +193,7 @@ class CardFront extends StatelessWidget {
               ),
             ),
           ],
-          const Spacer(),
+          if (!glyph) const Spacer(),
           ..._footer(mc),
         ],
       ),

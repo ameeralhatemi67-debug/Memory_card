@@ -252,6 +252,8 @@ class Catalog {
     'world-capitals', 'history-dates', 'us-states', 'greek-gods', 'latin-phrases', 'paintings', 'philosophy', 'fallacies',
     'flags-europe', 'naruto-characters', 'car-brands', 'onepiece-characters', 'flags-asia', 'hxh-characters',
     'football-crests-england', 'football-legends', 'football-world-cup', 'football-crests-europe',
+    'anime-eyes', 'country-silhouettes', 'flags-lookalike', 'paintings-details', 'demonslayer-characters', 'jjk-characters',
+    'dragonball-characters', 'aot-characters',
   ];
 
   /// [list] with the featured decks first, in [featuredIds] order; the others keep their order.

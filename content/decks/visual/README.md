@@ -206,3 +206,30 @@ short word stamped in it and/or a picture pressed into it. The app presses it wh
 * Seal pictures must be clean: one symbol, centred, no background box, no text unless the symbol is text.
 
 Look at your seal pictures on the contact sheet (`sheet`) like any other image.
+
+## 7. Two-picture cards: a detail or a silhouette on the front, the whole picture on the back
+
+Some decks ask with one picture and answer with another:
+
+* **From a detail**: the front is a close crop (a character's eyes, a corner of a painting), the back the whole
+  picture. Both come from the same source file: two manifest items, one with `"crop"` and `"kind": "detail"`,
+  one without. Crops of a small rendition are blurry, so ask for a bigger one: `"width": 2000` (or more) on a
+  `fandom-file`, `commons` or `wikipedia-file` item. Check every crop on the sheet: the detail must be sharp,
+  recognisable for a fan, and must not show any lettering with the answer.
+* **From a silhouette**: the front is the subject's shape in solid ink on transparency, the back the same shape
+  in colour (a country filled with its flag, for example). Kind `shape`.
+
+In the card, `img` is the front picture and `bimg` the back picture:
+
+```json
+{ "img": "itachi-eyes.png", "bimg": "itachi.jpg", "front": "", "back": "Itachi Uchiha",
+  "label": "whose eyes?", "example": "", "hook": "Naruto · Sharingan; Sasuke's older brother." }
+```
+
+and the deck's style puts the back picture above the answer and shows both whole:
+
+```json
+"style": { "front": "only", "fit": "contain", "back": "above", "reverse": false }
+```
+
+Every image may still be used by one card only: the detail and the whole picture are two different files.

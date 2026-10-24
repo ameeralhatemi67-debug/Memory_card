@@ -1,0 +1,258 @@
+{
+  "id": "jjk-characters",
+  "name": "Jujutsu Kaisen · Characters",
+  "mono": "Jk",
+  "category": "anime",
+  "level": "anime",
+  "kind": "text",
+  "folder": "Anime",
+  "description": "Put a name to the face: the sorcerers, curses and curse users of Jujutsu Kaisen, in anime art.",
+  "style": {
+    "front": "full",
+    "fit": "cover",
+    "back": "text",
+    "reverse": true
+  },
+  "skin": {
+    "img": "skin.jpg",
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1,
+    "shade": 0.85,
+    "text": "light"
+  },
+  "seals": [
+    {
+      "id": "jujutsu-emblem",
+      "title": "Jujutsu High",
+      "note": "Every sorcerer and curse named.",
+      "when": "seen",
+      "shape": "square",
+      "color": "violet",
+      "text": "",
+      "img": "seal-jujutsu.png",
+      "art": "stamp"
+    },
+    {
+      "id": "sukuna-finger",
+      "title": "Cursed Finger",
+      "note": "Every card above 90%: all fingers collected.",
+      "when": "mastered",
+      "shape": "wide",
+      "color": "wine",
+      "text": "",
+      "img": "seal-finger.png",
+      "art": "stamp"
+    }
+  ],
+  "cards": [
+    {
+      "img": "yuji-itadori.png",
+      "front": "",
+      "back": "Yuji Itadori",
+      "label": "character",
+      "example": "",
+      "hook": "Athletic first-year who swallowed Sukuna's finger and became his vessel."
+    },
+    {
+      "img": "satoru-gojo.png",
+      "front": "",
+      "back": "Satoru Gojo",
+      "label": "character",
+      "example": "",
+      "hook": "The strongest sorcerer: his Six Eyes and Limitless technique make him untouchable."
+    },
+    {
+      "img": "ryomen-sukuna.png",
+      "front": "",
+      "back": "Ryomen Sukuna",
+      "label": "character",
+      "example": "",
+      "hook": "The King of Curses, sealed inside Yuji after he swallowed one of his fingers."
+    },
+    {
+      "img": "megumi-fushiguro.png",
+      "front": "",
+      "back": "Megumi Fushiguro",
+      "label": "character",
+      "example": "",
+      "hook": "First-year who summons shikigami from shadows with the Ten Shadows Technique."
+    },
+    {
+      "img": "nobara-kugisaki.png",
+      "front": "",
+      "back": "Nobara Kugisaki",
+      "label": "character",
+      "example": "",
+      "hook": "First-year who fights with a hammer, nails and a straw doll."
+    },
+    {
+      "img": "suguru-geto.png",
+      "front": "",
+      "back": "Suguru Geto",
+      "label": "character",
+      "example": "",
+      "hook": "Gojo's former best friend turned curse user, who commands absorbed curses."
+    },
+    {
+      "img": "kento-nanami.png",
+      "front": "",
+      "back": "Kento Nanami",
+      "label": "character",
+      "example": "",
+      "hook": "Ex-salaryman sorcerer whose Ratio technique strikes at a 7:3 weak point."
+    },
+    {
+      "img": "maki-zenin.png",
+      "front": "",
+      "back": "Maki Zenin",
+      "label": "character",
+      "example": "",
+      "hook": "Zenin clan sorceress with almost no cursed energy who fights with cursed tools."
+    },
+    {
+      "img": "toji-fushiguro.png",
+      "front": "",
+      "back": "Toji Fushiguro",
+      "label": "character",
+      "example": "",
+      "hook": "Mercenary with Heavenly Restriction and no cursed energy; Megumi's father."
+    },
+    {
+      "img": "yuta-okkotsu.png",
+      "front": "",
+      "back": "Yuta Okkotsu",
+      "label": "character",
+      "example": "",
+      "hook": "Special-grade sorcerer bound to Rika, the hero of Jujutsu Kaisen 0."
+    },
+    {
+      "img": "mahito.png",
+      "front": "",
+      "back": "Mahito",
+      "label": "character",
+      "example": "",
+      "hook": "Special-grade curse born from human hatred that reshapes souls."
+    },
+    {
+      "img": "panda.png",
+      "front": "",
+      "back": "Panda",
+      "label": "character",
+      "example": "",
+      "hook": "A mutated cursed corpse made by Principal Yaga who looks and acts like a panda."
+    },
+    {
+      "img": "toge-inumaki.png",
+      "front": "",
+      "back": "Toge Inumaki",
+      "label": "character",
+      "example": "",
+      "hook": "Second-year whose Cursed Speech forces him to talk in rice-ball ingredients."
+    },
+    {
+      "img": "aoi-todo.png",
+      "front": "",
+      "back": "Aoi Todo",
+      "label": "character",
+      "example": "",
+      "hook": "Kyoto third-year who fights with Boogie Woogie and adores the idol Takada."
+    },
+    {
+      "img": "choso.png",
+      "front": "",
+      "back": "Choso",
+      "label": "character",
+      "example": "",
+      "hook": "Eldest of the Death Painting Wombs, who controls blood as a weapon."
+    },
+    {
+      "img": "jogo.png",
+      "front": "",
+      "back": "Jogo",
+      "label": "character",
+      "example": "",
+      "hook": "Special-grade volcano curse who attacks with fire and a lava-filled domain."
+    },
+    {
+      "img": "hanami.png",
+      "front": "",
+      "back": "Hanami",
+      "label": "character",
+      "example": "",
+      "hook": "Special-grade forest curse born from fear of nature, who fights with wood and plants."
+    },
+    {
+      "img": "kenjaku.png",
+      "front": "",
+      "back": "Kenjaku",
+      "label": "character",
+      "example": "",
+      "hook": "Ancient mastermind who took Geto's body and drives the Culling Game."
+    },
+    {
+      "img": "mai-zenin.png",
+      "front": "",
+      "back": "Mai Zenin",
+      "label": "character",
+      "example": "",
+      "hook": "Maki's twin sister, who can construct bullets from her own cursed energy."
+    },
+    {
+      "img": "kinji-hakari.png",
+      "front": "",
+      "back": "Kinji Hakari",
+      "label": "character",
+      "example": "",
+      "hook": "Third-year gambler whose Idle Death Gamble domain can make him briefly unkillable."
+    },
+    {
+      "img": "naoya-zenin.png",
+      "front": "",
+      "back": "Naoya Zenin",
+      "label": "character",
+      "example": "",
+      "hook": "Zenin heir whose Projection Sorcery moves him at 24 frames per second."
+    },
+    {
+      "img": "yuki-tsukumo.png",
+      "front": "",
+      "back": "Yuki Tsukumo",
+      "label": "character",
+      "example": "",
+      "hook": "Special-grade sorcerer who wants a world without cursed energy."
+    },
+    {
+      "img": "hiromi-higuruma.png",
+      "front": "",
+      "back": "Hiromi Higuruma",
+      "label": "character",
+      "example": "",
+      "hook": "Lawyer-turned-sorcerer whose domain puts his targets on trial."
+    },
+    {
+      "img": "kokichi-muta.png",
+      "front": "",
+      "back": "Kokichi Muta",
+      "label": "character",
+      "example": "",
+      "hook": "Kyoto student known as Mechamaru who fights through a robot body."
+    },
+    {
+      "img": "masamichi-yaga.png",
+      "front": "",
+      "back": "Masamichi Yaga",
+      "label": "character",
+      "example": "",
+      "hook": "Principal of Tokyo Jujutsu High, who makes cursed corpses like Panda."
+    },
+    {
+      "img": "rika-orimoto.png",
+      "front": "",
+      "back": "Rika Orimoto",
+      "label": "character",
+      "example": "",
+      "hook": "Yuta's childhood friend who became the Queen of Curses after her death."
+    }
+  ]
+}

@@ -1,0 +1,243 @@
+{
+  "id": "anime-eyes",
+  "name": "Anime · Whose Eyes?",
+  "mono": "Ey",
+  "category": "anime",
+  "level": "anime",
+  "kind": "text",
+  "folder": "Anime",
+  "description": "Name the anime hero or villain from a close-up of their eyes: Sharingan, Six Eyes and more.",
+  "style": {
+    "front": "only",
+    "fit": "contain",
+    "back": "above",
+    "reverse": false
+  },
+  "cards": [
+    {
+      "img": "naruto-uzumaki-eyes.jpg",
+      "bimg": "naruto-uzumaki.jpg",
+      "front": "",
+      "back": "Naruto Uzumaki",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Naruto · Sage Mode paints orange pigment around his eyes."
+    },
+    {
+      "img": "sasuke-uchiha-eyes.jpg",
+      "bimg": "sasuke-uchiha.jpg",
+      "front": "",
+      "back": "Sasuke Uchiha",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Naruto · Sharingan eyes, and Itachi's younger brother."
+    },
+    {
+      "img": "monkey-d-luffy-eyes.jpg",
+      "bimg": "monkey-d-luffy.jpg",
+      "front": "",
+      "back": "Monkey D. Luffy",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "One Piece · Wears the straw hat Shanks gave him; dreams of being Pirate King."
+    },
+    {
+      "img": "goku-eyes.jpg",
+      "bimg": "goku.jpg",
+      "front": "",
+      "back": "Goku",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Dragon Ball · A Saiyan raised on Earth, born with the name Kakarot."
+    },
+    {
+      "img": "satoru-gojo-eyes.jpg",
+      "bimg": "satoru-gojo.jpg",
+      "front": "",
+      "back": "Satoru Gojo",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Jujutsu Kaisen · His Six Eyes glow blue; the strongest sorcerer alive."
+    },
+    {
+      "img": "tanjiro-kamado-eyes.jpg",
+      "bimg": "tanjiro-kamado.jpg",
+      "front": "",
+      "back": "Tanjiro Kamado",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Demon Slayer · Kind and determined; his sister Nezuko is a demon."
+    },
+    {
+      "img": "kakashi-hatake-eyes.jpg",
+      "bimg": "kakashi-hatake.jpg",
+      "front": "",
+      "back": "Kakashi Hatake",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Naruto · The Copy Ninja, whose Sharingan was a gift from his friend Obito."
+    },
+    {
+      "img": "itachi-uchiha-eyes.jpg",
+      "bimg": "itachi-uchiha.jpg",
+      "front": "",
+      "back": "Itachi Uchiha",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Naruto · Mangekyo Sharingan; Sasuke's older brother."
+    },
+    {
+      "img": "roronoa-zoro-eyes.jpg",
+      "bimg": "roronoa-zoro.jpg",
+      "front": "",
+      "back": "Roronoa Zoro",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "One Piece · Three-sword swordsman who keeps one eye closed behind a scar."
+    },
+    {
+      "img": "vegeta-eyes.jpg",
+      "bimg": "vegeta.jpg",
+      "front": "",
+      "back": "Vegeta",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Dragon Ball · Proud prince of all Saiyans, forever chasing Goku."
+    },
+    {
+      "img": "gon-freecss-eyes.jpg",
+      "bimg": "gon-freecss.jpg",
+      "front": "",
+      "back": "Gon Freecss",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Hunter x Hunter · Seeks his father Ging, a legendary Hunter."
+    },
+    {
+      "img": "killua-zoldyck-eyes.jpg",
+      "bimg": "killua-zoldyck.jpg",
+      "front": "",
+      "back": "Killua Zoldyck",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Hunter x Hunter · Gon's best friend, an ex-assassin of the Zoldyck family."
+    },
+    {
+      "img": "nezuko-kamado-eyes.jpg",
+      "bimg": "nezuko-kamado.jpg",
+      "front": "",
+      "back": "Nezuko Kamado",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Demon Slayer · Tanjiro's demon sister; her pink eyes have slit pupils."
+    },
+    {
+      "img": "eren-yeager-eyes.jpg",
+      "bimg": "eren-yeager.jpg",
+      "front": "",
+      "back": "Eren Yeager",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Attack on Titan · Holds the Attack Titan and vows to destroy all Titans."
+    },
+    {
+      "img": "mikasa-ackerman-eyes.jpg",
+      "bimg": "mikasa-ackerman.jpg",
+      "front": "",
+      "back": "Mikasa Ackerman",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Attack on Titan · Eren's adoptive sister, a top soldier with Ackerman strength."
+    },
+    {
+      "img": "yuji-itadori-eyes.jpg",
+      "bimg": "yuji-itadori.jpg",
+      "front": "",
+      "back": "Yuji Itadori",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Jujutsu Kaisen · Swallowed Sukuna's finger and hosts the King of Curses."
+    },
+    {
+      "img": "ryomen-sukuna-eyes.jpg",
+      "bimg": "ryomen-sukuna.jpg",
+      "front": "",
+      "back": "Ryomen Sukuna",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Jujutsu Kaisen · The King of Curses, with extra marks under his eyes."
+    },
+    {
+      "img": "shanks-eyes.jpg",
+      "bimg": "shanks.jpg",
+      "front": "",
+      "back": "Shanks",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "One Piece · Red-Haired Emperor with three scars across one eye."
+    },
+    {
+      "img": "gaara-eyes.jpg",
+      "bimg": "gaara.jpg",
+      "front": "",
+      "back": "Gaara",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Naruto · Kazekage of the Sand; the kanji for love marks his forehead."
+    },
+    {
+      "img": "hisoka-morow-eyes.jpg",
+      "bimg": "hisoka-morow.jpg",
+      "front": "",
+      "back": "Hisoka Morow",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Hunter x Hunter · A magician with a star and a teardrop painted on his face."
+    },
+    {
+      "img": "kurapika-eyes.jpg",
+      "bimg": "kurapika.jpg",
+      "front": "",
+      "back": "Kurapika",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Hunter x Hunter · His eyes glow scarlet when he is overcome with emotion."
+    },
+    {
+      "img": "kyojuro-rengoku-eyes.jpg",
+      "bimg": "kyojuro-rengoku.jpg",
+      "front": "",
+      "back": "Kyojuro Rengoku",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Demon Slayer · Flame Hashira with blazing golden-orange eyes and hair."
+    },
+    {
+      "img": "muzan-kibutsuji-eyes.jpg",
+      "bimg": "muzan-kibutsuji.jpg",
+      "front": "",
+      "back": "Muzan Kibutsuji",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Demon Slayer · The first demon, with blood-red eyes."
+    },
+    {
+      "img": "dracule-mihawk-eyes.jpg",
+      "bimg": "dracule-mihawk.jpg",
+      "front": "",
+      "back": "Dracule Mihawk",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "One Piece · Hawk-Eyes, the world's greatest swordsman, with sharp golden eyes."
+    },
+    {
+      "img": "chrollo-lucilfer-eyes.jpg",
+      "bimg": "chrollo-lucilfer.jpg",
+      "front": "",
+      "back": "Chrollo Lucilfer",
+      "label": "whose eyes?",
+      "example": "",
+      "hook": "Hunter x Hunter · Leader of the Phantom Troupe, who steals abilities."
+    }
+  ]
+}

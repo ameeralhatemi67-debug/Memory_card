@@ -1,0 +1,243 @@
+{
+  "id": "road-signs",
+  "name": "Road Signs · World",
+  "mono": "Rs",
+  "category": "geo",
+  "level": "signs",
+  "kind": "text",
+  "folder": "Geography",
+  "description": "What does this road sign mean? Kangaroos, moose and camels, and the priority signs that trip everyone up.",
+  "style": {
+    "front": "only",
+    "fit": "contain",
+    "back": "text",
+    "reverse": false,
+    "plate": "paper"
+  },
+  "cards": [
+    {
+      "img": "kangaroo.png",
+      "front": "",
+      "back": "Kangaroos crossing",
+      "label": "road sign",
+      "example": "",
+      "hook": "Australia: sign W5-29, one of its animal warnings."
+    },
+    {
+      "img": "koala.png",
+      "front": "",
+      "back": "Koalas crossing",
+      "label": "road sign",
+      "example": "",
+      "hook": "Australia: sign W5-47, “Watch out for koalas”."
+    },
+    {
+      "img": "moose.png",
+      "front": "",
+      "back": "Moose (elk) crossing",
+      "label": "road sign",
+      "example": "",
+      "hook": "Sweden: sign A19-1, “warning for elk”; the moose is also called an elk."
+    },
+    {
+      "img": "camel.png",
+      "front": "",
+      "back": "Camels crossing",
+      "label": "road sign",
+      "example": "",
+      "hook": "Saudi Arabia's version; Egypt, Qatar, Oman, Kuwait and the UAE have one too."
+    },
+    {
+      "img": "kiwi.png",
+      "front": "",
+      "back": "Kiwi crossing",
+      "label": "road sign",
+      "example": "",
+      "hook": "New Zealand: sign W18-3.9, introduced in 2017."
+    },
+    {
+      "img": "penguin.png",
+      "front": "",
+      "back": "Penguins crossing",
+      "label": "road sign",
+      "example": "",
+      "hook": "New Zealand: sign W18-3.8, introduced in 2017."
+    },
+    {
+      "img": "elephant.png",
+      "front": "",
+      "back": "Elephants crossing",
+      "label": "road sign",
+      "example": "",
+      "hook": "Southern Africa: the shared SADC road-sign standard (sign W357)."
+    },
+    {
+      "img": "cattle.png",
+      "front": "",
+      "back": "Cows (cattle) crossing",
+      "label": "road sign",
+      "example": "",
+      "hook": "India: Indian Road Sign II-65, the cattle-crossing warning."
+    },
+    {
+      "img": "reindeer.png",
+      "front": "",
+      "back": "Reindeer crossing",
+      "label": "road sign",
+      "example": "",
+      "hook": "Finland: sign A20.2 of the 2020 set; Norway has a reindeer sign too."
+    },
+    {
+      "img": "polar-bear.png",
+      "front": "",
+      "back": "Polar bears",
+      "label": "road sign",
+      "example": "",
+      "hook": "Svalbard, Norway: its own warning sign for polar bears."
+    },
+    {
+      "img": "deer.png",
+      "front": "",
+      "back": "Deer crossing",
+      "label": "road sign",
+      "example": "",
+      "hook": "Japan: sign 214-2, “animals crossing: deer”."
+    },
+    {
+      "img": "duck.png",
+      "front": "",
+      "back": "Ducks on the road",
+      "label": "road sign",
+      "example": "",
+      "hook": "United Kingdom: diagram 551.2, “wild fowl likely to be in road ahead”."
+    },
+    {
+      "img": "toad.png",
+      "front": "",
+      "back": "Toads crossing",
+      "label": "road sign",
+      "example": "",
+      "hook": "United Kingdom: diagram 551.1, “migratory toad crossing ahead”."
+    },
+    {
+      "img": "priority-road.png",
+      "front": "",
+      "back": "Priority road",
+      "label": "road sign",
+      "example": "",
+      "hook": "Germany's Zeichen 306; this sign is mainly found in European countries."
+    },
+    {
+      "img": "end-priority.png",
+      "front": "",
+      "back": "End of priority road",
+      "label": "road sign",
+      "example": "",
+      "hook": "Germany's Zeichen 307: black stripes cross out the yellow diamond."
+    },
+    {
+      "img": "no-stopping.png",
+      "front": "",
+      "back": "No stopping",
+      "label": "road sign",
+      "example": "",
+      "hook": "Germany's Zeichen 283: the crossed red bars ban stopping altogether."
+    },
+    {
+      "img": "no-parking.png",
+      "front": "",
+      "back": "No parking",
+      "label": "road sign",
+      "example": "",
+      "hook": "Germany's Zeichen 286: one red bar. Two crossed bars (283) ban stopping."
+    },
+    {
+      "img": "give-way-oncoming.png",
+      "front": "",
+      "back": "Give way to oncoming traffic",
+      "label": "road sign",
+      "example": "",
+      "hook": "Germany's Zeichen 208; its opposite is the blue sign 308."
+    },
+    {
+      "img": "priority-oncoming.png",
+      "front": "",
+      "back": "Priority over oncoming traffic",
+      "label": "road sign",
+      "example": "",
+      "hook": "Germany's Zeichen 308; its opposite is the red-ringed sign 208."
+    },
+    {
+      "img": "dead-end.png",
+      "front": "",
+      "back": "Dead end",
+      "label": "road sign",
+      "example": "",
+      "hook": "Germany's Zeichen 357: the red bar closes the end of the road."
+    },
+    {
+      "img": "end-restrictions.png",
+      "front": "",
+      "back": "End of all restrictions",
+      "label": "road sign",
+      "example": "",
+      "hook": "Germany's Zeichen 282: ends all speed and passing limits."
+    },
+    {
+      "img": "falling-rocks.png",
+      "front": "",
+      "back": "Falling rocks",
+      "label": "road sign",
+      "example": "",
+      "hook": "Japan: sign 209-2. Ireland draws its own version (W-164)."
+    },
+    {
+      "img": "low-aircraft.png",
+      "front": "",
+      "back": "Low-flying aircraft",
+      "label": "road sign",
+      "example": "",
+      "hook": "Ireland: sign W-165; Denmark and Saudi Arabia use triangular versions."
+    },
+    {
+      "img": "tank.png",
+      "front": "",
+      "back": "Tanks crossing",
+      "label": "road sign",
+      "example": "",
+      "hook": "United Kingdom: diagram 582, “slow moving military vehicles”."
+    },
+    {
+      "img": "no-tanks.png",
+      "front": "",
+      "back": "No tanks",
+      "label": "road sign",
+      "example": "",
+      "hook": "Russia: one of its military road signs; the red ring bans tanks."
+    },
+    {
+      "img": "quayside.png",
+      "front": "",
+      "back": "Quayside or river bank",
+      "label": "road sign",
+      "example": "",
+      "hook": "United Kingdom: diagram 555; the car is about to drive off the quay."
+    },
+    {
+      "img": "side-wind.png",
+      "front": "",
+      "back": "Crosswind from the right",
+      "label": "road sign",
+      "example": "",
+      "hook": "Germany's Zeichen 117-10; the windsock shows gusts from the right."
+    },
+    {
+      "img": "level-crossing.png",
+      "front": "",
+      "back": "Level crossing without gates",
+      "label": "road sign",
+      "example": "",
+      "hook": "Latvia: sign 133, a crossing without barriers; Moldova uses a similar one."
+    }
+  ]
+}

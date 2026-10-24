@@ -1,0 +1,770 @@
+{
+ "mona-lisa": {
+  "page": "https://commons.wikimedia.org/wiki/File:Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg",
+  "file": "File:Mona Lisa, by Leonardo da Vinci, from C2RMF retouched.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 2861,
+   "w": 644,
+   "h": 960,
+   "alpha": false,
+   "aspect": 0.6708,
+   "kb": 170.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "mona-lisa-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Mona_Lisa,_by_Leonardo_da_Vinci,_from_C2RMF_retouched.jpg",
+  "file": "File:Mona Lisa, by Leonardo da Vinci, from C2RMF retouched.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1460,
+   "srcH": 1059,
+   "w": 900,
+   "h": 653,
+   "alpha": false,
+   "aspect": 1.3783,
+   "kb": 235.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "girl-pearl-earring": {
+  "page": "https://commons.wikimedia.org/wiki/File:1665_Girl_with_a_Pearl_Earring.jpg",
+  "file": "File:1665 Girl with a Pearl Earring.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 2274,
+   "w": 811,
+   "h": 960,
+   "alpha": false,
+   "aspect": 0.8448,
+   "kb": 187.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "girl-pearl-earring-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:1665_Girl_with_a_Pearl_Earring.jpg",
+  "file": "File:1665 Girl with a Pearl Earring.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1459,
+   "srcH": 1092,
+   "w": 900,
+   "h": 674,
+   "alpha": false,
+   "aspect": 1.3353,
+   "kb": 185.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "creation-of-adam": {
+  "page": "https://commons.wikimedia.org/wiki/File:Michelangelo_-_Creation_of_Adam_(cropped).jpg",
+  "file": "File:Michelangelo - Creation of Adam (cropped).jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 871,
+   "w": 960,
+   "h": 436,
+   "alpha": false,
+   "aspect": 2.2018,
+   "kb": 112.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "creation-of-adam-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Michelangelo_-_Creation_of_Adam_(cropped).jpg",
+  "file": "File:Michelangelo - Creation of Adam (cropped).jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 916,
+   "srcH": 511,
+   "w": 900,
+   "h": 502,
+   "alpha": false,
+   "aspect": 1.7928,
+   "kb": 112.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "starry-night": {
+  "page": "https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
+  "file": "File:Van Gogh - Starry Night - Google Art Project.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 1520,
+   "w": 960,
+   "h": 760,
+   "alpha": false,
+   "aspect": 1.2632,
+   "kb": 298.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "starry-night-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Van_Gogh_-_Starry_Night_-_Google_Art_Project.jpg",
+  "file": "File:Van Gogh - Starry Night - Google Art Project.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1689,
+   "srcH": 1277,
+   "w": 900,
+   "h": 680,
+   "alpha": false,
+   "aspect": 1.3235,
+   "kb": 256.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "the-scream": {
+  "page": "https://commons.wikimedia.org/wiki/File:Edvard_Munch,_1893,_The_Scream,_oil,_tempera_and_pastel_on_cardboard,_91_x_73_cm,_National_Gallery_of_Norway.jpg",
+  "file": "File:Edvard Munch, 1893, The Scream, oil, tempera and pastel on cardboard, 91 x 73 cm, National Gallery of Norway.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 2383,
+   "w": 773,
+   "h": 960,
+   "alpha": false,
+   "aspect": 0.8052,
+   "kb": 175.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "the-scream-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Edvard_Munch,_1893,_The_Scream,_oil,_tempera_and_pastel_on_cardboard,_91_x_73_cm,_National_Gallery_of_Norway.jpg",
+  "file": "File:Edvard Munch, 1893, The Scream, oil, tempera and pastel on cardboard, 91 x 73 cm, National Gallery of Norway.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1031,
+   "srcH": 920,
+   "w": 900,
+   "h": 803,
+   "alpha": false,
+   "aspect": 1.1208,
+   "kb": 208.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "birth-of-venus": {
+  "page": "https://commons.wikimedia.org/wiki/File:Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg",
+  "file": "File:Sandro Botticelli - La nascita di Venere - Google Art Project - edited.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 1206,
+   "w": 960,
+   "h": 603,
+   "alpha": false,
+   "aspect": 1.592,
+   "kb": 200.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "birth-of-venus-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Sandro_Botticelli_-_La_nascita_di_Venere_-_Google_Art_Project_-_edited.jpg",
+  "file": "File:Sandro Botticelli - La nascita di Venere - Google Art Project - edited.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 807,
+   "srcH": 495,
+   "w": 807,
+   "h": 495,
+   "alpha": false,
+   "aspect": 1.6303,
+   "kb": 145.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "great-wave": {
+  "page": "https://commons.wikimedia.org/wiki/File:Great_Wave_off_Kanagawa2.jpg",
+  "file": "File:Great Wave off Kanagawa2.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 1314,
+   "w": 960,
+   "h": 657,
+   "alpha": false,
+   "aspect": 1.4612,
+   "kb": 213.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "great-wave-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Great_Wave_off_Kanagawa2.jpg",
+  "file": "File:Great Wave off Kanagawa2.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1382,
+   "srcH": 867,
+   "w": 900,
+   "h": 565,
+   "alpha": false,
+   "aspect": 1.5929,
+   "kb": 165.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "arnolfini-portrait": {
+  "page": "https://commons.wikimedia.org/wiki/File:Van_Eyck_-_Arnolfini_Portrait.jpg",
+  "file": "File:Van Eyck - Arnolfini Portrait.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 2627,
+   "w": 702,
+   "h": 960,
+   "alpha": false,
+   "aspect": 0.7312,
+   "kb": 111.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "arnolfini-portrait-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Van_Eyck_-_Arnolfini_Portrait.jpg",
+  "file": "File:Van Eyck - Arnolfini Portrait.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1152,
+   "srcH": 1051,
+   "w": 900,
+   "h": 821,
+   "alpha": false,
+   "aspect": 1.0962,
+   "kb": 122.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "the-star": {
+  "page": "https://commons.wikimedia.org/wiki/File:Edgar_Degas_-_Ballet_(L'Étoile).jpg",
+  "file": "File:Edgar Degas - Ballet (L'Étoile).jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 2794,
+   "w": 660,
+   "h": 960,
+   "alpha": false,
+   "aspect": 0.6875,
+   "kb": 186.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "the-star-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Edgar_Degas_-_Ballet_(L'Étoile).jpg",
+  "file": "File:Edgar Degas - Ballet (L'Étoile).jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1643,
+   "srcH": 1648,
+   "w": 897,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.9967,
+   "kb": 259.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "american-gothic": {
+  "page": "https://commons.wikimedia.org/wiki/File:Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg",
+  "file": "File:Grant Wood - American Gothic - Google Art Project.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 2317,
+   "w": 796,
+   "h": 960,
+   "alpha": false,
+   "aspect": 0.8292,
+   "kb": 176.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "american-gothic-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Grant_Wood_-_American_Gothic_-_Google_Art_Project.jpg",
+  "file": "File:Grant Wood - American Gothic - Google Art Project.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1306,
+   "srcH": 1668,
+   "w": 705,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.7833,
+   "kb": 129.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "las-meninas": {
+  "page": "https://commons.wikimedia.org/wiki/File:Las_Meninas,_by_Diego_Velázquez,_from_Prado_in_Google_EarthFXD.jpg",
+  "file": "File:Las Meninas, by Diego Velázquez, from Prado in Google EarthFXD.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 2210,
+   "w": 834,
+   "h": 960,
+   "alpha": false,
+   "aspect": 0.8688,
+   "kb": 178.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "las-meninas-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Las_Meninas,_by_Diego_Velázquez,_from_Prado_in_Google_EarthFXD.jpg",
+  "file": "File:Las Meninas, by Diego Velázquez, from Prado in Google EarthFXD.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1306,
+   "srcH": 973,
+   "w": 900,
+   "h": 671,
+   "alpha": false,
+   "aspect": 1.3413,
+   "kb": 171.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "night-watch": {
+  "page": "https://commons.wikimedia.org/wiki/File:The_Nightwatch_by_Rembrandt_-_Rijksmuseum.jpg",
+  "file": "File:The Nightwatch by Rembrandt - Rijksmuseum.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 1562,
+   "w": 960,
+   "h": 781,
+   "alpha": false,
+   "aspect": 1.2292,
+   "kb": 160.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "night-watch-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:The_Nightwatch_by_Rembrandt_-_Rijksmuseum.jpg",
+  "file": "File:The Nightwatch by Rembrandt - Rijksmuseum.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 883,
+   "srcH": 1187,
+   "w": 670,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.7444,
+   "kb": 187.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "liberty-leading-the-people": {
+  "page": "https://commons.wikimedia.org/wiki/File:Eugène_Delacroix_-_Le_28_Juillet._La_Liberté_guidant_le_peuple.jpg",
+  "file": "File:Eugène Delacroix - Le 28 Juillet. La Liberté guidant le peuple.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 1541,
+   "w": 960,
+   "h": 770,
+   "alpha": false,
+   "aspect": 1.2468,
+   "kb": 201.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "liberty-leading-the-people-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Eugène_Delacroix_-_Le_28_Juillet._La_Liberté_guidant_le_peuple.jpg",
+  "file": "File:Eugène Delacroix - Le 28 Juillet. La Liberté guidant le peuple.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1459,
+   "srcH": 739,
+   "w": 900,
+   "h": 456,
+   "alpha": false,
+   "aspect": 1.9737,
+   "kb": 92.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "water-lilies": {
+  "page": "https://commons.wikimedia.org/wiki/File:Claude_Monet_-_Water_Lilies_-_1906,_Ryerson.jpg",
+  "file": "File:Claude Monet - Water Lilies - 1906, Ryerson.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 1845,
+   "w": 960,
+   "h": 922,
+   "alpha": false,
+   "aspect": 1.0412,
+   "kb": 324.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "water-lilies-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Claude_Monet_-_Water_Lilies_-_1906,_Ryerson.jpg",
+  "file": "File:Claude Monet - Water Lilies - 1906, Ryerson.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1265,
+   "srcH": 652,
+   "w": 900,
+   "h": 464,
+   "alpha": false,
+   "aspect": 1.9397,
+   "kb": 151.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "sunday-grande-jatte": {
+  "page": "https://commons.wikimedia.org/wiki/File:A_Sunday_on_La_Grande_Jatte,_Georges_Seurat,_1884.jpg",
+  "file": "File:A Sunday on La Grande Jatte, Georges Seurat, 1884.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 1278,
+   "w": 960,
+   "h": 639,
+   "alpha": false,
+   "aspect": 1.5023,
+   "kb": 245.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "sunday-grande-jatte-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:A_Sunday_on_La_Grande_Jatte,_Georges_Seurat,_1884.jpg",
+  "file": "File:A Sunday on La Grande Jatte, Georges Seurat, 1884.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1229,
+   "srcH": 1226,
+   "w": 900,
+   "h": 898,
+   "alpha": false,
+   "aspect": 1.0022,
+   "kb": 295.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "the-kiss": {
+  "page": "https://commons.wikimedia.org/wiki/File:The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg",
+  "file": "File:The Kiss - Gustav Klimt - Google Cultural Institute.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 1927,
+   "w": 957,
+   "h": 960,
+   "alpha": false,
+   "aspect": 0.9969,
+   "kb": 341.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "the-kiss-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:The_Kiss_-_Gustav_Klimt_-_Google_Cultural_Institute.jpg",
+  "file": "File:The Kiss - Gustav Klimt - Google Cultural Institute.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1690,
+   "srcH": 1310,
+   "w": 900,
+   "h": 698,
+   "alpha": false,
+   "aspect": 1.2894,
+   "kb": 231.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "wanderer-fog": {
+  "page": "https://commons.wikimedia.org/wiki/File:Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg",
+  "file": "File:Caspar David Friedrich - Wanderer above the Sea of Fog.jpeg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 2463,
+   "w": 748,
+   "h": 960,
+   "alpha": false,
+   "aspect": 0.7792,
+   "kb": 144.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "wanderer-fog-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Caspar_David_Friedrich_-_Wanderer_above_the_Sea_of_Fog.jpeg",
+  "file": "File:Caspar David Friedrich - Wanderer above the Sea of Fog.jpeg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1306,
+   "srcH": 1971,
+   "w": 596,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6622,
+   "kb": 155.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "impression-sunrise": {
+  "page": "https://commons.wikimedia.org/wiki/File:Monet_-_Impression,_Sunrise.jpg",
+  "file": "File:Monet - Impression, Sunrise.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 1489,
+   "w": 960,
+   "h": 744,
+   "alpha": false,
+   "aspect": 1.2903,
+   "kb": 143.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "impression-sunrise-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Monet_-_Impression,_Sunrise.jpg",
+  "file": "File:Monet - Impression, Sunrise.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1459,
+   "srcH": 1132,
+   "w": 900,
+   "h": 698,
+   "alpha": false,
+   "aspect": 1.2894,
+   "kb": 142.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "raft-of-the-medusa": {
+  "page": "https://commons.wikimedia.org/wiki/File:Théodore_Géricault_-_The_Raft_of_the_Medusa_-_WGA08630.jpg",
+  "file": "File:Théodore Géricault - The Raft of the Medusa - WGA08630.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 1305,
+   "w": 960,
+   "h": 652,
+   "alpha": false,
+   "aspect": 1.4724,
+   "kb": 182.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "raft-of-the-medusa-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Théodore_Géricault_-_The_Raft_of_the_Medusa_-_WGA08630.jpg",
+  "file": "File:Théodore Géricault - The Raft of the Medusa - WGA08630.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1421,
+   "srcH": 1305,
+   "w": 900,
+   "h": 827,
+   "alpha": false,
+   "aspect": 1.0883,
+   "kb": 226.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "the-ambassadors": {
+  "page": "https://commons.wikimedia.org/wiki/File:Holbein-ambassadorsFXD.jpg",
+  "file": "File:Holbein-ambassadorsFXD.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 1925,
+   "w": 958,
+   "h": 960,
+   "alpha": false,
+   "aspect": 0.9979,
+   "kb": 253.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "the-ambassadors-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Holbein-ambassadorsFXD.jpg",
+  "file": "File:Holbein-ambassadorsFXD.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 2265,
+   "srcH": 943,
+   "w": 900,
+   "h": 375,
+   "alpha": false,
+   "aspect": 2.4,
+   "kb": 83.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "the-milkmaid": {
+  "page": "https://commons.wikimedia.org/wiki/File:Johannes_Vermeer_-_Het_melkmeisje_-_Google_Art_Project.jpg",
+  "file": "File:Johannes Vermeer - Het melkmeisje - Google Art Project.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 2153,
+   "w": 856,
+   "h": 960,
+   "alpha": false,
+   "aspect": 0.8917,
+   "kb": 212.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "the-milkmaid-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Johannes_Vermeer_-_Het_melkmeisje_-_Google_Art_Project.jpg",
+  "file": "File:Johannes Vermeer - Het melkmeisje - Google Art Project.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1152,
+   "srcH": 990,
+   "w": 900,
+   "h": 773,
+   "alpha": false,
+   "aspect": 1.1643,
+   "kb": 235.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "the-swing": {
+  "page": "https://commons.wikimedia.org/wiki/File:Fragonard,_The_Swing.jpg",
+  "file": "File:Fragonard, The Swing.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 2410,
+   "w": 765,
+   "h": 960,
+   "alpha": false,
+   "aspect": 0.7969,
+   "kb": 217.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "the-swing-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Fragonard,_The_Swing.jpg",
+  "file": "File:Fragonard, The Swing.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1805,
+   "srcH": 1446,
+   "w": 900,
+   "h": 721,
+   "alpha": false,
+   "aspect": 1.2483,
+   "kb": 166.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "bandaged-ear": {
+  "page": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_Self-Portrait_with_Bandaged_Ear_1889_-_Google_Art_Project.jpg",
+  "file": "File:Vincent van Gogh - Self-Portrait with Bandaged Ear 1889 - Google Art Project.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 2333,
+   "w": 790,
+   "h": 960,
+   "alpha": false,
+   "aspect": 0.8229,
+   "kb": 246.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "bandaged-ear-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Vincent_van_Gogh_-_Self-Portrait_with_Bandaged_Ear_1889_-_Google_Art_Project.jpg",
+  "file": "File:Vincent van Gogh - Self-Portrait with Bandaged Ear 1889 - Google Art Project.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1805,
+   "srcH": 1867,
+   "w": 870,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.9667,
+   "kb": 264.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "whistlers-mother": {
+  "page": "https://commons.wikimedia.org/wiki/File:Whistlers_Mother_high_res.jpg",
+  "file": "File:Whistlers Mother high res.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1920,
+   "srcH": 1708,
+   "w": 960,
+   "h": 854,
+   "alpha": false,
+   "aspect": 1.1241,
+   "kb": 149.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "whistlers-mother-detail": {
+  "page": "https://commons.wikimedia.org/wiki/File:Whistlers_Mother_high_res.jpg",
+  "file": "File:Whistlers Mother high res.jpg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 1075,
+   "srcH": 1504,
+   "w": 643,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.7144,
+   "kb": 139.6
+  },
+  "fetched": "2026-10-24"
+ }
+}

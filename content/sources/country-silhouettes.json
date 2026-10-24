@@ -1,0 +1,1314 @@
+{
+ "it-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Italy (ITA), 5 of 8 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 607,
+   "srcH": 700,
+   "w": 607,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.8671,
+   "kb": 41.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "it-flag": {
+  "page": "https://flagcdn.com/it.svg",
+  "file": "flagcdn w1280 it masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 607,
+   "srcH": 700,
+   "w": 607,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.8671,
+   "kb": 69.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "jp-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Japan (JPN), 22 of 34 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 631,
+   "srcH": 700,
+   "w": 631,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.9014,
+   "kb": 44.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "jp-flag": {
+  "page": "https://flagcdn.com/jp.svg",
+  "file": "flagcdn w1280 jp masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 631,
+   "srcH": 700,
+   "w": 631,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.9014,
+   "kb": 74.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "au-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Australia (AUS), 5 of 42 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 648,
+   "w": 700,
+   "h": 648,
+   "alpha": true,
+   "aspect": 1.0802,
+   "kb": 39.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "au-flag": {
+  "page": "https://flagcdn.com/au.svg",
+  "file": "flagcdn w1280 au masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 648,
+   "w": 700,
+   "h": 648,
+   "alpha": true,
+   "aspect": 1.0802,
+   "kb": 89.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "gb-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: United Kingdom (GBR), 20 of 23 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 404,
+   "srcH": 700,
+   "w": 404,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.5771,
+   "kb": 42.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "gb-flag": {
+  "page": "https://flagcdn.com/gb.svg",
+  "file": "flagcdn w1280 gb masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 404,
+   "srcH": 700,
+   "w": 404,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.5771,
+   "kb": 75.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "br-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Brazil (BRA), 3 of 17 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 684,
+   "srcH": 700,
+   "w": 684,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.9771,
+   "kb": 38.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "br-flag": {
+  "page": "https://flagcdn.com/br.svg",
+  "file": "flagcdn w1280 br masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 684,
+   "srcH": 700,
+   "w": 684,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.9771,
+   "kb": 107.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "us-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: United States of America (USA), 2 of 127 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 467,
+   "w": 700,
+   "h": 467,
+   "alpha": true,
+   "aspect": 1.4989,
+   "kb": 33.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "us-flag": {
+  "page": "https://flagcdn.com/us.svg",
+  "file": "flagcdn w1280 us masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 467,
+   "w": 700,
+   "h": 467,
+   "alpha": true,
+   "aspect": 1.4989,
+   "kb": 87.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "in-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: India (IND), 3 of 14 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 667,
+   "srcH": 700,
+   "w": 667,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.9529,
+   "kb": 40.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "in-flag": {
+  "page": "https://flagcdn.com/in.svg",
+  "file": "flagcdn w1280 in masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 667,
+   "srcH": 700,
+   "w": 667,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.9529,
+   "kb": 102.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "eg-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Egypt (EGY), 1 of 1 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 632,
+   "w": 700,
+   "h": 632,
+   "alpha": true,
+   "aspect": 1.1076,
+   "kb": 22.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "eg-flag": {
+  "page": "https://flagcdn.com/eg.svg",
+  "file": "flagcdn w1280 eg masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 632,
+   "w": 700,
+   "h": 632,
+   "alpha": true,
+   "aspect": 1.1076,
+   "kb": 67.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "mx-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Mexico (MEX), 3 of 16 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 486,
+   "w": 700,
+   "h": 486,
+   "alpha": true,
+   "aspect": 1.4403,
+   "kb": 32.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "mx-flag": {
+  "page": "https://flagcdn.com/mx.svg",
+  "file": "flagcdn w1280 mx masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 486,
+   "w": 700,
+   "h": 486,
+   "alpha": true,
+   "aspect": 1.4403,
+   "kb": 104.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "cl-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Chile (CHL), 25 of 31 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 200,
+   "srcH": 700,
+   "w": 200,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.2857,
+   "kb": 29.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "cl-flag": {
+  "page": "https://flagcdn.com/cl.svg",
+  "file": "flagcdn w1280 cl masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 200,
+   "srcH": 700,
+   "w": 200,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.2857,
+   "kb": 43.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "cu-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Cuba (CUB), 7 of 7 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 289,
+   "w": 700,
+   "h": 289,
+   "alpha": true,
+   "aspect": 2.4221,
+   "kb": 20.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "cu-flag": {
+  "page": "https://flagcdn.com/cu.svg",
+  "file": "flagcdn w1280 cu masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 289,
+   "w": 700,
+   "h": 289,
+   "alpha": true,
+   "aspect": 2.4221,
+   "kb": 34.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "gr-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Greece (GRC), 40 of 40 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 693,
+   "srcH": 700,
+   "w": 693,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.99,
+   "kb": 69.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "gr-flag": {
+  "page": "https://flagcdn.com/gr.svg",
+  "file": "flagcdn w1280 gr masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 693,
+   "srcH": 700,
+   "w": 693,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.99,
+   "kb": 122.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "es-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Spain (ESP), 4 of 12 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 542,
+   "w": 700,
+   "h": 542,
+   "alpha": true,
+   "aspect": 1.2915,
+   "kb": 29.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "es-flag": {
+  "page": "https://flagcdn.com/es.svg",
+  "file": "flagcdn w1280 es masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 542,
+   "w": 700,
+   "h": 542,
+   "alpha": true,
+   "aspect": 1.2915,
+   "kb": 92.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "fr-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: France (FRA), 2 of 10 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 688,
+   "w": 700,
+   "h": 688,
+   "alpha": true,
+   "aspect": 1.0174,
+   "kb": 37.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "fr-flag": {
+  "page": "https://flagcdn.com/fr.svg",
+  "file": "flagcdn w1280 fr masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 688,
+   "w": 700,
+   "h": 688,
+   "alpha": true,
+   "aspect": 1.0174,
+   "kb": 59.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "de-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Germany (DEU), 5 of 6 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 539,
+   "srcH": 700,
+   "w": 539,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.77,
+   "kb": 36.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "de-flag": {
+  "page": "https://flagcdn.com/de.svg",
+  "file": "flagcdn w1280 de masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 539,
+   "srcH": 700,
+   "w": 539,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.77,
+   "kb": 57.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "tr-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Turkey (TUR), 3 of 3 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 343,
+   "w": 700,
+   "h": 343,
+   "alpha": true,
+   "aspect": 2.0408,
+   "kb": 26.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "tr-flag": {
+  "page": "https://flagcdn.com/tr.svg",
+  "file": "flagcdn w1280 tr masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 343,
+   "w": 700,
+   "h": 343,
+   "alpha": true,
+   "aspect": 2.0408,
+   "kb": 58.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "no-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Norway (NOR), 22 of 32 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 611,
+   "srcH": 700,
+   "w": 611,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.8729,
+   "kb": 54.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "no-flag": {
+  "page": "https://flagcdn.com/no.svg",
+  "file": "flagcdn w1280 no masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 611,
+   "srcH": 700,
+   "w": 611,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.8729,
+   "kb": 84.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "nz-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: New Zealand (NZL), 7 of 13 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 522,
+   "srcH": 700,
+   "w": 522,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.7457,
+   "kb": 35.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "nz-flag": {
+  "page": "https://flagcdn.com/nz.svg",
+  "file": "flagcdn w1280 nz masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 522,
+   "srcH": 700,
+   "w": 522,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.7457,
+   "kb": 56.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "ca-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Canada (CAN), 34 of 141 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 611,
+   "w": 700,
+   "h": 611,
+   "alpha": true,
+   "aspect": 1.1457,
+   "kb": 88.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "ca-flag": {
+  "page": "https://flagcdn.com/ca.svg",
+  "file": "flagcdn w1280 ca masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 611,
+   "w": 700,
+   "h": 611,
+   "alpha": true,
+   "aspect": 1.1457,
+   "kb": 149.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "ru-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Russia (RUS), 11 of 101 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 424,
+   "w": 700,
+   "h": 424,
+   "alpha": true,
+   "aspect": 1.6509,
+   "kb": 48.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "ru-flag": {
+  "page": "https://flagcdn.com/ru.svg",
+  "file": "flagcdn w1280 ru masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 424,
+   "w": 700,
+   "h": 424,
+   "alpha": true,
+   "aspect": 1.6509,
+   "kb": 77.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "cn-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: China (CHN), 2 of 13 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 605,
+   "w": 700,
+   "h": 605,
+   "alpha": true,
+   "aspect": 1.157,
+   "kb": 40.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "cn-flag": {
+  "page": "https://flagcdn.com/cn.svg",
+  "file": "flagcdn w1280 cn masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 605,
+   "w": 700,
+   "h": 605,
+   "alpha": true,
+   "aspect": 1.157,
+   "kb": 69.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "id-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Indonesia (IDN), 33 of 133 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 299,
+   "w": 700,
+   "h": 299,
+   "alpha": true,
+   "aspect": 2.3411,
+   "kb": 41.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "id-flag": {
+  "page": "https://flagcdn.com/id.svg",
+  "file": "flagcdn w1280 id masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 299,
+   "w": 700,
+   "h": 299,
+   "alpha": true,
+   "aspect": 2.3411,
+   "kb": 69.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "ph-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Philippines (PHL), 23 of 48 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 501,
+   "srcH": 700,
+   "w": 501,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.7157,
+   "kb": 55.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "ph-flag": {
+  "page": "https://flagcdn.com/ph.svg",
+  "file": "flagcdn w1280 ph masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 501,
+   "srcH": 700,
+   "w": 501,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.7157,
+   "kb": 90.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "mg-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Madagascar (MDG), 3 of 3 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 396,
+   "srcH": 700,
+   "w": 396,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.5657,
+   "kb": 22.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "mg-flag": {
+  "page": "https://flagcdn.com/mg.svg",
+  "file": "flagcdn w1280 mg masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 396,
+   "srcH": 700,
+   "w": 396,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.5657,
+   "kb": 34.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "is-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Iceland (ISL), 1 of 1 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 500,
+   "w": 700,
+   "h": 500,
+   "alpha": true,
+   "aspect": 1.4,
+   "kb": 39.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "is-flag": {
+  "page": "https://flagcdn.com/is.svg",
+  "file": "flagcdn w1280 is masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 500,
+   "w": 700,
+   "h": 500,
+   "alpha": true,
+   "aspect": 1.4,
+   "kb": 67.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "pt-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Portugal (PRT), 1 of 9 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 386,
+   "srcH": 700,
+   "w": 386,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.5514,
+   "kb": 23.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "pt-flag": {
+  "page": "https://flagcdn.com/pt.svg",
+  "file": "flagcdn w1280 pt masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 386,
+   "srcH": 700,
+   "w": 386,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.5514,
+   "kb": 87.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "th-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Thailand (THA), 4 of 10 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 420,
+   "srcH": 700,
+   "w": 420,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.6,
+   "kb": 31.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "th-flag": {
+  "page": "https://flagcdn.com/th.svg",
+  "file": "flagcdn w1280 th masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 420,
+   "srcH": 700,
+   "w": 420,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.6,
+   "kb": 47.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "vn-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Vietnam (VNM), 4 of 8 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 378,
+   "srcH": 700,
+   "w": 378,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.54,
+   "kb": 30.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "vn-flag": {
+  "page": "https://flagcdn.com/vn.svg",
+  "file": "flagcdn w1280 vn masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 378,
+   "srcH": 700,
+   "w": 378,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.54,
+   "kb": 49.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "ar-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Argentina (ARG), 2 of 4 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 373,
+   "srcH": 700,
+   "w": 373,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.5329,
+   "kb": 26.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "ar-flag": {
+  "page": "https://flagcdn.com/ar.svg",
+  "file": "flagcdn w1280 ar masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 373,
+   "srcH": 700,
+   "w": 373,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.5329,
+   "kb": 62.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "pe-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Peru (PER), 1 of 1 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 504,
+   "srcH": 700,
+   "w": 504,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.72,
+   "kb": 29.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "pe-flag": {
+  "page": "https://flagcdn.com/pe.svg",
+  "file": "flagcdn w1280 pe masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 504,
+   "srcH": 700,
+   "w": 504,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.72,
+   "kb": 49.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "za-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: South Africa (ZAF), 1 of 2 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 623,
+   "w": 700,
+   "h": 623,
+   "alpha": true,
+   "aspect": 1.1236,
+   "kb": 31.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "za-flag": {
+  "page": "https://flagcdn.com/za.svg",
+  "file": "flagcdn w1280 za masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 623,
+   "w": 700,
+   "h": 623,
+   "alpha": true,
+   "aspect": 1.1236,
+   "kb": 65.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "so-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Somalia (SOM), 2 of 2 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 552,
+   "srcH": 700,
+   "w": 552,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.7886,
+   "kb": 22.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "so-flag": {
+  "page": "https://flagcdn.com/so.svg",
+  "file": "flagcdn w1280 so masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 552,
+   "srcH": 700,
+   "w": 552,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.7886,
+   "kb": 45.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "ie-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Ireland (IRL), 2 of 2 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 496,
+   "srcH": 700,
+   "w": 496,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.7086,
+   "kb": 37.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "ie-flag": {
+  "page": "https://flagcdn.com/ie.svg",
+  "file": "flagcdn w1280 ie masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 496,
+   "srcH": 700,
+   "w": 496,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.7086,
+   "kb": 64.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "lk-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Sri Lanka (LKA), 3 of 3 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 427,
+   "srcH": 700,
+   "w": 427,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.61,
+   "kb": 21.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "lk-flag": {
+  "page": "https://flagcdn.com/lk.svg",
+  "file": "flagcdn w1280 lk masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 427,
+   "srcH": 700,
+   "w": 427,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.61,
+   "kb": 85.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "hr-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Croatia (HRV), 13 of 13 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 686,
+   "w": 700,
+   "h": 686,
+   "alpha": true,
+   "aspect": 1.0204,
+   "kb": 50.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "hr-flag": {
+  "page": "https://flagcdn.com/hr.svg",
+  "file": "flagcdn w1280 hr masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 686,
+   "w": 700,
+   "h": 686,
+   "alpha": true,
+   "aspect": 1.0204,
+   "kb": 114.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "my-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Malaysia (MYS), 2 of 9 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 282,
+   "w": 700,
+   "h": 282,
+   "alpha": true,
+   "aspect": 2.4823,
+   "kb": 20.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "my-flag": {
+  "page": "https://flagcdn.com/my.svg",
+  "file": "flagcdn w1280 my masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 282,
+   "w": 700,
+   "h": 282,
+   "alpha": true,
+   "aspect": 2.4823,
+   "kb": 36.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "se-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Sweden (SWE), 3 of 6 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 357,
+   "srcH": 700,
+   "w": 357,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.51,
+   "kb": 26.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "se-flag": {
+  "page": "https://flagcdn.com/se.svg",
+  "file": "flagcdn w1280 se masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 357,
+   "srcH": 700,
+   "w": 357,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.51,
+   "kb": 42.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "na-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Namibia (NAM), 1 of 1 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 676,
+   "w": 700,
+   "h": 676,
+   "alpha": true,
+   "aspect": 1.0355,
+   "kb": 18.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "na-flag": {
+  "page": "https://flagcdn.com/na.svg",
+  "file": "flagcdn w1280 na masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 676,
+   "w": 700,
+   "h": 676,
+   "alpha": true,
+   "aspect": 1.0355,
+   "kb": 58.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "pa-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Panama (PAN), 5 of 5 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 338,
+   "w": 700,
+   "h": 338,
+   "alpha": true,
+   "aspect": 2.071,
+   "kb": 29.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "pa-flag": {
+  "page": "https://flagcdn.com/pa.svg",
+  "file": "flagcdn w1280 pa masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 338,
+   "w": 700,
+   "h": 338,
+   "alpha": true,
+   "aspect": 2.071,
+   "kb": 50.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "la-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Laos (LAO), 1 of 1 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 598,
+   "srcH": 700,
+   "w": 598,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.8543,
+   "kb": 33.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "la-flag": {
+  "page": "https://flagcdn.com/la.svg",
+  "file": "flagcdn w1280 la masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 598,
+   "srcH": 700,
+   "w": 598,
+   "h": 700,
+   "alpha": true,
+   "aspect": 0.8543,
+   "kb": 58.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "gm-shape": {
+  "page": "https://www.naturalearthdata.com/downloads/50m-cultural-vectors/50m-admin-0-countries-2/",
+  "file": "ne_50m_admin_0_countries.geojson: Gambia (GMB), 1 of 1 polygons",
+  "license": "Natural Earth, public domain (map data)",
+  "source": "natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 242,
+   "w": 700,
+   "h": 242,
+   "alpha": true,
+   "aspect": 2.8926,
+   "kb": 13.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "gm-flag": {
+  "page": "https://flagcdn.com/gm.svg",
+  "file": "flagcdn w1280 gm masked by the Natural Earth shape",
+  "license": "flag artwork, public domain; shape from Natural Earth, public domain",
+  "source": "flagcdn+natural-earth",
+  "facts": {
+   "srcW": 700,
+   "srcH": 242,
+   "w": 700,
+   "h": 242,
+   "alpha": true,
+   "aspect": 2.8926,
+   "kb": 24.6
+  },
+  "fetched": "2026-10-24"
+ }
+}

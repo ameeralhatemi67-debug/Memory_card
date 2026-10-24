@@ -1,0 +1,450 @@
+{
+ "kangaroo": {
+  "page": "https://commons.wikimedia.org/wiki/File:Australia_road_sign_W5-29.svg",
+  "file": "File:Australia road sign W5-29.svg",
+  "license": "Wikimedia Commons: CC BY 3.0 au; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 29.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "moose": {
+  "page": "https://commons.wikimedia.org/wiki/File:Sweden_road_sign_A19-1.svg",
+  "file": "File:Sweden road sign A19-1.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 853,
+   "w": 512,
+   "h": 455,
+   "alpha": true,
+   "aspect": 1.1253,
+   "kb": 41.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "camel": {
+  "page": "https://commons.wikimedia.org/wiki/File:SA_road_sign_-_Camels_crossing.svg",
+  "file": "File:SA road sign - Camels crossing.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 848,
+   "w": 512,
+   "h": 452,
+   "alpha": true,
+   "aspect": 1.1327,
+   "kb": 37.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "koala": {
+  "page": "https://commons.wikimedia.org/wiki/File:AU_road_sign_W5-47.svg",
+  "file": "File:AU road sign W5-47.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 43.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "elephant": {
+  "page": "https://commons.wikimedia.org/wiki/File:SADC_road_sign_W357.svg",
+  "file": "File:SADC road sign W357.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 839,
+   "w": 512,
+   "h": 447,
+   "alpha": true,
+   "aspect": 1.1454,
+   "kb": 37.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "penguin": {
+  "page": "https://commons.wikimedia.org/wiki/File:NZ_road_sign_W18-3.8.svg",
+  "file": "File:NZ road sign W18-3.8.svg",
+  "license": "Wikimedia Commons: NZTA-Sign-Spec; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 23.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "kiwi": {
+  "page": "https://commons.wikimedia.org/wiki/File:NZ_road_sign_W18-3.9.svg",
+  "file": "File:NZ road sign W18-3.9.svg",
+  "license": "Wikimedia Commons: NZTA-Sign-Spec; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 29.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "cattle": {
+  "page": "https://commons.wikimedia.org/wiki/File:Indian_Road_Sign_II-65.svg",
+  "file": "File:Indian Road Sign II-65.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 849,
+   "w": 512,
+   "h": 453,
+   "alpha": true,
+   "aspect": 1.1302,
+   "kb": 37.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "reindeer": {
+  "page": "https://commons.wikimedia.org/wiki/File:Finland_road_sign_A20.2.svg",
+  "file": "File:Finland road sign A20.2.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 843,
+   "w": 512,
+   "h": 450,
+   "alpha": true,
+   "aspect": 1.1378,
+   "kb": 48.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "polar-bear": {
+  "page": "https://commons.wikimedia.org/wiki/File:Norwegian-road-sign-polar-bear.svg",
+  "file": "File:Norwegian-road-sign-polar-bear.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 841,
+   "w": 512,
+   "h": 449,
+   "alpha": true,
+   "aspect": 1.1403,
+   "kb": 32.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "deer": {
+  "page": "https://commons.wikimedia.org/wiki/File:Japan_road_sign_214-2.svg",
+  "file": "File:Japan road sign 214-2.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 29.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "duck": {
+  "page": "https://commons.wikimedia.org/wiki/File:UK_traffic_sign_551.2.svg",
+  "file": "File:UK traffic sign 551.2.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 848,
+   "w": 512,
+   "h": 452,
+   "alpha": true,
+   "aspect": 1.1327,
+   "kb": 34.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "toad": {
+  "page": "https://commons.wikimedia.org/wiki/File:UK_traffic_sign_551.1.svg",
+  "file": "File:UK traffic sign 551.1.svg",
+  "license": "Wikimedia Commons: OGL v1.0; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 849,
+   "w": 512,
+   "h": 453,
+   "alpha": true,
+   "aspect": 1.1302,
+   "kb": 45.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "falling-rocks": {
+  "page": "https://commons.wikimedia.org/wiki/File:Japan_road_sign_209-2.svg",
+  "file": "File:Japan road sign 209-2.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 24.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "low-aircraft": {
+  "page": "https://commons.wikimedia.org/wiki/File:IE_road_sign_W-165.svg",
+  "file": "File:IE road sign W-165.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 20.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "tank": {
+  "page": "https://commons.wikimedia.org/wiki/File:UK_traffic_sign_582.svg",
+  "file": "File:UK traffic sign 582.svg",
+  "license": "Wikimedia Commons: OGL v1.0; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 849,
+   "w": 512,
+   "h": 453,
+   "alpha": true,
+   "aspect": 1.1302,
+   "kb": 31.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "quayside": {
+  "page": "https://commons.wikimedia.org/wiki/File:UK_traffic_sign_555.svg",
+  "file": "File:UK traffic sign 555.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 848,
+   "w": 512,
+   "h": 452,
+   "alpha": true,
+   "aspect": 1.1327,
+   "kb": 51.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "side-wind": {
+  "page": "https://commons.wikimedia.org/wiki/File:Zeichen_117-10_-_Seitenwind_von_rechts,_StVO_1992.svg",
+  "file": "File:Zeichen 117-10 - Seitenwind von rechts, StVO 1992.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 843,
+   "w": 512,
+   "h": 450,
+   "alpha": true,
+   "aspect": 1.1378,
+   "kb": 51.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "level-crossing": {
+  "page": "https://commons.wikimedia.org/wiki/File:Latvia_road_sign_133.svg",
+  "file": "File:Latvia road sign 133.svg",
+  "license": "Wikimedia Commons: CC BY-SA 4.0; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 824,
+   "w": 512,
+   "h": 439,
+   "alpha": true,
+   "aspect": 1.1663,
+   "kb": 54.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "priority-road": {
+  "page": "https://commons.wikimedia.org/wiki/File:Zeichen_306_-_Vorfahrtstraße,_StVO_1970.svg",
+  "file": "File:Zeichen 306 - Vorfahrtstraße, StVO 1970.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 30.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "end-priority": {
+  "page": "https://commons.wikimedia.org/wiki/File:Zeichen_307_-_Ende_der_Vorfahrtstraße,_StVO_1981.svg",
+  "file": "File:Zeichen 307 - Ende der Vorfahrtstraße, StVO 1981.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 40.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "no-stopping": {
+  "page": "https://commons.wikimedia.org/wiki/File:Zeichen_283_-_Haltverbot,_StVO_1970.svg",
+  "file": "File:Zeichen 283 - Haltverbot, StVO 1970.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 961,
+   "w": 511,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.998,
+   "kb": 64.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "no-parking": {
+  "page": "https://commons.wikimedia.org/wiki/File:Zeichen_286_-_Eingeschränktes_Halteverbot,_StVO_1970.svg",
+  "file": "File:Zeichen 286 - Eingeschränktes Halteverbot, StVO 1970.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 60.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "give-way-oncoming": {
+  "page": "https://commons.wikimedia.org/wiki/File:Zeichen_208_-_Dem_Gegenverkehr_Vorrang_gewähren!_600x600,_StVO_1992.svg",
+  "file": "File:Zeichen 208 - Dem Gegenverkehr Vorrang gewähren! 600x600, StVO 1992.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 59.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "priority-oncoming": {
+  "page": "https://commons.wikimedia.org/wiki/File:Zeichen_308_-_Vorrang_vor_dem_Gegenverkehr,_StVO_1992.svg",
+  "file": "File:Zeichen 308 - Vorrang vor dem Gegenverkehr, StVO 1992.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 16.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "dead-end": {
+  "page": "https://commons.wikimedia.org/wiki/File:Zeichen_357_-_Sackgasse,_StVO_1992.svg",
+  "file": "File:Zeichen 357 - Sackgasse, StVO 1992.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 961,
+   "w": 511,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.998,
+   "kb": 7.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "end-restrictions": {
+  "page": "https://commons.wikimedia.org/wiki/File:Zeichen_282_-_Ende_sämtlicher_Streckenverbote,_StVO_1970.svg",
+  "file": "File:Zeichen 282 - Ende sämtlicher Streckenverbote, StVO 1970.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 52.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "no-tanks": {
+  "page": "https://commons.wikimedia.org/wiki/File:RU_Military_road_sign_003.svg",
+  "file": "File:RU Military road sign 003.svg",
+  "license": "Wikimedia Commons: Public domain; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 961,
+   "w": 511,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.998,
+   "kb": 55.9
+  },
+  "fetched": "2026-10-24"
+ }
+}

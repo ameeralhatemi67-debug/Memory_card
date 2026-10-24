@@ -28,6 +28,8 @@ A manifest is JSON:
         {"id": "arsenal",        "source": "wikipedia", "title": "Arsenal F.C."},     # the article's lead image (crests too)
         {"id": "pele",           "source": "wikipedia-file", "file": "File:Pele 1960.jpg"},
         {"id": "skin",           "source": "commons", "file": "File:Old Trafford.jpg", "kind": "skin"},  # per-item kind
+        {"id": "eyes",           "source": "fandom-file", "wiki": "naruto", "file": "File:Itachi.png", "width": 2400,
+         "crop": [0.3, 0.2, 0.7, 0.3], "kind": "detail"},   # ask for a bigger rendition before cropping a detail
         {"id": "mazda",          "source": "wikidata-logo", "qid": "Q35996", "crop": [0, 0, 1, 0.68]}   # keep only the top 68 %
       ]
     }
@@ -67,6 +69,10 @@ KINDS = {
     "logo": dict(max_side=512, min_short=200, aspect=(0.3, 3.5), max_kb=160),
     # a deck's skin: a wide picture behind its library bar (about 5:1) and its shop tile (about 1:1)
     "skin": dict(max_side=1400, min_short=300, aspect=(1.3, 4.0), max_kb=320),
+    # a close crop of a bigger picture (eyes of a character, a detail of a painting): small and any shape
+    "detail": dict(max_side=900, min_short=150, aspect=(0.3, 5.0), max_kb=300),
+    # a country or object drawn as a shape (made by tools/silhouettes.py, or a cut-out)
+    "shape": dict(max_side=700, min_short=200, aspect=(0.2, 5.0), max_kb=200),
     # a picture pressed into a deck seal: a transparent cut-out (emblem, symbol, silhouette)
     "seal": dict(max_side=512, min_short=160, aspect=(0.4, 2.5), max_kb=160),
 }
@@ -154,7 +160,7 @@ def src_fandom_file(item: dict) -> tuple[bytes, dict]:
     wiki, file = item["wiki"], item["file"]
     if not file.lower().startswith("file:"):
         file = "File:" + file
-    data = api(fandom_api(wiki), action="query", titles=file, prop="imageinfo", iiprop="url|size|mime", iiurlwidth=1000)
+    data = api(fandom_api(wiki), action="query", titles=file, prop="imageinfo", iiprop="url|size|mime", iiurlwidth=item.get("width", 1000))
     page = next(iter(data["query"]["pages"].values()))
     info = (page.get("imageinfo") or [None])[0]
     if not info:
@@ -174,7 +180,7 @@ def src_commons(item: dict) -> tuple[bytes, dict]:
     file = item["file"]
     if not file.lower().startswith("file:"):
         file = "File:" + file
-    data = api(COMMONS, action="query", titles=file, prop="imageinfo", iiprop="url|size|mime|extmetadata", iiurlwidth=900)
+    data = api(COMMONS, action="query", titles=file, prop="imageinfo", iiprop="url|size|mime|extmetadata", iiurlwidth=item.get("width", 900))
     page = next(iter(data["query"]["pages"].values()))
     info = (page.get("imageinfo") or [None])[0]
     if not info:
@@ -230,7 +236,7 @@ def src_wikipedia_file(item: dict) -> tuple[bytes, dict]:
     file = item["file"]
     if not file.lower().startswith("file:"):
         file = "File:" + file
-    data = api(WIKIPEDIA, action="query", titles=file, prop="imageinfo", iiprop="url|size|mime|extmetadata", iiurlwidth=1000)
+    data = api(WIKIPEDIA, action="query", titles=file, prop="imageinfo", iiprop="url|size|mime|extmetadata", iiurlwidth=item.get("width", 1000))
     page = next(iter(data["query"]["pages"].values()))
     info = (page.get("imageinfo") or [None])[0]
     if not info:

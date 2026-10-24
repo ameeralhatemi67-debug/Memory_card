@@ -1,0 +1,234 @@
+{
+  "id": "paintings-details",
+  "name": "Paintings · From a Detail",
+  "mono": "Pd",
+  "category": "arts",
+  "level": "classics",
+  "kind": "text",
+  "folder": "History & Culture",
+  "description": "Guess the masterpiece from one close-up: the Mona Lisa's smile, the swirl of The Starry Night, the near-touching hands of Adam and God.",
+  "style": {
+    "front": "only",
+    "fit": "contain",
+    "back": "above",
+    "reverse": false
+  },
+  "cards": [
+    {
+      "img": "mona-lisa-detail.jpg",
+      "bimg": "mona-lisa.jpg",
+      "front": "",
+      "back": "Mona Lisa",
+      "label": "painting",
+      "example": "",
+      "hook": "Leonardo da Vinci, c. 1503–19 · Stolen from the Louvre in 1911"
+    },
+    {
+      "img": "starry-night-detail.jpg",
+      "bimg": "starry-night.jpg",
+      "front": "",
+      "back": "The Starry Night",
+      "label": "painting",
+      "example": "",
+      "hook": "Vincent van Gogh, 1889 · Painted from his asylum window, with an invented village"
+    },
+    {
+      "img": "creation-of-adam-detail.jpg",
+      "bimg": "creation-of-adam.jpg",
+      "front": "",
+      "back": "The Creation of Adam",
+      "label": "painting",
+      "example": "",
+      "hook": "Michelangelo, c. 1511 · A fresco on the Sistine Chapel ceiling"
+    },
+    {
+      "img": "the-scream-detail.jpg",
+      "bimg": "the-scream.jpg",
+      "front": "",
+      "back": "The Scream",
+      "label": "painting",
+      "example": "",
+      "hook": "Edvard Munch, 1893 · Both painted versions were stolen, then recovered"
+    },
+    {
+      "img": "girl-pearl-earring-detail.jpg",
+      "bimg": "girl-pearl-earring.jpg",
+      "front": "",
+      "back": "Girl with a Pearl Earring",
+      "label": "painting",
+      "example": "",
+      "hook": "Johannes Vermeer, c. 1665 · A tronie, a character head rather than a portrait"
+    },
+    {
+      "img": "great-wave-detail.jpg",
+      "bimg": "great-wave.jpg",
+      "front": "",
+      "back": "The Great Wave off Kanagawa",
+      "label": "print",
+      "example": "",
+      "hook": "Hokusai, 1831 · A woodblock print, first of his Thirty-six Views of Mount Fuji"
+    },
+    {
+      "img": "birth-of-venus-detail.jpg",
+      "bimg": "birth-of-venus.jpg",
+      "front": "",
+      "back": "The Birth of Venus",
+      "label": "painting",
+      "example": "",
+      "hook": "Sandro Botticelli, c. 1485 · Hangs in the Uffizi; painted on canvas, not panel"
+    },
+    {
+      "img": "the-kiss-detail.jpg",
+      "bimg": "the-kiss.jpg",
+      "front": "",
+      "back": "The Kiss",
+      "label": "painting",
+      "example": "",
+      "hook": "Gustav Klimt, 1907–08 · Oil with gold leaf; hangs in Vienna's Belvedere"
+    },
+    {
+      "img": "american-gothic-detail.jpg",
+      "bimg": "american-gothic.jpg",
+      "front": "",
+      "back": "American Gothic",
+      "label": "painting",
+      "example": "",
+      "hook": "Grant Wood, 1930 · The models were his sister and his dentist"
+    },
+    {
+      "img": "whistlers-mother-detail.jpg",
+      "bimg": "whistlers-mother.jpg",
+      "front": "",
+      "back": "Whistler's Mother",
+      "label": "painting",
+      "example": "",
+      "hook": "James McNeill Whistler, 1871 · Its real title is Arrangement in Grey and Black No. 1"
+    },
+    {
+      "img": "impression-sunrise-detail.jpg",
+      "bimg": "impression-sunrise.jpg",
+      "front": "",
+      "back": "Impression, Sunrise",
+      "label": "painting",
+      "example": "",
+      "hook": "Claude Monet, 1872 · Its title gave Impressionism its name"
+    },
+    {
+      "img": "water-lilies-detail.jpg",
+      "bimg": "water-lilies.jpg",
+      "front": "",
+      "back": "Water Lilies",
+      "label": "painting",
+      "example": "",
+      "hook": "Claude Monet, 1906 · One of some 250 Water Lilies paintings of his Giverny garden"
+    },
+    {
+      "img": "liberty-leading-the-people-detail.jpg",
+      "bimg": "liberty-leading-the-people.jpg",
+      "front": "",
+      "back": "Liberty Leading the People",
+      "label": "painting",
+      "example": "",
+      "hook": "Eugène Delacroix, 1830 · Marks the July Revolution; the state bought it in 1831"
+    },
+    {
+      "img": "las-meninas-detail.jpg",
+      "bimg": "las-meninas.jpg",
+      "front": "",
+      "back": "Las Meninas",
+      "label": "painting",
+      "example": "",
+      "hook": "Diego Velázquez, 1656 · A mirror at the back reflects the king and queen"
+    },
+    {
+      "img": "night-watch-detail.jpg",
+      "bimg": "night-watch.jpg",
+      "front": "",
+      "back": "The Night Watch",
+      "label": "painting",
+      "example": "",
+      "hook": "Rembrandt, 1642 · Not a night scene: dark varnish gave it the name"
+    },
+    {
+      "img": "arnolfini-portrait-detail.jpg",
+      "bimg": "arnolfini-portrait.jpg",
+      "front": "",
+      "back": "The Arnolfini Portrait",
+      "label": "painting",
+      "example": "",
+      "hook": "Jan van Eyck, 1434 · Signed on the wall: Jan van Eyck was here"
+    },
+    {
+      "img": "the-swing-detail.jpg",
+      "bimg": "the-swing.jpg",
+      "front": "",
+      "back": "The Swing",
+      "label": "painting",
+      "example": "",
+      "hook": "Jean-Honoré Fragonard, 1767 · The patron first asked for a bishop pushing the swing"
+    },
+    {
+      "img": "wanderer-fog-detail.jpg",
+      "bimg": "wanderer-fog.jpg",
+      "front": "",
+      "back": "Wanderer above the Sea of Fog",
+      "label": "painting",
+      "example": "",
+      "hook": "Caspar David Friedrich, 1818 · Perhaps the most famous rear-facing figure in art"
+    },
+    {
+      "img": "sunday-grande-jatte-detail.jpg",
+      "bimg": "sunday-grande-jatte.jpg",
+      "front": "",
+      "back": "A Sunday on La Grande Jatte",
+      "label": "painting",
+      "example": "",
+      "hook": "Georges Seurat, 1884–86 · The icon of pointillism, in the Art Institute of Chicago"
+    },
+    {
+      "img": "the-milkmaid-detail.jpg",
+      "bimg": "the-milkmaid.jpg",
+      "front": "",
+      "back": "The Milkmaid",
+      "label": "painting",
+      "example": "",
+      "hook": "Johannes Vermeer, c. 1658 · The milkmaid is really a kitchen maid; in the Rijksmuseum"
+    },
+    {
+      "img": "the-ambassadors-detail.jpg",
+      "bimg": "the-ambassadors.jpg",
+      "front": "",
+      "back": "The Ambassadors",
+      "label": "painting",
+      "example": "",
+      "hook": "Hans Holbein the Younger, 1533 · The smear on the floor is a skull seen from the side"
+    },
+    {
+      "img": "bandaged-ear-detail.jpg",
+      "bimg": "bandaged-ear.jpg",
+      "front": "",
+      "back": "Self-Portrait with Bandaged Ear",
+      "label": "painting",
+      "example": "",
+      "hook": "Vincent van Gogh, 1889 · Behind him hangs a Japanese woodblock print"
+    },
+    {
+      "img": "the-star-detail.jpg",
+      "bimg": "the-star.jpg",
+      "front": "",
+      "back": "The Star (L'Étoile)",
+      "label": "pastel",
+      "example": "",
+      "hook": "Edgar Degas, c. 1876–77 · Pastel in the Musée d'Orsay, also called Dancer on the Stage"
+    },
+    {
+      "img": "raft-of-the-medusa-detail.jpg",
+      "bimg": "raft-of-the-medusa.jpg",
+      "front": "",
+      "back": "The Raft of the Medusa",
+      "label": "painting",
+      "example": "",
+      "hook": "Théodore Géricault, 1818–19 · A real 1816 wreck: 15 of 150+ on the raft were rescued"
+    }
+  ]
+}
