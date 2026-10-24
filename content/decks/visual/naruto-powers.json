@@ -13,6 +13,19 @@
     "back": "text",
     "reverse": true
   },
+  "seals": [
+    {
+      "id": "sharingan-awakened",
+      "title": "Sharingan Awakened",
+      "note": "Every jutsu, eye and mode of Naruto.",
+      "when": "half",
+      "shape": "square",
+      "color": "peach",
+      "text": "",
+      "img": "seal-sharingan.png",
+      "art": "color"
+    }
+  ],
   "cards": [
     {
       "img": "rasengan.jpg",

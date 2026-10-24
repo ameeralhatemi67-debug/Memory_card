@@ -5,7 +5,6 @@ import 'package:flutter/services.dart';
 
 import 'data/store.dart';
 import 'data/store_scope.dart';
-import 'features/lab/memory_lab.dart';
 import 'features/onboarding/onboarding.dart';
 import 'features/profile/profile_screen.dart';
 import 'features/search/search_screen.dart';
@@ -64,15 +63,15 @@ class _MemoryCardAppState extends State<MemoryCardApp> with WidgetsBindingObserv
         shell.study(null);
       case 'new':
         shell.goHome();
-        shell.create();
+        shell.createCard();
       case 'today':
         _nav.currentState?.push(TodayScreen.route());
       case 'search':
         _nav.currentState?.push(SearchScreen.route());
       case 'profile':
-        _nav.currentState?.push(ProfileScreen.route());
+        shell.openAccount();
       case 'lab':
-        _nav.currentState?.push(MemoryLab.route());
+        shell.openLab();
       case 'seals':
         final ctx = _nav.currentContext;
         if (ctx != null) showSealGallery(ctx, store);

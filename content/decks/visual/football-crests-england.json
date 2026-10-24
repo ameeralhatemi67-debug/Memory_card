@@ -1,0 +1,203 @@
+{
+  "id": "football-crests-england",
+  "name": "Crests · English Clubs",
+  "mono": "En",
+  "category": "football",
+  "level": "football",
+  "kind": "text",
+  "folder": "Football",
+  "description": "Name the club from its crest: the badges of famous English football clubs, from the Premier League giants to the old names of the game.",
+  "style": {
+    "front": "only",
+    "fit": "contain",
+    "back": "text",
+    "reverse": true,
+    "plate": "paper"
+  },
+  "skin": {
+    "img": "skin.jpg",
+    "x": 0.55,
+    "y": 0.58,
+    "zoom": 1.2,
+    "shade": 0.72,
+    "text": "light"
+  },
+  "cards": [
+    {
+      "img": "manchester-united.png",
+      "front": "",
+      "back": "Manchester United",
+      "label": "crest",
+      "example": "",
+      "hook": "Manchester · founded 1878"
+    },
+    {
+      "img": "liverpool.png",
+      "front": "",
+      "back": "Liverpool",
+      "label": "crest",
+      "example": "",
+      "hook": "Liverpool · founded 1892"
+    },
+    {
+      "img": "arsenal.png",
+      "front": "",
+      "back": "Arsenal",
+      "label": "crest",
+      "example": "",
+      "hook": "London · founded 1886"
+    },
+    {
+      "img": "chelsea.png",
+      "front": "",
+      "back": "Chelsea",
+      "label": "crest",
+      "example": "",
+      "hook": "London · founded 1905"
+    },
+    {
+      "img": "manchester-city.png",
+      "front": "",
+      "back": "Manchester City",
+      "label": "crest",
+      "example": "",
+      "hook": "Manchester · founded 1880"
+    },
+    {
+      "img": "tottenham.png",
+      "front": "",
+      "back": "Tottenham Hotspur",
+      "label": "crest",
+      "example": "",
+      "hook": "London · founded 1882"
+    },
+    {
+      "img": "newcastle.png",
+      "front": "",
+      "back": "Newcastle United",
+      "label": "crest",
+      "example": "",
+      "hook": "Newcastle upon Tyne · founded 1892"
+    },
+    {
+      "img": "everton.png",
+      "front": "",
+      "back": "Everton",
+      "label": "crest",
+      "example": "",
+      "hook": "Liverpool · founded 1878"
+    },
+    {
+      "img": "aston-villa.png",
+      "front": "",
+      "back": "Aston Villa",
+      "label": "crest",
+      "example": "",
+      "hook": "Birmingham · founded 1874"
+    },
+    {
+      "img": "west-ham.png",
+      "front": "",
+      "back": "West Ham United",
+      "label": "crest",
+      "example": "",
+      "hook": "London · founded 1895"
+    },
+    {
+      "img": "leeds.png",
+      "front": "",
+      "back": "Leeds United",
+      "label": "crest",
+      "example": "",
+      "hook": "Leeds · founded 1919"
+    },
+    {
+      "img": "nottingham-forest.png",
+      "front": "",
+      "back": "Nottingham Forest",
+      "label": "crest",
+      "example": "",
+      "hook": "Nottingham · founded 1865"
+    },
+    {
+      "img": "wolves.png",
+      "front": "",
+      "back": "Wolverhampton Wanderers",
+      "label": "crest",
+      "example": "",
+      "hook": "Wolverhampton · founded 1877"
+    },
+    {
+      "img": "leicester.png",
+      "front": "",
+      "back": "Leicester City",
+      "label": "crest",
+      "example": "",
+      "hook": "Leicester · founded 1884"
+    },
+    {
+      "img": "southampton.png",
+      "front": "",
+      "back": "Southampton",
+      "label": "crest",
+      "example": "",
+      "hook": "Southampton · founded 1885"
+    },
+    {
+      "img": "crystal-palace.png",
+      "front": "",
+      "back": "Crystal Palace",
+      "label": "crest",
+      "example": "",
+      "hook": "London · founded 1905"
+    },
+    {
+      "img": "sunderland.png",
+      "front": "",
+      "back": "Sunderland",
+      "label": "crest",
+      "example": "",
+      "hook": "Sunderland · founded 1879"
+    },
+    {
+      "img": "fulham.png",
+      "front": "",
+      "back": "Fulham",
+      "label": "crest",
+      "example": "",
+      "hook": "London · founded 1879"
+    },
+    {
+      "img": "ipswich.png",
+      "front": "",
+      "back": "Ipswich Town",
+      "label": "crest",
+      "example": "",
+      "hook": "Ipswich · founded 1878"
+    },
+    {
+      "img": "sheffield-wednesday.png",
+      "front": "",
+      "back": "Sheffield Wednesday",
+      "label": "crest",
+      "example": "",
+      "hook": "Sheffield · founded 1867"
+    },
+    {
+      "img": "west-brom.png",
+      "front": "",
+      "back": "West Bromwich Albion",
+      "label": "crest",
+      "example": "",
+      "hook": "West Bromwich · founded 1878"
+    },
+    {
+      "img": "norwich.png",
+      "front": "",
+      "back": "Norwich City",
+      "label": "crest",
+      "example": "",
+      "hook": "Norwich · founded 1902"
+    }
+  ]
+}

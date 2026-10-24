@@ -782,5 +782,53 @@
    "kb": 28.9
   },
   "fetched": "2026-10-23"
+ },
+ "seal-hunter-license": {
+  "page": "https://hunterxhunter.fandom.com/wiki/File:Hunter_Association_logo.png",
+  "file": "File:Hunter Association logo.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 509,
+   "srcH": 331,
+   "w": 509,
+   "h": 331,
+   "alpha": true,
+   "aspect": 1.5378,
+   "kb": 61.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "seal-spade": {
+  "page": "https://commons.wikimedia.org/wiki/File:Playing_Card_Suit_-_Swiss-French_Spade.svg",
+  "file": "File:Playing Card Suit - Swiss-French Spade.svg",
+  "license": "Wikimedia Commons: CC0; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 779,
+   "srcH": 744,
+   "w": 512,
+   "h": 489,
+   "alpha": true,
+   "aspect": 1.047,
+   "kb": 14.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "skin": {
+  "page": "https://hunterxhunter.fandom.com/wiki/File:Whale_Island.png",
+  "file": "File:Whale Island.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 1000,
+   "h": 563,
+   "alpha": false,
+   "aspect": 1.7762,
+   "kb": 38.2
+  },
+  "fetched": "2026-10-24"
  }
 }

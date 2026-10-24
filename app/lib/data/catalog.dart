@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'package:flutter/services.dart';
 
 import 'card_layout.dart';
+import 'models.dart';
 
 /// A deck in the shop catalogue (bundled with the app, works offline).
 class CatalogCard {
@@ -98,6 +99,8 @@ class CatalogDeck {
     required this.origin,
     required this.cards,
     this.style = const CatalogStyle(),
+    this.skin,
+    this.seals = const [],
   });
 
   final String id;
@@ -114,6 +117,12 @@ class CatalogDeck {
   final String origin;
   final List<CatalogCard> cards;
   final CatalogStyle style;
+
+  /// The deck's own look in the shop and in your library (a bundled picture), if it has one.
+  final DeckSkin? skin;
+
+  /// Seals that studying this deck can press.
+  final List<DeckSeal> seals;
 
   /// A deck whose cards show pictures.
   bool get hasPictures => cards.any((c) => c.hasPicture);
@@ -159,7 +168,29 @@ class CatalogDeck {
         origin: (j['origin'] as String?) ?? 'originals',
         cards: ((j['cards'] as List?) ?? const []).map((e) => CatalogCard.fromJson(e as Map)).toList(),
         style: CatalogStyle.fromJson(j['style']),
+        skin: _skin(j['id'] as String, j['skin']),
+        seals: [
+          for (final s in (j['seals'] as List?) ?? const [])
+            if (s is Map)
+              DeckSeal.fromJson({
+                ...s,
+                'img': ((s['img'] as String?) ?? '').isEmpty ? null : 'asset:assets/content/img/${j['id']}/${s['img']}',
+              }),
+        ],
       );
+
+  /// "skin": {"img": "skin.jpg", "x": 0.5, "y": 0.4, "zoom": 1, "shade": 0.55, "text": "light"}
+  static DeckSkin? _skin(String id, Object? j) {
+    if (j is! Map || ((j['img'] as String?) ?? '').isEmpty) return null;
+    return DeckSkin(
+      src: 'asset:assets/content/img/$id/${j['img']}',
+      x: ((j['x'] as num?)?.toDouble() ?? 0.5).clamp(0.0, 1.0),
+      y: ((j['y'] as num?)?.toDouble() ?? 0.5).clamp(0.0, 1.0),
+      zoom: ((j['zoom'] as num?)?.toDouble() ?? 1).clamp(1.0, 3.0),
+      shade: ((j['shade'] as num?)?.toDouble() ?? 0.55).clamp(0.0, 1.0),
+      light: j['text'] != 'dark',
+    );
+  }
 }
 
 /// Shop categories with their tab colours (the drawer's blue / peach / red, plus green and ink).
@@ -178,6 +209,7 @@ class CatalogCategory {
     CatalogCategory('arts', 'History & Culture', 0xFFD9A273),
     CatalogCategory('anime', 'Anime', 0xFFB59CFF),
     CatalogCategory('cars', 'Cars', 0xFFF0D060),
+    CatalogCategory('football', 'Football', 0xFF79C267),
     CatalogCategory('knowledge', 'Knowledge', 0xFFB4B4B4),
   ];
 
@@ -219,6 +251,7 @@ class Catalog {
     'periodic-table', 'solar-system', 'organelles', 'si-units-constants', 'functional-groups',
     'world-capitals', 'history-dates', 'us-states', 'greek-gods', 'latin-phrases', 'paintings', 'philosophy', 'fallacies',
     'flags-europe', 'naruto-characters', 'car-brands', 'onepiece-characters', 'flags-asia', 'hxh-characters',
+    'football-crests-england', 'football-legends', 'football-world-cup', 'football-crests-europe',
   ];
 
   /// [list] with the featured decks first, in [featuredIds] order; the others keep their order.

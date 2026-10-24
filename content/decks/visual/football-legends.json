@@ -1,0 +1,258 @@
+{
+  "id": "football-legends",
+  "name": "Football · Legends",
+  "mono": "Le",
+  "category": "football",
+  "level": "football",
+  "kind": "text",
+  "folder": "Football",
+  "description": "The greatest players in football history, men and women: put a name to the face and a career to the name.",
+  "style": {
+    "front": "full",
+    "fit": "cover",
+    "back": "text",
+    "reverse": true
+  },
+  "skin": {
+    "img": "skin.jpg",
+    "x": 0.5,
+    "y": 0.7,
+    "zoom": 1,
+    "shade": 0.55,
+    "text": "light"
+  },
+  "seals": [
+    {
+      "id": "hall-of-fame",
+      "title": "Hall of Fame",
+      "note": "Every legend in the hall seen at least once.",
+      "when": "seen",
+      "shape": "square",
+      "color": "wine",
+      "text": "",
+      "img": "seal-laurel.png",
+      "art": "stamp"
+    },
+    {
+      "id": "golden-generation",
+      "title": "Golden Generation",
+      "note": "Every legend known by heart.",
+      "when": "mastered",
+      "shape": "wide",
+      "color": "gold",
+      "text": "",
+      "img": "seal-boot.png",
+      "art": "stamp"
+    }
+  ],
+  "cards": [
+    {
+      "img": "pele.jpg",
+      "front": "",
+      "back": "Pelé",
+      "label": "player",
+      "example": "",
+      "hook": "Brazil · forward · won three World Cups (1958, 1962, 1970)"
+    },
+    {
+      "img": "diego-maradona.jpg",
+      "front": "",
+      "back": "Diego Maradona",
+      "label": "player",
+      "example": "",
+      "hook": "Argentina · attacking midfielder · captained Argentina to the 1986 World Cup"
+    },
+    {
+      "img": "lionel-messi.jpg",
+      "front": "",
+      "back": "Lionel Messi",
+      "label": "player",
+      "example": "",
+      "hook": "Argentina · forward · eight Ballons d'Or and eight FIFA World Player awards"
+    },
+    {
+      "img": "cristiano-ronaldo.jpg",
+      "front": "",
+      "back": "Cristiano Ronaldo",
+      "label": "player",
+      "example": "",
+      "hook": "Portugal · forward · five Ballons d'Or and five Champions League titles"
+    },
+    {
+      "img": "johan-cruyff.jpg",
+      "front": "",
+      "back": "Johan Cruyff",
+      "label": "player",
+      "example": "",
+      "hook": "Netherlands · forward · won three Ballons d'Or (1971, 1973, 1974)"
+    },
+    {
+      "img": "zinedine-zidane.jpg",
+      "front": "",
+      "back": "Zinedine Zidane",
+      "label": "player",
+      "example": "",
+      "hook": "France · attacking midfielder · 1998 Ballon d'Or and FIFA World Player of the Year"
+    },
+    {
+      "img": "ronaldo-nazario.jpg",
+      "front": "",
+      "back": "Ronaldo Nazário",
+      "label": "player",
+      "example": "",
+      "hook": "Brazil · striker · two Ballons d'Or and three FIFA World Player of the Year awards"
+    },
+    {
+      "img": "franz-beckenbauer.jpg",
+      "front": "",
+      "back": "Franz Beckenbauer",
+      "label": "player",
+      "example": "",
+      "hook": "Germany · defender · won the World Cup as both a player and a manager"
+    },
+    {
+      "img": "ronaldinho.jpg",
+      "front": "",
+      "back": "Ronaldinho",
+      "label": "player",
+      "example": "",
+      "hook": "Brazil · attacking midfielder · Ballon d'Or and two FIFA World Player of the Year awards"
+    },
+    {
+      "img": "michel-platini.jpg",
+      "front": "",
+      "back": "Michel Platini",
+      "label": "player",
+      "example": "",
+      "hook": "France · attacking midfielder · three Ballons d'Or in a row (1983–1985)"
+    },
+    {
+      "img": "eusebio.jpg",
+      "front": "",
+      "back": "Eusébio",
+      "label": "player",
+      "example": "",
+      "hook": "Portugal · striker · 1966 World Cup top scorer with nine goals"
+    },
+    {
+      "img": "alfredo-di-stefano.jpg",
+      "front": "",
+      "back": "Alfredo Di Stéfano",
+      "label": "player",
+      "example": "",
+      "hook": "Argentina, then Spain · forward · in all five of Real Madrid's European Cup wins"
+    },
+    {
+      "img": "ferenc-puskas.jpg",
+      "front": "",
+      "back": "Ferenc Puskás",
+      "label": "player",
+      "example": "",
+      "hook": "Hungary · forward · scored 84 goals in 85 internationals for Hungary"
+    },
+    {
+      "img": "marco-van-basten.jpg",
+      "front": "",
+      "back": "Marco van Basten",
+      "label": "player",
+      "example": "",
+      "hook": "Netherlands · striker · three Ballons d'Or and a volley in the Euro 1988 final"
+    },
+    {
+      "img": "paolo-maldini.jpg",
+      "front": "",
+      "back": "Paolo Maldini",
+      "label": "player",
+      "example": "",
+      "hook": "Italy · left-back · spent his whole club career at AC Milan"
+    },
+    {
+      "img": "george-best.jpg",
+      "front": "",
+      "back": "George Best",
+      "label": "player",
+      "example": "",
+      "hook": "Northern Ireland · right winger · European Footballer of the Year in 1968"
+    },
+    {
+      "img": "garrincha.jpg",
+      "front": "",
+      "back": "Garrincha",
+      "label": "player",
+      "example": "",
+      "hook": "Brazil · right winger · won the 1958 and 1962 World Cups"
+    },
+    {
+      "img": "lev-yashin.jpg",
+      "front": "",
+      "back": "Lev Yashin",
+      "label": "player",
+      "example": "",
+      "hook": "Soviet Union · goalkeeper · the only goalkeeper to win the Ballon d'Or"
+    },
+    {
+      "img": "gerd-muller.jpg",
+      "front": "",
+      "back": "Gerd Müller",
+      "label": "player",
+      "example": "",
+      "hook": "Germany · striker · scored the winner in the 1974 World Cup final"
+    },
+    {
+      "img": "bobby-charlton.jpg",
+      "front": "",
+      "back": "Bobby Charlton",
+      "label": "player",
+      "example": "",
+      "hook": "England · midfielder · 1966 World Cup winner and 1966 Ballon d'Or"
+    },
+    {
+      "img": "thierry-henry.jpg",
+      "front": "",
+      "back": "Thierry Henry",
+      "label": "player",
+      "example": "",
+      "hook": "France · striker · Arsenal's all-time leading goalscorer"
+    },
+    {
+      "img": "andres-iniesta.jpg",
+      "front": "",
+      "back": "Andrés Iniesta",
+      "label": "player",
+      "example": "",
+      "hook": "Spain · midfielder · most decorated Spanish footballer of all time"
+    },
+    {
+      "img": "xavi.jpg",
+      "front": "",
+      "back": "Xavi",
+      "label": "player",
+      "example": "",
+      "hook": "Spain · midfielder · 2010 World Cup winner and Euro 2008 and 2012 champion"
+    },
+    {
+      "img": "marta.jpg",
+      "front": "",
+      "back": "Marta",
+      "label": "player",
+      "example": "",
+      "hook": "Brazil · forward · six-time FIFA World Player of the Year"
+    },
+    {
+      "img": "mia-hamm.jpg",
+      "front": "",
+      "back": "Mia Hamm",
+      "label": "player",
+      "example": "",
+      "hook": "United States · forward · two Women's World Cups (1991, 1999) and two Olympic golds"
+    },
+    {
+      "img": "megan-rapinoe.jpg",
+      "front": "",
+      "back": "Megan Rapinoe",
+      "label": "player",
+      "example": "",
+      "hook": "United States · winger · World Cup champion in 2015 and 2019"
+    }
+  ]
+}

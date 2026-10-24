@@ -1,0 +1,50 @@
+{
+ "skin": {
+  "page": "https://commons.wikimedia.org/wiki/File:Germany_and_Argentina_face_off_in_the_final_of_the_World_Cup_2014_-2014-07-13_(5).jpg",
+  "file": "https://upload.wikimedia.org/wikipedia/commons/8/89/Germany_and_Argentina_face_off_in_the_final_of_the_World_Cup_2014_-2014-07-13_%285%29.jpg",
+  "license": "Wikimedia Commons: CC BY 3.0",
+  "source": "url",
+  "facts": {
+   "srcW": 2738,
+   "srcH": 1825,
+   "w": 1400,
+   "h": 933,
+   "alpha": false,
+   "aspect": 1.5005,
+   "kb": 236.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "seal-trophy": {
+  "page": "https://commons.wikimedia.org/wiki/File:Trophy_Pinhead_icon.svg",
+  "file": "File:Trophy Pinhead icon.svg",
+  "license": "Wikimedia Commons: CC0; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 908,
+   "srcH": 960,
+   "w": 484,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.9453,
+   "kb": 13.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "seal-ball": {
+  "page": "https://commons.wikimedia.org/wiki/File:Soccer_ball_Pinhead_icon.svg",
+  "file": "File:Soccer ball Pinhead icon.svg",
+  "license": "Wikimedia Commons: CC0; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 960,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 25.9
+  },
+  "fetched": "2026-10-24"
+ }
+}

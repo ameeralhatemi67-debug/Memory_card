@@ -16,6 +16,7 @@ import '../../ui/overlays.dart';
 import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
+import '../decks/deck_maker.dart';
 import '../layout/layout_editor.dart';
 import '../layout/layout_face.dart';
 import '../layout/pick_picture.dart';
@@ -66,65 +67,8 @@ const deckLanguages = <(String?, String)>[
   ('sw-KE', 'Swahili'),
 ];
 
-/// Name a new deck (and its language for "Hear it"). Returns the new deck's id.
-Future<String?> createDeckFlow(BuildContext context, {String? folderId}) async {
-  final store = context.storeRead;
-  final mc = Mc.of(context);
-  final name = TextEditingController();
-  String? lang;
-  var code = false;
-  final id = await showMcDialog<String>(
-    context,
-    builder: (ctx) => StatefulBuilder(
-      builder: (ctx, set) => DialogCard(children: [
-        Text('New deck', textAlign: TextAlign.center, style: T.d(32, color: mc.ink)),
-        const SizedBox(height: 16),
-        McField(controller: name, hint: 'German · Kitchen', display: true, autofocus: true),
-        const SizedBox(height: 14),
-        Text('Read the front aloud in', style: T.t(14, w: FontWeight.w700, color: mc.muted)),
-        const SizedBox(height: 8),
-        SizedBox(
-          height: 34,
-          child: ListView(
-            scrollDirection: Axis.horizontal,
-            children: [
-              for (final (l, label) in deckLanguages)
-                Padding(
-                  padding: const EdgeInsets.only(right: 6),
-                  child: Chip2(label, selected: lang == l, height: 32, onTap: () => set(() => lang = l)),
-                ),
-            ],
-          ),
-        ),
-        const SizedBox(height: 14),
-        Row(children: [
-          Expanded(
-            child: Text('Fronts are code', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
-          ),
-          McSwitch(value: code, onChanged: (v) => set(() => code = v), label: 'Fronts are code'),
-        ]),
-        const SizedBox(height: 18),
-        InkButton('Create deck', height: 52, onTap: () {
-          final n = name.text.trim();
-          if (n.isEmpty) {
-            Fx.i.warn();
-            return;
-          }
-          final d = store.createDeck(
-            name: n,
-            folderId: folderId ?? store.currentFolder?.id ?? store.createFolder('Library').id,
-            lang: lang,
-            kind: code ? 'code' : 'text',
-            category: lang != null ? 'lang' : (code ? 'code' : 'custom'),
-          );
-          Fx.i.pop();
-          Navigator.pop(ctx, d.id);
-        }),
-      ]),
-    ),
-  );
-  return id;
-}
+/// Makes a new deck in the deck maker (its name, language, look and seals). Returns the new deck's id.
+Future<String?> createDeckFlow(BuildContext context, {String? folderId}) => openDeckMaker(context, folderId: folderId);
 
 class EditorSheet extends StatefulWidget {
   const EditorSheet({super.key, this.deckId, this.folderId, this.editCardId, this.startOnImport = false});

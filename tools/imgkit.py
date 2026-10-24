@@ -9,11 +9,15 @@
     python tools/imgkit.py search-commons "query"          free-text Commons file search (noisy; rarely needed)
     python tools/imgkit.py check DIR                       re-validate the images already in a deck folder
     python tools/imgkit.py sheet DIR OUT.png [--cols 8]    contact sheet(s) so a human can eyeball the result
+    python tools/imgkit.py skin-preview DECK_ID OUT.png    how the deck's skin looks on its library bar and shop tile
+    python tools/imgkit.py search-wikipedia "query"        page titles on English Wikipedia (clubs, players, stadiums)
+    python tools/imgkit.py summary-wikipedia "Page title"  the opening paragraphs of a Wikipedia article (for facts)
+    python tools/imgkit.py sheet DIR OUT.png --only seal-  a contact sheet of only the files starting with seal-
 
 A manifest is JSON:
     {
       "deck": "naruto-characters",
-      "kind": "portrait",                         # flag | portrait | scene | logo  (sets size and quality gates)
+      "kind": "portrait",                         # flag | portrait | scene | logo | skin | seal  (size and quality gates)
       "items": [
         {"id": "naruto-uzumaki", "source": "fandom", "wiki": "naruto", "title": "Naruto Uzumaki"},
         {"id": "rasengan-2",     "source": "fandom-file", "wiki": "naruto", "file": "File:Rasengan.png"},
@@ -21,6 +25,9 @@ A manifest is JSON:
         {"id": "toyota",         "source": "wikidata-logo", "qid": "Q53268"},          # the company's official logo
         {"id": "toyota-2",       "source": "commons", "file": "File:Toyota Motor Corporation Logo.svg"},
         {"id": "x",              "source": "url", "url": "https://example.com/pic.jpg"},
+        {"id": "arsenal",        "source": "wikipedia", "title": "Arsenal F.C."},     # the article's lead image (crests too)
+        {"id": "pele",           "source": "wikipedia-file", "file": "File:Pele 1960.jpg"},
+        {"id": "skin",           "source": "commons", "file": "File:Old Trafford.jpg", "kind": "skin"},  # per-item kind
         {"id": "mazda",          "source": "wikidata-logo", "qid": "Q35996", "crop": [0, 0, 1, 0.68]}   # keep only the top 68 %
       ]
     }
@@ -58,6 +65,10 @@ KINDS = {
     "portrait": dict(max_side=900, min_short=300, aspect=(0.35, 2.2), max_kb=380),
     "scene": dict(max_side=960, min_short=270, aspect=(0.4, 2.6), max_kb=380),
     "logo": dict(max_side=512, min_short=200, aspect=(0.3, 3.5), max_kb=160),
+    # a deck's skin: a wide picture behind its library bar (about 5:1) and its shop tile (about 1:1)
+    "skin": dict(max_side=1400, min_short=300, aspect=(1.3, 4.0), max_kb=320),
+    # a picture pressed into a deck seal: a transparent cut-out (emblem, symbol, silhouette)
+    "seal": dict(max_side=512, min_short=160, aspect=(0.4, 2.5), max_kb=160),
 }
 
 _last = 0.0
@@ -95,6 +106,7 @@ def fandom_api(wiki: str) -> str:
 
 
 COMMONS = "https://commons.wikimedia.org/w/api.php"
+WIKIPEDIA = "https://en.wikipedia.org/w/api.php"
 WIKIDATA = "https://www.wikidata.org/w/api.php"
 
 
@@ -109,6 +121,18 @@ def src_flagcdn(item: dict) -> tuple[bytes, dict]:
     return r.content, {"page": f"https://flagcdn.com/{code}.svg", "file": f"flagcdn w640 {code}", "license": "flag artwork, public domain"}
 
 
+def fandom_raster(url: str, content: bytes) -> bytes:
+    """Fandom serves SVG files as SVG; its image server renders them as PNG when asked for a scaled copy."""
+    head = content[:300].lstrip().lower()
+    if not (head.startswith(b"<?xml") or head.startswith(b"<svg") or b"<svg" in head):
+        return content
+    base = url.split("/revision/")[0]
+    r = get(base + "/revision/latest/scale-to-width-down/1000")
+    if r.status_code != 200:
+        raise RuntimeError(f"could not get a PNG render of {base}: HTTP {r.status_code}")
+    return r.content
+
+
 def src_fandom(item: dict) -> tuple[bytes, dict]:
     wiki, title = item["wiki"], item["title"]
     data = api(fandom_api(wiki), action="query", titles=title, prop="pageimages", pithumbsize=1000, redirects=1)
@@ -119,7 +143,7 @@ def src_fandom(item: dict) -> tuple[bytes, dict]:
     r = get(thumb["source"])
     if r.status_code != 200:
         raise RuntimeError(f"{wiki}:{title}: HTTP {r.status_code}")
-    return r.content, {
+    return fandom_raster(thumb["source"], r.content), {
         "page": f"https://{wiki}.fandom.com/wiki/{page['title'].replace(' ', '_')}",
         "file": page.get("pageimage", ""),
         "license": "Fandom wiki image (fair use for identification; personal study use)",
@@ -139,7 +163,7 @@ def src_fandom_file(item: dict) -> tuple[bytes, dict]:
     r = get(url)
     if r.status_code != 200:
         raise RuntimeError(f"{wiki}:{file}: HTTP {r.status_code}")
-    return r.content, {
+    return fandom_raster(url, r.content), {
         "page": f"https://{wiki}.fandom.com/wiki/{file.replace(' ', '_')}",
         "file": file,
         "license": "Fandom wiki image (fair use for identification; personal study use)",
@@ -183,6 +207,41 @@ def src_wikidata_logo(item: dict) -> tuple[bytes, dict]:
     return src_commons({"file": "File:" + best["mainsnak"]["datavalue"]["value"]})
 
 
+def src_wikipedia(item: dict) -> tuple[bytes, dict]:
+    """The lead image of an English Wikipedia article (a club's crest, a player's photo, a stadium). Includes
+    non-free files such as club crests, which Commons does not host."""
+    title = item["title"]
+    data = api(WIKIPEDIA, action="query", titles=title, prop="pageimages", pithumbsize=1000, pilicense="any", redirects=1)
+    page = next(iter(data["query"]["pages"].values()))
+    thumb = page.get("thumbnail")
+    if not thumb:
+        raise RuntimeError(f"wikipedia {title}: no lead image (try `search-wikipedia`, or a wikipedia-file item)")
+    r = get(thumb["source"])
+    if r.status_code != 200:
+        raise RuntimeError(f"wikipedia {title}: HTTP {r.status_code}")
+    return r.content, {
+        "page": "https://en.wikipedia.org/wiki/" + page["title"].replace(" ", "_"),
+        "file": page.get("pageimage", ""),
+        "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+    }
+
+
+def src_wikipedia_file(item: dict) -> tuple[bytes, dict]:
+    file = item["file"]
+    if not file.lower().startswith("file:"):
+        file = "File:" + file
+    data = api(WIKIPEDIA, action="query", titles=file, prop="imageinfo", iiprop="url|size|mime|extmetadata", iiurlwidth=1000)
+    page = next(iter(data["query"]["pages"].values()))
+    info = (page.get("imageinfo") or [None])[0]
+    if not info:
+        raise RuntimeError(f"wikipedia {file}: file not found")
+    lic = info.get("extmetadata", {}).get("LicenseShortName", {}).get("value", "see file page")
+    r = get(info.get("thumburl") or info["url"])
+    if r.status_code != 200:
+        raise RuntimeError(f"wikipedia {file}: HTTP {r.status_code}")
+    return r.content, {"page": "https://en.wikipedia.org/wiki/" + file.replace(" ", "_"), "file": file, "license": f"Wikipedia: {lic}"}
+
+
 def src_url(item: dict) -> tuple[bytes, dict]:
     r = get(item["url"])
     if r.status_code != 200:
@@ -190,7 +249,8 @@ def src_url(item: dict) -> tuple[bytes, dict]:
     return r.content, {"page": item.get("page", item["url"]), "file": item["url"], "license": item.get("license", "unknown")}
 
 
-SOURCES_FN = {"flagcdn": src_flagcdn, "fandom": src_fandom, "fandom-file": src_fandom_file, "commons": src_commons, "wikidata-logo": src_wikidata_logo, "url": src_url}
+SOURCES_FN = {"flagcdn": src_flagcdn, "fandom": src_fandom, "fandom-file": src_fandom_file, "commons": src_commons,
+              "wikidata-logo": src_wikidata_logo, "url": src_url, "wikipedia": src_wikipedia, "wikipedia-file": src_wikipedia_file}
 
 
 # ---------------------------------------------------------------- image handling
@@ -247,10 +307,12 @@ def optimise(raw: bytes, kind: str) -> tuple[bytes, str, dict, list[str]]:
         raise RuntimeError(f"not a readable image ({e.__class__.__name__}); got {raw[:40]!r}") from e
     if getattr(im, "is_animated", False):
         im.seek(0)
-    alpha = has_alpha(im)
+    alpha = has_alpha(im) and kind != "skin"  # a skin is always a solid picture
     im = im.convert("RGBA" if alpha else "RGB")
-    if kind == "logo":
+    if kind in ("logo", "seal"):
         im = trim_margins(im)
+    if kind == "seal" and not alpha:
+        problems.append("a seal picture should be a transparent cut-out (PNG with a see-through background)")
     src_w, src_h = im.size
     if min(src_w, src_h) < gate["min_short"]:
         problems.append(f"too small: {src_w}x{src_h} (need short side >= {gate['min_short']})")
@@ -266,7 +328,7 @@ def optimise(raw: bytes, kind: str) -> tuple[bytes, str, dict, list[str]]:
         im = im.resize((max(1, round(src_w * scale)), max(1, round(src_h * scale))), Image.LANCZOS)
     facts = {"srcW": src_w, "srcH": src_h, "w": im.width, "h": im.height, "alpha": alpha, "aspect": round(im.width / im.height, 4)}
     buf = io.BytesIO()
-    if alpha or kind in ("logo", "flag"):
+    if alpha or kind in ("logo", "flag", "seal"):
         im.save(buf, "PNG", optimize=True)
         ext = "png"
         if buf.tell() > gate["max_kb"] * 1024 and kind in ("flag", "logo") and not alpha:
@@ -313,7 +375,10 @@ def cmd_build(args: argparse.Namespace) -> None:
             if item.get("crop"):
                 raw = crop_raw(raw, item["crop"])
             (work / f"{iid}.raw").write_bytes(raw)
-            data, ext, facts, problems = optimise(raw, kind)
+            item_kind = item.get("kind", kind)
+            if item_kind not in KINDS:
+                raise RuntimeError(f"unknown kind {item_kind!r}")
+            data, ext, facts, problems = optimise(raw, item_kind)
         except Exception as e:  # noqa: BLE001
             report[iid] = {"status": "FAILED", "why": str(e)[:300]}
             bad += 1
@@ -325,7 +390,7 @@ def cmd_build(args: argparse.Namespace) -> None:
         h = dhash(Image.open(io.BytesIO(data)))
         for other, oh in hashes.items():
             # plain-striped flags always hash alike, so the check is for pictures only
-            if kind != "flag" and bin(h ^ oh).count("1") <= 3:
+            if item.get("kind", kind) not in ("flag", "seal") and bin(h ^ oh).count("1") <= 3:
                 problems.append(f"near-duplicate of {other}")
         hashes[iid] = h
         status = "REVIEW" if problems else "ok"
@@ -337,7 +402,9 @@ def cmd_build(args: argparse.Namespace) -> None:
             bad += 1
         print(f"{status:7} {iid}: {facts['w']}x{facts['h']} {facts['kb']}KB {'alpha ' if facts['alpha'] else ''}{'; '.join(problems)}")
     prov_path.write_text(json.dumps(prov, indent=1, ensure_ascii=False), encoding="utf-8")
-    (work / "report.json").write_text(json.dumps(report, indent=1), encoding="utf-8")
+    # A second manifest (look.json: skin and seals) keeps its own report beside the cards' one.
+    stem = pathlib.Path(args.manifest).stem
+    (work / ("report.json" if stem == "manifest" else f"report-{stem}.json")).write_text(json.dumps(report, indent=1), encoding="utf-8")
     flagged = [k for k, v in report.items() if v["status"] in ("FAILED", "REVIEW")]
     print(f"\n{deck}: {len(report) - len(flagged)} fine, {len(flagged)} need attention -> {', '.join(flagged) or 'none'}")
     total = sum(f.stat().st_size for f in out_dir.iterdir())
@@ -357,7 +424,8 @@ def cmd_search(args: argparse.Namespace) -> None:
 def cmd_candidates(args: argparse.Namespace) -> None:
     data = api(fandom_api(args.wiki), action="query", titles=args.title, prop="images", imlimit=60, redirects=1)
     page = next(iter(data["query"]["pages"].values()))
-    names = [i["title"] for i in page.get("images", []) if not re.search(r"\.(svg|gif|ogg|webm|mp4)$", i["title"], re.I)]
+    # SVGs stay in: they render as transparent PNGs, the best seal pictures
+    names = [i["title"] for i in page.get("images", []) if not re.search(r"\.(gif|ogg|webm|mp4)$", i["title"], re.I)]
     if not names:
         print("no image files on that page; try `search` for the right title")
         return
@@ -428,7 +496,86 @@ def cmd_search_commons(args: argparse.Namespace) -> None:
         print(f"{p['title']}  ({ii.get('width')}x{ii.get('height')} {ii.get('mime')})")
 
 
+def cmd_search_wikipedia(args: argparse.Namespace) -> None:
+    data = api(WIKIPEDIA, action="query", list="search", srsearch=args.query, srlimit=10)
+    for hit in data["query"]["search"]:
+        snippet = re.sub(r"<[^>]+>", "", html.unescape(hit.get("snippet", "")))[:110]
+        print(f"{hit['title']}  --  {snippet}")
+
+
+def cmd_summary_wikipedia(args: argparse.Namespace) -> None:
+    data = api(WIKIPEDIA, action="query", prop="extracts", titles=args.title, exintro=1, explaintext=1, redirects=1)
+    page = next(iter(data["query"]["pages"].values()))
+    print(page.get("title", ""))
+    print((page.get("extract") or "no such page; try `search-wikipedia`")[:2400])
+
+
 # ---------------------------------------------------------------- review helpers
+
+
+def _cover(im: Image.Image, w: int, h: int, fx: float, fy: float, zoom: float) -> Image.Image:
+    """Like the app: scale the picture to cover w x h (times zoom) and keep the focal point (fx, fy) in view."""
+    scale = max(w / im.width, h / im.height) * zoom
+    sw, sh = max(w, round(im.width * scale)), max(h, round(im.height * scale))
+    big = im.resize((sw, sh), Image.LANCZOS)
+    left = min(max(0, round(fx * (sw - w))), sw - w)
+    top = min(max(0, round(fy * (sh - h))), sh - h)
+    return big.crop((left, top, left + w, top + h))
+
+
+def cmd_skin_preview(args: argparse.Namespace) -> None:
+    """Renders a deck's skin roughly as the app draws it: the library bar at three widths and the shop tile's card."""
+    deck_id = args.deck
+    path = next((p for p in (ROOT / "content" / "decks").rglob(f"{deck_id}.json")), None)
+    if path is None:
+        raise SystemExit(f"no deck file {deck_id}.json")
+    deck = json.loads(path.read_text(encoding="utf-8"))
+    skin = deck.get("skin")
+    if not skin:
+        raise SystemExit(f'{deck_id} has no "skin" in its deck file')
+    im = Image.open(ASSETS / deck_id / skin["img"]).convert("RGB")
+    fx, fy, zoom = skin.get("x", 0.5), skin.get("y", 0.5), skin.get("zoom", 1)
+    shade, light = skin.get("shade", 0.55), skin.get("text", "light") != "dark"
+    k = 3  # drawn at 3x, like a phone
+    try:
+        title_font = ImageFont.truetype("arialbd.ttf", 23 * k)
+        meta_font = ImageFont.truetype("arial.ttf", 13 * k)
+    except OSError:
+        title_font = meta_font = ImageFont.load_default()
+    rows = []
+    for bar_w in (335, 371, 520):
+        w, h = bar_w * k, 72 * k
+        bar = _cover(im, w, h, fx, fy, zoom).convert("RGBA")
+        veil = Image.new("RGBA", (w, h))
+        dv = ImageDraw.Draw(veil)
+        base = (0, 0, 0) if light else (255, 255, 255)
+        for x in range(w):
+            t = x / w
+            a = shade * (0.9 if t < 0.3 else max(0.25, 0.9 - (t - 0.3) / 0.45 * 0.65))
+            dv.line([(x, 0), (x, h)], fill=base + (round(a * 255),))
+        bar = Image.alpha_composite(bar, veil)
+        d = ImageDraw.Draw(bar)
+        ink = (241, 241, 241) if light else (30, 30, 30)
+        d.text((16 * k, 11 * k), deck["name"], fill=ink, font=title_font)
+        d.text((16 * k, 47 * k), f"{len(deck['cards'])} cards · 12 slipping", fill=ink, font=meta_font)
+        mask = Image.new("L", (w, h), 0)
+        ImageDraw.Draw(mask).rounded_rectangle([0, 0, w - 1, h - 1], radius=10 * k, fill=255)
+        rows.append((bar, mask))
+    tile_w, tile_h = 94 * k, 104 * k
+    tile = _cover(im, tile_w, tile_h, fx, fy, zoom)
+    tmask = Image.new("L", (tile_w, tile_h), 0)
+    ImageDraw.Draw(tmask).rounded_rectangle([0, 0, tile_w - 1, tile_h - 1], radius=12 * k, fill=255)
+    pad = 20 * k
+    out = Image.new("RGB", (520 * k + 2 * pad, sum(r[0].height for r in rows) + tile_h + pad * (len(rows) + 2)), (241, 241, 241))
+    y = pad
+    for bar, mask in rows:
+        out.paste(bar, (pad, y), mask)
+        y += bar.height + pad
+    out.paste(tile, (pad, y), tmask)
+    ImageDraw.Draw(out).text((pad + tile_w + pad, y + 10), "shop tile (the deck's monogram sits on it)", fill=(80, 80, 80), font=meta_font)
+    out.save(args.out)
+    print(args.out)
+
 
 
 def cmd_check(args: argparse.Namespace) -> None:
@@ -458,7 +605,7 @@ def cmd_check(args: argparse.Namespace) -> None:
 
 def cmd_sheet(args: argparse.Namespace) -> None:
     folder = pathlib.Path(args.dir)
-    files = [f for f in sorted(folder.iterdir()) if f.suffix.lower() in (".png", ".jpg", ".jpeg", ".webp")]
+    files = [f for f in sorted(folder.iterdir()) if f.suffix.lower() in (".png", ".jpg", ".jpeg", ".webp") and f.name.startswith(args.only)]
     cols, cell, label_h = args.cols, args.cell, 22
     per_sheet = cols * 5
     try:
@@ -517,6 +664,16 @@ def main() -> None:
     sc.add_argument("query")
     sc.add_argument("--any", action="store_true", help="include photos, not just vector drawings")
     sc.set_defaults(fn=cmd_search_commons)
+    sw = sub.add_parser("search-wikipedia")
+    sw.add_argument("query")
+    sw.set_defaults(fn=cmd_search_wikipedia)
+    sm = sub.add_parser("summary-wikipedia")
+    sm.add_argument("title")
+    sm.set_defaults(fn=cmd_summary_wikipedia)
+    sp = sub.add_parser("skin-preview")
+    sp.add_argument("deck")
+    sp.add_argument("out")
+    sp.set_defaults(fn=cmd_skin_preview)
     ck = sub.add_parser("check")
     ck.add_argument("dir")
     ck.add_argument("--kind", default="portrait", choices=sorted(KINDS))
@@ -526,6 +683,7 @@ def main() -> None:
     sh.add_argument("out")
     sh.add_argument("--cols", type=int, default=8)
     sh.add_argument("--cell", type=int, default=150)
+    sh.add_argument("--only", default="", help="only files whose name starts with this (e.g. seal-)")
     sh.set_defaults(fn=cmd_sheet)
     args = ap.parse_args()
     args.fn(args)

@@ -2,10 +2,13 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../data/models.dart';
 import '../../data/store.dart';
 import '../../data/store_scope.dart';
 import '../../engine/days.dart';
+import '../../engine/deck_seals.dart';
 import '../../engine/seals.dart';
+import '../../ui/deck_look.dart';
 import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/overlays.dart';
@@ -15,13 +18,19 @@ import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../settings/settings_screen.dart';
+import '../shell/nav_bar.dart';
+import '../shell/shell.dart';
 import '../study/celebrate.dart';
 import '../today/today_screen.dart';
 
-/// Profile (canvas Profile.dc.html): one screen, no scrolling. The membership card is a trophy, not a
-/// form: its "card number" is your stats, and it flips over to show your activity.
+/// Profile, the Account tab (canvas Profile.dc.html): one screen (it scrolls only on short phones). The
+/// membership card is a trophy, not a form: its "card number" is your stats, and it flips over to show
+/// your activity.
 class ProfileScreen extends StatefulWidget {
-  const ProfileScreen({super.key});
+  const ProfileScreen({super.key, this.inShell = false});
+
+  /// Shown as the nav bar's Account tab (no way back, room for the bar), not pushed over the app.
+  final bool inShell;
 
   static Route<void> route() => McPageRoute(builder: (_) => const ProfileScreen());
 
@@ -51,10 +60,54 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
     final mc = Mc.of(context);
     final mq = MediaQuery.of(context);
     final w = mq.size.width;
-    final h = mq.size.height;
     final dark = Theme.of(context).brightness == Brightness.dark;
-    final cardTop = math.max(mq.padding.top + 120, h * 0.37);
     final cardH = math.min(244.0, (w - 28) * 0.63);
+    // In the nav bar the page ends above it; on short phones it scrolls instead of overlapping.
+    final bottom = mq.padding.bottom + (widget.inShell ? NavBar.height : 0) + 24;
+    final card = SizedBox(
+      height: cardH,
+      child: GestureDetector(
+        onTap: _toggle,
+        child: AnimatedBuilder(
+          animation: _flip,
+          builder: (context, _) {
+            final a = _flip.value * math.pi;
+            final showBack = a > math.pi / 2;
+            return Transform(
+              alignment: Alignment.center,
+              transform: Matrix4.identity()
+                ..setEntry(3, 2, 0.0009)
+                ..rotateY(showBack ? a - math.pi : a),
+              child: showBack ? _CardBack(store: store) : _CardFront(store: store),
+            );
+          },
+        ),
+      ),
+    );
+    final signIn = Column(children: [
+      Text.rich(
+        TextSpan(children: [
+          TextSpan(text: 'Back up your progress? ', style: T.d(17, color: mc.muted)),
+          WidgetSpan(
+            child: GestureDetector(
+              onTap: () => _signIn(context),
+              child: Text('Sign in', style: T.d(17, color: mc.ink).copyWith(decoration: TextDecoration.underline)),
+            ),
+          ),
+        ]),
+      ),
+      const SizedBox(height: 14),
+      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+        _Badge(shape: PolarShape.badgeScallop, label: 'Sign in with Google', icon: McIcons.google, iconSize: const Size(34, 34), onTap: () => _signIn(context)),
+        const SizedBox(width: 30),
+        _Badge(shape: PolarShape.badgeBurst, label: 'Create a Memory Card account', icon: McIcons.logo, iconSize: const Size(27, 34), tint: true, onTap: () => _signIn(context)),
+        const SizedBox(width: 30),
+        _Badge(shape: PolarShape.badgeSquircle, label: 'Sign in with Apple', icon: McIcons.apple, iconSize: const Size(28, 34), tint: true, onTap: () => _signIn(context)),
+      ]),
+      const SizedBox(height: 14),
+      Text('Optional. Everything works offline without an account.',
+          textAlign: TextAlign.center, style: T.t(14, w: FontWeight.w500, color: mc.muted)),
+    ]);
     return Scaffold(
       backgroundColor: mc.canvas,
       body: Wall(child: Stack(children: [
@@ -81,6 +134,36 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
             ),
           ),
         ),
+        Positioned.fill(
+          child: LayoutBuilder(builder: (context, box) {
+            return SingleChildScrollView(
+              physics: const BouncingScrollPhysics(),
+              child: ConstrainedBox(
+                constraints: BoxConstraints(minHeight: box.maxHeight),
+                child: IntrinsicHeight(
+                  child: Padding(
+                    padding: EdgeInsets.only(top: mq.padding.top + 92, bottom: bottom),
+                    child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+                      Padding(padding: const EdgeInsets.symmetric(horizontal: 22), child: _Greeting(store: store)),
+                      const SizedBox(height: 24),
+                      // On a tall phone the card sits a little above the middle, as on the canvas.
+                      const Spacer(flex: 2),
+                      Padding(padding: const EdgeInsets.symmetric(horizontal: 14), child: card),
+                      const SizedBox(height: 12),
+                      Text(_back ? 'Tap the card to flip it back' : 'Tap the card to see your activity',
+                          textAlign: TextAlign.center, style: T.t(14, w: FontWeight.w600, color: mc.muted)),
+                      const SizedBox(height: 12),
+                      Padding(padding: const EdgeInsets.symmetric(horizontal: 20), child: _SealsRow(store: store)),
+                      const SizedBox(height: 24),
+                      const Spacer(flex: 3),
+                      signIn,
+                    ]),
+                  ),
+                ),
+              ),
+            );
+          }),
+        ),
         Positioned(
           left: 0,
           right: 0,
@@ -90,7 +173,13 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
             child: Padding(
               padding: const EdgeInsets.fromLTRB(18, 18, 12, 0),
               child: Row(children: [
-                IconTap(icon: McIcons.logo, label: 'Back to decks', onTap: () => Navigator.pop(context)),
+                widget.inShell
+                    ? IconTap(icon: McIcons.logo, label: 'Open folders', onTap: () => Shell.of(context).openDrawer())
+                    : IconTap(icon: McIcons.logo, label: 'Back to decks', onTap: () => Navigator.pop(context)),
+                if (widget.inShell) ...[
+                  const SizedBox(width: 12),
+                  Text('Account', style: T.d(26, color: mc.ink)),
+                ],
                 const Spacer(),
                 IconTap(
                   icon: McIcons.sun,
@@ -101,80 +190,16 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                     store.updateSettings((s) => s.theme = dark ? 'light' : 'dark');
                   },
                 ),
-              ]),
-            ),
-          ),
-        ),
-        Positioned(
-          left: 22,
-          right: 22,
-          top: mq.padding.top + 92,
-          child: _Greeting(store: store),
-        ),
-        Positioned(
-          left: 14,
-          right: 14,
-          top: cardTop,
-          height: cardH,
-          child: GestureDetector(
-            onTap: _toggle,
-            child: AnimatedBuilder(
-              animation: _flip,
-              builder: (context, _) {
-                final a = _flip.value * math.pi;
-                final showBack = a > math.pi / 2;
-                return Transform(
-                  alignment: Alignment.center,
-                  transform: Matrix4.identity()
-                    ..setEntry(3, 2, 0.0009)
-                    ..rotateY(showBack ? a - math.pi : a),
-                  child: showBack ? _CardBack(store: store) : _CardFront(store: store),
-                );
-              },
-            ),
-          ),
-        ),
-        Positioned(
-          left: 0,
-          right: 0,
-          top: cardTop + cardH + 12,
-          child: Text(_back ? 'Tap the card to flip it back' : 'Tap the card to see your activity',
-              textAlign: TextAlign.center, style: T.t(14, w: FontWeight.w600, color: mc.muted)),
-        ),
-        Positioned(
-          left: 20,
-          right: 20,
-          top: cardTop + cardH + 44,
-          child: _SealsRow(store: store),
-        ),
-        Positioned(
-          left: 0,
-          right: 0,
-          bottom: mq.padding.bottom + 24,
-          child: Column(children: [
-            Text.rich(
-              TextSpan(children: [
-                TextSpan(text: 'Back up your progress? ', style: T.d(17, color: mc.muted)),
-                WidgetSpan(
-                  child: GestureDetector(
-                    onTap: () => _signIn(context),
-                    child: Text('Sign in', style: T.d(17, color: mc.ink).copyWith(decoration: TextDecoration.underline)),
+                if (widget.inShell)
+                  IconTap(
+                    icon: McIcons.gear,
+                    label: 'Settings',
+                    size: const Size(28, 32),
+                    onTap: () => Navigator.of(context, rootNavigator: true).push(SettingsScreen.route()),
                   ),
-                ),
               ]),
             ),
-            const SizedBox(height: 14),
-            Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-              _Badge(shape: PolarShape.badgeScallop, label: 'Sign in with Google', icon: McIcons.google, iconSize: const Size(34, 34), onTap: () => _signIn(context)),
-              const SizedBox(width: 30),
-              _Badge(shape: PolarShape.badgeBurst, label: 'Create a Memory Card account', icon: McIcons.logo, iconSize: const Size(27, 34), tint: true, onTap: () => _signIn(context)),
-              const SizedBox(width: 30),
-              _Badge(shape: PolarShape.badgeSquircle, label: 'Sign in with Apple', icon: McIcons.apple, iconSize: const Size(28, 34), tint: true, onTap: () => _signIn(context)),
-            ]),
-            const SizedBox(height: 14),
-            Text('Optional. Everything works offline without an account.',
-                textAlign: TextAlign.center, style: T.t(14, w: FontWeight.w500, color: mc.muted)),
-          ]),
+          ),
         ),
       ])),
     );
@@ -198,7 +223,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
         const SizedBox(height: 18),
         InkButton('Back up now', height: 52, onTap: () {
           Navigator.pop(ctx);
-          Navigator.of(context).push(SettingsScreen.route(scrollToData: true));
+          Navigator.of(context, rootNavigator: true).push(SettingsScreen.route(scrollToData: true));
         }),
         const SizedBox(height: 10),
         SoftButton('Not now', onTap: () => Navigator.pop(ctx)),
@@ -222,7 +247,7 @@ class _Greeting extends StatelessWidget {
       Text(name.isEmpty ? part : '$part, $name', style: T.d(34, color: mc.ink)),
       const SizedBox(height: 4),
       GestureDetector(
-        onTap: () => Navigator.of(context).push(TodayScreen.route()),
+        onTap: () => Navigator.of(context, rootNavigator: true).push(TodayScreen.route()),
         child: Text(
           t.goalHit ? "Today's goal is done. Anything more is a bonus." : '${t.done} of ${store.settings.goal} cards today ›',
           style: T.t(16, w: FontWeight.w600, color: mc.muted),
@@ -421,6 +446,7 @@ class _SealsRow extends StatelessWidget {
   Widget build(BuildContext context) {
     final mc = Mc.of(context);
     final earned = Seals.all.where((s) => store.data.profile.seals.containsKey(s.id)).toList();
+    final deckSeals = store.data.decks.values.fold(0, (n, d) => n + d.sealsEarned.length);
     return Pressable(
       onTap: () => showSealGallery(context, store),
       child: Container(
@@ -442,7 +468,11 @@ class _SealsRow extends StatelessWidget {
           const SizedBox(width: 12),
           Expanded(
             child: Text(
-              earned.isEmpty ? 'Seals · earn your first with one swipe' : 'Seals · ${earned.length} of ${Seals.all.length}',
+              earned.isEmpty
+                  ? 'Seals · earn your first with one swipe'
+                  : deckSeals > 0
+                      ? 'Seals · ${earned.length + deckSeals} pressed'
+                      : 'Seals · ${earned.length} of ${Seals.all.length}',
               style: T.t(15, w: FontWeight.w700, color: mc.ink),
             ),
           ),
@@ -490,6 +520,47 @@ Future<void> showSealGallery(BuildContext context, AppStore store) {
               ]),
           ],
         ),
+        // Every deck in the library that has seals of its own (yours, or from the shop).
+        for (final d in [...store.data.activeDecks, ...?store.data.folderById(Folder.archiveId)?.deckIds.map((id) => store.data.decks[id]).whereType<Deck>()])
+          if (store.sealsOf(d).isNotEmpty) ...[
+            const SizedBox(height: 22),
+            Row(crossAxisAlignment: CrossAxisAlignment.end, children: [
+              Expanded(child: Text(d.name, maxLines: 1, overflow: TextOverflow.ellipsis, style: T.d(22, color: mc.ink))),
+              Text('${d.sealsEarned.length} of ${store.sealsOf(d).length}', style: T.t(13, w: FontWeight.w600, color: mc.muted)),
+            ]),
+            const SizedBox(height: 10),
+            Wrap(spacing: 10, runSpacing: 14, children: [
+              for (final s in store.sealsOf(d))
+                SizedBox(
+                  width: 104,
+                  child: Column(children: [
+                    SizedBox(
+                      height: 68,
+                      child: Center(
+                        child: Opacity(
+                          opacity: d.sealsEarned.containsKey(s.id) ? 1 : 0.5,
+                          child: DeckSealBadge(seal: s, size: s.wide ? 60 : 68, earned: d.sealsEarned.containsKey(s.id)),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 6),
+                    Text(s.title,
+                        textAlign: TextAlign.center,
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: T.t(14, w: FontWeight.w700, color: d.sealsEarned.containsKey(s.id) ? mc.ink : mc.muted)),
+                    Text(
+                        d.sealsEarned.containsKey(s.id)
+                            ? dayKey(dayNumber(d.sealsEarned[s.id]!))
+                            : DeckMilestones.of(s.when).label,
+                        textAlign: TextAlign.center,
+                        maxLines: 2,
+                        overflow: TextOverflow.ellipsis,
+                        style: T.t(11.5, w: FontWeight.w500, color: mc.muted, height: 1.2)),
+                  ]),
+                ),
+            ]),
+          ],
       ],
     );
   });

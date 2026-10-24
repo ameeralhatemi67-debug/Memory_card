@@ -31,6 +31,134 @@ class Folder {
       Folder(id: j['id'] as String, name: _s(j['name']), deckIds: _ls(j['decks']), created: _i(j['created']));
 }
 
+/// A deck's own look: a picture behind its bar instead of the plain ink bar.
+class DeckSkin {
+  DeckSkin({required this.src, this.x = 0.5, this.y = 0.5, this.zoom = 1, this.shade = 0.55, this.light = true});
+
+  /// File path (phone), data URI (web) or `asset:` path (shop decks). Empty = the plain look, chosen on
+  /// purpose (a shop deck whose own skin was switched off).
+  String src;
+
+  /// The point of the picture that stays in view, 0…1 across and down.
+  double x;
+  double y;
+
+  /// 1 = the picture just covers the bar; up to 3 = closer in.
+  double zoom;
+
+  /// How strongly the side under the title is shaded so the text stays readable, 0…1.
+  double shade;
+
+  /// Light text on a dark shade (true) or dark text on a light shade.
+  bool light;
+
+  bool get plain => src.isEmpty;
+
+  static DeckSkin none() => DeckSkin(src: '');
+
+  DeckSkin copy() => DeckSkin(src: src, x: x, y: y, zoom: zoom, shade: shade, light: light);
+
+  double _r(double v) => double.parse(v.toStringAsFixed(3));
+
+  Map<String, Object?> toJson() => {'s': src, 'x': _r(x), 'y': _r(y), 'z': _r(zoom), 'sh': _r(shade), 'lt': light};
+
+  static DeckSkin? fromJson(Object? j) {
+    if (j is! Map) return null;
+    return DeckSkin(
+      src: _s(j['s']),
+      x: _d(j['x'], 0.5).clamp(0.0, 1.0),
+      y: _d(j['y'], 0.5).clamp(0.0, 1.0),
+      zoom: _d(j['z'], 1).clamp(1.0, 3.0),
+      shade: _d(j['sh'], 0.55).clamp(0.0, 1.0),
+      light: _b(j['lt'], true),
+    );
+  }
+}
+
+/// A seal that belongs to one deck: square or wide wax, its own colour, text and picture, pressed when
+/// the deck reaches a milestone ([DeckMilestones]).
+class DeckSeal {
+  DeckSeal({
+    required this.id,
+    required this.title,
+    this.note = '',
+    this.when = 'mastered',
+    this.shape = 'square',
+    this.color = 'red',
+    this.text = '',
+    this.image,
+    this.art = 'stamp',
+  });
+
+  final String id;
+  String title;
+
+  /// One line under the title in the seal gallery.
+  String note;
+
+  /// The milestone that presses it: start · seen · half · mastered · reviews.
+  String when;
+
+  /// square · wide
+  String shape;
+
+  /// One of [colors].
+  String color;
+
+  /// Stamped into the wax (a word, a number, a monogram).
+  String text;
+
+  /// A picture pressed into the wax (PNG cut-outs keep their shape).
+  String? image;
+
+  /// stamp: the picture is pressed into the wax in one colour · color: it keeps its own colours.
+  String art;
+
+  bool get wide => shape == 'wide';
+  bool get hasImage => image != null && image!.isNotEmpty;
+
+  static const colors = ['red', 'wine', 'peach', 'gold', 'green', 'teal', 'blue', 'violet', 'ink'];
+
+  DeckSeal copy({String? id}) => DeckSeal(
+        id: id ?? this.id,
+        title: title,
+        note: note,
+        when: when,
+        shape: shape,
+        color: color,
+        text: text,
+        image: image,
+        art: art,
+      );
+
+  Map<String, Object?> toJson() => {
+        'id': id,
+        'title': title,
+        'note': note,
+        'when': when,
+        'shape': shape,
+        'color': color,
+        'text': text,
+        'img': image,
+        'art': art,
+      };
+
+  factory DeckSeal.fromJson(Map j) {
+    String pick(Object? v, List<String> allowed) => allowed.contains(v) ? v as String : allowed.first;
+    return DeckSeal(
+      id: _s(j['id'], 'seal'),
+      title: _s(j['title']),
+      note: _s(j['note']),
+      when: pick(j['when'], const ['mastered', 'start', 'seen', 'half', 'reviews']),
+      shape: pick(j['shape'], const ['square', 'wide']),
+      color: pick(j['color'], colors),
+      text: _s(j['text']),
+      image: j['img'] as String?,
+      art: pick(j['art'], const ['stamp', 'color']),
+    );
+  }
+}
+
 class Deck {
   Deck({
     required this.id,
@@ -54,9 +182,14 @@ class Deck {
     this.typing = false,
     this.reviews = 0,
     this.masteredAt,
+    this.skin,
+    List<DeckSeal>? seals,
+    Map<String, int>? sealsEarned,
   })  : cardIds = cardIds ?? <String>[],
         stack = stack ?? <String>[],
-        reservoir = reservoir ?? <String>[];
+        reservoir = reservoir ?? <String>[],
+        seals = seals ?? <DeckSeal>[],
+        sealsEarned = sealsEarned ?? <String, int>{};
 
   final String id;
   String name;
@@ -100,6 +233,15 @@ class Deck {
   /// When every card first stood above 90 % recall (the "mastered" seal), once per deck.
   int? masteredAt;
 
+  /// Your own look for the deck. null = the default (a shop deck shows the shop's skin, if it has one).
+  DeckSkin? skin;
+
+  /// Seals you made for this deck (shop decks bring theirs from the catalogue).
+  final List<DeckSeal> seals;
+
+  /// Seal id → when it was pressed, for this deck's own and its shop seals.
+  final Map<String, int> sealsEarned;
+
   String get monogram => mono.isNotEmpty ? mono : _monoFrom(name);
 
   static String _monoFrom(String name) {
@@ -131,6 +273,9 @@ class Deck {
         'typing': typing,
         'reviews': reviews,
         if (masteredAt != null) 'mastered': masteredAt,
+        if (skin != null) 'skin': skin!.toJson(),
+        if (seals.isNotEmpty) 'seals': [for (final s in seals) s.toJson()],
+        if (sealsEarned.isNotEmpty) 'earned': sealsEarned,
       };
 
   factory Deck.fromJson(Map j) => Deck(
@@ -155,6 +300,9 @@ class Deck {
         typing: _b(j['typing']),
         reviews: _i(j['reviews']),
         masteredAt: (j['mastered'] as num?)?.toInt(),
+        skin: DeckSkin.fromJson(j['skin']),
+        seals: [for (final s in (j['seals'] as List?) ?? const []) if (s is Map) DeckSeal.fromJson(s)],
+        sealsEarned: {for (final e in ((j['earned'] as Map?) ?? const {}).entries) '${e.key}': _i(e.value)},
       );
 }
 

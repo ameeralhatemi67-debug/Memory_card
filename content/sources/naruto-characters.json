@@ -926,5 +926,53 @@
    "kb": 67.5
   },
   "fetched": "2026-10-23"
+ },
+ "seal-leaf": {
+  "page": "https://naruto.fandom.com/wiki/File:Konohagakure_Symbol.svg",
+  "file": "https://static.wikia.nocookie.net/naruto/images/d/de/Konohagakure_Symbol.svg/revision/latest/scale-to-width-down/1000?cb=20090830222821",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "url",
+  "facts": {
+   "srcW": 1125,
+   "srcH": 1047,
+   "w": 512,
+   "h": 477,
+   "alpha": true,
+   "aspect": 1.0734,
+   "kb": 24.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "seal-akatsuki": {
+  "page": "https://naruto.fandom.com/wiki/File:Akatsuki_Symbol.svg",
+  "file": "https://static.wikia.nocookie.net/naruto/images/e/e8/Akatsuki_Symbol.svg/revision/latest/scale-to-width-down/1000?cb=20070903103238",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "url",
+  "facts": {
+   "srcW": 1125,
+   "srcH": 945,
+   "w": 512,
+   "h": 430,
+   "alpha": true,
+   "aspect": 1.1907,
+   "kb": 33.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "skin": {
+  "page": "https://naruto.fandom.com/wiki/File:Konohagakure.png",
+  "file": "File:Konohagakure.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 562,
+   "w": 1000,
+   "h": 562,
+   "alpha": false,
+   "aspect": 1.7794,
+   "kb": 142.1
+  },
+  "fetched": "2026-10-24"
  }
 }

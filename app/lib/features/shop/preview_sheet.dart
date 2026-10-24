@@ -5,7 +5,9 @@ import 'package:flutter/material.dart';
 import '../../data/catalog.dart';
 import '../../data/store.dart';
 import '../../data/store_scope.dart';
+import '../../engine/deck_seals.dart';
 import '../../services/speech.dart';
+import '../../ui/deck_look.dart';
 import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
@@ -13,6 +15,7 @@ import '../../ui/overlays.dart';
 import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
+import '../decks/deck_row.dart';
 import '../layout/layout_face.dart';
 import '../shell/shell.dart';
 import 'shop_tile.dart';
@@ -227,6 +230,46 @@ class _PreviewSheetState extends State<PreviewSheet> with SingleTickerProviderSt
                     ),
                   ]),
                 ],
+                if (deck.skin != null) ...[
+                  const SizedBox(height: 18),
+                  const SectionLabel('In your library'),
+                  const SizedBox(height: 8),
+                  LayoutBuilder(
+                    builder: (context, box) => DeckBarFace(
+                      id: deck.id,
+                      name: deck.name,
+                      meta: '${deck.cards.length} cards · new',
+                      steps: 0,
+                      width: math.min(box.maxWidth, 520.0),
+                      skin: deck.skin,
+                    ),
+                  ),
+                ],
+                if (deck.seals.isNotEmpty) ...[
+                  const SizedBox(height: 18),
+                  SectionLabel('${deck.seals.length == 1 ? 'A seal' : '${deck.seals.length} seals'} to earn'),
+                  const SizedBox(height: 10),
+                  Wrap(spacing: 14, runSpacing: 12, children: [
+                    for (final s in deck.seals)
+                      SizedBox(
+                        width: 104,
+                        child: Column(children: [
+                          SizedBox(height: 66, child: Center(child: DeckSealBadge(seal: s, size: s.wide ? 58 : 66))),
+                          const SizedBox(height: 6),
+                          Text(s.title,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                              style: T.t(13, w: FontWeight.w700, color: mc.ink)),
+                          Text(DeckMilestones.of(s.when).label,
+                              maxLines: 1,
+                              overflow: TextOverflow.ellipsis,
+                              textAlign: TextAlign.center,
+                              style: T.t(11.5, w: FontWeight.w600, color: mc.muted)),
+                        ]),
+                      ),
+                  ]),
+                ],
                 if (store.catalog.similarTo(deck).isNotEmpty) ...[
                   const SizedBox(height: 18),
                   const SectionLabel('Similar decks'),
@@ -251,7 +294,7 @@ class _PreviewSheetState extends State<PreviewSheet> with SingleTickerProviderSt
                               child: SizedBox(
                                 width: 96,
                                 child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-                                  StackArt(mono: other.mono, tab: Color(CatalogCategory.of(other.category).color), scale: 0.6),
+                                  StackArt(mono: other.mono, tab: Color(CatalogCategory.of(other.category).color), scale: 0.6, skin: other.skin),
                                   const SizedBox(height: 4),
                                   Text(other.name,
                                       maxLines: 2,

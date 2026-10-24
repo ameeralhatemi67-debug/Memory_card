@@ -13,6 +13,19 @@
     "back": "text",
     "reverse": true
   },
+  "seals": [
+    {
+      "id": "fist-of-power",
+      "title": "Devil Fruit",
+      "note": "Devil Fruits, Haki, Rokushiki and Gears.",
+      "when": "half",
+      "shape": "square",
+      "color": "red",
+      "text": "",
+      "img": "seal-nika-fruit.png",
+      "art": "color"
+    }
+  ],
   "cards": [
     {
       "img": "gomu-gomu-no-mi.jpg",

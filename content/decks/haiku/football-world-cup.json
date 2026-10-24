@@ -1,0 +1,248 @@
+{
+  "id": "football-world-cup",
+  "name": "Football · World Cup",
+  "mono": "WC",
+  "category": "football",
+  "level": "football",
+  "lang": null,
+  "kind": "text",
+  "folder": "Football",
+  "description": "Recall who won every men's World Cup from 1930 to 2026, plus a few record-breaking facts about the tournament.",
+  "skin": {
+    "img": "skin.jpg",
+    "x": 0.5,
+    "y": 0.72,
+    "zoom": 1.1,
+    "shade": 0.7,
+    "text": "light"
+  },
+  "seals": [
+    {
+      "id": "seal-trophy",
+      "title": "World Champion",
+      "note": "Every World Cup winner, from 1930 to 2026, recalled.",
+      "when": "mastered",
+      "shape": "square",
+      "color": "gold",
+      "text": "",
+      "img": "seal-trophy.png",
+      "art": "stamp"
+    },
+    {
+      "id": "seal-kick-off",
+      "title": "Kick-Off",
+      "note": "Every card answered once.",
+      "when": "seen",
+      "shape": "wide",
+      "color": "green",
+      "text": "",
+      "img": "seal-ball.png",
+      "art": "stamp"
+    }
+  ],
+  "cards": [
+    {
+      "front": "World Cup 1930: who won?",
+      "back": "Uruguay",
+      "label": "winner",
+      "example": "",
+      "hook": "Hosts; beat Argentina 4–2 in the final in Montevideo."
+    },
+    {
+      "front": "World Cup 1934: who won?",
+      "back": "Italy",
+      "label": "winner",
+      "example": "",
+      "hook": "Came from a goal down to beat Czechoslovakia 2–1 in Rome."
+    },
+    {
+      "front": "World Cup 1938: who won?",
+      "back": "Italy",
+      "label": "winner",
+      "example": "",
+      "hook": "Retained the title by beating Hungary 4–2 in the final."
+    },
+    {
+      "front": "World Cup 1950: who won?",
+      "back": "Uruguay",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat hosts Brazil 2–1 at the Maracanã in the decisive match."
+    },
+    {
+      "front": "World Cup 1954: who won?",
+      "back": "West Germany",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat favourites Hungary 3–2 in Bern: the 'Miracle of Bern'."
+    },
+    {
+      "front": "World Cup 1958: who won?",
+      "back": "Brazil",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat hosts Sweden 5–2; 17-year-old Pelé scored in all three knockouts."
+    },
+    {
+      "front": "World Cup 1962: who won?",
+      "back": "Brazil",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Czechoslovakia 3–1 in Santiago, retaining the title."
+    },
+    {
+      "front": "World Cup 1966: who won?",
+      "back": "England",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat West Germany 4–2 after extra time at Wembley."
+    },
+    {
+      "front": "World Cup 1970: who won?",
+      "back": "Brazil",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Italy 4–1 in Mexico City and kept the Jules Rimet Trophy."
+    },
+    {
+      "front": "World Cup 1974: who won?",
+      "back": "West Germany",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat the Netherlands 2–1 in Munich, their second title."
+    },
+    {
+      "front": "World Cup 1978: who won?",
+      "back": "Argentina",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat the Netherlands 3–1 after extra time; the hosts' first title."
+    },
+    {
+      "front": "World Cup 1982: who won?",
+      "back": "Italy",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat West Germany 3–1 in Madrid, their first title since 1938."
+    },
+    {
+      "front": "World Cup 1986: who won?",
+      "back": "Argentina",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat West Germany 3–2 in Mexico City; Maradona captained the side."
+    },
+    {
+      "front": "World Cup 1990: who won?",
+      "back": "West Germany",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Argentina 1–0 in Rome, a rematch of the 1986 final."
+    },
+    {
+      "front": "World Cup 1994: who won?",
+      "back": "Brazil",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Italy 3–2 on penalties after a 0–0 draw in Pasadena."
+    },
+    {
+      "front": "World Cup 1998: who won?",
+      "back": "France",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat defending champions Brazil 3–0 at the Stade de France."
+    },
+    {
+      "front": "World Cup 2002: who won?",
+      "back": "Brazil",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Germany 2–0 in Yokohama; their fifth title."
+    },
+    {
+      "front": "World Cup 2006: who won?",
+      "back": "Italy",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat France 5–3 on penalties after a 1–1 draw in Berlin."
+    },
+    {
+      "front": "World Cup 2010: who won?",
+      "back": "Spain",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat the Netherlands 1–0 after extra time: their first title."
+    },
+    {
+      "front": "World Cup 2014: who won?",
+      "back": "Germany",
+      "label": "winner",
+      "example": "",
+      "hook": "Mario Götze's extra-time goal beat Argentina 1–0 in Rio."
+    },
+    {
+      "front": "World Cup 2018: who won?",
+      "back": "France",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Croatia 4–2 at the Luzhniki Stadium in Moscow."
+    },
+    {
+      "front": "World Cup 2022: who won?",
+      "back": "Argentina",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat France on penalties after a 3–3 draw at Lusail Stadium."
+    },
+    {
+      "front": "World Cup 2026: who won?",
+      "back": "Spain",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Argentina 1–0 after extra time in New Jersey: their second title."
+    },
+    {
+      "front": "Which country has won the most World Cups?",
+      "back": "Brazil",
+      "label": "record",
+      "example": "",
+      "hook": "Five titles: 1958, 1962, 1970, 1994 and 2002."
+    },
+    {
+      "front": "Which three countries co-host the 2026 World Cup?",
+      "back": "United States, Canada and Mexico",
+      "label": "hosts",
+      "example": "",
+      "hook": "The first World Cup with 48 teams."
+    },
+    {
+      "front": "Who scored the first goal in World Cup history, in 1930?",
+      "back": "Lucien Laurent",
+      "label": "first",
+      "example": "",
+      "hook": "A Frenchman; France beat Mexico 4–1 in one of the opening matches."
+    },
+    {
+      "front": "Which country hosted the 2010 World Cup, the first in Africa?",
+      "back": "South Africa",
+      "label": "host",
+      "example": "",
+      "hook": "Spain won the title in Johannesburg."
+    },
+    {
+      "front": "Which two countries co-hosted the 2002 World Cup?",
+      "back": "Japan and South Korea",
+      "label": "host",
+      "example": "",
+      "hook": "The first World Cup held in Asia."
+    },
+    {
+      "front": "Who scored the first hat-trick in a World Cup final?",
+      "back": "Geoff Hurst",
+      "label": "record",
+      "example": "",
+      "hook": "He completed it in extra time of England's 4–2 win in 1966."
+    }
+  ]
+}

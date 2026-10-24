@@ -3,6 +3,8 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 
 import '../../data/catalog.dart';
+import '../../data/models.dart';
+import '../../ui/deck_look.dart';
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
 import '../../ui/textures.dart';
@@ -20,6 +22,7 @@ class StackArt extends StatelessWidget {
     this.scale = 1,
     this.swayDelayMs,
     this.swayPeriodMs,
+    this.skin,
   });
 
   final String mono;
@@ -33,6 +36,9 @@ class StackArt extends StatelessWidget {
   /// When set, the two cards under the front one rock now and then (see [Sway]).
   final int? swayDelayMs;
   final int? swayPeriodMs;
+
+  /// The deck's skin, shown on the front card under its monogram.
+  final DeckSkin? skin;
 
   /// How far the under-cards swing, in radians (5.22°).
   static const swing = 5.22 * math.pi / 180;
@@ -99,18 +105,30 @@ class StackArt extends StatelessWidget {
               width: 94 * scale,
               height: 104 * scale,
               alignment: Alignment.center,
+              clipBehavior: skin == null ? Clip.none : Clip.antiAlias,
               decoration: BoxDecoration(
                 color: front,
                 borderRadius: BorderRadius.circular(12 * scale),
                 boxShadow: const [BoxShadow(color: Color(0x40000000), blurRadius: 10, offset: Offset(0, 4))],
               ),
-              child: Padding(
-                padding: EdgeInsets.symmetric(horizontal: 6 * scale),
-                child: FittedBox(
-                  fit: BoxFit.scaleDown,
-                  child: Text(mono, style: T.d(40 * scale, color: onFront)),
+              child: Stack(fit: StackFit.expand, alignment: Alignment.center, children: [
+                if (skin != null) ...[
+                  Positioned.fill(child: SkinPicture(skin: skin!)),
+                  Positioned.fill(child: SkinShade(skin: skin!, even: true)),
+                ],
+                Padding(
+                  padding: EdgeInsets.symmetric(horizontal: 6 * scale),
+                  child: FittedBox(
+                    fit: BoxFit.scaleDown,
+                    child: Text(
+                      mono,
+                      style: T.d(40 * scale, color: skin == null || held ? onFront : skinInk(skin!).$1).copyWith(
+                        shadows: skin == null ? null : const [Shadow(color: Color(0x66000000), blurRadius: 8)],
+                      ),
+                    ),
+                  ),
                 ),
-              ),
+              ]),
             ),
           ),
         ],
@@ -154,6 +172,7 @@ class ShopTile extends StatelessWidget {
                   mono: deck.mono,
                   tab: tab,
                   held: held,
+                  skin: deck.skin,
                   // Staggered so the grid never moves in lockstep: each deck has its own delay and beat.
                   swayDelayMs: held ? null : 250 + (deck.id.hashCode.abs() % 9) * 170,
                   swayPeriodMs: held ? null : const [7000, 8000, 9000, 7500][deck.id.hashCode.abs() % 4],

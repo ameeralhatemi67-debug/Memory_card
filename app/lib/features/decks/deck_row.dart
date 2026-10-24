@@ -8,6 +8,7 @@ import '../../data/models.dart';
 import '../../engine/study_engine.dart';
 import '../../data/store_scope.dart';
 import '../../ui/coach.dart';
+import '../../ui/deck_look.dart';
 import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
@@ -17,6 +18,18 @@ import '../../ui/theme.dart';
 
 /// Which deck row is swiped open (only one at a time).
 final openDeck = ValueNotifier<String?>(null);
+
+/// A deck bar's meta line: "24 cards · 3 slipping".
+String deckMetaOf(DeckStats s) {
+  final status = s.slipping > 0
+      ? '${s.slipping} slipping'
+      : s.fresh == s.total
+      ? 'new'
+      : s.fresh > 0
+      ? '${s.fresh} still new'
+      : 'all strong';
+  return '${s.total} ${s.total == 1 ? 'card' : 'cards'} · $status';
+}
 
 /// Stepped swipe detents (text_Mockup §3, RES-02/RES-03): option 1 at 65px, option 2 at 125px.
 const _step1 = 65.0;
@@ -61,6 +74,7 @@ class DeckRow extends StatefulWidget {
     this.archived = false,
     this.demo = false,
     this.highlight = false,
+    this.skin,
   });
 
   final Deck deck;
@@ -77,6 +91,9 @@ class DeckRow extends StatefulWidget {
 
   /// A deck that was just added glows in.
   final bool highlight;
+
+  /// The deck's look (null = the plain ink bar).
+  final DeckSkin? skin;
 
   @override
   State<DeckRow> createState() => _DeckRowState();
@@ -252,20 +269,12 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
 
   @override
   Widget build(BuildContext context) {
-    final mc = Mc.of(context);
     final reduced = MotionPrefs.reducedOf(context);
     final width = MediaQuery.of(context).size.width;
     final barW = math.min(width - 2 * _margin, 520.0);
 
     final s = widget.stats;
-    final status = s.slipping > 0
-        ? '${s.slipping} slipping'
-        : s.fresh == s.total
-        ? 'new'
-        : s.fresh > 0
-        ? '${s.fresh} still new'
-        : 'all strong';
-    final meta = '${s.total} ${s.total == 1 ? 'card' : 'cards'} · $status';
+    final meta = deckMetaOf(s);
 
     Widget tile(
       String id,
@@ -331,102 +340,15 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
       key: ValueKey('deck-bar-${widget.deck.id}'),
       child: AnimatedBuilder(
         animation: _glow,
-        builder: (context, child) {
-          final g = _glow.isAnimating ? math.sin(_glow.value * math.pi) : 0.0;
-          return Container(
-            width: barW,
-            height: 72,
-            foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(10)),
-            decoration: BoxDecoration(
-              color: mc.ink,
-              borderRadius: BorderRadius.circular(10),
-              boxShadow: [
-                ...mc.e1,
-                if (g > 0)
-                  BoxShadow(
-                    color: Mc.peach.withValues(alpha: 0.55 * g),
-                    blurRadius: 18 * g,
-                    spreadRadius: 2 * g,
-                  ),
-              ],
-            ),
-            clipBehavior: Clip.antiAlias,
-            child: child,
-          );
-        },
-        child: Stack(
-          children: [
-            // Now and then the fan riffles: back to front, each card lifts and leans for a moment.
-            Positioned.fill(
-              child: Pulse(
-                delayMs: 1400 + (widget.deck.id.hashCode.abs() % 7) * 450,
-                periodMs: const [8000, 9000, 10000][widget.deck.id.hashCode.abs() % 3],
-                durationMs: 1300,
-                builder: (context, t) => Stack(
-                  children: [
-                    for (var i = 0; i < 5; i++)
-                      () {
-                        final u = ((t * 1300 - i * 90) / 640).clamp(0.0, 1.0);
-                        final lift = t == 0 ? 0.0 : math.sin(math.pi * Curves.easeInOut.transform(u));
-                        return Positioned(
-                          right: -10 + (4 - i) * 15.0,
-                          bottom: -40 + i * 8.0 + lift * 4,
-                          child: Transform.rotate(
-                            alignment: Alignment.bottomRight,
-                            angle: (-16 + i * 3 - lift * 3.5) * math.pi / 180,
-                            child: AnimatedContainer(
-                              duration: const Duration(milliseconds: 500),
-                              curve: McCurves.paper,
-                              width: 54,
-                              height: 80,
-                              decoration: BoxDecoration(
-                                color: i < s.steps ? mc.fanOn[i] : mc.fanOff,
-                                borderRadius: BorderRadius.circular(7),
-                                boxShadow: const [
-                                  BoxShadow(color: Color(0x33000000), blurRadius: 4, offset: Offset(-2, 0)),
-                                ],
-                              ),
-                            ),
-                          ),
-                        );
-                      }(),
-                  ],
-                ),
-              ),
-            ),
-            Positioned(
-              left: 16,
-              top: 11,
-              right: 112,
-              child: Row(
-                children: [
-                  if (widget.deck.pinned) ...[
-                    McIcon(McIcons.pin, size: const Size(15, 15), color: Mc.green),
-                    const SizedBox(width: 6),
-                  ],
-                  Flexible(
-                    child: Text(
-                      widget.deck.name,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                      style: T.d(23, color: mc.onInk, height: 1.05),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              left: 16,
-              bottom: 11,
-              right: 112,
-              child: Text(
-                meta,
-                maxLines: 1,
-                overflow: TextOverflow.ellipsis,
-                style: T.t(13, w: FontWeight.w500, color: mc.mutedOnInk, spacing: 0.2),
-              ),
-            ),
-          ],
+        builder: (context, _) => DeckBarFace(
+          id: widget.deck.id,
+          name: widget.deck.name,
+          meta: meta,
+          steps: s.steps,
+          pinned: widget.deck.pinned,
+          skin: widget.skin,
+          width: barW,
+          glow: _glow.isAnimating ? math.sin(_glow.value * math.pi) : 0.0,
         ),
       ),
     );
@@ -591,6 +513,139 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
       child: Semantics(
         label: '${widget.deck.name}, $meta. Swipe left to delete or archive, right to move or pin',
         child: row,
+      ),
+    );
+  }
+}
+
+/// The face of a deck bar: the ink bar (or the deck's skin under a shade), the name, the meta line and the
+/// stepped progress fan that riffles now and then. Also the deck maker's live preview.
+class DeckBarFace extends StatelessWidget {
+  const DeckBarFace({
+    super.key,
+    required this.id,
+    required this.name,
+    required this.meta,
+    required this.steps,
+    required this.width,
+    this.pinned = false,
+    this.skin,
+    this.glow = 0,
+  });
+
+  /// Seeds the riffle's timing, so bars never move in lockstep.
+  final String id;
+  final String name;
+  final String meta;
+  final int steps;
+  final double width;
+  final bool pinned;
+  final DeckSkin? skin;
+
+  /// 0…1: the peach glow of a deck that was just added.
+  final double glow;
+
+  @override
+  Widget build(BuildContext context) {
+    final mc = Mc.of(context);
+    final skin = this.skin;
+    final (title, sub) = skin == null ? (mc.onInk, mc.mutedOnInk) : skinInk(skin);
+    final g = glow;
+    return Container(
+      width: width,
+      height: 72,
+      foregroundDecoration: texDeco(context, 'cards', BorderRadius.circular(10)),
+      decoration: BoxDecoration(
+        color: mc.ink,
+        borderRadius: BorderRadius.circular(10),
+        boxShadow: [
+          ...mc.e1,
+          if (g > 0)
+            BoxShadow(
+              color: Mc.peach.withValues(alpha: 0.55 * g),
+              blurRadius: 18 * g,
+              spreadRadius: 2 * g,
+            ),
+        ],
+      ),
+      clipBehavior: Clip.antiAlias,
+      child: Stack(
+        children: [
+          if (skin != null) ...[
+            Positioned.fill(child: SkinPicture(skin: skin)),
+            Positioned.fill(child: SkinShade(skin: skin)),
+          ],
+          // Now and then the fan riffles: back to front, each card lifts and leans for a moment.
+          Positioned.fill(
+            child: Pulse(
+              delayMs: 1400 + (id.hashCode.abs() % 7) * 450,
+              periodMs: const [8000, 9000, 10000][id.hashCode.abs() % 3],
+              durationMs: 1300,
+              builder: (context, t) => Stack(
+                children: [
+                  for (var i = 0; i < 5; i++)
+                    () {
+                      final u = ((t * 1300 - i * 90) / 640).clamp(0.0, 1.0);
+                      final lift = t == 0 ? 0.0 : math.sin(math.pi * Curves.easeInOut.transform(u));
+                      return Positioned(
+                        right: -10 + (4 - i) * 15.0,
+                        bottom: -40 + i * 8.0 + lift * 4,
+                        child: Transform.rotate(
+                          alignment: Alignment.bottomRight,
+                          angle: (-16 + i * 3 - lift * 3.5) * math.pi / 180,
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 500),
+                            curve: McCurves.paper,
+                            width: 54,
+                            height: 80,
+                            decoration: BoxDecoration(
+                              color: i < steps ? mc.fanOn[i] : mc.fanOff,
+                              borderRadius: BorderRadius.circular(7),
+                              boxShadow: const [
+                                BoxShadow(color: Color(0x33000000), blurRadius: 4, offset: Offset(-2, 0)),
+                              ],
+                            ),
+                          ),
+                        ),
+                      );
+                    }(),
+                ],
+              ),
+            ),
+          ),
+          Positioned(
+            left: 16,
+            top: 11,
+            right: 112,
+            child: Row(
+              children: [
+                if (pinned) ...[
+                  McIcon(McIcons.pin, size: const Size(15, 15), color: Mc.green),
+                  const SizedBox(width: 6),
+                ],
+                Flexible(
+                  child: Text(
+                    name,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    style: T.d(23, color: title, height: 1.05),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          Positioned(
+            left: 16,
+            bottom: 11,
+            right: 112,
+            child: Text(
+              meta,
+              maxLines: 1,
+              overflow: TextOverflow.ellipsis,
+              style: T.t(13, w: skin == null ? FontWeight.w500 : FontWeight.w600, color: sub, spacing: 0.2),
+            ),
+          ),
+        ],
       ),
     );
   }

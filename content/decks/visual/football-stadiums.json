@@ -1,0 +1,187 @@
+{
+  "id": "football-stadiums",
+  "name": "Football · Stadiums",
+  "mono": "St",
+  "category": "football",
+  "level": "football",
+  "kind": "text",
+  "folder": "Football",
+  "description": "Name the ground from its picture: the great stadiums of European and South American football.",
+  "style": {
+    "front": "full",
+    "fit": "cover",
+    "back": "text",
+    "reverse": true
+  },
+  "skin": {"img": "skin.jpg", "x": 0.5, "y": 0.45, "zoom": 1.15, "shade": 0.6, "text": "light"},
+  "cards": [
+    {
+      "img": "camp-nou.jpg",
+      "front": "",
+      "back": "Camp Nou",
+      "label": "stadium",
+      "example": "",
+      "hook": "Barcelona · home of FC Barcelona"
+    },
+    {
+      "img": "santiago-bernabeu.jpg",
+      "front": "",
+      "back": "Santiago Bernabéu",
+      "label": "stadium",
+      "example": "",
+      "hook": "Madrid · home of Real Madrid"
+    },
+    {
+      "img": "old-trafford.jpg",
+      "front": "",
+      "back": "Old Trafford",
+      "label": "stadium",
+      "example": "",
+      "hook": "Manchester · home of Manchester United"
+    },
+    {
+      "img": "wembley.jpg",
+      "front": "",
+      "back": "Wembley",
+      "label": "stadium",
+      "example": "",
+      "hook": "London · England's national stadium and the FA Cup final venue"
+    },
+    {
+      "img": "anfield.jpg",
+      "front": "",
+      "back": "Anfield",
+      "label": "stadium",
+      "example": "",
+      "hook": "Liverpool · home of Liverpool FC since 1892"
+    },
+    {
+      "img": "san-siro.jpg",
+      "front": "",
+      "back": "San Siro",
+      "label": "stadium",
+      "example": "",
+      "hook": "Milan · home of AC Milan and Inter"
+    },
+    {
+      "img": "allianz-arena.jpg",
+      "front": "",
+      "back": "Allianz Arena",
+      "label": "stadium",
+      "example": "",
+      "hook": "Munich · home of Bayern Munich"
+    },
+    {
+      "img": "maracana.jpg",
+      "front": "",
+      "back": "Maracanã",
+      "label": "stadium",
+      "example": "",
+      "hook": "Rio de Janeiro · managed by Flamengo and Fluminense"
+    },
+    {
+      "img": "estadio-azteca.jpg",
+      "front": "",
+      "back": "Estadio Azteca",
+      "label": "stadium",
+      "example": "",
+      "hook": "Mexico City · home of Club América"
+    },
+    {
+      "img": "signal-iduna-park.jpg",
+      "front": "",
+      "back": "Signal Iduna Park",
+      "label": "stadium",
+      "example": "",
+      "hook": "Dortmund · home of Borussia Dortmund"
+    },
+    {
+      "img": "la-bombonera.jpg",
+      "front": "",
+      "back": "La Bombonera",
+      "label": "stadium",
+      "example": "",
+      "hook": "Buenos Aires · home of Boca Juniors"
+    },
+    {
+      "img": "parc-des-princes.jpg",
+      "front": "",
+      "back": "Parc des Princes",
+      "label": "stadium",
+      "example": "",
+      "hook": "Paris · home of Paris Saint-Germain"
+    },
+    {
+      "img": "stade-de-france.jpg",
+      "front": "",
+      "back": "Stade de France",
+      "label": "stadium",
+      "example": "",
+      "hook": "Saint-Denis · France's national stadium"
+    },
+    {
+      "img": "estadio-da-luz.jpg",
+      "front": "",
+      "back": "Estádio da Luz",
+      "label": "stadium",
+      "example": "",
+      "hook": "Lisbon · home of Benfica"
+    },
+    {
+      "img": "johan-cruyff-arena.jpg",
+      "front": "",
+      "back": "Johan Cruyff Arena",
+      "label": "stadium",
+      "example": "",
+      "hook": "Amsterdam · home of Ajax"
+    },
+    {
+      "img": "celtic-park.jpg",
+      "front": "",
+      "back": "Celtic Park",
+      "label": "stadium",
+      "example": "",
+      "hook": "Glasgow · home of Celtic"
+    },
+    {
+      "img": "emirates-stadium.jpg",
+      "front": "",
+      "back": "Emirates Stadium",
+      "label": "stadium",
+      "example": "",
+      "hook": "London · home of Arsenal"
+    },
+    {
+      "img": "tottenham-hotspur-stadium.jpg",
+      "front": "",
+      "back": "Tottenham Hotspur Stadium",
+      "label": "stadium",
+      "example": "",
+      "hook": "London · home of Tottenham Hotspur"
+    },
+    {
+      "img": "stadio-olimpico.jpg",
+      "front": "",
+      "back": "Stadio Olimpico",
+      "label": "stadium",
+      "example": "",
+      "hook": "Rome · home of Lazio and Roma"
+    },
+    {
+      "img": "stade-velodrome.jpg",
+      "front": "",
+      "back": "Stade Vélodrome",
+      "label": "stadium",
+      "example": "",
+      "hook": "Marseille · home of Olympique de Marseille"
+    },
+    {
+      "img": "mestalla.jpg",
+      "front": "",
+      "back": "Mestalla",
+      "label": "stadium",
+      "example": "",
+      "hook": "Valencia · home of Valencia CF"
+    }
+  ]
+}

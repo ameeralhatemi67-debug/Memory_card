@@ -1,0 +1,195 @@
+{
+  "id": "football-champions-league",
+  "name": "Football · Champions League",
+  "mono": "CL",
+  "category": "football",
+  "level": "football",
+  "lang": null,
+  "kind": "text",
+  "folder": "Football",
+  "description": "Recall the winner of Europe's club finals, from the first European Cup in 1956 to the 2024–25 final.",
+  "cards": [
+    {
+      "front": "Champions League 2025–26: who won?",
+      "back": "Paris Saint-Germain",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Arsenal 4–3 on penalties after 1–1 in Budapest: back-to-back titles."
+    },
+    {
+      "front": "Champions League 2024–25: who won?",
+      "back": "Paris Saint-Germain",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Inter Milan 5–0 in Munich: their first title."
+    },
+    {
+      "front": "Champions League 2023–24: who won?",
+      "back": "Real Madrid",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Borussia Dortmund 2–0 at Wembley, their 15th title."
+    },
+    {
+      "front": "Champions League 2022–23: who won?",
+      "back": "Manchester City",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Inter Milan 1–0 at the Atatürk Olympic Stadium, Istanbul."
+    },
+    {
+      "front": "Champions League 2021–22: who won?",
+      "back": "Real Madrid",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Liverpool 1–0 in Paris, their 14th title."
+    },
+    {
+      "front": "Champions League 2020–21: who won?",
+      "back": "Chelsea",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Manchester City 1–0 in Porto."
+    },
+    {
+      "front": "Champions League 2018–19: who won?",
+      "back": "Liverpool",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Tottenham Hotspur 2–0 in Madrid."
+    },
+    {
+      "front": "Champions League 2017–18: who won?",
+      "back": "Real Madrid",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Liverpool 3–1 in Kyiv."
+    },
+    {
+      "front": "Champions League 2016–17: who won?",
+      "back": "Real Madrid",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Juventus 4–1 in Cardiff."
+    },
+    {
+      "front": "Champions League 2013–14: who won?",
+      "back": "Real Madrid",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Atlético Madrid 4–1 in Lisbon, their 10th title."
+    },
+    {
+      "front": "Champions League 2011–12: who won?",
+      "back": "Chelsea",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Bayern Munich on penalties after a 1–1 draw in Munich."
+    },
+    {
+      "front": "Champions League 2009–10: who won?",
+      "back": "Inter Milan",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Bayern Munich 2–0 at the Santiago Bernabéu."
+    },
+    {
+      "front": "Champions League 2007–08: who won?",
+      "back": "Manchester United",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Chelsea on penalties after a 1–1 draw in Moscow."
+    },
+    {
+      "front": "Champions League 2004–05: who won?",
+      "back": "Liverpool",
+      "label": "winner",
+      "example": "",
+      "hook": "Came back from 3–0 down at half-time, then won 3–2 on penalties."
+    },
+    {
+      "front": "Champions League 2003–04: who won?",
+      "back": "Porto",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Monaco 3–0 in Gelsenkirchen."
+    },
+    {
+      "front": "Champions League 2001–02: who won?",
+      "back": "Real Madrid",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Bayer Leverkusen 2–1 in Glasgow."
+    },
+    {
+      "front": "Champions League 1998–99: who won?",
+      "back": "Manchester United",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Bayern Munich 2–1 at the Camp Nou in Barcelona."
+    },
+    {
+      "front": "Champions League 1997–98: who won?",
+      "back": "Real Madrid",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Juventus 1–0 in Amsterdam, their seventh title."
+    },
+    {
+      "front": "Champions League 1994–95: who won?",
+      "back": "Ajax",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat AC Milan 1–0 in Vienna."
+    },
+    {
+      "front": "European Cup 1991–92: who won?",
+      "back": "Barcelona",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Sampdoria 1–0 at Wembley."
+    },
+    {
+      "front": "European Cup 1985–86: who won?",
+      "back": "Steaua București",
+      "label": "winner",
+      "example": "",
+      "hook": "Goalkeeper Helmut Duckadam saved all four penalties in the shoot-out."
+    },
+    {
+      "front": "European Cup 1984–85: who won?",
+      "back": "Juventus",
+      "label": "winner",
+      "example": "",
+      "hook": "Beat Liverpool 1–0 in Brussels; English clubs were then banned for five years."
+    },
+    {
+      "front": "European Cup 1966–67: who won?",
+      "back": "Celtic",
+      "label": "winner",
+      "example": "",
+      "hook": "The first British club to win the European Cup, 2–1 over Inter in Lisbon."
+    },
+    {
+      "front": "European Cup 1967–68: who won?",
+      "back": "Manchester United",
+      "label": "winner",
+      "example": "",
+      "hook": "The first English club to win it: 4–1 after extra time over Benfica at Wembley."
+    },
+    {
+      "front": "European Cup 1955–56: who won?",
+      "back": "Real Madrid",
+      "label": "winner",
+      "example": "",
+      "hook": "The first European Cup: 4–3 over Reims in Paris."
+    },
+    {
+      "front": "Which club has won the most Champions League titles?",
+      "back": "Real Madrid",
+      "label": "record",
+      "example": "",
+      "hook": "15 titles, including the first European Cup in 1956."
+    }
+  ]
+}

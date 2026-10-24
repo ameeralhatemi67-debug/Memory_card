@@ -15,8 +15,6 @@ import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../browse/deck_browser.dart';
 import '../editor/editor_sheet.dart';
-import '../lab/memory_lab.dart';
-import '../profile/profile_screen.dart';
 import '../search/search_screen.dart';
 import '../settings/settings_screen.dart';
 import '../shell/nav_bar.dart';
@@ -111,6 +109,7 @@ class _DecksScreenState extends State<DecksScreen> {
                                 onArchive: () => _archive(store, decks[i], folder),
                                 onMove: () => _move(context, store, decks[i]),
                                 onPin: () => store.togglePin(decks[i].id),
+                                skin: store.skinOf(decks[i]),
                               ),
                             ),
                           if (firstVisit) _Hint(onSeen: () => store.markCoach('deck-swipe')),
@@ -160,9 +159,7 @@ class _DecksScreenState extends State<DecksScreen> {
   void _menu(BuildContext context, AppStore store, Folder? folder) {
     final nav = Navigator.of(context, rootNavigator: true);
     showMcMenu(context, [
-      MenuItemData('Profile', () => nav.push(ProfileScreen.route()), icon: McIcons.logo),
       MenuItemData("Today's progress", () => nav.push(TodayScreen.route()), icon: McIcons.done),
-      MenuItemData('Memory Lab', () => nav.push(MemoryLab.route()), icon: McIcons.chart),
       MenuItemData('Search all cards', () => nav.push(SearchScreen.route()), icon: McIcons.search),
       if (folder != null) ...[
         MenuItemData(

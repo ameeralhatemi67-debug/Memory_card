@@ -1,0 +1,386 @@
+{
+ "real-madrid": {
+  "page": "https://en.wikipedia.org/wiki/Real_Madrid_CF",
+  "file": "Real_Madrid_CF.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1721,
+   "w": 381,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.7441,
+   "kb": 163.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "barcelona": {
+  "page": "https://en.wikipedia.org/wiki/FC_Barcelona",
+  "file": "FC_Barcelona_(crest).svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1299,
+   "w": 505,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.9863,
+   "kb": 66.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "atletico-madrid": {
+  "page": "https://en.wikipedia.org/wiki/Atlético_Madrid",
+  "file": "Atletico_Madrid_Logo_2024.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1641,
+   "w": 399,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.7793,
+   "kb": 44.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "sevilla": {
+  "page": "https://en.wikipedia.org/wiki/Sevilla_FC",
+  "file": "Sevilla_FC_logo.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1559,
+   "w": 420,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.8203,
+   "kb": 117.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "valencia": {
+  "page": "https://en.wikipedia.org/wiki/Valencia_CF",
+  "file": "Valenciacf.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1024,
+   "srcH": 774,
+   "w": 512,
+   "h": 387,
+   "alpha": true,
+   "aspect": 1.323,
+   "kb": 41.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "juventus": {
+  "page": "https://en.wikipedia.org/wiki/Juventus_FC",
+  "file": "Juventus_FC_-_logo_black_(Italy,_2020).svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 2025,
+   "w": 324,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.6328,
+   "kb": 7.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "milan": {
+  "page": "https://en.wikipedia.org/wiki/AC_Milan",
+  "file": "Logo_of_AC_Milan.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 2007,
+   "w": 327,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.6387,
+   "kb": 82.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "inter": {
+  "page": "https://en.wikipedia.org/wiki/Inter_Milan",
+  "file": "FC_Internazionale_Milano_2021.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1280,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 58.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "roma": {
+  "page": "https://en.wikipedia.org/wiki/AS_Roma",
+  "file": "AS_Roma_logo_(2017).svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1024,
+   "srcH": 855,
+   "w": 512,
+   "h": 428,
+   "alpha": true,
+   "aspect": 1.1963,
+   "kb": 109.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "napoli": {
+  "page": "https://en.wikipedia.org/wiki/SSC_Napoli",
+  "file": "SSC_Napoli_2025_(white_and_azure).svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1280,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 73.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "bayern": {
+  "page": "https://en.wikipedia.org/wiki/FC_Bayern_Munich",
+  "file": "FC_Bayern_München_logo_(2024).svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 666,
+   "srcH": 666,
+   "w": 512,
+   "h": 512,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 56.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "dortmund": {
+  "page": "https://en.wikipedia.org/wiki/Borussia_Dortmund",
+  "file": "Borussia_Dortmund_logo.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1281,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 66.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "psg": {
+  "page": "https://en.wikipedia.org/wiki/Paris_Saint-Germain_FC",
+  "file": "Paris_Saint-Germain_F.C..svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 564,
+   "srcH": 679,
+   "w": 425,
+   "h": 512,
+   "alpha": false,
+   "aspect": 0.8301,
+   "kb": 60.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "marseille": {
+  "page": "https://en.wikipedia.org/wiki/Olympique_de_Marseille",
+  "file": "Olympique_de_Marseille_2026_logo.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1280,
+   "w": 512,
+   "h": 512,
+   "alpha": true,
+   "aspect": 1.0,
+   "kb": 97.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "lyon": {
+  "page": "https://en.wikipedia.org/wiki/Olympique_Lyonnais",
+  "file": "Olympique_Lyonnais_logo.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1126,
+   "srcH": 1045,
+   "w": 512,
+   "h": 475,
+   "alpha": true,
+   "aspect": 1.0779,
+   "kb": 54.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "benfica": {
+  "page": "https://en.wikipedia.org/wiki/S.L._Benfica",
+  "file": "SL_Benfica_logo.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1267,
+   "w": 512,
+   "h": 507,
+   "alpha": true,
+   "aspect": 1.0099,
+   "kb": 194.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "porto": {
+  "page": "https://en.wikipedia.org/wiki/FC_Porto",
+  "file": "FC_Porto.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1703,
+   "w": 385,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.752,
+   "kb": 166.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "sporting": {
+  "page": "https://en.wikipedia.org/wiki/Sporting_CP",
+  "file": "Sporting_Clube_de_Portugal_logo_(2026).svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1781,
+   "w": 368,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.7188,
+   "kb": 98.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "ajax": {
+  "page": "https://en.wikipedia.org/wiki/AFC_Ajax",
+  "file": "Logo_AFC_Ajax_(1928-1991,_2025-).png",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 680,
+   "srcH": 780,
+   "w": 446,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.8711,
+   "kb": 292.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "psv": {
+  "page": "https://en.wikipedia.org/wiki/PSV_Eindhoven",
+  "file": "PSV_Eindhoven.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1056,
+   "w": 512,
+   "h": 422,
+   "alpha": true,
+   "aspect": 1.2133,
+   "kb": 109.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "celtic": {
+  "page": "https://en.wikipedia.org/wiki/Celtic_F.C.",
+  "file": "Celtic_FC_crest.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 640,
+   "srcH": 640,
+   "w": 512,
+   "h": 512,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 157.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "rangers": {
+  "page": "https://en.wikipedia.org/wiki/Rangers_F.C.",
+  "file": "Rangers_FC.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 768,
+   "srcH": 602,
+   "w": 512,
+   "h": 401,
+   "alpha": false,
+   "aspect": 1.2768,
+   "kb": 94.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "galatasaray": {
+  "page": "https://en.wikipedia.org/wiki/Galatasaray_S.K._(football)",
+  "file": "Galatasaray_S.K._Logo_2026_5-stars.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1198,
+   "srcH": 1506,
+   "w": 407,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.7949,
+   "kb": 47.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "fenerbahce": {
+  "page": "https://en.wikipedia.org/wiki/Fenerbahçe_S.K._(football)",
+  "file": "Fenerbahçe.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 716,
+   "srcH": 640,
+   "w": 512,
+   "h": 458,
+   "alpha": false,
+   "aspect": 1.1179,
+   "kb": 77.5
+  },
+  "fetched": "2026-10-24"
+ }
+}

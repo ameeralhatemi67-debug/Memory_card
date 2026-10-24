@@ -133,8 +133,27 @@ void main() {
       nav.pop();
       await settle(tester, 700);
 
-      // The editor sheet.
+      // The nav bar's tabs: Memory Lab and Account open inside the shell, Home goes back.
+      Shell.current!.openLab();
+      await settle(tester, 1200);
+      expect(Shell.current!.tab, ShellTab.lab);
+      expect(find.text('Memory Lab'), findsOneWidget);
+      Shell.current!.openAccount();
+      await settle(tester, 1200);
+      expect(Shell.current!.tab, ShellTab.account);
+      expect(find.text('Account'), findsOneWidget);
+      Shell.current!.openLab();
+      await settle(tester, 900);
+      expect(Shell.current!.tab, ShellTab.lab, reason: 'a tab further down comes back to the top');
+      Shell.current!.goHome();
+      await settle(tester, 900);
+      expect(Shell.current!.tab, ShellTab.decks);
+
+      // The + on Home asks deck or card; a card opens the editor sheet.
       Shell.current!.create();
+      await settle(tester, 1200);
+      expect(find.text('New deck'), findsOneWidget);
+      await tester.tap(find.text('New card'));
       await settle(tester, 1200);
       expect(find.text('New card'), findsOneWidget);
       await tester.enterText(find.byType(TextField).at(0), 'el gato');

@@ -494,5 +494,21 @@
    "kb": 56.6
   },
   "fetched": "2026-10-23"
+ },
+ "seal-nen-types": {
+  "page": "https://hunterxhunter.fandom.com/wiki/File:Nen_Types_Diagram.svg",
+  "file": "https://static.wikia.nocookie.net/hunterxhunter/images/d/df/Nen_Types_Diagram.svg/revision/latest/scale-to-width-down/1000?cb=20170603225800",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "url",
+  "facts": {
+   "srcW": 554,
+   "srcH": 618,
+   "w": 459,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.8965,
+   "kb": 58.1
+  },
+  "fetched": "2026-10-24"
  }
 }

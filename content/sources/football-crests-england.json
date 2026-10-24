@@ -1,0 +1,370 @@
+{
+ "arsenal": {
+  "page": "https://en.wikipedia.org/wiki/Arsenal_F.C.",
+  "file": "Arsenal_FC.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 918,
+   "w": 512,
+   "h": 367,
+   "alpha": true,
+   "aspect": 1.3951,
+   "kb": 86.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "chelsea": {
+  "page": "https://en.wikipedia.org/wiki/Chelsea_F.C.",
+  "file": "Chelsea_FC.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 614,
+   "srcH": 742,
+   "w": 424,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.8281,
+   "kb": 75.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "liverpool": {
+  "page": "https://en.wikipedia.org/wiki/Liverpool_F.C.",
+  "file": "Liverpool_FC.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 640,
+   "srcH": 367,
+   "w": 512,
+   "h": 294,
+   "alpha": false,
+   "aspect": 1.7415,
+   "kb": 68.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "manchester-united": {
+  "page": "https://en.wikipedia.org/wiki/Manchester_United_F.C.",
+  "file": "Manchester_United_FC_crest.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 564,
+   "srcH": 727,
+   "w": 397,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.7754,
+   "kb": 67.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "manchester-city": {
+  "page": "https://en.wikipedia.org/wiki/Manchester_City_F.C.",
+  "file": "Manchester_City_FC_badge.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 716,
+   "srcH": 691,
+   "w": 512,
+   "h": 494,
+   "alpha": false,
+   "aspect": 1.0364,
+   "kb": 119.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "tottenham": {
+  "page": "https://en.wikipedia.org/wiki/Tottenham_Hotspur_F.C.",
+  "file": "Tottenham_Hotspur.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1009,
+   "srcH": 2003,
+   "w": 258,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.5039,
+   "kb": 36.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "everton": {
+  "page": "https://en.wikipedia.org/wiki/Everton_F.C.",
+  "file": "Everton_FC_logo.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 733,
+   "w": 512,
+   "h": 293,
+   "alpha": true,
+   "aspect": 1.7474,
+   "kb": 79.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "newcastle": {
+  "page": "https://en.wikipedia.org/wiki/Newcastle_United_F.C.",
+  "file": "Newcastle_United_FC_2026_crest.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1030,
+   "w": 512,
+   "h": 412,
+   "alpha": true,
+   "aspect": 1.2427,
+   "kb": 126.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "aston-villa": {
+  "page": "https://en.wikipedia.org/wiki/Aston_Villa_F.C.",
+  "file": "Aston_Villa_FC_new_crest.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1079,
+   "w": 512,
+   "h": 432,
+   "alpha": true,
+   "aspect": 1.1852,
+   "kb": 75.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "west-ham": {
+  "page": "https://en.wikipedia.org/wiki/West_Ham_United_F.C.",
+  "file": "West_Ham_United_FC_logo.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1126,
+   "srcH": 774,
+   "w": 512,
+   "h": 352,
+   "alpha": true,
+   "aspect": 1.4545,
+   "kb": 41.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "leeds": {
+  "page": "https://en.wikipedia.org/wiki/Leeds_United_F.C.",
+  "file": "Leeds_United_F.C._logo.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1593,
+   "w": 411,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.8027,
+   "kb": 82.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "nottingham-forest": {
+  "page": "https://en.wikipedia.org/wiki/Nottingham_Forest_F.C.",
+  "file": "Nottingham_Forest_F.C._logo.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 2152,
+   "w": 305,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.5957,
+   "kb": 38.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "wolves": {
+  "page": "https://en.wikipedia.org/wiki/Wolverhampton_Wanderers_F.C.",
+  "file": "Wolverhampton_Wanderers_FC_crest.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1110,
+   "w": 512,
+   "h": 444,
+   "alpha": true,
+   "aspect": 1.1532,
+   "kb": 46.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "leicester": {
+  "page": "https://en.wikipedia.org/wiki/Leicester_City_F.C.",
+  "file": "Leicester_City_crest.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 716,
+   "srcH": 768,
+   "w": 477,
+   "h": 512,
+   "alpha": false,
+   "aspect": 0.9316,
+   "kb": 146.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "southampton": {
+  "page": "https://en.wikipedia.org/wiki/Southampton_F.C.",
+  "file": "FC_Southampton.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1169,
+   "w": 512,
+   "h": 468,
+   "alpha": true,
+   "aspect": 1.094,
+   "kb": 109.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "crystal-palace": {
+  "page": "https://en.wikipedia.org/wiki/Crystal_Palace_F.C.",
+  "file": "Crystal_Palace_FC_logo_(2022).svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 972,
+   "srcH": 1133,
+   "w": 439,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.8574,
+   "kb": 109.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "fulham": {
+  "page": "https://en.wikipedia.org/wiki/Fulham_F.C.",
+  "file": "Fulham_FC_(shield).svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1704,
+   "w": 385,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.752,
+   "kb": 41.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "sunderland": {
+  "page": "https://en.wikipedia.org/wiki/Sunderland_A.F.C.",
+  "file": "Logo_Sunderland.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 972,
+   "srcH": 449,
+   "w": 512,
+   "h": 237,
+   "alpha": true,
+   "aspect": 2.1603,
+   "kb": 70.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "sheffield-wednesday": {
+  "page": "https://en.wikipedia.org/wiki/Sheffield_Wednesday_F.C.",
+  "file": "Sheffield_Wednesday_FC_2026_crest.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1496,
+   "w": 438,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.8555,
+   "kb": 58.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "ipswich": {
+  "page": "https://en.wikipedia.org/wiki/Ipswich_Town_F.C.",
+  "file": "Ipswich_Town.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1126,
+   "srcH": 1012,
+   "w": 512,
+   "h": 460,
+   "alpha": true,
+   "aspect": 1.113,
+   "kb": 73.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "norwich": {
+  "page": "https://en.wikipedia.org/wiki/Norwich_City_F.C.",
+  "file": "Norwich_City_FC_logo.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1448,
+   "w": 453,
+   "h": 512,
+   "alpha": true,
+   "aspect": 0.8848,
+   "kb": 65.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "west-brom": {
+  "page": "https://en.wikipedia.org/wiki/West_Bromwich_Albion_F.C.",
+  "file": "West_Bromwich_Albion.svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1178,
+   "srcH": 826,
+   "w": 512,
+   "h": 359,
+   "alpha": true,
+   "aspect": 1.4262,
+   "kb": 95.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "skin": {
+  "page": "https://commons.wikimedia.org/wiki/File:Wembley_Stadium,_London.jpg",
+  "file": "https://upload.wikimedia.org/wikipedia/commons/7/79/Wembley_Stadium%2C_London.jpg?utm_source=commons.wikimedia.org&utm_campaign=imageinfo&utm_content=thumbnail_unscaled",
+  "license": "Wikimedia Commons: CC BY 2.0",
+  "source": "url",
+  "facts": {
+   "srcW": 1331,
+   "srcH": 442,
+   "w": 1331,
+   "h": 442,
+   "alpha": false,
+   "aspect": 3.0113,
+   "kb": 119.0
+  },
+  "fetched": "2026-10-24"
+ }
+}

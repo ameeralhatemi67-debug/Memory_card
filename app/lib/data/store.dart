@@ -8,6 +8,7 @@ import 'package:path_provider/path_provider.dart';
 
 import '../engine/assessor.dart';
 import '../engine/days.dart';
+import '../engine/deck_seals.dart';
 import '../engine/seals.dart';
 import '../engine/study_engine.dart';
 import 'app_data.dart';
@@ -283,6 +284,41 @@ class AppStore extends ChangeNotifier {
 
   // ---------------------------------------------------------------- decks
 
+  CatalogDeck? catalogOf(Deck d) => d.catalogId == null ? null : catalog.byId(d.catalogId!);
+
+  /// The look a deck shows: your own skin, else the shop's; null = the plain ink bar.
+  DeckSkin? skinOf(Deck d) {
+    final own = d.skin;
+    if (own != null) return own.plain ? null : own;
+    return catalogOf(d)?.skin;
+  }
+
+  /// Every seal this deck can press: the shop's first, then the ones you made.
+  List<DeckSeal> sealsOf(Deck d) => [...?catalogOf(d)?.seals, ...d.seals];
+
+  /// Saves a deck's look and its own seals. [skin] null keeps the default look (the shop's, for a shop deck).
+  void saveLook(String deckId, {required DeckSkin? skin, List<DeckSeal>? seals}) {
+    final d = data.decks[deckId];
+    if (d == null) return;
+    d.skin = skin;
+    if (seals != null) {
+      d.seals
+        ..clear()
+        ..addAll(seals);
+      final keep = {for (final s in sealsOf(d)) s.id};
+      d.sealsEarned.removeWhere((id, _) => !keep.contains(id));
+    }
+    _db.saveDeck(d);
+    _changed();
+  }
+
+  /// Presses the seals [d] has newly earned (a seal made after its milestone is pressed on the next swipe).
+  List<DeckSeal> _checkDeckSeals(Deck d, int at) {
+    final seals = sealsOf(d);
+    if (seals.isEmpty) return const [];
+    return DeckMilestones.check(d, seals, engine.deckStats(d, at), at);
+  }
+
   Deck createDeck({
     required String name,
     required String folderId,
@@ -293,9 +329,13 @@ class AppStore extends ChangeNotifier {
     String description = '',
     String level = '',
     String? catalogId,
+    DeckSkin? skin,
+    List<DeckSeal>? seals,
   }) {
     final d = Deck(
       id: uid('d'),
+      skin: skin,
+      seals: seals,
       name: name.trim().isEmpty ? 'New deck' : name.trim(),
       mono: mono,
       category: category,
@@ -753,6 +793,7 @@ class AppStore extends ChangeNotifier {
     final d = data.decks[deckId]!;
     final out = engine.swipe(d, cardId,
         recalled: recalled, signals: signals, now: now(), mode: mode, forcedGrade: forcedGrade, mood: mood);
+    out.deckSeals.addAll(_checkDeckSeals(d, now()));
     _db.saveCard(data.cards[cardId]!);
     _db.saveDeck(d);
     _saveMeta();
@@ -800,6 +841,7 @@ class AppStore extends ChangeNotifier {
       _db.addLog(log).catchError((Object _) => 0);
       _logCache?.add(log);
       _pendingSeals.addAll(out.seals);
+      _checkDeckSeals(d, at);
       applied++;
     }
     if (applied > 0) {
@@ -983,6 +1025,17 @@ class AppStore extends ChangeNotifier {
     return out;
   }
 
+  /// A deck's skin and its seals' pictures, inline like card pictures.
+  static Map<String, Object?> _embedDeck(Map<String, Object?> j) {
+    final skin = j['skin'];
+    final seals = j['seals'];
+    return {
+      ...j,
+      if (skin is Map) 'skin': {...skin, 's': _embedSrc(skin['s'])},
+      if (seals is List) 'seals': [for (final s in seals) s is Map ? {...s, 'img': _embedSrc(s['img'])} : s],
+    };
+  }
+
   /// The reverse of embedding: pictures that came back inside a backup are written to files again, so
   /// cards do not decode a huge data URI every time they are drawn.
   Future<void> _restorePictures() async {
@@ -1004,6 +1057,14 @@ class AppStore extends ChangeNotifier {
       }
     }
 
+    for (final d in data.decks.values) {
+      final skin = d.skin;
+      if (skin != null && skin.src.startsWith('data:')) skin.src = await toFile(skin.src);
+      for (final s in d.seals) {
+        final img = s.image;
+        if (img != null && img.startsWith('data:')) s.image = await toFile(img);
+      }
+    }
     for (final c in data.cards.values) {
       final legacy = c.image;
       if (legacy != null && legacy.startsWith('data:')) c.image = await toFile(legacy);
@@ -1023,7 +1084,7 @@ class AppStore extends ChangeNotifier {
       'v': Persistence.schema,
       'exported': DateTime.now().toUtc().toIso8601String(),
       'folders': data.folders.map((f) => f.toJson()).toList(),
-      'decks': data.decks.values.map((d) => d.toJson()).toList(),
+      'decks': [for (final d in data.decks.values) _embedDeck(d.toJson())],
       'cards': [for (final c in data.cards.values) _embedImage(c.toJson())],
       'settings': data.settings.toJson(),
       'profile': data.profile.toJson(),

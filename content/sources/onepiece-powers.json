@@ -638,5 +638,21 @@
    "kb": 138.3
   },
   "fetched": "2026-10-23"
+ },
+ "seal-nika-fruit": {
+  "page": "https://onepiece.fandom.com/wiki/File:Hito_Hito_no_Mi_Infobox.png",
+  "file": "File:Hito Hito no Mi Infobox.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 470,
+   "srcH": 740,
+   "w": 325,
+   "h": 512,
+   "alpha": false,
+   "aspect": 0.6348,
+   "kb": 219.6
+  },
+  "fetched": "2026-10-24"
  }
 }

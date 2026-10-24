@@ -9,6 +9,7 @@ import '../../data/store.dart';
 import '../../data/store_scope.dart';
 import '../../engine/days.dart';
 import '../../ui/coach.dart';
+import '../../ui/deck_look.dart';
 import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
@@ -17,7 +18,6 @@ import '../../ui/shapes.dart';
 import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
-import '../profile/profile_screen.dart';
 import '../settings/settings_screen.dart';
 import '../shell/nav_bar.dart';
 import '../shell/shell.dart';
@@ -202,15 +202,10 @@ class _ShopScreenState extends State<ShopScreen> {
                               style: T.t(13, w: FontWeight.w600, color: mc.muted)),
                         ),
                         IconTap(
-                          icon: McIcons.dots,
-                          label: 'Menu',
-                          size: const Size(8, 26),
-                          onTap: () => showMcMenu(context, [
-                            MenuItemData('Profile', () => Navigator.of(context, rootNavigator: true).push(ProfileScreen.route()),
-                                icon: McIcons.logo),
-                            MenuItemData('Settings', () => Navigator.of(context, rootNavigator: true).push(SettingsScreen.route()),
-                                icon: McIcons.gear),
-                          ]),
+                          icon: McIcons.gear,
+                          label: 'Settings',
+                          size: const Size(28, 32),
+                          onTap: () => Navigator.of(context, rootNavigator: true).push(SettingsScreen.route()),
                         ),
                       ]),
                     ),
@@ -420,6 +415,8 @@ class _Hero extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mc = Mc.of(context);
+    final skin = deck.skin;
+    final (title, sub) = skin == null ? (mc.onInk, mc.mutedOnInk) : skinInk(skin);
     return Pressable(
       onTap: () => showPreview(context, deck.id),
       child: Container(
@@ -428,17 +425,22 @@ class _Hero extends StatelessWidget {
         decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(22), boxShadow: mc.e2),
         clipBehavior: Clip.antiAlias,
         child: Stack(children: [
+          // A deck with its own look shows it here too.
+          if (skin != null) ...[
+            Positioned.fill(child: SkinPicture(skin: skin)),
+            Positioned.fill(child: SkinShade(skin: skin)),
+          ],
           Positioned(
             left: 18,
             top: 18,
             width: 180,
             child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
-              Text(label, style: T.caps(12, color: mc.mutedOnInk, spacing: 1.4)),
+              Text(label, style: T.caps(12, color: sub, spacing: 1.4)),
               const SizedBox(height: 6),
-              Text(deck.name, maxLines: 2, overflow: TextOverflow.ellipsis, style: T.d(24, color: mc.onInk)),
+              Text(deck.name, maxLines: 2, overflow: TextOverflow.ellipsis, style: T.d(24, color: title)),
               const SizedBox(height: 4),
               Text('${deck.cards.length} cards${deck.lang != null ? ' · with audio' : ''}',
-                  style: T.t(14, w: FontWeight.w600, color: mc.mutedOnInk)),
+                  style: T.t(14, w: FontWeight.w600, color: sub)),
               const SizedBox(height: 10),
               Container(
                 height: 32,

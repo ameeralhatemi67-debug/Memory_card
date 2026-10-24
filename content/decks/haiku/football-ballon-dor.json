@@ -1,0 +1,188 @@
+{
+  "id": "football-ballon-dor",
+  "name": "Football · Ballon d'Or",
+  "mono": "BD",
+  "category": "football",
+  "level": "football",
+  "lang": null,
+  "kind": "text",
+  "folder": "Football",
+  "description": "Match each year to the player who won the Ballon d'Or, from the recent winners back to the classic ones.",
+  "cards": [
+    {
+      "front": "Ballon d'Or 2025: who won?",
+      "back": "Ousmane Dembélé",
+      "label": "winner",
+      "example": "",
+      "hook": "Paris Saint-Germain forward; France's first winner since Benzema in 2022."
+    },
+    {
+      "front": "Ballon d'Or 2024: who won?",
+      "back": "Rodri",
+      "label": "winner",
+      "example": "",
+      "hook": "Manchester City midfielder; won Euro 2024 with Spain that summer."
+    },
+    {
+      "front": "Ballon d'Or 2023: who won?",
+      "back": "Lionel Messi",
+      "label": "winner",
+      "example": "",
+      "hook": "His eighth Ballon d'Or, a record."
+    },
+    {
+      "front": "Ballon d'Or 2022: who won?",
+      "back": "Karim Benzema",
+      "label": "winner",
+      "example": "",
+      "hook": "The first French winner since Zidane in 1998."
+    },
+    {
+      "front": "Ballon d'Or 2021: who won?",
+      "back": "Lionel Messi",
+      "label": "winner",
+      "example": "",
+      "hook": "His seventh Ballon d'Or."
+    },
+    {
+      "front": "Ballon d'Or 2019: who won?",
+      "back": "Lionel Messi",
+      "label": "winner",
+      "example": "",
+      "hook": "His sixth Ballon d'Or."
+    },
+    {
+      "front": "Ballon d'Or 2018: who won?",
+      "back": "Luka Modrić",
+      "label": "winner",
+      "example": "",
+      "hook": "Ended a ten-year run of Messi and Ronaldo wins."
+    },
+    {
+      "front": "Ballon d'Or 2017: who won?",
+      "back": "Cristiano Ronaldo",
+      "label": "winner",
+      "example": "",
+      "hook": "His fifth Ballon d'Or."
+    },
+    {
+      "front": "Ballon d'Or 2016: who won?",
+      "back": "Cristiano Ronaldo",
+      "label": "winner",
+      "example": "",
+      "hook": "His fourth Ballon d'Or."
+    },
+    {
+      "front": "Ballon d'Or 2009: who won?",
+      "back": "Lionel Messi",
+      "label": "winner",
+      "example": "",
+      "hook": "His first Ballon d'Or."
+    },
+    {
+      "front": "Ballon d'Or 2008: who won?",
+      "back": "Cristiano Ronaldo",
+      "label": "winner",
+      "example": "",
+      "hook": "His first Ballon d'Or."
+    },
+    {
+      "front": "Ballon d'Or 2007: who won?",
+      "back": "Kaká",
+      "label": "winner",
+      "example": "",
+      "hook": "Brazilian playmaker, then at AC Milan."
+    },
+    {
+      "front": "Ballon d'Or 2005: who won?",
+      "back": "Ronaldinho",
+      "label": "winner",
+      "example": "",
+      "hook": "Won it while playing for Barcelona."
+    },
+    {
+      "front": "Ballon d'Or 2002: who won?",
+      "back": "Ronaldo (Brazil)",
+      "label": "winner",
+      "example": "",
+      "hook": "Scored twice in the 2002 World Cup final."
+    },
+    {
+      "front": "Ballon d'Or 1998: who won?",
+      "back": "Zinedine Zidane",
+      "label": "winner",
+      "example": "",
+      "hook": "Won it in the year France won the World Cup."
+    },
+    {
+      "front": "Ballon d'Or 1995: who won?",
+      "back": "George Weah",
+      "label": "winner",
+      "example": "",
+      "hook": "Liberian; the first non-European winner."
+    },
+    {
+      "front": "Ballon d'Or 1990: who won?",
+      "back": "Lothar Matthäus",
+      "label": "winner",
+      "example": "",
+      "hook": "Won it in the year West Germany won the World Cup."
+    },
+    {
+      "front": "Ballon d'Or 1988: who won?",
+      "back": "Marco van Basten",
+      "label": "winner",
+      "example": "",
+      "hook": "Won three times: 1988, 1989 and 1992."
+    },
+    {
+      "front": "Ballon d'Or 1983: who won?",
+      "back": "Michel Platini",
+      "label": "winner",
+      "example": "",
+      "hook": "Won it three years running, from 1983 to 1985."
+    },
+    {
+      "front": "Ballon d'Or 1974: who won?",
+      "back": "Johan Cruyff",
+      "label": "winner",
+      "example": "",
+      "hook": "Won it three times: 1971, 1973 and 1974."
+    },
+    {
+      "front": "Ballon d'Or 1970: who won?",
+      "back": "Gerd Müller",
+      "label": "winner",
+      "example": "",
+      "hook": "Scored in the 1974 World Cup final for West Germany."
+    },
+    {
+      "front": "Ballon d'Or 1963: who won?",
+      "back": "Lev Yashin",
+      "label": "winner",
+      "example": "",
+      "hook": "The only goalkeeper to have won the award."
+    },
+    {
+      "front": "Ballon d'Or 1958: who won?",
+      "back": "Raymond Kopa",
+      "label": "winner",
+      "example": "",
+      "hook": "The first French winner, playing for Real Madrid."
+    },
+    {
+      "front": "Ballon d'Or 1957: who won?",
+      "back": "Alfredo Di Stéfano",
+      "label": "winner",
+      "example": "",
+      "hook": "One of his two wins, both with Real Madrid."
+    },
+    {
+      "front": "Ballon d'Or 1956: who won?",
+      "back": "Stanley Matthews",
+      "label": "winner",
+      "example": "",
+      "hook": "The very first Ballon d'Or; he played for Blackpool."
+    }
+  ]
+}

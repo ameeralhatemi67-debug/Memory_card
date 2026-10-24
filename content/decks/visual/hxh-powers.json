@@ -13,6 +13,19 @@
     "back": "text",
     "reverse": true
   },
+  "seals": [
+    {
+      "id": "six-types-of-nen",
+      "title": "Six Types of Nen",
+      "note": "The six Nen types, from Emission to Specialization.",
+      "when": "half",
+      "shape": "square",
+      "color": "teal",
+      "text": "",
+      "img": "seal-nen-types.png",
+      "art": "color"
+    }
+  ],
   "cards": [
     {
       "img": "ten.jpg",

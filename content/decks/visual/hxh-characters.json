@@ -13,6 +13,38 @@
     "back": "text",
     "reverse": true
   },
+  "skin": {
+    "img": "skin.jpg",
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1,
+    "shade": 0.55,
+    "text": "light"
+  },
+  "seals": [
+    {
+      "id": "licensed-hunter",
+      "title": "Licensed Hunter",
+      "note": "Every Hunter and examinee named.",
+      "when": "seen",
+      "shape": "wide",
+      "color": "red",
+      "text": "",
+      "img": "seal-hunter-license.png",
+      "art": "stamp"
+    },
+    {
+      "id": "hisoka-cards",
+      "title": "Hisoka's Cards",
+      "note": "Every Hunter, rival and villain named.",
+      "when": "mastered",
+      "shape": "square",
+      "color": "violet",
+      "text": "",
+      "img": "seal-spade.png",
+      "art": "stamp"
+    }
+  ],
   "cards": [
     {
       "img": "gon-freecss.jpg",

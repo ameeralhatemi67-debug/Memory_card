@@ -60,6 +60,9 @@ class SwipeOutcome {
   /// This swipe made every card of the deck strong for the first time.
   final bool deckMastered;
 
+  /// The deck's own seals this swipe pressed (filled in by the store, which knows the shop's seals).
+  final List<DeckSeal> deckSeals = [];
+
   bool get toEnd => reinsertAt >= restLength;
   int get grade => assessment.grade;
 }

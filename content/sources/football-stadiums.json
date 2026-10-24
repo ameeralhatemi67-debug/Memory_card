@@ -1,0 +1,354 @@
+{
+ "camp-nou": {
+  "page": "https://en.wikipedia.org/wiki/Camp_Nou",
+  "file": "Camp_Nou_aerial.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 962,
+   "w": 960,
+   "h": 722,
+   "alpha": false,
+   "aspect": 1.3296,
+   "kb": 160.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "santiago-bernabeu": {
+  "page": "https://en.wikipedia.org/wiki/Bernabéu_(stadium)",
+  "file": "Estadio_Santiago_Bernabéu_—_Real_Madrid_Juvenil_A_-_Santiago_Wanderers_Sub-20_(Intercontinental_Sub-20_2026)_—_Récord_de_asistencia_en_un_partido_de_juveniles.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 960,
+   "w": 960,
+   "h": 720,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 303.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "old-trafford": {
+  "page": "https://en.wikipedia.org/wiki/Old_Trafford",
+  "file": "2023_07_31_arne_mueseler_00060-Verbessert-RR_(53106651455).jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 959,
+   "w": 960,
+   "h": 719,
+   "alpha": false,
+   "aspect": 1.3352,
+   "kb": 318.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "anfield": {
+  "page": "https://en.wikipedia.org/wiki/Anfield",
+  "file": "Liverpool_anfield_road_stadium.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 959,
+   "w": 960,
+   "h": 719,
+   "alpha": false,
+   "aspect": 1.3352,
+   "kb": 287.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "wembley": {
+  "page": "https://en.wikipedia.org/wiki/Wembley_Stadium",
+  "file": "London_Wembley.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 959,
+   "w": 960,
+   "h": 719,
+   "alpha": false,
+   "aspect": 1.3352,
+   "kb": 302.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "san-siro": {
+  "page": "https://en.wikipedia.org/wiki/San_Siro",
+  "file": "Stadio_Meazza_2021_3.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 853,
+   "w": 960,
+   "h": 640,
+   "alpha": false,
+   "aspect": 1.5,
+   "kb": 187.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "allianz-arena": {
+  "page": "https://en.wikipedia.org/wiki/File:Allianz_Arena,_Múnich,_Alemania,_2013-02-11,_DD_16.JPG",
+  "file": "File:Allianz Arena, Múnich, Alemania, 2013-02-11, DD 16.JPG",
+  "license": "Wikipedia: CC BY-SA 3.0",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 911,
+   "w": 960,
+   "h": 683,
+   "alpha": false,
+   "aspect": 1.4056,
+   "kb": 138.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "signal-iduna-park": {
+  "page": "https://en.wikipedia.org/wiki/Westfalenstadion",
+  "file": "Signal_iduna_park_stadium_dortmund_4.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 853,
+   "w": 960,
+   "h": 640,
+   "alpha": false,
+   "aspect": 1.5,
+   "kb": 215.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "maracana": {
+  "page": "https://en.wikipedia.org/wiki/Maracanã_Stadium",
+  "file": "Maracana_2022.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 854,
+   "w": 960,
+   "h": 640,
+   "alpha": false,
+   "aspect": 1.5,
+   "kb": 212.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "estadio-azteca": {
+  "page": "https://en.wikipedia.org/wiki/File:Estadio_Azteca_(2011-09-25).jpg",
+  "file": "File:Estadio Azteca (2011-09-25).jpg",
+  "license": "Wikipedia: CC BY-SA 4.0",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 960,
+   "w": 960,
+   "h": 720,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 161.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "la-bombonera": {
+  "page": "https://en.wikipedia.org/wiki/La_Bombonera",
+  "file": "Vista_aérea_del_Estadio_Alberto_J._Armando_\"La_Bombonera\"_01.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 720,
+   "w": 960,
+   "h": 540,
+   "alpha": false,
+   "aspect": 1.7778,
+   "kb": 217.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "parc-des-princes": {
+  "page": "https://en.wikipedia.org/wiki/Parc_des_Princes",
+  "file": "Paris_Le_Parc_des_Princes.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 959,
+   "w": 960,
+   "h": 719,
+   "alpha": false,
+   "aspect": 1.3352,
+   "kb": 290.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "stade-de-france": {
+  "page": "https://en.wikipedia.org/wiki/Stade_de_France",
+  "file": "France-Islande_Stade_de_France_03.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 960,
+   "w": 960,
+   "h": 720,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 243.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "estadio-da-luz": {
+  "page": "https://en.wikipedia.org/wiki/Estádio_da_Luz",
+  "file": "Estadio_da_Luz_2012.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 856,
+   "w": 960,
+   "h": 642,
+   "alpha": false,
+   "aspect": 1.4953,
+   "kb": 183.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "johan-cruyff-arena": {
+  "page": "https://en.wikipedia.org/wiki/Johan_Cruyff_Arena",
+  "file": "Arena,_Ajax_stadion,_Amsterdam.JPG",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 960,
+   "w": 960,
+   "h": 720,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 208.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "celtic-park": {
+  "page": "https://en.wikipedia.org/wiki/Celtic_Park",
+  "file": "Celtic_Park_during_an_Old_Firm_derby_between_Celtic_FC_and_Rangers_FC.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 960,
+   "w": 960,
+   "h": 720,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 210.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "emirates-stadium": {
+  "page": "https://en.wikipedia.org/wiki/File:London_Emirates_Stadium_arsenal.jpg",
+  "file": "File:London Emirates Stadium arsenal.jpg",
+  "license": "Wikipedia: CC BY-SA 3.0 de",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 959,
+   "w": 960,
+   "h": 719,
+   "alpha": false,
+   "aspect": 1.3352,
+   "kb": 286.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "tottenham-hotspur-stadium": {
+  "page": "https://en.wikipedia.org/wiki/Tottenham_Hotspur_Stadium",
+  "file": "London_Tottenham_Hotspur_Stadium.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 959,
+   "w": 960,
+   "h": 719,
+   "alpha": false,
+   "aspect": 1.3352,
+   "kb": 288.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "stadio-olimpico": {
+  "page": "https://en.wikipedia.org/wiki/Stadio_Olimpico",
+  "file": "Stadio_Olimpico_2024.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 648,
+   "w": 960,
+   "h": 486,
+   "alpha": false,
+   "aspect": 1.9753,
+   "kb": 195.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "stade-velodrome": {
+  "page": "https://en.wikipedia.org/wiki/File:Stade_Vélodrome_1.jpg",
+  "file": "File:Stade Vélodrome 1.jpg",
+  "license": "Wikipedia: CC BY-SA 4.0",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 507,
+   "w": 960,
+   "h": 380,
+   "alpha": false,
+   "aspect": 2.5263,
+   "kb": 119.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "mestalla": {
+  "page": "https://en.wikipedia.org/wiki/Mestalla_Stadium",
+  "file": "Mestalla_antes_del_partido_Valencia-Barcelona_LaLiga_2023-2024.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 960,
+   "w": 960,
+   "h": 720,
+   "alpha": false,
+   "aspect": 1.3333,
+   "kb": 187.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "skin": {
+  "page": "https://commons.wikimedia.org/wiki/File:Mecz_piłkarski_Wisła_Kraków_-_Zagłębie_Sosnwoiec,_28_października_2022,_Pożegnanie_Stadionu_Ludowego,_KP.jpg",
+  "file": "File:Mecz piłkarski Wisła Kraków - Zagłębie Sosnwoiec, 28 października 2022, Pożegnanie Stadionu Ludowego, KP.jpg",
+  "license": "Wikimedia Commons: CC BY 4.0; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 391,
+   "w": 960,
+   "h": 391,
+   "alpha": false,
+   "aspect": 2.4552,
+   "kb": 127.7
+  },
+  "fetched": "2026-10-24"
+ }
+}

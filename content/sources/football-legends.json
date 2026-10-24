@@ -1,0 +1,466 @@
+{
+ "pele": {
+  "page": "https://en.wikipedia.org/wiki/Pelé",
+  "file": "Pele_con_brasil_(cropped).jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 388,
+   "srcH": 526,
+   "w": 388,
+   "h": 526,
+   "alpha": false,
+   "aspect": 0.7376,
+   "kb": 45.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "diego-maradona": {
+  "page": "https://en.wikipedia.org/wiki/File:Maradona-Mundial_86_con_la_copa.JPG",
+  "file": "File:Maradona-Mundial 86 con la copa.JPG",
+  "license": "Wikipedia: Public domain",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1876,
+   "w": 614,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6822,
+   "kb": 129.2
+  },
+  "fetched": "2026-10-24"
+ },
+ "johan-cruyff": {
+  "page": "https://en.wikipedia.org/wiki/Johan_Cruyff",
+  "file": "Johan_Cruijff_(1974).jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1706,
+   "w": 675,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.75,
+   "kb": 91.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "franz-beckenbauer": {
+  "page": "https://en.wikipedia.org/wiki/File:Trainer_Franz_Beckenbauer,_Bestanddeelnr_934-4443.jpg",
+  "file": "File:Trainer Franz Beckenbauer, Bestanddeelnr 934-4443.jpg",
+  "license": "Wikipedia: CC0",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1943,
+   "w": 593,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6589,
+   "kb": 100.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "alfredo-di-stefano": {
+  "page": "https://en.wikipedia.org/wiki/Alfredo_Di_Stéfano",
+  "file": "Alfredo_Di_Stefano_River_Plate.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 540,
+   "srcH": 733,
+   "w": 540,
+   "h": 733,
+   "alpha": false,
+   "aspect": 0.7367,
+   "kb": 63.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "ferenc-puskas": {
+  "page": "https://en.wikipedia.org/wiki/File:Ferenc_Puskás_ai.jpg",
+  "file": "File:Ferenc Puskás ai.jpg",
+  "license": "Wikipedia: CC0",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1737,
+   "w": 663,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.7367,
+   "kb": 128.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "eusebio": {
+  "page": "https://en.wikipedia.org/wiki/File:Eusebio_(1963_version2).jpg",
+  "file": "File:Eusebio (1963 version2).jpg",
+  "license": "Wikipedia: CC BY-SA 3.0 nl",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1751,
+   "w": 658,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.7311,
+   "kb": 112.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "zinedine-zidane": {
+  "page": "https://en.wikipedia.org/wiki/Zinedine_Zidane",
+  "file": "Zinedine_Zidane_by_Tasnim_03.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 410,
+   "srcH": 544,
+   "w": 410,
+   "h": 544,
+   "alpha": false,
+   "aspect": 0.7537,
+   "kb": 36.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "ronaldo-nazario": {
+  "page": "https://en.wikipedia.org/wiki/File:Ronaldo_2002_cropped.jpg",
+  "file": "File:Ronaldo 2002 cropped.jpg",
+  "license": "Wikipedia: CC BY-SA 4.0",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 432,
+   "srcH": 648,
+   "w": 432,
+   "h": 648,
+   "alpha": false,
+   "aspect": 0.6667,
+   "kb": 71.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "ronaldinho": {
+  "page": "https://en.wikipedia.org/wiki/File:Ronaldinho_11feb2007.jpg",
+  "file": "File:Ronaldinho 11feb2007.jpg",
+  "license": "Wikipedia: CC BY-SA 2.5 es",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 563,
+   "srcH": 675,
+   "w": 563,
+   "h": 675,
+   "alpha": false,
+   "aspect": 0.8341,
+   "kb": 101.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "lionel-messi": {
+  "page": "https://en.wikipedia.org/wiki/Lionel_Messi",
+  "file": "Leo_Messi_Argentina_v_Egypt_7_July_2026-1.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1920,
+   "w": 600,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6667,
+   "kb": 136.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "cristiano-ronaldo": {
+  "page": "https://en.wikipedia.org/wiki/Cristiano_Ronaldo",
+  "file": "Cristiano_Ronaldo_Croatia_v_Portugal_2_July_2026-075_(cropped).jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1919,
+   "w": 600,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6667,
+   "kb": 149.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "michel-platini": {
+  "page": "https://en.wikipedia.org/wiki/File:Michel_Platini_2008.jpg",
+  "file": "File:Michel Platini 2008.jpg",
+  "license": "Wikipedia: CC BY-SA 2.0",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1483,
+   "w": 777,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.8633,
+   "kb": 114.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "marco-van-basten": {
+  "page": "https://en.wikipedia.org/wiki/File:Marco_van_Basten_1989_crop.jpg",
+  "file": "File:Marco van Basten 1989 crop.jpg",
+  "license": "Wikipedia: CC0",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 553,
+   "srcH": 807,
+   "w": 553,
+   "h": 807,
+   "alpha": false,
+   "aspect": 0.6853,
+   "kb": 89.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "paolo-maldini": {
+  "page": "https://en.wikipedia.org/wiki/Paolo_Maldini",
+  "file": "Paolo_Maldini_AC_Milan_Technical_director_2018.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 906,
+   "srcH": 932,
+   "w": 875,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.9722,
+   "kb": 91.8
+  },
+  "fetched": "2026-10-24"
+ },
+ "george-best": {
+  "page": "https://en.wikipedia.org/wiki/File:George_Best_(1976).jpg",
+  "file": "File:George Best (1976).jpg",
+  "license": "Wikipedia: CC0",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1614,
+   "w": 714,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.7933,
+   "kb": 186.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "bobby-charlton": {
+  "page": "https://en.wikipedia.org/wiki/Bobby_Charlton",
+  "file": "LondonHouseAmsterdam1966_Bobby_Charlton.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 526,
+   "srcH": 746,
+   "w": 526,
+   "h": 746,
+   "alpha": false,
+   "aspect": 0.7051,
+   "kb": 54.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "lev-yashin": {
+  "page": "https://en.wikipedia.org/wiki/Lev_Yashin",
+  "file": "LevYashin.JPG",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 747,
+   "srcH": 996,
+   "w": 675,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.75,
+   "kb": 115.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "garrincha": {
+  "page": "https://en.wikipedia.org/wiki/Garrincha",
+  "file": "Manoel_Francisco_dos_Santos-Garrincha.jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 538,
+   "srcH": 710,
+   "w": 538,
+   "h": 710,
+   "alpha": false,
+   "aspect": 0.7577,
+   "kb": 94.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "gerd-muller": {
+  "page": "https://en.wikipedia.org/wiki/File:Gerd_Muller_1978.JPG",
+  "file": "File:Gerd Muller 1978.JPG",
+  "license": "Wikipedia: CC0",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 1255,
+   "srcH": 1827,
+   "w": 618,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6867,
+   "kb": 127.9
+  },
+  "fetched": "2026-10-24"
+ },
+ "thierry-henry": {
+  "page": "https://en.wikipedia.org/wiki/File:Thierry_Henry_applauding_2012.jpg",
+  "file": "File:Thierry Henry applauding 2012.jpg",
+  "license": "Wikipedia: CC BY 2.0",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 485,
+   "srcH": 871,
+   "w": 485,
+   "h": 871,
+   "alpha": false,
+   "aspect": 0.5568,
+   "kb": 87.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "andres-iniesta": {
+  "page": "https://en.wikipedia.org/wiki/File:Andrés_Iniesta_21dec2006.jpg",
+  "file": "File:Andrés Iniesta 21dec2006.jpg",
+  "license": "Wikipedia: CC BY-SA 2.5 es",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 500,
+   "srcH": 675,
+   "w": 500,
+   "h": 675,
+   "alpha": false,
+   "aspect": 0.7407,
+   "kb": 72.6
+  },
+  "fetched": "2026-10-24"
+ },
+ "xavi": {
+  "page": "https://en.wikipedia.org/wiki/Xavi_(footballer,_born_1980)",
+  "file": "Xavi,_Persepolis_vs._Al_Sadd,_20190520_02_(cropped).jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 452,
+   "srcH": 604,
+   "w": 452,
+   "h": 604,
+   "alpha": false,
+   "aspect": 0.7483,
+   "kb": 46.4
+  },
+  "fetched": "2026-10-24"
+ },
+ "marta": {
+  "page": "https://en.wikipedia.org/wiki/Marta_(footballer)",
+  "file": "NC_Courage_vs_Orlando_Pride_(Jun_2024)_073_(cropped).jpg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 856,
+   "srcH": 1189,
+   "w": 648,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.72,
+   "kb": 106.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "mia-hamm": {
+  "page": "https://en.wikipedia.org/wiki/File:Mia_Hamm_2010_cropped.jpg",
+  "file": "File:Mia Hamm 2010 cropped.jpg",
+  "license": "Wikipedia: CC BY-SA 2.0",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 1500,
+   "w": 600,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.6667,
+   "kb": 75.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "megan-rapinoe": {
+  "page": "https://en.wikipedia.org/wiki/File:Megan_Rapinoe_(May_2019).jpg",
+  "file": "File:Megan Rapinoe (May 2019).jpg",
+  "license": "Wikipedia: CC BY 2.0",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 1600,
+   "w": 720,
+   "h": 900,
+   "alpha": false,
+   "aspect": 0.8,
+   "kb": 121.3
+  },
+  "fetched": "2026-10-24"
+ },
+ "seal-boot": {
+  "page": "https://commons.wikimedia.org/wiki/File:Bota_de_oro.svg",
+  "file": "File:Bota de oro.svg",
+  "license": "Wikimedia Commons: CC0; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 639,
+   "w": 512,
+   "h": 341,
+   "alpha": true,
+   "aspect": 1.5015,
+   "kb": 30.0
+  },
+  "fetched": "2026-10-24"
+ },
+ "skin": {
+  "page": "https://en.wikipedia.org/wiki/File:Wembley_Stadium_interior.jpg",
+  "file": "File:Wembley Stadium interior.jpg",
+  "license": "Wikipedia: CC BY-SA 3.0",
+  "source": "wikipedia-file",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 825,
+   "w": 1280,
+   "h": 825,
+   "alpha": false,
+   "aspect": 1.5515,
+   "kb": 282.7
+  },
+  "fetched": "2026-10-24"
+ },
+ "seal-laurel": {
+  "page": "https://commons.wikimedia.org/wiki/File:Greek_Roman_Laurel_wreath_vector.svg",
+  "file": "File:Greek Roman Laurel wreath vector.svg",
+  "license": "Wikimedia Commons: CC0; logo may be a registered trademark of its owner",
+  "source": "commons",
+  "facts": {
+   "srcW": 960,
+   "srcH": 839,
+   "w": 512,
+   "h": 447,
+   "alpha": true,
+   "aspect": 1.1454,
+   "kb": 84.5
+  },
+  "fetched": "2026-10-24"
+ }
+}

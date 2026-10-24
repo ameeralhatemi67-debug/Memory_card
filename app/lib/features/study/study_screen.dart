@@ -25,6 +25,7 @@ import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../browse/card_detail.dart';
 import '../browse/deck_browser.dart';
+import '../decks/deck_maker.dart';
 import '../editor/editor_sheet.dart';
 import '../layout/layout_face.dart';
 import '../shell/nav_bar.dart';
@@ -490,6 +491,8 @@ class _StudyScreenState extends State<StudyScreen>
     _showNote(note);
 
     final mastered = out.deckMastered ? store.data.decks[deckId] : null;
+    final deckSeals = out.deckSeals;
+    final sealDeck = store.data.decks[deckId]?.name ?? '';
     if (out.goalNow && !_goalOpen) {
       _goalOpen = true;
       Future.delayed(const Duration(milliseconds: 180), () async {
@@ -504,15 +507,17 @@ class _StudyScreenState extends State<StudyScreen>
         if (!mounted) return;
         // Both on one swipe: the deck's seal comes right after the day's.
         if (mastered != null) await showMasteredDialog(context, deckName: mastered.name, cards: mastered.cardIds.length);
+        if (deckSeals.isNotEmpty && mounted) await showDeckSealsDialog(context, deckName: sealDeck, seals: deckSeals);
         if (r == 'summary' && mounted) {
           Navigator.of(context, rootNavigator: true).push(TodayScreen.route());
         }
       });
     } else {
       if (out.seals.isNotEmpty) announceSeals(context, out.seals);
-      if (mastered != null) {
-        Future.delayed(const Duration(milliseconds: 180), () {
-          if (mounted) showMasteredDialog(context, deckName: mastered.name, cards: mastered.cardIds.length);
+      if (mastered != null || deckSeals.isNotEmpty) {
+        Future.delayed(const Duration(milliseconds: 180), () async {
+          if (mounted && mastered != null) await showMasteredDialog(context, deckName: mastered.name, cards: mastered.cardIds.length);
+          if (mounted && deckSeals.isNotEmpty) await showDeckSealsDialog(context, deckName: sealDeck, seals: deckSeals);
         });
       }
     }
@@ -635,6 +640,12 @@ class _StudyScreenState extends State<StudyScreen>
           'Browse this deck',
           () => nav.push(DeckBrowser.route(deck.id)),
           icon: McIcons.list,
+        ),
+      if (deck != null && !_isMix)
+        MenuItemData(
+          'Look & seals',
+          () => openDeckMaker(context, deckId: deck.id),
+          icon: McIcons.image,
         ),
       MenuItemData(
         'Pace',

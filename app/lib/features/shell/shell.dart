@@ -5,17 +5,21 @@ import '../../data/store_scope.dart';
 import '../../ui/fx.dart';
 import '../../ui/motion.dart';
 import '../../ui/overlays.dart';
+import '../decks/deck_maker.dart';
 import '../decks/decks_screen.dart';
 import '../drawer/folder_drawer.dart';
 import '../editor/editor_sheet.dart';
+import '../lab/memory_lab.dart';
+import '../profile/profile_screen.dart';
 import '../shop/shop_screen.dart';
 import '../study/study_screen.dart';
+import 'create_menu.dart';
 import 'nav_bar.dart';
 
-enum ShellTab { decks, study, shop }
+enum ShellTab { decks, study, shop, lab, account }
 
-/// The app frame: a nested navigator for Decks / Study / Shop under one persistent nav bar, the folder
-/// drawer above it, and the toasts on top.
+/// The app frame: a nested navigator for Decks / Study / Lab / Shop / Account under one persistent nav
+/// bar, the folder drawer above it, and the toasts on top.
 class Shell extends StatefulWidget {
   const Shell({super.key});
 
@@ -32,6 +36,7 @@ class Shell extends StatefulWidget {
 
 class ShellState extends State<Shell> {
   final _nav = GlobalKey<NavigatorState>();
+  final _plus = GlobalKey();
   final _routes = <ShellTab>[ShellTab.decks];
   bool _drawer = false;
   String? _studyDeck;
@@ -75,19 +80,27 @@ class ShellState extends State<Shell> {
     }
   }
 
-  void openShop() {
+  void openShop() => _openTab(ShellTab.shop, () => const ShopScreen());
+
+  void openLab() => _openTab(ShellTab.lab, () => const MemoryLab(inShell: true));
+
+  void openAccount() => _openTab(ShellTab.account, () => const ProfileScreen(inShell: true));
+
+  /// A tab already open further down comes back to the top (what was above it closes); otherwise it opens
+  /// over the current page, so Back returns there.
+  void _openTab(ShellTab t, Widget Function() screen) {
     closeDrawer();
-    if (tab == ShellTab.shop) return;
-    if (_routes.contains(ShellTab.shop)) {
-      _nav.currentState!.popUntil((r) => r.settings.name == 'shop');
+    if (tab == t) return;
+    if (_routes.contains(t)) {
+      _nav.currentState!.popUntil((r) => r.settings.name == t.name);
       setState(() {
-        while (_routes.last != ShellTab.shop) {
+        while (_routes.last != t) {
           _routes.removeLast();
         }
       });
       return;
     }
-    _push(ShellTab.shop, const ShopScreen(), 'shop');
+    _push(t, screen(), t.name);
   }
 
   /// Opens a deck's study stack ([deckId] null = the cross-deck daily mix).
@@ -130,11 +143,36 @@ class ShellState extends State<Shell> {
         },
       );
 
-  /// The context-aware "+": in a study stack it adds to that deck, elsewhere it asks.
-  void create() {
+  /// The context-aware "+": in a deck's stack it writes a card for that deck; in the Daily mix, a card for
+  /// any deck; everywhere else it asks whether to make a deck or a card.
+  Future<void> create() async {
+    final store = context.storeRead;
+    if (tab == ShellTab.study) {
+      createCard();
+      return;
+    }
+    final box = _plus.currentContext?.findRenderObject() as RenderBox?;
+    if (box == null || !box.hasSize) {
+      createCard();
+      return;
+    }
+    final pick = await showCreateMenu(context, box.localToGlobal(Offset.zero) & box.size);
+    if (!mounted) return;
+    if (pick == 'deck') {
+      showEditor(context, folderId: store.currentFolder?.id, newDeck: true);
+    } else if (pick == 'card') {
+      createCard();
+    }
+  }
+
+  /// The card maker: for the deck being studied, else for any deck (its deck pill picks one).
+  void createCard() {
     final store = context.storeRead;
     showEditor(context, deckId: studyDeckId, folderId: store.currentFolder?.id);
   }
+
+  /// The deck maker for an existing deck: its name, look and seals.
+  void customizeDeck(String deckId) => openDeckMaker(context, deckId: deckId);
 
   Future<bool> _onBack() async {
     if (_drawer) {
@@ -189,9 +227,12 @@ class ShellState extends State<Shell> {
               height: navH,
               child: NavBar(
                 current: tab,
+                diamondKey: _plus,
                 onHome: goHome,
+                onLab: openLab,
                 onCreate: create,
                 onShop: openShop,
+                onAccount: openAccount,
               ),
             ),
             Positioned.fill(child: FolderDrawer(open: _drawer, onClose: closeDrawer)),

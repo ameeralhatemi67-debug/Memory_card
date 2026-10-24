@@ -9,41 +9,49 @@ import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import 'shell.dart';
 
-/// Home · the + diamond · Shop (canvas Main.dc.html nav, 112px tall).
+/// Home · Lab · the + diamond · Shop · Account (canvas Main.dc.html nav, 112px tall).
 class NavBar extends StatelessWidget {
-  const NavBar({super.key, required this.current, required this.onHome, required this.onCreate, required this.onShop});
+  const NavBar({
+    super.key,
+    required this.current,
+    required this.onHome,
+    required this.onLab,
+    required this.onCreate,
+    required this.onShop,
+    required this.onAccount,
+    this.diamondKey,
+  });
 
   static const height = 104.0;
 
   final ShellTab current;
   final VoidCallback onHome;
+  final VoidCallback onLab;
   final VoidCallback onCreate;
   final VoidCallback onShop;
+  final VoidCallback onAccount;
+
+  /// Marks the + so the create menu can rise from it.
+  final Key? diamondKey;
 
   @override
   Widget build(BuildContext context) {
     final bottom = MediaQuery.of(context).padding.bottom;
+    Widget slot(String icon, Size size, String label, ShellTab tab, VoidCallback onTap) => Expanded(
+          child: Center(
+            child: _NavIcon(icon: icon, size: size, label: label, selected: current == tab, onTap: onTap),
+          ),
+        );
     return Container(
       color: Colors.transparent,
-      padding: EdgeInsets.only(bottom: bottom + 8, left: 22, right: 22),
+      padding: EdgeInsets.only(bottom: bottom + 8, left: 8, right: 8),
       child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
-          _NavIcon(
-            icon: McIcons.home,
-            size: const Size(44, 44),
-            label: 'Home',
-            selected: current == ShellTab.decks,
-            onTap: onHome,
-          ),
-          _PlusDiamond(onTap: onCreate),
-          _NavIcon(
-            icon: McIcons.shop,
-            size: const Size(48, 42),
-            label: 'Shop',
-            selected: current == ShellTab.shop,
-            onTap: onShop,
-          ),
+          slot(McIcons.home, const Size(40, 40), 'Home', ShellTab.decks, onHome),
+          slot(McIcons.lab, const Size(40, 40), 'Memory Lab', ShellTab.lab, onLab),
+          _PlusDiamond(key: diamondKey, onTap: onCreate),
+          slot(McIcons.shop, const Size(44, 38), 'Shop', ShellTab.shop, onShop),
+          slot(McIcons.account, const Size(38, 38), 'Account', ShellTab.account, onAccount),
         ],
       ),
     );
@@ -69,7 +77,7 @@ class _NavIcon extends StatelessWidget {
         onTap();
       },
       child: SizedBox(
-        width: 64,
+        width: 60,
         height: 64,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -91,14 +99,14 @@ class _NavIcon extends StatelessWidget {
 
 /// The rotated-square "+" (58×58, radius 15, floating shadow).
 class _PlusDiamond extends StatelessWidget {
-  const _PlusDiamond({this.onTap});
+  const _PlusDiamond({super.key, this.onTap});
   final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     final mc = Mc.of(context);
     return Pressable(
-      label: 'Create a card',
+      label: 'Create',
       scale: 0.9,
       haptic: true,
       onTap: onTap,

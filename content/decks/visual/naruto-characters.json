@@ -13,6 +13,38 @@
     "back": "text",
     "reverse": true
   },
+  "skin": {
+    "img": "skin.jpg",
+    "x": 0.5,
+    "y": 0.2,
+    "zoom": 1,
+    "shade": 0.55,
+    "text": "light"
+  },
+  "seals": [
+    {
+      "id": "will-of-fire",
+      "title": "Will of Fire",
+      "note": "Every Konoha shinobi named.",
+      "when": "seen",
+      "shape": "square",
+      "color": "green",
+      "text": "",
+      "img": "seal-leaf.png",
+      "art": "stamp"
+    },
+    {
+      "id": "akatsuki-cloud",
+      "title": "Akatsuki Cloud",
+      "note": "Every Akatsuki member and rogue named.",
+      "when": "mastered",
+      "shape": "wide",
+      "color": "wine",
+      "text": "",
+      "img": "seal-akatsuki.png",
+      "art": "stamp"
+    }
+  ],
   "cards": [
     {
       "img": "naruto-uzumaki.jpg",

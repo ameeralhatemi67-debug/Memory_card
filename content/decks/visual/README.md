@@ -146,3 +146,63 @@ Replaced/dropped: <ids and why>   (or "none")
 Needs a human look: <ids and why>  (or "none")
 Check: passed
 ```
+
+## 6. Deck skins and deck seals
+
+Any deck (picture deck or text deck) can carry a **skin** and its own **seals**. Both live in the deck file,
+and their pictures go in the deck's image folder `app/assets/content/img/<deck-id>/` next to the card pictures.
+
+### Skin: the picture behind the deck's bar
+
+In the library a deck is a bar about 5:1 (72 px tall, 335–520 px wide) with the deck name on the left and a
+fan of progress cards on the right; in the shop the same picture fills a small card about 1:1. So a skin must be:
+
+* a **wide, calm scene** (landscape 2:1 to 3:1, at least 1000 px wide): a place, a panorama, a pitch, a crowd,
+  a sky, an iconic location of the series. Not a portrait, not a character close-up, not a busy collage.
+* **no text or logos** in it (the deck name is printed over it), no watermarks, no letterboxing bars.
+* darker or lighter on the **left third** (the name sits there over a shade), with the interesting part
+  around the middle or right.
+
+```json
+"skin": { "img": "skin.jpg", "x": 0.5, "y": 0.45, "zoom": 1, "shade": 0.55, "text": "light" }
+```
+
+* `x`, `y` (0–1): the point of the picture that stays in view when it is cropped to the bar and to the tile.
+* `zoom` (1–3): 1 = the picture just covers the bar. Raise it only to crop closer.
+* `shade` (0–1): how strongly the left side is darkened (or lightened) under the name. 0.45–0.65 is typical.
+* `text`: `light` (white name on a dark shade, for most pictures) or `dark` (dark name on a light shade, for
+  very bright pictures).
+
+Fetch it with an item of kind `skin` (per item: `"kind": "skin"`) whose `id` is `skin`, then look at it the way
+the app draws it and adjust `x`, `y`, `zoom`, `shade`:
+
+```
+python tools/imgkit.py skin-preview <deck-id> content/_imgwork/<deck-id>/skin-preview.png   # then Read the PNG
+```
+
+### Seals: the deck's own achievements
+
+A deck seal is a square or wide (3:2) wax seal with scalloped edges, in one of the app's wax colours, with a
+short word stamped in it and/or a picture pressed into it. The app presses it when the deck reaches a milestone.
+
+```json
+"seals": [
+  { "id": "will-of-fire", "title": "Will of Fire", "note": "Every Konoha shinobi named.",
+    "when": "seen", "shape": "square", "color": "red", "text": "", "img": "seal-leaf.png", "art": "stamp" }
+]
+```
+
+* `id`: lowercase and hyphens, unique in the deck. `title` ≤ 24 characters (shown in the gallery and the banner).
+* `note`: one short line that says what it celebrates.
+* `when` (each milestone at most once per deck): `start` (10 swipes) · `seen` (every card answered once) ·
+  `half` (half the cards above 90 % recall) · `mastered` (every card above 90 %) · `reviews` (100 swipes).
+* `shape`: `square` or `wide`. `color`: `red` `wine` `peach` `gold` `green` `teal` `blue` `violet` `ink`.
+* `text`: at most 12 characters stamped into the wax (a word, a number, a kanji). Leave `""` when the picture says it.
+* `img`: a **transparent PNG cut-out** (an emblem, a symbol, a silhouette: the Konoha leaf, a Jolly Roger, a
+  trophy, a ball). Fetch it with kind `seal` and an id starting with `seal-`. The gate flags pictures that are
+  not cut-outs. SVG files on Commons, Wikipedia or a Fandom wiki render as transparent PNGs: prefer them.
+* `art`: `stamp` presses the picture into the wax in one colour, like a real seal (best for symbols and
+  silhouettes); `color` keeps the picture's own colours (only for emblems whose colours matter).
+* Seal pictures must be clean: one symbol, centred, no background box, no text unless the symbol is text.
+
+Look at your seal pictures on the contact sheet (`sheet`) like any other image.

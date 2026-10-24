@@ -6,12 +6,14 @@ import 'package:flutter/material.dart';
 
 import '../../data/models.dart';
 import '../../data/store_scope.dart';
+import '../../ui/deck_look.dart';
 import '../../ui/icons.dart';
 import '../../ui/overlays.dart';
 import '../../ui/routes.dart';
 import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
+import '../decks/deck_maker.dart';
 import '../editor/editor_sheet.dart';
 import '../shell/shell.dart';
 import 'card_detail.dart';
@@ -101,6 +103,7 @@ class _DeckBrowserState extends State<DeckBrowser> {
             Expanded(child: StatTile(value: '${s.mastered}', label: 'mastered', valueSize: 26)),
           ]),
         ),
+        if (store.sealsOf(deck).isNotEmpty) _SealStrip(deck: deck, seals: store.sealsOf(deck)),
         Padding(
           padding: const EdgeInsets.fromLTRB(20, 12, 20, 8),
           child: TextField(
@@ -180,6 +183,7 @@ class _DeckBrowserState extends State<DeckBrowser> {
   void _menu(BuildContext context, Deck deck) {
     final store = context.storeRead;
     showMcMenu(context, [
+      MenuItemData('Look & seals', () => openDeckMaker(context, deckId: deck.id), icon: McIcons.image),
       MenuItemData('Rename deck', () async {
         final name = await promptText(context, title: 'Rename deck', initial: deck.name);
         if (name != null) {
@@ -216,6 +220,47 @@ class _DeckBrowserState extends State<DeckBrowser> {
         Toaster.i.show('Deleted ${deck.name}', undo: undo);
       }, icon: McIcons.x, danger: true),
     ]);
+  }
+}
+
+/// The deck's own seals, pressed or still blank; opens the deck's look and seals.
+class _SealStrip extends StatelessWidget {
+  const _SealStrip({required this.deck, required this.seals});
+  final Deck deck;
+  final List<DeckSeal> seals;
+
+  @override
+  Widget build(BuildContext context) {
+    final mc = Mc.of(context);
+    final pressed = seals.where((s) => deck.sealsEarned.containsKey(s.id)).length;
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 10, 20, 0),
+      child: Pressable(
+        label: 'Seals of this deck, $pressed of ${seals.length} pressed',
+        onTap: () => openDeckMaker(context, deckId: deck.id),
+        child: Container(
+          height: 56,
+          padding: const EdgeInsets.symmetric(horizontal: 12),
+          foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(16)),
+          decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(16), boxShadow: mc.e1),
+          child: Row(children: [
+            for (var i = 0; i < seals.length && i < 4; i++) ...[
+              if (i > 0) const SizedBox(width: 6),
+              Opacity(
+                opacity: deck.sealsEarned.containsKey(seals[i].id) ? 1 : 0.5,
+                child: DeckSealBadge(seal: seals[i], size: 36, earned: deck.sealsEarned.containsKey(seals[i].id)),
+              ),
+            ],
+            const SizedBox(width: 12),
+            Expanded(
+              child: Text('Seals · $pressed of ${seals.length}',
+                  maxLines: 1, overflow: TextOverflow.ellipsis, style: T.t(15, w: FontWeight.w700, color: mc.ink)),
+            ),
+            McIcon(McIcons.chevron, size: const Size(18, 18), color: mc.muted),
+          ]),
+        ),
+      ),
+    );
   }
 }
 

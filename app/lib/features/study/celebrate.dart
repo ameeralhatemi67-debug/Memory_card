@@ -2,7 +2,10 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../data/models.dart';
+import '../../engine/deck_seals.dart';
 import '../../engine/seals.dart';
+import '../../ui/deck_look.dart';
 import '../../ui/fx.dart';
 import '../../ui/motion.dart';
 import '../../ui/overlays.dart';
@@ -235,6 +238,109 @@ Future<void> showMasteredDialog(BuildContext context, {required String deckName,
             InkButton('Keep going', height: 52, onTap: () => Navigator.pop(ctx)),
           ]),
           const Positioned.fill(child: Confetti()),
+        ],
+      );
+    },
+  );
+}
+
+/// A deck seal stamped in: the same drop, overshoot and settle as [StampedSeal], then a calm float.
+class StampedDeckSeal extends StatefulWidget {
+  const StampedDeckSeal({super.key, required this.seal, required this.size, this.delayMs = 0, this.onLand});
+  final DeckSeal seal;
+  final double size;
+  final int delayMs;
+  final VoidCallback? onLand;
+
+  @override
+  State<StampedDeckSeal> createState() => _StampedDeckSealState();
+}
+
+class _StampedDeckSealState extends State<StampedDeckSeal> {
+  bool _landed = false;
+
+  @override
+  Widget build(BuildContext context) {
+    final w = DeckSealBadge.widthOf(widget.seal, widget.size);
+    return AmbientClock(
+      builder: (context, ms) {
+        final since = ms - widget.delayMs;
+        if (since < 0) return SizedBox(width: w, height: widget.size);
+        final reduced = MotionPrefs.reducedOf(context);
+        final v = reduced ? const [1.0, 0.0, 1.0] : stampKeys.sample(since);
+        if (!_landed && since >= 300) {
+          _landed = true;
+          WidgetsBinding.instance.addPostFrameCallback((_) {
+            if (widget.onLand != null) {
+              Fx.i.stamp();
+              widget.onLand!();
+            }
+          });
+        }
+        var rot = v[1] + (reduced ? 0 : 2 * math.sin(since / 5200 * math.pi * 2));
+        final y = reduced ? 0.0 : 2 * math.sin(since / 3600 * math.pi * 2);
+        return Opacity(
+          opacity: v[2].clamp(0.0, 1.0),
+          child: Transform.translate(
+            offset: Offset(0, y),
+            child: Transform.rotate(
+              angle: rot * math.pi / 180,
+              child: Transform.scale(scale: v[0], child: DeckSealBadge(seal: widget.seal, size: widget.size)),
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
+/// A deck's own seals were pressed: each is stamped in turn, with its name and the deck's.
+Future<void> showDeckSealsDialog(BuildContext context, {required String deckName, required List<DeckSeal> seals}) {
+  if (seals.isEmpty) return Future.value();
+  Fx.i.fanfare();
+  return showMcDialog<void>(
+    context,
+    builder: (ctx) {
+      final mc = Mc.of(ctx);
+      final one = seals.length == 1;
+      return Stack(
+        clipBehavior: Clip.none,
+        children: [
+          DialogCard(children: [
+            SizedBox(
+              height: one ? 140 : 100,
+              child: FittedBox(
+                fit: BoxFit.scaleDown,
+                child: Row(mainAxisSize: MainAxisSize.min, children: [
+                for (var i = 0; i < seals.length; i++) ...[
+                  if (i > 0) const SizedBox(width: 14),
+                  StampedDeckSeal(
+                    seal: seals[i],
+                    size: one ? 124 : (seals[i].wide ? 66 : 84),
+                    delayMs: 160 + i * 420,
+                    onLand: () => Fx.i.seal(),
+                  ),
+                ],
+              ]),
+              ),
+            ),
+            const SizedBox(height: 16),
+            Text(one ? seals.first.title : '${seals.length} new seals',
+                textAlign: TextAlign.center, style: T.d(32, color: mc.ink, height: 1.05)),
+            const SizedBox(height: 6),
+            Text(
+              one
+                  ? (seals.first.note.isNotEmpty ? seals.first.note : DeckMilestones.of(seals.first.when).note)
+                  : seals.map((s) => s.title).join(', '),
+              textAlign: TextAlign.center,
+              style: T.t(16, color: mc.muted, height: 1.35),
+            ),
+            const SizedBox(height: 4),
+            Text(deckName, textAlign: TextAlign.center, style: T.t(15, w: FontWeight.w700, color: mc.ink)),
+            const SizedBox(height: 20),
+            InkButton('Keep going', height: 52, onTap: () => Navigator.pop(ctx)),
+          ]),
+          const Positioned.fill(child: IgnorePointer(child: Confetti())),
         ],
       );
     },

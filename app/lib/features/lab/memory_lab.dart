@@ -17,11 +17,16 @@ import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../browse/card_detail.dart';
+import '../shell/nav_bar.dart';
+import '../shell/shell.dart';
 import '../study/celebrate.dart';
 
 /// Memory Lab: what the engine has learned about your memory, and a forecast of what comes next.
 class MemoryLab extends StatefulWidget {
-  const MemoryLab({super.key});
+  const MemoryLab({super.key, this.inShell = false});
+
+  /// Shown as the nav bar's Lab tab (no back arrow, room for the bar), not pushed over the app.
+  final bool inShell;
 
   static Route<void> route() => McPageRoute(builder: (_) => const MemoryLab());
 
@@ -136,19 +141,29 @@ class _MemoryLabState extends State<MemoryLab> {
       body: Wall(child: Column(children: [
         SizedBox(height: mq.padding.top),
         SizedBox(
-          height: 68,
+          height: widget.inShell ? 76 : 68,
           child: Padding(
-            padding: const EdgeInsets.fromLTRB(10, 14, 12, 0),
+            padding: widget.inShell ? const EdgeInsets.fromLTRB(18, 18, 16, 0) : const EdgeInsets.fromLTRB(10, 14, 12, 0),
             child: Row(children: [
-              IconTap(icon: McIcons.back, size: const Size(26, 26), label: 'Back', onTap: () => Navigator.pop(context)),
-              const SizedBox(width: 6),
-              Expanded(child: Text('Memory Lab', style: T.d(30, color: mc.ink))),
+              if (widget.inShell) ...[
+                IconTap(icon: McIcons.logo, label: 'Open folders', onTap: () => Shell.of(context).openDrawer()),
+                const SizedBox(width: 12),
+                Expanded(child: Text('Memory Lab', style: T.d(26, color: mc.ink))),
+              ] else ...[
+                IconTap(icon: McIcons.back, size: const Size(26, 26), label: 'Back', onTap: () => Navigator.pop(context)),
+                const SizedBox(width: 6),
+                Expanded(child: Text('Memory Lab', style: T.d(30, color: mc.ink))),
+              ],
             ]),
           ),
         ),
         Expanded(
-          child: ListView(
-            padding: EdgeInsets.fromLTRB(20, 4, 20, 30 + mq.padding.bottom),
+          child: EdgeFade(
+            top: 10,
+            bottom: widget.inShell ? 60 : 0,
+            bottomInset: widget.inShell ? NavBar.height + mq.padding.bottom : 0,
+            child: ListView(
+            padding: EdgeInsets.fromLTRB(20, 4, 20, 30 + mq.padding.bottom + (widget.inShell ? NavBar.height + 40 : 0)),
             children: [
               Text('What the engine has learned about how you remember.',
                   style: T.t(16, w: FontWeight.w500, color: mc.muted, height: 1.35)),
@@ -246,7 +261,7 @@ class _MemoryLabState extends State<MemoryLab> {
                   child: Column(children: [
                     for (final c in tricky.take(8))
                       Pressable(
-                        onTap: () => Navigator.of(context).push(CardDetail.route(c.id)),
+                        onTap: () => Navigator.of(context, rootNavigator: true).push(CardDetail.route(c.id)),
                         child: Padding(
                           padding: const EdgeInsets.symmetric(vertical: 6),
                           child: Row(children: [
@@ -258,6 +273,7 @@ class _MemoryLabState extends State<MemoryLab> {
                   ]),
                 ),
             ],
+          ),
           ),
         ),
       ])),

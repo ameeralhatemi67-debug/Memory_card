@@ -46,7 +46,7 @@ The deck catalog (`assets/content/catalog.json`) is generated from `../content/d
 | `lib/ui/` | Design tokens and typography (`theme.dart`), motion curves and keyframes, sounds and haptics (`fx.dart`), custom shapes (wax seal, folders, polar badges), sheets/dialogs/toasts, coach marks. |
 | `lib/features/` | One folder per screen: onboarding, decks, study, drawer, shop, editor, today, profile, settings, browse (deck and card detail), search, Memory Lab, help; `layout/` draws card sides (`layout_face.dart`) and edits them (`layout_editor.dart`, structured or free canvas). |
 | `lib/services/` | Daily reminder (local notifications), text-to-speech, and `image_ingest.dart` (bringing pictures in: PNG transparency kept, big photos shrunk). |
-| `assets/` | 56 decks / 1,355 cards, synthesized sound effects, the Bernard font (local only). |
+| `assets/` | The shop's decks (`content/catalog.json`) and their pictures, skins and seal art, synthesized sound effects, the Bernard font (local only). |
 
 Data lives in Hive boxes on the device (IndexedDB on web). *Settings › Your data* exports a JSON backup
 (cards, history and the engine's learned state), restores it, and exports the review log as CSV.
@@ -68,6 +68,7 @@ flutter test test/layout_ui_test.dart   # study with picture cards (tap, flip), 
 flutter test test/deck_swipe_test.dart  # the deck bar's swipe: follows the finger, one spring, no wobble, nothing rebuilt
 flutter test test/widget_snapshot_test.dart # home-screen widgets: the snapshot, the inbox, answers replayed through the engine, the Look settings
 flutter test test/widgets_screen_test.dart  # Settings › Widgets: the look controls and every widget row
+flutter test test/deck_look_test.dart   # deck skins and deck seals: JSON, shop skins, milestones, backups
 ```
 
 Visual review: `test_gallery/` renders every screen to `build/gallery/*.png` with real fonts, light and
@@ -80,6 +81,7 @@ flutter test test_gallery/icon_gen_test.dart   # regenerates the launcher icons 
 flutter test test_gallery/pictures_gallery_test.dart  # picture cards, the layout editor, Settings blur → build/gallery/pic-*.png
 flutter test test_gallery/swipe_gallery_test.dart     # a deck bar mid-swipe and on each detent, both ways
 flutter test test_gallery/shop_texture_gallery_test.dart  # shop hero, long-press badges, the Texture tab
+flutter test test_gallery/looks_gallery_test.dart  # nav tabs, the + menu, deck skins, deck and seal makers → build/gallery/looks-*.png
 ```
 
 ## Pictures on cards
@@ -98,6 +100,29 @@ picture peeks out blurred behind *Tap to reveal*. Reverse cards swap pictures al
 
 Picture decks come from `content/decks/visual/*.json` (see the README there) with images in
 `assets/content/img/<deck>/`; `python ../tools/imgkit.py` fetches and checks them and `build_catalog.py` bundles them.
+
+## Navigation and the +
+
+The nav bar has five places: **Home** (the decks of the current folder) · **Memory Lab** · **+** · **Shop** ·
+**Account** (the membership card, seals and sign-in). Lab and Account are tabs inside the shell (`ShellTab.lab`,
+`ShellTab.account`); `MemoryLab.route()` / `ProfileScreen.route()` still push them as full pages (Settings › Help).
+The + depends on where you are: studying a deck it writes a card for that deck; in the Daily mix a card for any
+deck; on Home, Lab, Shop and Account it fans out **New deck** / **New card** (`create_menu.dart`).
+
+## Deck looks and deck seals
+
+**Skins.** A deck can show a picture behind its bar instead of the plain ink bar (`DeckSkin`: picture, focal point,
+zoom, shade strength, light or dark text). The deck maker (`features/decks/deck_maker.dart`, opened by *New deck*,
+the deck browser's and the study screen's *Look & seals*) previews the real bar live; drag it to place the picture.
+Shop decks can bring a skin (`"skin"` in the deck file); yours overrides it, and *Plain* switches it off
+(`DeckSkin.none()`). The skin also shows on shop tiles, the shop's deck of the day and the deck preview.
+
+**Seals.** Besides the app's round seals, every deck can have its own square or wide wax seals (`DeckSeal`: shape,
+one of nine waxes, up to 12 stamped characters, a picture pressed in or kept in colour, a name and a milestone:
+first 10 swipes · every card seen · half the deck strong · deck mastered · 100 swipes). You design seals for decks
+you made; shop decks bring theirs (`"seals"` in the deck file). `DeckMilestones.check` presses them on the swipe
+that reaches the milestone (`AppStore.swipe` → `SwipeOutcome.deckSeals`), the study screen stamps them in a dialog,
+and they appear in the seal gallery, the deck browser and the shop preview. Backups carry skin and seal pictures inline.
 
 ## Home-screen widgets (Android)
 

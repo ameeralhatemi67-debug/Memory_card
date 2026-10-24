@@ -942,5 +942,53 @@
    "kb": 115.7
   },
   "fetched": "2026-10-23"
+ },
+ "skin": {
+  "page": "https://onepiece.fandom.com/wiki/File:Gaon_Cannon.png",
+  "file": "File:Gaon Cannon.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 1000,
+   "srcH": 563,
+   "w": 1000,
+   "h": 563,
+   "alpha": false,
+   "aspect": 1.7762,
+   "kb": 68.5
+  },
+  "fetched": "2026-10-24"
+ },
+ "seal-jolly-roger": {
+  "page": "https://en.wikipedia.org/wiki/Straw_Hats'_Jolly_Roger",
+  "file": "Straw_Hat_Pirates'_Jolly_Roger_(based_on_the_original_from_the_series).svg",
+  "license": "English Wikipedia lead image (crests are trademarks of their clubs; photos per their file page)",
+  "source": "wikipedia",
+  "facts": {
+   "srcW": 1280,
+   "srcH": 927,
+   "w": 512,
+   "h": 371,
+   "alpha": true,
+   "aspect": 1.3801,
+   "kb": 42.1
+  },
+  "fetched": "2026-10-24"
+ },
+ "seal-pirate-king": {
+  "page": "https://onepiece.fandom.com/wiki/File:Roger_Pirates'_Jolly_Roger.png",
+  "file": "File:Roger Pirates' Jolly Roger.png",
+  "license": "Fandom wiki image (fair use for identification; personal study use)",
+  "source": "fandom-file",
+  "facts": {
+   "srcW": 288,
+   "srcH": 288,
+   "w": 288,
+   "h": 288,
+   "alpha": false,
+   "aspect": 1.0,
+   "kb": 45.7
+  },
+  "fetched": "2026-10-24"
  }
 }

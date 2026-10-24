@@ -13,6 +13,38 @@
     "back": "text",
     "reverse": true
   },
+  "skin": {
+    "img": "skin.jpg",
+    "x": 0.5,
+    "y": 0.5,
+    "zoom": 1,
+    "shade": 0.7,
+    "text": "light"
+  },
+  "seals": [
+    {
+      "id": "jolly-roger",
+      "title": "Jolly Roger",
+      "note": "Every pirate of the Grand Line, named.",
+      "when": "seen",
+      "shape": "wide",
+      "color": "peach",
+      "text": "",
+      "img": "seal-jolly-roger.png",
+      "art": "color"
+    },
+    {
+      "id": "pirate-king",
+      "title": "Pirate King",
+      "note": "The King of the Pirates and his rivals.",
+      "when": "mastered",
+      "shape": "square",
+      "color": "gold",
+      "text": "",
+      "img": "seal-pirate-king.png",
+      "art": "color"
+    }
+  ],
   "cards": [
     {
       "img": "monkey-d-luffy.jpg",

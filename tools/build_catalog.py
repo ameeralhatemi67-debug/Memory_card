@@ -32,9 +32,12 @@ CATEGORIES = {
     "arts": "History & Culture",
     "anime": "Anime",
     "cars": "Cars",
+    "football": "Football",
     "knowledge": "Knowledge",
 }
-ORDER = ["lang", "code", "med", "science", "geo", "arts", "anime", "cars", "knowledge"]
+ORDER = ["lang", "code", "med", "science", "geo", "arts", "anime", "cars", "football", "knowledge"]
+SEAL_WHEN = {"start", "seen", "half", "mastered", "reviews"}
+SEAL_COLORS = {"red", "wine", "peach", "gold", "green", "teal", "blue", "violet", "ink"}
 TEMPLATES = {"text", "above", "below", "full", "only"}
 FITS = {"cover", "contain"}
 
@@ -70,10 +73,92 @@ def check_images(deck: dict, where: str, errors: list, warnings: list) -> None:
                 errors.append(f"{where}: image {name!r} is used by two cards")
             used.add(name)
     on_disk = {f.name for f in folder.iterdir()} if folder.is_dir() else set()
+    used |= look_files(deck)
     for extra in sorted(on_disk - used):
         warnings.append(f"{where}: image {extra!r} is in the folder but no card uses it")
     if not used:
         errors.append(f"{where}: a picture deck needs at least one image")
+
+
+def look_files(deck: dict) -> set:
+    """The deck's skin and seal pictures (they live in the deck's image folder too)."""
+    names = set()
+    if isinstance(deck.get("skin"), dict) and deck["skin"].get("img"):
+        names.add(deck["skin"]["img"])
+    for s in deck.get("seals") or []:
+        if isinstance(s, dict) and s.get("img"):
+            names.add(s["img"])
+    return names
+
+
+def check_look(deck: dict, where: str, errors: list, warnings: list) -> None:
+    """A deck's skin (a picture behind its bar) and its own seals."""
+    folder = IMG / deck["id"]
+    skin = deck.get("skin")
+    if skin is not None:
+        if not isinstance(skin, dict) or not skin.get("img"):
+            errors.append(f"{where}: skin needs an img")
+        else:
+            for k in ("x", "y", "shade"):
+                v = skin.get(k, 0.5)
+                if not isinstance(v, (int, float)) or not 0 <= v <= 1:
+                    errors.append(f"{where}: skin.{k} must be a number from 0 to 1")
+            if not 1 <= skin.get("zoom", 1) <= 3:
+                errors.append(f"{where}: skin.zoom must be from 1 to 3")
+            if skin.get("text", "light") not in ("light", "dark"):
+                errors.append(f"{where}: skin.text must be light or dark")
+            f = folder / skin["img"]
+            if not f.is_file():
+                errors.append(f"{where}: skin picture {skin['img']!r} is not in {folder.relative_to(ROOT).as_posix()}")
+            else:
+                with Image.open(f) as im:
+                    if im.width / im.height < 1.3:
+                        warnings.append(f"{where}: skin picture is narrow ({im.width}x{im.height}); bars are about 5:1")
+    seals = deck.get("seals")
+    if seals is None:
+        return
+    if not isinstance(seals, list) or not seals:
+        errors.append(f"{where}: seals must be a non-empty list")
+        return
+    ids, whens = set(), set()
+    for i, s in enumerate(seals):
+        at = f"{where}: seal {i}"
+        if not isinstance(s, dict):
+            errors.append(f"{at} must be an object")
+            continue
+        sid = s.get("id", "")
+        if not re.fullmatch(r"[a-z0-9-]+", sid or ""):
+            errors.append(f"{at}: id must be lowercase letters, digits and hyphens")
+        if sid in ids:
+            errors.append(f"{at}: duplicate seal id {sid!r}")
+        ids.add(sid)
+        if not (s.get("title") or "").strip():
+            errors.append(f"{at}: needs a title")
+        elif len(s["title"]) > 24:
+            warnings.append(f"{at}: title longer than 24 characters")
+        if s.get("when") not in SEAL_WHEN:
+            errors.append(f"{at}: when must be one of {sorted(SEAL_WHEN)}")
+        if s.get("when") in whens:
+            errors.append(f"{at}: two seals share the milestone {s.get('when')!r}")
+        whens.add(s.get("when"))
+        if s.get("shape", "square") not in ("square", "wide"):
+            errors.append(f"{at}: shape must be square or wide")
+        if s.get("color", "red") not in SEAL_COLORS:
+            errors.append(f"{at}: color must be one of {sorted(SEAL_COLORS)}")
+        if s.get("art", "stamp") not in ("stamp", "color"):
+            errors.append(f"{at}: art must be stamp or color")
+        if len(s.get("text") or "") > 12:
+            errors.append(f"{at}: text is stamped into the wax: at most 12 characters")
+        if not (s.get("text") or s.get("img")):
+            errors.append(f"{at}: needs a text or an img")
+        if s.get("img"):
+            f = folder / s["img"]
+            if not f.is_file():
+                errors.append(f"{at}: picture {s['img']!r} is not in {folder.relative_to(ROOT).as_posix()}")
+            else:
+                with Image.open(f) as im:
+                    if im.mode not in ("RGBA", "LA", "P"):
+                        warnings.append(f"{at}: picture {s['img']!r} has no transparency; seals want cut-outs")
 
 
 def sync_pubspec(image_decks: list) -> None:
@@ -140,6 +225,8 @@ def main() -> None:
         check(deck, path, errors, warnings)
         if origin == "visual" and "cards" in deck and "id" in deck:
             check_images(deck, path.relative_to(ROOT).as_posix(), errors, warnings)
+        if "id" in deck:
+            check_look(deck, path.relative_to(ROOT).as_posix(), errors, warnings)
         if deck["id"] in ids:
             errors.append(f"{path.name}: duplicate deck id {deck['id']!r}")
         ids.add(deck["id"])
