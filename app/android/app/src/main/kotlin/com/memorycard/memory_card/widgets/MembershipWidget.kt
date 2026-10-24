@@ -29,12 +29,14 @@ internal fun sealInk(s: Scene, color: Int): Brush = when (color) {
     else -> s.col(Hue.GRAPHITE)
 }
 
-/** One earned seal at [cx],[cy]: its slowly turning wax, a pressed ring and its mark. */
-internal fun sealDisc(s: Scene, mark: SealMark, cx: Float, cy: Float, size: Float, markSize: Float) {
+/**
+ * One earned seal at [cx],[cy]: its slowly turning wax, a pressed ring and its mark. [moving] false draws the wax on
+ * the page instead, for a face that turns over (a moving piece does not turn with the page).
+ */
+internal fun sealDisc(s: Scene, mark: SealMark, cx: Float, cy: Float, size: Float, markSize: Float, moving: Boolean = true) {
     val (day, night) = sealFill(s, mark.color)
-    s.sprite(Fx.SEAL, cx - size / 2f, cy - size / 2f, size, size, day, night) {
-        s.seal(if (mark.color == 4) s.ink() else s.col(day), cx, cy, size)
-    }
+    val wax = { s.seal(if (mark.color == 4) s.ink() else s.col(day), cx, cy, size) }
+    if (moving) s.sprite(Fx.SEAL, cx - size / 2f, cy - size / 2f, size, size, day, night) { wax() } else wax()
     s.ring(s.col(0x80FFFFFF.toInt()), cx, cy, size * 0.33f, size * 0.02f)
     s.text(sealInk(s, mark.color), mark.mark, cx, cy, markSize, s.display, Align.CENTER, maxW = size * 0.62f, middle = true)
 }
@@ -42,7 +44,8 @@ internal fun sealDisc(s: Scene, mark: SealMark, cx: Float, cy: Float, size: Floa
 /**
  * Membership card: your tier, name and four numbers, drawn like the card in Profile. Tap it to turn it over: the back
  * has your last five weeks, streak and shields. A strip of your latest seals runs along the bottom (tap: all seals).
- * A band of light crosses the card every few seconds.
+ * A band of light crosses the card every few seconds. Everything on the card is drawn on it (the flame and the seals
+ * do not move) so the whole card turns over as one.
  */
 class MembershipWidget : SceneWidget() {
     override val kind = "membership"
@@ -57,7 +60,7 @@ class MembershipWidget : SceneWidget() {
         val cardH = s.h - strip - 6f
         if (st.memberBack) back(s, st, m, cardH) else front(s, st, m, cardH)
         // Tap the card to turn it; the strip opens the seals.
-        s.hit(0f, 0f, s.w, cardH, flipIntent(s.ctx, id), "Turn the card over", s.look.radius)
+        s.hit(0f, 0f, s.w, cardH, flipIntent(s.ctx, id), "Turn the card over", s.look.radius, ripple = false)
         seals(s, st, strip)
         val (lightDay, lightNight) = s.glint()
         s.sprite(Fx.SHEEN, 0f, 0f, s.w, cardH, lightDay, lightNight) { }
@@ -110,7 +113,7 @@ class MembershipWidget : SceneWidget() {
         }
         val x = pad + 7 * (cell + gap) + 18f
         val rw = s.w - x - pad
-        flameMark(s, st, x, 56f, 15f, 18f)
+        flameMark(s, st, x, 56f, 15f, 18f, still = true)
         s.text(s.ink(), if (st.streak == 0) "No streak yet" else "${st.streak}-day streak", x + 22f, 72f, 20f, s.display, maxW = rw - 22f)
         shieldRow(s, st, x, 82f, 11f, 13f, 3f)
         s.text(s.ink(Shade.MUTED), "${st.shields} ${if (st.shields == 1) "shield" else "shields"} left", x + 30f, 93f, 11.5f, s.uiBold, maxW = rw - 30f)
@@ -129,7 +132,7 @@ class MembershipWidget : SceneWidget() {
         val disc = 26f
         var x = 20f
         for (m in info.latest.take(4)) {
-            sealDisc(s, m, x + disc / 2f, y + strip / 2f, disc, 7.5f)
+            sealDisc(s, m, x + disc / 2f, y + strip / 2f, disc, 7.5f, moving = false)
             x += disc + 6f
         }
         s.text(s.ink(), "Seals · ${info.earned} of ${info.total}", max(x + 6f, 20f), y + strip / 2f, 13f, s.uiBold, middle = true, maxW = s.w - x - 24f)

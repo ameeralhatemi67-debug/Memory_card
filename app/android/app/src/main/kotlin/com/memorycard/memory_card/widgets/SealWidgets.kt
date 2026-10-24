@@ -31,11 +31,12 @@ internal fun sealMark(s: Scene, st: WidgetState, cx: Float, cy: Float, size: Flo
 
 /**
  * Daily goal seal: today's cards against your goal; the red seal once it is met. Tap: study the last deck.
- * The picker offers it as a 2×2 and as a slim one (1×1 pill, or 2×1); one drawing serves both.
+ * One widget that resizes: 2×2 by default, down to the slim 2×1 bar or the 1×1 pill (1×2 is the pill, taller).
  */
-abstract class SealBase : SceneWidget() {
+class SealWidget : SceneWidget() {
     override val kind = "seal"
     override val natural = Surface.PAPER
+    override val cells = listOf(2 to 2, 2 to 1, 1 to 1)
 
     override fun draw(s: Scene, st: WidgetState, id: Int) {
         val hit = st.goalHit
@@ -47,10 +48,11 @@ abstract class SealBase : SceneWidget() {
         }
     }
 
-    /** 1×1: the seal, what is left, and "to go". */
+    /** 1×1: the seal, what is left, and "to go" (one column wide and two tall: the same, larger). */
     private fun pill(s: Scene, st: WidgetState, hit: Boolean) {
-        val seal = min(s.w * 0.62f, min(s.h - 42f, 48f))
-        val numberSize = 22f
+        val roomy = s.h >= 130f
+        val seal = if (roomy) min(s.w * 0.72f, 58f) else min(s.w * 0.62f, min(s.h - 42f, 48f))
+        val numberSize = if (roomy) 28f else 22f
         val total = seal + 5f + numberSize * 0.72f + 6f + 7f
         val top = (s.h - total) / 2f - 1.5f
         sealMark(s, st, s.w / 2f, top + seal / 2f, seal, label = false)
@@ -92,14 +94,4 @@ abstract class SealBase : SceneWidget() {
         s.text(s.ink(), title, s.w / 2f, base, titleSize, s.display, Align.CENTER, maxW = s.w - 14f)
         s.lines(s.ink(Shade.MUTED), sub, 10f, base + 7f, s.w - 20f, 12.5f, s.ui, 2, Align.CENTER, 1.12f)
     }
-}
-
-/** Daily goal seal, 2×2. */
-class SealWidget : SealBase() {
-    override val cells = listOf(2 to 2)
-}
-
-/** Daily goal seal, slim: a 1×1 pill that stretches to 2×1. */
-class SealSlimWidget : SealBase() {
-    override val cells = listOf(2 to 1, 1 to 1)
 }

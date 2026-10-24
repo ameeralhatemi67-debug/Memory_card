@@ -141,6 +141,8 @@ internal class Grid(private val w: Float, private val gapW: Float, private val h
 
 /** Composes a [Scene] into the RemoteViews the launcher shows. */
 internal object SceneViews {
+    private val HIT_SLOTS = intArrayOf(R.id.hit0, R.id.hit1, R.id.hit2, R.id.hit3, R.id.hit4, R.id.hit5, R.id.hit6, R.id.hit7)
+
     @SuppressLint("NewApi")
     fun build(ctx: Context, scene: Scene, id: Int, turns: Boolean): RemoteViews {
         val layout = when {
@@ -205,6 +207,10 @@ internal object SceneViews {
         v.setContentDescription(R.id.root, scene.description)
 
         // Moving pieces and tap targets are placed in dp over the drawing (Android 12 and later).
+        // Slots a previous drawing used stay as they were unless told otherwise (a seal or flame from the last size, or the
+        // other side of a card, would hang on): put every one away first, then show only what this drawing places.
+        for (fx in Fx.values()) for (slot in fx.ids) v.setViewVisibility(slot, View.GONE)
+        for (slot in HIT_SLOTS) v.setViewVisibility(slot, View.GONE)
         val used = HashMap<Fx, Int>()
         for (sp in scene.sprites) {
             val slot = sp.fx.ids[used.merge(sp.fx, 1, Int::plus)!! - 1]
@@ -216,11 +222,10 @@ internal object SceneViews {
         v.setInt(R.id.hit_all, "setBackgroundResource", look.rippleRes(scene.pill))
         (scene.anywhere ?: scene.hits.firstOrNull()?.pi)?.let { v.setOnClickPendingIntent(R.id.hit_all, it) }
         if (modern) {
-            val slots = intArrayOf(R.id.hit0, R.id.hit1, R.id.hit2, R.id.hit3, R.id.hit4, R.id.hit5, R.id.hit6, R.id.hit7)
             for ((i, t) in scene.hits.withIndex()) {
-                val slot = slots[i]
+                val slot = HIT_SLOTS[i]
                 place(v, slot, t.x, t.y, t.w, t.h)
-                v.setInt(slot, "setBackgroundResource", rippleFor(t.radius, look))
+                v.setInt(slot, "setBackgroundResource", if (t.ripple) rippleFor(t.radius, look) else 0)
                 v.setViewVisibility(slot, View.VISIBLE)
                 v.setOnClickPendingIntent(slot, t.pi)
                 if (t.label.isNotEmpty()) v.setContentDescription(slot, t.label)

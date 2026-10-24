@@ -12,9 +12,7 @@ internal object Widgets {
     val all: List<SceneWidget> by lazy {
         listOf(
             SealWidget(),
-            SealSlimWidget(),
             StreakWidget(),
-            StreakTallWidget(),
             TodayWidget(),
             QuickCardWidget(),
             ActionsWidget(),
@@ -22,7 +20,6 @@ internal object Widgets {
             ActivityWidget(),
             ForecastWidget(),
             MembershipWidget(),
-            HealthWidget(),
             CardOfDayWidget(),
             SealsWidget(),
             DecksWidget(),
@@ -31,8 +28,8 @@ internal object Widgets {
 
     /** The provider class names, in the order of [all] (kept as text: a release build may rename the classes). */
     private val names = listOf(
-        "SealWidget", "SealSlimWidget", "StreakWidget", "StreakTallWidget", "TodayWidget", "QuickCardWidget",
-        "ActionsWidget", "ActionsGridWidget", "ActivityWidget", "ForecastWidget", "MembershipWidget", "HealthWidget",
+        "SealWidget", "StreakWidget", "TodayWidget", "QuickCardWidget",
+        "ActionsWidget", "ActionsGridWidget", "ActivityWidget", "ForecastWidget", "MembershipWidget",
         "CardOfDayWidget", "SealsWidget", "DecksWidget",
     )
 
@@ -53,7 +50,7 @@ internal object Preview {
         widget.scene(ctx, st, size, animated = false).flatten(night)
 
     /** Writes a PNG of each widget at each of its sizes, light and dark, plus a few other days, into [dir] (development). */
-    fun dump(ctx: Context, dir: File) {
+    fun dump(ctx: Context, dir: File, only: Set<String>? = null) {
         dir.mkdirs()
         dir.listFiles()?.forEach { it.delete() }
         val days = listOf(
@@ -67,6 +64,7 @@ internal object Preview {
             "z" to Samples.blank(),
         )
         for (w in Widgets.all) {
+            if (only != null && Widgets.nameOf(w) !in only) continue
             for ((label, size) in w.previews + w.altPreviews) {
                 for ((tag, st) in days) {
                     for (night in listOf(false, true)) {

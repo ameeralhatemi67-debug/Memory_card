@@ -2,16 +2,17 @@ package com.memorycard.memory_card.widgets
 
 import android.util.SizeF
 import com.memorycard.memory_card.R
-import kotlin.math.max
 import kotlin.math.min
 
-/** The flame, flickering; an outline of it while the streak waits for today (or has not started). */
-internal fun flameMark(s: Scene, st: WidgetState, x: Float, y: Float, fw: Float, fh: Float) {
+/**
+ * The flame, flickering; an outline of it while the streak waits for today (or has not started). [still] draws it
+ * on the page instead of as a moving piece, for a face that turns over (a moving piece does not turn with the page).
+ */
+internal fun flameMark(s: Scene, st: WidgetState, x: Float, y: Float, fw: Float, fh: Float, still: Boolean = false) {
     val waiting = st.atRisk || st.streak == 0
     val fx = if (waiting) Fx.FLAME_OUTLINE else Fx.FLAME
-    s.sprite(fx, x, y, fw, fh, s.look.accent) {
-        s.vec(s.accent, if (waiting) R.drawable.wg_fx_flame_outline_vd else R.drawable.wg_fx_flame_vd, x, y, fw, fh)
-    }
+    val draw = { s.vec(s.accent, if (waiting) R.drawable.wg_fx_flame_outline_vd else R.drawable.wg_fx_flame_vd, x, y, fw, fh) }
+    if (still) draw() else s.sprite(fx, x, y, fw, fh, s.look.accent) { draw() }
 }
 
 /** The grace shields left this month, drawn at [x],[y] one after the other. */
@@ -42,22 +43,20 @@ internal fun weekRow(s: Scene, st: WidgetState, x: Float, y: Float, cell: Float,
     }
 }
 
-private val DAY_LETTERS = charArrayOf('M', 'T', 'W', 'T', 'F', 'S', 'S')
-
 /**
  * Streak flame: the streak and this month's grace shields; with room it shows this week and your best too.
  * After 18:00 with the goal not met, it asks for today. Tap: Today.
- * The picker offers a row (1 to 4 columns wide, one row tall) and a tall one (one column, two rows).
+ * One row tall, 1 to 4 columns wide.
  */
-abstract class StreakBase : SceneWidget() {
+class StreakWidget : SceneWidget() {
     override val kind = "streak"
     override val natural = Surface.INK
+    override val cells = listOf(2 to 1, 1 to 1, 3 to 1, 4 to 1)
 
     override fun draw(s: Scene, st: WidgetState, id: Int) {
         s.anywhere = open(s.ctx, "memorycard://today")
         s.description = "${st.streak}-day streak, ${st.shields} grace shields left"
         when {
-            s.w < 100f && s.h >= 130f -> tall(s, st)
             s.w < 100f -> pill(s, st)
             s.w < 215f -> medium(s, st)
             else -> wide(s, st)
@@ -119,39 +118,4 @@ abstract class StreakBase : SceneWidget() {
         s.text(s.ink(Shade.MUTED), sub, tx, cy + 20f, 13f, s.ui, maxW = textW)
         shieldRow(s, st, s.w - pad, cy - 12f, 20f, 24f, 4f, leftToRight = false)
     }
-
-    /** 1×2: flame, days, this week with its weekday letters, the shields, your best. */
-    private fun tall(s: Scene, st: WidgetState) {
-        val n = st.streak
-        val h = s.h
-        val u = min(1f, h / 201f).coerceAtLeast(0.8f)
-        val flameH = 32f * u
-        val top = max(10f, 14f * u)
-        flameMark(s, st, s.w / 2f - flameH * 0.4f, top, flameH * 0.8f, flameH)
-        val numberSize = 42f * u
-        val base = top + flameH + 6f + numberSize * 0.72f
-        s.text(s.ink(), "$n", s.w / 2f, base, numberSize, s.display, Align.CENTER, maxW = s.w - 10f)
-        s.text(s.ink(Shade.MUTED), "DAYS", s.w / 2f, base + 15f * u, 9f, s.uiBold, Align.CENTER, spacing = 1.1f)
-        val rule = base + 26f * u
-        s.rect(s.ink(Shade.LINE), s.w / 2f - 20f, rule, 40f, 1f, 0.5f)
-        val cell = 6f
-        val gap = (s.w - 16f - 7 * cell) / 6f
-        val rowW = 7 * cell + 6 * gap
-        val x0 = (s.w - rowW) / 2f
-        val dots = rule + 10f * u
-        weekRow(s, st, x0, dots, cell, gap)
-        for (i in 0 until 7) s.text(s.ink(Shade.DIM), DAY_LETTERS[i].toString(), x0 + i * (cell + gap) + cell / 2f, dots + cell + 10f, 7.5f, s.uiBold, Align.CENTER)
-        shieldRow(s, st, s.w / 2f - 12.5f, dots + cell + 22f * u, 11f, 13f, 3f)
-        if (st.best > 0) s.text(s.ink(Shade.MUTED), "best ${st.best}", s.w / 2f, h - max(10f, 12f * u), 10.5f, s.uiBold, Align.CENTER)
-    }
-}
-
-/** Streak flame: a row of 1 to 4 columns. */
-class StreakWidget : StreakBase() {
-    override val cells = listOf(2 to 1, 1 to 1, 3 to 1, 4 to 1)
-}
-
-/** Streak flame, tall: one column, two rows. */
-class StreakTallWidget : StreakBase() {
-    override val cells = listOf(1 to 2)
 }

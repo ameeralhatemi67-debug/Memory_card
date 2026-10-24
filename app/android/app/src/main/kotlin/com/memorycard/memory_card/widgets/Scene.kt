@@ -42,7 +42,7 @@ internal enum class Fx(val ids: IntArray) {
 internal class Sprite(val fx: Fx, val x: Float, val y: Float, val w: Float, val h: Float, val day: Int, val night: Int)
 
 /** A tap target in dp, with what it does. */
-internal class Hit(val x: Float, val y: Float, val w: Float, val h: Float, val radius: Float, val pi: PendingIntent, val label: String)
+internal class Hit(val x: Float, val y: Float, val w: Float, val h: Float, val radius: Float, val pi: PendingIntent, val label: String, val ripple: Boolean = true)
 
 /** Where a stroke of ink goes: the main ink (0), the ink for lettering on ink (1), or a colour that never changes (2). */
 internal class Brush(val layer: Int, val color: Int)
@@ -426,8 +426,8 @@ internal class Scene(
         if (animated && index < fx.ids.size && sw > 0f && sh > 0f) sprites.add(Sprite(fx, x, y, sw, sh, day, night)) else still()
     }
 
-    fun hit(x: Float, y: Float, hw: Float, hh: Float, pi: PendingIntent, label: String = "", radius: Float = 14f) {
-        if (hits.size < 8 && hw > 0f && hh > 0f) hits.add(Hit(x, y, hw, hh, radius, pi, label))
+    fun hit(x: Float, y: Float, hw: Float, hh: Float, pi: PendingIntent, label: String = "", radius: Float = 14f, ripple: Boolean = true) {
+        if (hits.size < 8 && hw > 0f && hh > 0f) hits.add(Hit(x, y, hw, hh, radius, pi, label, ripple))
     }
 
     /** The mark of this drawing, to tell a refresh that changed nothing from one that did. */

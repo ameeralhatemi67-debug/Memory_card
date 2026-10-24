@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Seals: one row, 2 to 4 columns wide. -->
+<!-- Seals: one row, 4 columns wide (3 when resized). -->
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:description="@string/wg_seals_desc"
     android:initialLayout="@layout/wg_loading"
     android:maxResizeWidth="420dp"
     android:minWidth="290dp"
     android:minHeight="40dp"
-    android:minResizeWidth="110dp"
+    android:minResizeWidth="250dp"
     android:minResizeHeight="40dp"
     android:previewImage="@drawable/wg_prev_seals"
     android:resizeMode="horizontal"

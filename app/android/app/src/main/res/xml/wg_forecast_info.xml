@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Next two weeks: 4 columns wide, 1 or 2 rows tall. -->
+<!-- Next two weeks: 4 columns wide, 2 or 3 rows tall. -->
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:description="@string/wg_forecast_desc"
     android:initialLayout="@layout/wg_loading"
-    android:maxResizeHeight="190dp"
+    android:maxResizeHeight="300dp"
     android:minWidth="290dp"
-    android:minHeight="40dp"
+    android:minHeight="110dp"
     android:minResizeWidth="280dp"
-    android:minResizeHeight="40dp"
+    android:minResizeHeight="110dp"
     android:previewImage="@drawable/wg_prev_forecast"
     android:resizeMode="vertical"
     android:targetCellWidth="4"

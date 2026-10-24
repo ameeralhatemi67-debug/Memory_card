@@ -1,14 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Daily goal seal: 2×2, one size. The slim one (1×1 to 2×1) is its own entry. -->
+<!-- Daily goal seal: 2×2 to start with; drag the handles to make it the slim bar (2×1) or the pill (1×1). -->
 <appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
     android:description="@string/wg_seal_desc"
     android:initialLayout="@layout/wg_loading"
+    android:maxResizeWidth="160dp"
+    android:maxResizeHeight="190dp"
     android:minWidth="110dp"
     android:minHeight="110dp"
-    android:minResizeWidth="110dp"
-    android:minResizeHeight="110dp"
+    android:minResizeWidth="40dp"
+    android:minResizeHeight="40dp"
     android:previewImage="@drawable/wg_prev_seal"
-    android:resizeMode="none"
+    android:resizeMode="horizontal|vertical"
     android:targetCellWidth="2"
     android:targetCellHeight="2"
     android:updatePeriodMillis="1800000"

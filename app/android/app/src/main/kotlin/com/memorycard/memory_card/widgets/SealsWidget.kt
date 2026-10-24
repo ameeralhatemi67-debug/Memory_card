@@ -4,37 +4,26 @@ import android.util.SizeF
 import kotlin.math.min
 
 /**
- * Seals: the latest wax seals you earned, each turning on its own, and the one you are closest to. 2 columns show
- * the newest and the count; wider shows three and what comes next. Tap: the seal gallery.
+ * Seals: the latest wax seals you earned, each turning on its own, and the one you are closest to. Two sizes: 4×1
+ * (three seals) and 3×1 (two). Tap: the seal gallery.
  */
 class SealsWidget : SceneWidget() {
     override val kind = "seals"
     override val natural = Surface.PAPER
-    override val cells = listOf(4 to 1, 2 to 1, 3 to 1)
+    override val cells = listOf(4 to 1, 3 to 1)
 
     override fun draw(s: Scene, st: WidgetState, id: Int) {
         s.anywhere = open(s.ctx, "memorycard://seals")
         val info = st.seals
         s.description = "${info.earned} of ${info.total} seals earned."
-        if (s.w < 215f) small(s, st) else wide(s, st)
+        wide(s, st)
     }
 
-    private fun small(s: Scene, st: WidgetState) {
-        val info = st.seals
-        val disc = min(58f, s.h - 22f)
-        val first = info.latest.firstOrNull()
-        val pad = 12f
-        if (first != null) sealDisc(s, first, pad + disc / 2f, s.h / 2f, disc, disc * 0.26f) else emptyDisc(s, pad + disc / 2f, s.h / 2f, disc)
-        val x = pad + disc + 10f
-        s.text(s.ink(), "${info.earned}/${info.total}", x, s.h / 2f + 8f, 28f, s.display, maxW = s.w - x - 8f)
-        s.text(s.ink(Shade.MUTED), "seals", x, s.h / 2f + 24f, 12f, s.uiBold)
-    }
-
+    /** 4×1 shows three seals and the line about the next one; 3×1 shows two, with the name of the next. */
     private fun wide(s: Scene, st: WidgetState) {
         val info = st.seals
         val pad = 16f
         val disc = min(46f, s.h - 28f)
-        // Three seals and the line about the next one need four columns; three columns show two seals.
         val shown = if (s.w >= 330f) 3 else 2
         var x = pad
         for (m in info.latest.take(shown)) {

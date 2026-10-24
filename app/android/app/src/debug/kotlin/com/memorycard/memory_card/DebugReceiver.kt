@@ -13,7 +13,7 @@ import java.io.File
 /**
  * Development only (the debug manifest registers it): drive the widgets over adb.
  *   adb shell am broadcast -n com.memorycard.app/com.memorycard.memory_card.DebugReceiver -a com.memorycard.debug.PIN --es cls SealWidget
- *   adb shell am broadcast -n com.memorycard.app/com.memorycard.memory_card.DebugReceiver -a com.memorycard.debug.DUMP
+ *   adb shell am broadcast -n com.memorycard.app/com.memorycard.memory_card.DebugReceiver -a com.memorycard.debug.DUMP [--es only SealWidget,ForecastWidget]
  * The dump lands in /sdcard/Android/data/com.memorycard.app/files/widget_dump.
  */
 class DebugReceiver : BroadcastReceiver() {
@@ -40,12 +40,19 @@ class DebugReceiver : BroadcastReceiver() {
             }
             "com.memorycard.debug.DUMP" -> {
                 val dir = File(ctx.getExternalFilesDir(null), "widget_dump")
-                try {
-                    Preview.dump(ctx, dir)
-                    Log.i("McDebug", "dumped ${dir.listFiles()?.size} pictures to $dir")
-                } catch (e: Throwable) {
-                    Log.e("McDebug", "dump failed", e)
-                }
+                val only = intent.getStringExtra("only")?.split(',')?.toSet()
+                // Off the main thread: a full dump takes longer than a broadcast may.
+                val pending = goAsync()
+                Thread {
+                    try {
+                        Preview.dump(ctx, dir, only)
+                        Log.i("McDebug", "dumped ${dir.listFiles()?.size} pictures to $dir")
+                    } catch (e: Throwable) {
+                        Log.e("McDebug", "dump failed", e)
+                    } finally {
+                        pending.finish()
+                    }
+                }.start()
             }
         }
     }

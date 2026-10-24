@@ -23,9 +23,7 @@ class HomeWidgets {
   /// Provider class → the name the widget picker and Settings show.
   static const kinds = {
     'SealWidget': 'Daily goal seal',
-    'SealSlimWidget': 'Daily goal seal · slim',
     'StreakWidget': 'Streak flame',
-    'StreakTallWidget': 'Streak flame · tall',
     'TodayWidget': 'Today',
     'QuickCardWidget': 'Quick card',
     'ActionsWidget': 'Quick actions',
@@ -33,7 +31,6 @@ class HomeWidgets {
     'ActivityWidget': 'Activity',
     'ForecastWidget': 'Next two weeks',
     'MembershipWidget': 'Membership card',
-    'HealthWidget': 'Memory health',
     'CardOfDayWidget': 'Card of the day',
     'SealsWidget': 'Seals',
     'DecksWidget': 'Continue a deck',
@@ -41,29 +38,24 @@ class HomeWidgets {
 
   /// Provider class → the sizes it comes in, as the launcher counts them (columns × rows).
   static const sizes = {
-    'SealWidget': '2×2',
-    'SealSlimWidget': '1×1 to 2×1',
+    'SealWidget': '1×1 to 2×2',
     'StreakWidget': '1×1 to 4×1',
-    'StreakTallWidget': '1×2',
     'TodayWidget': '4×2 or 4×3',
     'QuickCardWidget': '4×2 or 4×3',
     'ActionsWidget': '1×1 to 4×1',
     'ActionsGridWidget': '2×2',
     'ActivityWidget': '2×2 to 4×2',
-    'ForecastWidget': '4×1 or 4×2',
+    'ForecastWidget': '4×2 or 4×3',
     'MembershipWidget': '4×2',
-    'HealthWidget': '2×1 or 2×2',
     'CardOfDayWidget': '4×1 or 4×2',
-    'SealsWidget': '2×1 to 4×1',
+    'SealsWidget': '3×1 or 4×1',
     'DecksWidget': '4×1 to 4×3',
   };
 
   /// The size (dp) each widget is previewed at in Settings: its first size in the widget picker.
   static const previewSize = {
     'SealWidget': (172.0, 233.0),
-    'SealSlimWidget': (172.0, 108.0),
     'StreakWidget': (172.0, 108.0),
-    'StreakTallWidget': (78.0, 233.0),
     'TodayWidget': (360.0, 233.0),
     'QuickCardWidget': (360.0, 233.0),
     'ActionsWidget': (360.0, 108.0),
@@ -71,7 +63,6 @@ class HomeWidgets {
     'ActivityWidget': (360.0, 233.0),
     'ForecastWidget': (360.0, 233.0),
     'MembershipWidget': (360.0, 233.0),
-    'HealthWidget': (172.0, 233.0),
     'CardOfDayWidget': (360.0, 233.0),
     'SealsWidget': (360.0, 108.0),
     'DecksWidget': (360.0, 233.0),

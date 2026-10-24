@@ -33,9 +33,7 @@ class WidgetsScreen extends StatelessWidget {
   /// The name a widget goes by in the Look settings (HomeWidgets.kinds is by provider class).
   static const kindOf = {
     'SealWidget': 'seal',
-    'SealSlimWidget': 'seal',
     'StreakWidget': 'streak',
-    'StreakTallWidget': 'streak',
     'TodayWidget': 'today',
     'QuickCardWidget': 'quick',
     'ActionsWidget': 'actions',
@@ -43,7 +41,6 @@ class WidgetsScreen extends StatelessWidget {
     'ActivityWidget': 'activity',
     'ForecastWidget': 'forecast',
     'MembershipWidget': 'membership',
-    'HealthWidget': 'health',
     'CardOfDayWidget': 'cotd',
     'SealsWidget': 'seals',
     'DecksWidget': 'decks',
@@ -115,7 +112,7 @@ class WidgetsScreen extends StatelessWidget {
                           Column(children: [
                             _Preview('StreakWidget', look: look),
                             const SizedBox(height: 12),
-                            _Preview('HealthWidget', look: look, h: 108),
+                            _Preview('SealWidget', look: look, h: 108),
                           ]),
                         ]),
                       ),

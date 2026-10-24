@@ -7,7 +7,7 @@ no server, no analytics.
 
 ## Install on an Android phone
 
-1. Copy `../release/MemoryCard-1.3.0.apk` (the same file as `build/app/outputs/flutter-apk/app-release.apk`)
+1. Copy `../release/MemoryCard-1.3.1.apk` (the same file as `build/app/outputs/flutter-apk/app-release.apk`)
    to the phone: USB, a cloud drive, or email it to yourself.
 2. Open it on the phone. Android asks once to allow installs from that app (Files, Drive, Gmail…): allow it.
 3. Install, then open **Memory Card**.
@@ -107,19 +107,16 @@ resized to the sizes it was designed for.
 
 | Widget | Sizes | Tap |
 |---|---|---|
-| **Daily goal seal**: today's cards against the goal; the red DONE seal once it is met | 2×2 | studies the last deck |
-| **Daily goal seal · slim** | 1×1 pill, 2×1 | studies the last deck |
+| **Daily goal seal**: today's cards against the goal; the red DONE seal once it is met; one widget you resize between the 2×2, a slim bar and a pill | 1×1, 2×1, 2×2 | studies the last deck |
 | **Streak flame**: the streak and this month's grace shields; with room, this week and your best; after 18:00 with the goal not met it asks for today | 1×1 to 4×1 | opens Today |
-| **Streak flame · tall**: the streak, this week day by day, shields, best | 1×2 | opens Today |
 | **Today**: seal, what is left, the streak, reviewed / remembered / relearned, the answers bar, memory health, *Keep going* | 4×2, 4×3 | studies |
 | **Quick card**: the card you are closest to forgetting; Reveal, then Again or Got it (stacked, or side by side) | 4×2, 4×3 | the buttons answer; the deck name opens it |
 | **Quick actions**: Study, Daily mix, New card, Search as the shop's badges, a card, or four buttons | 1×1 to 4×1, and a 2×2 | goes straight there |
 | **Activity**: the study heatmap, five weeks to sixteen | 2×2 to 4×2 | opens Profile |
-| **Next two weeks**: cards that start slipping each day | 4×1, 4×2 | opens Memory Lab |
+| **Next two weeks**: cards that start slipping each day | 4×2, 4×3 (with tomorrow, the week, the busiest day and a count on every bar) | opens Memory Lab |
 | **Membership card**: tier, name, four numbers; tap to turn it over; your latest seals underneath | 4×2 | turns the card |
-| **Memory health**: recall across the library now, cards slipping | 2×1, 2×2 | opens Memory Lab |
 | **Card of the day**: a card you know cold, prompt and answer | 4×1, 4×2 | studies that deck |
-| **Seals**: the latest seals and the next one in reach | 2×1 to 4×1 | opens the seal gallery |
+| **Seals**: the latest seals and the next one in reach | 4×1, 3×1 | opens the seal gallery |
 | **Continue a deck**: deck bars with their progress fans; the Daily mix | 4×1 to 4×3 | studies that deck |
 | **Quick Settings tile**: "8 to go · tap to study" | the tile | studies |
 

@@ -1,13 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="wg_seal_name">Daily goal seal</string>
-    <string name="wg_seal_desc">Today\'s cards against your goal; the red seal once it is met.</string>
-    <string name="wg_seal_slim_name">Daily goal seal · slim</string>
-    <string name="wg_seal_slim_desc">A small pill (1×1) or a short bar (2×1) with the day\'s seal and what is left.</string>
+    <string name="wg_seal_desc">Today\'s cards against your goal; the red seal once it is met. Resize it to a slim bar or a small pill.</string>
     <string name="wg_streak_name">Streak flame</string>
     <string name="wg_streak_desc">Your streak and the grace shields left this month, in a row 1 to 4 columns wide.</string>
-    <string name="wg_streak_tall_name">Streak flame · tall</string>
-    <string name="wg_streak_tall_desc">Your streak, this week day by day, the shields and your best, one column wide.</string>
     <string name="wg_quick_name">Quick card</string>
     <string name="wg_quick_desc">Review the card you are closest to forgetting, right here.</string>
     <string name="wg_today_name">Today</string>
@@ -19,15 +15,13 @@
     <string name="wg_activity_name">Activity</string>
     <string name="wg_activity_desc">Your study heatmap: five weeks in 2 columns, up to sixteen in 4. Today wears a ring.</string>
     <string name="wg_forecast_name">Next two weeks</string>
-    <string name="wg_forecast_desc">How many cards start slipping each day if you do not study.</string>
+    <string name="wg_forecast_desc">How many cards start slipping each day if you do not study: two weeks, in 2 or 3 rows.</string>
     <string name="wg_membership_name">Membership card</string>
     <string name="wg_membership_desc">Your tier, name and four numbers. Tap to turn the card over.</string>
-    <string name="wg_health_name">Memory health</string>
-    <string name="wg_health_desc">How much you would recall right now, and how many cards are slipping.</string>
     <string name="wg_cotd_name">Card of the day</string>
     <string name="wg_cotd_desc">A card you know cold, prompt and answer, new every few hours.</string>
     <string name="wg_seals_name">Seals</string>
-    <string name="wg_seals_desc">Your latest wax seals, each turning, and the one you are closest to.</string>
+    <string name="wg_seals_desc">Your latest wax seals, each turning, and the one you are closest to. 3 or 4 columns.</string>
     <string name="wg_decks_name">Continue a deck</string>
     <string name="wg_decks_desc">Your deck bars with their progress fans. Tap one to study it.</string>
     <string name="wg_tile_name">Memory Card</string>
