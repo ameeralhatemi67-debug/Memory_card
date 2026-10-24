@@ -14,21 +14,29 @@
         <item name="android:textColor">@color/mc_ink</item>
     </style>
 
-    <style name="WgText.Caps">
-        <item name="android:textSize">10sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textAllCaps">true</item>
-        <item name="android:letterSpacing">0.1</item>
-        <item name="android:maxLines">1</item>
-        <item name="android:ellipsize">end</item>
+
+    <!-- A moving piece of a drawn widget: a ProgressBar that is white, gone, and placed from code. -->
+    <style name="WgFx">
+        <item name="android:layout_width">10dp</item>
+        <item name="android:layout_height">10dp</item>
+        <item name="android:layout_gravity">top|left</item>
+        <item name="android:indeterminate">true</item>
+        <item name="android:indeterminateOnly">true</item>
+        <item name="android:minWidth">1dp</item>
+        <item name="android:minHeight">1dp</item>
+        <item name="android:maxWidth">600dp</item>
+        <item name="android:maxHeight">600dp</item>
+        <item name="android:importantForAccessibility">no</item>
+        <item name="android:visibility">gone</item>
     </style>
 
-    <style name="WgButton">
-        <item name="android:fontFamily">sans-serif-condensed</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textSize">15sp</item>
-        <item name="android:gravity">center</item>
-        <item name="android:layout_height">40dp</item>
-        <item name="android:includeFontPadding">false</item>
+    <!-- A tap target: gone until a scene places it over a button or a row. -->
+    <style name="WgHit">
+        <item name="android:layout_width">10dp</item>
+        <item name="android:layout_height">10dp</item>
+        <item name="android:layout_gravity">top|left</item>
+        <item name="android:background">@drawable/wg_ripple_14</item>
+        <item name="android:visibility">gone</item>
     </style>
+
 </resources>

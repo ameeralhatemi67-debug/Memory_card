@@ -5,7 +5,10 @@ import 'package:flutter/services.dart';
 
 import 'data/store.dart';
 import 'data/store_scope.dart';
+import 'features/lab/memory_lab.dart';
 import 'features/onboarding/onboarding.dart';
+import 'features/profile/profile_screen.dart';
+import 'features/search/search_screen.dart';
 import 'features/shell/shell.dart';
 import 'features/today/today_screen.dart';
 import 'services/home_widgets.dart';
@@ -42,7 +45,8 @@ class _MemoryCardAppState extends State<MemoryCardApp> with WidgetsBindingObserv
     HomeWidgets.i.listen(_fromWidget);
   }
 
-  /// A home-screen widget was tapped: memorycard://study (optionally ?deck=…) or memorycard://today.
+  /// A home-screen widget was tapped: memorycard://study (optionally ?deck=…), today, mix (the Daily mix), new
+  /// (a new card), search, profile, lab (Memory Lab) or seals.
   void _fromWidget(Uri uri) {
     final store = widget.store;
     final shell = Shell.current;
@@ -56,8 +60,22 @@ class _MemoryCardAppState extends State<MemoryCardApp> with WidgetsBindingObserv
         } else {
           shell.goHome();
         }
+      case 'mix':
+        shell.study(null);
+      case 'new':
+        shell.goHome();
+        shell.create();
       case 'today':
         _nav.currentState?.push(TodayScreen.route());
+      case 'search':
+        _nav.currentState?.push(SearchScreen.route());
+      case 'profile':
+        _nav.currentState?.push(ProfileScreen.route());
+      case 'lab':
+        _nav.currentState?.push(MemoryLab.route());
+      case 'seals':
+        final ctx = _nav.currentContext;
+        if (ctx != null) showSealGallery(ctx, store);
     }
   }
 

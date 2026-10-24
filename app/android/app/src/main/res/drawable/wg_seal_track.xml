@@ -1,7 +1,0 @@
-<?xml version="1.0" encoding="utf-8"?>
-<!-- The track under the day's progress ring, white: the layout tints it. -->
-<vector xmlns:android="http://schemas.android.com/apk/res/android"
-    android:width="100dp" android:height="100dp"
-    android:viewportWidth="100" android:viewportHeight="100">
-    <path android:strokeColor="#FFFFFFFF" android:strokeWidth="5" android:pathData="M16,50 a34,34 0 1,0 68,0 a34,34 0 1,0 -68,0" />
-</vector>

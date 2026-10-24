@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A drawn widget that is a card: a change turns it over (Quick card, the membership card). -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layoutDirection="ltr"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ImageView
+        android:id="@+id/bg"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:importantForAccessibility="no"
+        android:scaleType="fitXY"
+        android:src="@drawable/wg_bg_round" />
+
+    <include layout="@layout/wg_scene_fxb" />
+
+    <ViewFlipper
+        android:id="@+id/pages"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:inAnimation="@anim/wg_turn_in"
+        android:outAnimation="@anim/wg_turn_out">
+
+        <include layout="@layout/wg_scene_page0" />
+
+        <include layout="@layout/wg_scene_page1" />
+    </ViewFlipper>
+
+    <include layout="@layout/wg_scene_fxf" />
+
+    <include layout="@layout/wg_scene_hits" />
+</FrameLayout>

@@ -450,6 +450,29 @@ class Settings {
   /// Surface textures (Settings › Texture).
   TextureSettings texture = TextureSettings();
 
+  // ---- Home screen widgets (Settings › Home screen widgets)
+
+  /// auto follows the phone · light · dark
+  String widgetTheme = 'auto';
+
+  /// red · orange · green · blue · violet (the colour of the seal, flame and rings)
+  String widgetAccent = 'red';
+
+  /// round · soft · square
+  String widgetCorners = 'round';
+
+  /// How solid a widget's face is, 30–100 %.
+  int widgetOpacity = 100;
+
+  /// Widgets move: a turning seal, a flickering flame, cards that turn over.
+  bool widgetMotion = true;
+
+  /// Quick card: stacked · side (the prompt and the buttons side by side).
+  String widgetQuick = 'stacked';
+
+  /// A widget's face when it is not the one it was designed with: kind → paper · ink.
+  Map<String, String> widgetSurfaces = {};
+
   /// Gaussian sigma for the blur at [blurAmount]; 0 when pictures are not blurred.
   double get blurSigma => imageReveal == 'blur' ? 6 + 34 * blurAmount : 0;
 
@@ -474,6 +497,13 @@ class Settings {
         'imgReveal': imageReveal,
         'blurAmt': double.parse(blurAmount.toStringAsFixed(3)),
         'texture': texture.toJson(),
+        'wTheme': widgetTheme,
+        'wAccent': widgetAccent,
+        'wCorners': widgetCorners,
+        'wOpacity': widgetOpacity,
+        'wMotion': widgetMotion,
+        'wQuick': widgetQuick,
+        'wSurf': widgetSurfaces,
       };
 
   factory Settings.fromJson(Map? j) {
@@ -498,6 +528,16 @@ class Settings {
     s.imageReveal = const ['blur', 'hide', 'show'].contains(reveal) ? reveal : 'blur';
     s.blurAmount = _d(j['blurAmt'], 0.45).clamp(0.0, 1.0);
     s.texture = TextureSettings.fromJson(j['texture'] as Map?);
+    String pick(Object? v, List<String> allowed) => allowed.contains(v) ? v as String : allowed.first;
+    s.widgetTheme = pick(j['wTheme'], const ['auto', 'light', 'dark']);
+    s.widgetAccent = pick(j['wAccent'], const ['red', 'orange', 'green', 'blue', 'violet']);
+    s.widgetCorners = pick(j['wCorners'], const ['round', 'soft', 'square']);
+    s.widgetOpacity = _i(j['wOpacity'], 100).clamp(30, 100);
+    s.widgetMotion = _b(j['wMotion'], true);
+    s.widgetQuick = pick(j['wQuick'], const ['stacked', 'side']);
+    ((j['wSurf'] as Map?) ?? const {}).forEach((k, v) {
+      if (v == 'paper' || v == 'ink') s.widgetSurfaces['$k'] = v as String;
+    });
     return s;
   }
 }

@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A slanted band of light, built for a bar five times as wide as it is tall. -->
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="500dp" android:height="100dp"
+    android:viewportWidth="500" android:viewportHeight="100">
+    <group android:name="band" android:translateX="-90">
+        <path android:fillColor="#4DFFFFFF" android:pathData="M34,0 L62,0 L28,100 L0,100 Z" />
+        <path android:fillColor="#29FFFFFF" android:pathData="M70,0 L80,0 L46,100 L36,100 Z" />
+    </group>
+</vector>

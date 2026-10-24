@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- The other side of the card turning in, once the first has gone edge-on. -->
+<set xmlns:android="http://schemas.android.com/apk/res/android"
+    android:interpolator="@android:anim/decelerate_interpolator">
+    <scale
+        android:duration="210"
+        android:fromXScale="0.02"
+        android:pivotX="50%"
+        android:pivotY="50%"
+        android:startOffset="160"
+        android:toXScale="1" />
+</set>

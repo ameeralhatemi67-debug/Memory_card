@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Tap targets. hit_all fills the widget (it opens the app); the others are placed over buttons and rows from code. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <FrameLayout android:id="@+id/hit_all" android:layout_width="match_parent" android:layout_height="match_parent" android:background="@drawable/wg_ripple_22" />
+
+    <FrameLayout android:id="@+id/hit0" style="@style/WgHit" />
+    <FrameLayout android:id="@+id/hit1" style="@style/WgHit" />
+    <FrameLayout android:id="@+id/hit2" style="@style/WgHit" />
+    <FrameLayout android:id="@+id/hit3" style="@style/WgHit" />
+    <FrameLayout android:id="@+id/hit4" style="@style/WgHit" />
+    <FrameLayout android:id="@+id/hit5" style="@style/WgHit" />
+    <FrameLayout android:id="@+id/hit6" style="@style/WgHit" />
+    <FrameLayout android:id="@+id/hit7" style="@style/WgHit" />
+</FrameLayout>

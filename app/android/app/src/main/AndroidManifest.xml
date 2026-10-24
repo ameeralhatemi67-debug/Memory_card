@@ -53,12 +53,26 @@
             </intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/wg_seal_info" />
         </receiver>
+        <receiver android:name=".widgets.SealSlimWidget" android:exported="false" android:label="@string/wg_seal_slim_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/wg_seal_slim_info" />
+        </receiver>
         <receiver android:name=".widgets.StreakWidget" android:exported="false" android:label="@string/wg_streak_name">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
                 <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
             </intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/wg_streak_info" />
+        </receiver>
+        <receiver android:name=".widgets.StreakTallWidget" android:exported="false" android:label="@string/wg_streak_tall_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/wg_streak_tall_info" />
         </receiver>
         <receiver android:name=".widgets.QuickCardWidget" android:exported="false" android:label="@string/wg_quick_name">
             <intent-filter>
@@ -67,6 +81,87 @@
             </intent-filter>
             <meta-data android:name="android.appwidget.provider" android:resource="@xml/wg_quick_info" />
         </receiver>
+        <receiver android:name=".widgets.TodayWidget" android:exported="false" android:label="@string/wg_today_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/wg_today_info" />
+        </receiver>
+        <receiver android:name=".widgets.ActionsWidget" android:exported="false" android:label="@string/wg_actions_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/wg_actions_info" />
+        </receiver>
+        <receiver android:name=".widgets.ActionsGridWidget" android:exported="false" android:label="@string/wg_actionsgrid_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/wg_actionsgrid_info" />
+        </receiver>
+        <receiver android:name=".widgets.ActivityWidget" android:exported="false" android:label="@string/wg_activity_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/wg_activity_info" />
+        </receiver>
+        <receiver android:name=".widgets.ForecastWidget" android:exported="false" android:label="@string/wg_forecast_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/wg_forecast_info" />
+        </receiver>
+        <receiver android:name=".widgets.MembershipWidget" android:exported="false" android:label="@string/wg_membership_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/wg_membership_info" />
+        </receiver>
+        <receiver android:name=".widgets.HealthWidget" android:exported="false" android:label="@string/wg_health_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/wg_health_info" />
+        </receiver>
+        <receiver android:name=".widgets.CardOfDayWidget" android:exported="false" android:label="@string/wg_cotd_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/wg_cotd_info" />
+        </receiver>
+        <receiver android:name=".widgets.SealsWidget" android:exported="false" android:label="@string/wg_seals_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/wg_seals_info" />
+        </receiver>
+        <receiver android:name=".widgets.DecksWidget" android:exported="false" android:label="@string/wg_decks_name">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+            <meta-data android:name="android.appwidget.provider" android:resource="@xml/wg_decks_info" />
+        </receiver>
+        <!-- The Quick Settings tile: "Memory Card · 8 to go · tap to study". -->
+        <service
+            android:name=".widgets.StudyTileService"
+            android:exported="true"
+            android:icon="@drawable/wg_tile_icon"
+            android:label="@string/wg_tile_name"
+            android:permission="android.permission.BIND_QUICK_SETTINGS_TILE">
+            <intent-filter>
+                <action android:name="android.service.quicksettings.action.QS_TILE" />
+            </intent-filter>
+        </service>
         <!-- Redraws booked by the app (a new study day at 04:00, the streak's evening nudge), kept across reboots. -->
         <receiver android:name="es.antonborri.home_widget.HomeWidgetScheduledUpdateReceiver" android:exported="false">
             <intent-filter>

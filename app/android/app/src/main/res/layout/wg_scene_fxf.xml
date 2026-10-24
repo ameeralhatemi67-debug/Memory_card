@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Things that move over the lettering: rings that pulse on "today", and a band of light across a card. -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar android:id="@+id/fx_pulse0" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_pulse" />
+    <ProgressBar android:id="@+id/fx_pulse1" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_pulse" />
+    <ProgressBar android:id="@+id/fx_pulse2" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_pulse" />
+    <ProgressBar android:id="@+id/fx_pulse3" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_pulse" />
+
+    <ProgressBar android:id="@+id/fx_sheen0" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_sheen" />
+
+    <ProgressBar android:id="@+id/fx_sheenw0" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_sheenw1" />
+    <ProgressBar android:id="@+id/fx_sheenw1" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_sheenw2" />
+    <ProgressBar android:id="@+id/fx_sheenw2" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_sheenw3" />
+</FrameLayout>

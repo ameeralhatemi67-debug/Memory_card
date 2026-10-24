@@ -24,6 +24,7 @@ import '../help/help_screen.dart';
 import '../lab/memory_lab.dart';
 import '../onboarding/onboarding.dart';
 import 'texture_pane.dart';
+import 'widgets_screen.dart';
 
 /// Settings (canvas Settings.dc.html), plus the engine switches, your data and help.
 class SettingsScreen extends StatefulWidget {
@@ -351,14 +352,12 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(16)),
                       decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(16), boxShadow: mc.e1),
                       clipBehavior: Clip.antiAlias,
-                      child: Column(children: [
-                        for (final (i, e) in HomeWidgets.kinds.entries.indexed)
-                          row(e.value, () => _addWidget(e.key), hint: 'Add', last: i == HomeWidgets.kinds.length - 1),
-                      ]),
+                      child: row('Widgets and Quick Settings tile', () => Navigator.of(context).push(WidgetsScreen.route()),
+                          hint: '${HomeWidgets.kinds.length} widgets', last: true),
                     ),
                     const SizedBox(height: 8),
                     Text(
-                      'Answers on the Quick card count as reviews, Again or Good, the next time you open the app.',
+                      'Choose how they look, preview each one and add it to your home screen.',
                       style: T.t(14, w: FontWeight.w500, color: mc.muted, height: 1.35),
                     ),
                   ]),
@@ -438,15 +437,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
     if (t == null) return;
     store.updateSettings((x) => x.remindMinutes = t.hour * 60 + t.minute);
     await Reminders.i.reschedule(store);
-  }
-
-  /// Asks the launcher to place the widget; launchers that cannot are told how to do it by hand.
-  Future<void> _addWidget(String kind) async {
-    if (await HomeWidgets.i.canPin()) {
-      await HomeWidgets.i.pin(kind);
-    } else {
-      Toaster.i.show('Long-press your home screen, tap Widgets, then find Memory Card');
-    }
   }
 
   Future<void> _export(BuildContext context, AppStore store) async {

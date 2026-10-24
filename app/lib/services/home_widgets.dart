@@ -3,6 +3,7 @@ import 'dart:convert';
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter/widgets.dart';
 import 'package:home_widget/home_widget.dart';
 
@@ -19,14 +20,90 @@ class HomeWidgets {
 
   static const _package = 'com.memorycard.memory_card.widgets';
 
-  /// Provider class → the name Settings shows.
+  /// Provider class → the name the widget picker and Settings show.
   static const kinds = {
     'SealWidget': 'Daily goal seal',
+    'SealSlimWidget': 'Daily goal seal · slim',
     'StreakWidget': 'Streak flame',
+    'StreakTallWidget': 'Streak flame · tall',
+    'TodayWidget': 'Today',
     'QuickCardWidget': 'Quick card',
+    'ActionsWidget': 'Quick actions',
+    'ActionsGridWidget': 'Quick actions · grid',
+    'ActivityWidget': 'Activity',
+    'ForecastWidget': 'Next two weeks',
+    'MembershipWidget': 'Membership card',
+    'HealthWidget': 'Memory health',
+    'CardOfDayWidget': 'Card of the day',
+    'SealsWidget': 'Seals',
+    'DecksWidget': 'Continue a deck',
   };
 
+  /// Provider class → the sizes it comes in, as the launcher counts them (columns × rows).
+  static const sizes = {
+    'SealWidget': '2×2',
+    'SealSlimWidget': '1×1 to 2×1',
+    'StreakWidget': '1×1 to 4×1',
+    'StreakTallWidget': '1×2',
+    'TodayWidget': '4×2 or 4×3',
+    'QuickCardWidget': '4×2 or 4×3',
+    'ActionsWidget': '1×1 to 4×1',
+    'ActionsGridWidget': '2×2',
+    'ActivityWidget': '2×2 to 4×2',
+    'ForecastWidget': '4×1 or 4×2',
+    'MembershipWidget': '4×2',
+    'HealthWidget': '2×1 or 2×2',
+    'CardOfDayWidget': '4×1 or 4×2',
+    'SealsWidget': '2×1 to 4×1',
+    'DecksWidget': '4×1 to 4×3',
+  };
+
+  /// The size (dp) each widget is previewed at in Settings: its first size in the widget picker.
+  static const previewSize = {
+    'SealWidget': (172.0, 233.0),
+    'SealSlimWidget': (172.0, 108.0),
+    'StreakWidget': (172.0, 108.0),
+    'StreakTallWidget': (78.0, 233.0),
+    'TodayWidget': (360.0, 233.0),
+    'QuickCardWidget': (360.0, 233.0),
+    'ActionsWidget': (360.0, 108.0),
+    'ActionsGridWidget': (172.0, 233.0),
+    'ActivityWidget': (360.0, 233.0),
+    'ForecastWidget': (360.0, 233.0),
+    'MembershipWidget': (360.0, 233.0),
+    'HealthWidget': (172.0, 233.0),
+    'CardOfDayWidget': (360.0, 233.0),
+    'SealsWidget': (360.0, 108.0),
+    'DecksWidget': (360.0, 233.0),
+  };
+
+  static const _channel = MethodChannel('memorycard/widgets');
+
   bool get supported => !kIsWeb && defaultTargetPlatform == TargetPlatform.android;
+
+  /// A picture (PNG) of widget [cls] at [w]×[h] dp, drawn by the home-screen code from the live numbers with
+  /// [look] (the Look settings, as widgetLook gives them), so Settings can show a choice as it is made.
+  Future<Uint8List?> preview(String cls, {required Map<String, Object?> look, required bool night, double? w, double? h}) async {
+    if (!supported) return null;
+    final size = previewSize[cls];
+    if (size == null) return null;
+    try {
+      return await _channel.invokeMethod<Uint8List>('preview', {'cls': cls, 'w': w ?? size.$1, 'h': h ?? size.$2, 'night': night, 'look': look});
+    } catch (e) {
+      debugPrint('Memory Card widgets: no preview of $cls: $e');
+      return null;
+    }
+  }
+
+  /// Asks Android to add the Memory Card tile to Quick Settings: added · already · declined · unsupported.
+  Future<String> addTile() async {
+    if (!supported) return 'unsupported';
+    try {
+      return await _channel.invokeMethod<String>('addTile') ?? 'unsupported';
+    } catch (_) {
+      return 'unsupported';
+    }
+  }
 
   AppStore? _store;
   Timer? _debounce;

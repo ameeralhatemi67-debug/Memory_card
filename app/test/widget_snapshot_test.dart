@@ -36,7 +36,7 @@ void main() {
 
   test('the snapshot holds the day and the cards closest to slipping, most urgent first', () {
     final s = buildWidgetSnapshot(store);
-    expect(s['v'], 1);
+    expect(s['v'], 2);
     expect(s['day'], store.today.day);
     expect(s['goal'], store.settings.goal);
     expect(s['done'], 0, reason: 'the clock jump started a new day');
@@ -50,6 +50,66 @@ void main() {
     expect(q.every((c) => !store.data.cards[c['id']]!.isNew), isTrue, reason: 'new cards have nothing to recall yet');
     expect(q.first['deckName'], deck.name);
     expect(() => jsonEncode(s), returnsNormally);
+  });
+
+  test('the snapshot carries what the newer widgets draw: heat, forecast, health ahead, membership, seals, decks, look', () {
+    final s = buildWidgetSnapshot(store);
+    expect((s['heat']! as List).length, 126);
+    expect((s['forecast']! as List).length, 14);
+    expect((s['forecast']! as List).cast<int>().every((n) => n >= 0), isTrue);
+    final hz = (s['hz']! as List).cast<double>();
+    final sz = (s['sz']! as List).cast<int>();
+    expect(hz.length, 25);
+    expect(sz.length, 25);
+    expect(hz.first, greaterThan(hz.last), reason: 'recall only falls while you are away');
+    expect(sz.first, lessThanOrEqualTo(sz.last), reason: 'cards only slip further as time passes');
+    final m = s['member']! as Map;
+    expect(m['tier'], anyOf('Bronze', 'Silver', 'Gold', 'Platinum'));
+    expect(m['name'], 'Guest Learner');
+    final seals = s['seals']! as Map;
+    expect(seals['total'], greaterThan(10));
+    final decks = (s['decks']! as List).cast<Map<String, Object?>>();
+    expect(decks, isNotEmpty);
+    expect(decks.first['name'], deck.name);
+    expect(decks.first['steps'], inInclusiveRange(0, 5));
+    final look = s['look']! as Map;
+    expect(look['theme'], 'auto');
+    expect(look['accent'], 'red');
+    expect(look['corners'], 'round');
+    expect(look['opacity'], 100);
+    expect(look['motion'], isTrue);
+    expect(() => jsonEncode(s), returnsNormally);
+  });
+
+  test('the Look settings reach the widgets, and reduced motion switches their motion off', () {
+    store.updateSettings((x) {
+      x.widgetTheme = 'dark';
+      x.widgetAccent = 'blue';
+      x.widgetCorners = 'square';
+      x.widgetOpacity = 70;
+      x.widgetSurfaces['streak'] = 'paper';
+      x.reducedMotion = true;
+    });
+    final look = buildWidgetSnapshot(store)['look']! as Map;
+    expect(look['theme'], 'dark');
+    expect(look['accent'], 'blue');
+    expect(look['corners'], 'square');
+    expect(look['opacity'], 70);
+    expect(look['motion'], isFalse, reason: 'reduced motion wins');
+    expect((look['surfaces']! as Map)['streak'], 'paper');
+    // And they survive a save: settings round-trip through JSON.
+    final back = Settings.fromJson(jsonDecode(jsonEncode(store.settings.toJson())) as Map);
+    expect(back.widgetAccent, 'blue');
+    expect(back.widgetOpacity, 70);
+    expect(back.widgetSurfaces['streak'], 'paper');
+    store.updateSettings((x) {
+      x.widgetTheme = 'auto';
+      x.widgetAccent = 'red';
+      x.widgetCorners = 'round';
+      x.widgetOpacity = 100;
+      x.widgetSurfaces.clear();
+      x.reducedMotion = false;
+    });
   });
 
   test('the inbox keeps only answers newer than the watermark, oldest first', () {

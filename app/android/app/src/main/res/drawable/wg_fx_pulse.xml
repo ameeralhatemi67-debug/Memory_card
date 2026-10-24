@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- A ring that swells and fades, over and over: "this one is today". -->
+<animated-vector xmlns:android="http://schemas.android.com/apk/res/android" android:drawable="@drawable/wg_fx_pulse_vd">
+    <target android:name="ring" android:animation="@animator/wg_fx_ring_grow" />
+    <target android:name="stroke" android:animation="@animator/wg_fx_ring_fade" />
+</animated-vector>

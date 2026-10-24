@@ -232,13 +232,6 @@ class _Greeting extends StatelessWidget {
   }
 }
 
-String _tier(int mastered, int best) {
-  if (mastered >= 1000 || best >= 365) return 'Platinum';
-  if (mastered >= 400 || best >= 100) return 'Gold';
-  if (mastered >= 100 || best >= 30) return 'Silver';
-  return 'Bronze';
-}
-
 Color _tierColor(String t) => switch (t) {
       'Platinum' => const Color(0xFFBFE3EC),
       'Gold' => const Color(0xFFE9C46A),
@@ -256,7 +249,7 @@ class _CardFront extends StatelessWidget {
     final lib = store.libraryStats();
     final p = store.data.profile;
     final streak = store.engine.liveStreak();
-    final tier = _tier(lib.mastered, p.bestStreak);
+    final tier = tierFor(lib.mastered, p.bestStreak);
     final since = DateTime.fromMillisecondsSinceEpoch(p.since).year;
     String four(int v) => v.clamp(0, 9999).toString().padLeft(4, '0');
     final digits = [

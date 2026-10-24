@@ -15,6 +15,14 @@ class SealDef {
   final int color;
 }
 
+/// The membership tier (Bronze · Silver · Gold · Platinum) for what you have mastered and your best streak.
+String tierFor(int mastered, int best) {
+  if (mastered >= 1000 || best >= 365) return 'Platinum';
+  if (mastered >= 400 || best >= 100) return 'Gold';
+  if (mastered >= 100 || best >= 30) return 'Silver';
+  return 'Bronze';
+}
+
 class Seals {
   const Seals._();
 

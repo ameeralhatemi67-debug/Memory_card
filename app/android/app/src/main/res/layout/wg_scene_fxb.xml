@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Things that move behind the lettering. Each is a ProgressBar, which launchers keep animating: the seal and
+     the shop badges turn (every one at its own speed), the flame never holds still. All are white, tinted at run
+     time, and gone until a scene places them (sizes and margins are set from code). -->
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ProgressBar android:id="@+id/fx_seal0" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_seal" android:indeterminateDuration="32000" />
+    <ProgressBar android:id="@+id/fx_seal1" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_seal" android:indeterminateDuration="27000" />
+    <ProgressBar android:id="@+id/fx_seal2" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_seal" android:indeterminateDuration="36000" />
+    <ProgressBar android:id="@+id/fx_seal3" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_seal" android:indeterminateDuration="30000" />
+
+    <ProgressBar android:id="@+id/fx_badge0" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_badge_scallop" android:indeterminateDuration="22000" />
+    <ProgressBar android:id="@+id/fx_badge1" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_badge_squircle" android:indeterminateDuration="28000" />
+    <ProgressBar android:id="@+id/fx_badge2" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_badge_burst" android:indeterminateDuration="25000" />
+    <ProgressBar android:id="@+id/fx_badge3" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_badge_blob" android:indeterminateDuration="31000" />
+
+    <ProgressBar android:id="@+id/fx_flame0" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_flame" />
+    <ProgressBar android:id="@+id/fx_flame1" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_flame" />
+    <ProgressBar android:id="@+id/fx_flameo0" style="@style/WgFx" android:indeterminateDrawable="@drawable/wg_fx_flame_outline" />
+</FrameLayout>

@@ -4,6 +4,7 @@ import android.content.SharedPreferences
 import org.json.JSONArray
 import org.json.JSONObject
 import java.time.Instant
+import java.time.LocalDate
 import java.time.ZoneId
 import kotlin.math.max
 
@@ -16,13 +17,24 @@ internal object Keys {
     /** The Quick card that is turned over, and when it was. */
     const val OPEN = "mc.qc.open"
     const val OPEN_AT = "mc.qc.openAt"
+
+    /** The membership card is showing its back. */
+    const val MEMBER_BACK = "mc.member.back"
 }
 
 /** Study days start at 04:00 local time, as in lib/engine/days.dart. */
 internal fun dayNumber(ms: Long): Long =
     Instant.ofEpochMilli(ms).atZone(ZoneId.systemDefault()).minusHours(4).toLocalDate().toEpochDay()
 
-private fun JSONObject.text(key: String): String? = if (isNull(key)) null else optString(key).ifEmpty { null }
+/** Monday is 0. */
+internal fun weekdayOf(day: Long): Int = LocalDate.ofEpochDay(day).dayOfWeek.value - 1
+
+internal fun JSONObject.text(key: String): String? = if (isNull(key)) null else optString(key).ifEmpty { null }
+
+internal fun JSONObject.ints(key: String): List<Int> {
+    val a = optJSONArray(key) ?: return emptyList()
+    return List(a.length()) { a.optInt(it) }
+}
 
 /** A card the Quick card can show (lib/data/widget_snapshot.dart › widgetQueue). */
 internal class QCard(o: JSONObject) {
@@ -64,24 +76,32 @@ internal class Review(val card: String, val deck: String, val grade: Int, val ts
  * since then are counted in, and a study day the app has not seen yet is worked out the way the engine would
  * (a new day starts empty; missed days use grace shields or end the streak).
  */
-internal class WidgetState(prefs: SharedPreferences) {
-    private val snap: JSONObject? = prefs.getString(Keys.SNAPSHOT, null)?.let { runCatching { JSONObject(it) }.getOrNull() }
-
+internal class WidgetState(
+    /** The app's snapshot, as written (null until the app has run once). */
+    val snap: JSONObject?,
+    inbox: List<Review>,
+    applied: Long,
+    val openCard: String?,
+    val openAt: Long?,
+    /** The phone's real clock, in ms. */
+    val clock: Long = System.currentTimeMillis(),
+    /** The membership card has been turned over. */
+    val memberBack: Boolean = false,
+) {
     /** The app has written a snapshot (it has been opened since the widget was placed). */
     val ready = snap != null
-    private val offset = snap?.optLong("offset") ?: 0L
-    val now = System.currentTimeMillis() + offset
+    val look = Look(snap?.optJSONObject("look"))
+    val offset = snap?.optLong("offset") ?: 0L
+    val now = clock + offset
     val today = dayNumber(now)
-    private val snapDay = snap?.optLong("day", today) ?: today
-    private val sameDay = snapDay == today
+    val snapDay = snap?.optLong("day", today) ?: today
+    val sameDay = snapDay == today
 
-    val pending: List<Review> = run {
-        val applied = prefs.getString(Keys.APPLIED, null)?.toLongOrNull() ?: 0L
-        readInbox(prefs).filter { it.ts > applied }
-    }
+    val pending: List<Review> = inbox.filter { it.ts > applied }
+    private val answeredToday = pending.filter { dayNumber(it.ts + offset) == today }
 
     /** Quick card answers given today that the app has not counted yet. */
-    val reviewedHere = pending.count { dayNumber(it.ts + offset) == today }
+    val reviewedHere = answeredToday.size
 
     val goal = snap?.optInt("goal", 20) ?: 20
     val done = (if (sameDay) snap?.optInt("done") ?: 0 else 0) + reviewedHere
@@ -91,6 +111,13 @@ internal class WidgetState(prefs: SharedPreferences) {
     val lastDeck = snap?.text("lastDeck")
     val minutes = if (sameDay) snap?.optInt("mins") ?: 0 else 0
     val best = snap?.optInt("best") ?: 0
+
+    /** How today's answers went: remembered, relearned (Again), and the Hard and Easy among the remembered. */
+    val ok = (if (sameDay) snap?.optInt("ok") ?: 0 else 0) + answeredToday.count { it.grade >= 3 }
+    val fail = (if (sameDay) snap?.optInt("fail") ?: 0 else 0) + answeredToday.count { it.grade <= 1 }
+    val hard = if (sameDay) snap?.optInt("hard") ?: 0 else 0
+    val easy = if (sameDay) snap?.optInt("easy") ?: 0 else 0
+    val good get() = max(0, ok - hard - easy)
 
     val streak: Int
     val shields: Int
@@ -132,6 +159,15 @@ internal class WidgetState(prefs: SharedPreferences) {
     /** After 18:00 with the goal not met yet, the flame asks for today. */
     val atRisk = !goalHit && streak > 0 && Instant.ofEpochMilli(now).atZone(ZoneId.systemDefault()).hour >= 18
 
+    /** Study days of the last two weeks on which the goal was met (not counting today). */
+    val goalDays: Set<Long> = snap?.optJSONArray("goalDays")?.let { a -> (0 until a.length()).map { a.optLong(it) }.toSet() } ?: emptySet()
+
+    /** The same day drawn with another Look (Settings shows the choices as they are made). */
+    fun withLook(look: JSONObject): WidgetState {
+        val copy = JSONObject(snap?.toString() ?: "{}").put("look", look)
+        return WidgetState(copy, pending, 0L, openCard, openAt, clock, memberBack)
+    }
+
     /** The Quick card's cards, minus the ones answered here since the snapshot. */
     val queue: List<QCard> = run {
         val answered = pending.map { it.card }.toSet()
@@ -140,10 +176,16 @@ internal class WidgetState(prefs: SharedPreferences) {
     }
     val slippingLeft = queue.count { it.slipping }
 
-    val openCard: String? = prefs.getString(Keys.OPEN, null)
-    val openAt: Long? = prefs.getString(Keys.OPEN_AT, null)?.toLongOrNull()
-
     companion object {
+        fun from(prefs: SharedPreferences): WidgetState = WidgetState(
+            snap = prefs.getString(Keys.SNAPSHOT, null)?.let { runCatching { JSONObject(it) }.getOrNull() },
+            inbox = readInbox(prefs),
+            applied = prefs.getString(Keys.APPLIED, null)?.toLongOrNull() ?: 0L,
+            openCard = prefs.getString(Keys.OPEN, null),
+            openAt = prefs.getString(Keys.OPEN_AT, null)?.toLongOrNull(),
+            memberBack = prefs.getBoolean(Keys.MEMBER_BACK, false),
+        )
+
         fun readInbox(prefs: SharedPreferences): List<Review> {
             val raw = prefs.getString(Keys.INBOX, null) ?: return emptyList()
             val list = runCatching { JSONArray(raw) }.getOrNull() ?: return emptyList()
