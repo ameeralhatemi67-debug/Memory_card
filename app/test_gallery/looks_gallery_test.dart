@@ -126,6 +126,8 @@ void main() {
         }
         s.shiftClock(msPerDay);
       }
+      // A long name wraps the greeting to two lines, as on the owner's phone.
+      s.updateSettings((x) => x.name = 'Amir Alhatemi');
       s.setOnboarded();
       for (final id in ['drawer', 'shop-hold', 'study-swipe', 'deck-swipe']) {
         s.markCoach(id);

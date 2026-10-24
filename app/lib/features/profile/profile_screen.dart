@@ -63,7 +63,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
     final dark = Theme.of(context).brightness == Brightness.dark;
     final cardH = math.min(244.0, (w - 28) * 0.63);
     // In the nav bar the page ends above it; on short phones it scrolls instead of overlapping.
-    final bottom = mq.padding.bottom + (widget.inShell ? NavBar.height : 0) + 24;
+    final bottom = mq.padding.bottom + (widget.inShell ? NavBar.height + 40 : 0) + 24;
     final card = SizedBox(
       height: cardH,
       child: GestureDetector(
@@ -135,8 +135,10 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
           ),
         ),
         Positioned.fill(
+          // When the page is taller than the screen (a long name, a small phone), its bottom melts into the
+          // wall above the nav bar instead of running under it.
           child: LayoutBuilder(builder: (context, box) {
-            return SingleChildScrollView(
+            final scroll = SingleChildScrollView(
               physics: const BouncingScrollPhysics(),
               child: ConstrainedBox(
                 constraints: BoxConstraints(minHeight: box.maxHeight),
@@ -162,6 +164,8 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                 ),
               ),
             );
+            if (!widget.inShell) return scroll;
+            return EdgeFade(bottom: 56, bottomInset: NavBar.height + mq.padding.bottom, child: scroll);
           }),
         ),
         Positioned(
@@ -190,13 +194,6 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                     store.updateSettings((s) => s.theme = dark ? 'light' : 'dark');
                   },
                 ),
-                if (widget.inShell)
-                  IconTap(
-                    icon: McIcons.gear,
-                    label: 'Settings',
-                    size: const Size(28, 32),
-                    onTap: () => Navigator.of(context, rootNavigator: true).push(SettingsScreen.route()),
-                  ),
               ]),
             ),
           ),
