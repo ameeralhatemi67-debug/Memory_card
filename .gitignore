@@ -24,10 +24,11 @@ build/
 # Tooling
 .serena/
 
-# Commercial font (Monotype) — local dev only, never redistribute (see docs/Audit/audit_v2_2026-10-21.md F3)
-BernardMTCondensed.ttf
+# Fonts are tracked on purpose: the app, the web mockup and the promo videos need Bernard MT Condensed
+# to build and render. See fonts/README.md.
 
-# Built app packages (see app/README.md)
+# Built app packages. APKs are 150 MB: they are shared as GitHub Release downloads, never committed
+# (see README.md and tools/release.ps1)
 release/
 *.apk
 
