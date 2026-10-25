@@ -3,6 +3,7 @@ import 'dart:ui' as ui;
 
 import 'package:flutter/material.dart';
 import 'package:flutter/physics.dart';
+import 'package:flutter/scheduler.dart';
 
 import '../../data/models.dart';
 import '../../engine/study_engine.dart';
@@ -12,9 +13,14 @@ import '../../ui/deck_look.dart';
 import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
+import '../../ui/overlays.dart';
+import '../../ui/shapes.dart';
 import '../../ui/sink_mask.dart';
 import '../../ui/textures.dart';
 import '../../ui/theme.dart';
+import 'deck_flights.dart';
+import 'deck_motion.dart';
+import 'move_flight.dart';
 
 /// Which deck row is swiped open (only one at a time).
 final openDeck = ValueNotifier<String?>(null);
@@ -71,6 +77,7 @@ class DeckRow extends StatefulWidget {
     required this.onArchive,
     required this.onMove,
     required this.onPin,
+    this.onMoveTo,
     this.archived = false,
     this.demo = false,
     this.highlight = false,
@@ -84,6 +91,10 @@ class DeckRow extends StatefulWidget {
   final VoidCallback onArchive;
   final VoidCallback onMove;
   final VoidCallback onPin;
+
+  /// Move D: the deck was hauled off to the folder with this id. When this is null (or motion is reduced) a tap on the
+  /// Move chip asks with [onMove]'s sheet as before.
+  final ValueChanged<String>? onMoveTo;
   final bool archived;
 
   /// Plays the "this swipes" hint once (first visit).
@@ -114,6 +125,32 @@ class _Motion extends ChangeNotifier {
   }
 }
 
+/// What a deck bar looks like while it is held (Delete A), has burst, or is being carried by a flight (Archive B,
+/// Pin A): a rocking pose, the ring round the delete chip, cold sweat, how visible the chips are, and whether the
+/// bar is drawn somewhere else for the moment. A notifier, so that only the row's moving parts rebuild.
+class _HoldView extends ChangeNotifier {
+  double rot = 0; // radians
+  double scale = 1;
+  double ring = 0; // 0…1 round the delete chip
+  double sweat = 0; // 0…1
+  double clock = 0; // seconds, for the sweat
+  double tiles = 1; // opacity of the action chips
+  bool hidden = false;
+
+  void touch() => notifyListeners();
+
+  void reset() {
+    rot = 0;
+    scale = 1;
+    ring = 0;
+    sweat = 0;
+    tiles = 1;
+    hidden = false;
+  }
+}
+
+enum _HoldMode { idle, pressing, cancelling, committed, ghost }
+
 class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
   /// The swipe's extent and side. A swipe repaints the bar's offset, the action tiles and the edge fade;
   /// the bar itself (text, fan, textures, shadows) is built once and kept as a cached layer.
@@ -134,6 +171,15 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
   );
   late final AnimationController _glow = AnimationController(vsync: this, duration: const Duration(milliseconds: 1400));
 
+  // Delete A (hold to delete), Archive B and Pin A (the deck is carried by a flight in the overlay). Motion is
+  // reduced → the old fade-and-collapse paths below are used instead.
+  final _hv = _HoldView();
+  late final Ticker _hold = createTicker(_onHoldTick);
+  _HoldMode _hm = _HoldMode.idle;
+  double _t = 0;
+  double _cancelAt = 0, _cancelRot = 0, _cancelP = 0;
+  ValueNotifier<Rect?>? _pinEnd;
+
   @override
   void initState() {
     super.initState();
@@ -149,7 +195,21 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
     _motion.dispose();
     _remove.dispose();
     _glow.dispose();
+    _hold.dispose();
+    _hv.dispose();
     super.dispose();
+  }
+
+  @override
+  void didUpdateWidget(DeckRow old) {
+    super.didUpdateWidget(old);
+    // Pin A: once the store has pinned the deck, its place in the list is known: tell the flight where to land.
+    final end = _pinEnd;
+    if (end != null && end.value == null && widget.deck.pinned) {
+      WidgetsBinding.instance.addPostFrameCallback((_) {
+        if (mounted && end.value == null) end.value = _rects().rest;
+      });
+    }
   }
 
   void _onOpenChanged() {
@@ -260,6 +320,248 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
     if (openDeck.value == widget.deck.id) openDeck.value = null;
   }
 
+  // ------------------------------------------------------------------------------- Delete A: hold to delete
+
+  /// The bar's place in the list (swipe closed) and where it is right now, in screen coordinates.
+  ({Rect rest, Rect start}) _rects() {
+    final box = context.findRenderObject()! as RenderBox;
+    final width = MediaQuery.of(context).size.width;
+    final barW = math.min(width - 2 * _margin, 520.0);
+    final origin = box.localToGlobal(Offset.zero);
+    final rest = Rect.fromLTWH(origin.dx + (width - barW) / 2, origin.dy, barW, 72);
+    final e = _motion.e, dir = _motion.dir;
+    final tx = dir == 0 ? 0.0 : dir * (e - (_margin - _gap) * (1 - math.exp(-e / 20)));
+    return (rest: rest, start: rest.shift(Offset(tx, 0)));
+  }
+
+  FlightDeck _flightDeck() => FlightDeck(
+    id: widget.deck.id,
+    name: widget.deck.name,
+    meta: deckMetaOf(widget.stats),
+    steps: widget.stats.steps,
+    skin: widget.skin,
+    pinned: widget.deck.pinned,
+  );
+
+  bool get _open => _motion.dir < 0 && _motion.e > _step1 * 0.8;
+
+  void _holdStart() {
+    if (_removing != null || _hm != _HoldMode.idle && _hm != _HoldMode.cancelling) return;
+    _hv.reset();
+    _hm = _HoldMode.pressing;
+    _t = 0;
+    if (_hold.isActive) _hold.stop();
+    _hold.start();
+    Fx.i.tap();
+  }
+
+  /// Lets go before the end: the deck stops shivering and settles back.
+  void _holdEnd() {
+    if (_hm != _HoldMode.pressing) return;
+    final hp = holdPose(_t);
+    _hm = _HoldMode.cancelling;
+    _cancelAt = _t;
+    _cancelRot = _hv.rot;
+    _cancelP = hp.p;
+  }
+
+  void _holdReset() {
+    _hold.stop();
+    _hm = _HoldMode.idle;
+    _hv.reset();
+    _hv.touch();
+  }
+
+  void _onHoldTick(Duration d) {
+    final t = d.inMicroseconds / 1e6;
+    _t = t;
+    final reduced = MotionPrefs.reducedOf(context);
+    switch (_hm) {
+      case _HoldMode.idle:
+        break;
+      case _HoldMode.pressing:
+        final hp = holdPose(t);
+        _hv.rot = reduced ? 0 : hp.rot;
+        _hv.scale = reduced ? 1 : 1 - 0.035 * hp.p;
+        _hv.ring = hp.p;
+        _hv.sweat = reduced ? 0 : hp.p;
+        _hv.clock = t;
+        if (t >= kHoldSeconds) {
+          _hm = _HoldMode.committed;
+          if (reduced) {
+            _holdReset();
+            _removeThen('delete', widget.onDelete);
+            return;
+          }
+        }
+      case _HoldMode.cancelling:
+        final u = t - _cancelAt;
+        final k = 1 - Mo.spr(u, 0.45, 15);
+        _hv.rot = _cancelRot * k;
+        _hv.scale = 1 - 0.035 * _cancelP * math.max(0.0, k);
+        _hv.ring = _cancelP * (1 - Mo.eo3(u / 0.3));
+        _hv.sweat = 0;
+        if (u > 0.9) {
+          _holdReset();
+          return;
+        }
+      case _HoldMode.committed:
+        final u = t - kHoldSeconds;
+        final inflate = Mo.eo3(u / 0.1);
+        _hv.rot = holdPose(kHoldSeconds).rot * (1 - inflate);
+        _hv.scale = 0.965 + 0.095 * inflate;
+        _hv.ring = 1 - inflate;
+        _hv.sweat = 0;
+        _hv.tiles = 1 - Mo.eo3(u / 0.2);
+        if (u >= 0.1) {
+          _burst();
+          return;
+        }
+      case _HoldMode.ghost:
+        _hv.tiles = 1 - Mo.eo3(t / 0.2);
+        if (t >= 0.2) {
+          _hold.stop();
+          _motion.update(e: 0, dir: 0);
+          if (openDeck.value == widget.deck.id) openDeck.value = null;
+        }
+    }
+    _hv.touch();
+  }
+
+  /// The deck pops into paper scraps (an overlay outlives the row) and the others close the gap.
+  void _burst() {
+    _hold.stop();
+    _hm = _HoldMode.idle;
+    final r = _rects().start;
+    _hv
+      ..reset()
+      ..hidden = true
+      ..tiles = 0;
+    _hv.touch();
+    Fx.i.thud();
+    startFlight(context, (done) => BurstFlight(center: r.center, barWidth: r.width, onDone: done));
+    widget.onDelete();
+  }
+
+  // ------------------------------------------------------------------------------- Archive B, Pin A
+
+  /// The bar is lifted off the row (a flight in the overlay draws it): the chips fade and the slot stays empty.
+  void _ghostStart() {
+    _hm = _HoldMode.ghost;
+    _hv
+      ..reset()
+      ..hidden = true;
+    _hold.stop();
+    _hold.start();
+    _hv.touch();
+  }
+
+  void _ghostEnd() {
+    if (!mounted) return;
+    _hold.stop();
+    _hm = _HoldMode.idle;
+    _pinEnd = null;
+    _hv.reset();
+    _hv.touch();
+  }
+
+  void _archiveTap() {
+    if (MotionPrefs.reducedOf(context) || widget.archived || _removing != null || _hm != _HoldMode.idle) {
+      _removeThen('archive', widget.onArchive);
+      return;
+    }
+    final r = _rects();
+    final count = (context.storeRead.data.folderById(Folder.archiveId)?.deckIds.length ?? 0) + 1;
+    final deck = _flightDeck();
+    final onArchive = widget.onArchive;
+    _ghostStart();
+    startFlight(
+      context,
+      (done) => ArchiveFlight(deck: deck, rest: r.rest, start: r.start, count: count, onRelease: onArchive, onDone: done),
+    );
+  }
+
+  void _pinTap() {
+    if (MotionPrefs.reducedOf(context) || widget.deck.pinned || _removing != null || _hm != _HoldMode.idle) {
+      _close();
+      widget.onPin();
+      return;
+    }
+    final r = _rects();
+    final end = ValueNotifier<Rect?>(null);
+    _pinEnd = end;
+    final deck = _flightDeck();
+    final onPin = widget.onPin;
+    _ghostStart();
+    startFlight(
+      context,
+      (done) => PinFlight(
+        deck: deck,
+        rest: r.rest,
+        start: r.start,
+        end: end,
+        onRelease: onPin,
+        onDone: () {
+          done();
+          _ghostEnd();
+          end.dispose();
+        },
+      ),
+    );
+  }
+
+  /// Move D: a card with a fedora is dealt with the folders, and the deck is hauled off to the one you pick.
+  void _moveTap() {
+    final onMoveTo = widget.onMoveTo;
+    if (onMoveTo == null || MotionPrefs.reducedOf(context) || _removing != null || _hm != _HoldMode.idle) {
+      _close();
+      widget.onMove();
+      return;
+    }
+    final r = _rects();
+    final store = context.storeRead;
+    final from = store.data.folderOf(widget.deck.id);
+    final dark = Mc.of(context).dark;
+    final folders = [for (final f in store.data.folders) if (f.id != from?.id) f];
+    final options = [
+      for (var i = 0; i < folders.length; i++)
+        MoveFolderOption(
+          id: folders[i].id,
+          name: folders[i].name,
+          decks: folders[i].deckIds.length,
+          // The card is the inverse of the page, so are its folder tabs.
+          tab: folderShade(i, !dark).c1,
+        ),
+    ];
+    final deck = _flightDeck();
+    startFlight(
+      context,
+      (done) => MoveFlight(
+        deck: deck,
+        rest: r.rest,
+        start: r.start,
+        options: options,
+        onChosen: _ghostStart,
+        onNewFolder: _askNewFolder,
+        onRelease: onMoveTo,
+        onCancel: () {},
+        onDone: () {
+          done();
+          _ghostEnd();
+        },
+      ),
+    );
+  }
+
+  Future<String?> _askNewFolder() async {
+    final store = context.storeRead;
+    final name = await promptText(context, title: 'Name the folder', initial: 'New folder');
+    if (name == null) return null;
+    final f = store.createFolder(name, atTop: false);
+    Fx.i.pop();
+    return f.id;
+  }
+
   Future<void> _removeThen(String kind, VoidCallback action) async {
     setState(() => _removing = kind);
     Fx.i.pop();
@@ -285,9 +587,14 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
       required bool left,
       double iconW = 65,
       VoidCallback? onTap,
+      GestureTapDownCallback? onTapDown,
+      GestureTapUpCallback? onTapUp,
+      GestureTapCancelCallback? onTapCancel,
+      Widget? extra,
       String? label,
       bool top = false,
     }) {
+      final fade = _hv.tiles;
       return Positioned(
         key: ValueKey('tile-$id'),
         top: 0,
@@ -298,8 +605,13 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
         child: Semantics(
           button: true,
           label: label,
-          child: GestureDetector(
+          child: Opacity(
+            opacity: fade,
+            child: GestureDetector(
             onTap: onTap,
+            onTapDown: onTapDown,
+            onTapUp: onTapUp,
+            onTapCancel: onTapCancel,
             child: Container(
               decoration: BoxDecoration(
                 color: color,
@@ -324,11 +636,18 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
                 child: SizedBox(
                   width: top ? math.max(iconW, w) : iconW,
                   child: Center(
-                    child: McIcon(icon, size: size, color: Mc.graphite),
+                    child: extra == null
+                        ? McIcon(icon, size: size, color: Mc.graphite)
+                        : Stack(
+                            alignment: Alignment.center,
+                            clipBehavior: Clip.none,
+                            children: [extra, McIcon(icon, size: size, color: Mc.graphite)],
+                          ),
                   ),
                 ),
               ),
             ),
+          ),
           ),
         ),
       );
@@ -357,7 +676,7 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
     final row = SizedBox(
       height: 72,
       child: AnimatedBuilder(
-        animation: _motion,
+        animation: Listenable.merge([_motion, _hv]),
         child: barVisual,
         builder: (context, bar) {
           final e = _motion.e < 0.5 ? 0.0 : _motion.e;
@@ -384,8 +703,13 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
                   const Size(20, 20),
                   e,
                   left: false,
-                  onTap: () => _removeThen('delete', widget.onDelete),
-                  label: 'Delete deck',
+                  onTapDown: (_) => _holdStart(),
+                  onTapUp: (_) => _holdEnd(),
+                  onTapCancel: _holdEnd,
+                  extra: _hv.ring > 0.001
+                      ? SizedBox(width: 44, height: 44, child: CustomPaint(painter: HoldRingPainter(_hv.ring, Mc.graphite)))
+                      : null,
+                  label: 'Delete deck, press and hold',
                 ),
                 if (second > 0)
                   tile(
@@ -396,7 +720,7 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
                     second,
                     left: false,
                     top: true,
-                    onTap: () => _removeThen('archive', widget.onArchive),
+                    onTap: _archiveTap,
                     label: widget.archived ? 'Restore deck' : 'Archive deck',
                   ),
               ],
@@ -410,10 +734,7 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
                   e,
                   left: true,
                   iconW: 58,
-                  onTap: () {
-                    _close();
-                    widget.onMove();
-                  },
+                  onTap: _moveTap,
                   label: 'Move deck to another folder',
                 ),
                 if (second > 0)
@@ -426,10 +747,7 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
                     left: true,
                     top: true,
                     iconW: 54,
-                    onTap: () {
-                      _close();
-                      widget.onPin();
-                    },
+                    onTap: _pinTap,
                     label: widget.deck.pinned ? 'Unpin deck' : 'Pin deck to the top',
                   ),
               ],
@@ -459,21 +777,51 @@ class _DeckRowState extends State<DeckRow> with TickerProviderStateMixin {
                         Positioned(
                           left: left0,
                           top: _shadowRoom,
-                          child: GestureDetector(
+                          // The touch area travels with the bar: it used to stay where the bar rests and sat on top of the
+                          // chips, so only the sliver of a chip beyond the bar's old edge could be pressed.
+                          child: Transform.translate(
+                            offset: Offset(tx, 0),
+                            child: GestureDetector(
                             behavior: HitTestBehavior.opaque,
-                            onHorizontalDragStart: _removing == null ? _onStart : null,
-                            onHorizontalDragUpdate: _removing == null ? _onUpdate : null,
-                            onHorizontalDragEnd: _removing == null ? _onEnd : null,
-                            onHorizontalDragCancel: _removing == null ? _onCancel : null,
+                            onHorizontalDragStart: _removing == null && _hm != _HoldMode.ghost ? _onStart : null,
+                            onHorizontalDragUpdate: _removing == null && _hm != _HoldMode.ghost ? _onUpdate : null,
+                            onHorizontalDragEnd: _removing == null && _hm != _HoldMode.ghost ? _onEnd : null,
+                            onHorizontalDragCancel: _removing == null && _hm != _HoldMode.ghost ? _onCancel : null,
+                            onTapDown: (_) {
+                              if (_open && _removing == null && _hm == _HoldMode.idle) _holdStart();
+                            },
+                            onTapCancel: _holdEnd,
                             onTap: () {
+                              if (_hm == _HoldMode.ghost) return;
+                              final held = _hm == _HoldMode.pressing ? _t : 0.0;
+                              _holdEnd();
                               if (_motion.e > 0.5) {
-                                _close();
+                                if (held < 0.18) _close();
                               } else {
                                 Fx.i.tap();
                                 widget.onOpen();
                               }
                             },
-                            child: Transform.translate(offset: Offset(tx, 0), child: bar),
+                            // The rocking pose of a held deck, and the cold sweat. Always in the tree (identity when
+                            // idle), so the bar is never re-parented.
+                            child: Transform(
+                                alignment: Alignment.center,
+                                transform: Matrix4.identity()
+                                  ..rotateZ(_hv.rot)
+                                  ..scaleByDouble(_hv.scale, _hv.scale, 1, 1),
+                                child: Stack(
+                                  clipBehavior: Clip.none,
+                                  children: [
+                                    Opacity(opacity: _hv.hidden ? 0 : 1, child: bar),
+                                    Positioned.fill(
+                                      child: IgnorePointer(
+                                        child: CustomPaint(painter: SweatPainter(_hv.sweat, _hv.clock)),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ),
+                            ),
                           ),
                         ),
                       ],
@@ -531,6 +879,7 @@ class DeckBarFace extends StatelessWidget {
     this.pinned = false,
     this.skin,
     this.glow = 0,
+    this.titleShift = 0,
   });
 
   /// Seeds the riffle's timing, so bars never move in lockstep.
@@ -544,6 +893,9 @@ class DeckBarFace extends StatelessWidget {
 
   /// 0…1: the peach glow of a deck that was just added.
   final double glow;
+
+  /// Pushes the name to the right (px): room for the pin while it is being pressed in (Pin A's flight).
+  final double titleShift;
 
   @override
   Widget build(BuildContext context) {
@@ -617,7 +969,9 @@ class DeckBarFace extends StatelessWidget {
             left: 16,
             top: 11,
             right: 112,
-            child: Row(
+            child: Padding(
+              padding: EdgeInsets.only(left: titleShift),
+              child: Row(
               children: [
                 if (pinned) ...[
                   McIcon(McIcons.pin, size: const Size(15, 15), color: Mc.green),
@@ -632,6 +986,7 @@ class DeckBarFace extends StatelessWidget {
                   ),
                 ),
               ],
+            ),
             ),
           ),
           Positioned(

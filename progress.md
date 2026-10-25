@@ -41,6 +41,33 @@ This document records verified outcomes, technical approaches, and architectural
 
 ## Flutter App Outcomes (pulled forward from Version 4.0)
 
+### 2026-10-25 — Deck swipe actions: Delete A, Archive B, Pin A, Move D with a dealt fedora card (not yet in a release)
+
+- **Outcome Summary:** The owner compared eight animated takes on the design canvas
+  (https://claude.ai/artifact/BAzpHdCtH8nxanCYBifZFe, "Deck swipe actions") and picked three. They are in the app:
+  **Delete A "Cold feet"** (hold the red chip or the open bar for 1.15 s: the deck rocks up to 4°, slow then fast, with
+  cold sweat and a ring round the chip; it bursts into paper; letting go early settles it back),
+  **Archive B "Snap-in"** (the deck is lifted, pops and drops into a tray that slides up above the nav bar) and
+  **Pin A "Press from above"** (the deck lifts and flies to its place, a pin comes down along the z axis and presses
+  in). **Move D** (the owner's pick for the animation and for the picker, canvas boards "Move · D" and "D1"): the Move
+  chip deals a card from the + card (the same flip as New deck / New card) with a fedora on its corner and the
+  folders on it; the card keeps one height however many folders there are (the list scrolls inside it, with faded
+  edges and a thin scroll bar) and "+ New folder" stays pinned at its foot. Picking a folder takes the card back, and a
+  stage hook comes in from the left, catches the deck's lower left corner and hauls it off in three tugs and a yank
+  (hook white in dark mode, dark in light mode). The other decks spring into their new places in all four.
+- **How We Built It & Technical Approach:** `features/decks/deck_motion.dart` (the canvas's spring maths, the painters,
+  and `FlipSlot`, which springs a list row from where it was last painted to where the layout now puts it),
+  `deck_flights.dart` (overlay flights that outlive the row: the archive tray, the pin, the burst),
+  `move_flight.dart` (the folder card, the fedora, the hook and the haul) and additions to
+  `deck_row.dart` / `decks_screen.dart`. Nothing was removed: the sink mask, springs and detents are as before, and with
+  reduced motion the old fade-and-collapse paths are used. The pin icon in the bar title is made room for by
+  `DeckBarFace.titleShift`.
+- **Bug found on the way:** the bar's touch area stayed where the bar rests and sat on top of the chips, so only the
+  sliver of a chip beyond the bar's old edge could be pressed. It now travels with the bar.
+- **Verification Evidence:** `flutter analyze` clean; `flutter test` all pass (14 new in `test/deck_actions_test.dart`);
+  frames of each action in the real app in `build/gallery/act-*.png` (`test_gallery/deck_actions_gallery_test.dart`).
+  Not tried on a phone yet.
+
 ### 2026-10-25 — Public repository: README, fonts in git, an installable release (v1.4.1)
 
 - **Outcome Summary:** A visitor to the GitHub repository now lands on a front page that says what Memory Card is,

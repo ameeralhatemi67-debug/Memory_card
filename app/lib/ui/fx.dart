@@ -104,6 +104,12 @@ class Fx {
   }
 
   void pop() => _play('pop', 0.45);
+
+  /// A deck lands (in the archive tray) or a pin goes in.
+  void thud() {
+    _play('pop', 0.5);
+    _haptic(HapticFeedback.mediumImpact);
+  }
   void whoosh() => _play('whoosh', 0.4);
 
   void undo() {

@@ -20,6 +20,7 @@ import '../settings/settings_screen.dart';
 import '../shell/nav_bar.dart';
 import '../shell/shell.dart';
 import '../today/today_screen.dart';
+import 'deck_motion.dart';
 import 'deck_row.dart';
 import 'empty_folder.dart';
 
@@ -37,6 +38,15 @@ class _DecksScreenState extends State<DecksScreen> {
 
   /// The list has scrolled under the header: decks fade out at the top edge instead of being cut.
   bool _scrolled = false;
+
+  /// Bumped when a deck leaves the list or is pinned, so the other decks spring to their new places.
+  int _flipEpoch = 0;
+  _FlipPlan? _plan;
+
+  void _flip(_FlipPlan plan) {
+    _plan = plan;
+    _flipEpoch++;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -98,18 +108,42 @@ class _DecksScreenState extends State<DecksScreen> {
                             Cascade(
                               key: ValueKey(decks[i].id),
                               index: i + (showMix ? 1 : 0),
-                              child: DeckRow(
-                                deck: decks[i],
-                                stats: store.stats(decks[i]),
-                                archived: folder.isArchive,
-                                demo: firstVisit && i == 0,
-                                highlight: _highlight == decks[i].id,
-                                onOpen: () => Shell.of(context).study(decks[i].id),
-                                onDelete: () => _delete(store, decks[i]),
-                                onArchive: () => _archive(store, decks[i], folder),
-                                onMove: () => _move(context, store, decks[i]),
-                                onPin: () => store.togglePin(decks[i].id),
-                                skin: store.skinOf(decks[i]),
+                              child: FlipSlot(
+                                epoch: _flipEpoch,
+                                spec: _plan?.specFor(i, decks),
+                                skip: _plan?.pinId == decks[i].id,
+                                child: DeckRow(
+                                  deck: decks[i],
+                                  stats: store.stats(decks[i]),
+                                  archived: folder.isArchive,
+                                  demo: firstVisit && i == 0,
+                                  highlight: _highlight == decks[i].id,
+                                  onOpen: () => Shell.of(context).study(decks[i].id),
+                                  onDelete: () {
+                                    // Delete A: the others close the gap just after the deck bursts.
+                                    _flip(_FlipPlan.leaves(i, delay: 0.06, stagger: 0.05, z: 0.72, w: 17));
+                                    _delete(store, decks[i]);
+                                  },
+                                  onArchive: () {
+                                    // Archive B: they follow in a bouncy wave.
+                                    _flip(_FlipPlan.leaves(i, delay: 0, stagger: 0.06, z: 0.5, w: 20));
+                                    _archive(store, decks[i], folder);
+                                  },
+                                  onMove: () => _move(context, store, decks[i]),
+                                  onMoveTo: (fid) {
+                                    // Move D: they close the gap as the deck is hauled out of sight.
+                                    _flip(_FlipPlan.leaves(i, delay: 0, stagger: 0.06, z: 0.6, w: 14));
+                                    _moveTo(store, decks[i], fid);
+                                  },
+                                  onPin: () {
+                                    // Pin A: the decks above make room, the top one first.
+                                    _flip(decks[i].pinned
+                                        ? _FlipPlan.all(z: 0.8, w: 16)
+                                        : _FlipPlan.pinned(decks[i].id, delay: 0.06, stagger: 0.05, z: 0.8, w: 16));
+                                    store.togglePin(decks[i].id);
+                                  },
+                                  skin: store.skinOf(decks[i]),
+                                ),
                               ),
                             ),
                           if (firstVisit) _Hint(onSeen: () => store.markCoach('deck-swipe')),
@@ -145,6 +179,13 @@ class _DecksScreenState extends State<DecksScreen> {
   void _archive(AppStore store, Deck d, Folder from) {
     final undo = store.archiveDeck(d.id);
     Toaster.i.show(from.isArchive ? 'Restored ${d.name}' : 'Archived ${d.name}', undo: undo);
+  }
+
+  void _moveTo(AppStore store, Deck d, String folderId) {
+    final to = store.data.folderById(folderId);
+    if (to == null) return;
+    final undo = store.moveDeck(d.id, folderId);
+    Toaster.i.show('Moved to ${to.name}', undo: undo);
   }
 
   Future<void> _move(BuildContext context, AppStore store, Deck d) async {
@@ -184,6 +225,38 @@ class _DecksScreenState extends State<DecksScreen> {
       }, icon: McIcons.sun),
       MenuItemData('Settings', () => nav.push(SettingsScreen.route()), icon: McIcons.gear),
     ]);
+  }
+}
+
+/// How the rows of the list reorganise after one change (see [FlipSlot]).
+class _FlipPlan {
+  const _FlipPlan._(this.at, this.pinId, this.delay, this.stagger, this.z, this.w);
+
+  /// A deck at list index [at] left: every row from there on moves up, the nearest first.
+  const _FlipPlan.leaves(int at, {required double delay, required double stagger, required double z, required double w})
+      : this._(at, null, delay, stagger, z, w);
+
+  /// The deck [id] was pinned to the front: the rows between its new and its old place move down, the one next to
+  /// the front first. The pinned deck itself is flown by an overlay.
+  const _FlipPlan.pinned(String id, {required double delay, required double stagger, required double z, required double w})
+      : this._(-1, id, delay, stagger, z, w);
+
+  /// Everything simply springs to where it now is (a deck was unpinned).
+  const _FlipPlan.all({required double z, required double w}) : this._(-2, null, 0, 0, z, w);
+
+  final int at;
+  final String? pinId;
+  final double delay, stagger, z, w;
+
+  FlipSpec? specFor(int i, List<Deck> decks) {
+    if (at == -2) return FlipSpec(z: z, w: w);
+    if (pinId != null) {
+      final to = decks.indexWhere((d) => d.id == pinId);
+      if (i <= to) return null;
+      return FlipSpec(delay: delay + stagger * (i - to - 1), z: z, w: w);
+    }
+    if (i < at) return null;
+    return FlipSpec(delay: delay + stagger * (i - at), z: z, w: w);
   }
 }
 
