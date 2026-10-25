@@ -4,6 +4,7 @@ import 'dart:ui' as ui;
 import 'package:file_picker/file_picker.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
+import 'package:package_info_plus/package_info_plus.dart';
 import 'package:share_plus/share_plus.dart';
 
 import '../../data/models.dart';
@@ -42,12 +43,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
   int _versionTaps = 0;
   bool _lab = false;
 
+  /// The installed build, read from the package ("1.4.0 (8)"); empty until known, and in tests.
+  String _version = '';
+
   /// 0 General · 1 Texture.
   int _tab = 0;
 
   @override
   void initState() {
     super.initState();
+    PackageInfo.fromPlatform().then((p) {
+      if (mounted) setState(() => _version = '${p.version} (${p.buildNumber})');
+    }).catchError((_) {});
     if (widget.scrollToData) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
         final ctx = _dataKey.currentContext;
@@ -459,7 +466,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       Toaster.i.show('Lab unlocked');
                     }
                   },
-                  child: Text('Memory Card 1.0.0', style: T.t(14, w: FontWeight.w600, color: mc.muted)),
+                  child: Text(_version.isEmpty ? 'Memory Card' : 'Memory Card $_version',
+                      style: T.t(14, w: FontWeight.w600, color: mc.muted)),
                 ),
               ]),
             ],
@@ -565,7 +573,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
   Future<void> _feedback(BuildContext context) async {
     try {
       await SharePlus.instance.share(ShareParams(
-        text: 'Memory Card feedback:\n\n',
+        text: 'Memory Card ${_version.isEmpty ? '' : '$_version '}feedback:\n\n',
         subject: 'Memory Card feedback',
       ));
     } catch (_) {
