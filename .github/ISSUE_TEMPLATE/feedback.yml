@@ -1,0 +1,17 @@
+name: Feedback or idea
+description: Something you liked, disliked or would like to see
+labels: [enhancement]
+body:
+  - type: textarea
+    id: feedback
+    attributes:
+      label: What would you tell the author?
+      description: Anything about how it feels to use, a feature you miss, a deck you would like.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      description: Shown at the bottom of Settings.
+      placeholder: "1.4.1 (9)"

@@ -7,13 +7,18 @@ no server, no analytics.
 
 ## Install on an Android phone
 
-1. Copy `../release/MemoryCard-1.3.1.apk` (the same file as `build/app/outputs/flutter-apk/app-release.apk`)
-   to the phone: USB, a cloud drive, or email it to yourself.
-2. Open it on the phone. Android asks once to allow installs from that app (Files, Drive, Gmail…): allow it.
+1. Download **MemoryCard.apk** from the
+   [latest release](https://github.com/ameeralhatemi67-debug/Memory_card/releases/latest) on the phone itself, or
+   copy a build of your own (`build/app/outputs/flutter-apk/app-release.apk`) over USB, a cloud drive or email.
+2. Open it on the phone. Android asks once to allow installs from that app (Chrome, Files, Drive, Gmail…): allow it.
 3. Install, then open **Memory Card**.
 
-The APK is signed with this computer's debug key, so every newer build installs **over** the old one and
-keeps your cards and streak. Before reinstalling from scratch, use *Settings › Your data › Export backup*.
+The step-by-step guide, and what to do when Android refuses, is in the
+[repository README](../README.md#install-it-on-your-android-phone).
+
+The APK is signed with the owner's debug key, so every newer build from that key installs **over** the old one
+and keeps your cards and streak. A build from your own computer has a different key: back up with
+*Settings › Your data › Export backup*, uninstall the other copy, then install yours.
 
 Permissions: internet (only to download the two Google fonts once; they are cached), notifications
 (asked only if you turn the daily reminder on) and starting after a reboot (to keep that reminder).
@@ -25,9 +30,9 @@ no Android-only parts, so it is the same app once built on a Mac.
 
 Requirements: Flutter 3.41+ (Dart 3.11), Android SDK 36, JDK 17+.
 
+The display font (`assets/fonts/BernardMTCondensed.ttf`) is in the repository, so a plain clone builds.
+
 ```bash
-# The display font is commercial and not in git: copy it in once.
-cp ../fonts/BernardMTCondensed.ttf assets/fonts/
 flutter pub get
 flutter build apk --release        # → build/app/outputs/flutter-apk/app-release.apk
 flutter run                        # on a connected phone or an emulator
@@ -46,7 +51,7 @@ The deck catalog (`assets/content/catalog.json`) is generated from `../content/d
 | `lib/ui/` | Design tokens and typography (`theme.dart`), motion curves and keyframes, sounds and haptics (`fx.dart`), custom shapes (wax seal, folders, polar badges), sheets/dialogs/toasts, coach marks. |
 | `lib/features/` | One folder per screen: onboarding, decks, study, drawer, shop, editor, today, profile, settings, browse (deck and card detail), search, Memory Lab, help; `layout/` draws card sides (`layout_face.dart`) and edits them (`layout_editor.dart`, structured or free canvas). |
 | `lib/services/` | Daily reminder (local notifications), text-to-speech, and `image_ingest.dart` (bringing pictures in: PNG transparency kept, big photos shrunk). |
-| `assets/` | The shop's decks (`content/catalog.json`) and their pictures, skins and seal art, synthesized sound effects, the Bernard font (local only). |
+| `assets/` | The shop's decks (`content/catalog.json`) and their pictures, skins and seal art, synthesized sound effects, the Bernard font. |
 
 Data lives in Hive boxes on the device (IndexedDB on web). *Settings › Your data* exports a JSON backup
 (cards, history and the engine's learned state), restores it, and exports the review log as CSV.
@@ -130,7 +135,7 @@ and they appear in the seal gallery, the deck browser and the shop preview. Back
 
 ## Home-screen widgets (Android)
 
-Fifteen widgets in the launcher's widget list (or *Settings › Home screen widgets*, where each one has a live
+Thirteen widgets in the launcher's widget list (or *Settings › Home screen widgets*, where each one has a live
 preview, its sizes and an Add button), plus a Quick Settings tile. Sizes are columns × rows; each widget can only be
 resized to the sizes it was designed for.
 

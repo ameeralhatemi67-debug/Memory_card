@@ -1,0 +1,46 @@
+name: Bug report
+description: Something in Memory Card does not work, looks wrong or crashed
+labels: [bug]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for testing Memory Card. A few details make a bug much easier to find.
+  - type: textarea
+    id: what
+    attributes:
+      label: What happened?
+      description: What you did, what you expected, and what you saw instead. A screenshot or a short screen recording helps a lot.
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: App version
+      description: Shown at the bottom of Settings, for example "Memory Card 1.4.1 (9)".
+      placeholder: "1.4.1 (9)"
+    validations:
+      required: true
+  - type: input
+    id: phone
+    attributes:
+      label: Phone and Android version
+      description: For example "Samsung Galaxy S23, Android 14" (Settings > About phone).
+      placeholder: "Pixel 8, Android 15"
+    validations:
+      required: true
+  - type: dropdown
+    id: area
+    attributes:
+      label: Where did it happen?
+      multiple: true
+      options:
+        - Installing or updating the app
+        - Studying (the stack, swiping, revealing)
+        - A deck or card (wrong answer, bad picture)
+        - Shop
+        - Creating or editing cards and decks
+        - Home-screen widgets
+        - Backup and restore
+        - Reminders and notifications
+        - Something else

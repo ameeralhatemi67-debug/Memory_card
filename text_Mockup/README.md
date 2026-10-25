@@ -11,8 +11,10 @@ updated: 2026-08-14
 
 # 🎨 Memory Card — Living Design System & Interactive Mockup (`text_Mockup`)
 
-> **Parent Hub:** [[Ideas]] | [[Ideas/Future]] | [[Main Work Flow]]  
-> **Master Specification:** [[Ideas/Future/Memory Card/web_mockup.md|web_mockup.md]] | [[Ideas/Future/Memory Card/MC_Feature_list.md|MC_Feature_list.md]] | [[Ideas/Future/Memory Card/Questions.md|Questions.md]]
+> **This was the first design lab, built before the app.** The real app is in [`../app/`](../app/README.md) and the
+> project front page is the [repository README](../README.md). The specification this lab followed:
+> [web_mockup.md](../docs/original/web_mockup.md), [MC_Feature_list.md](../docs/original/MC_Feature_list.md) and
+> [Questions.md](../docs/other/Questions.md).
 
 ---
 
@@ -41,9 +43,11 @@ text_Mockup/
 Simply open **`index.html`** in any modern web browser (Chrome, Edge, Safari, Firefox):
 
 ```powershell
-# Double-click index.html or launch via powershell:
-Start-Process "c:\Users\User\Documents\Amir Ob\projects\Ideas\Future\Memory Card\text_Mockup\index.html"
+# Double-click index.html, or from the repository root in PowerShell:
+Start-Process text_Mockup\index.html
 ```
+
+On macOS or Linux: `open text_Mockup/index.html` or `xdg-open text_Mockup/index.html`.
 
 ---
 

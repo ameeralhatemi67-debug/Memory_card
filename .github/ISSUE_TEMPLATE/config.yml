@@ -1,0 +1,5 @@
+blank_issues_enabled: true
+contact_links:
+  - name: How to install the app on Android
+    url: https://github.com/ameeralhatemi67-debug/Memory_card#install-it-on-your-android-phone
+    about: Step-by-step install guide and fixes for the common "Android will not let me install it" problems.

@@ -31,10 +31,15 @@ related:
 > [!success] 2026-10-22 — The app is built
 > **Memory Card v1.0** (Flutter) lives in `app/`: every designed screen, the repetition engine ([[RES-48_Engine_v2]]), onboarding, 56 decks. Local-only, Android APK; see `app/README.md` to install or build it. The rest of this hub describes the design programme that led here.
 
-> [!warning] Current Product State
-> **Version 1.0 (Deep Research & Initial Prototype)** is complete, producing 46 research papers and an initial web lab (`text_Mockup/`).  
-> We are currently in **Version 2.0 (Design Finalization & Resizable Living Lab)**, systematically closing visual discrepancies identified in [[idea_Audit|the architectural audit]], implementing a live resizable phone testing canvas, establishing Git version boundaries, and locking design tokens.  
-> **Native Flutter production code has not yet started** (scheduled for Version 4.0). See [[Status|Current Status]] and [[Roadmap|Roadmap]] before relying on any feature.
+> [!note] Where this page fits
+> This is the design-programme hub, kept for the project notes. The public front page is the repository's `README.md`.
+> The roadmap below was written before the app existed: the Flutter app (planned for Version 4.0) was pulled forward
+> and is now at **v1.4.1** in `app/`. [[Status|Current Status]] and [[progress|Progress]] have the current state, and
+> [[Roadmap|Roadmap]] the original plan.
+>
+> Version 1.0 (research and prototype) produced 46 research papers and the web lab (`text_Mockup/`). Version 2.0 was
+> the design finalization: closing the visual gaps found by [[idea_Audit|the architectural audit]], the resizable
+> phone testing canvas, and locking the design tokens.
 
 ---
 
@@ -79,32 +84,30 @@ flowchart LR
 
 ```
 memory_card/
-├── README.md                 # Master project hub & executive guide (this file)
+├── README.md                 # Public front page: what it is, download, install, build
 ├── Roadmap.md                # 4-version execution plan (V1 Done, V2 Active, V3 Lab, V4 Build)
 ├── Status.md                 # Current operational state & active checkpoint
 ├── progress.md               # Chronological verified outcomes & decision log
 ├── feature_checklist.md      # Feature verification ledger & retest controls
-├── idea_Audit.md             # Comprehensive architectural, UX & engineering audit
-├── MC_Feature_list.md        # Master feature catalog (~118 MVP vs ~39 Later)
-├── Questions.md              # Authoritative locked user decisions & specifications
-├── brain_dump.md             # Master concept document & storage hierarchy
-├── brain_storming.md         # Creative ideation & emotional design exploration
-├── icons list.md             # Inventory of all 20 custom glyphs
 │
+├── app/                      # The Flutter app (v1.4.1): lib/, Android widgets in android/, tests
+├── content/                  # Deck sources (text, haiku, picture decks) and where every picture came from
+├── docs/
+│   ├── project-hub.md        # This page
+│   ├── Audit/                # idea_Audit.md and audit v2
+│   ├── original/             # MC_Feature_list, brain_dump, brain_storming, icons list, web_mockup
+│   ├── other/                # Questions.md (locked decisions), research notes
+│   ├── research/             # 48 research papers (RES-01 to RES-48, FES-46)
+│   ├── design/               # The design canvas sources
+│   ├── marketing/            # Promo video plan
+│   └── screenshots/          # Screens of the mockup and of the app
+├── fonts/                    # Bernard MT Condensed and notes on every font used
 ├── icons/                    # 20 raw production SVG icon definitions
-│   ├── logoDarkMode.svg, folder.svg, home.svg, shop.svg, burggerDotes.svg...
-│
+├── prototype/                # The playable web prototype built before the app
+├── promo/                    # HyperFrames promo videos (sources, not renders)
 ├── reference/                # 8 high-resolution visual source-of-truth mockups
-│   ├── Card_stacks_page.png, Cards_page.png, side_drwer.png, side_swaip_justes.png...
-│
-├── research/                 # 46 deep technical research papers (RES-01 to RES-45, FES-46)
-│   ├── RES-01 (3D Physics), RES-07 (Wiggle Math), RES-12 (FSRS-5), RES-44 (Folder Engine)...
-│
-└── text_Mockup/              # Self-contained living design system & gesture laboratory
-    ├── index.html            # Master browser interface with mobile frames & physics stage
-    ├── styles.css            # Complete design tokens, 3D transforms, and themes
-    ├── app.js                # Embedded SVG glyphs, Web Audio synth, gesture physics engine
-    └── README.md             # Guide to running and extending the web laboratory
+├── text_Mockup/              # Self-contained living design system & gesture laboratory
+└── tools/                    # Catalog builder, image kit, sound and texture generators, release script
 ```
 
 ---

@@ -41,6 +41,28 @@ This document records verified outcomes, technical approaches, and architectural
 
 ## Flutter App Outcomes (pulled forward from Version 4.0)
 
+### 2026-10-25 — Public repository: README, fonts in git, an installable release (v1.4.1)
+
+- **Outcome Summary:** A visitor to the GitHub repository now lands on a front page that says what Memory Card is,
+  shows it, and walks through installing the APK on an Android phone (with fixes for Play Protect, Samsung's Auto
+  Blocker and "App not installed"). The font folder was missing because `BernardMTCondensed.ttf` was gitignored, which
+  also meant a fresh clone could not build (`pubspec.yaml` declares the file as an asset). The font is tracked again
+  in every place that needs it.
+- **How We Built It & Technical Approach:**
+  - `README.md` rewritten for visitors (the old design hub moved to `docs/project-hub.md`, status block corrected);
+    `app/README.md` and `text_Mockup/README.md` brought up to date; `fonts/README.md` lists every font.
+  - Screenshots regenerated from the current code (`docs/screenshots/app/`), and a QR code to the release page.
+  - APKs stay out of git (150 MB). They are attached to GitHub Releases as `MemoryCard.apk` so
+    `releases/latest/download/MemoryCard.apk` is a permanent link. `tools/release.ps1` builds, names, hashes and (with
+    `gh`) publishes; notes live in `docs/releases/<version>.md`.
+  - Bug-report and feedback issue forms in `.github/ISSUE_TEMPLATE/`.
+  - App 1.4.1+9: Settings showed a hard-coded "Memory Card 1.0.0"; it now reads the installed version through
+    `package_info_plus`, and *Send feedback* includes it, so a tester's report says which build it came from.
+- **Verification Evidence:** a fresh `git clone` into an empty folder, `flutter pub get` and
+  `flutter build apk --release` succeeded (143.3 MB, signed with the same debug key as the earlier APKs, minSdk 24).
+- **Known limits:** the GitHub release itself is created from `tools/release.ps1` or the web page; the source has no
+  open-source licence file yet.
+
 ### 2026-10-24 — Promo Video 3 "Your home screen remembers too" (32 s, 9:16)
 
 - **Outcome Summary:** The widgets video is produced: 1080 × 1920, 30 fps, 32.0 s, mastered to -15.2 LUFS and

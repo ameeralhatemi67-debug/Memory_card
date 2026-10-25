@@ -30,7 +30,7 @@ related:
 **Current Checkpoint:** Checkpoint 2.1 (Repository Baseline & Feature Checklist)
 
 > [!success] 2026-10-22 — the Flutter app exists
-> The native app planned for Version 4.0 was pulled forward at the owner's request and is built: `app/` (Flutter 3.41), every screen of the design canvas, the RES-47/RES-48 engine, onboarding, 56 decks / 1,355 cards, local storage only, Android release APK. See `app/README.md` and [[progress|Progress]]. Not published anywhere; no backend.
+> The native app planned for Version 4.0 was pulled forward at the owner's request and is built: `app/` (Flutter 3.41), every screen of the design canvas, the RES-47/RES-48 engine, onboarding, 56 decks / 1,355 cards, local storage only, Android release APK. See `app/README.md` and [[progress|Progress]]. Since 2026-10-25 the source and a downloadable APK are on GitHub (see `README.md`); still no backend.
 
 **System Status:** Active Design Lab — Version 1.0 (Research, Master Specs, and Initial Prototype) complete; entering Version 2.0 Checkpoint 2.1 (Git Ingestion, Canonical Checklist & Documentation Baseline) transitioning into Checkpoint 2.2 (Visual Reference Parity) and Checkpoint 2.3 (Interactive Resizable Phone View).
 
