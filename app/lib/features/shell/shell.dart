@@ -1,7 +1,11 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
 import '../../data/store_scope.dart';
+import '../../services/reminders.dart';
+import '../../services/updates.dart';
 import '../../ui/fx.dart';
 import '../../ui/motion.dart';
 import '../../ui/overlays.dart';
@@ -15,6 +19,7 @@ import '../shop/shop_screen.dart';
 import '../study/study_screen.dart';
 import 'create_menu.dart';
 import 'nav_bar.dart';
+import 'update_card.dart';
 
 enum ShellTab { decks, study, shop, lab, account }
 
@@ -34,7 +39,7 @@ class Shell extends StatefulWidget {
   State<Shell> createState() => ShellState();
 }
 
-class ShellState extends State<Shell> with SingleTickerProviderStateMixin {
+class ShellState extends State<Shell> with TickerProviderStateMixin {
   final _nav = GlobalKey<NavigatorState>();
   final _routes = <ShellTab>[ShellTab.decks];
   bool _drawer = false;
@@ -48,22 +53,86 @@ class ShellState extends State<Shell> with SingleTickerProviderStateMixin {
     reverseDuration: const Duration(milliseconds: 320),
   );
 
+  /// The update card is out (dealt by itself once per new version, or from the + fan). [_updAnim] runs while it
+  /// leaves the + card and returns to it.
+  bool _upd = false;
+  Timer? _dealTimer;
+  late final AnimationController _updAnim = AnimationController(
+    vsync: this,
+    duration: const Duration(milliseconds: 950),
+    reverseDuration: const Duration(milliseconds: 560),
+  );
+
   ShellTab get tab => _routes.last;
   bool get drawerOpen => _drawer;
   bool get createOpen => _menu;
+  bool get updateOpen => _upd;
   String? get studyDeckId => tab == ShellTab.study ? _studyDeck : null;
 
   @override
   void initState() {
     super.initState();
     Shell.current = this;
+    Updates.i.addListener(_onUpdates);
+    Reminders.i.updateTaps.addListener(_onUpdates);
+    WidgetsBinding.instance.addPostFrameCallback((_) => _onUpdates());
   }
 
   @override
   void dispose() {
     if (Shell.current == this) Shell.current = null;
+    Updates.i.removeListener(_onUpdates);
+    Reminders.i.updateTaps.removeListener(_onUpdates);
+    _dealTimer?.cancel();
     _deal.dispose();
+    _updAnim.dispose();
     super.dispose();
+  }
+
+  // ---- the update card
+
+  /// What GitHub said changed (or a tapped update reminder): the badge and fan follow, and a card nobody has
+  /// seen yet deals itself.
+  void _onUpdates() {
+    if (!mounted) return;
+    setState(() {});
+    if (Reminders.i.updateTapPending && Updates.i.available) {
+      Reminders.i.updateTapPending = false;
+      goHome();
+      _dealTimer?.cancel();
+      _dealTimer = Timer(const Duration(milliseconds: 500), openUpdate);
+      return;
+    }
+    _maybeDeal();
+  }
+
+  /// Once per version, and only while you are on Home with nothing else out.
+  void _maybeDeal() {
+    if (!mounted || _upd || !Updates.i.dealPending || tab != ShellTab.decks || _menu || _drawer) return;
+    _dealTimer?.cancel();
+    _dealTimer = Timer(const Duration(milliseconds: 900), () {
+      if (mounted && !_upd && Updates.i.dealPending && tab == ShellTab.decks && !_menu && !_drawer) openUpdate(auto: true);
+    });
+  }
+
+  void openUpdate({bool auto = false}) {
+    if (_upd || !Updates.i.available) return;
+    closeDrawer();
+    closeCreate();
+    if (auto) Updates.i.markDealt();
+    Fx.i.deal();
+    setState(() => _upd = true);
+    _updAnim.forward();
+  }
+
+  /// Later: the card goes back into the + (and waits in its fan, with a gold 1).
+  void closeUpdate() {
+    if (!_upd) return;
+    setState(() => _upd = false);
+    // A preview (Settings › Updates) is gone once the card is back in the + card.
+    _updAnim.reverse().whenComplete(() {
+      if (Updates.i.previewing) Updates.i.clearPreview();
+    });
   }
 
   // ---- navigation ----
@@ -88,6 +157,7 @@ class ShellState extends State<Shell> with SingleTickerProviderStateMixin {
         ..clear()
         ..add(ShellTab.decks));
     }
+    _maybeDeal();
   }
 
   void openShop() => _openTab(ShellTab.shop, () => const ShopScreen());
@@ -133,6 +203,7 @@ class ShellState extends State<Shell> with SingleTickerProviderStateMixin {
     setState(() => _routes.add(t));
     _nav.currentState!.push(_route(screen, name)).then((_) {
       if (mounted && _routes.length > 1 && _routes.last == t) setState(() => _routes.removeLast());
+      _maybeDeal();
     });
   }
 
@@ -184,6 +255,10 @@ class ShellState extends State<Shell> with SingleTickerProviderStateMixin {
     final store = context.storeRead;
     Fx.i.pop();
     closeCreate();
+    if (what == 'update') {
+      openUpdate();
+      return;
+    }
     if (what == 'deck') {
       showEditor(context, folderId: store.currentFolder?.id, newDeck: true);
     } else {
@@ -205,6 +280,10 @@ class ShellState extends State<Shell> with SingleTickerProviderStateMixin {
       closeDrawer();
       return false;
     }
+    if (_upd) {
+      closeUpdate();
+      return false;
+    }
     if (_menu) {
       closeCreate();
       return false;
@@ -220,6 +299,7 @@ class ShellState extends State<Shell> with SingleTickerProviderStateMixin {
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context);
     final navH = NavBar.height + mq.padding.bottom;
+    final upd = Updates.i.available ? Updates.i.latest : null;
     return PopScope(
       canPop: false,
       onPopInvokedWithResult: (didPop, _) async {
@@ -259,6 +339,14 @@ class ShellState extends State<Shell> with SingleTickerProviderStateMixin {
                 child: CreateDim(anim: _deal, onClose: closeCreate),
               ),
             ),
+            // The same dimming while the update card is out; the hand stays above it so the + card is its origin.
+            Positioned.fill(
+              child: AnimatedBuilder(
+                animation: _updAnim,
+                builder: (context, child) => _updAnim.isDismissed ? const SizedBox.shrink() : child!,
+                child: CreateDim(anim: _updAnim, onClose: closeUpdate),
+              ),
+            ),
             Positioned(
               left: 0,
               right: 0,
@@ -267,6 +355,7 @@ class ShellState extends State<Shell> with SingleTickerProviderStateMixin {
               child: NavBar(
                 current: tab,
                 open: _menu,
+                badge: upd != null,
                 onHome: goHome,
                 onLab: openLab,
                 onCreate: create,
@@ -278,9 +367,22 @@ class ShellState extends State<Shell> with SingleTickerProviderStateMixin {
               child: AnimatedBuilder(
                 animation: _deal,
                 builder: (context, child) => _deal.isDismissed ? const SizedBox.shrink() : child!,
-                child: CreateDeal(anim: _deal, onPick: _pick),
+                child: CreateDeal(
+                  anim: _deal,
+                  onPick: _pick,
+                  update: upd?.version,
+                  updateNote: upd == null ? '' : '${upd.version}${upd.megabytes.isEmpty ? '' : ' · ${upd.megabytes}'}',
+                ),
               ),
             ),
+            if (upd != null)
+              Positioned.fill(
+                child: AnimatedBuilder(
+                  animation: _updAnim,
+                  builder: (context, child) => _updAnim.isDismissed ? const SizedBox.shrink() : child!,
+                  child: UpdateCardLayer(anim: _updAnim, info: upd, installed: Updates.i.installed, onLater: closeUpdate),
+                ),
+              ),
             Positioned.fill(child: FolderDrawer(open: _drawer, onClose: closeDrawer)),
             ToastHost(bottom: _drawer ? 96 : navH + 12),
           ],

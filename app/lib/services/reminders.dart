@@ -15,6 +15,20 @@ class Reminders {
   final _plugin = FlutterLocalNotificationsPlugin();
   bool _ready = false;
 
+  static const _updateId = 2;
+  static const _updatePayload = 'update';
+
+  /// Counts taps on the update reminder; the shell opens the update card when it changes (and once at start
+  /// when [updateTapPending] says a tap opened the app).
+  final updateTaps = ValueNotifier<int>(0);
+  bool updateTapPending = false;
+
+  void _tapped(NotificationResponse r) {
+    if (r.payload != _updatePayload) return;
+    updateTapPending = true;
+    updateTaps.value++;
+  }
+
   bool get supported => !kIsWeb && (defaultTargetPlatform == TargetPlatform.android || defaultTargetPlatform == TargetPlatform.iOS);
 
   Future<void> init(AppStore store) async {
@@ -35,8 +49,13 @@ class Reminders {
           requestSoundPermission: false,
         ),
       );
-      await _plugin.initialize(settings: settings);
+      await _plugin.initialize(settings: settings, onDidReceiveNotificationResponse: _tapped);
       _ready = true;
+      // The app was opened by tapping the update reminder.
+      try {
+        final launch = await _plugin.getNotificationAppLaunchDetails();
+        if (launch?.didNotificationLaunchApp == true && launch?.notificationResponse?.payload == _updatePayload) _tapped(launch!.notificationResponse!);
+      } catch (_) {}
       await reschedule(store);
     } catch (e) {
       debugPrint('Memory Card reminders unavailable: $e');
@@ -91,7 +110,7 @@ class Reminders {
   Future<void> reschedule(AppStore store) async {
     if (!_ready) return;
     try {
-      await _plugin.cancelAll();
+      await _plugin.cancel(id: 1);
       final s = store.settings;
       if (!s.remind) return;
       final (title, body) = compose(store);
@@ -119,5 +138,40 @@ class Reminders {
     } catch (e) {
       debugPrint('Memory Card could not schedule the reminder: $e');
     }
+  }
+
+  /// The one optional update reminder ("1.6.0 is still waiting"), [at] local time. A silent notice on its own
+  /// channel, so Android lets you switch it off by itself.
+  Future<void> scheduleUpdateReminder(String version, DateTime at) async {
+    if (!_ready) return;
+    try {
+      await _plugin.zonedSchedule(
+        id: _updateId,
+        title: 'Memory Card $version is still waiting',
+        body: 'Install it whenever you are on Wi-Fi. Your cards and streak stay.',
+        scheduledDate: tz.TZDateTime.from(at, tz.local),
+        payload: _updatePayload,
+        notificationDetails: const NotificationDetails(
+          android: AndroidNotificationDetails(
+            'updates',
+            'App updates',
+            channelDescription: 'One quiet reminder when a new version of Memory Card is waiting',
+            importance: Importance.low,
+            priority: Priority.low,
+          ),
+          iOS: DarwinNotificationDetails(),
+        ),
+        androidScheduleMode: AndroidScheduleMode.inexactAllowWhileIdle,
+      );
+    } catch (e) {
+      debugPrint('Memory Card could not schedule the update reminder: $e');
+    }
+  }
+
+  Future<void> cancelUpdateReminder() async {
+    if (!_ready) return;
+    try {
+      await _plugin.cancel(id: _updateId);
+    } catch (_) {}
   }
 }

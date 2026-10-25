@@ -12,6 +12,7 @@ import 'features/shell/shell.dart';
 import 'features/today/today_screen.dart';
 import 'services/home_widgets.dart';
 import 'services/reminders.dart';
+import 'services/updates.dart';
 import 'ui/motion.dart';
 import 'ui/textures.dart';
 import 'ui/theme.dart';
@@ -108,6 +109,8 @@ class _MemoryCardAppState extends State<MemoryCardApp> with WidgetsBindingObserv
     } else if (state == AppLifecycleState.resumed) {
       // Quick card answers given meanwhile count for their own day before a new day starts.
       HomeWidgets.i.catchUp().whenComplete(widget.store.tickDay);
+      // Once a day (it ignores the call when one was made less than 20 hours ago).
+      unawaited(Updates.i.maybeCheck());
     }
   }
 

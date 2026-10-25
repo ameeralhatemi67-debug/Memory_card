@@ -2,7 +2,8 @@
 
 **Flashcards that come back when you are about to forget them.** Memory Card is an Android app for spaced-repetition
 study: you swipe through an endless stack of cards, and an engine that learns how *you* remember decides when each
-card returns. Everything stays on your phone. There is no account, no server and no ads.
+card returns. Everything stays on your phone. There is no account, no server and no ads. (The one thing it looks up is
+the newest version number on this page, once a day, and you can switch that off.)
 
 <p align="center">
   <a href="https://github.com/ameeralhatemi67-debug/Memory_card/releases/latest/download/MemoryCard.apk"><img src="https://img.shields.io/badge/Download-MemoryCard.apk-D35F5F?style=for-the-badge&logo=android&logoColor=white" alt="Download MemoryCard.apk"></a>
@@ -85,12 +86,18 @@ Android 12 or newer; older phones get still pictures.
 cards, streak and settings stay. To move to a new phone, use *Settings > Your data > Export backup* and restore it on
 the other side. Uninstalling the app deletes its data, so export a backup first.
 
+**Hearing about a new version.** Once a day, when you open the app, it asks GitHub for the latest release of this
+project (Settings > Updates). If one is newer than yours, a gold card is dealt out of the **+** card once, and waits
+in the **+** fan with a gold 1 until you update, skip it or it is replaced. **Update now** opens the download in your
+browser; nothing downloads without your tap. GitHub sees your IP address, like any website; no account, device ID or
+card data is sent. Switch the check off in Settings > Updates, and optionally turn on one reminder four days later.
+
 **Checking the file.** Each release lists the file's SHA-256. On a computer, `certutil -hashfile MemoryCard.apk SHA256`
 (Windows) or `sha256sum MemoryCard.apk` (macOS and Linux) prints the same value if the download is intact.
 
-**What the app asks for.** Internet (once, for the fonts), notifications and "start after a reboot" (both only for the
-daily reminder, which is off until you turn it on) and vibration (the haptics). No contacts, location, camera,
-microphone or storage access.
+**What the app asks for.** Internet (for the fonts once, and for the once-a-day look at the newest version), notifications
+and "start after a reboot" (both only for the reminders, which are off until you turn them on) and vibration (the
+haptics). No contacts, location, camera, microphone or storage access.
 
 **iPhone.** There is no iOS build yet: it needs a Mac with Xcode. The code has no Android-only parts apart from the
 widgets.

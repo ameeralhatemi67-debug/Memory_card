@@ -13,6 +13,7 @@ import '../../data/store_scope.dart';
 import '../../engine/days.dart';
 import '../../services/home_widgets.dart';
 import '../../services/reminders.dart';
+import '../../services/updates.dart';
 import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/overlays.dart';
@@ -25,6 +26,7 @@ import '../help/help_screen.dart';
 import '../lab/memory_lab.dart';
 import '../onboarding/onboarding.dart';
 import 'texture_pane.dart';
+import 'updates_screen.dart';
 import 'widgets_screen.dart';
 
 /// Settings (canvas Settings.dc.html), plus the engine switches, your data and help.
@@ -392,6 +394,17 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     Text('Reminders work in the phone app.', style: T.t(13, w: FontWeight.w500, color: mc.muted)),
                   ],
                 ]),
+              ),
+              section(
+                'Updates',
+                Container(
+                  foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(16)),
+                  decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(16), boxShadow: mc.e1),
+                  clipBehavior: Clip.antiAlias,
+                  child: row('New versions', () => Navigator.of(context).push(UpdatesScreen.route()),
+                      hint: !s.updateCheck ? 'Off' : (Updates.i.available && !Updates.i.previewing ? '${Updates.i.latest!.version} waiting' : 'Up to date'),
+                      last: true),
+                ),
               ),
               if (HomeWidgets.i.supported)
                 section(

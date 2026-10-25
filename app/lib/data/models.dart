@@ -583,6 +583,27 @@ class Settings {
   bool remind = false;
   int remindMinutes = 19 * 60;
 
+  // ---- Updates (Settings › Updates)
+
+  /// Ask GitHub once a day, when the app opens, for the newest release.
+  bool updateCheck = true;
+
+  /// A quiet reminder 4 days after the update card first appeared, if you have not updated.
+  bool updateRemind = false;
+
+  /// The version "Skip this version" was chosen for.
+  String updateSkipped = '';
+
+  /// The version whose card was already dealt out of the + by itself (once per version).
+  String updateDealt = '';
+
+  /// When that card was first dealt (ms): the 4-day reminder counts from here.
+  int updateDealtAt = 0;
+
+  /// When GitHub was last asked (ms since epoch), and what it answered (kept for when the phone is offline).
+  int updateChecked = 0;
+  Map<String, Object?> updateLatest = {};
+
   /// Read hesitation and confidence to choose Hard / Good / Easy.
   bool smartGrading = true;
 
@@ -644,6 +665,13 @@ class Settings {
         'reduced': reducedMotion,
         'remind': remind,
         'remindAt': remindMinutes,
+        'updCheck': updateCheck,
+        'updRemind': updateRemind,
+        'updSkip': updateSkipped,
+        'updDealt': updateDealt,
+        'updDealtAt': updateDealtAt,
+        'updAt': updateChecked,
+        'updLatest': updateLatest,
         'smart': smartGrading,
         'rest': restMastered,
         'autoSpeak': autoSpeak,
@@ -676,6 +704,14 @@ class Settings {
     s.reducedMotion = _b(j['reduced']);
     s.remind = _b(j['remind']);
     s.remindMinutes = _i(j['remindAt'], 19 * 60);
+    s.updateCheck = _b(j['updCheck'], true);
+    s.updateRemind = _b(j['updRemind']);
+    s.updateSkipped = _s(j['updSkip']);
+    s.updateDealt = _s(j['updDealt']);
+    s.updateDealtAt = _i(j['updDealtAt']);
+    s.updateChecked = _i(j['updAt']);
+    final latest = j['updLatest'];
+    if (latest is Map) s.updateLatest = {for (final e in latest.entries) '${e.key}': e.value};
     s.smartGrading = _b(j['smart'], true);
     s.restMastered = _b(j['rest'], true);
     s.autoSpeak = _b(j['autoSpeak']);

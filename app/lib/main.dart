@@ -11,6 +11,7 @@ import 'data/store.dart';
 import 'features/onboarding/splash.dart';
 import 'services/home_widgets.dart';
 import 'services/reminders.dart';
+import 'services/updates.dart';
 import 'ui/fx.dart';
 import 'ui/icons.dart';
 import 'ui/textures.dart';
@@ -69,7 +70,8 @@ class _BootState extends State<Boot> {
       try {
         await GoogleFonts.pendingFonts(T.preload()).timeout(const Duration(milliseconds: 2500));
       } catch (_) {}
-      unawaited(Reminders.i.init(store));
+      // Reminders first, so the update reminder can be booked or dropped once the version is known.
+      unawaited(Reminders.i.init(store).then((_) => Updates.i.attach(store)));
       if (mounted) setState(() => _store = store);
     } catch (e, st) {
       debugPrint('Memory Card failed to open: $e\n$st');

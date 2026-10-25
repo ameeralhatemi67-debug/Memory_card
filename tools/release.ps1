@@ -68,6 +68,8 @@ Write-Host "$apk  ($mb MB)"
 Write-Host "SHA-256 $sha"
 
 # Release notes: what changed, then the same install steps the README gives.
+# The app's update card shows the first three "- " bullets of the notes: one short sentence each, the point first
+# (about 70 characters). Start the notes with "Important:" for an urgent fix; the card then says so.
 if (-not $NotesFile) { $NotesFile = Join-Path $root "docs\releases\$version.md" }
 $changes = if (Test-Path $NotesFile) { (Get-Content $NotesFile -Raw).TrimEnd() } else { "Memory Card $version." }
 $notes = @"

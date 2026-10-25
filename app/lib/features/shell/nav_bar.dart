@@ -23,6 +23,7 @@ class NavBar extends StatelessWidget {
     required this.onShop,
     required this.onAccount,
     this.open = false,
+    this.badge = false,
   });
 
   /// Room the bar takes above the system inset (pages pad and fade by this much).
@@ -46,6 +47,9 @@ class NavBar extends StatelessWidget {
   /// The create cards are out: the hand spreads and the + turns into an ×.
   final bool open;
 
+  /// A new version is waiting: a gold 1 on the + card.
+  final bool badge;
+
   @override
   Widget build(BuildContext context) {
     final mq = MediaQuery.of(context);
@@ -59,7 +63,7 @@ class NavBar extends StatelessWidget {
         place(_HandCard(icon: McIcons.lab, iconSize: const Size(24, 24), label: 'Lab', rank: 'L', accent: Mc.green, degrees: -8, selected: current == ShellTab.lab, spread: open, onTap: onLab)),
         place(_HandCard(icon: McIcons.shop, iconSize: const Size(26, 22), label: 'Shop', rank: 'S', accent: Mc.peach, degrees: 8, selected: current == ShellTab.shop, spread: open, onTap: onShop)),
         place(_HandCard(icon: McIcons.account, iconSize: const Size(23, 23), label: 'Account', rank: 'A', accent: Mc.red, degrees: 16, selected: current == ShellTab.account, spread: open, onTap: onAccount)),
-        place(_BackCard(open: open, onTap: onCreate)),
+        place(_BackCard(open: open, badge: badge, onTap: onCreate)),
       ],
     );
   }
@@ -221,8 +225,9 @@ class _HandCardState extends State<_HandCard> with SingleTickerProviderStateMixi
 
 /// The + is the back of a card in the middle of the hand, a little higher than the rest.
 class _BackCard extends StatelessWidget {
-  const _BackCard({required this.open, required this.onTap});
+  const _BackCard({required this.open, required this.onTap, this.badge = false});
   final bool open;
+  final bool badge;
   final VoidCallback onTap;
 
   @override
@@ -236,30 +241,82 @@ class _BackCard extends StatelessWidget {
         degrees: 0,
         spread: 0,
         lift: 12 + 8 * v,
-        child: Pressable(
-          label: open ? 'Close' : 'Create',
-          scale: 0.92,
-          haptic: true,
-          onTap: onTap,
-          child: Container(
-            decoration: BoxDecoration(
-              color: mc.canvas,
-              borderRadius: BorderRadius.circular(11),
-              border: Border.all(color: mc.ink, width: 2),
-              boxShadow: const [BoxShadow(color: Color(0x73000000), blurRadius: 24, offset: Offset(0, 10))],
-            ),
-            clipBehavior: Clip.antiAlias,
-            child: CustomPaint(
-              painter: CardBackPainter(mc.ink.withValues(alpha: 0.16)),
-              child: Align(
-                alignment: Alignment.topCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(top: 18),
-                  child: Transform.rotate(angle: v * 3 * math.pi / 4, child: McIcon(McIcons.plus, size: const Size(30, 30), color: mc.ink)),
+        child: Stack(fit: StackFit.expand, clipBehavior: Clip.none, children: [
+          Pressable(
+            label: open ? 'Close' : (badge ? 'Create, one update waiting' : 'Create'),
+            scale: 0.92,
+            haptic: true,
+            onTap: onTap,
+            child: Container(
+              decoration: BoxDecoration(
+                color: mc.canvas,
+                borderRadius: BorderRadius.circular(11),
+                border: Border.all(color: mc.ink, width: 2),
+                boxShadow: const [BoxShadow(color: Color(0x73000000), blurRadius: 24, offset: Offset(0, 10))],
+              ),
+              clipBehavior: Clip.antiAlias,
+              child: CustomPaint(
+                painter: CardBackPainter(mc.ink.withValues(alpha: 0.16)),
+                child: Align(
+                  alignment: Alignment.topCenter,
+                  child: Padding(
+                    padding: const EdgeInsets.only(top: 18),
+                    child: Transform.rotate(angle: v * 3 * math.pi / 4, child: McIcon(McIcons.plus, size: const Size(30, 30), color: mc.ink)),
+                  ),
                 ),
               ),
             ),
           ),
+          if (badge) const Positioned(right: -9, top: -11, child: IgnorePointer(child: _Badge())),
+        ]),
+      ),
+    );
+  }
+}
+
+/// The gold 1 that says a new version is waiting; it breathes slowly unless motion is reduced.
+class _Badge extends StatefulWidget {
+  const _Badge();
+
+  @override
+  State<_Badge> createState() => _BadgeState();
+}
+
+class _BadgeState extends State<_Badge> with SingleTickerProviderStateMixin {
+  late final AnimationController _c = AnimationController(vsync: this, duration: const Duration(milliseconds: 1100));
+
+  @override
+  void didChangeDependencies() {
+    super.didChangeDependencies();
+    final on = !MotionPrefs.reducedOf(context);
+    if (on && !_c.isAnimating) {
+      _c.repeat(reverse: true);
+    } else if (!on && _c.isAnimating) {
+      _c.stop();
+      _c.value = 0;
+    }
+  }
+
+  @override
+  void dispose() {
+    _c.dispose();
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final mc = Mc.of(context);
+    // The + card itself says "one update waiting"; the dot only looks.
+    return ExcludeSemantics(
+      child: AnimatedBuilder(
+        animation: _c,
+        builder: (context, child) => Transform.scale(scale: 1 + 0.14 * Curves.easeInOut.transform(_c.value), child: child),
+        child: Container(
+          width: 24,
+          height: 24,
+          alignment: Alignment.center,
+          decoration: BoxDecoration(color: Mc.peach, shape: BoxShape.circle, border: Border.all(color: mc.canvas, width: 3)),
+          child: Text('1', style: T.t(13, w: FontWeight.w800, color: const Color(0xFF151515), height: 1)),
         ),
       ),
     );
