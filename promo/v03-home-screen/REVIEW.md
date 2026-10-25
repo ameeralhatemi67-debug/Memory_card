@@ -106,8 +106,7 @@ rebuild with the commands at the end of this file):
   laid over every sample day) and `--ez pieces true`.
 - `widgets/Preview.kt` then writes three files per sample: the picture, the drawing alone (`_ink.png`), and a
   JSON with the face colour and corner radius and each moving piece's kind, place and colour.
-- A new sample day `h` (one card answered on the Quick card, 13 of 20) joins `a`, `b` (goal met), `d` (Quick
-  card turned) and `g` (membership back).
+- Sample days added: `b` (goal met), `d` (Quick card turned), `g` (membership back) and `h` (one card answered).
 - `Scene.flatten(night, withFace)` draws the picture without its face.
 - `Samples.kt` takes `answered` card ids for the Quick card's inbox.
 
