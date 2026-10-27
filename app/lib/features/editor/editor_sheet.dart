@@ -20,6 +20,9 @@ import '../decks/deck_maker.dart';
 import '../layout/layout_editor.dart';
 import '../layout/layout_face.dart';
 import '../layout/pick_picture.dart';
+import '../media/card_video.dart' show clockOf;
+import '../media/pick_video.dart';
+import '../media/voice_sheet.dart';
 import '../study/celebrate.dart';
 
 /// Opens the editor sheet (canvas Editor.dc.html): write a card, or paste / pick a CSV.
@@ -97,6 +100,9 @@ class _EditorSheetState extends State<EditorSheet> {
 
   /// How each side is laid out; null = the classic text card.
   SideLayout? _fl, _bl;
+
+  /// Each side's recording: heard before answering (front), with the answer (back).
+  CardSound? _soundF, _soundB;
   int _saved = 0;
   int _shakeFront = 0, _shakeBack = 0;
 
@@ -116,6 +122,8 @@ class _EditorSheetState extends State<EditorSheet> {
       _image = e.image;
       _fl = e.frontLayout?.copy();
       _bl = e.backLayout?.copy();
+      _soundF = e.soundF?.copy();
+      _soundB = e.soundB?.copy();
       _reverse = e.siblingId != null;
     } else {
       _deckId = widget.deckId ?? _guessDeck();
@@ -224,8 +232,64 @@ class _EditorSheetState extends State<EditorSheet> {
     }
   }
 
-  /// A picture is on this side (from its layout, or the older single picture on the front).
+  /// A picture (or a video) is on this side (from its layout, or the older single picture on the front).
   bool _hasPicture(bool back) => back ? (_bl?.hasImage ?? false) : (_fl?.hasImage ?? (_image != null && _image!.isNotEmpty));
+
+  /// A side needs no words when it has a picture, a video or a sound to go on.
+  bool _hasMedia(bool back) => _hasPicture(back) || (back ? _soundB : _soundF) != null;
+
+  bool _hasVideo(bool back) => (back ? _bl : _fl)?.hasVideo ?? false;
+
+  Future<void> _voice(bool back) async {
+    FocusScope.of(context).unfocus();
+    final r = await showVoiceSheet(context, back: back, current: back ? _soundB : _soundF);
+    if (r == null || !mounted) return;
+    setState(() {
+      if (back) {
+        _soundB = r.sound;
+      } else {
+        _soundF = r.sound;
+      }
+    });
+  }
+
+  /// The quick path for a video: it takes the picture's place in a guided layout (or joins a free canvas);
+  /// fine-tune it in the layout editor.
+  Future<void> _quickVideo(bool back) async {
+    FocusScope.of(context).unfocus();
+    final choice = await pickVideo(context, back: back);
+    if (choice == null || !mounted) return;
+    final v = choice.video;
+    final current = back ? _bl : _fl;
+    SideLayout layout;
+    if (current != null && current.mode == LayoutMode.canvas) {
+      layout = current.copy();
+      layout.dropImage(src: v.poster, aspect: v.aspect, faceAspect: 276 / 384, video: v.src, videoMs: v.ms)
+        ..blur = back
+        ..hint = choice.hint;
+    } else {
+      final replaced = current?.hasImage ?? (!back && _image != null && _image!.isNotEmpty);
+      layout = SideLayout.forPicture(
+        current == null || current.tpl == Tpl.text ? Tpl.above : current.tpl,
+        back: back,
+        src: v.poster,
+        aspect: v.aspect,
+        blur: back,
+        hint: choice.hint,
+        video: v.src,
+        videoMs: v.ms,
+      );
+      if (replaced) Toaster.i.show('The video took the picture\'s place. Arrange the side to have both.', duration: const Duration(seconds: 3));
+    }
+    setState(() {
+      if (back) {
+        _bl = layout;
+      } else {
+        _fl = layout;
+        _image = null;
+      }
+    });
+  }
 
   Future<void> _openLayout(bool back) async {
     FocusScope.of(context).unfocus();
@@ -279,12 +343,12 @@ class _EditorSheetState extends State<EditorSheet> {
 
   bool _validate() {
     var ok = true;
-    // A side can be only a picture.
-    if (_front.text.trim().isEmpty && !_hasPicture(false)) {
+    // A side can be only a picture, a video or a sound.
+    if (_front.text.trim().isEmpty && !_hasMedia(false)) {
       setState(() => _shakeFront++);
       ok = false;
     }
-    if (_back.text.trim().isEmpty && !_hasPicture(true)) {
+    if (_back.text.trim().isEmpty && !_hasMedia(true)) {
       setState(() => _shakeBack++);
       ok = false;
     }
@@ -300,6 +364,8 @@ class _EditorSheetState extends State<EditorSheet> {
         image: _fl == null ? _image : null,
         frontLayout: _fl,
         backLayout: _bl,
+        soundF: _soundF,
+        soundB: _soundB,
       );
 
   Future<void> _saveNext() async {
@@ -319,12 +385,14 @@ class _EditorSheetState extends State<EditorSheet> {
       _image = null;
       _fl = null;
       _bl = null;
+      _soundF = null;
+      _soundB = null;
     });
     _frontFocus.requestFocus();
   }
 
   void _done() {
-    if (_front.text.trim().isNotEmpty || _back.text.trim().isNotEmpty || _hasPicture(false) || _hasPicture(true)) {
+    if (_front.text.trim().isNotEmpty || _back.text.trim().isNotEmpty || _hasMedia(false) || _hasMedia(true)) {
       if (_deckId == null || !_validate()) return;
       store.addCard(_deckId!, _draft, reverse: _reverse);
       _saved++;
@@ -550,10 +618,17 @@ class _EditorSheetState extends State<EditorSheet> {
         hook: _hook.text,
         code: !back && deck?.kind == 'code',
       );
-      final pictures = shown.images.length;
+      final videos = shown.videos.length;
+      final pictures = shown.images.length - videos;
+      final sound = back ? _soundB : _soundF;
+      final parts = [
+        if (pictures > 0) '$pictures ${pictures == 1 ? 'picture' : 'pictures'}',
+        if (videos > 0) '$videos ${videos == 1 ? 'video' : 'videos'}',
+        if (sound != null) 'sound${sound.ms > 0 ? ' ${clockOf(sound.ms)}' : ''}',
+      ];
       final note = layout == null && legacy == null
-          ? 'Text only'
-          : '${pictures == 0 ? 'Text' : '$pictures ${pictures == 1 ? 'picture' : 'pictures'}'} · ${shown.mode == LayoutMode.canvas ? 'free canvas' : 'guided'}';
+          ? (parts.isEmpty ? 'Text only' : 'Text · ${parts.join(' · ')}')
+          : '${parts.isEmpty ? 'Text' : parts.join(' · ')} · ${shown.mode == LayoutMode.canvas ? 'free canvas' : 'guided'}';
       return Expanded(
         child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
           Text(back ? 'Back' : 'Front', style: T.t(14, w: FontWeight.w700, color: mc.muted)),
@@ -573,6 +648,16 @@ class _EditorSheetState extends State<EditorSheet> {
                 ),
                 child: Stack(fit: StackFit.expand, children: [
                   LayoutFace(layout: shown, texts: texts, back: back),
+                  if (sound != null)
+                    Positioned(
+                      left: 6,
+                      top: 6,
+                      child: Container(
+                        padding: const EdgeInsets.all(4),
+                        decoration: const BoxDecoration(color: Mc.red, shape: BoxShape.circle),
+                        child: McIcon(McIcons.speaker, size: const Size(14, 14), color: Mc.paper),
+                      ),
+                    ),
                   Positioned(
                     right: 6,
                     bottom: 6,
@@ -589,13 +674,24 @@ class _EditorSheetState extends State<EditorSheet> {
           const SizedBox(height: 6),
           Text(note, textAlign: TextAlign.center, style: T.t(13, w: FontWeight.w600, color: mc.muted)),
           const SizedBox(height: 6),
-          Center(
-            child: Chip2(
-              _hasPicture(back) ? 'Change picture' : '+ Picture',
+          Wrap(alignment: WrapAlignment.center, spacing: 6, runSpacing: 6, children: [
+            Chip2(
+              _hasPicture(back) && !_hasVideo(back) ? 'Change picture' : '+ Picture',
               height: 32,
               onTap: () => _hasPicture(back) ? _openLayout(back) : _quickPicture(back),
             ),
-          ),
+            Chip2(
+              _hasVideo(back) ? 'Change video' : '+ Video',
+              height: 32,
+              onTap: () => _hasVideo(back) ? _openLayout(back) : _quickVideo(back),
+            ),
+            Chip2(
+              sound == null ? '+ Voice' : 'Voice ${sound.ms > 0 ? clockOf(sound.ms) : '✓'}',
+              height: 32,
+              selected: sound != null,
+              onTap: () => _voice(back),
+            ),
+          ]),
         ]),
       );
     }
@@ -603,8 +699,9 @@ class _EditorSheetState extends State<EditorSheet> {
     return Padding(
       padding: const EdgeInsets.only(top: 4),
       child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
-        Text('Pictures & layout', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
-        Text('Put a picture on either side, or on both. PNG cut-outs keep their see-through background.',
+        Text('Pictures, video & voice', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
+        Text('Put a picture or a video on either side, and record a voice: the front\'s is heard before you answer, '
+            'the back\'s with the answer. A side can be only a picture, a video or a sound.',
             style: T.t(14, w: FontWeight.w500, color: mc.muted, height: 1.3)),
         const SizedBox(height: 10),
         Row(crossAxisAlignment: CrossAxisAlignment.start, children: [side(false), const SizedBox(width: 12), side(true)]),

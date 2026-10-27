@@ -2,8 +2,9 @@
 
 **Flashcards that come back when you are about to forget them.** Memory Card is an Android app for spaced-repetition
 study: you swipe through an endless stack of cards, and an engine that learns how *you* remember decides when each
-card returns. Everything stays on your phone. There is no account, no server and no ads. (The one thing it looks up is
-the newest version number on this page, once a day, and you can switch that off.)
+card returns. Everything stays on your phone, and there are no ads. An account is optional: sign in with your email,
+Google or Apple and only your name and email go to the server, to put your name on your card. (The other thing it looks
+up is the newest version number on this page, once a day, and you can switch that off.)
 
 <p align="center">
   <a href="https://github.com/ameeralhatemi67-debug/Memory_card/releases/latest/download/MemoryCard.apk"><img src="https://img.shields.io/badge/Download-MemoryCard.apk-D35F5F?style=for-the-badge&logo=android&logoColor=white" alt="Download MemoryCard.apk"></a>
@@ -40,7 +41,11 @@ the newest version number on this page, once a day, and you can switch that off.
 - **Pictures on cards.** Flags, crests, character portraits, silhouettes, road signs. Card sides can mix pictures and
   text, with a layout editor, PNG cut-outs, and a "blur until revealed" setting so the picture does not give the answer
   away.
+- **Voices and videos on cards.** Record your voice (or pick a sound file) as the question you hear or the answer
+  you hear back. Put a video on a card as the question, as a hint that stays blurred until you tap it, or as part of
+  the answer, blurred until the reveal like the pictures.
 - **Your own decks.** Write cards, import a CSV, give a deck a picture skin and design its wax seals.
+- **An optional account.** Email and password, Google or Apple. Everything works without one.
 - **Goal, streak and seals.** A daily goal, a streak with monthly grace shields, and seals for milestones.
 - **13 home-screen widgets and a Quick Settings tile.** Today's goal, your streak, a Quick card you can answer without
   opening the app, an activity heatmap, the next two weeks and more. They draw themselves in your accent colour and
@@ -95,9 +100,10 @@ card data is sent. Switch the check off in Settings > Updates, and optionally tu
 **Checking the file.** Each release lists the file's SHA-256. On a computer, `certutil -hashfile MemoryCard.apk SHA256`
 (Windows) or `sha256sum MemoryCard.apk` (macOS and Linux) prints the same value if the download is intact.
 
-**What the app asks for.** Internet (for the fonts once, and for the once-a-day look at the newest version), notifications
-and "start after a reboot" (both only for the reminders, which are off until you turn them on) and vibration (the
-haptics). No contacts, location, camera, microphone or storage access.
+**What the app asks for.** Internet (for the fonts once, the once-a-day look at the newest version, and the optional
+account), notifications and "start after a reboot" (both only for the reminders, which are off until you turn them on),
+vibration (the haptics) and the microphone (asked the first time you record a voice on a card). Photos and videos come
+through the phone's own picker and camera app. No contacts, location or storage access.
 
 **iPhone.** There is no iOS build yet: it needs a Mac with Xcode. The code has no Android-only parts apart from the
 widgets.

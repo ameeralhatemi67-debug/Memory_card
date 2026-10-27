@@ -8,6 +8,7 @@ import '../../data/store_scope.dart';
 import '../../engine/days.dart';
 import '../../engine/deck_seals.dart';
 import '../../engine/seals.dart';
+import '../../services/account.dart';
 import '../../ui/deck_look.dart';
 import '../../ui/fx.dart';
 import '../../ui/icons.dart';
@@ -17,7 +18,7 @@ import '../../ui/shapes.dart';
 import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
-import '../settings/settings_screen.dart';
+import '../account/sign_in_sheet.dart';
 import '../shell/nav_bar.dart';
 import '../shell/shell.dart';
 import '../study/celebrate.dart';
@@ -84,30 +85,52 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
         ),
       ),
     );
-    final signIn = Column(children: [
-      Text.rich(
-        TextSpan(children: [
-          TextSpan(text: 'Back up your progress? ', style: T.d(17, color: mc.muted)),
-          WidgetSpan(
-            child: GestureDetector(
-              onTap: () => _signIn(context),
-              child: Text('Sign in', style: T.d(17, color: mc.ink).copyWith(decoration: TextDecoration.underline)),
-            ),
-          ),
-        ]),
-      ),
-      const SizedBox(height: 14),
-      Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-        _Badge(shape: PolarShape.badgeScallop, label: 'Sign in with Google', icon: McIcons.google, iconSize: const Size(34, 34), onTap: () => _signIn(context)),
-        const SizedBox(width: 30),
-        _Badge(shape: PolarShape.badgeBurst, label: 'Create a Memory Card account', icon: McIcons.logo, iconSize: const Size(27, 34), tint: true, onTap: () => _signIn(context)),
-        const SizedBox(width: 30),
-        _Badge(shape: PolarShape.badgeSquircle, label: 'Sign in with Apple', icon: McIcons.apple, iconSize: const Size(28, 34), tint: true, onTap: () => _signIn(context)),
-      ]),
-      const SizedBox(height: 14),
-      Text('Optional. Everything works offline without an account.',
-          textAlign: TextAlign.center, style: T.t(14, w: FontWeight.w500, color: mc.muted)),
-    ]);
+    final signIn = ValueListenableBuilder<AccountUser?>(
+      valueListenable: Account.i.user,
+      builder: (context, user, _) => user != null
+          ? _SignedIn(user: user)
+          : Column(children: [
+              Text.rich(
+                TextSpan(children: [
+                  TextSpan(text: 'Have an account? ', style: T.d(17, color: mc.muted)),
+                  WidgetSpan(
+                    child: GestureDetector(
+                      onTap: () => showSignInSheet(context),
+                      child: Text('Sign in', style: T.d(17, color: mc.ink).copyWith(decoration: TextDecoration.underline)),
+                    ),
+                  ),
+                ]),
+              ),
+              const SizedBox(height: 14),
+              Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                _Badge(
+                    shape: PolarShape.badgeScallop,
+                    label: 'Sign in with Google',
+                    icon: McIcons.google,
+                    iconSize: const Size(34, 34),
+                    onTap: () => showSignInSheet(context, start: 'google')),
+                const SizedBox(width: 30),
+                _Badge(
+                    shape: PolarShape.badgeBurst,
+                    label: 'Create a Memory Card account',
+                    icon: McIcons.logo,
+                    iconSize: const Size(27, 34),
+                    tint: true,
+                    onTap: () => showSignInSheet(context, create: true)),
+                const SizedBox(width: 30),
+                _Badge(
+                    shape: PolarShape.badgeSquircle,
+                    label: 'Sign in with Apple',
+                    icon: McIcons.apple,
+                    iconSize: const Size(28, 34),
+                    tint: true,
+                    onTap: () => showSignInSheet(context, start: 'apple')),
+              ]),
+              const SizedBox(height: 14),
+              Text('Optional. Everything works offline without an account.',
+                  textAlign: TextAlign.center, style: T.t(14, w: FontWeight.w500, color: mc.muted)),
+            ]),
+    );
     return Scaffold(
       backgroundColor: mc.canvas,
       body: Wall(child: Stack(children: [
@@ -202,29 +225,41 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
     );
   }
 
-  void _signIn(BuildContext context) {
+}
+
+/// Signed in: who, and a way into the account (password, sign out, delete).
+class _SignedIn extends StatelessWidget {
+  const _SignedIn({required this.user});
+  final AccountUser user;
+
+  @override
+  Widget build(BuildContext context) {
     final mc = Mc.of(context);
-    showMcDialog(
-      context,
-      builder: (ctx) => DialogCard(children: [
-        Center(child: WaxSeal(size: 72, color: Mc.blue, child: McIcon(McIcons.logo, size: const Size(22, 28), color: Mc.graphite))),
-        const SizedBox(height: 14),
-        Text('Accounts come with sync', textAlign: TextAlign.center, style: T.d(30, color: mc.ink, height: 1.05)),
-        const SizedBox(height: 8),
-        Text(
-          'This version keeps everything on your phone: no account, no servers. To keep your progress safe, '
-          'export a backup now and then. You can restore it on any phone.',
-          textAlign: TextAlign.center,
-          style: T.t(16, color: mc.muted, height: 1.35),
+    final icon = switch (user.provider) { 'google' => McIcons.google, 'apple' => McIcons.apple, _ => McIcons.mail };
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: 22),
+      child: Pressable(
+        onTap: () => showAccountSheet(context),
+        label: 'Your account',
+        child: Container(
+          padding: const EdgeInsets.fromLTRB(14, 12, 12, 12),
+          foregroundDecoration: texDeco(context, 'tiles', BorderRadius.circular(16)),
+          decoration: BoxDecoration(color: mc.soft, borderRadius: BorderRadius.circular(16), boxShadow: mc.e1),
+          child: Row(children: [
+            McIcon(icon, size: const Size(24, 24), color: icon == McIcons.google ? null : mc.ink),
+            const SizedBox(width: 12),
+            Expanded(
+              child: Column(crossAxisAlignment: CrossAxisAlignment.start, children: [
+                Text('Signed in', style: T.d(19, color: mc.ink)),
+                Text(user.email, maxLines: 1, overflow: TextOverflow.ellipsis, style: T.t(14, w: FontWeight.w600, color: mc.muted)),
+              ]),
+            ),
+            Text('Account', style: T.t(14, w: FontWeight.w700, color: mc.muted)),
+            const SizedBox(width: 4),
+            McIcon(McIcons.chevron, size: const Size(14, 14), color: mc.muted),
+          ]),
         ),
-        const SizedBox(height: 18),
-        InkButton('Back up now', height: 52, onTap: () {
-          Navigator.pop(ctx);
-          Navigator.of(context, rootNavigator: true).push(SettingsScreen.route(scrollToData: true));
-        }),
-        const SizedBox(height: 10),
-        SoftButton('Not now', onTap: () => Navigator.pop(ctx)),
-      ]),
+      ),
     );
   }
 }

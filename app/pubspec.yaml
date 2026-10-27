@@ -52,6 +52,13 @@ dependencies:
   home_widget: ^0.10.0
   package_info_plus: ^10.2.2
   url_launcher: ^6.3.3
+  supabase_flutter: ^2.18.3
+  google_sign_in: ^7.2.0
+  sign_in_with_apple: ^8.1.0
+  crypto: ^3.0.8
+  record: ^6.2.1
+  video_player: ^2.11.1
+  fc_native_video_thumbnail: ^2.2.0
 
 dev_dependencies:
   flutter_test:

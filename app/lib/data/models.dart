@@ -1,6 +1,8 @@
 // Plain data classes for everything Memory Card stores. No Flutter imports, so the engine and its tests
 // run anywhere. Every class round-trips through JSON-compatible maps (Hive stores them as-is).
 
+import 'dart:math' as math;
+
 import '../engine/assessor.dart';
 import '../engine/baselines.dart';
 import '../engine/calibration.dart';
@@ -314,6 +316,31 @@ class CardEvent {
   final int thinkMs;
 }
 
+/// A recording on one side of a card: heard before answering (front) or with the answer (back).
+class CardSound {
+  CardSound({required this.src, this.ms = 0, this.recorded = false});
+
+  /// File path (phone) or data URI (backups, web).
+  String src;
+
+  /// Length, ms (0 = unknown).
+  int ms;
+
+  /// Recorded in the app (otherwise a file that was brought in).
+  bool recorded;
+
+  CardSound copy() => CardSound(src: src, ms: ms, recorded: recorded);
+
+  Map<String, Object?> toJson() => {'s': src, if (ms > 0) 'ms': ms, if (recorded) 'r': 1};
+
+  static CardSound? fromJson(Object? j) {
+    if (j is! Map) return null;
+    final src = j['s'];
+    if (src is! String || src.isEmpty) return null;
+    return CardSound(src: src, ms: (j['ms'] as num?)?.toInt() ?? 0, recorded: j['r'] == 1);
+  }
+}
+
 class CardItem {
   CardItem({
     required this.id,
@@ -326,6 +353,8 @@ class CardItem {
     this.image,
     this.frontLayout,
     this.backLayout,
+    this.soundF,
+    this.soundB,
     this.isReverse = false,
     this.siblingId,
     this.suspended = false,
@@ -361,6 +390,10 @@ class CardItem {
   /// How each side is laid out (pictures, text placement). null = the classic text card.
   SideLayout? frontLayout;
   SideLayout? backLayout;
+
+  /// A recording heard before answering (front) and one heard with the answer (back).
+  CardSound? soundF;
+  CardSound? soundB;
   bool isReverse;
   String? siblingId;
   bool suspended;
@@ -394,9 +427,15 @@ class CardItem {
   /// The answer needs its own face (pictures or a free canvas) instead of the text pill under the prompt.
   bool get hasRichBack => backLayout != null && (backLayout!.hasImage || backLayout!.mode == LayoutMode.canvas);
 
-  /// What lists and search show for a side that is only a picture.
-  String get frontText => front.isNotEmpty ? front : (hasFrontPicture ? 'Picture' : '');
-  String get backText => back.isNotEmpty ? back : (hasBackPicture ? 'Picture' : '');
+  /// What lists and search show for a side that is only a picture, a video or a sound.
+  String get frontText => front.isNotEmpty ? front : _mediaWord(frontLayout, soundF, hasFrontPicture);
+  String get backText => back.isNotEmpty ? back : _mediaWord(backLayout, soundB, hasBackPicture);
+
+  static String _mediaWord(SideLayout? l, CardSound? sound, bool picture) =>
+      (l?.hasVideo ?? false) ? 'Video' : (picture ? 'Picture' : (sound != null ? 'Sound' : ''));
+
+  /// How long the question takes to play by itself (its recording, or a video that is the question), ms.
+  int get promptMediaMs => math.max<int>(soundF?.ms ?? 0, frontLayout?.promptVideoMs ?? 0);
 
   /// The first picture to use as a thumbnail (front first).
   String? get thumbSrc => frontLayout?.firstImage?.src ?? ((image != null && image!.isNotEmpty) ? image : backLayout?.firstImage?.src);
@@ -442,6 +481,8 @@ class CardItem {
         'img': image,
         if (frontLayout != null) 'fl': frontLayout!.toJson(),
         if (backLayout != null) 'bl': backLayout!.toJson(),
+        if (soundF != null) 'sf': soundF!.toJson(),
+        if (soundB != null) 'sb': soundB!.toJson(),
         'rev': isReverse,
         'sib': siblingId,
         'sus': suspended,
@@ -470,6 +511,8 @@ class CardItem {
         image: j['img'] as String?,
         frontLayout: SideLayout.fromJson(j['fl']),
         backLayout: SideLayout.fromJson(j['bl']),
+        soundF: CardSound.fromJson(j['sf']),
+        soundB: CardSound.fromJson(j['sb']),
         isReverse: _b(j['rev']),
         siblingId: j['sib'] as String?,
         suspended: _b(j['sus']),
@@ -610,6 +653,9 @@ class Settings {
   /// Mastered cards (recall ≥ 97 %, stability ≥ 30 days) skip their turn.
   bool restMastered = true;
   bool autoSpeak = false;
+
+  /// A card's own recordings and videos play by themselves (the question as it appears, the answer on reveal).
+  bool autoPlay = true;
   bool ignoreAccents = true;
   String name = '';
 
@@ -675,6 +721,7 @@ class Settings {
         'smart': smartGrading,
         'rest': restMastered,
         'autoSpeak': autoSpeak,
+        'autoPlay': autoPlay,
         'accents': ignoreAccents,
         'name': name,
         'showGrade': showGrade,
@@ -715,6 +762,7 @@ class Settings {
     s.smartGrading = _b(j['smart'], true);
     s.restMastered = _b(j['rest'], true);
     s.autoSpeak = _b(j['autoSpeak']);
+    s.autoPlay = _b(j['autoPlay'], true);
     s.ignoreAccents = _b(j['accents'], true);
     s.name = _s(j['name']);
     s.showGrade = _b(j['showGrade'], true);

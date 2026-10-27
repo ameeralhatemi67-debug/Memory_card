@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 
 import '../../data/card_layout.dart';
 import '../../data/models.dart';
+import '../../services/card_audio.dart';
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../layout/layout_face.dart';
 
-export '../layout/layout_face.dart' show CardThumb, cardImage, termSize;
+export '../layout/layout_face.dart' show CardThumb, FaceMedia, cardImage, termSize;
 
 /// The front of a study card: label, the prompt, context, then the reveal area and "Hear it".
 /// Cards with a picture layout draw it behind the same label and reveal controls.
@@ -28,6 +29,8 @@ class CardFront extends StatelessWidget {
     this.typing,
     this.typedResult,
     this.pre = PreReveal.none,
+    this.media = FaceMedia.still,
+    this.hearLabel = 'Hear it',
   });
 
   final CardItem card;
@@ -47,6 +50,12 @@ class CardFront extends StatelessWidget {
 
   /// What pictures marked "blur until revealed" do now (Settings).
   final PreReveal pre;
+
+  /// Videos play and hints open (the card on top of the stack).
+  final FaceMedia media;
+
+  /// What the sound button says: "Hear it", or "Hear the answer" once the answer has its own recording.
+  final String hearLabel;
 
   /// The answer has its own face (pictures or a free canvas): it replaces the front on reveal.
   bool get _answerReplacesFront =>
@@ -70,6 +79,8 @@ class CardFront extends StatelessWidget {
               speaking: speaking,
               onSpeak: onSpeak,
               pre: pre,
+              media: media,
+              hearLabel: hearLabel,
             )
           : KeyedSubtree(key: const ValueKey('front'), child: front),
     );
@@ -139,7 +150,7 @@ class CardFront extends StatelessWidget {
             textAlign: TextAlign.center, style: T.t(14, w: FontWeight.w600, color: mc.mutedOnInk)),
       if (onSpeak != null) ...[
         const SizedBox(height: 10),
-        _SpeakButton(speaking: speaking, compact: compact, onTap: onSpeak!),
+        _SpeakButton(speaking: speaking, compact: compact, onTap: onSpeak!, label: hearLabel),
       ],
     ];
   }
@@ -152,6 +163,8 @@ class CardFront extends StatelessWidget {
     final flip = mode == RevealMode.flip;
     // A kanji, a letter, a kana: one big glyph in the middle of the card.
     final glyph = !code && prompt.trim().isNotEmpty && prompt.trim().runes.length <= 3;
+    // Only a sound to go on: the question is something to listen to.
+    final listen = prompt.trim().isEmpty && card.soundF != null && (card.image == null || card.image!.isEmpty);
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -168,6 +181,8 @@ class CardFront extends StatelessWidget {
                 ),
               ),
             )
+          else if (listen)
+            Expanded(child: SoundPrompt(sound: card.soundF!, color: mc.onInk, muted: mc.mutedOnInk, onTap: onSpeak))
           else
             Text(
               prompt,
@@ -193,7 +208,7 @@ class CardFront extends StatelessWidget {
               ),
             ),
           ],
-          if (!glyph) const Spacer(),
+          if (!glyph && !listen) const Spacer(),
           ..._footer(mc),
         ],
       ),
@@ -218,6 +233,7 @@ class CardFront extends StatelessWidget {
             back: false,
             pre: pre,
             reveal: t,
+            media: media,
           ),
         ),
         Padding(
@@ -247,6 +263,8 @@ class CardBack extends StatelessWidget {
     this.deck,
     this.pre = PreReveal.none,
     this.reveal,
+    this.media = FaceMedia.still,
+    this.hearLabel = 'Hear it',
   });
   final CardItem card;
   final Deck? deck;
@@ -254,6 +272,8 @@ class CardBack extends StatelessWidget {
   final bool speaking;
   final VoidCallback? onSpeak;
   final PreReveal pre;
+  final FaceMedia media;
+  final String hearLabel;
 
   /// 0…1 as the face turns up (flip mode); null = sharpen on its own, once, as it appears.
   final double? reveal;
@@ -271,7 +291,13 @@ class CardBack extends StatelessWidget {
         children: [
           Text('ANSWER', style: T.caps(12, color: Mc.graphite.withValues(alpha: 0.67))),
           const SizedBox(height: 6),
-          Text(answer, textDirection: dirOf(answer), style: T.d(termSize(answer, false), color: Mc.graphite, height: 1.05)),
+          if (answer.isEmpty && card.soundB != null)
+            SizedBox(
+              height: compact ? 90 : 130,
+              child: SoundPrompt(sound: card.soundB!, color: Mc.graphite, muted: Mc.graphite.withValues(alpha: 0.6), onTap: onSpeak),
+            )
+          else
+            Text(answer, textDirection: dirOf(answer), style: T.d(termSize(answer, false), color: Mc.graphite, height: 1.05)),
           if (card.example.isNotEmpty) ...[
             const SizedBox(height: 8),
             Text(card.example, style: T.t(16, w: FontWeight.w500, color: Mc.graphite.withValues(alpha: 0.7), height: 1.3)),
@@ -281,7 +307,7 @@ class CardBack extends StatelessWidget {
             _Hook(text: card.hook, color: Mc.graphite),
           ],
           const Spacer(),
-          if (onSpeak != null) _SpeakButton(speaking: speaking, compact: compact, onTap: onSpeak!),
+          if (onSpeak != null) _SpeakButton(speaking: speaking, compact: compact, onTap: onSpeak!, label: hearLabel),
         ],
       ),
     );
@@ -295,6 +321,7 @@ class CardBack extends StatelessWidget {
           back: true,
           pre: pre,
           reveal: t,
+          media: media,
         );
     final backed = layout.imageUnderLabel;
     return Container(
@@ -325,11 +352,71 @@ class CardBack extends StatelessWidget {
                   ),
                 ),
                 const Spacer(),
-                if (onSpeak != null) _SpeakButton(speaking: speaking, compact: compact, onTap: onSpeak!),
+                if (onSpeak != null) _SpeakButton(speaking: speaking, compact: compact, onTap: onSpeak!, label: hearLabel),
               ],
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+/// A question (or an answer) that is only a sound: a row of bars that dance while it plays. Tap to play.
+class SoundPrompt extends StatelessWidget {
+  const SoundPrompt({super.key, required this.sound, required this.color, required this.muted, this.onTap});
+  final CardSound sound;
+  final Color color;
+  final Color muted;
+  final VoidCallback? onTap;
+
+  // A fixed, friendly silhouette (the real waveform is not decoded: it would cost more than it shows).
+  static const _shape = [0.30, 0.55, 0.42, 0.80, 0.62, 1.00, 0.70, 0.48, 0.86, 0.58, 0.36, 0.66, 0.44, 0.24];
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: onTap != null,
+      label: 'Play the sound',
+      child: GestureDetector(
+        behavior: HitTestBehavior.opaque,
+        onTap: onTap,
+        child: ValueListenableBuilder<String?>(
+          valueListenable: CardAudio.i.playing,
+          builder: (context, src, _) {
+            final on = src == sound.src;
+            return Column(mainAxisAlignment: MainAxisAlignment.center, children: [
+              SizedBox(
+                height: 64,
+                child: AmbientClock(
+                  enabled: on,
+                  builder: (context, ms) => ValueListenableBuilder<double>(
+                    valueListenable: CardAudio.i.progress,
+                    builder: (context, p, _) => Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        for (var i = 0; i < _shape.length; i++)
+                          Container(
+                            width: 7,
+                            margin: const EdgeInsets.symmetric(horizontal: 2.5),
+                            height: 64 * _shape[i] * (on ? 0.75 + 0.25 * math.sin(ms / 120 + i * 0.9) : 1),
+                            decoration: BoxDecoration(
+                              color: on && i / _shape.length <= p ? Mc.red : color,
+                              borderRadius: BorderRadius.circular(4),
+                            ),
+                          ),
+                      ],
+                    ),
+                  ),
+                ),
+              ),
+              const SizedBox(height: 12),
+              Text(on ? 'Listening…' : (sound.ms > 0 ? 'Listen · ${(sound.ms / 1000).toStringAsFixed(sound.ms < 10000 ? 1 : 0)} s' : 'Listen'),
+                  style: T.t(15, w: FontWeight.w700, color: muted)),
+            ]);
+          },
+        ),
       ),
     );
   }
@@ -407,7 +494,7 @@ class _Answer extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mc = Mc.of(context);
-    final answer = card.back;
+    final answer = card.back.isEmpty && card.soundB != null ? 'Listen to the answer' : card.back;
     final long = answer.length > 22;
     final color = switch (typedResult) { 'exact' => Mc.green, 'wrong' => Mc.delete, _ => Mc.peach };
     return Column(
@@ -468,33 +555,52 @@ class _Hook extends StatelessWidget {
 }
 
 class _SpeakButton extends StatelessWidget {
-  const _SpeakButton({required this.speaking, required this.compact, required this.onTap});
+  const _SpeakButton({required this.speaking, required this.compact, required this.onTap, this.label = 'Hear it'});
   final bool speaking;
   final bool compact;
   final VoidCallback onTap;
+  final String label;
 
   @override
   Widget build(BuildContext context) {
     return Pressable(
       onTap: onTap,
-      label: 'Play pronunciation',
+      label: label == 'Hear it' ? 'Play pronunciation' : label,
       child: Container(
         height: compact ? 58 : 76,
+        clipBehavior: Clip.antiAlias,
         decoration: BoxDecoration(color: Mc.red, borderRadius: BorderRadius.circular(12)),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            AmbientClock(
-              enabled: speaking,
-              builder: (context, ms) => Transform.scale(
-                scale: speaking ? 1 + 0.08 * math.sin(ms / 140) : 1,
-                child: McIcon(McIcons.speaker, size: const Size(30, 30), color: Mc.paper),
+        child: Stack(fit: StackFit.expand, children: [
+          // A recording fills the button as it plays (the phone's voice has no clock to show).
+          if (speaking)
+            ValueListenableBuilder<double>(
+              valueListenable: CardAudio.i.progress,
+              builder: (context, p, _) => FractionallySizedBox(
+                alignment: Alignment.centerLeft,
+                widthFactor: p,
+                child: const ColoredBox(color: Color(0x33000000)),
               ),
             ),
-            const SizedBox(width: 10),
-            Text(speaking ? 'Playing…' : 'Hear it', style: T.d(25, color: Mc.paper)),
-          ],
-        ),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              AmbientClock(
+                enabled: speaking,
+                builder: (context, ms) => Transform.scale(
+                  scale: speaking ? 1 + 0.08 * math.sin(ms / 140) : 1,
+                  child: McIcon(McIcons.speaker, size: const Size(30, 30), color: Mc.paper),
+                ),
+              ),
+              const SizedBox(width: 10),
+              Flexible(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  child: Text(speaking ? 'Playing…' : label, style: T.d(25, color: Mc.paper)),
+                ),
+              ),
+            ],
+          ),
+        ]),
       ),
     );
   }

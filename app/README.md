@@ -106,6 +106,37 @@ picture peeks out blurred behind *Tap to reveal*. Reverse cards swap pictures al
 Picture decks come from `content/decks/visual/*.json` (see the README there) with images in
 `assets/content/img/<deck>/`; `python ../tools/imgkit.py` fetches and checks them and `build_catalog.py` bundles them.
 
+## Voices and videos on cards
+
+**Voice:** each side can carry a recording (`CardItem.soundF` / `soundB`, a `CardSound`). In the editor, *+ Voice*
+opens the recorder (tap to record, a live level meter, play it back, record again, up to 2 minutes, AAC in an `.m4a`)
+or picks a sound file (MP3, M4A, WAV, OGG…). The front's sound is heard before answering: *Hear it* plays it (also on
+decks with no language), and a front that is only a sound shows a listening card. The back's sound plays with the
+answer (*Hear the answer*). **Settings › Study › Play recordings and videos** decides whether they start by
+themselves. Reverse cards swap the two sounds.
+
+**Video:** a video is a picture that moves (`ImageEl.video`, with its poster still in `src`), so it uses every layout,
+crop, zoom and corner of the picture system. *+ Video* (gallery, camera or files; up to 3 minutes and 150 MB; a poster
+is made with `fc_native_video_thumbnail`) asks on the front whether it is **the question** (plays as the card
+appears) or **a hint**; on the back it is part of **the answer**. Videos and pictures on the answer side are blurred
+until the reveal, exactly like pictures (same Settings › Study blur, hide or show), then the video plays. A **hint**
+(a picture or a video on the front, *A hint* in the layout editor) stays blurred with "Hint · tap to see" until
+tapped, even when waiting pictures are set to show; remembering a card after opening its hint is graded Hard. The
+layout editor also has *Play its sound* and *Play on a loop*. The time a question video or recording takes to play is
+not counted as hesitation. Backups carry recordings and videos inline (files over 40 MB stay out).
+
+Files live in the app's documents folder: `card_media/` (videos, sounds) and `card_images/` (pictures, posters).
+Code: `services/media_ingest.dart`, `services/card_audio.dart`, `features/media/` (recorder sheet, video picker,
+`CardVideo`). Tests: `test/media_test.dart`, `test/media_ui_test.dart`; renders:
+`flutter test test_gallery/media_gallery_test.dart` → `build/gallery/med-*.png`.
+
+## Accounts
+
+Optional sign-in with **email and password**, **Google** and **Apple** on Supabase (project `memory-card`). The
+Account tab's badges and onboarding's "Your card" step open it; the account sheet changes the password, signs out and
+deletes the account. Nothing on the phone depends on it. Setup, the console steps for Google and Apple, and how it
+works: [docs/accounts.md](../docs/accounts.md). Tests: `test/account_test.dart` (a fake server).
+
 ## Navigation and the +
 
 The nav bar is a hand of cards (design B of the nav canvas, https://claude.ai/artifact/BAzpHdCtH8nxanCYBifZFe):

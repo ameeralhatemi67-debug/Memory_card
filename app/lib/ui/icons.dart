@@ -114,6 +114,22 @@ class McIcons {
   static const lightbulb =
       '<svg $_ns viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.8.6 1.1 1.4 1.1 2.2h5c0-.8.3-1.6 1.1-2.2A6 6 0 0 0 12 3z"/></svg>';
 
+  // ---- sound, video and sign-in ----
+  static const play =
+      '<svg $_ns viewBox="0 0 24 24" fill="#000"><path d="M8 4.8c0-1 1.1-1.6 1.9-1.1l10.4 6.9c.8.5.8 1.7 0 2.2L9.9 19.7c-.8.5-1.9-.1-1.9-1.1z"/></svg>';
+  static const pause =
+      '<svg $_ns viewBox="0 0 24 24" fill="#000"><rect x="5.5" y="4" width="4.6" height="16" rx="1.4"/><rect x="13.9" y="4" width="4.6" height="16" rx="1.4"/></svg>';
+  static const replay =
+      '<svg $_ns viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="M4 12a8 8 0 1 0 2.4-5.7"/><path d="M4 4v4.5h4.5"/></svg>';
+  static const mic =
+      '<svg $_ns viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="8.5" y="2.5" width="7" height="12" rx="3.5" fill="#000"/><path d="M5 11a7 7 0 0 0 14 0M12 18v3.5M8.5 21.5h7"/></svg>';
+  static const stop =
+      '<svg $_ns viewBox="0 0 24 24" fill="#000"><rect x="5" y="5" width="14" height="14" rx="3"/></svg>';
+  static const video =
+      '<svg $_ns viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="5.5" width="13.5" height="13" rx="3"/><path d="m16 10.2 4.4-2.7c.5-.3 1.1.1 1.1.6v7.8c0 .6-.6.9-1.1.6L16 13.8z" fill="#000"/></svg>';
+  static const mail =
+      '<svg $_ns viewBox="0 0 24 24" fill="none" stroke="#000" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><rect x="2.5" y="4.5" width="19" height="15" rx="3"/><path d="m3.5 7 8.5 6 8.5-6"/></svg>';
+
   /// Every glyph, to decode them all behind the splash (no icon pops in after the first frame).
   static const all = [
     logo,
@@ -156,6 +172,13 @@ class McIcons {
     help,
     clock,
     lightbulb,
+    play,
+    pause,
+    replay,
+    mic,
+    stop,
+    video,
+    mail,
   ];
 
   static Future<void> precache() => Future.wait([for (final s in all) SvgStringLoader(s).loadBytes(null)]);

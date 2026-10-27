@@ -66,5 +66,23 @@
 		<string>UIInterfaceOrientationLandscapeLeft</string>
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>Record your voice onto a card: a question to hear, or the answer.</string>
+	<key>NSCameraUsageDescription</key>
+	<string>Take a photo or film a video for a card.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Put pictures and videos from your library on your cards.</string>
+	<key>CFBundleURLTypes</key>
+	<array>
+		<dict>
+			<key>CFBundleTypeRole</key>
+			<string>Editor</string>
+			<key>CFBundleURLSchemes</key>
+			<array>
+				<!-- Account emails and browser sign-in come back here (lib/services/backend_config.dart). -->
+				<string>com.memorycard.app</string>
+			</array>
+		</dict>
+	</array>
 </dict>
 </plist>

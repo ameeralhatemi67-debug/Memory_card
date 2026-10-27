@@ -2,11 +2,13 @@ import 'dart:math' as math;
 
 import 'package:flutter/material.dart';
 
+import '../../data/card_layout.dart';
 import '../../data/models.dart';
 import '../../data/store.dart';
 import '../../data/store_scope.dart';
 import '../../engine/assessor.dart';
 import '../../engine/days.dart';
+import '../../services/card_audio.dart';
 import '../../ui/icons.dart';
 import '../../ui/overlays.dart';
 import '../../ui/routes.dart';
@@ -16,6 +18,7 @@ import '../../ui/widgets.dart';
 import '../editor/editor_sheet.dart';
 import '../study/card_face.dart';
 import '../layout/layout_face.dart';
+import '../media/card_video.dart';
 
 /// "Why this card?": the card's memory, its forgetting curve and every answer you gave it.
 class CardDetail extends StatelessWidget {
@@ -80,7 +83,15 @@ class CardDetail extends StatelessWidget {
                   Text((c.label.isEmpty ? 'card' : c.label).toUpperCase(), style: T.caps(12, color: mc.mutedOnInk)),
                   const SizedBox(height: 6),
                   if (c.frontLayout?.firstImage != null || (c.image ?? '').isNotEmpty) ...[
-                    _Picture(src: c.frontLayout?.firstImage?.src ?? c.image!, contain: c.frontLayout?.firstImage?.contain ?? false),
+                    _Picture(
+                      src: c.frontLayout?.firstImage?.src ?? c.image!,
+                      contain: c.frontLayout?.firstImage?.contain ?? false,
+                      video: c.frontLayout?.firstImage,
+                    ),
+                    const SizedBox(height: 8),
+                  ],
+                  if (c.soundF != null) ...[
+                    _SoundChip(sound: c.soundF!, label: 'Question sound', onInk: true),
                     const SizedBox(height: 8),
                   ],
                   Text(c.frontText,
@@ -97,7 +108,11 @@ class CardDetail extends StatelessWidget {
                     decoration: BoxDecoration(color: Mc.peach, borderRadius: BorderRadius.circular(12)),
                     child: Column(mainAxisSize: MainAxisSize.min, children: [
                       if (c.backLayout?.firstImage != null) ...[
-                        _Picture(src: c.backLayout!.firstImage!.src, contain: c.backLayout!.firstImage!.contain),
+                        _Picture(src: c.backLayout!.firstImage!.src, contain: c.backLayout!.firstImage!.contain, video: c.backLayout!.firstImage),
+                        if (c.back.isNotEmpty) const SizedBox(height: 8),
+                      ],
+                      if (c.soundB != null) ...[
+                        _SoundChip(sound: c.soundB!, label: 'Answer sound', onInk: false),
                         if (c.back.isNotEmpty) const SizedBox(height: 8),
                       ],
                       if (c.back.isNotEmpty || c.backLayout?.firstImage == null)
@@ -291,22 +306,63 @@ class _CurvePainter extends CustomPainter {
 
 /// A card's picture in the detail view: whole if it was meant to be, otherwise filling a short band.
 class _Picture extends StatelessWidget {
-  const _Picture({required this.src, required this.contain});
+  const _Picture({required this.src, required this.contain, this.video});
   final String src;
   final bool contain;
 
+  /// The element, when it is a video: it plays here on a tap of its button.
+  final ImageEl? video;
+
   @override
   Widget build(BuildContext context) {
+    final v = video;
     return ClipRRect(
       borderRadius: BorderRadius.circular(12),
       child: SizedBox(
-        height: 150,
+        height: v != null && v.isVideo ? 190 : 150,
         width: double.infinity,
         child: ColoredBox(
           color: const Color(0x14000000),
-          child: cardImage(src, height: 150, fit: contain ? BoxFit.contain : BoxFit.cover),
+          child: v != null && v.isVideo
+              ? CardVideo(el: v, allowed: true, autostart: false, fit: BoxFit.contain)
+              : cardImage(src, height: 150, fit: contain ? BoxFit.contain : BoxFit.cover),
         ),
       ),
+    );
+  }
+}
+
+/// A card's recording, played from the card's page.
+class _SoundChip extends StatelessWidget {
+  const _SoundChip({required this.sound, required this.label, required this.onInk});
+  final CardSound sound;
+  final String label;
+  final bool onInk;
+
+  @override
+  Widget build(BuildContext context) {
+    final mc = Mc.of(context);
+    final fg = onInk ? mc.onInk : Mc.graphite;
+    return ValueListenableBuilder<String?>(
+      valueListenable: CardAudio.i.playing,
+      builder: (context, src, _) {
+        final on = src == sound.src;
+        return Pressable(
+          onTap: () => on ? CardAudio.i.stop() : CardAudio.i.play(sound.src, ms: sound.ms),
+          label: on ? 'Stop the sound' : 'Play the $label'.toLowerCase(),
+          child: Container(
+            height: 44,
+            padding: const EdgeInsets.symmetric(horizontal: 12),
+            decoration: BoxDecoration(color: fg.withValues(alpha: 0.12), borderRadius: BorderRadius.circular(12)),
+            child: Row(children: [
+              McIcon(on ? McIcons.pause : McIcons.speaker, size: const Size(20, 20), color: fg),
+              const SizedBox(width: 10),
+              Expanded(child: Text(on ? 'Playing…' : label, style: T.t(15, w: FontWeight.w700, color: fg))),
+              if (sound.ms > 0) Text(clockOf(sound.ms), style: T.t(14, w: FontWeight.w600, color: fg.withValues(alpha: 0.7))),
+            ]),
+          ),
+        );
+      },
     );
   }
 }

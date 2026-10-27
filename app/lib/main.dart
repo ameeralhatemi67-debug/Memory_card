@@ -9,6 +9,7 @@ import 'package:google_fonts/google_fonts.dart';
 import 'app.dart';
 import 'data/store.dart';
 import 'features/onboarding/splash.dart';
+import 'services/account.dart';
 import 'services/home_widgets.dart';
 import 'services/reminders.dart';
 import 'services/updates.dart';
@@ -70,6 +71,8 @@ class _BootState extends State<Boot> {
       try {
         await GoogleFonts.pendingFonts(T.preload()).timeout(const Duration(milliseconds: 2500));
       } catch (_) {}
+      // Accounts are optional: the last session comes back from the phone; nothing waits on the network.
+      unawaited(Account.i.init().then((_) => Account.i.attach(store)));
       // Reminders first, so the update reminder can be booked or dropped once the version is known.
       unawaited(Reminders.i.init(store).then((_) => Updates.i.attach(store)));
       if (mounted) setState(() => _store = store);

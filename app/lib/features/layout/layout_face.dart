@@ -1,5 +1,6 @@
 import 'dart:async';
 import 'dart:io' show File;
+import 'dart:math' as math;
 import 'dart:ui' as ui;
 
 import 'package:flutter/foundation.dart';
@@ -8,7 +9,9 @@ import 'package:flutter/material.dart';
 import '../../data/card_layout.dart';
 import '../../data/models.dart';
 import '../../ui/icons.dart';
+import '../../ui/motion.dart';
 import '../../ui/theme.dart';
+import '../media/card_video.dart';
 
 /// Display size of the prompt, by length (the canvas `termSize`).
 double termSize(String text, bool code) {
@@ -46,7 +49,7 @@ Widget cardImage(
 /// What pictures marked "blur until revealed" do before the reveal (Settings › Study).
 @immutable
 class PreReveal {
-  const PreReveal(this.sigma, {this.hide = false});
+  const PreReveal(this.sigma, {this.hide = false, this.hintSigma = 0});
 
   /// Gaussian blur, in pixels on a 276-wide face; 0 = none.
   final double sigma;
@@ -54,15 +57,40 @@ class PreReveal {
   /// Not even a blur: the picture is invisible until the reveal.
   final bool hide;
 
+  /// How strongly a hint is blurred until it is tapped. Hints stay covered even when waiting pictures are
+  /// set to show (a hint in plain sight is not a hint).
+  final double hintSigma;
+
   static const none = PreReveal(0);
 
   factory PreReveal.of(Settings s) => switch (s.imageReveal) {
         'hide' => const PreReveal(0, hide: true),
-        'show' => none,
-        _ => PreReveal(s.blurSigma),
+        'show' => PreReveal(0, hintSigma: 6 + 34 * s.blurAmount),
+        _ => PreReveal(s.blurSigma, hintSigma: s.blurSigma),
       };
 
   bool get active => sigma > 0 || hide;
+}
+
+/// How a face treats its videos and hints: still (previews, thumbnails, the next card waiting underneath)
+/// or live (the card on top of the stack: videos play, hints open on a tap).
+@immutable
+class FaceMedia {
+  const FaceMedia({this.live = false, this.autoPlay = true, this.hintsOpen = const {}, this.onHint});
+
+  /// Videos may play here.
+  final bool live;
+
+  /// They start by themselves once nothing holds them back (Settings › Study).
+  final bool autoPlay;
+
+  /// Hints opened on this card so far (element ids).
+  final Set<String> hintsOpen;
+
+  /// A hint was tapped open; null where hints are not interactive.
+  final ValueChanged<String>? onHint;
+
+  static const still = FaceMedia();
 }
 
 /// The words a layout draws: the card's own fields (or the editor's live text).
@@ -97,6 +125,7 @@ class LayoutFace extends StatelessWidget {
     this.pre = PreReveal.none,
     this.reveal = 1,
     this.hidden = const {},
+    this.media = FaceMedia.still,
   });
 
   final SideLayout layout;
@@ -111,6 +140,9 @@ class LayoutFace extends StatelessWidget {
 
   /// Elements not to draw (the editor draws the one being dragged itself).
   final Set<String> hidden;
+
+  /// Videos play and hints open (the card on top of the stack), or everything stays still.
+  final FaceMedia media;
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +164,7 @@ class LayoutFace extends StatelessWidget {
                   width: e.w * w,
                   height: e.h * h,
                   child: switch (e) {
-                    ImageEl() => PictureView(el: e, k: k, pre: pre, reveal: reveal),
+                    ImageEl() => PictureView(el: e, k: k, pre: pre, reveal: reveal, media: media),
                     TextEl() => TextView(el: e, texts: texts, k: k, back: back),
                   },
                 ),
@@ -143,9 +175,18 @@ class LayoutFace extends StatelessWidget {
   }
 }
 
-/// One picture in its frame: fill or fit, zoom, pan, corner radius, plate, outline, reveal blur.
+/// One picture (or video) in its frame: fill or fit, zoom, pan, corner radius, plate, outline, and the
+/// blur that holds it back until the reveal (or, for a hint, until it is tapped).
 class PictureView extends StatelessWidget {
-  const PictureView({super.key, required this.el, required this.k, this.pre = PreReveal.none, this.reveal = 1, this.forceBlur});
+  const PictureView({
+    super.key,
+    required this.el,
+    required this.k,
+    this.pre = PreReveal.none,
+    this.reveal = 1,
+    this.forceBlur,
+    this.media = FaceMedia.still,
+  });
 
   final ImageEl el;
   final double k;
@@ -154,10 +195,27 @@ class PictureView extends StatelessWidget {
 
   /// Blur at this sigma regardless of the element's own flag (the peek in the reveal button).
   final double? forceBlur;
+  final FaceMedia media;
 
   @override
   Widget build(BuildContext context) {
+    if (!el.hint) return _build(el.blur ? reveal.clamp(0.0, 1.0) : 1.0);
+    // A hint sharpens when it is tapped open, or with the rest of the card at the reveal.
+    final opened = media.hintsOpen.contains(el.id) || reveal >= 1;
+    return TweenAnimationBuilder<double>(
+      tween: Tween(end: opened ? 1.0 : 0.0),
+      duration: Duration(milliseconds: MotionPrefs.reducedOf(context) ? 0 : 480),
+      curve: Curves.easeOut,
+      builder: (context, t, _) => _build(math.max(t, reveal.clamp(0.0, 1.0))),
+    );
+  }
+
+  /// [open] is 0 while the picture is held back, 1 once it is in plain sight.
+  Widget _build(double open) {
     final al = Alignment(el.panX * 2 - 1, el.panY * 2 - 1);
+    Widget content(BoxFit fit, Alignment a) => el.isVideo && media.live && forceBlur == null
+        ? CardVideo(el: el, allowed: open >= 0.999, autostart: media.autoPlay, fit: fit, alignment: a)
+        : cardImage(el.src, fit: fit, alignment: a);
     // A whole, unzoomed picture is wrapped tightly, so its plate, outline and corners follow the picture
     // itself and not the (larger) frame it sits in.
     if (el.contain && el.aspect > 0 && el.zoom == 1) {
@@ -168,21 +226,30 @@ class PictureView extends StatelessWidget {
         } else {
           h = w / el.aspect;
         }
-        return Align(alignment: al, child: SizedBox(width: w, height: h, child: _framed(cardImage(el.src, fit: BoxFit.fill))));
+        return Align(alignment: al, child: SizedBox(width: w, height: h, child: _framed(content(BoxFit.fill, Alignment.center), open)));
       });
     }
-    Widget pic = cardImage(el.src, fit: el.contain ? BoxFit.contain : BoxFit.cover, alignment: al);
+    Widget pic = content(el.contain ? BoxFit.contain : BoxFit.cover, al);
     if (el.zoom != 1) pic = Transform.scale(scale: el.zoom, alignment: al, child: pic);
-    return _framed(SizedBox.expand(child: ClipRect(child: pic)));
+    return _framed(SizedBox.expand(child: ClipRect(child: pic)), open);
   }
 
-  Widget _framed(Widget pic) {
-
-    final sigma = forceBlur ?? (el.blur && pre.sigma > 0 ? pre.sigma * (1 - reveal.clamp(0.0, 1.0)) : 0.0);
+  Widget _framed(Widget pic, double open) {
+    final held = (el.blur || el.hint) && forceBlur == null;
+    final base = el.hint ? pre.hintSigma : pre.sigma;
+    final sigma = forceBlur ?? (held && base > 0 ? base * (1 - open) : 0.0);
     if (sigma > 0.05) {
       pic = ImageFiltered(imageFilter: ui.ImageFilter.blur(sigmaX: sigma * k, sigmaY: sigma * k, tileMode: TileMode.clamp), child: pic);
     }
-    if (el.blur && pre.hide && forceBlur == null && reveal < 1) pic = Opacity(opacity: reveal.clamp(0.0, 1.0), child: pic);
+    if (held && pre.hide && open < 1) pic = Opacity(opacity: open, child: pic);
+    // Where a video does not play, its poster says it is one.
+    if (el.isVideo && forceBlur == null && !(media.live && open >= 0.999)) {
+      pic = Stack(fit: StackFit.expand, children: [
+        pic,
+        if (open > 0.5 || !held) Positioned(left: 7 * k, bottom: 7 * k, child: VideoTag(ms: el.videoMs, k: k)),
+      ]);
+    }
+    if (el.hint && forceBlur == null && open < 0.98) pic = _hintCover(pic, open);
 
     final radius = BorderRadius.circular(el.radius * k);
     Widget framed = ClipRRect(borderRadius: radius, child: pic);
@@ -200,6 +267,39 @@ class PictureView extends StatelessWidget {
       );
     }
     return framed;
+  }
+
+  /// "Hint · tap to see" over a hint that is still covered; the whole frame is the button.
+  Widget _hintCover(Widget pic, double open) {
+    final tap = media.onHint;
+    final chip = Opacity(
+      opacity: (1 - open).clamp(0.0, 1.0),
+      child: Padding(
+        padding: EdgeInsets.all(6 * k),
+        child: Center(
+          child: FittedBox(
+            fit: BoxFit.scaleDown,
+            child: Container(
+          padding: EdgeInsets.symmetric(horizontal: 12 * k, vertical: 6 * k),
+          decoration: BoxDecoration(color: const Color(0xD9222222), borderRadius: BorderRadius.circular(12 * k)),
+          child: Row(mainAxisSize: MainAxisSize.min, children: [
+            McIcon(McIcons.lightbulb, size: Size(15 * k, 15 * k), color: Mc.peach),
+            SizedBox(width: 6 * k),
+            Text(tap == null ? 'Hint' : (el.isVideo ? 'Hint · tap to watch' : 'Hint · tap to see'),
+                style: T.t(13 * k, w: FontWeight.w700, color: Mc.paper)),
+          ]),
+            ),
+          ),
+        ),
+      ),
+    );
+    final covered = Stack(fit: StackFit.expand, children: [pic, IgnorePointer(child: chip)]);
+    if (tap == null || open > 0) return covered;
+    return Semantics(
+      button: true,
+      label: el.isVideo ? 'Watch the hint' : 'See the hint',
+      child: GestureDetector(behavior: HitTestBehavior.opaque, onTap: () => tap(el.id), child: covered),
+    );
   }
 }
 
@@ -292,6 +392,7 @@ class CardThumb extends StatelessWidget {
   Widget build(BuildContext context) {
     final src = card.thumbSrc;
     if (src == null) return const SizedBox.shrink();
+    final video = (card.frontLayout?.hasVideo ?? false) || (card.backLayout?.hasVideo ?? false);
     return ClipRRect(
       borderRadius: BorderRadius.circular(size / 4),
       child: SizedBox(
@@ -299,7 +400,19 @@ class CardThumb extends StatelessWidget {
         height: size,
         child: ColoredBox(
           color: Mc.of(context).well,
-          child: cardImage(src, width: size, height: size, cacheWidth: (size * 3).round()),
+          child: Stack(fit: StackFit.expand, children: [
+            cardImage(src, width: size, height: size, cacheWidth: (size * 3).round()),
+            if (video)
+              Center(
+                child: Container(
+                  width: size * 0.42,
+                  height: size * 0.42,
+                  alignment: Alignment.center,
+                  decoration: const BoxDecoration(color: Color(0xB3222222), shape: BoxShape.circle),
+                  child: McIcon(McIcons.play, size: Size(size * 0.2, size * 0.2), color: Mc.paper),
+                ),
+              ),
+          ]),
         ),
       ),
     );

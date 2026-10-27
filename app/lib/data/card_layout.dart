@@ -67,8 +67,9 @@ sealed class LayoutEl {
   Map<String, Object?> _frame() => {'id': id, 'x': _r4(x), 'y': _r4(y), 'w': _r4(w), 'h': _r4(h)};
 }
 
-/// A picture in a frame. It always fills the frame ([contain] false) or sits whole inside it; [zoom] and
-/// the pan point then crop it further, like object-fit with a zoom.
+/// A picture (or a video) in a frame. It always fills the frame ([contain] false) or sits whole inside it;
+/// [zoom] and the pan point then crop it further, like object-fit with a zoom. A video is a moving picture:
+/// [src] is then its poster (a still from its start), so everything that draws a picture still works.
 class ImageEl extends LayoutEl {
   ImageEl({
     super.id,
@@ -87,9 +88,14 @@ class ImageEl extends LayoutEl {
     this.plate = '',
     this.outline = false,
     this.alpha = false,
+    this.video,
+    this.videoMs = 0,
+    this.sound = true,
+    this.loop = false,
+    this.hint = false,
   });
 
-  /// File path (phone), data URI (web) or `asset:` path (bundled decks).
+  /// File path (phone), data URI (web) or `asset:` path (bundled decks). For a video, its poster.
   String src;
 
   /// Source width ÷ height; 0 when unknown.
@@ -117,6 +123,23 @@ class ImageEl extends LayoutEl {
   /// The picture has transparent areas (informational).
   bool alpha;
 
+  /// The video file shown in this frame (null for a still picture).
+  String? video;
+
+  /// How long the video runs, ms (0 = unknown).
+  int videoMs;
+
+  /// The video plays with its sound (off = muted).
+  bool sound;
+
+  /// The video starts again when it ends.
+  bool loop;
+
+  /// A hint (front side): blurred like a waiting picture, but a tap shows it before the reveal.
+  bool hint;
+
+  bool get isVideo => video != null && video!.isNotEmpty;
+
   @override
   ImageEl copy() => ImageEl.fromJson(toJson())!;
 
@@ -135,6 +158,11 @@ class ImageEl extends LayoutEl {
         if (plate.isNotEmpty) 'p': plate,
         if (outline) 'o': 1,
         if (alpha) 'al': 1,
+        if (isVideo) 'v': video,
+        if (videoMs > 0) 'vm': videoMs,
+        if (!sound) 'mu': 1,
+        if (loop) 'lp': 1,
+        if (hint) 'ht': 1,
       };
 
   static ImageEl? fromJson(Map j) {
@@ -157,6 +185,11 @@ class ImageEl extends LayoutEl {
       plate: _s(j['p'], ''),
       outline: j['o'] == 1,
       alpha: j['al'] == 1,
+      video: j['v'] as String?,
+      videoMs: (j['vm'] as num?)?.toInt() ?? 0,
+      sound: j['mu'] != 1,
+      loop: j['lp'] == 1,
+      hint: j['ht'] == 1,
     );
   }
 }
@@ -250,10 +283,16 @@ class SideLayout {
   static const padX = 20 / 276;
   static const innerW = 1 - 2 * padX;
 
+  /// Pictures and videos (a video is a picture that moves).
   Iterable<ImageEl> get images => els.whereType<ImageEl>();
+  Iterable<ImageEl> get videos => images.where((i) => i.isVideo);
   Iterable<TextEl> get texts => els.whereType<TextEl>();
   bool get hasImage => images.isNotEmpty;
+  bool get hasVideo => videos.isNotEmpty;
   ImageEl? get firstImage => images.isEmpty ? null : images.first;
+
+  /// The longest video that is part of the question (not a hint): how long the prompt takes to play.
+  int get promptVideoMs => videos.where((v) => !v.hint).fold<int>(0, (m, v) => math.max(m, v.videoMs));
 
   /// A text-only structured layout with nothing customised: stored as "no layout" so the card keeps the
   /// classic look.
@@ -264,11 +303,14 @@ class SideLayout {
 
   SideLayout copy() => SideLayout(mode: mode, tpl: tpl, els: [for (final e in els) e.copy()]);
 
-  /// A copy for the other side of a card: pictures that wait for the reveal ([blur]) or not.
+  /// A copy for the other side of a card: pictures that wait for the reveal ([blur]) or not. Hints only
+  /// make sense on the side they were made for.
   SideLayout flagged({required bool blur}) {
     final c = copy();
     for (final i in c.images) {
-      i.blur = blur;
+      i
+        ..blur = blur
+        ..hint = false;
     }
     return c;
   }
@@ -321,6 +363,11 @@ class SideLayout {
         plate: pic.plate,
         outline: outline || pic.outline,
         alpha: pic.alpha,
+        video: pic.video,
+        videoMs: pic.videoMs,
+        sound: pic.sound,
+        loop: pic.loop,
+        hint: pic.hint,
       );
     }
 
@@ -408,6 +455,9 @@ class SideLayout {
     bool blur = false,
     double panY = 0.5,
     bool textless = false,
+    String? video,
+    int videoMs = 0,
+    bool hint = false,
   }) {
     final img = ImageEl(
       x: 0,
@@ -422,6 +472,9 @@ class SideLayout {
       outline: outline,
       blur: blur,
       panY: panY,
+      video: video,
+      videoMs: videoMs,
+      hint: hint,
     );
     return template(tpl, back: back, image: img, textless: textless);
   }
@@ -429,8 +482,15 @@ class SideLayout {
   /// Moves everything into canvas mode (the elements already hold their positions).
   void toCanvas() => mode = LayoutMode.canvas;
 
-  /// A new picture dropped on the canvas, sized to its shape.
-  ImageEl dropImage({required String src, double aspect = 0, bool alpha = false, required double faceAspect}) {
+  /// A new picture (or video) dropped on the canvas, sized to its shape.
+  ImageEl dropImage({
+    required String src,
+    double aspect = 0,
+    bool alpha = false,
+    required double faceAspect,
+    String? video,
+    int videoMs = 0,
+  }) {
     // Fit a frame of the picture's own shape in 80 % of the face width / 55 % of its height.
     final a = aspect > 0 ? aspect : 1.0;
     var fw = 0.8;
@@ -449,6 +509,8 @@ class SideLayout {
       contain: false,
       alpha: alpha,
       radius: 12,
+      video: video,
+      videoMs: videoMs,
     );
     els.add(el);
     return el;

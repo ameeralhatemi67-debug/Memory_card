@@ -12,6 +12,7 @@ import '../../ui/routes.dart';
 import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
+import '../media/pick_video.dart';
 import 'layout_face.dart';
 import 'pick_picture.dart';
 
@@ -185,23 +186,54 @@ class _LayoutEditorScreenState extends State<LayoutEditorScreen> {
     });
   }
 
+  Future<void> _addVideo() async {
+    final c = await pickVideo(context, back: widget.back);
+    if (c == null || !mounted) return;
+    final v = c.video;
+    _edit(() {
+      if (_canvas) {
+        final el = _l.dropImage(src: v.poster, aspect: v.aspect, faceAspect: _faceAspect, video: v.src, videoMs: v.ms);
+        el
+          ..blur = widget.back
+          ..hint = c.hint;
+        _sel = el.id;
+      } else {
+        _applyStructured(ImageEl(
+          x: 0,
+          y: 0,
+          w: 1,
+          h: 1,
+          src: v.poster,
+          aspect: v.aspect,
+          blur: widget.back,
+          hint: c.hint,
+          video: v.src,
+          videoMs: v.ms,
+        ));
+      }
+    });
+  }
+
   /// Structured mode: the picture goes into the template's slot (a picture template if there is none yet).
-  void _applyStructuredPicture(PickedImage p) {
-    final tpl = _l.tpl == Tpl.text ? Tpl.below : _l.tpl;
-    final contain = tpl == Tpl.only || p.alpha;
-    final img = ImageEl(
-      x: 0,
-      y: 0,
-      w: 1,
-      h: 1,
-      src: p.src,
-      aspect: p.aspect,
-      alpha: p.alpha,
-      contain: contain,
-      blur: widget.back,
-      plate: '',
-      outline: tpl == Tpl.only,
-    );
+  void _applyStructuredPicture(PickedImage p) => _applyStructured(ImageEl(
+        x: 0,
+        y: 0,
+        w: 1,
+        h: 1,
+        src: p.src,
+        aspect: p.aspect,
+        alpha: p.alpha,
+        contain: p.alpha,
+        blur: widget.back,
+      ));
+
+  /// Structured mode: [pic] (a picture or a video) goes into the template's slot.
+  void _applyStructured(ImageEl pic) {
+    final tpl = _l.tpl == Tpl.text ? (pic.isVideo ? Tpl.above : Tpl.below) : _l.tpl;
+    final img = pic
+      ..contain = tpl == Tpl.only || pic.contain
+      ..plate = ''
+      ..outline = tpl == Tpl.only;
     final next = SideLayout.template(tpl, back: widget.back, image: img, keepTexts: _l.texts.where((t) => !t.isCustom).toList());
     _l.els
       ..clear()
@@ -211,6 +243,22 @@ class _LayoutEditorScreenState extends State<LayoutEditorScreen> {
   }
 
   Future<void> _replacePicture(ImageEl el) async {
+    if (el.isVideo) {
+      final c = await pickVideo(context, back: widget.back, askRole: false);
+      if (c == null || !mounted) return;
+      _edit(() {
+        el
+          ..src = c.video.poster
+          ..video = c.video.src
+          ..videoMs = c.video.ms
+          ..aspect = c.video.aspect
+          ..alpha = false
+          ..zoom = 1
+          ..panX = 0.5
+          ..panY = 0.5;
+      });
+      return;
+    }
     final p = await pickPicture(context);
     if (p == null || !mounted) return;
     _edit(() {
@@ -789,7 +837,17 @@ class _LayoutEditorScreenState extends State<LayoutEditorScreen> {
       ),
       if (img == null) ...[
         const SizedBox(height: 12),
-        SoftButton('Add a picture', height: 46, color: mc.well, icon: McIcon(McIcons.plus, size: const Size(18, 18), color: mc.ink), onTap: _addPicture),
+        Row(children: [
+          Expanded(
+            child: SoftButton('Add a picture',
+                height: 46, color: mc.well, icon: McIcon(McIcons.image, size: const Size(18, 18), color: mc.ink), onTap: _addPicture),
+          ),
+          const SizedBox(width: 8),
+          Expanded(
+            child: SoftButton('Add a video',
+                height: 46, color: mc.well, icon: McIcon(McIcons.video, size: const Size(20, 20), color: mc.ink), onTap: _addVideo),
+          ),
+        ]),
       ] else
         ..._pictureTools(mc, img, structured: true),
     ];
@@ -799,9 +857,9 @@ class _LayoutEditorScreenState extends State<LayoutEditorScreen> {
 
   List<Widget> _canvasTools(Mc mc) {
     final sel = _selected;
-    var pics = 0, texts = 0;
+    var pics = 0, vids = 0, texts = 0;
     String nameOf(LayoutEl e) {
-      if (e is ImageEl) return 'Picture ${++pics}';
+      if (e is ImageEl) return e.isVideo ? 'Video ${++vids}' : 'Picture ${++pics}';
       final t = e as TextEl;
       return switch (t.source) {
         'main' => widget.back ? 'Answer' : 'Prompt',
@@ -815,6 +873,7 @@ class _LayoutEditorScreenState extends State<LayoutEditorScreen> {
     return [
       Wrap(spacing: 8, runSpacing: 8, children: [
         Chip2('+ Picture', height: 34, onTap: _addPicture),
+        Chip2('+ Video', height: 34, onTap: _addVideo),
         Chip2('+ Text', height: 34, onTap: () => _edit(() => _sel = _l.dropText().id)),
         Chip2('Guided layout', height: 34, onTap: () => _setMode(LayoutMode.structured)),
       ]),
@@ -861,8 +920,9 @@ class _LayoutEditorScreenState extends State<LayoutEditorScreen> {
 
   List<Widget> _pictureTools(Mc mc, ImageEl el, {required bool structured}) {
     final radius = el.radius <= 0 ? 0 : (el.radius < 24 ? 1 : 2);
+    final what = el.isVideo ? 'video' : 'picture';
     return [
-      _label(mc, 'Picture'),
+      _label(mc, el.isVideo ? 'Video' : 'Picture'),
       Wrap(spacing: 8, runSpacing: 8, children: [
         Chip2('Replace', height: 34, onTap: () => _replacePicture(el)),
         if (!structured) Chip2(_crop ? 'Cropping: drag to pan' : 'Crop', height: 34, selected: _crop, onTap: () => setState(() => _crop = !_crop)),
@@ -888,7 +948,25 @@ class _LayoutEditorScreenState extends State<LayoutEditorScreen> {
               style: T.t(13, w: FontWeight.w500, color: mc.muted, height: 1.25)),
         ),
       _switchRow(mc, 'Thin outline', 'Helps pale pictures stand out', el.outline, (v) => _edit(() => el.outline = v)),
-      _switchRow(mc, 'Blur until revealed', 'How much is set in Settings › Study', el.blur, (v) => _edit(() => el.blur = v)),
+      if (el.isVideo) ...[
+        _switchRow(mc, 'Play its sound', 'Off: the video plays muted', el.sound, (v) => _edit(() => el.sound = v)),
+        _switchRow(mc, 'Play on a loop', 'Starts again when it ends', el.loop, (v) => _edit(() => el.loop = v)),
+      ],
+      _switchRow(mc, 'Blur until revealed', 'How much is set in Settings › Study', el.blur, (v) => _edit(() {
+            el.blur = v;
+            if (v) el.hint = false;
+          })),
+      if (!widget.back)
+        _switchRow(mc, 'A hint', 'Blurred until tapped, before the reveal. Remembering with it counts as Hard', el.hint, (v) => _edit(() {
+              el.hint = v;
+              if (v) el.blur = false;
+            })),
+      if (el.isVideo && !widget.back && !el.hint && !el.blur)
+        Padding(
+          padding: const EdgeInsets.only(top: 8),
+          child: Text('This $what is the question: it plays as the card appears.',
+              style: T.t(13, w: FontWeight.w500, color: mc.muted, height: 1.25)),
+        ),
     ];
   }
 

@@ -7,6 +7,7 @@ import '../../data/catalog.dart';
 import '../../data/models.dart';
 import '../../data/store.dart';
 import '../../data/store_scope.dart';
+import '../../services/account.dart';
 import '../../services/reminders.dart';
 import '../../ui/fx.dart';
 import '../../ui/icons.dart';
@@ -15,6 +16,7 @@ import '../../ui/overlays.dart';
 import '../../ui/textures.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
+import '../account/sign_in_sheet.dart';
 import '../shell/shell.dart';
 import '../shop/shop_tile.dart';
 import '../study/celebrate.dart';
@@ -765,6 +767,43 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
             McField(controller: _name, hint: 'Your name (optional)', display: true, size: 24, onChanged: (_) => setState(() {})),
             const SizedBox(height: 22),
             _MemberPreview(name: _name.text.trim().isEmpty ? 'Guest Learner' : _name.text.trim()),
+            const SizedBox(height: 18),
+            // Optional: an account puts its name on the card. Continue skips it.
+            ValueListenableBuilder<AccountUser?>(
+              valueListenable: Account.i.user,
+              builder: (context, user, _) => user != null
+                  ? Row(mainAxisAlignment: MainAxisAlignment.center, children: [
+                      McIcon(McIcons.done, size: const Size(18, 18), color: mc.ink),
+                      const SizedBox(width: 6),
+                      Flexible(
+                        child: Text('Signed in as ${user.email}',
+                            maxLines: 1, overflow: TextOverflow.ellipsis, style: T.t(15, w: FontWeight.w700, color: mc.ink)),
+                      ),
+                    ])
+                  : Pressable(
+                      onTap: () async {
+                        FocusScope.of(context).unfocus();
+                        final ok = await showSignInSheet(context);
+                        final u = Account.i.user.value;
+                        if (ok && u != null && u.name.isNotEmpty && _name.text.trim().isEmpty && mounted) {
+                          setState(() => _name.text = u.name);
+                        }
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(vertical: 8),
+                        child: Text.rich(
+                          TextSpan(children: [
+                            TextSpan(text: 'Have an account? ', style: T.t(15.5, w: FontWeight.w600, color: mc.muted)),
+                            TextSpan(
+                              text: 'Sign in or create one',
+                              style: T.t(15.5, w: FontWeight.w800, color: mc.ink).copyWith(decoration: TextDecoration.underline),
+                            ),
+                          ]),
+                          textAlign: TextAlign.center,
+                        ),
+                      ),
+                    ),
+            ),
           ],
           action: InkButton('Continue', onTap: () {
             FocusScope.of(context).unfocus();

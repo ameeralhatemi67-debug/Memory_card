@@ -36,6 +36,8 @@ class CardDraft {
     this.image,
     this.frontLayout,
     this.backLayout,
+    this.soundF,
+    this.soundB,
   });
   final String front;
   final String back;
@@ -47,6 +49,10 @@ class CardDraft {
   final String? image;
   final SideLayout? frontLayout;
   final SideLayout? backLayout;
+
+  /// Recordings: heard before answering, and with the answer.
+  final CardSound? soundF;
+  final CardSound? soundB;
 }
 
 /// Everything needed to undo one swipe exactly (RES-47 §5.1: stack, card state and review log).
@@ -530,6 +536,8 @@ class AppStore extends ChangeNotifier {
       image: r.image,
       frontLayout: r.frontLayout?.copy(),
       backLayout: r.backLayout?.copy(),
+      soundF: r.soundF?.copy(),
+      soundB: r.soundB?.copy(),
       created: now(),
     );
     data.cards[c.id] = c;
@@ -548,6 +556,9 @@ class AppStore extends ChangeNotifier {
       // The reverse shows what the original hid: pictures swap sides along with the words.
       frontLayout: c.backLayout?.flagged(blur: false),
       backLayout: c.frontLayout?.flagged(blur: true) ?? _pictureOnBack(c),
+      // Sounds swap sides too: the answer you heard becomes the question you hear.
+      soundF: c.soundB?.copy(),
+      soundB: c.soundF?.copy(),
       isReverse: true,
       siblingId: c.id,
       created: now(),
@@ -606,7 +617,9 @@ class AppStore extends ChangeNotifier {
       ..hook = draft.hook.trim()
       ..image = draft.image
       ..frontLayout = draft.frontLayout?.copy()
-      ..backLayout = draft.backLayout?.copy();
+      ..backLayout = draft.backLayout?.copy()
+      ..soundF = draft.soundF?.copy()
+      ..soundB = draft.soundB?.copy();
     _db.saveCard(c);
     final sib = c.siblingId == null ? null : data.cards[c.siblingId];
     if (sib != null) {
@@ -615,7 +628,9 @@ class AppStore extends ChangeNotifier {
         ..back = c.front
         ..hook = c.hook
         ..frontLayout = c.backLayout?.flagged(blur: false)
-        ..backLayout = c.frontLayout?.flagged(blur: true) ?? _pictureOnBack(c);
+        ..backLayout = c.frontLayout?.flagged(blur: true) ?? _pictureOnBack(c)
+        ..soundF = c.soundB?.copy()
+        ..soundB = c.soundF?.copy();
       _db.saveCard(sib);
     }
     _changed();
@@ -992,25 +1007,53 @@ class AppStore extends ChangeNotifier {
 
   // ---------------------------------------------------------------- backup
 
+  /// File endings and the media types a backup files them under.
+  static const _mimes = {
+    'png': 'image/png',
+    'webp': 'image/webp',
+    'jpg': 'image/jpeg',
+    'jpeg': 'image/jpeg',
+    'm4a': 'audio/mp4',
+    'aac': 'audio/aac',
+    'mp3': 'audio/mpeg',
+    'wav': 'audio/wav',
+    'ogg': 'audio/ogg',
+    'opus': 'audio/opus',
+    'flac': 'audio/flac',
+    'mp4': 'video/mp4',
+    'm4v': 'video/x-m4v',
+    'mov': 'video/quicktime',
+    'webm': 'video/webm',
+    '3gp': 'video/3gpp',
+    'mkv': 'video/x-matroska',
+  };
+
   static String _mimeOf(String path) {
-    final p = path.toLowerCase();
-    return p.endsWith('.png') ? 'image/png' : (p.endsWith('.webp') ? 'image/webp' : 'image/jpeg');
+    final dot = path.lastIndexOf('.');
+    return _mimes[dot < 0 ? '' : path.substring(dot + 1).toLowerCase()] ?? 'image/jpeg';
   }
 
-  /// A picture file as a data URI (anything else — bundled `asset:` pictures, data URIs — stays as it is).
+  static String _extOf(String mime) => _mimes.entries.firstWhere((e) => e.value == mime, orElse: () => const MapEntry('jpg', '')).key;
+
+  /// Files larger than this (long videos) stay out of a backup: it is one JSON file, held in memory.
+  static const backupMediaMax = 40 * 1024 * 1024;
+
+  /// A picture, sound or video file as a data URI (anything else — bundled `asset:` pictures, data URIs —
+  /// stays as it is).
   static Object? _embedSrc(Object? src) {
     if (kIsWeb || src is! String || src.isEmpty || src.startsWith('data:') || src.startsWith('http') || src.startsWith('asset:')) return src;
     try {
       final f = File(src);
-      if (!f.existsSync()) return src;
+      if (!f.existsSync() || f.lengthSync() > backupMediaMax) return src;
       return 'data:${_mimeOf(src)};base64,${base64Encode(f.readAsBytesSync())}';
     } catch (_) {
       return src;
     }
   }
 
-  /// On a phone, card pictures are files: a backup carries them inline (the older single picture and
-  /// every picture in a card's layouts) so they survive a move to a new phone.
+  /// On a phone, card pictures, videos and recordings are files: a backup carries them inline (the older
+  /// single picture, every picture and video in a card's layouts, both sounds) so they survive a move to a
+  /// new phone.
   static Map<String, Object?> _embedImage(Map<String, Object?> j) {
     var out = {...j, 'img': _embedSrc(j['img'])};
     for (final key in const ['fl', 'bl']) {
@@ -1018,9 +1061,13 @@ class AppStore extends ChangeNotifier {
       if (side is! Map) continue;
       final els = [
         for (final e in (side['e'] as List?) ?? const [])
-          if (e is Map && e['k'] == 'i') {...e, 's': _embedSrc(e['s'])} else e,
+          if (e is Map && e['k'] == 'i') {...e, 's': _embedSrc(e['s']), if (e['v'] != null) 'v': _embedSrc(e['v'])} else e,
       ];
       out = {...out, key: {...side, 'e': els}};
+    }
+    for (final key in const ['sf', 'sb']) {
+      final sound = j[key];
+      if (sound is Map) out = {...out, key: {...sound, 's': _embedSrc(sound['s'])}};
     }
     return out;
   }
@@ -1040,16 +1087,16 @@ class AppStore extends ChangeNotifier {
   /// cards do not decode a huge data URI every time they are drawn.
   Future<void> _restorePictures() async {
     if (kIsWeb) return;
-    Directory? folder;
     Future<String> toFile(String src) async {
       if (!src.startsWith('data:')) return src;
       try {
-        folder ??= Directory('${(await getApplicationDocumentsDirectory()).path}/card_images');
-        if (!await folder!.exists()) await folder!.create(recursive: true);
         final data = Uri.parse(src).data;
         if (data == null) return src;
-        final ext = data.mimeType == 'image/png' ? 'png' : (data.mimeType == 'image/webp' ? 'webp' : 'jpg');
-        final path = '${folder!.path}/${uid('img')}.$ext';
+        // Pictures go back with the pictures; sounds and videos to their own folder.
+        final picture = data.mimeType.startsWith('image/');
+        final folder = Directory('${(await getApplicationDocumentsDirectory()).path}/${picture ? 'card_images' : 'card_media'}');
+        if (!await folder.exists()) await folder.create(recursive: true);
+        final path = '${folder.path}/${uid(picture ? 'img' : 'med')}.${_extOf(data.mimeType)}';
         await File(path).writeAsBytes(data.contentAsBytes(), flush: true);
         return path;
       } catch (_) {
@@ -1072,7 +1119,12 @@ class AppStore extends ChangeNotifier {
         if (side == null) continue;
         for (final img in side.images) {
           img.src = await toFile(img.src);
+          final v = img.video;
+          if (v != null) img.video = await toFile(v);
         }
+      }
+      for (final sound in [c.soundF, c.soundB]) {
+        if (sound != null) sound.src = await toFile(sound.src);
       }
     }
   }

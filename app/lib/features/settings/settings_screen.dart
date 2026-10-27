@@ -255,6 +255,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                       s.restMastered, (v) => store.updateSettings((x) => x.restMastered = v)),
                   toggle('Read cards aloud', 'Language decks speak each new card',
                       s.autoSpeak, (v) => store.updateSettings((x) => x.autoSpeak = v)),
+                  toggle('Play recordings and videos', "A card's own sound and video play by themselves",
+                      s.autoPlay, (v) => store.updateSettings((x) => x.autoPlay = v)),
                   toggle('Typing: forgive accents', 'é counts as e when you type an answer',
                       s.ignoreAccents, (v) => store.updateSettings((x) => x.ignoreAccents = v), last: true),
                 ], padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 4)),

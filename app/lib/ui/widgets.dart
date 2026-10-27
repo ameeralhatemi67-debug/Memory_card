@@ -399,7 +399,7 @@ class Chip2 extends StatelessWidget {
             Container(width: 8, height: 8, decoration: BoxDecoration(color: dot, shape: BoxShape.circle)),
             const SizedBox(width: 7),
           ],
-          Text(text, style: T.t(14.5, w: FontWeight.w700, color: fg)),
+          Flexible(child: Text(text, maxLines: 1, overflow: TextOverflow.ellipsis, style: T.t(14.5, w: FontWeight.w700, color: fg))),
         ],
       ),
     );
@@ -451,6 +451,11 @@ class McField extends StatelessWidget {
     this.textInputAction,
     this.onSubmitted,
     this.size,
+    this.obscure = false,
+    this.keyboardType,
+    this.autofillHints,
+    this.suffix,
+    this.enabled = true,
   });
 
   final TextEditingController controller;
@@ -466,6 +471,15 @@ class McField extends StatelessWidget {
   final ValueChanged<String>? onSubmitted;
   final double? size;
 
+  /// A password: the letters are hidden.
+  final bool obscure;
+  final TextInputType? keyboardType;
+  final Iterable<String>? autofillHints;
+
+  /// Something at the end of the field (a show-password toggle).
+  final Widget? suffix;
+  final bool enabled;
+
   @override
   Widget build(BuildContext context) {
     final mc = Mc.of(context);
@@ -480,15 +494,22 @@ class McField extends StatelessWidget {
       controller: controller,
       focusNode: focusNode,
       autofocus: autofocus,
-      maxLines: maxLines,
+      maxLines: obscure ? 1 : maxLines,
       minLines: minLines,
       onChanged: onChanged,
       onSubmitted: onSubmitted,
       textInputAction: textInputAction,
+      obscureText: obscure,
+      enableSuggestions: !obscure,
+      autocorrect: !obscure && keyboardType != TextInputType.emailAddress,
+      keyboardType: keyboardType,
+      autofillHints: autofillHints,
+      enabled: enabled,
       style: style,
       cursorColor: mc.ink,
       decoration: InputDecoration(
         isDense: true,
+        suffixIcon: suffix,
         hintText: hint,
         hintStyle: style.copyWith(color: mc.muted.withValues(alpha: 0.7)),
         filled: true,

@@ -13,6 +13,7 @@ import '../../engine/assessor.dart';
 import '../../engine/stack_rules.dart';
 import '../../engine/study_engine.dart';
 import '../../engine/typing.dart';
+import '../../services/card_audio.dart';
 import '../../services/reminders.dart';
 import '../../services/speech.dart';
 import '../../ui/coach.dart';
@@ -130,6 +131,9 @@ class _StudyScreenState extends State<StudyScreen>
   _Note? _note;
   Timer? _noteTimer;
   bool _speaking = false;
+
+  /// Hints opened on the card on top (ids of the pictures or videos kept back as hints).
+  final Set<String> _hints = {};
   bool _gradePicker = false;
   int _warm = 0;
   bool _goalOpen = false;
@@ -164,6 +168,7 @@ class _StudyScreenState extends State<StudyScreen>
     _typed.dispose();
     _noteTimer?.cancel();
     Speech.i.stop();
+    CardAudio.i.stop();
     Reminders.i.reschedule(store);
     super.dispose();
   }
@@ -199,10 +204,13 @@ class _StudyScreenState extends State<StudyScreen>
       _cardId = store.top(widget.deckId!);
     }
     _resetCardState();
+    CardAudio.i.stop();
     final c = _card, d = _deck;
-    if (c != null && d?.lang != null && store.settings.autoSpeak) {
+    // The card's own recording plays as it appears (Settings › Study); otherwise the phone's voice, if asked for.
+    final ownSound = c?.soundF != null && store.settings.autoPlay;
+    if (c != null && (ownSound || (d?.lang != null && store.settings.autoSpeak))) {
       Future.delayed(const Duration(milliseconds: 260), () {
-        if (mounted && _cardId == c.id) _speak();
+        if (mounted && _cardId == c.id && !_revealed) _speak();
       });
     }
   }
@@ -226,6 +234,7 @@ class _StudyScreenState extends State<StudyScreen>
     _typed.clear();
     _locked = false;
     _gradePicker = false;
+    _hints.clear();
   }
 
   RevealMode get _mode => store.settings.reveal;
@@ -259,6 +268,19 @@ class _StudyScreenState extends State<StudyScreen>
     if (_mode == RevealMode.flip && !_typing) {
       _flip.animateTo(1, curve: McCurves.springy);
     }
+    // The answer's own recording plays with the answer.
+    final c = _card;
+    if (c?.soundB != null && store.settings.autoPlay) {
+      Future.delayed(Duration(milliseconds: _mode == RevealMode.flip ? 380 : 160), () {
+        if (mounted && _cardId == c!.id && _revealed) _speak();
+      });
+    }
+  }
+
+  void _openHint(String id) {
+    if (_hints.contains(id) || _busy) return;
+    Fx.i.reveal();
+    setState(() => _hints.add(id));
   }
 
   void _submitTyped() {
@@ -275,9 +297,33 @@ class _StudyScreenState extends State<StudyScreen>
     _reveal();
   }
 
+  /// The recording that "Hear it" plays now: the answer's once it is shown, else the question's.
+  CardSound? get _sound {
+    final c = _card;
+    if (c == null) return null;
+    return (_revealed ? c.soundB : null) ?? c.soundF;
+  }
+
+  bool get _canHear => _sound != null || _deck?.lang != null;
+
   Future<void> _speak() async {
     final c = _card, d = _deck;
-    if (c == null || d?.lang == null) return;
+    if (c == null) return;
+    final sound = _sound;
+    if (sound != null) {
+      if (CardAudio.i.playing.value == sound.src) {
+        await CardAudio.i.stop(); // a second tap stops it
+        return;
+      }
+      await Speech.i.stop();
+      setState(() => _speaking = true);
+      await CardAudio.i.play(sound.src, ms: sound.ms, onDone: () {
+        if (mounted) setState(() => _speaking = false);
+      });
+      return;
+    }
+    if (d?.lang == null) return;
+    await CardAudio.i.stop();
     setState(() => _speaking = true);
     await Speech.i.speak(
       c.isReverse ? c.back : c.front,
@@ -396,7 +442,9 @@ class _StudyScreenState extends State<StudyScreen>
     final shown = _shownAt;
     final revealAt = _revealAt;
     final startAt = _dragStartAt;
-    final think = (revealAt ?? startAt ?? now) - shown;
+    // A question that plays (a recording, a video) takes its own length before you can even begin to think.
+    final rawThink = (revealAt ?? startAt ?? now) - shown;
+    final int think = rawThink - math.min<int>(rawThink, card.promptMediaMs);
     final signals = ReviewSignals(
       thinkMs: math.max(0, think),
       verifyMs: revealAt == null
@@ -412,7 +460,9 @@ class _StudyScreenState extends State<StudyScreen>
       // A picture prompt takes about as long to recognise as a short word.
       promptChars: card.front.isEmpty ? 8 : card.front.length,
       typedSimilarity: _typedSim,
+      hintUsed: _hints.isNotEmpty,
     );
+    CardAudio.i.stop();
 
     // Fly the card off-screen.
     final w = MediaQuery.of(context).size.width;
@@ -901,6 +951,8 @@ class _StudyScreenState extends State<StudyScreen>
             ];
 
             final pre = PreReveal.of(store.settings);
+            final media = FaceMedia(live: true, autoPlay: store.settings.autoPlay, hintsOpen: {..._hints}, onHint: _openHint);
+            final hearLabel = _revealed && card?.soundB != null ? 'Hear the answer' : 'Hear it';
             final fl = card?.frontLayout;
             // The card texture goes behind a picture, so the picture itself stays clean.
             final richAnswer = _revealed && (card?.hasRichBack ?? false) && !_typing && (_mode == RevealMode.tap || _mode == RevealMode.icon);
@@ -918,7 +970,9 @@ class _StudyScreenState extends State<StudyScreen>
                 compact: compact,
                 speaking: _speaking,
                 onReveal: _reveal,
-                onSpeak: deck.lang == null ? null : _speak,
+                onSpeak: _canHear ? _speak : null,
+                media: media,
+                hearLabel: hearLabel,
                 typedResult: _typedResult,
                 typing: _typing
                     ? _TypeField(controller: _typed, onSubmit: _submitTyped)
@@ -948,7 +1002,9 @@ class _StudyScreenState extends State<StudyScreen>
                                     reveal: ((_flip.value - 0.5) * 2).clamp(0.0, 1.0),
                                     compact: compact,
                                     speaking: _speaking,
-                                    onSpeak: deck.lang == null ? null : _speak,
+                                    onSpeak: _canHear ? _speak : null,
+                                    media: media,
+                                    hearLabel: hearLabel,
                                   ),
                                 )
                               : Container(

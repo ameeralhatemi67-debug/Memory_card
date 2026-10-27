@@ -4,6 +4,8 @@
     <!-- The optional daily reminder (asked for only when you turn it on). -->
     <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <!-- Recording a voice onto a card (asked for only the first time you tap record). -->
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
 
     <application
         android:label="Memory Card"
@@ -33,6 +35,14 @@
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
                 <category android:name="android.intent.category.LAUNCHER"/>
+            </intent-filter>
+            <!-- Accounts: Apple's sign-in page and the links in account emails come back here
+                 (com.memorycard.app://login-callback, lib/services/backend_config.dart). -->
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+                <data android:scheme="com.memorycard.app" android:host="login-callback" />
             </intent-filter>
         </activity>
         <!-- Scheduled reminders (flutter_local_notifications), kept across reboots and updates. -->

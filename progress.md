@@ -22,7 +22,7 @@ related:
 
 # Memory Card Progress Log
 
-**Last updated:** 2026-10-24
+**Last updated:** 2026-10-28
 
 **Current release line:** Version 2.0 (Design Finalization & Resizable Living Lab)
 
@@ -40,6 +40,27 @@ This document records verified outcomes, technical approaches, and architectural
 ---
 
 ## Flutter App Outcomes (pulled forward from Version 4.0)
+
+### 2026-10-28 — Accounts (email, Google, Apple) and voices and videos on cards (not yet in a release)
+
+- **Outcome Summary:** Optional accounts on a new Supabase project (`memory-card`, eu-central-1): **email and
+  password** (create, confirm by link or 6-digit code, sign in, forgot / reset, change password, sign out, delete the
+  account), **Google** (Android's account picker → Supabase ID-token sign-in) and **Sign in with Apple** (Apple's sheet
+  on iPhone, Apple's web page on Android coming back through `com.memorycard.app://login-callback`). Entry points: the
+  Account tab's three badges and onboarding's "Your card" step; signed in, the tab shows the account and the card takes
+  the account's name. Google and Apple show "SOON" until their console setup is done (docs/accounts.md).
+  **Voice:** a recording (or a sound file) on either side: the front's is heard before answering, the back's with the
+  answer; a sound-only question shows a listening card. **Video:** on the front as the question or as a hint, on the
+  back as part of the answer; blurred until the reveal exactly like pictures, hints blurred until tapped (graded Hard
+  when used).
+- **How We Built It & Technical Approach:** a video is an `ImageEl` with `video` (its poster in `src`), so templates,
+  free canvas, crop, zoom, plates and the reveal blur all work unchanged; `CardVideo` (video_player) plays it in place
+  of the poster on the card on top of the stack. `CardSound` per side, `CardAudio` (audioplayers) plays it, `record`
+  records AAC. `Account` + `AuthBackend` keep Supabase behind a seam (tests use a fake). Reverse cards swap sounds;
+  backups carry media inline; question media length is not counted as hesitation.
+- **Verification:** `flutter analyze` clean; 124 tests pass (20 new: media model, reverse cards, backups, hint grade,
+  sign-in sheet flows, Account tab, study hint and sound cards, editor controls); 30 gallery renders
+  (`test_gallery/media_gallery_test.dart`) checked in light and dark.
 
 ### 2026-10-25 — Deck swipe actions: Delete A, Archive B, Pin A, Move D with a dealt fedora card (not yet in a release)
 

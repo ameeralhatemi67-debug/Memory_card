@@ -16,6 +16,7 @@ class ReviewSignals {
     this.interrupted = false,
     this.promptChars = 10,
     this.typedSimilarity,
+    this.hintUsed = false,
   });
 
   /// From the card settling on top to the reveal (or to the first touch in front-only mode).
@@ -51,6 +52,9 @@ class ReviewSignals {
   /// Similarity of a typed answer to the expected one (0…1), when typing mode is on.
   final double? typedSimilarity;
 
+  /// A hint (a picture or video kept back on the front) was opened before answering.
+  final bool hintUsed;
+
   Map<String, Object?> toJson() => {
         'think': thinkMs,
         'verify': verifyMs,
@@ -63,6 +67,7 @@ class ReviewSignals {
         'int': interrupted,
         'chars': promptChars,
         if (typedSimilarity != null) 'typed': double.parse(typedSimilarity!.toStringAsFixed(3)),
+        if (hintUsed) 'hint': true,
       };
 }
 
@@ -206,7 +211,11 @@ class Assessor {
     final easyAt = tuner.easyAt + (firstExposure ? 0.05 : 0);
     final int grade;
     final RecallKind kind;
-    if (confidence >= easyAt && trusted) {
+    if (s.hintUsed) {
+      // Remembered with help: that is the effortful kind of recall, whatever the swipe looked like.
+      grade = 2;
+      kind = RecallKind.effortful;
+    } else if (confidence >= easyAt && trusted) {
       grade = 4;
       kind = RecallKind.fluent;
     } else if (confidence < tuner.hardBelow) {
