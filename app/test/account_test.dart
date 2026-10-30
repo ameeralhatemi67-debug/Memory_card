@@ -335,4 +335,25 @@ void main() {
     await tester.pumpWidget(const SizedBox());
     await tester.pump(const Duration(seconds: 5));
   });
+
+  testWidgets('with accounts off (the default build) the badges say coming soon and open no sheet', (tester) async {
+    tester.view.physicalSize = const Size(390 * 3, 844 * 3);
+    tester.view.devicePixelRatio = 3;
+    addTearDown(tester.view.reset);
+    await fresh();
+    await tester.pumpWidget(StoreScope(
+      store: store,
+      child: MaterialApp(theme: Mc.theme(Mc.light), home: const Stack(children: [ProfileScreen(), ToastHost(bottom: 40)])),
+    ));
+    await tester.pump(const Duration(milliseconds: 500));
+    expect(find.text('SOON'), findsNWidgets(3));
+    await tester.tap(find.bySemanticsLabel('Create a Memory Card account'));
+    await tester.pump(const Duration(milliseconds: 400));
+    expect(find.text('Accounts are coming soon'), findsOneWidget);
+    expect(find.byType(SignInSheet), findsNothing);
+
+    Toaster.i.hide();
+    await tester.pumpWidget(const SizedBox());
+    await tester.pump(const Duration(seconds: 5));
+  });
 }

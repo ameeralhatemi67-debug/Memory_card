@@ -9,6 +9,7 @@ import '../../engine/days.dart';
 import '../../engine/deck_seals.dart';
 import '../../engine/seals.dart';
 import '../../services/account.dart';
+import '../../services/backend_config.dart';
 import '../../ui/deck_look.dart';
 import '../../ui/fx.dart';
 import '../../ui/icons.dart';
@@ -90,17 +91,20 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
       builder: (context, user, _) => user != null
           ? _SignedIn(user: user)
           : Column(children: [
-              Text.rich(
-                TextSpan(children: [
-                  TextSpan(text: 'Have an account? ', style: T.d(17, color: mc.muted)),
-                  WidgetSpan(
-                    child: GestureDetector(
-                      onTap: () => showSignInSheet(context),
-                      child: Text('Sign in', style: T.d(17, color: mc.ink).copyWith(decoration: TextDecoration.underline)),
+              if (BackendConfig.accountsEnabled)
+                Text.rich(
+                  TextSpan(children: [
+                    TextSpan(text: 'Have an account? ', style: T.d(17, color: mc.muted)),
+                    WidgetSpan(
+                      child: GestureDetector(
+                        onTap: () => showSignInSheet(context),
+                        child: Text('Sign in', style: T.d(17, color: mc.ink).copyWith(decoration: TextDecoration.underline)),
+                      ),
                     ),
-                  ),
-                ]),
-              ),
+                  ]),
+                )
+              else
+                Text('Accounts: coming soon', style: T.d(17, color: mc.muted)),
               const SizedBox(height: 14),
               Row(mainAxisAlignment: MainAxisAlignment.center, children: [
                 _Badge(
@@ -108,7 +112,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                     label: 'Sign in with Google',
                     icon: McIcons.google,
                     iconSize: const Size(34, 34),
-                    onTap: () => showSignInSheet(context, start: 'google')),
+                    onTap: () => _account(context, start: 'google')),
                 const SizedBox(width: 30),
                 _Badge(
                     shape: PolarShape.badgeBurst,
@@ -116,7 +120,7 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                     icon: McIcons.logo,
                     iconSize: const Size(27, 34),
                     tint: true,
-                    onTap: () => showSignInSheet(context, create: true)),
+                    onTap: () => _account(context, create: true)),
                 const SizedBox(width: 30),
                 _Badge(
                     shape: PolarShape.badgeSquircle,
@@ -124,10 +128,10 @@ class _ProfileScreenState extends State<ProfileScreen> with SingleTickerProvider
                     icon: McIcons.apple,
                     iconSize: const Size(28, 34),
                     tint: true,
-                    onTap: () => showSignInSheet(context, start: 'apple')),
+                    onTap: () => _account(context, start: 'apple')),
               ]),
               const SizedBox(height: 14),
-              Text('Optional. Everything works offline without an account.',
+              Text(BackendConfig.accountsEnabled ? 'Optional. Everything works offline without an account.' : 'Everything works offline, no account needed.',
                   textAlign: TextAlign.center, style: T.t(14, w: FontWeight.w500, color: mc.muted)),
             ]),
     );
@@ -598,6 +602,15 @@ Future<void> showSealGallery(BuildContext context, AppStore store) {
   });
 }
 
+/// A sign-in badge was tapped: the sheet when accounts are on, otherwise a note that they are coming.
+void _account(BuildContext context, {bool create = false, String? start}) {
+  if (BackendConfig.accountsEnabled) {
+    showSignInSheet(context, create: create, start: start);
+  } else {
+    Toaster.i.show('Accounts are coming soon');
+  }
+}
+
 class _Badge extends StatelessWidget {
   const _Badge({required this.shape, required this.label, required this.icon, required this.iconSize, required this.onTap, this.tint = false});
   final PolarShape shape;
@@ -625,6 +638,17 @@ class _Badge extends StatelessWidget {
             ]),
           ),
           McIcon(icon, size: iconSize, color: tint ? mc.badgeInk : null),
+          if (!BackendConfig.accountsEnabled)
+            Positioned(
+              bottom: 0,
+              child: ExcludeSemantics(
+                child: Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 7, vertical: 2),
+                  decoration: BoxDecoration(color: mc.ink, borderRadius: BorderRadius.circular(8)),
+                  child: Text('SOON', maxLines: 1, style: T.caps(10, color: mc.canvas)),
+                ),
+              ),
+            ),
         ]),
       ),
     );

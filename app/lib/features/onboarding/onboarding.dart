@@ -8,6 +8,7 @@ import '../../data/models.dart';
 import '../../data/store.dart';
 import '../../data/store_scope.dart';
 import '../../services/account.dart';
+import '../../services/backend_config.dart';
 import '../../services/reminders.dart';
 import '../../ui/fx.dart';
 import '../../ui/icons.dart';
@@ -780,7 +781,13 @@ class _OnboardingState extends State<Onboarding> with TickerProviderStateMixin {
                             maxLines: 1, overflow: TextOverflow.ellipsis, style: T.t(15, w: FontWeight.w700, color: mc.ink)),
                       ),
                     ])
-                  : Pressable(
+                  : !BackendConfig.accountsEnabled
+                      ? Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 8),
+                          child: Text('Accounts are coming soon. For now everything stays on your phone.',
+                              textAlign: TextAlign.center, style: T.t(15.5, w: FontWeight.w600, color: mc.muted)),
+                        )
+                      : Pressable(
                       onTap: () async {
                         FocusScope.of(context).unfocus();
                         final ok = await showSignInSheet(context);

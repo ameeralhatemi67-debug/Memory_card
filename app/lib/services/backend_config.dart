@@ -8,10 +8,14 @@
 class BackendConfig {
   const BackendConfig._();
 
-  static const supabaseUrl = String.fromEnvironment('SUPABASE_URL', defaultValue: 'https://uuhcuibwqqhzmiakqbmv.supabase.co');
+  /// Accounts are "coming soon": the Supabase project was shut down, so the app shows "Coming soon" where
+  /// sign-in used to be and never contacts a server. To bring accounts back, create a new Supabase project and
+  /// build with --dart-define=ACCOUNTS_ENABLED=true --dart-define=SUPABASE_URL=… --dart-define=SUPABASE_PUBLISHABLE_KEY=…
+  static const accountsEnabled = bool.fromEnvironment('ACCOUNTS_ENABLED');
 
-  static const publishableKey =
-      String.fromEnvironment('SUPABASE_PUBLISHABLE_KEY', defaultValue: 'sb_publishable_EgW6E6ZimGvzQiarebNcOA_CkA0kXHL');
+  static const supabaseUrl = String.fromEnvironment('SUPABASE_URL');
+
+  static const publishableKey = String.fromEnvironment('SUPABASE_PUBLISHABLE_KEY');
 
   /// The OAuth "Web application" client from Google Cloud: Supabase checks Google's ID tokens against it,
   /// and Android's account picker asks for tokens addressed to it. Empty = Google sign-in not set up yet.
@@ -25,5 +29,5 @@ class BackendConfig {
   static const callbackScheme = 'com.memorycard.app';
   static const callbackUrl = '$callbackScheme://login-callback';
 
-  static bool get configured => supabaseUrl.isNotEmpty && publishableKey.isNotEmpty;
+  static bool get configured => accountsEnabled && supabaseUrl.isNotEmpty && publishableKey.isNotEmpty;
 }
