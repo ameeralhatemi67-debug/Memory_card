@@ -247,8 +247,11 @@ class _StudyScreenState extends State<StudyScreen>
 
   /// How the card on top reveals its answer: Settings › Study, or its deck's own way (in the daily mix it
   /// changes with the deck of each card).
-  RevealMode get _mode => store.revealFor(_deck);
+  RevealMode get _mode => _build ? RevealMode.tap : store.revealFor(_deck);
   bool get _typing => _deck?.typing ?? false;
+
+  /// A Make 24 card: it is played on the card (MakeBoard), whatever the reveal; building a way reveals it.
+  bool get _build => _deck?.kind == 'make24' && (_card?.hasWays ?? false);
 
   bool get _needsReveal => !_revealed && (_typing || _mode != RevealMode.front);
 
@@ -285,6 +288,25 @@ class _StudyScreenState extends State<StudyScreen>
         if (mounted && _cardId == c!.id && _revealed) _speak();
       });
     }
+  }
+
+  /// A Make 24 card: a 24 was built on the card. [i] is the way when it is a new one (it unlocks a right
+  /// swipe); either way you have tried, so the card can go left.
+  void _built(int? i) {
+    if (_busy) return;
+    if (i != null) {
+      if (_revealed) Fx.i.reveal();
+      setState(() => _picked.add(i));
+    }
+    _reveal();
+  }
+
+  /// A Make 24 card: Stuck? showed a step. It counts as a hint (a right swipe is graded Hard), and lets you
+  /// swipe the card away left.
+  void _stuckStep(int level) {
+    if (_busy) return;
+    setState(() => _hints.add('stuck'));
+    _reveal();
   }
 
   /// Ticks or unticks a way found (a card with several ways), once the ways show.
@@ -442,7 +464,9 @@ class _StudyScreenState extends State<StudyScreen>
       Fx.i.warn();
       _showNote(
         _Note(
-          _typing
+          _build
+              ? 'Build a way first, or tap Stuck?'
+              : _typing
               ? 'Type your answer first'
               : _mode == RevealMode.flip
               ? 'Flip the card to check first'
@@ -459,7 +483,12 @@ class _StudyScreenState extends State<StudyScreen>
     if (recalled && _waysGate && !card.earns(_picked)) {
       _springBack();
       Fx.i.warn();
-      _showNote(_Note(_picked.isEmpty ? 'Tick the way you found first' : 'Found before · find a new way, or swipe left', ms: 2600));
+      _showNote(_Note(
+        _build
+            ? 'Build a new way first, or swipe left'
+            : (_picked.isEmpty ? 'Tick the way you found first' : 'Found before · find a new way, or swipe left'),
+        ms: 2600,
+      ));
       return;
     }
     _busy = true;
@@ -659,6 +688,8 @@ class _StudyScreenState extends State<StudyScreen>
         _cardId = u.cardId;
         _resetCardState();
       }
+      // The ways found on the undone turn are found again.
+      _picked.addAll(u.ways);
       _revealed = true;
       if (_mode == RevealMode.flip) _flip.value = 1;
       _revealAt = _now();
@@ -859,7 +890,7 @@ class _StudyScreenState extends State<StudyScreen>
       _commit(true, viaButton: true);
     } else if (k == LogicalKeyboardKey.arrowLeft) {
       _commit(false, viaButton: true);
-    } else if (k == LogicalKeyboardKey.space || k == LogicalKeyboardKey.enter) {
+    } else if ((k == LogicalKeyboardKey.space || k == LogicalKeyboardKey.enter) && !_build) {
       _reveal();
     } else if (k == LogicalKeyboardKey.keyZ ||
         k == LogicalKeyboardKey.backspace) {
@@ -1011,6 +1042,8 @@ class _StudyScreenState extends State<StudyScreen>
                 buzz: store.settings.scratchBuzz,
                 picked: _picked,
                 onPick: _revealed ? _pick : null,
+                onBuilt: _built,
+                onHint: _stuckStep,
                 typedResult: _typedResult,
                 typing: _typing
                     ? _TypeField(controller: _typed, onSubmit: _submitTyped)
@@ -1095,7 +1128,7 @@ class _StudyScreenState extends State<StudyScreen>
                     onPanUpdate: _onPanUpdate,
                     onPanEnd: _onPanEnd,
                     onTap: () {
-                      if (_mode == RevealMode.tap || _mode == RevealMode.flip) {
+                      if (!_build && (_mode == RevealMode.tap || _mode == RevealMode.flip)) {
                         _reveal();
                       }
                     },

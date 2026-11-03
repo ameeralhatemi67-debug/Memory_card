@@ -11,6 +11,7 @@ import '../../ui/motion.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../layout/layout_face.dart';
+import 'make_board.dart';
 import 'scratch_foil.dart';
 
 export '../layout/layout_face.dart' show CardThumb, FaceMedia, cardImage, termSize;
@@ -36,6 +37,8 @@ class CardFront extends StatelessWidget {
     this.buzz = 0.6,
     this.picked = const {},
     this.onPick,
+    this.onBuilt,
+    this.onHint,
   });
 
   final CardItem card;
@@ -70,6 +73,11 @@ class CardFront extends StatelessWidget {
   final Set<int> picked;
   final ValueChanged<int>? onPick;
 
+  /// A Make 24 card is played on the card itself (MakeBoard): a 24 built (the way's index when it is new),
+  /// and a Stuck? step shown.
+  final ValueChanged<int?>? onBuilt;
+  final ValueChanged<int>? onHint;
+
   /// The four numbers of a Make 24 card, drawn as tiles; null for any other card.
   List<int>? get _numbers {
     if (deck.kind != 'make24') return null;
@@ -101,7 +109,23 @@ class CardFront extends StatelessWidget {
   Widget build(BuildContext context) {
     final reduced = MotionPrefs.reducedOf(context);
     final layout = card.frontLayout;
-    final front = layout != null && !layout.isPlain ? _pictured(context, layout) : _classic(context);
+    final numbers = _numbers;
+    final front = numbers != null && card.hasWays && onBuilt != null && onHint != null
+        ? Padding(
+            padding: const EdgeInsets.all(20),
+            child: MakeBoard(
+              key: ValueKey('board-${card.id}'),
+              card: card,
+              numbers: numbers,
+              picked: picked,
+              onBuilt: onBuilt!,
+              onHint: onHint!,
+              compact: compact,
+            ),
+          )
+        : layout != null && !layout.isPlain
+            ? _pictured(context, layout)
+            : _classic(context);
     return AnimatedSwitcher(
       duration: Duration(milliseconds: reduced ? 0 : 240),
       switchInCurve: McCurves.out,

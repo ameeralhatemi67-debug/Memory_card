@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
 import 'package:memory_card/app.dart';
 import 'package:memory_card/data/catalog.dart';
@@ -9,7 +8,9 @@ import 'package:memory_card/data/models.dart';
 import 'package:memory_card/data/store.dart';
 import 'package:memory_card/engine/assessor.dart';
 import 'package:memory_card/features/shell/shell.dart';
-import 'package:memory_card/features/study/card_face.dart';
+import 'package:memory_card/engine/make24.dart';
+import 'package:memory_card/features/study/make_board.dart';
+import 'package:memory_card/features/study/scratch_foil.dart';
 import 'package:memory_card/ui/overlays.dart';
 import 'package:memory_card/ui/theme.dart';
 
@@ -65,16 +66,16 @@ void main() {
   }
 
   group('the decks', () {
-    test('19 decks of 40 (the last 36): every set that can make 24 from 1 to 11, every way right', () {
+    test('12 decks of 63: every set that can make 24 from 1 to 11, every way right', () {
       final decks = store.catalog.decks.where((d) => d.category == 'math').toList();
-      expect(decks.length, 19);
+      expect(decks.length, 12);
       expect(decks.map((d) => d.name).take(3), ['Make 24 · Level 1', 'Make 24 · Level 2', 'Make 24 · Level 3']);
       expect([for (final d in decks) d.cards.length].fold(0, (a, b) => a + b), 756);
       final sets = <String>{};
       for (final d in decks) {
         expect(d.kind, 'make24');
         expect(d.skin, isNotNull, reason: '${d.id} has its own cover');
-        expect(d.cards.length, d == decks.last ? 36 : 40);
+        expect(d.cards.length, 63);
         for (final c in d.cards) {
           final nums = c.front.split(' ').map(int.parse).toList()..sort();
           expect(nums.length, 4);
@@ -141,7 +142,7 @@ void main() {
     test('a shop deck brings its ways', () {
       final d = store.addCatalogDeck('make24-01', store.createFolder('Make 24').id);
       final cards = [for (final id in d.cardIds) store.data.cards[id]!];
-      expect(cards.length, 40);
+      expect(cards.length, 63);
       expect(cards.every((c) => c.hasWays && c.back == c.ways.first), isTrue);
       expect(store.skinOf(d), isNotNull);
     });
@@ -166,10 +167,11 @@ void main() {
       await tester.pump(const Duration(seconds: 10));
     }
 
-    /// A Make 24 deck whose top card is 3 4 6 8, with [found] already found on earlier turns.
-    String deckWith(List<int> found) {
+    /// A deck whose top card is 3 4 6 8, with [found] already found on earlier turns: a Make 24 deck, or
+    /// ([kind] 'text') an ordinary deck holding the same card with several answers.
+    String deckWith(List<int> found, {String kind = 'make24'}) {
       final f = store.createFolder('Play');
-      final d = store.createDeck(name: 'Make 24 · Play', folderId: f.id, kind: 'make24');
+      final d = store.createDeck(name: 'Make 24 · Play', folderId: f.id, kind: kind);
       final cd = store.catalog.decks.expand((x) => x.cards).firstWhere((c) => c.front == '3 4 6 8');
       final c = store.addCard(d.id, CardDraft(front: cd.front, back: cd.back, label: 'make 24', ways: cd.ways));
       c.found.addAll(found);
@@ -183,12 +185,34 @@ void main() {
       await settle(tester, 1500);
     }
 
-    Future<void> swipeRight(WidgetTester tester) async {
-      await tester.dragFrom(tester.getCenter(find.byType(NumberTiles)), const Offset(300, 0));
+    Future<void> swipe(WidgetTester tester, Finder from, {bool right = true}) async {
+      await tester.dragFrom(tester.getCenter(from), Offset(right ? 300 : -300, 0));
       await settle(tester, 1200);
     }
 
-    testWidgets('tiles, then the ways; a right swipe needs a ticked way', (tester) async {
+    Finder tile(String v) => find.descendant(of: find.byType(MakeBoard), matching: find.text(v));
+
+    /// Builds [way] on the board: each step picks a card, a sign and another card.
+    Future<void> build(WidgetTester tester, String way) async {
+      String? selected;
+      Future<void> walk(Expr e) async {
+        if (e.isNum) return;
+        await walk(e.l!);
+        await walk(e.r!);
+        final a = '${e.l!.value}', b = '${e.r!.value}';
+        if (selected != a) await tester.tap(tile(a).first);
+        await tester.pump(const Duration(milliseconds: 120));
+        await tester.tap(find.text(opSign(e.op!)));
+        await tester.pump(const Duration(milliseconds: 120));
+        await tester.tap(tile(b).last);
+        await tester.pump(const Duration(milliseconds: 400));
+        selected = '${e.value}';
+      }
+
+      await walk(Expr.parse(way));
+    }
+
+    testWidgets('make 24: build a way on the card; a right swipe needs one', (tester) async {
       phone(tester);
       store.updateSettings((s) => s
         ..reveal = RevealMode.tap
@@ -196,79 +220,121 @@ void main() {
       final deckId = deckWith([]);
       final card = store.data.cards[store.data.decks[deckId]!.cardIds.single]!;
       await openStudy(tester, deckId);
-      expect(find.byType(NumberTiles), findsOneWidget);
-      expect(find.text('${card.ways.length} ways · use each number once'), findsOneWidget);
+      expect(find.byType(MakeBoard), findsOneWidget);
+      expect(find.text('${card.ways.length} ways · each number once'), findsOneWidget);
+      expect(find.text(card.ways.first), findsNothing, reason: 'no answer shows');
 
-      await tester.tap(find.text('Tap to reveal'));
-      await settle(tester, 600);
-      expect(find.text('TICK THE WAYS YOU FOUND'), findsOneWidget);
-      expect(find.text(card.ways.first), findsOneWidget);
-
-      await swipeRight(tester);
-      expect(find.text('Tick the way you found first'), findsOneWidget);
+      await swipe(tester, find.byType(MakeBoard));
+      expect(find.text('Build a way first, or tap Stuck?'), findsOneWidget);
       expect(card.reps, 0);
 
-      await tester.tap(find.text(card.ways[1]));
+      // A move below zero is refused; a total that is not 24 says so.
+      await tester.tap(tile('3'));
+      await tester.tap(find.text(opSign('-')));
+      await tester.tap(tile('8'));
+      await tester.pump(const Duration(milliseconds: 500));
+      expect(find.text('That goes below zero. Take the bigger number first.'), findsOneWidget);
+      await build(tester, '3 + 4 + 6 + 8');
+      expect(find.text('That makes 21, not 24. Undo a step, or start over.'), findsOneWidget);
+      await tester.tap(find.text('Start over'));
       await tester.pump(const Duration(milliseconds: 300));
-      await swipeRight(tester);
+
+      await build(tester, card.ways[1]);
+      expect(find.textContaining('NEW WAY · 1 OF ${card.ways.length} FOUND'), findsOneWidget);
+      expect(find.text(card.ways[1]), findsOneWidget);
+      await swipe(tester, find.byType(MakeBoard));
       expect(card.reps, 1);
       expect(card.found, [1]);
       await finish(tester);
     });
 
-    testWidgets('when it comes back, only a way not found before counts', (tester) async {
+    testWidgets('make 24: when it comes back, a way found before does not count', (tester) async {
       phone(tester);
-      store.updateSettings((s) => s.reveal = RevealMode.tap);
       final deckId = deckWith([0]);
       final card = store.data.cards[store.data.decks[deckId]!.cardIds.single]!;
       await openStudy(tester, deckId);
-      expect(find.text('You found 1 of ${card.ways.length} · find a new one'), findsOneWidget);
-      await tester.tap(find.text('Tap to reveal'));
-      await settle(tester, 600);
-      expect(find.text('FOUND'), findsOneWidget);
+      expect(find.text('1 of ${card.ways.length} found · build a new one'), findsOneWidget);
 
-      await tester.tap(find.text(card.ways[0]));
-      await tester.pump(const Duration(milliseconds: 300));
-      await swipeRight(tester);
-      expect(find.text('Found before · find a new way, or swipe left'), findsOneWidget);
+      await build(tester, card.ways[0]);
+      expect(find.text('FOUND ON AN EARLIER TURN · BUILD ANOTHER'), findsOneWidget);
+      await swipe(tester, find.byType(MakeBoard));
+      expect(find.text('Build a new way first, or swipe left'), findsOneWidget);
       expect(card.reps, 0);
 
-      await tester.tap(find.text(card.ways[2]));
+      await tester.tap(find.text('Another'));
       await tester.pump(const Duration(milliseconds: 300));
-      await swipeRight(tester);
+      await build(tester, card.ways[2]);
+      await swipe(tester, find.byType(MakeBoard));
       expect(card.reps, 1);
       expect(card.found, [0, 2]);
       await finish(tester);
     });
 
-    testWidgets('scratch mode: the ways wait under the foil, then tick as usual', (tester) async {
+    testWidgets('make 24: Stuck? shows a way a step at a time; a way shown whole does not count', (tester) async {
       phone(tester);
-      store.updateSettings((s) => s.reveal = RevealMode.scratch);
       final deckId = deckWith([]);
       final card = store.data.cards[store.data.decks[deckId]!.cardIds.single]!;
+      final steps = Expr.parse(card.ways[0]).steps;
       await openStudy(tester, deckId);
-      expect(find.bySemanticsLabel('Scratch to reveal the answer'), findsOneWidget);
-      await tester.sendKeyEvent(LogicalKeyboardKey.space);
-      await settle(tester, 1500);
-      expect(find.bySemanticsLabel('Scratch to reveal the answer'), findsNothing);
-      await tester.tap(find.text(card.ways[0]));
+
+      await tester.tap(find.text('Stuck?'));
       await tester.pump(const Duration(milliseconds: 300));
-      await swipeRight(tester);
-      expect(card.found, [0]);
-      store.updateSettings((s) => s.reveal = RevealMode.tap);
+      expect(find.text('STUCK? · STEP 1 OF 3'), findsOneWidget);
+      expect(find.text(steps[0]), findsOneWidget);
+      expect(find.text(steps[1]), findsNothing);
+      await tester.tap(find.text('More'));
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(find.text(steps[1]), findsOneWidget);
+      expect(find.text(card.ways[0]), findsNothing);
+      await tester.tap(find.text('Show all'));
+      await tester.pump(const Duration(milliseconds: 300));
+      expect(find.text('STUCK? · THE WHOLE WAY · NOT COUNTED'), findsOneWidget);
+      expect(find.text(card.ways[0]), findsOneWidget);
+
+      await build(tester, card.ways[0]);
+      expect(find.text('STUCK? SHOWED THIS ONE · NOT COUNTED'), findsOneWidget);
+      await swipe(tester, find.byType(MakeBoard));
+      expect(card.reps, 0, reason: 'nothing found');
+
+      // Giving up is a left swipe.
+      await swipe(tester, find.byType(MakeBoard), right: false);
+      expect(card.reps, 1);
+      expect(card.found, isEmpty);
       await finish(tester);
     });
 
-    testWidgets('flip mode: the back face lists the ways to tick', (tester) async {
+    testWidgets('make 24: played on the card whatever the reveal', (tester) async {
       phone(tester);
-      store.updateSettings((s) => s.reveal = RevealMode.flip);
-      final deckId = deckWith([]);
-      await openStudy(tester, deckId);
-      await tester.tapAt(tester.getCenter(find.byType(NumberTiles)));
-      await settle(tester, 1200);
-      expect(find.text('WAYS TO MAKE 24'), findsOneWidget);
-      expect(find.text('TICK THE WAYS YOU FOUND'), findsOneWidget);
+      for (final mode in [RevealMode.scratch, RevealMode.flip, RevealMode.front]) {
+        store.updateSettings((s) => s.reveal = mode);
+        await openStudy(tester, deckWith([]));
+        expect(find.byType(MakeBoard), findsOneWidget, reason: '$mode');
+        expect(find.byType(ScratchFoil), findsNothing);
+        await finish(tester);
+      }
       store.updateSettings((s) => s.reveal = RevealMode.tap);
+    });
+
+    testWidgets('other cards with several answers: tick the ways after the reveal', (tester) async {
+      phone(tester);
+      store.updateSettings((s) => s.reveal = RevealMode.tap);
+      final deckId = deckWith([0], kind: 'text');
+      final card = store.data.cards[store.data.decks[deckId]!.cardIds.single]!;
+      await openStudy(tester, deckId);
+      expect(find.byType(MakeBoard), findsNothing);
+      await tester.tap(find.text('Tap to reveal'));
+      await settle(tester, 600);
+      expect(find.text('TICK THE NEW WAY YOU FOUND'), findsOneWidget);
+
+      await tester.tap(find.text(card.ways[0]));
+      await tester.pump(const Duration(milliseconds: 300));
+      await swipe(tester, find.text('3 4 6 8'));
+      expect(find.text('Found before · find a new way, or swipe left'), findsOneWidget);
+      await tester.tap(find.text(card.ways[2]));
+      await tester.pump(const Duration(milliseconds: 300));
+      await swipe(tester, find.text('3 4 6 8'));
+      expect(card.reps, 1);
+      expect(card.found, [0, 2]);
       await finish(tester);
     });
   });

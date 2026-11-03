@@ -26,6 +26,7 @@ import '../editor/editor_sheet.dart';
 import '../help/help_screen.dart';
 import '../lab/memory_lab.dart';
 import '../onboarding/onboarding.dart';
+import 'reveal_preview.dart';
 import 'texture_pane.dart';
 import 'updates_screen.dart';
 import 'widgets_screen.dart';
@@ -171,6 +172,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
                     labelOf: (m) => m.label,
                     onPick: (m) => store.updateSettings((x) => x.reveal = m),
                   ),
+                  const SizedBox(height: 10),
+                  RevealPreview(key: ValueKey(s.reveal), mode: s.reveal),
                   const SizedBox(height: 12),
                   Text('Use it for', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
                   const SizedBox(height: 8),

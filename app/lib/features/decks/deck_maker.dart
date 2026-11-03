@@ -318,6 +318,16 @@ class _DeckMakerState extends State<DeckMaker> {
     final scope = store.settings.revealScope;
     final shop = deck == null ? null : store.catalogOf(deck)?.reveal;
     final picked = deck != null && store.settings.revealDecks.contains(deck.id);
+    if (deck?.kind == 'make24') {
+      return [
+        const SectionLabel('Reveal'),
+        const SizedBox(height: 4),
+        Text(
+          'Make 24 cards are played on the card: build each way from the four numbers. Stuck? shows one way a step at a time.',
+          style: T.t(14, w: FontWeight.w500, color: mc.muted, height: 1.3),
+        ),
+      ];
+    }
     return [
       const SectionLabel('Reveal'),
       const SizedBox(height: 4),

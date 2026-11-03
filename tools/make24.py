@@ -6,7 +6,7 @@
 Rules: use all four numbers once each, with + − × ÷ and brackets. Subtraction never goes below zero and
 division may leave fractions (8 ÷ (3 − 8 ÷ 3) is fine). Two ways that differ only in order or grouping are
 one way: (7 − 6 + 5) × 4 and 4 × (5 + 7 − 6) are the same, and so are ×1 and ÷1. Sets go from easy to hard
-(many ways and whole numbers first, single tricky fractions last) and fill decks of 40 cards.
+(many ways and whole numbers first, single tricky fractions last) and fill 12 decks of 63 cards.
 """
 import itertools
 import json
@@ -17,7 +17,7 @@ from fractions import Fraction
 
 ROOT = pathlib.Path(__file__).resolve().parents[1]
 OUT = ROOT / "content" / "decks" / "originals"
-LOW, HIGH, TARGET, PER_DECK = 1, 11, 24, 40
+LOW, HIGH, TARGET, PER_DECK = 1, 11, 24, 63
 MINUS, TIMES, OVER = "−", "×", "÷"
 
 
@@ -363,12 +363,12 @@ def deck_json(index, total, rows):
         "kind": "make24",
         "folder": "Make 24",
         "description": (
-            "Four numbers from 1 to 11: make 24 with + − × ÷, using each number once. "
-            "Most sets have more than one way. Swipe right when you find one; when the card comes back, "
-            "only a way you have not found before counts."
+            "Four numbers from 1 to 11: make 24 with + − × ÷, using each number once. Build it on the card, "
+            "two numbers at a time. Most sets have more than one way: when a card comes back, only a way you "
+            "have not found before counts. Stuck? shows a way one step at a time."
             + (" The easiest sets come first." if first else "")
         ),
-        "skin": {"img": "skin.jpg", "x": 0.5, "y": 0.63, "zoom": 1, "shade": 0.3, "text": "light"},
+        "skin": {"img": "skin.jpg", "x": 0.5, "y": 0.69, "zoom": 1, "shade": 0.3, "text": "light"},
         "cards": cards,
     }
 

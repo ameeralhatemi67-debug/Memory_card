@@ -41,6 +41,32 @@ This document records verified outcomes, technical approaches, and architectural
 
 ## Flutter App Outcomes (pulled forward from Version 4.0)
 
+### 2026-11-03 — Make 24 played on the card, 12 decks, and reveal pictures in Settings (not yet in a release)
+
+- **Outcome Summary:** The owner saw that listing every way after the reveal gives the puzzle away, compared three
+  takes on the canvas ("Ways · A/B/C", https://claude.ai/artifact/BAzpHdCtH8nxanCYBifZFe) and picked **A · Build it on
+  the card**. A Make 24 card is now a small board whatever the reveal setting: tap a number, a sign, then another
+  number and the two merge into one card, until one is left. A 24 is matched to the card's ways: a new one turns
+  the strip green and unlocks the right swipe; one found on an earlier turn does not. Moves below zero and ÷ 0 are
+  refused with a shake, a wrong total says what it made; Undo, Start over, and Another (to find a second way in the
+  same turn). **Stuck?** shows the simplest way not found yet one step at a time (step 1, More, Show all); a way
+  shown in full no longer counts when built, any hint makes a right swipe Hard, and a left swipe is always open
+  once you have tried or asked. The 756 sets are now **12 decks of 63** (they divide evenly). The covers moved so
+  the library bar shows "= 24" clear of the progress cards. **Settings › Study › Reveal the answer by** has a small
+  looping picture under the choice (a tiny card and a fingertip: tap, eye button, flip, swipe without an answer,
+  scratch) with one line saying what to do.
+- **How We Built It & Technical Approach:** `engine/make24.dart` ports tools/make24.py's canonical form (exact
+  fractions, flattening, neutral moves taken out) so a built expression prints exactly like one of the card's ways
+  (checked for all 756 cards: every way reads back as itself). `features/study/make_board.dart` is the board;
+  CardFront shows it for `make24` decks and reports each finished 24 to `StudyScreen._built` (a new way joins the
+  ways found this turn, any 24 counts as having tried) and Stuck? steps to `_stuckStep` (a hint). Cards with
+  several answers that are not Make 24 keep the tick list. `features/settings/reveal_preview.dart` draws the
+  pictures; with reduced motion they hold still.
+- **Verification:** `flutter analyze` clean; `flutter test test` 145 pass (`test/make24_math_test.dart` new,
+  `test/make24_test.dart` rewritten for the board: a way built by taps, a refused move, a wrong total, a way found
+  before, Stuck? step by step, the board under every reveal); frames in `build/gallery/m24-*.png` checked. Not
+  tried on a phone yet.
+
 ### 2026-11-03 — Make 24: 19 decks of cards with several right answers (not yet in a release)
 
 - **Outcome Summary:** A new kind of card: one with **several right answers ("ways")**. The first decks of it are
