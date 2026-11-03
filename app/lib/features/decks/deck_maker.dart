@@ -52,6 +52,9 @@ class _DeckMakerState extends State<DeckMaker> {
   double? _aspect;
   List<DeckSeal> _seals = [];
 
+  /// The deck's own way of revealing answers; null = none of its own (a shop deck may bring one).
+  RevealMode? _reveal;
+
   Deck? get _deck => widget.deckId == null ? null : store.data.decks[widget.deckId];
   DeckSkin? get _shopSkin => _deck == null ? null : store.catalogOf(_deck!)?.skin;
 
@@ -83,6 +86,7 @@ class _DeckMakerState extends State<DeckMaker> {
         _look = own == null && _shopSkin != null ? _Look.shop : _Look.plain;
       }
       _seals = [for (final s in d.seals) s.copy()];
+      _reveal = d.reveal;
     }
     _name.addListener(_typed);
   }
@@ -161,6 +165,7 @@ class _DeckMakerState extends State<DeckMaker> {
         category: category,
         skin: skin,
         seals: _seals,
+        reveal: _reveal,
       );
       Fx.i.pop();
       Navigator.pop(context, created.id);
@@ -172,7 +177,7 @@ class _DeckMakerState extends State<DeckMaker> {
       d.kind = _code ? 'code' : 'text';
       d.category = category;
     }
-    store.saveLook(d.id, skin: skin, seals: _own ? _seals : null);
+    store.saveLook(d.id, skin: skin, seals: _own ? _seals : null, reveal: (_reveal,));
     Fx.i.pop();
     Navigator.pop(context, d.id);
     Toaster.i.show('Saved ${d.name}');
@@ -276,6 +281,8 @@ class _DeckMakerState extends State<DeckMaker> {
                 child: _look == _Look.picture && _skin != null ? _pictureControls(mc, _skin!) : const SizedBox(width: double.infinity),
               ),
               const SizedBox(height: 26),
+              ..._revealPicker(mc, deck),
+              const SizedBox(height: 26),
               const SectionLabel('Seals'),
               const SizedBox(height: 4),
               Text(
@@ -304,6 +311,38 @@ class _DeckMakerState extends State<DeckMaker> {
         InkButton(deck == null ? 'Create deck' : 'Save', height: 54, size: 23, onTap: _save),
       ]),
     );
+  }
+
+  /// The deck's own way of revealing answers, and when Settings lets it apply.
+  List<Widget> _revealPicker(Mc mc, Deck? deck) {
+    final scope = store.settings.revealScope;
+    final shop = deck == null ? null : store.catalogOf(deck)?.reveal;
+    final picked = deck != null && store.settings.revealDecks.contains(deck.id);
+    return [
+      const SectionLabel('Reveal'),
+      const SizedBox(height: 4),
+      Text(
+        switch (scope) {
+          RevealScope.all => 'How this deck shows its answers. Settings › Study uses one way for every deck right now, '
+              'so this waits until you switch it to Deck defaults or Decks I pick.',
+          RevealScope.picked => picked
+              ? 'How this deck shows its answers. You ticked it in Settings › Study, so it uses the way picked there.'
+              : 'How this deck shows its answers. It is not ticked in Settings › Study, so this is the way it reveals.',
+          RevealScope.deck => 'How this deck shows its answers.',
+        },
+        style: T.t(14, w: FontWeight.w500, color: mc.muted, height: 1.3),
+      ),
+      const SizedBox(height: 10),
+      Wrap(spacing: 6, runSpacing: 8, children: [
+        for (final m in <RevealMode?>[null, ...RevealMode.values])
+          Chip2(
+            m?.label ?? (shop != null ? 'Shop · ${shop.label}' : 'As in Settings'),
+            selected: _reveal == m,
+            height: 32,
+            onTap: () => setState(() => _reveal = m),
+          ),
+      ]),
+    ];
   }
 
   Widget _pictureControls(Mc mc, DeckSkin skin) {

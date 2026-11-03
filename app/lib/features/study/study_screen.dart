@@ -237,7 +237,9 @@ class _StudyScreenState extends State<StudyScreen>
     _hints.clear();
   }
 
-  RevealMode get _mode => store.settings.reveal;
+  /// How the card on top reveals its answer: Settings › Study, or its deck's own way (in the daily mix it
+  /// changes with the deck of each card).
+  RevealMode get _mode => store.revealFor(_deck);
   bool get _typing => _deck?.typing ?? false;
 
   bool get _needsReveal => !_revealed && (_typing || _mode != RevealMode.front);
@@ -429,6 +431,8 @@ class _StudyScreenState extends State<StudyScreen>
               ? 'Flip the card to check first'
               : _mode == RevealMode.icon
               ? 'Show the answer to check first'
+              : _mode == RevealMode.scratch
+              ? 'Scratch the answer to check first'
               : 'Tap the card to check first',
           ms: 2200,
         ),
@@ -955,7 +959,10 @@ class _StudyScreenState extends State<StudyScreen>
             final hearLabel = _revealed && card?.soundB != null ? 'Hear the answer' : 'Hear it';
             final fl = card?.frontLayout;
             // The card texture goes behind a picture, so the picture itself stays clean.
-            final richAnswer = _revealed && (card?.hasRichBack ?? false) && !_typing && (_mode == RevealMode.tap || _mode == RevealMode.icon);
+            final richAnswer = _revealed &&
+                (card?.hasRichBack ?? false) &&
+                !_typing &&
+                (_mode == RevealMode.tap || _mode == RevealMode.icon || _mode == RevealMode.scratch);
             final facePic = (fl != null && !fl.isPlain && fl.hasImage) || richAnswer;
             final pictured = next != null && next.frontLayout != null && !next.frontLayout!.isPlain;
 
@@ -973,6 +980,7 @@ class _StudyScreenState extends State<StudyScreen>
                 onSpeak: _canHear ? _speak : null,
                 media: media,
                 hearLabel: hearLabel,
+                buzz: store.settings.scratchBuzz,
                 typedResult: _typedResult,
                 typing: _typing
                     ? _TypeField(controller: _typed, onSubmit: _submitTyped)
@@ -1223,6 +1231,8 @@ class _StudyScreenState extends State<StudyScreen>
                         spotlight: false,
                         text: _revealed
                             ? 'Swipe right if you knew it, left if not'
+                            : _mode == RevealMode.scratch
+                            ? 'Try to remember, then scratch the answer'
                             : 'Try to remember, then tap the card',
                         child: const SizedBox(width: 10, height: 10),
                       ),

@@ -302,11 +302,28 @@ class AppStore extends ChangeNotifier {
   /// Every seal this deck can press: the shop's first, then the ones you made.
   List<DeckSeal> sealsOf(Deck d) => [...?catalogOf(d)?.seals, ...d.seals];
 
+  /// The deck's own way of revealing answers: yours, else the shop's; null = it has none.
+  RevealMode? deckReveal(Deck d) => d.reveal ?? catalogOf(d)?.reveal;
+
+  /// How [d]'s answers are revealed now, by Settings › Study (the reveal and the decks it applies to).
+  RevealMode revealFor(Deck? d) {
+    final s = settings;
+    final own = d == null ? null : deckReveal(d);
+    if (own == null) return s.reveal;
+    return switch (s.revealScope) {
+      RevealScope.all => s.reveal,
+      RevealScope.picked => s.revealDecks.contains(d!.id) ? s.reveal : own,
+      RevealScope.deck => own,
+    };
+  }
+
   /// Saves a deck's look and its own seals. [skin] null keeps the default look (the shop's, for a shop deck).
-  void saveLook(String deckId, {required DeckSkin? skin, List<DeckSeal>? seals}) {
+  /// [reveal] is the deck's own reveal (null = none of its own); left out, it stays as it is.
+  void saveLook(String deckId, {required DeckSkin? skin, List<DeckSeal>? seals, (RevealMode?,)? reveal}) {
     final d = data.decks[deckId];
     if (d == null) return;
     d.skin = skin;
+    if (reveal != null) d.reveal = reveal.$1;
     if (seals != null) {
       d.seals
         ..clear()
@@ -337,11 +354,13 @@ class AppStore extends ChangeNotifier {
     String? catalogId,
     DeckSkin? skin,
     List<DeckSeal>? seals,
+    RevealMode? reveal,
   }) {
     final d = Deck(
       id: uid('d'),
       skin: skin,
       seals: seals,
+      reveal: reveal,
       name: name.trim().isEmpty ? 'New deck' : name.trim(),
       mono: mono,
       category: category,

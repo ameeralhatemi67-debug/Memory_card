@@ -10,6 +10,7 @@ import '../../ui/motion.dart';
 import '../../ui/theme.dart';
 import '../../ui/widgets.dart';
 import '../layout/layout_face.dart';
+import 'scratch_foil.dart';
 
 export '../layout/layout_face.dart' show CardThumb, FaceMedia, cardImage, termSize;
 
@@ -31,6 +32,7 @@ class CardFront extends StatelessWidget {
     this.pre = PreReveal.none,
     this.media = FaceMedia.still,
     this.hearLabel = 'Hear it',
+    this.buzz = 0.6,
   });
 
   final CardItem card;
@@ -57,9 +59,15 @@ class CardFront extends StatelessWidget {
   /// What the sound button says: "Hear it", or "Hear the answer" once the answer has its own recording.
   final String hearLabel;
 
+  /// How hard the phone buzzes while the answer is scratched (Scratch mode), 0 … 1.
+  final double buzz;
+
   /// The answer has its own face (pictures or a free canvas): it replaces the front on reveal.
   bool get _answerReplacesFront =>
-      revealed && typing == null && card.hasRichBack && (mode == RevealMode.tap || mode == RevealMode.icon);
+      revealed &&
+      typing == null &&
+      card.hasRichBack &&
+      (mode == RevealMode.tap || mode == RevealMode.icon || mode == RevealMode.scratch);
 
   @override
   Widget build(BuildContext context) {
@@ -125,12 +133,33 @@ class CardFront extends StatelessWidget {
     return pic == null ? null : PeekStrip(el: pic, sigma: pre.sigma);
   }
 
+  /// What waits under the foil in Scratch mode: the answer, or for an answer that is only a picture, a
+  /// strip of that picture (the whole picture face takes over once it is revealed).
+  Widget _underFoil(bool overPicture, double height) {
+    final pic = card.back.isEmpty && card.soundB == null && card.hasRichBack ? card.backLayout?.images.firstOrNull : null;
+    if (pic == null) return _Answer(card: card, typedResult: typedResult, overPicture: overPicture);
+    return SizedBox(
+      height: height,
+      child: ClipRRect(borderRadius: BorderRadius.circular(12), child: PeekStrip(el: pic, sigma: 0)),
+    );
+  }
+
   /// Everything under the prompt: the type-it field, the reveal button or the answer, hints, "Hear it".
   List<Widget> _footer(Mc mc, {bool overPicture = false}) {
     final flip = mode == RevealMode.flip;
+    final scratch = mode == RevealMode.scratch && typing == null;
     return [
       if (typing != null && !revealed) typing!,
-      if (mode != RevealMode.front && !flip && typing == null)
+      if (scratch)
+        ScratchFoil(
+          key: ValueKey('scratch-${card.id}'),
+          revealed: revealed,
+          onReveal: onReveal,
+          buzz: buzz,
+          minHeight: compact ? 96 : 112,
+          child: _underFoil(overPicture, compact ? 96 : 112),
+        ),
+      if (mode != RevealMode.front && !flip && !scratch && typing == null)
         AnimatedSwitcher(
           duration: const Duration(milliseconds: 260),
           switchInCurve: McCurves.out,

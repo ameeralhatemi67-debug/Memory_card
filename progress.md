@@ -22,7 +22,7 @@ related:
 
 # Memory Card Progress Log
 
-**Last updated:** 2026-10-28
+**Last updated:** 2026-11-03
 
 **Current release line:** Version 2.0 (Design Finalization & Resizable Living Lab)
 
@@ -40,6 +40,32 @@ This document records verified outcomes, technical approaches, and architectural
 ---
 
 ## Flutter App Outcomes (pulled forward from Version 4.0)
+
+### 2026-11-03 — Scratch to reveal (silver foil), a reveal per deck, and scratch vibration (not yet in a release)
+
+- **Outcome Summary:** A fifth way to reveal the answer, **Scratch**: the answer sits under silver foil (the owner's
+  pick, canvas board "Scratch · A — Silver foil" on https://claude.ai/artifact/BAzpHdCtH8nxanCYBifZFe). Scratching
+  clears it with ragged edges and flicks shavings off ahead of the finger; the phone buzzes while the finger is on
+  fresh foil. At half the panel the answer counts as revealed and the rest of the foil breaks into flakes that lift
+  and fall past the card, rippling out from the finger, with five fading buzzes. **A reveal per deck:** each deck can
+  have its own way (the deck sheet's new Reveal section; shop decks may bring one as `"reveal"` in their JSON), and
+  Settings › Study › "Use it for" decides whose way wins: **All decks** (the setting, always: the old behaviour and
+  the default), **Decks I pick** (ticked decks use the setting, the others their own) or **Deck defaults** (each deck
+  its own). A deck without one always uses the setting. **Scratch vibration** (Settings › Study, shown when anything
+  scratches) sets how hard the phone buzzes; 0 turns it off, and the Haptics switch under Feel still turns all off.
+- **How We Built It & Technical Approach:** `features/study/scratch_foil.dart`: the foil is a cached picture drawn in a
+  layer, scratches are cleared from it with `BlendMode.clear` (round-capped paths plus small bites for the ragged
+  edge); coverage is counted on a 6 px grid. A `Listener` reads every pointer move from the first pixel, and an inner
+  pan recognizer wins the gesture arena so the card stays still while you scratch. Shavings and flakes live in an
+  overlay layer of their own (one per overlay, with its own ticker) so they fall past the card's edge and keep
+  falling after a picture answer's face takes over. `services/haptics.dart` + `HapticsChannel.kt` buzz the vibrator at
+  an amplitude (Flutter's own haptics have none; `VIBRATE` permission, granted at install); off Android it falls back
+  to a click or a light impact. `AppStore.revealFor(deck)` resolves the mode; in the daily mix it follows each card's
+  deck. Reduced motion: no shavings or flakes, the foil fades. Space/Enter and the screen reader still reveal at once.
+- **Verification:** `flutter analyze` clean; `flutter test test` 133 pass (8 new in `test/scratch_reveal_test.dart`:
+  resolution in all three scopes, JSON, the catalogue key, and on screen a real scratch, a swipe refused before it,
+  the keyboard, and deck defaults); `flutter build apk --debug` builds; frames in `build/gallery/scr-*.png`
+  (`test_gallery/scratch_gallery_test.dart`) checked in light and dark. Not felt on a phone yet.
 
 ### 2026-10-28 — Accounts (email, Google, Apple) and voices and videos on cards (not yet in a release)
 

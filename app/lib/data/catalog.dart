@@ -101,6 +101,7 @@ class CatalogDeck {
     this.style = const CatalogStyle(),
     this.skin,
     this.seals = const [],
+    this.reveal,
   });
 
   final String id;
@@ -123,6 +124,9 @@ class CatalogDeck {
 
   /// Seals that studying this deck can press.
   final List<DeckSeal> seals;
+
+  /// How the deck reveals its answers by default ("reveal": "scratch"), if it says.
+  final RevealMode? reveal;
 
   /// A deck whose cards show pictures.
   bool get hasPictures => cards.any((c) => c.hasPicture);
@@ -177,6 +181,7 @@ class CatalogDeck {
                 'img': ((s['img'] as String?) ?? '').isEmpty ? null : 'asset:assets/content/img/${j['id']}/${s['img']}',
               }),
         ],
+        reveal: revealModeOf(j['reveal']),
       );
 
   /// "skin": {"img": "skin.jpg", "x": 0.5, "y": 0.4, "zoom": 1, "shade": 0.55, "text": "light"}

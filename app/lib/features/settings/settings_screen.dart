@@ -11,6 +11,7 @@ import '../../data/models.dart';
 import '../../data/store.dart';
 import '../../data/store_scope.dart';
 import '../../engine/days.dart';
+import '../../services/haptics.dart';
 import '../../services/home_widgets.dart';
 import '../../services/reminders.dart';
 import '../../services/updates.dart';
@@ -166,14 +167,65 @@ class _SettingsScreenState extends State<SettingsScreen> {
                   Seg<RevealMode>(
                     options: RevealMode.values,
                     value: s.reveal,
-                    labelOf: (m) => switch (m) {
-                      RevealMode.tap => 'Tap card',
-                      RevealMode.icon => 'Tap icon',
-                      RevealMode.flip => 'Flip',
-                      RevealMode.front => 'Front only',
-                    },
+                    fontSize: 13,
+                    labelOf: (m) => m.label,
                     onPick: (m) => store.updateSettings((x) => x.reveal = m),
                   ),
+                  const SizedBox(height: 12),
+                  Text('Use it for', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
+                  const SizedBox(height: 8),
+                  Seg<RevealScope>(
+                    options: RevealScope.values,
+                    value: s.revealScope,
+                    labelOf: (v) => switch (v) {
+                      RevealScope.all => 'All decks',
+                      RevealScope.picked => 'Decks I pick',
+                      RevealScope.deck => 'Deck defaults',
+                    },
+                    onPick: (v) => store.updateSettings((x) => x.revealScope = v),
+                  ),
+                  const SizedBox(height: 6),
+                  Text(
+                    switch (s.revealScope) {
+                      RevealScope.all => 'Every deck reveals this way, whatever its own default.',
+                      RevealScope.picked => 'The decks you tick reveal this way. The others use their own default, '
+                          'or this way if they have none.',
+                      RevealScope.deck => "Each deck reveals its own way: set it in the deck's sheet. "
+                          'Decks without one reveal this way.',
+                    },
+                    style: T.t(14, w: FontWeight.w500, color: mc.muted, height: 1.35),
+                  ),
+                  if (s.revealScope == RevealScope.picked) ...[
+                    const SizedBox(height: 10),
+                    _RevealPicks(store: store),
+                  ],
+                  if (s.reveal == RevealMode.scratch || store.data.decks.values.any((d) => store.revealFor(d) == RevealMode.scratch)) ...[
+                    const SizedBox(height: 14),
+                    Text('Scratch vibration', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
+                    Text(
+                      s.haptics
+                          ? 'How hard the phone buzzes while you scratch an answer'
+                          : 'Haptics are off (under Feel), so scratching stays still',
+                      style: T.t(14, w: FontWeight.w500, color: mc.muted, height: 1.3),
+                    ),
+                    Row(children: [
+                      Expanded(
+                        child: McSlider(
+                          value: s.scratchBuzz,
+                          divisions: 20,
+                          label: 'Scratch vibration',
+                          onChanged: (v) => store.updateSettings((x) => x.scratchBuzz = double.parse(v.toStringAsFixed(2))),
+                          // Feel the new strength as soon as the thumb is let go.
+                          onChangeEnd: () => Haptics.i.pulse(store.settings.scratchBuzz, ms: 40),
+                        ),
+                      ),
+                      SizedBox(
+                        width: 40,
+                        child: Text(s.scratchBuzz == 0 ? 'Off' : '${(s.scratchBuzz * 100).round()}%',
+                            textAlign: TextAlign.right, style: T.t(14, w: FontWeight.w700, color: mc.ink)),
+                      ),
+                    ]),
+                  ],
                   const SizedBox(height: 14),
                   Text('Pictures before the reveal', style: T.t(16, w: FontWeight.w700, color: mc.ink)),
                   const SizedBox(height: 8),
@@ -594,6 +646,33 @@ class _SettingsScreenState extends State<SettingsScreen> {
     } catch (_) {
       Toaster.i.show('Sharing is not available here');
     }
+  }
+}
+
+/// The decks that use the reveal picked in Settings (Use it for › Decks I pick): one chip per deck in your
+/// library; an unticked deck shows the way it reveals on its own.
+class _RevealPicks extends StatelessWidget {
+  const _RevealPicks({required this.store});
+  final AppStore store;
+
+  @override
+  Widget build(BuildContext context) {
+    final mc = Mc.of(context);
+    final s = store.settings;
+    final decks = [
+      for (final f in store.data.folders)
+        for (final id in f.deckIds) ?store.data.decks[id],
+    ];
+    if (decks.isEmpty) return Text('No decks yet.', style: T.t(14, w: FontWeight.w600, color: mc.muted));
+    return Wrap(spacing: 6, runSpacing: 8, children: [
+      for (final d in decks)
+        Chip2(
+          s.revealDecks.contains(d.id) || store.deckReveal(d) == null ? d.name : '${d.name} · ${store.deckReveal(d)!.label}',
+          selected: s.revealDecks.contains(d.id),
+          height: 32,
+          onTap: () => store.updateSettings((x) => x.revealDecks.contains(d.id) ? x.revealDecks.remove(d.id) : x.revealDecks.add(d.id)),
+        ),
+    ]);
   }
 }
 

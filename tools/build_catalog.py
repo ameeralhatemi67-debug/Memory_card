@@ -189,6 +189,9 @@ def check(deck: dict, path: pathlib.Path, errors: list, warnings: list) -> None:
         errors.append(f"{where}: unknown category {deck['category']!r}")
     if len(deck["name"]) > 28:
         warnings.append(f"{where}: name longer than 28 characters")
+    # A deck's own way of revealing answers (used when Settings › Study › "Use it for" lets decks choose).
+    if deck.get("reveal") not in (None, "tap", "icon", "flip", "front", "scratch"):
+        errors.append(f"{where}: reveal must be tap, icon, flip, front or scratch")
     if not deck["cards"]:
         errors.append(f"{where}: no cards")
     seen = set()

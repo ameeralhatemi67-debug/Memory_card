@@ -6,6 +6,8 @@
     <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
     <!-- Recording a voice onto a card (asked for only the first time you tap record). -->
     <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <!-- Buzzing at a set strength while you scratch an answer (granted at install, never asked). -->
+    <uses-permission android:name="android.permission.VIBRATE" />
 
     <application
         android:label="Memory Card"

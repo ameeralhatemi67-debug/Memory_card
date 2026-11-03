@@ -9,5 +9,7 @@ class MainActivity : FlutterActivity() {
         super.configureFlutterEngine(flutterEngine)
         // Widget previews for Settings, and the Quick Settings tile.
         WidgetChannel.register(this, flutterEngine.dartExecutor.binaryMessenger)
+        // Buzzes at a set strength while an answer is scratched.
+        HapticsChannel.register(this, flutterEngine.dartExecutor.binaryMessenger)
     }
 }

@@ -187,6 +187,7 @@ class Deck {
     this.skin,
     List<DeckSeal>? seals,
     Map<String, int>? sealsEarned,
+    this.reveal,
   })  : cardIds = cardIds ?? <String>[],
         stack = stack ?? <String>[],
         reservoir = reservoir ?? <String>[],
@@ -244,6 +245,9 @@ class Deck {
   /// Seal id → when it was pressed, for this deck's own and its shop seals.
   final Map<String, int> sealsEarned;
 
+  /// How this deck reveals its answers by default. null = none of its own (a shop deck may bring one).
+  RevealMode? reveal;
+
   String get monogram => mono.isNotEmpty ? mono : _monoFrom(name);
 
   static String _monoFrom(String name) {
@@ -278,6 +282,7 @@ class Deck {
         if (skin != null) 'skin': skin!.toJson(),
         if (seals.isNotEmpty) 'seals': [for (final s in seals) s.toJson()],
         if (sealsEarned.isNotEmpty) 'earned': sealsEarned,
+        if (reveal != null) 'reveal': reveal!.name,
       };
 
   factory Deck.fromJson(Map j) => Deck(
@@ -305,6 +310,7 @@ class Deck {
         skin: DeckSkin.fromJson(j['skin']),
         seals: [for (final s in (j['seals'] as List?) ?? const []) if (s is Map) DeckSeal.fromJson(s)],
         sealsEarned: {for (final e in ((j['earned'] as Map?) ?? const {}).entries) '${e.key}': _i(e.value)},
+        reveal: revealModeOf(j['reveal']),
       );
 }
 
@@ -531,7 +537,24 @@ class CardItem {
       );
 }
 
-enum RevealMode { tap, icon, flip, front }
+enum RevealMode { tap, icon, flip, front, scratch }
+
+/// Which decks the reveal picked in Settings applies to: every deck, the decks you pick (the rest use their
+/// own default), or none (every deck uses its own default; a deck without one uses the setting).
+enum RevealScope { all, picked, deck }
+
+RevealMode? revealModeOf(Object? name) => RevealMode.values.where((e) => e.name == name).firstOrNull;
+
+extension RevealModeLabel on RevealMode {
+  /// How the mode is named in Settings and the deck sheet.
+  String get label => switch (this) {
+        RevealMode.tap => 'Tap card',
+        RevealMode.icon => 'Tap icon',
+        RevealMode.flip => 'Flip',
+        RevealMode.front => 'Front only',
+        RevealMode.scratch => 'Scratch',
+      };
+}
 
 enum Pace { relaxed, balanced, intense }
 
@@ -609,6 +632,15 @@ class Settings {
   Settings();
 
   RevealMode reveal = RevealMode.tap;
+
+  /// Which decks [reveal] applies to (Settings › Study).
+  RevealScope revealScope = RevealScope.all;
+
+  /// The decks that use [reveal] when [revealScope] is [RevealScope.picked].
+  Set<String> revealDecks = {};
+
+  /// How hard the phone buzzes while you scratch an answer, 0 (off) … 1.
+  double scratchBuzz = 0.6;
   Pace pace = Pace.balanced;
   int goal = 20;
 
@@ -701,6 +733,9 @@ class Settings {
 
   Map<String, Object?> toJson() => {
         'reveal': reveal.name,
+        'revealScope': revealScope.name,
+        'revealDecks': revealDecks.toList(),
+        'scratchBuzz': double.parse(scratchBuzz.toStringAsFixed(2)),
         'pace': pace.name,
         'goal': goal,
         'theme': theme,
@@ -740,7 +775,10 @@ class Settings {
   factory Settings.fromJson(Map? j) {
     final s = Settings();
     if (j == null) return s;
-    s.reveal = RevealMode.values.firstWhere((e) => e.name == j['reveal'], orElse: () => RevealMode.tap);
+    s.reveal = revealModeOf(j['reveal']) ?? RevealMode.tap;
+    s.revealScope = RevealScope.values.firstWhere((e) => e.name == j['revealScope'], orElse: () => RevealScope.all);
+    s.revealDecks = {...((j['revealDecks'] as List?) ?? const []).map((e) => '$e')};
+    s.scratchBuzz = _d(j['scratchBuzz'], 0.6).clamp(0.0, 1.0);
     s.pace = Pace.values.firstWhere((e) => e.name == j['pace'], orElse: () => Pace.balanced);
     s.goal = _i(j['goal'], 20);
     s.theme = _s(j['theme'], 'system');
