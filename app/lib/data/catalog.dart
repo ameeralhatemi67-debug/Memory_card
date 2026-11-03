@@ -19,6 +19,7 @@ class CatalogCard {
     this.backAspect = 0,
     this.alpha = false,
     this.backAlpha = false,
+    this.ways = const [],
   });
   final String front;
   final String back;
@@ -36,6 +37,9 @@ class CatalogCard {
   final bool alpha;
   final bool backAlpha;
 
+  /// Every right answer, for a card that has more than one (Make 24); empty otherwise.
+  final List<String> ways;
+
   bool get hasPicture => img.isNotEmpty || bimg.isNotEmpty;
 
   factory CatalogCard.fromJson(Map j) => CatalogCard(
@@ -50,6 +54,7 @@ class CatalogCard {
         backAspect: (j['ba'] as num?)?.toDouble() ?? 0,
         alpha: j['al'] == 1,
         backAlpha: j['bal'] == 1,
+        ways: [for (final w in (j['ways'] as List?) ?? const []) '$w'],
       );
 }
 
@@ -216,6 +221,7 @@ class CatalogCategory {
     CatalogCategory('cars', 'Cars', 0xFFF0D060),
     CatalogCategory('football', 'Football', 0xFF79C267),
     CatalogCategory('knowledge', 'Knowledge', 0xFFB4B4B4),
+    CatalogCategory('math', 'Math', 0xFFF29CC0),
   ];
 
   static CatalogCategory of(String id) =>
@@ -246,6 +252,18 @@ class Catalog {
 
   int get cardCount => decks.fold(0, (a, d) => a + d.cards.length);
 
+  /// Deck names in reading order, numbers as numbers: "Make 24 · Level 2" before "Make 24 · Level 10".
+  static int compareNames(String a, String b) {
+    final re = RegExp(r'\d+|\D+');
+    final x = re.allMatches(a).map((m) => m[0]!).toList(), y = re.allMatches(b).map((m) => m[0]!).toList();
+    for (var i = 0; i < x.length && i < y.length; i++) {
+      final m = int.tryParse(x[i]), n = int.tryParse(y[i]);
+      final c = m != null && n != null ? m.compareTo(n) : x[i].compareTo(y[i]);
+      if (c != 0) return c;
+    }
+    return x.length.compareTo(y.length);
+  }
+
   /// Hand-picked starting points, best first. The shop's "Featured" order and the onboarding picker
   /// show these before the rest of a category.
   static const featuredIds = [
@@ -258,7 +276,7 @@ class Catalog {
     'flags-europe', 'naruto-characters', 'car-brands', 'onepiece-characters', 'flags-asia', 'hxh-characters',
     'football-crests-england', 'football-legends', 'football-world-cup', 'football-crests-europe',
     'anime-eyes', 'country-silhouettes', 'flags-lookalike', 'paintings-details', 'demonslayer-characters', 'jjk-characters',
-    'dragonball-characters', 'aot-characters',
+    'dragonball-characters', 'aot-characters', 'make24-01',
   ];
 
   /// [list] with the featured decks first, in [featuredIds] order; the others keep their order.

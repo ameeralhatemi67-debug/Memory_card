@@ -70,7 +70,7 @@ class _ShopScreenState extends State<ShopScreen> {
     }
     switch (_sort) {
       case _Sort.name:
-        decks.sort((a, b) => a.name.compareTo(b.name));
+        decks.sort((a, b) => Catalog.compareNames(a.name, b.name));
       case _Sort.size:
         decks.sort((a, b) => b.cards.length.compareTo(a.cards.length));
       case _Sort.featured:

@@ -45,6 +45,7 @@ class _Undo {
     this.signals,
     this.recalled,
     this.mode,
+    this.ways,
   );
   final StudySnapshot snap;
   final String deckId;
@@ -53,6 +54,9 @@ class _Undo {
   final ReviewSignals signals;
   final bool recalled;
   final String mode;
+
+  /// The ways ticked as found (a card with several), so a regrade applies them again.
+  final Set<int> ways;
 }
 
 class _Note {
@@ -134,6 +138,9 @@ class _StudyScreenState extends State<StudyScreen>
 
   /// Hints opened on the card on top (ids of the pictures or videos kept back as hints).
   final Set<String> _hints = {};
+
+  /// A card with several ways (Make 24): the ways ticked as found this turn.
+  final Set<int> _picked = {};
   bool _gradePicker = false;
   int _warm = 0;
   bool _goalOpen = false;
@@ -235,6 +242,7 @@ class _StudyScreenState extends State<StudyScreen>
     _locked = false;
     _gradePicker = false;
     _hints.clear();
+    _picked.clear();
   }
 
   /// How the card on top reveals its answer: Settings › Study, or its deck's own way (in the daily mix it
@@ -278,6 +286,15 @@ class _StudyScreenState extends State<StudyScreen>
       });
     }
   }
+
+  /// Ticks or unticks a way found (a card with several ways), once the ways show.
+  void _pick(int i) {
+    if (!_revealed || _busy) return;
+    setState(() => _picked.contains(i) ? _picked.remove(i) : _picked.add(i));
+  }
+
+  /// A card with several ways asks which you found: a right swipe needs one not found on an earlier turn.
+  bool get _waysGate => (_card?.hasWays ?? false) && !_typing && _mode != RevealMode.front;
 
   void _openHint(String id) {
     if (_hints.contains(id) || _busy) return;
@@ -439,6 +456,12 @@ class _StudyScreenState extends State<StudyScreen>
       );
       return;
     }
+    if (recalled && _waysGate && !card.earns(_picked)) {
+      _springBack();
+      Fx.i.warn();
+      _showNote(_Note(_picked.isEmpty ? 'Tick the way you found first' : 'Found before · find a new way, or swipe left', ms: 2600));
+      return;
+    }
     _busy = true;
     _settle.stop();
     _springing = false;
@@ -492,7 +515,7 @@ class _StudyScreenState extends State<StudyScreen>
     await c.forward();
     c.dispose();
     if (!mounted) return;
-    _apply(deck.id, card.id, recalled, signals, forcedGrade: forcedGrade);
+    _apply(deck.id, card.id, recalled, signals, forcedGrade: forcedGrade, ways: _waysGate ? {..._picked} : const {});
   }
 
   void _apply(
@@ -501,6 +524,7 @@ class _StudyScreenState extends State<StudyScreen>
     bool recalled,
     ReviewSignals signals, {
     int? forcedGrade,
+    Set<int> ways = const {},
   }) {
     final snap = store.snapshot(deckId, cardId);
     final mixBefore = _isMix ? [..._mix] : null;
@@ -516,8 +540,9 @@ class _StudyScreenState extends State<StudyScreen>
       forcedGrade: forcedGrade,
       mood: SessionMood.of(_results),
       snapshot: snap,
+      ways: ways,
     );
-    _undo.add(_Undo(snap, deckId, cardId, mixBefore, signals, recalled, mode));
+    _undo.add(_Undo(snap, deckId, cardId, mixBefore, signals, recalled, mode, ways));
     if (_undo.length > 30) _undo.removeAt(0);
     _results.add(out.grade > 1);
 
@@ -541,7 +566,10 @@ class _StudyScreenState extends State<StudyScreen>
     _loadTop();
     setState(() {});
 
-    final note = _noteFor(out);
+    final count = store.data.cards[cardId]?.ways.length ?? 0;
+    final note = out.allWaysFound && count > 1
+        ? _Note('All $count ways found · they all count again next time', undo: true)
+        : _noteFor(out);
     _showNote(note);
 
     final mastered = out.deckMastered ? store.data.decks[deckId] : null;
@@ -646,7 +674,7 @@ class _StudyScreenState extends State<StudyScreen>
     store.restore(u.snap);
     if (u.mixBefore != null) _mix = u.mixBefore!;
     Fx.i.tap();
-    _apply(u.deckId, u.cardId, grade > 1, u.signals, forcedGrade: grade);
+    _apply(u.deckId, u.cardId, grade > 1, u.signals, forcedGrade: grade, ways: u.ways);
   }
 
   // ------------------------------------------------------------------ menu
@@ -981,6 +1009,8 @@ class _StudyScreenState extends State<StudyScreen>
                 media: media,
                 hearLabel: hearLabel,
                 buzz: store.settings.scratchBuzz,
+                picked: _picked,
+                onPick: _revealed ? _pick : null,
                 typedResult: _typedResult,
                 typing: _typing
                     ? _TypeField(controller: _typed, onSubmit: _submitTyped)
@@ -1013,6 +1043,8 @@ class _StudyScreenState extends State<StudyScreen>
                                     onSpeak: _canHear ? _speak : null,
                                     media: media,
                                     hearLabel: hearLabel,
+                                    picked: _picked,
+                                    onPick: _revealed ? _pick : null,
                                   ),
                                 )
                               : Container(

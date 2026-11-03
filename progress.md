@@ -41,6 +41,34 @@ This document records verified outcomes, technical approaches, and architectural
 
 ## Flutter App Outcomes (pulled forward from Version 4.0)
 
+### 2026-11-03 — Make 24: 19 decks of cards with several right answers (not yet in a release)
+
+- **Outcome Summary:** A new kind of card: one with **several right answers ("ways")**. The first decks of it are
+  **Make 24**: four numbers from 1 to 11, make 24 with + − × ÷, each number once. Every set that can be done is in:
+  **756 of the 1001 possible sets**, in **19 decks of 40** ("Make 24 · Level 1" … "Level 19", the last has 36),
+  easiest first (many ways, whole numbers) and trickiest last (one way through a fraction, like 8 ÷ (3 − 8 ÷ 3)).
+  Each card shows the four numbers as small playing cards with the nav hand's coloured tops. After the reveal the
+  card lists every way (1 to 11 per set) and you tick the ones you found; a right swipe needs a ticked way. When
+  the card comes back, the ways you found are marked and only a **new** way counts (an old one plus a new one is
+  fine); once every way has been found, the round starts over. Works with every reveal (tap, icon, flip, scratch;
+  "Front only" stays a plain self-check). The decks have their own cover (no plain bar): a chalkboard with + − × ÷
+  chalk marks, a fan of four cards showing one of that level's sets and "= 24" in chalk. They sit on a new **Math**
+  shelf in the shop (Level 1 is also among the featured decks).
+- **How We Built It & Technical Approach:** `tools/make24.py` solves every set exactly (fractions allowed,
+  subtraction never below zero), then counts two ways as one when they differ only in order or grouping (sums and
+  products flattened and sorted; a ×1, +0, +x−x or ×x÷x moved anywhere is the same way). Every printed way is
+  re-evaluated and checked to use the four numbers once. It writes `content/decks/originals/make24-*.json` and the
+  covers (`app/assets/content/img/make24-*/skin.jpg`, drawn with PIL in the Bernard face). App: `CardItem.ways` and
+  `found` (saved with the card, restored by undo), `CardDraft`/`CatalogCard.ways`, `AppStore.swipe(ways:)`,
+  `NumberTiles` and the ways list in `card_face.dart`, the check in `StudyScreen._commit`. `build_catalog.py` gained
+  the Math category, checks for ways, and sorts names with their numbers (Level 2 before Level 10; the shop's Name
+  sort too). **Bug fixed on the way:** a card's JSON handed its review history list out by reference, so an undo
+  kept the undone review in the card's history strip; the lists are copied now.
+- **Verification:** `flutter analyze` clean; `flutter test test` 141 pass (8 new in `test/make24_test.dart`, one of
+  which re-evaluates all 756 cards' ways in Dart); frames in `build/gallery/m24-*.png`
+  (`test_gallery/make24_gallery_test.dart`) checked: the library bars, the cards in light and dark, a card coming
+  back with a way found, the shop's Math shelf. Not tried on a phone yet.
+
 ### 2026-11-03 — Scratch to reveal (silver foil), a reveal per deck, and scratch vibration (not yet in a release)
 
 - **Outcome Summary:** A fifth way to reveal the answer, **Scratch**: the answer sits under silver foil (the owner's

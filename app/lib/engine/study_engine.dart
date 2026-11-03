@@ -63,6 +63,9 @@ class SwipeOutcome {
   /// The deck's own seals this swipe pressed (filled in by the store, which knows the shop's seals).
   final List<DeckSeal> deckSeals = [];
 
+  /// A card with several ways: this swipe found the last of them, so they all count again (set by the store).
+  bool allWaysFound = false;
+
   bool get toEnd => reinsertAt >= restLength;
   int get grade => assessment.grade;
 }

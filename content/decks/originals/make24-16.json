@@ -1,0 +1,340 @@
+{
+ "id": "make24-16",
+ "name": "Make 24 · Level 16",
+ "mono": "24",
+ "category": "math",
+ "level": "tricky",
+ "kind": "make24",
+ "folder": "Make 24",
+ "description": "Four numbers from 1 to 11: make 24 with + − × ÷, using each number once. Most sets have more than one way. Swipe right when you find one; when the card comes back, only a way you have not found before counts.",
+ "skin": {
+  "img": "skin.jpg",
+  "x": 0.5,
+  "y": 0.63,
+  "zoom": 1,
+  "shade": 0.3,
+  "text": "light"
+ },
+ "cards": [
+  {
+   "label": "make 24",
+   "front": "3 3 9 10",
+   "back": "10 × 3 + 3 − 9",
+   "ways": [
+    "10 × 3 + 3 − 9"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "3 4 4 4",
+   "back": "(4 + 3) × 4 − 4",
+   "ways": [
+    "(4 + 3) × 4 − 4"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "3 4 4 10",
+   "back": "(10 − 3) × 4 − 4",
+   "ways": [
+    "(10 − 3) × 4 − 4"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "3 4 4 11",
+   "back": "4 × 4 + 11 − 3",
+   "ways": [
+    "4 × 4 + 11 − 3"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "3 4 5 6",
+   "back": "(5 + 3 − 4) × 6",
+   "ways": [
+    "(5 + 3 − 4) × 6"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "3 4 7 8",
+   "back": "(7 − 3) × 4 + 8",
+   "ways": [
+    "(7 − 3) × 4 + 8"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "3 4 10 10",
+   "back": "10 × 3 + 4 − 10",
+   "ways": [
+    "10 × 3 + 4 − 10"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "3 5 5 11",
+   "back": "11 + 5 + 5 + 3",
+   "ways": [
+    "11 + 5 + 5 + 3"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "3 5 11 11",
+   "back": "11 + 11 + 5 − 3",
+   "ways": [
+    "11 + 11 + 5 − 3"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "3 6 6 10",
+   "back": "(6 − 3) × 10 − 6",
+   "ways": [
+    "(6 − 3) × 10 − 6"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "3 6 8 10",
+   "back": "(10 + 6 − 8) × 3",
+   "ways": [
+    "(10 + 6 − 8) × 3"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "3 7 8 9",
+   "back": "(9 + 7 − 8) × 3",
+   "ways": [
+    "(9 + 7 − 8) × 3"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "3 8 8 11",
+   "back": "11 + 8 + 8 − 3",
+   "ways": [
+    "11 + 8 + 8 − 3"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "3 8 10 11",
+   "back": "(11 − 10) × 8 × 3",
+   "ways": [
+    "(11 − 10) × 8 × 3"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "3 9 9 10",
+   "back": "(9 + 9 − 10) × 3",
+   "ways": [
+    "(9 + 9 − 10) × 3"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 4 4 4",
+   "back": "4 × 4 + 4 + 4",
+   "ways": [
+    "4 × 4 + 4 + 4"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 4 4 9",
+   "back": "(9 − 4) × 4 + 4",
+   "ways": [
+    "(9 − 4) × 4 + 4"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 4 4 11",
+   "back": "(11 − 4) × 4 − 4",
+   "ways": [
+    "(11 − 4) × 4 − 4"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 4 5 7",
+   "back": "(7 + 4 − 5) × 4",
+   "ways": [
+    "(7 + 4 − 5) × 4"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 4 6 11",
+   "back": "(11 − 6) × 4 + 4",
+   "ways": [
+    "(11 − 6) × 4 + 4"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 4 7 10",
+   "back": "(4 + 4) × (10 − 7)",
+   "ways": [
+    "(4 + 4) × (10 − 7)"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 4 8 9",
+   "back": "9 × 4 − 8 − 4",
+   "ways": [
+    "9 × 4 − 8 − 4"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 4 9 11",
+   "back": "(11 + 4 − 9) × 4",
+   "ways": [
+    "(11 + 4 − 9) × 4"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 5 5 10",
+   "back": "10 + 5 + 5 + 4",
+   "ways": [
+    "10 + 5 + 5 + 4"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 5 6 8",
+   "back": "(5 + 4 − 6) × 8",
+   "ways": [
+    "(5 + 4 − 6) × 8"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 5 6 9",
+   "back": "9 + 6 + 5 + 4",
+   "ways": [
+    "9 + 6 + 5 + 4"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 5 7 10",
+   "back": "(7 − 5) × 10 + 4",
+   "ways": [
+    "(7 − 5) × 10 + 4"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 6 10 11",
+   "back": "(11 − 10) × 6 × 4",
+   "ways": [
+    "(11 − 10) × 6 × 4"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 7 8 11",
+   "back": "(11 − 7) × 4 + 8",
+   "ways": [
+    "(11 − 7) × 4 + 8"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 8 8 9",
+   "back": "(8 + 4 − 9) × 8",
+   "ways": [
+    "(8 + 4 − 9) × 8"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 8 9 10",
+   "back": "(9 + 4 − 10) × 8",
+   "ways": [
+    "(9 + 4 − 10) × 8"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 8 10 11",
+   "back": "(10 + 4 − 11) × 8",
+   "ways": [
+    "(10 + 4 − 11) × 8"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 9 9 10",
+   "back": "10 + 9 + 9 − 4",
+   "ways": [
+    "10 + 9 + 9 − 4"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 9 10 11",
+   "back": "(11 − 9) × 10 + 4",
+   "ways": [
+    "(11 − 9) × 10 + 4"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 9 11 11",
+   "back": "11 × 4 − 11 − 9",
+   "ways": [
+    "11 × 4 − 11 − 9"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "4 10 10 11",
+   "back": "11 × 4 − 10 − 10",
+   "ways": [
+    "11 × 4 − 10 − 10"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "5 5 5 9",
+   "back": "9 + 5 + 5 + 5",
+   "ways": [
+    "9 + 5 + 5 + 5"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "5 5 6 8",
+   "back": "8 + 6 + 5 + 5",
+   "ways": [
+    "8 + 6 + 5 + 5"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "5 5 8 11",
+   "back": "8 × 5 − 11 − 5",
+   "ways": [
+    "8 × 5 − 11 − 5"
+   ]
+  },
+  {
+   "label": "make 24",
+   "front": "5 5 9 10",
+   "back": "5 × 5 + 9 − 10",
+   "ways": [
+    "5 × 5 + 9 − 10"
+   ]
+  }
+ ]
+}

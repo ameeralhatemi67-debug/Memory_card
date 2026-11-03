@@ -376,7 +376,11 @@ class CardItem {
     this.lastConfidence,
     this.firstSeen,
     List<int>? hist,
-  }) : hist = hist ?? <int>[];
+    List<String>? ways,
+    List<int>? found,
+  })  : hist = hist ?? <int>[],
+        ways = ways ?? <String>[],
+        found = found ?? <int>[];
 
   final String id;
   String deckId;
@@ -422,6 +426,19 @@ class CardItem {
   /// Recent reviews, flattened as [tsSeconds, grade, thinkMs ÷ 10] triples, newest last.
   final List<int> hist;
   static const histMax = 24;
+
+  /// A card with more than one right answer (Make 24): every way that is right. Empty for an ordinary card,
+  /// whose answer is [back] ([back] is the first way here too, for lists and widgets).
+  final List<String> ways;
+
+  /// The ways (indexes into [ways]) found on earlier turns of this round. A right swipe needs one that is
+  /// not here; once every way has been found the round starts over.
+  final List<int> found;
+
+  bool get hasWays => ways.isNotEmpty;
+
+  /// Whether finding [picked] this turn earns a right swipe: at least one way not found before.
+  bool earns(Set<int> picked) => picked.any((i) => !found.contains(i));
 
   bool get isNew => s == null;
   double get successRate => reps == 0 ? 0 : succ / reps;
@@ -503,7 +520,10 @@ class CardItem {
         'lg': lastGrade,
         'lc': lastConfidence,
         'first': firstSeen,
-        'hist': hist,
+        // Copies, so a snapshot taken for undo keeps the lists as they were.
+        'hist': [...hist],
+        if (ways.isNotEmpty) 'w': [...ways],
+        if (found.isNotEmpty) 'wf': [...found],
       };
 
   factory CardItem.fromJson(Map j) => CardItem(
@@ -534,6 +554,8 @@ class CardItem {
         lastConfidence: _dn(j['lc']),
         firstSeen: (j['first'] as num?)?.toInt(),
         hist: ((j['hist'] as List?) ?? const []).map((e) => (e as num).toInt()).toList(),
+        ways: [for (final w in (j['w'] as List?) ?? const []) '$w'],
+        found: [for (final i in (j['wf'] as List?) ?? const []) (i as num).toInt()],
       );
 }
 

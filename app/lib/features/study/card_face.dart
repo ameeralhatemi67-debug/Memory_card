@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import '../../data/card_layout.dart';
 import '../../data/models.dart';
 import '../../services/card_audio.dart';
+import '../../ui/fx.dart';
 import '../../ui/icons.dart';
 import '../../ui/motion.dart';
 import '../../ui/theme.dart';
@@ -33,6 +34,8 @@ class CardFront extends StatelessWidget {
     this.media = FaceMedia.still,
     this.hearLabel = 'Hear it',
     this.buzz = 0.6,
+    this.picked = const {},
+    this.onPick,
   });
 
   final CardItem card;
@@ -61,6 +64,31 @@ class CardFront extends StatelessWidget {
 
   /// How hard the phone buzzes while the answer is scratched (Scratch mode), 0 … 1.
   final double buzz;
+
+  /// A card with several ways (Make 24): the ways tapped as found this turn, and tapping one (after the
+  /// reveal; null before).
+  final Set<int> picked;
+  final ValueChanged<int>? onPick;
+
+  /// The four numbers of a Make 24 card, drawn as tiles; null for any other card.
+  List<int>? get _numbers {
+    if (deck.kind != 'make24') return null;
+    final parts = card.front.trim().split(RegExp(r'\s+')).map(int.tryParse).toList();
+    return parts.isEmpty || parts.contains(null) ? null : parts.cast<int>();
+  }
+
+  /// Under the prompt of a card with several ways: how many there are, and how many you have found.
+  String get _waysLine {
+    final n = card.ways.length, f = card.found.length;
+    if (f > 0) return 'You found $f of $n · find a new one';
+    if (deck.kind == 'make24') return n == 1 ? 'One way · use each number once' : '$n ways · use each number once';
+    return '$n right answers';
+  }
+
+  /// The answer as it shows under the prompt: the ways to tap, or the answer pill.
+  Widget _answer(bool overPicture, {Key? key, bool fit = false}) => card.hasWays && typing == null
+      ? _Ways(key: key, card: card, picked: picked, onPick: onPick, fit: fit)
+      : _Answer(key: key, card: card, typedResult: typedResult, overPicture: overPicture);
 
   /// The answer has its own face (pictures or a free canvas): it replaces the front on reveal.
   bool get _answerReplacesFront =>
@@ -135,9 +163,9 @@ class CardFront extends StatelessWidget {
 
   /// What waits under the foil in Scratch mode: the answer, or for an answer that is only a picture, a
   /// strip of that picture (the whole picture face takes over once it is revealed).
-  Widget _underFoil(bool overPicture, double height) {
+  Widget _underFoil(bool overPicture, double height, {bool fit = false}) {
     final pic = card.back.isEmpty && card.soundB == null && card.hasRichBack ? card.backLayout?.images.firstOrNull : null;
-    if (pic == null) return _Answer(card: card, typedResult: typedResult, overPicture: overPicture);
+    if (pic == null) return _answer(overPicture, fit: fit);
     return SizedBox(
       height: height,
       child: ClipRRect(borderRadius: BorderRadius.circular(12), child: PeekStrip(el: pic, sigma: 0)),
@@ -145,22 +173,24 @@ class CardFront extends StatelessWidget {
   }
 
   /// Everything under the prompt: the type-it field, the reveal button or the answer, hints, "Hear it".
-  List<Widget> _footer(Mc mc, {bool overPicture = false}) {
+  /// [fit]: the answer may be taller than the room left (several ways), so it takes what is left and scrolls.
+  List<Widget> _footer(Mc mc, {bool overPicture = false, bool fit = false}) {
     final flip = mode == RevealMode.flip;
     final scratch = mode == RevealMode.scratch && typing == null;
+    Widget flex(Widget w) => fit ? Flexible(child: w) : w;
     return [
       if (typing != null && !revealed) typing!,
       if (scratch)
-        ScratchFoil(
+        flex(ScratchFoil(
           key: ValueKey('scratch-${card.id}'),
           revealed: revealed,
           onReveal: onReveal,
           buzz: buzz,
           minHeight: compact ? 96 : 112,
-          child: _underFoil(overPicture, compact ? 96 : 112),
-        ),
+          child: _underFoil(overPicture, compact ? 96 : 112, fit: fit),
+        )),
       if (mode != RevealMode.front && !flip && !scratch && typing == null)
-        AnimatedSwitcher(
+        flex(AnimatedSwitcher(
           duration: const Duration(milliseconds: 260),
           switchInCurve: McCurves.out,
           transitionBuilder: (c, a) => FadeTransition(
@@ -168,9 +198,9 @@ class CardFront extends StatelessWidget {
             child: ScaleTransition(scale: Tween(begin: 0.96, end: 1.0).animate(a), child: c),
           ),
           child: revealed
-              ? _Answer(key: const ValueKey('a'), card: card, typedResult: typedResult, overPicture: overPicture)
+              ? _answer(overPicture, key: const ValueKey('a'), fit: fit)
               : _RevealButton(key: const ValueKey('r'), icon: mode == RevealMode.icon, onTap: onReveal, peek: _peek()),
-        ),
+        )),
       if (typing != null && revealed) _Answer(card: card, typedResult: typedResult, overPicture: overPicture),
       if (flip && !revealed)
         Text('Tap the card to flip it', textAlign: TextAlign.center, style: T.t(14, w: FontWeight.w600, color: mc.mutedOnInk)),
@@ -194,6 +224,8 @@ class CardFront extends StatelessWidget {
     final glyph = !code && prompt.trim().isNotEmpty && prompt.trim().runes.length <= 3;
     // Only a sound to go on: the question is something to listen to.
     final listen = prompt.trim().isEmpty && card.soundF != null && (card.image == null || card.image!.isEmpty);
+    final numbers = _numbers;
+    final example = card.hasWays ? _waysLine : card.example;
     return Padding(
       padding: const EdgeInsets.all(20),
       child: Column(
@@ -212,6 +244,8 @@ class CardFront extends StatelessWidget {
             )
           else if (listen)
             Expanded(child: SoundPrompt(sound: card.soundF!, color: mc.onInk, muted: mc.mutedOnInk, onTap: onSpeak))
+          else if (numbers != null)
+            Padding(padding: const EdgeInsets.only(top: 6, bottom: 2), child: NumberTiles(numbers: numbers, compact: compact))
           else
             Text(
               prompt,
@@ -220,9 +254,9 @@ class CardFront extends StatelessWidget {
                   ? T.mono(termSize(prompt, true), color: mc.onInk)
                   : T.d(termSize(prompt, false), color: mc.onInk, height: 1.05),
             ),
-          if (card.example.isNotEmpty && !(flip && revealed)) ...[
+          if (example.isNotEmpty && !(flip && revealed)) ...[
             const SizedBox(height: 8),
-            Text(card.example,
+            Text(example,
                 maxLines: compact ? 2 : 3,
                 overflow: TextOverflow.ellipsis,
                 textDirection: dirOf(card.example),
@@ -237,8 +271,18 @@ class CardFront extends StatelessWidget {
               ),
             ),
           ],
-          if (!glyph && !listen) const Spacer(),
-          ..._footer(mc),
+          if (card.hasWays)
+            Expanded(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.end,
+                crossAxisAlignment: CrossAxisAlignment.stretch,
+                children: [const SizedBox(height: 10), ..._footer(mc, fit: true)],
+              ),
+            )
+          else ...[
+            if (!glyph && !listen) const Spacer(),
+            ..._footer(mc),
+          ],
         ],
       ),
     );
@@ -294,6 +338,8 @@ class CardBack extends StatelessWidget {
     this.reveal,
     this.media = FaceMedia.still,
     this.hearLabel = 'Hear it',
+    this.picked = const {},
+    this.onPick,
   });
   final CardItem card;
   final Deck? deck;
@@ -307,10 +353,28 @@ class CardBack extends StatelessWidget {
   /// 0…1 as the face turns up (flip mode); null = sharpen on its own, once, as it appears.
   final double? reveal;
 
+  /// A card with several ways: the ones tapped as found this turn, and tapping one.
+  final Set<int> picked;
+  final ValueChanged<int>? onPick;
+
   @override
   Widget build(BuildContext context) {
     final layout = card.backLayout;
     if (layout != null && !layout.isPlain) return _pictured(context, layout);
+    if (card.hasWays) {
+      return Container(
+        decoration: BoxDecoration(color: Mc.peach, borderRadius: BorderRadius.circular(18)),
+        padding: const EdgeInsets.fromLTRB(14, 18, 14, 14),
+        child: Column(crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 6),
+            child: Text(deck?.kind == 'make24' ? 'WAYS TO MAKE 24' : 'ANSWERS', style: T.caps(12, color: Mc.graphite.withValues(alpha: 0.67))),
+          ),
+          const SizedBox(height: 4),
+          Flexible(child: _Ways(card: card, picked: picked, onPick: onPick, fit: true, boxed: false)),
+        ]),
+      );
+    }
     final answer = card.back;
     return Container(
       decoration: BoxDecoration(color: Mc.peach, borderRadius: BorderRadius.circular(18)),
@@ -510,6 +574,191 @@ class _RevealButton extends StatelessWidget {
       ),
     );
   }
+}
+
+/// The four numbers of a Make 24 card, as small playing cards with coloured tops (like the nav bar's hand).
+class NumberTiles extends StatelessWidget {
+  const NumberTiles({super.key, required this.numbers, this.compact = false});
+  final List<int> numbers;
+  final bool compact;
+
+  static const _tops = [Mc.blue, Mc.green, Mc.peach, Mc.red];
+
+  @override
+  Widget build(BuildContext context) {
+    final mc = Mc.of(context);
+    return Semantics(
+      label: 'Make 24 from ${numbers.join(', ')}',
+      child: ExcludeSemantics(
+        child: Row(children: [
+          for (var i = 0; i < numbers.length; i++)
+            Expanded(
+              child: Padding(
+                padding: EdgeInsets.only(left: i == 0 ? 0 : 5, right: i == numbers.length - 1 ? 0 : 5),
+                child: Container(
+                  height: compact ? 56 : 68,
+                  clipBehavior: Clip.antiAlias,
+                  decoration: BoxDecoration(
+                    color: mc.onInk,
+                    borderRadius: BorderRadius.circular(10),
+                    boxShadow: const [BoxShadow(color: Color(0x33000000), blurRadius: 4, offset: Offset(0, 2))],
+                  ),
+                  child: Stack(children: [
+                    Positioned(left: 0, right: 0, top: 0, height: 5, child: ColoredBox(color: _tops[i % _tops.length])),
+                    Center(child: Text('${numbers[i]}', style: T.d(compact ? 32 : 40, color: mc.ink, height: 1))),
+                  ]),
+                ),
+              ),
+            ),
+        ]),
+      ),
+    );
+  }
+}
+
+/// Every way of a card with several right answers (Make 24). After the reveal you tap the ways you found;
+/// the ones found on earlier turns are marked, since a right swipe needs one that is new.
+class _Ways extends StatelessWidget {
+  const _Ways({super.key, required this.card, required this.picked, this.onPick, this.fit = false, this.boxed = true});
+  final CardItem card;
+  final Set<int> picked;
+  final ValueChanged<int>? onPick;
+
+  /// Takes the room it is given and scrolls inside it, instead of growing.
+  final bool fit;
+
+  /// On its own peach panel (under the prompt); false on the peach back face.
+  final bool boxed;
+
+  @override
+  Widget build(BuildContext context) {
+    final rows = Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      for (var i = 0; i < card.ways.length; i++)
+        _WayRow(text: card.ways[i], on: picked.contains(i), before: card.found.contains(i), onTap: onPick == null ? null : () => onPick!(i)),
+    ]);
+    final body = Column(mainAxisSize: MainAxisSize.min, crossAxisAlignment: CrossAxisAlignment.stretch, children: [
+      if (onPick != null)
+        Padding(
+          padding: const EdgeInsets.fromLTRB(6, 2, 6, 4),
+          child: Text(card.found.isEmpty ? 'TICK THE WAYS YOU FOUND' : 'TICK THE NEW WAY YOU FOUND',
+              maxLines: 1, overflow: TextOverflow.ellipsis, style: T.caps(10.5, color: Mc.graphite.withValues(alpha: 0.62))),
+        ),
+      // A long list scrolls in the room it has, fading at the foot so you can tell there is more.
+      fit ? Flexible(child: EdgeFade(bottom: card.ways.length > 4 ? 12 : 0, child: SingleChildScrollView(child: rows))) : rows,
+    ]);
+    return Semantics(
+      liveRegion: true,
+      child: boxed
+          ? Container(
+              padding: const EdgeInsets.all(6),
+              decoration: BoxDecoration(color: Mc.peach, borderRadius: BorderRadius.circular(12)),
+              child: body,
+            )
+          : body,
+    );
+  }
+}
+
+class _WayRow extends StatelessWidget {
+  const _WayRow({required this.text, required this.on, required this.before, this.onTap});
+  final String text;
+  final bool on;
+
+  /// Found on an earlier turn.
+  final bool before;
+  final VoidCallback? onTap;
+
+  @override
+  Widget build(BuildContext context) {
+    return Semantics(
+      button: onTap != null,
+      selected: on,
+      label: '$text${before ? ', found before' : ''}',
+      child: ExcludeSemantics(
+        child: GestureDetector(
+          behavior: HitTestBehavior.opaque,
+          onTap: onTap == null
+              ? null
+              : () {
+                  Fx.i.tap();
+                  onTap!();
+                },
+          child: AnimatedContainer(
+            duration: const Duration(milliseconds: 160),
+            height: 34,
+            margin: const EdgeInsets.only(bottom: 2),
+            padding: const EdgeInsets.symmetric(horizontal: 6),
+            decoration: BoxDecoration(color: on ? const Color(0x24333333) : const Color(0x00333333), borderRadius: BorderRadius.circular(9)),
+            child: Row(children: [
+              if (onTap != null) ...[_Tick(on: on), const SizedBox(width: 8)],
+              Expanded(
+                child: FittedBox(
+                  fit: BoxFit.scaleDown,
+                  alignment: Alignment.centerLeft,
+                  child: Text(text, style: T.t(18, w: FontWeight.w700, color: Mc.graphite)),
+                ),
+              ),
+              if (before) ...[
+                const SizedBox(width: 6),
+                Text('FOUND', style: T.caps(10, color: Mc.graphite.withValues(alpha: 0.55))),
+              ],
+            ]),
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+/// A round tick box: a ring, filled with a check once ticked.
+class _Tick extends StatelessWidget {
+  const _Tick({required this.on});
+  final bool on;
+
+  @override
+  Widget build(BuildContext context) => TweenAnimationBuilder<double>(
+        tween: Tween(end: on ? 1 : 0),
+        duration: const Duration(milliseconds: 180),
+        curve: McCurves.out,
+        builder: (context, t, _) => CustomPaint(size: const Size(20, 20), painter: _TickPainter(t)),
+      );
+}
+
+class _TickPainter extends CustomPainter {
+  _TickPainter(this.t);
+  final double t;
+
+  @override
+  void paint(Canvas canvas, Size size) {
+    final c = size.center(Offset.zero);
+    final r = size.width / 2 - 1;
+    canvas.drawCircle(
+      c,
+      r,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2
+        ..color = Mc.graphite.withValues(alpha: 0.45 + 0.55 * t),
+    );
+    if (t <= 0) return;
+    canvas.drawCircle(c, r * t, Paint()..color = Mc.graphite);
+    final check = Path()
+      ..moveTo(c.dx - r * 0.45, c.dy + r * 0.02)
+      ..lineTo(c.dx - r * 0.1, c.dy + r * 0.38)
+      ..lineTo(c.dx + r * 0.5, c.dy - r * 0.32);
+    canvas.drawPath(
+      check,
+      Paint()
+        ..style = PaintingStyle.stroke
+        ..strokeWidth = 2.2
+        ..strokeCap = StrokeCap.round
+        ..strokeJoin = StrokeJoin.round
+        ..color = Mc.paper.withValues(alpha: t),
+    );
+  }
+
+  @override
+  bool shouldRepaint(_TickPainter old) => old.t != t;
 }
 
 class _Answer extends StatelessWidget {

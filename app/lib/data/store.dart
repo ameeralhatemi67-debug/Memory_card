@@ -38,6 +38,7 @@ class CardDraft {
     this.backLayout,
     this.soundF,
     this.soundB,
+    this.ways = const [],
   });
   final String front;
   final String back;
@@ -53,6 +54,9 @@ class CardDraft {
   /// Recordings: heard before answering, and with the answer.
   final CardSound? soundF;
   final CardSound? soundB;
+
+  /// Every right answer, for a card with more than one.
+  final List<String> ways;
 }
 
 /// Everything needed to undo one swipe exactly (RES-47 §5.1: stack, card state and review log).
@@ -510,6 +514,7 @@ class AppStore extends ChangeNotifier {
             hook: c.hook,
             frontLayout: fl,
             backLayout: bl,
+            ways: c.ways,
           );
         }(),
     ];
@@ -557,6 +562,7 @@ class AppStore extends ChangeNotifier {
       backLayout: r.backLayout?.copy(),
       soundF: r.soundF?.copy(),
       soundB: r.soundB?.copy(),
+      ways: [...r.ways],
       created: now(),
     );
     data.cards[c.id] = c;
@@ -823,11 +829,14 @@ class AppStore extends ChangeNotifier {
     int? forcedGrade,
     SessionMood mood = const SessionMood(),
     StudySnapshot? snapshot,
+    Set<int> ways = const {},
   }) {
     final d = data.decks[deckId]!;
     final out = engine.swipe(d, cardId,
         recalled: recalled, signals: signals, now: now(), mode: mode, forcedGrade: forcedGrade, mood: mood);
     out.deckSeals.addAll(_checkDeckSeals(d, now()));
+    final c = data.cards[cardId]!;
+    if (recalled && c.hasWays && ways.isNotEmpty) out.allWaysFound = _findWays(c, ways);
     _db.saveCard(data.cards[cardId]!);
     _db.saveDeck(d);
     _saveMeta();
@@ -835,6 +844,16 @@ class AppStore extends ChangeNotifier {
     _logCache?.add(out.log);
     _changed();
     return out;
+  }
+
+  /// A card with several ways: [picked] (indexes into its ways) join the ones found before. When every way
+  /// has been found the round starts over and they all count again; returns true then.
+  bool _findWays(CardItem c, Set<int> picked) {
+    final all = {...c.found, ...picked.where((i) => i >= 0 && i < c.ways.length)};
+    c.found.clear();
+    if (all.length >= c.ways.length) return true;
+    c.found.addAll(all.toList()..sort());
+    return false;
   }
 
   /// Replays answers given on the Quick card widget through the engine, at the time they were given

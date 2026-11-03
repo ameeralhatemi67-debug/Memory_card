@@ -34,8 +34,9 @@ CATEGORIES = {
     "cars": "Cars",
     "football": "Football",
     "knowledge": "Knowledge",
+    "math": "Math",
 }
-ORDER = ["lang", "code", "med", "science", "geo", "arts", "anime", "cars", "football", "knowledge"]
+ORDER = ["lang", "code", "med", "science", "geo", "arts", "anime", "cars", "football", "knowledge", "math"]
 SEAL_WHEN = {"start", "seen", "half", "mastered", "reviews"}
 SEAL_COLORS = {"red", "wine", "peach", "gold", "green", "teal", "blue", "violet", "ink"}
 TEMPLATES = {"text", "above", "below", "full", "only"}
@@ -209,6 +210,15 @@ def check(deck: dict, path: pathlib.Path, errors: list, warnings: list) -> None:
         ex = (c.get("example") or "").strip()
         if ex and back and back.lower() in ex.lower() and deck["category"] != "lang":
             warnings.append(f"{where}: example may give away the answer on {front or back!r}")
+        # A card with several right answers: every one listed, the first also its "back".
+        ways = c.get("ways")
+        if ways is not None:
+            if not isinstance(ways, list) or not ways or not all(isinstance(w, str) and w.strip() for w in ways):
+                errors.append(f"{where}: card {i} ways must be a list of answers")
+            elif ways[0].strip() != back:
+                errors.append(f"{where}: card {i} back must be its first way")
+        if deck.get("kind") == "make24" and len(front.split()) != 4:
+            errors.append(f"{where}: card {i} must show four numbers")
 
 
 def main() -> None:
@@ -245,7 +255,9 @@ def main() -> None:
                 extra = f"  ({c['label']})" if c["label"] else ""
                 print(f"  {c['front'] or '[' + c.get('img', '') + ']'} | {c['back']}{extra}")
 
-    decks.sort(key=lambda d: (ORDER.index(d["category"]) if d["category"] in ORDER else 99, d["origin"] != "originals", d["name"]))
+    # Numbers in names sort as numbers: Level 2 before Level 10.
+    natural = lambda name: [int(t) if t.isdigit() else t for t in re.split(r"(\d+)", name)]
+    decks.sort(key=lambda d: (ORDER.index(d["category"]) if d["category"] in ORDER else 99, d["origin"] != "originals", natural(d["name"])))
     for w in warnings:
         print("warning:", w)
     if errors:
